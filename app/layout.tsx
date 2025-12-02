@@ -1,10 +1,49 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono, IBM_Plex_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import "./globals.css";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Rationale Studio — Ex-Meta. Building Zero.",
+  metadataBase: new URL('https://rationale.design'),
+  title: {
+    default: "Rationale Studio — Ex-Meta. Building Zero.",
+    template: "%s — Rationale"
+  },
   description: "Product development studio. Ex-Meta Reality Labs (7 years). We build products to prove we can build yours. Zero went from concept to App Store in 1 month.",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://rationale.design',
+    title: "Rationale Studio — Ex-Meta. Building Zero.",
+    description: "Product development studio. We build products to prove we can build yours.",
+    siteName: 'Rationale',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -14,9 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} antialiased`}>
         <Header />
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1}>
           {children}
         </main>
         <Footer />
