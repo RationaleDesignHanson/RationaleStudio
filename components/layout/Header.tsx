@@ -1,0 +1,269 @@
+/**
+ * Header Component
+ *
+ * Site-wide header with navigation.
+ * Includes logo/brand and primary navigation links.
+ */
+
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Container } from './Container';
+import { siteContent } from '@/lib/content';
+
+export function Header() {
+  const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [expandedMobileDropdown, setExpandedMobileDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+    setExpandedMobileDropdown(null);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      // Don't close if clicking inside the dropdown ref (button or menu)
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    if (openDropdown) {
+      // Use 'click' instead of 'mousedown' to allow link navigation to fire first
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [openDropdown]);
+
+  // Handle keyboard navigation for dropdowns
+  const handleKeyDown = (e: React.KeyboardEvent, linkLabel: string) => {
+    if (e.key === 'Escape') {
+      setOpenDropdown(null);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setOpenDropdown(openDropdown === linkLabel ? null : linkLabel);
+    }
+  };
+
+  return (
+    <>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"
+      >
+        Skip to main content
+      </a>
+
+      <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
+        <div>
+        <Container>
+          <div className="flex h-12 sm:h-16 items-center justify-between">
+          {/* Logo / Brand - Responsive */}
+          <Link
+            href="/"
+            className="text-xs sm:text-base lg:text-xl tracking-tight text-foreground transition-colors hover:text-accent"
+          >
+            <span className="font-semibold">Rationale: </span>
+            <span className="font-light">A product development company</span>
+          </Link>
+
+          {/* Navigation - Hidden on mobile */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8" ref={dropdownRef}>
+            {siteContent.navigation.primary.map((link) => {
+              const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
+              const isDropdownOpen = openDropdown === link.label;
+
+              if (hasDropdown) {
+                return (
+                  <div key={link.label} className="relative">
+                    <button
+                      onClick={() => setOpenDropdown(isDropdownOpen ? null : link.label)}
+                      onKeyDown={(e) => handleKeyDown(e, link.label)}
+                      className={`text-sm font-medium transition-colors hover:text-accent whitespace-nowrap inline-flex items-center gap-1 ${
+                        isActive(link.href) ? 'text-foreground' : 'text-muted'
+                      }`}
+                      aria-expanded={isDropdownOpen}
+                      aria-haspopup="true"
+                      aria-controls={`dropdown-${link.label}`}
+                    >
+                      {link.label}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {isDropdownOpen && (
+                      <div
+                        id={`dropdown-${link.label}`}
+                        className="absolute top-full right-0 mt-2 w-56 bg-background border border-border rounded-md shadow-lg overflow-hidden z-50"
+                        role="menu"
+                        aria-orientation="vertical"
+                      >
+                        {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className="block px-4 py-3 text-sm text-muted hover:bg-accent/5 hover:text-accent transition-colors"
+                            role="menuitem"
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-accent whitespace-nowrap ${
+                    isActive(link.href) ? 'text-foreground' : 'text-muted'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-3 text-muted hover:text-foreground transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            {isMobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
+          <nav className="py-4 border-t border-border">
+            {siteContent.navigation.primary.map((link) => {
+              const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
+              const isExpanded = expandedMobileDropdown === link.label;
+
+              if (hasDropdown) {
+                return (
+                  <div key={link.label}>
+                    <button
+                      onClick={() => setExpandedMobileDropdown(isExpanded ? null : link.label)}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors hover:bg-accent/5 hover:text-accent ${
+                        isActive(link.href) ? 'text-foreground bg-accent/10' : 'text-muted'
+                      }`}
+                      aria-expanded={isExpanded}
+                      aria-controls={`mobile-dropdown-${link.label}`}
+                    >
+                      {link.label}
+                      <svg
+                        className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Mobile Dropdown Items */}
+                    <div
+                      id={`mobile-dropdown-${link.label}`}
+                      className={`overflow-hidden transition-all duration-200 ${
+                        isExpanded ? 'max-h-96' : 'max-h-0'
+                      }`}
+                    >
+                      {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.href}
+                          href={dropdownItem.href}
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setExpandedMobileDropdown(null);
+                          }}
+                          className="block pl-8 pr-4 py-3 text-sm text-muted hover:bg-accent/5 hover:text-accent transition-colors"
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-4 py-3 text-base font-medium transition-colors hover:bg-accent/5 hover:text-accent ${
+                    isActive(link.href) ? 'text-foreground bg-accent/10' : 'text-muted'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+        </Container>
+      </div>
+    </header>
+    </>
+  );
+}
