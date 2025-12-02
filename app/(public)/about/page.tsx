@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About — Rationale Studio',
-  description: 'Ex-Meta Reality Labs (7 years). FUBO VP of Design. Building products with conviction and systematic execution.',
+  description: 'Ex-Meta Reality Labs (7 years). Head of Design experience. Building products with conviction and systematic execution.',
 };
 
 export default function AboutPage() {
@@ -80,9 +80,9 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-foreground mb-4">Founder Background</h2>
               <div className="space-y-6 text-base text-muted">
                 <div>
-                  <p className="font-bold text-foreground text-lg mb-2">Current: FUBO (2025–Present)</p>
-                  <p className="mb-2">VP of Design leading Growth, Design Systems, and New Features for live streaming platform.</p>
-                  <p className="text-sm mb-2">Scaling design operations and product development at a publicly traded sports streaming company.</p>
+                  <p className="font-bold text-foreground text-lg mb-2">Head of Design Experience (2025)</p>
+                  <p className="mb-2">Led Growth, Design Systems, and New Features at a publicly traded live streaming platform.</p>
+                  <p className="text-sm mb-2">Scaled design operations and product development, building AI-powered systems at production scale.</p>
                   <a href="/work/canvas" className="text-accent hover:underline text-sm font-medium">
                     View Project Canvas Case Study (Protected) →
                   </a>

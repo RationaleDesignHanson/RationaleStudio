@@ -26,7 +26,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="text-sm font-bold text-accent uppercase tracking-wide">
-                Ex-Meta Reality Labs (7 years) · FUBO Head of Design · 1 Patent
+                Ex-Meta Reality Labs (7 years) · Head of Design · 1 Patent
               </span>
             </div>
 
@@ -56,18 +56,18 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Why We Ship Fast: Operator Systems from Meta and FUBO */}
+      {/* Why We Ship Fast: Operator Systems */}
       <Section spacing="large" background="default" colorTheme={credentialsTheme}>
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-foreground mb-6 text-center">
-              Why We Ship Fast: Operator Systems from Meta and FUBO
+              Why We Ship Fast: Operator Systems from Meta + Head of Design Experience
             </h2>
 
             <div className="mb-8 text-center max-w-3xl mx-auto">
               <p className="text-base text-muted mb-4">
-                Rationale's founder spent 7 years at Meta (Reality Labs, FAIR, Messenger) and currently leads
-                design at FUBO. That background isn't just credibility—it's the source of our systematic execution.
+                Rationale's founder spent 7 years at Meta (Reality Labs, FAIR, Messenger) and served as
+                Head of Design at a publicly traded company. That background isn't just credibility—it's the source of our systematic execution.
               </p>
             </div>
 
