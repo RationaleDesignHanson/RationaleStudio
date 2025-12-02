@@ -490,35 +490,27 @@ export const siteContent = {
 
   navigation: {
     primary: [
-      { label: "Kits", href: "/services" },
-      { label: "How We Work", href: "/how-we-work" },
+      { label: "Home", href: "/" },
       {
         label: "Portfolio",
-        href: "/ventures",
+        href: "/#portfolio",
         dropdown: [
-          { label: "Zero · AI Email Triage", href: "/ventures/zero" },
-          { label: "Project Atlas · CRE Intelligence", href: "/ventures/project-atlas" },
-          { label: "Project Amplify · NIL Platform", href: "/ventures/project-amplify" },
-          { label: "View All Portfolio", href: "/ventures" }
+          { label: "Zero · AI Email Management", href: "/work/zero" },
+          { label: "Compass · AI Video Indexing", href: "/work/compass" }
         ]
       },
-      { label: "Investment Opportunities", href: "/invest" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" }
     ]
   },
 
   footer: {
-    copyright: `© ${new Date().getFullYear()} Rationale. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Rationale Studio. All rights reserved.`,
     links: [
-      { label: "Kits", href: "/services" },
-      { label: "How We Work", href: "/how-we-work" },
-      { label: "Portfolio", href: "/ventures" },
-      { label: "Investment Opportunities", href: "/invest" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
-      { label: "Investors", href: "/investors" },
-      { label: "Client Portals", href: "/auth" }
+      { label: "Zero", href: "/work/zero" },
+      { label: "Compass", href: "/work/compass" }
     ],
     social: [
       { platform: "LinkedIn", url: "https://linkedin.com/in/matthansonstudio" },
