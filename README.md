@@ -1,2 +1,2 @@
 # RationaleStudio
-Rationale Studio - Public Sitre
+Rationale Studio - Public Site
