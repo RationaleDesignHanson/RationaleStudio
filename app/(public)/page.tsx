@@ -20,61 +20,98 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero: Execution Proof + Ex-Meta Credentials */}
+      {/* Hero: Risk Mitigation + Velocity to Conviction */}
       <Section spacing="large" background="transparent" colorTheme={heroTheme}>
         <Container className="relative z-20">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="text-sm font-bold text-accent uppercase tracking-wide">
-                Ex-Meta Reality Labs (7 years) · FUBO VP Engineering
+                Ex-Meta Reality Labs (7 years) · FUBO Head of Design · 1 Patent
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              We Build Products to Prove We Can Build Yours
+              Don't Spend 6 Months Building the Wrong Thing
             </h1>
 
             <p className="text-lg sm:text-xl text-muted mb-8 max-w-3xl mx-auto">
-              Zero went from concept to App Store in 1 month with complete technical architecture.
-              10 microservices. 182 Swift files. 7 working prototypes. That's the speed we bring to your product.
+              Rationale gets you to working prototypes in weeks, not quarters. Feel what works early.
+              Build with conviction. Ship with speed.
+            </p>
+
+            <p className="text-base text-muted mb-8 max-w-3xl mx-auto">
+              <span className="font-semibold text-foreground">Proof:</span> Zero went concept to App Store in 1 month
+              with 7 validation prototypes and 10 production microservices. Same systematic velocity for your product.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <ButtonPrimary href="#portfolio" size="lg">
-                View Execution Proof →
+                See How We De-Risk →
               </ButtonPrimary>
               <ButtonSecondary href="#services" size="lg">
-                See Our Services
+                View Our Kits
               </ButtonSecondary>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Founder Credibility (Moved Up) */}
+      {/* Why We Ship Fast: Operator Systems from Meta and FUBO */}
       <Section spacing="large" background="default" colorTheme={credentialsTheme}>
         <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Built by Someone Who's Shipped at Scale</h2>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-6 text-center">
+              Why We Ship Fast: Operator Systems from Meta and FUBO
+            </h2>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div className="mb-8 text-center max-w-3xl mx-auto">
+              <p className="text-base text-muted mb-4">
+                Rationale's founder spent 7 years at Meta (Reality Labs, FAIR, Messenger) and currently leads
+                design at FUBO. That background isn't just credibility—it's the source of our systematic execution.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
               <GlassCard theme={credentialsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">7 years</div>
-                <p className="text-sm text-muted">Meta (FAIR, Reality Labs, Messenger)</p>
+                <h3 className="text-lg font-bold text-foreground mb-3">What Meta Taught Us</h3>
+                <ul className="text-sm text-muted space-y-2">
+                  <li>• Build-to-think methodology: prototype to validate, don't plan to perfection</li>
+                  <li>• Structured experimentation: test assumptions early and often</li>
+                  <li>• Multi-disciplinary velocity: designers, engineers, and product thinkers moving as one</li>
+                </ul>
               </GlassCard>
 
               <GlassCard theme={credentialsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">F8 2018</div>
-                <p className="text-sm text-muted">Live presenter with Nike, Target, Sephora</p>
-              </GlassCard>
-
-              <GlassCard theme={credentialsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">1 Patent</div>
-                <p className="text-sm text-muted">Interactive Avatars in AR (USPTO)</p>
+                <h3 className="text-lg font-bold text-foreground mb-3">What That Means for You</h3>
+                <p className="text-sm text-muted mb-3">
+                  Zero went concept to App Store in 1 month because we applied these systems. Same rigor, same velocity for client partnerships.
+                </p>
+                <p className="text-sm text-muted">
+                  Feel what works in weeks, not quarters. Build with conviction.
+                </p>
               </GlassCard>
             </div>
 
-            <ButtonSecondary href="/about">Full story →</ButtonSecondary>
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <GlassCard theme={credentialsTheme} className="p-4 text-center">
+                <div className="text-2xl font-bold text-accent mb-1">7 years</div>
+                <p className="text-xs text-muted">Meta (FAIR, Reality Labs, Messenger)</p>
+              </GlassCard>
+
+              <GlassCard theme={credentialsTheme} className="p-4 text-center">
+                <div className="text-2xl font-bold text-accent mb-1">F8 2018</div>
+                <p className="text-xs text-muted">Presenter with Nike, Target, Sephora</p>
+              </GlassCard>
+
+              <GlassCard theme={credentialsTheme} className="p-4 text-center">
+                <div className="text-2xl font-bold text-accent mb-1">1 Patent</div>
+                <p className="text-xs text-muted">Interactive Avatars in AR</p>
+              </GlassCard>
+            </div>
+
+            <div className="text-center">
+              <ButtonSecondary href="/about">Full operator background →</ButtonSecondary>
+            </div>
           </div>
         </Container>
       </Section>
@@ -112,7 +149,8 @@ export default function HomePage() {
                     <p className="text-base text-muted mb-6">
                       Swipeable cards meet intelligent categorization. Zero transforms email
                       from an overwhelming inbox into fast, confident decisions. 10 microservices
-                      in production. 182 Swift files with A+ architecture. 7 working prototypes.
+                      in production. 182 Swift files with A+ architecture. 7 working prototypes to
+                      feel what worked before we built production code.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs">iOS Native</span>
@@ -191,6 +229,58 @@ export default function HomePage() {
       </Section>
       </div>
 
+      {/* Dual-Engine Model: Portfolio IP + Client Kits */}
+      <Section spacing="large" background="transparent" colorTheme={portfolioTheme}>
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+              How Rationale Grows: Two Engines, One System
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <GlassCard theme={portfolioTheme} className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3">
+                  Engine 1 — Portfolio IP (Products We Own)
+                </h3>
+                <p className="text-sm text-muted mb-3">
+                  We design, build, and launch proprietary products like Zero and Compass. These prove our
+                  systematic execution and generate IP we can scale or license.
+                </p>
+                <p className="text-xs text-muted">
+                  Zero: 1 month to App Store. Compass: 6-week prototype sprint. Both demonstrate velocity across domains.
+                </p>
+              </GlassCard>
+
+              <GlassCard theme={portfolioTheme} className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3">
+                  Engine 2 — Client Kits (Partnerships We Fund)
+                </h3>
+                <p className="text-sm text-muted mb-3">
+                  We transform client product challenges into shipped software via structured engagements:
+                  Clarity Kits (2 weeks), Prototype Kits (4-6 weeks), and Build Ship Run (6-18 months).
+                </p>
+                <p className="text-xs text-muted">
+                  Cash, equity, or hybrid structures. Same systematic velocity.
+                </p>
+              </GlassCard>
+            </div>
+
+            <GlassCard theme={portfolioTheme} className="p-6">
+              <h3 className="text-lg font-bold text-foreground mb-3">Why Both?</h3>
+              <p className="text-base text-muted mb-4">
+                Portfolio IP proves capability and funds runway. Client Kits fund Portfolio development and
+                harden our frameworks. Both engines compound: every pilot hardens our systems, every product
+                validates our approach.
+              </p>
+              <p className="text-base text-foreground font-semibold">
+                This isn't a studio that does client work on the side. This is a studio that builds IP through
+                both channels—yours and ours.
+              </p>
+            </GlassCard>
+          </div>
+        </Container>
+      </Section>
+
       {/* Services (Brief) */}
       <div id="services">
       <Section spacing="large" background="transparent" colorTheme={servicesTheme}>
@@ -204,25 +294,46 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <GlassCard theme={servicesTheme} className="p-6 text-left">
                 <h3 className="text-xl font-bold text-foreground mb-3">Clarity Kit</h3>
-                <p className="text-sm text-muted mb-3">2 weeks · Strategy validation</p>
-                <p className="text-sm text-muted">
-                  Turn your idea into a structured execution plan with technical architecture and go-to-market strategy.
+                <p className="text-sm font-semibold text-accent mb-3">2 Weeks to Validated Direction</p>
+                <p className="text-sm text-muted mb-3">
+                  Walk in with an idea. Walk out with a production-ready technical plan, go-to-market positioning,
+                  and go/no-go recommendation.
+                </p>
+                <p className="text-xs text-muted mb-3">
+                  Same rigor we used on Zero: complete technical plan in 1 month.
+                </p>
+                <p className="text-xs text-foreground font-semibold">
+                  Cash or equity structures
                 </p>
               </GlassCard>
 
               <GlassCard theme={servicesTheme} className="p-6 text-left">
                 <h3 className="text-xl font-bold text-foreground mb-3">Prototype Kit</h3>
-                <p className="text-sm text-muted mb-3">4-6 weeks · Working software</p>
-                <p className="text-sm text-muted">
-                  Interactive prototypes that prove your concept. Test assumptions before committing to full build.
+                <p className="text-sm font-semibold text-accent mb-3">4-6 Weeks to Working Software</p>
+                <p className="text-sm text-muted mb-3">
+                  Interactive prototypes you can test with real users. Feel what works before committing to
+                  full development. Test assumptions, not guesses.
+                </p>
+                <p className="text-xs text-muted mb-3">
+                  Zero proof: 7 working prototypes built to validate core mechanics before production.
+                </p>
+                <p className="text-xs text-foreground font-semibold">
+                  Cash or equity structures
                 </p>
               </GlassCard>
 
               <GlassCard theme={servicesTheme} className="p-6 text-left">
                 <h3 className="text-xl font-bold text-foreground mb-3">Build Ship Run</h3>
-                <p className="text-sm text-muted mb-3">6-18 months · Production product</p>
-                <p className="text-sm text-muted">
-                  Full product development from concept to App Store. Technical co-founder for equity partnerships.
+                <p className="text-sm font-semibold text-accent mb-3">6-18 Months to Production Product</p>
+                <p className="text-sm text-muted mb-3">
+                  Full product development from concept to App Store/launch. We become your technical co-founder—especially
+                  for equity partnerships. All in, just like Zero.
+                </p>
+                <p className="text-xs text-muted mb-3">
+                  Zero proof: 10 microservices, 182 Swift files, complete beta strategy in 6 weeks.
+                </p>
+                <p className="text-xs text-foreground font-semibold">
+                  Cash, equity, or hybrid partnerships
                 </p>
               </GlassCard>
             </div>
@@ -238,13 +349,14 @@ export default function HomePage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              Work with Proven Builders
+              Start Feeling What Works in 2 Weeks
             </h2>
             <p className="text-base sm:text-lg text-muted mb-8">
-              Show us your roadblock. We'll show you the execution plan.
+              Don't wait 6 months to discover what doesn't work. Get to working prototypes in weeks,
+              not quarters. Same velocity we brought to Zero.
             </p>
             <ButtonPrimary href="/contact" size="lg">
-              Start a Conversation
+              Book a Kit Scoping Call
             </ButtonPrimary>
           </div>
         </Container>
