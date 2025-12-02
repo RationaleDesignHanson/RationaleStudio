@@ -82,7 +82,10 @@ export default function AboutPage() {
                 <div>
                   <p className="font-bold text-foreground text-lg mb-2">Current: FUBO (2025–Present)</p>
                   <p className="mb-2">VP of Design leading Growth, Design Systems, and New Features for live streaming platform.</p>
-                  <p className="text-sm">Scaling design operations and product development at a publicly traded sports streaming company.</p>
+                  <p className="text-sm mb-2">Scaling design operations and product development at a publicly traded sports streaming company.</p>
+                  <a href="/work/canvas" className="text-accent hover:underline text-sm font-medium">
+                    View Project Canvas Case Study (Protected) →
+                  </a>
                 </div>
 
                 <div>
