@@ -474,9 +474,13 @@ export default function AthletesFirstPitchDeck() {
         <div className="min-h-[50vh] md:min-h-[70vh]">
           {renderSectionIndicator()}
           <div className="min-h-[calc(70vh-4rem)]">
-            <h2 className="text-3xl font-bold mb-3" style={{ color: currentColor }}>
+            <h2 className="text-3xl font-bold mb-2" style={{ color: currentColor }}>
               {slide.headline}
             </h2>
+            {/* Phase badge for demo slides */}
+            <div className="mb-4">
+              <PhaseBadge phase="demo" color={currentColor} />
+            </div>
             {slide.demos && renderDemo(slide.demos)}
           </div>
         </div>
@@ -486,19 +490,20 @@ export default function AthletesFirstPitchDeck() {
     return (
       <div className="min-h-[50vh] md:min-h-[70vh]">
         {renderSectionIndicator()}
-        <div className="flex flex-col justify-center min-h-[calc(70vh-3rem)] relative">
-          {/* Phase badge - only show for problem/solution/impact slides */}
+        <div className="flex flex-col justify-center min-h-[calc(70vh-3rem)]">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: currentColor }}>
+            {slide.headline}
+          </h2>
+
+          {/* Phase badge - positioned below title, left-justified */}
           {(slide.type === 'problem' || slide.type === 'solution' || slide.type === 'impact') && (
-            <div className="absolute top-0 right-0">
+            <div className="mb-4">
               <PhaseBadge phase={slide.type} color={currentColor} />
             </div>
           )}
 
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: currentColor }}>
-            {slide.headline}
-          </h2>
         {slide.content && !contentBullets && (
-          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-relaxed whitespace-pre-line">
+          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-snug whitespace-pre-line">
             {renderTextWithLinks(slide.content)}
           </p>
         )}
