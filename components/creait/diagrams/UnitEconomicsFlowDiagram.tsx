@@ -82,6 +82,8 @@ export default function UnitEconomicsFlowDiagram() {
       color: string,
       opacity: number
     ) {
+      if (!ctx) return;
+
       const controlX = (fromX + toX) / 2;
       const controlY = (fromY + toY) / 2 - 50;
 
