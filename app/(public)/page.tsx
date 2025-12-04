@@ -36,7 +36,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-base text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in-up delay-300">
-            <span className="font-semibold text-white">Proof:</span> Zero went concept to App Store in 1 month with 7 validation prototypes and 10 production microservices. Same systematic velocity for your product.
+            <span className="font-semibold text-white">Proof:</span> Zero went concept to App Store in 1 month with 7 validation prototypes and 10 production microservices.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
