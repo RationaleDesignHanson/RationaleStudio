@@ -24,7 +24,7 @@ export default function CompactTimeline({ steps, defaultExpanded }: CompactTimel
     <div className="space-y-4">
       {steps.map((step, index) => {
         const isExpanded = expandedStep === index;
-        const color = step.color || AF_COLORS.primary;
+        const color = step.color || AF_COLORS.semantic.primary;
 
         return (
           <div key={index} className="group">
