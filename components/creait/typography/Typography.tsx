@@ -1,40 +1,37 @@
-import { ReactNode, ComponentPropsWithoutRef, ElementType } from 'react';
+import React, { ReactNode, ComponentPropsWithoutRef, ElementType } from 'react';
 import { CRE_TYPOGRAPHY, TEXT_PATTERNS } from '@/lib/creait/design-tokens/typography';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
 
-interface BaseTypographyProps<T extends ElementType = 'div'> {
-  as?: T;
+interface BaseTypographyProps {
+  as?: ElementType;
   children: ReactNode;
   className?: string;
   color?: string;
   style?: React.CSSProperties;
+  [key: string]: any;
 }
-
-type TypographyProps<T extends ElementType = 'div'> = BaseTypographyProps<T> &
-  Omit<ComponentPropsWithoutRef<T>, keyof BaseTypographyProps<T>>;
 
 /**
  * Base Typography Component
  * Internal utility component for building typography variants
  */
-function BaseTypography<T extends ElementType = 'div'>({
-  as,
+function BaseTypography({
+  as: Tag = 'div',
   children,
   className = '',
   color,
   style,
   ...props
-}: TypographyProps<T>) {
-  const Component: ElementType = as || 'div';
+}: BaseTypographyProps) {
   const inlineStyles = {
     ...(color && { color }),
     ...style,
   };
 
-  return (
-    <Component className={className} style={inlineStyles} {...props}>
-      {children}
-    </Component>
+  return React.createElement(
+    Tag,
+    { className, style: inlineStyles, ...props },
+    children
   );
 }
 
@@ -42,7 +39,7 @@ function BaseTypography<T extends ElementType = 'div'>({
  * Display Components - For hero statements and large headlines
  */
 
-export function DisplayXL({ as = 'h1', className = '', color, ...props }: TypographyProps<'h1'>) {
+export function DisplayXL({ as = 'h1', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -53,7 +50,7 @@ export function DisplayXL({ as = 'h1', className = '', color, ...props }: Typogr
   );
 }
 
-export function DisplayLG({ as = 'h1', className = '', color, ...props }: TypographyProps<'h1'>) {
+export function DisplayLG({ as = 'h1', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -64,7 +61,7 @@ export function DisplayLG({ as = 'h1', className = '', color, ...props }: Typogr
   );
 }
 
-export function DisplayMD({ as = 'h2', className = '', color, ...props }: TypographyProps<'h2'>) {
+export function DisplayMD({ as = 'h2', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -79,7 +76,7 @@ export function DisplayMD({ as = 'h2', className = '', color, ...props }: Typogr
  * Heading Components - For section titles and card headers
  */
 
-export function H1({ as = 'h1', className = '', color, ...props }: TypographyProps<'h1'>) {
+export function H1({ as = 'h1', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -90,7 +87,7 @@ export function H1({ as = 'h1', className = '', color, ...props }: TypographyPro
   );
 }
 
-export function H2({ as = 'h2', className = '', color, ...props }: TypographyProps<'h2'>) {
+export function H2({ as = 'h2', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -101,7 +98,7 @@ export function H2({ as = 'h2', className = '', color, ...props }: TypographyPro
   );
 }
 
-export function H3({ as = 'h3', className = '', color, ...props }: TypographyProps<'h3'>) {
+export function H3({ as = 'h3', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -112,7 +109,7 @@ export function H3({ as = 'h3', className = '', color, ...props }: TypographyPro
   );
 }
 
-export function H4({ as = 'h4', className = '', color, ...props }: TypographyProps<'h4'>) {
+export function H4({ as = 'h4', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -127,7 +124,7 @@ export function H4({ as = 'h4', className = '', color, ...props }: TypographyPro
  * Body Text Components - For paragraphs and body copy
  */
 
-export function BodyXL({ as = 'p', className = '', color, ...props }: TypographyProps<'p'>) {
+export function BodyXL({ as = 'p', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -138,7 +135,7 @@ export function BodyXL({ as = 'p', className = '', color, ...props }: Typography
   );
 }
 
-export function BodyLG({ as = 'p', className = '', color, ...props }: TypographyProps<'p'>) {
+export function BodyLG({ as = 'p', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -149,7 +146,7 @@ export function BodyLG({ as = 'p', className = '', color, ...props }: Typography
   );
 }
 
-export function BodyMD({ as = 'p', className = '', color, ...props }: TypographyProps<'p'>) {
+export function BodyMD({ as = 'p', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -160,7 +157,7 @@ export function BodyMD({ as = 'p', className = '', color, ...props }: Typography
   );
 }
 
-export function BodySM({ as = 'p', className = '', color, ...props }: TypographyProps<'p'>) {
+export function BodySM({ as = 'p', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -175,7 +172,7 @@ export function BodySM({ as = 'p', className = '', color, ...props }: Typography
  * Label Components - For metadata and section labels
  */
 
-export function LabelLG({ as = 'span', className = '', color, ...props }: TypographyProps<'span'>) {
+export function LabelLG({ as = 'span', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -186,7 +183,7 @@ export function LabelLG({ as = 'span', className = '', color, ...props }: Typogr
   );
 }
 
-export function LabelMD({ as = 'span', className = '', color, ...props }: TypographyProps<'span'>) {
+export function LabelMD({ as = 'span', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -197,7 +194,7 @@ export function LabelMD({ as = 'span', className = '', color, ...props }: Typogr
   );
 }
 
-export function LabelSM({ as = 'span', className = '', color, ...props }: TypographyProps<'span'>) {
+export function LabelSM({ as = 'span', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -212,7 +209,7 @@ export function LabelSM({ as = 'span', className = '', color, ...props }: Typogr
  * Data/Metric Components - For numbers, scores, and tabular data
  */
 
-export function DataXL({ as = 'div', className = '', color, ...props }: TypographyProps<'div'>) {
+export function DataXL({ as = 'div', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -223,7 +220,7 @@ export function DataXL({ as = 'div', className = '', color, ...props }: Typograp
   );
 }
 
-export function DataLG({ as = 'div', className = '', color, ...props }: TypographyProps<'div'>) {
+export function DataLG({ as = 'div', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -234,7 +231,7 @@ export function DataLG({ as = 'div', className = '', color, ...props }: Typograp
   );
 }
 
-export function DataMD({ as = 'div', className = '', color, ...props }: TypographyProps<'div'>) {
+export function DataMD({ as = 'div', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -245,7 +242,7 @@ export function DataMD({ as = 'div', className = '', color, ...props }: Typograp
   );
 }
 
-export function DataSM({ as = 'span', className = '', color, ...props }: TypographyProps<'span'>) {
+export function DataSM({ as = 'span', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -261,7 +258,7 @@ export function DataSM({ as = 'span', className = '', color, ...props }: Typogra
  * Using TEXT_PATTERNS from design tokens
  */
 
-export function SlideHeadline({ as = 'h1', className = '', color, ...props }: TypographyProps<'h1'>) {
+export function SlideHeadline({ as = 'h1', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -272,7 +269,7 @@ export function SlideHeadline({ as = 'h1', className = '', color, ...props }: Ty
   );
 }
 
-export function CardTitle({ as = 'h3', className = '', color, ...props }: TypographyProps<'h3'>) {
+export function CardTitle({ as = 'h3', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -283,7 +280,7 @@ export function CardTitle({ as = 'h3', className = '', color, ...props }: Typogr
   );
 }
 
-export function SectionLabel({ as = 'span', className = '', color, ...props }: TypographyProps<'span'>) {
+export function SectionLabel({ as = 'span', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -294,7 +291,7 @@ export function SectionLabel({ as = 'span', className = '', color, ...props }: T
   );
 }
 
-export function MetricValue({ as = 'div', className = '', color, ...props }: TypographyProps<'div'>) {
+export function MetricValue({ as = 'div', className = '', color, ...props }: BaseTypographyProps) {
   return (
     <BaseTypography
       as={as}
@@ -325,7 +322,7 @@ export function ScoreDisplay({
   className = '',
 }: ScoreDisplayProps) {
   const scoreColor = CRE_COLORS.score.critical; // Default, but will be calculated
-  let color = CRE_COLORS.score.minimal;
+  let color: string = CRE_COLORS.score.minimal;
 
   if (score >= 80) color = CRE_COLORS.score.critical;
   else if (score >= 60) color = CRE_COLORS.score.high;
