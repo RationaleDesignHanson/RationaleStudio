@@ -13,11 +13,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { interpolateColors, type WatercolorTheme } from '@/lib/theme/watercolor-palette';
 
-interface ASCIIUnifiedGridProps {
+export interface ASCIIUnifiedGridProps {
   opacity?: number;
   animated?: boolean;
   colorTheme?: WatercolorTheme;
   charSet?: 'default' | 'compute' | 'depth' | 'shapes';
+  className?: string;
 }
 
 // ASCII character sets for different aesthetics
@@ -92,7 +93,8 @@ export function ASCIIUnifiedGrid({
   opacity = 0.08,
   animated = true,
   colorTheme,
-  charSet = 'default'
+  charSet = 'default',
+  className = ''
 }: ASCIIUnifiedGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -283,7 +285,7 @@ export function ASCIIUnifiedGrid({
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 pointer-events-none"
+      className={`absolute inset-0 pointer-events-none ${className}`}
       style={{ opacity: scaledOpacity }}
       aria-hidden="true"
     >
