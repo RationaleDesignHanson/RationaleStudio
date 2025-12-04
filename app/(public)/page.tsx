@@ -1055,7 +1055,7 @@ export default function HomePage() {
 
           {/* Explanation */}
           <div className="max-w-3xl mx-auto">
-            <OS8Window title="Why Both?" variant="default" animateIn={false}>
+            <OS8Window title="Why Both?" variant="featured" animateIn={false}>
               <p className="text-sm text-gray-100 leading-relaxed">
                 <span className="font-bold text-gray-100">Portfolio IP proves capability and funds runway.</span> Client Kits fund Portfolio development and harden our frameworks. Both engines compound: every pilot hardens our systems, every product validates our approach. This isn't a studio that does client work on the side. This is a studio that builds IP through both channels—yours and ours.
               </p>
@@ -1089,7 +1089,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
             <OS8Window
               title="Clarity Kit"
-              variant="default"
+              variant="featured"
               delay={100}
               className="h-full"
             >
@@ -1124,7 +1124,7 @@ export default function HomePage() {
 
             <OS8Window
               title="Prototype Kit"
-              variant="default"
+              variant="featured"
               delay={200}
               className="h-full"
             >
@@ -1159,7 +1159,7 @@ export default function HomePage() {
 
             <OS8Window
               title="Build Ship Run"
-              variant="default"
+              variant="featured"
               delay={300}
               className="h-full"
             >
@@ -1204,9 +1204,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials - COMMENTED OUT TEMPORARILY */}
+      {/*
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
-        {/* ASCII Grid Background - Social Proof (Subtle) */}
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -1230,7 +1230,6 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* Testimonial 1 - Agency fluff vs shipping */}
             <OS8Window
               title="testimonial_01.txt"
               variant="subtle"
@@ -1249,7 +1248,6 @@ export default function HomePage() {
               </div>
             </OS8Window>
 
-            {/* Testimonial 2 - Post-launch support */}
             <OS8Window
               title="testimonial_02.txt"
               variant="subtle"
@@ -1268,7 +1266,6 @@ export default function HomePage() {
               </div>
             </OS8Window>
 
-            {/* Testimonial 3 - Domain expertise */}
             <OS8Window
               title="testimonial_03.txt"
               variant="subtle"
@@ -1287,28 +1284,9 @@ export default function HomePage() {
               </div>
             </OS8Window>
           </div>
-
-          {/* Optional: Video testimonial placeholder - uncomment when you have video */}
-          {/*
-          <div className="mt-12 max-w-4xl mx-auto">
-            <OS8Window
-              title="video_testimonial.mp4"
-              variant="default"
-              animateIn={false}
-            >
-              <div className="aspect-video bg-gray-900 flex items-center justify-center">
-                <div className="text-center space-y-3">
-                  <p className="text-sm font-mono text-[#FFD700]">[VIDEO PLACEHOLDER]</p>
-                  <p className="text-xs text-gray-400 max-w-md mx-auto">
-                    Replace this div with your video embed (YouTube, Vimeo, or self-hosted)
-                  </p>
-                </div>
-              </div>
-            </OS8Window>
-          </div>
-          */}
         </div>
       </section>
+      */}
 
       {/* Final CTA */}
       <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
