@@ -25,6 +25,7 @@ export interface Slide {
   type: 'problem' | 'solution' | 'demo' | 'impact' | 'custom' | 'section-header';
   headline: string;
   content?: string;
+  contentBullets?: string[];
   visual?: {
     type: 'icon' | 'diagram' | 'chart' | 'stat' | 'image' | 'component';
     name?: string;
