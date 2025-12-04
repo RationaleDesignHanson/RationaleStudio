@@ -25,7 +25,7 @@ function BaseTypography<T extends ElementType = 'div'>({
   style,
   ...props
 }: TypographyProps<T>) {
-  const Component = as || 'div';
+  const Component: ElementType = as || 'div';
   const inlineStyles = {
     ...(color && { color }),
     ...style,
