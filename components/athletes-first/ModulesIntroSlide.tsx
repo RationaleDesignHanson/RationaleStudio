@@ -117,11 +117,11 @@ export default function ModulesIntroSlide({ onModuleClick }: ModulesIntroSlidePr
       </div>
 
       {/* Module Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl w-full auto-rows-fr">
         {modules.map((module, index) => (
           <div
             key={module.id}
-            className="relative group"
+            className="relative group flex"
             style={{
               animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`
             }}
@@ -129,10 +129,11 @@ export default function ModulesIntroSlide({ onModuleClick }: ModulesIntroSlidePr
             {/* Module Card */}
             <button
               onClick={() => onModuleClick?.(module.id)}
-              className="relative bg-black border-2 rounded-lg p-8 transition-all duration-300 hover:scale-105 cursor-pointer w-full text-left"
+              className="relative bg-black border-2 rounded-lg p-8 transition-all duration-300 hover:scale-105 cursor-pointer w-full text-left h-full flex flex-col"
               style={{
                 borderColor: module.color,
-                boxShadow: `0 0 20px ${module.color}20`
+                boxShadow: `0 0 20px ${module.color}20`,
+                minHeight: '240px'
               }}
             >
               {/* Module Number Badge */}
