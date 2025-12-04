@@ -40,7 +40,7 @@ export function InteractiveCard({
   children,
   image,
   imageAlt,
-  shaderTheme = ['#1f2937', '#374151', '#FFD700'],
+  shaderTheme = { colors: ['#1f2937', '#374151', '#FFD700'], name: 'default-theme', primary: '#FFD700', description: 'Default theme' },
   shaderOpacity = 0.05,
   shaderOpacityHover = 0.15,
   href,
@@ -102,7 +102,7 @@ export function InteractiveCard({
           opacity={isHovered ? shaderOpacityHover : shaderOpacity}
           animated={true}
           colorTheme={shaderTheme}
-          charSet="minimal"
+          charSet="default"
         />
       </div>
 

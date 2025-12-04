@@ -40,6 +40,7 @@ export default function MarketSaturationDiagram() {
       // Declare all font sizes at the top to avoid redeclaration errors
       const h2Size = getResponsiveFontSize('h2', isMobile);
       const h1Size = getResponsiveFontSize('h1', isMobile);
+      const heroSize = getResponsiveFontSize('hero', isMobile);
       const bodySize = getResponsiveFontSize('body', isMobile);
       const captionSize = getResponsiveFontSize('caption', isMobile);
       const microSize = Math.max(11, getResponsiveFontSize('micro', isMobile));

@@ -145,8 +145,8 @@ export function PresentationViewer({
         <ASCIIUnifiedGrid
           opacity={slide.shaderOpacity ?? 0.08}
           animated={slide.shaderAnimated ?? true}
-          colorTheme={slide.shaderTheme ?? ['#1f2937', '#374151', '#FFD700']}
-          charSet="minimal"
+          colorTheme={slide.shaderTheme ?? { colors: ['#1f2937', '#374151', '#FFD700'], name: 'presentation-theme', primary: '#FFD700', description: 'Presentation theme' }}
+          charSet="default"
         />
       </div>
 
