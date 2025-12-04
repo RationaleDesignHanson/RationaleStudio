@@ -817,4 +817,4 @@ export const AF_CONTENT = {
 };
 
 // Re-export AF_COLORS from design token system for backwards compatibility
-export { AF_COLORS } from '@/lib/athletes-first/design-tokens';
+export { COLORS as AF_COLORS } from '@/lib/athletes-first/design-tokens';
