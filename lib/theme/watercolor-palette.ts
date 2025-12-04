@@ -78,6 +78,42 @@ export const watercolorThemes = {
     colors: ['#000000', '#1A237E', '#0D47A1'], // pure black → deep blue → cosmic blue
     primary: '#0D47A1',
     description: 'Pure black background, deep space, Zero brand'
+  },
+
+  // TERMINAL REPUBLIC THEMES - Dark/Gray/Gold aesthetic
+  terminalGold: {
+    name: 'Terminal Gold',
+    colors: ['#1f2937', '#374151', '#FFD700'], // gray-800 → gray-700 → gold
+    primary: '#FFD700',
+    description: 'Terminal Republic: dark gray with gold accents'
+  },
+
+  terminalDark: {
+    name: 'Terminal Dark',
+    colors: ['#000000', '#111827', '#1f2937'], // black → gray-900 → gray-800
+    primary: '#9ca3af',
+    description: 'Terminal Republic: pure black to gray gradient'
+  },
+
+  terminalSubtle: {
+    name: 'Terminal Subtle',
+    colors: ['#111827', '#1f2937', '#374151'], // gray-900 → gray-800 → gray-700
+    primary: '#6b7280',
+    description: 'Terminal Republic: subtle gray gradient'
+  },
+
+  terminalAccent: {
+    name: 'Terminal Accent',
+    colors: ['#000000', '#1f2937', '#FFD700'], // black → gray-800 → gold
+    primary: '#FFD700',
+    description: 'Terminal Republic: high contrast black to gold'
+  },
+
+  terminalMonochrome: {
+    name: 'Terminal Monochrome',
+    colors: ['#111827', '#374151', '#6b7280'], // gray-900 → gray-700 → gray-500
+    primary: '#9ca3af',
+    description: 'Terminal Republic: pure monochrome gray'
   }
 } as const;
 
@@ -85,34 +121,35 @@ export type WatercolorThemeName = keyof typeof watercolorThemes;
 
 /**
  * Section-to-theme mapping for homepage and key pages
+ * Updated to use Terminal Republic themes (dark/gray/gold aesthetic)
  */
 export const sectionThemeMap = {
-  // Homepage sections
-  hero: 'coolPurple',
-  philosophy: 'emeraldGreen',
-  services: 'coralOrange',
-  featuredWork: 'blueTeal',
-  process: 'purplePink',
-  cta: 'indigoBlue',
+  // Homepage sections - Terminal Republic themes
+  hero: 'terminalGold',
+  philosophy: 'terminalSubtle',
+  services: 'terminalAccent',
+  featuredWork: 'terminalDark',
+  process: 'terminalMonochrome',
+  cta: 'terminalGold',
 
-  // About page sections
-  aboutHero: 'coolPurple',
-  principles: 'tealPink',
-  philosophyGrid: 'blueTeal',
-  inspiration: 'purplePink',
-  values: 'coralOrange',
-  founder: 'indigoBlue',
-  operatingModel: 'tealPink',
+  // About page sections - Terminal Republic themes
+  aboutHero: 'terminalGold',
+  principles: 'terminalSubtle',
+  philosophyGrid: 'terminalDark',
+  inspiration: 'terminalMonochrome',
+  values: 'terminalAccent',
+  founder: 'terminalGold',
+  operatingModel: 'terminalSubtle',
 
-  // Services page sections
-  servicesHero: 'coolPurple',
-  clarityKit: 'blueTeal',
-  prototypeKit: 'purplePink',
-  productDefinitionKit: 'coralOrange',
-  validationKit: 'tealPink',
-  buildPartner: 'indigoBlue',
+  // Services page sections - Terminal Republic themes
+  servicesHero: 'terminalGold',
+  clarityKit: 'terminalDark',
+  prototypeKit: 'terminalMonochrome',
+  productDefinitionKit: 'terminalAccent',
+  validationKit: 'terminalSubtle',
+  buildPartner: 'terminalGold',
 
-  // Zero page sections (using darkGalaxy for pure black theme)
+  // Zero page sections (keeping darkGalaxy for pure black Zero brand)
   zeroHero: 'darkGalaxy',
   zeroDashboard: 'darkGalaxy',
   zeroTools: 'darkGalaxy',
@@ -121,13 +158,13 @@ export const sectionThemeMap = {
   zeroContent: 'darkGalaxy',
 
   // Active Ventures section (homepage)
-  activeVentures: 'indigoBlue',
+  activeVentures: 'terminalGold',
 
   // Generic content sections
-  content: 'blueTeal',
+  content: 'terminalDark',
 
   // Default
-  default: 'coolPurple'
+  default: 'terminalGold'
 } as const;
 
 /**

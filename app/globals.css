@@ -1197,3 +1197,266 @@ select:focus-visible {
 a, button, input, select, textarea, label {
   touch-action: manipulation;
 }
+
+/* ===================================================================
+   VISUAL TEST ANIMATIONS - Retro-Futurist / OS 8 / Terminal
+   =================================================================== */
+
+/* Window Boot Animation */
+@keyframes window-boot {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-window-boot {
+  animation: window-boot 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* Terminal Cursor Blink */
+@keyframes cursor-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Yellow Glow Pulse */
+@keyframes yellow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.animate-yellow-pulse {
+  animation: yellow-pulse 2s ease-in-out infinite;
+}
+
+/* Grid Float Animation */
+@keyframes grid-float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2px, 2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.animate-grid-float {
+  animation: grid-float 4s ease-in-out infinite;
+}
+
+/* Scanline Effects - Multiple speeds */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+.animate-scanline-slow {
+  animation: scanline 12s linear infinite;
+}
+
+.animate-scanline-fast {
+  animation: scanline 4s linear infinite;
+}
+
+/* Signal Lock Animation (for window snap) */
+@keyframes signal-lock {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+  }
+  60% {
+    transform: scale(1.02) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-signal-lock {
+  animation: signal-lock 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* Terminal Boot Sequence */
+@keyframes boot-sequence {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-boot-sequence {
+  animation: boot-sequence 800ms ease-out forwards;
+}
+
+/* Yellow Underline Sweep */
+@keyframes underline-sweep {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-underline-sweep {
+  animation: underline-sweep 300ms ease-out forwards;
+}
+
+/* OS 8 Button Press */
+@keyframes button-press {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  50% {
+    transform: translateY(2px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+}
+
+.animate-button-press {
+  animation: button-press 150ms ease-in-out;
+}
+
+/* Voltage Flicker (for yellow elements) */
+@keyframes voltage-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.95;
+    filter: brightness(1.1);
+  }
+}
+
+.animate-voltage-flicker {
+  animation: voltage-flicker 0.15s ease-in-out;
+}
+
+/* ASCII Glitch Effect */
+@keyframes ascii-glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-ascii-glitch {
+  animation: ascii-glitch 0.3s ease-in-out;
+}
+
+/* Fade In Up (for scroll reveals) */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 600ms ease-out forwards;
+}
+
+/* Window Z-Index Storytelling (layered windows) */
+@keyframes window-layer {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) translateY(-20px);
+    z-index: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    z-index: 10;
+  }
+}
+
+.animate-window-layer {
+  animation: window-layer 500ms ease-out forwards;
+}
+
+/* Utility classes for animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Responsive animation adjustments */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimizations for animations */
+@media (max-width: 768px) {
+  .animate-window-boot,
+  .animate-signal-lock,
+  .animate-fade-in-up {
+    animation-duration: 300ms; /* Faster on mobile */
+  }
+}

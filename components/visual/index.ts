@@ -1,9 +1,15 @@
 /**
  * Visual Components Index
  *
- * ASCII and computational visual elements for Creative-Intelligent Futurism aesthetic.
+ * ASCII and computational visual elements for Terminal Republic aesthetic.
  */
 
-// Exporting only components used in public site (v1)
-// AdaptiveASCIIGrid omitted - requires Athletes First dependencies
+// Core ASCII Grid Component
+export { ASCIIUnifiedGrid } from './ASCIIUnifiedGrid';
+
+// Preset Wrappers (prevent configuration drift across sites)
+export { InvestorASCIIGrid } from './InvestorASCIIGrid';
+export { ZeroASCIIGrid } from './ZeroASCIIGrid';
+
+// Other Visual Components
 export { GlassCard } from './GlassCard';

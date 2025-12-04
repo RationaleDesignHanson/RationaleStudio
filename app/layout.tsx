@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import "./globals.css";
 
@@ -17,6 +17,13 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap", // Ensures text is visible while font loads
 });
 
 export const metadata: Metadata = {
@@ -53,7 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} antialiased`}>
         <Header />
         <main id="main-content" tabIndex={-1}>
           {children}
