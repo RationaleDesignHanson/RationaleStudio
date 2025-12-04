@@ -943,38 +943,26 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {/* Clarity Kit Signal */}
             <div className="bg-gray-800/50 border border-gray-700 p-5 rounded hover:border-[#FFD700]/50 transition-colors">
-              <p className="text-xs font-mono text-gray-400 mb-2">2 WEEKS</p>
               <p className="text-base font-semibold text-gray-100 mb-3">Clarity Kit</p>
-              <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Validate direction, technical plan, go/no-go recommendation
               </p>
-              <div className="border-t border-gray-700 pt-3">
-                <p className="text-xs font-mono text-[#FFD700]">Typical Stage: Seed/Pre-Seed</p>
-              </div>
             </div>
 
             {/* Prototype Kit Signal */}
             <div className="bg-gray-800/50 border border-gray-700 p-5 rounded hover:border-[#FFD700]/50 transition-colors">
-              <p className="text-xs font-mono text-gray-400 mb-2">4-6 WEEKS</p>
               <p className="text-base font-semibold text-gray-100 mb-3">Prototype Kit</p>
-              <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Working software you can test with real users before full build
               </p>
-              <div className="border-t border-gray-700 pt-3">
-                <p className="text-xs font-mono text-[#FFD700]">Typical Stage: Seed/Series A</p>
-              </div>
             </div>
 
             {/* Build Ship Run Signal */}
             <div className="bg-gray-800/50 border border-gray-700 p-5 rounded hover:border-[#FFD700]/50 transition-colors">
-              <p className="text-xs font-mono text-gray-400 mb-2">6-18 MONTHS</p>
               <p className="text-base font-semibold text-gray-100 mb-3">Build Ship Run</p>
-              <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Full product development from concept to App Store launch
               </p>
-              <div className="border-t border-gray-700 pt-3">
-                <p className="text-xs font-mono text-[#FFD700]">Typical Stage: Series A+</p>
-              </div>
             </div>
           </div>
 
