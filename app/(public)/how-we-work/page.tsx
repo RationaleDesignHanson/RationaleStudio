@@ -424,7 +424,7 @@ export default function HowWeWorkPage() {
 
           <OS8Window
             title="pricing_philosophy.txt"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >

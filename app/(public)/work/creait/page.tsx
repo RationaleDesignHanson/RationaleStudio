@@ -78,7 +78,7 @@ export default function CreaitPage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <OS8Window
               title="Market Strategy"
-              variant="body"
+              variant="default"
               delay={100}
             >
               <div className="space-y-3">
@@ -95,7 +95,7 @@ export default function CreaitPage() {
 
             <OS8Window
               title="AI Product Vision"
-              variant="body"
+              variant="default"
               delay={200}
             >
               <div className="space-y-3">
@@ -112,7 +112,7 @@ export default function CreaitPage() {
 
             <OS8Window
               title="Go-to-Market"
-              variant="body"
+              variant="default"
               delay={300}
             >
               <div className="space-y-3">
@@ -135,7 +135,7 @@ export default function CreaitPage() {
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Outcomes & Impact"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >

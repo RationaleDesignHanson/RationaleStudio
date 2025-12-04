@@ -452,7 +452,7 @@ export default function HomePage() {
             <div className="max-w-5xl mx-auto">
               <OS8Window
                 title="How We De-Risk Your Investment"
-                variant="body"
+                variant="default"
                 delay={400}
               >
                 <div className="space-y-6">
@@ -1055,7 +1055,7 @@ export default function HomePage() {
 
           {/* Explanation */}
           <div className="max-w-3xl mx-auto">
-            <OS8Window title="Why Both?" variant="body" animateIn={false}>
+            <OS8Window title="Why Both?" variant="default" animateIn={false}>
               <p className="text-sm text-gray-100 leading-relaxed">
                 <span className="font-bold text-gray-100">Portfolio IP proves capability and funds runway.</span> Client Kits fund Portfolio development and harden our frameworks. Both engines compound: every pilot hardens our systems, every product validates our approach. This isn't a studio that does client work on the side. This is a studio that builds IP through both channels—yours and ours.
               </p>
@@ -1089,7 +1089,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
             <OS8Window
               title="Clarity Kit"
-              variant="body"
+              variant="default"
               delay={100}
               className="h-full"
             >
@@ -1124,7 +1124,7 @@ export default function HomePage() {
 
             <OS8Window
               title="Prototype Kit"
-              variant="body"
+              variant="default"
               delay={200}
               className="h-full"
             >
@@ -1159,7 +1159,7 @@ export default function HomePage() {
 
             <OS8Window
               title="Build Ship Run"
-              variant="body"
+              variant="default"
               delay={300}
               className="h-full"
             >
@@ -1293,7 +1293,7 @@ export default function HomePage() {
           <div className="mt-12 max-w-4xl mx-auto">
             <OS8Window
               title="video_testimonial.mp4"
-              variant="body"
+              variant="default"
               animateIn={false}
             >
               <div className="aspect-video bg-gray-900 flex items-center justify-center">
