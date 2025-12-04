@@ -155,7 +155,7 @@ export const ALEX_QUESTIONS = [
   // Technical
   'Can I see a live demo of the digital twins technology?',
   'How does this integrate with our existing Salesforce CRM?',
-  'What happens if an athlete's likeness is misused?',
+  'What happens if an athlete\'s likeness is misused?',
   'How do you handle data security and GDPR compliance?',
 
   // Business Model
