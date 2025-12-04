@@ -221,6 +221,36 @@ export default function AthletesFirstPitchDeck() {
           </div>
         )}
 
+        {/* Interactive Demo Badge - prominent indicator */}
+        <div className="flex items-center justify-between mb-4 p-3 rounded-lg border-2 bg-black/60 backdrop-blur-sm"
+             style={{
+               borderColor: `${currentColor}40`,
+               backgroundColor: `${currentColor}08`
+             }}>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md border-2 font-mono text-xs font-bold uppercase tracking-wider"
+                 style={{
+                   borderColor: currentColor,
+                   backgroundColor: `${currentColor}15`,
+                   color: currentColor,
+                   boxShadow: `0 0 10px ${currentColor}30`
+                 }}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              Interactive Demo
+            </div>
+            <span className="text-sm text-white/60 font-mono">
+              Click and explore • Not a live system
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 text-xs text-white/40 font-mono">
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: currentColor }} />
+            Prototype Experience
+          </div>
+        </div>
+
         {/* Demo content - Terminal Republic featured variant */}
         <div className="rounded-lg border-2 shadow-lg p-4 md:p-8 min-h-[400px] bg-gray-900
                         hover:shadow-xl transition-all duration-300"
