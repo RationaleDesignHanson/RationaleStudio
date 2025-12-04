@@ -392,6 +392,7 @@ export default function AthletesFirstPitchDeck() {
               colorTheme={{
                 colors: ['#FFD700', '#FFA500', '#FF8C00'], // Terminal Gold gradient
                 name: 'terminal-gold',
+                primary: '#FFD700',
                 description: 'Terminal Republic gold theme'
               }}
               charSet="compute"
@@ -463,8 +464,8 @@ export default function AthletesFirstPitchDeck() {
       <div className="min-h-[50vh] md:min-h-[70vh]">
         {renderSectionIndicator()}
         <div className="flex flex-col justify-center min-h-[calc(70vh-3rem)] relative">
-          {/* Phase badge - only show for problem/solution/demo/impact slides */}
-          {(slide.type === 'problem' || slide.type === 'solution' || slide.type === 'demo' || slide.type === 'impact') && (
+          {/* Phase badge - only show for problem/solution/impact slides */}
+          {(slide.type === 'problem' || slide.type === 'solution' || slide.type === 'impact') && (
             <div className="absolute top-0 right-0">
               <PhaseBadge phase={slide.type} color={currentColor} />
             </div>
@@ -591,6 +592,7 @@ export default function AthletesFirstPitchDeck() {
           colorTheme={{
             colors: [currentColor, currentColor, currentColor],
             name: 'current-section',
+            primary: currentColor,
             description: 'Current section color theme'
           }}
           charSet="depth"

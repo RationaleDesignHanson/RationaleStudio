@@ -81,7 +81,7 @@ export default function CardVariantsPage() {
 
           <OS8Window
             title="Standard Content Example"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >
@@ -259,7 +259,7 @@ export default function CardVariantsPage() {
 
             <OS8Window
               title="Body"
-              variant="body"
+              variant="default"
               animateIn={false}
             >
               <p className="text-sm text-gray-100">
@@ -317,7 +317,7 @@ export default function CardVariantsPage() {
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Implementation Recommendations"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >

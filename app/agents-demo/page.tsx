@@ -107,7 +107,7 @@ export default function AgentsDemoPage() {
 
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           {/* Input Panel */}
-          <OS8Window title="Configure Agent Request" variant="body">
+          <OS8Window title="Configure Agent Request" variant="default">
             <div className="space-y-4">
               {/* Agent Selection */}
               <div>

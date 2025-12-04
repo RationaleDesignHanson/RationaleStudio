@@ -28,7 +28,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Who We Are"
-            variant="body"
+            variant="default"
             delay={100}
             className="max-w-4xl mx-auto"
           >
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Why Build My Own IP?"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >
@@ -257,7 +257,7 @@ export default function AboutPage() {
             {/* Mental Model 1: Expanded by default */}
             <CollapsibleOS8Window
               title="01 // Clarity Precedes Illumination"
-              variant="body"
+              variant="default"
               defaultExpanded={true}
             >
               <div className="space-y-4">
@@ -280,7 +280,7 @@ export default function AboutPage() {
             {/* Mental Model 2: Collapsed */}
             <CollapsibleOS8Window
               title="02 // Course Before Speed"
-              variant="body"
+              variant="default"
               defaultExpanded={false}
             >
               <div className="space-y-4">
@@ -303,7 +303,7 @@ export default function AboutPage() {
             {/* Mental Model 3: Collapsed */}
             <CollapsibleOS8Window
               title="03 // Build to Prove"
-              variant="body"
+              variant="default"
               defaultExpanded={false}
             >
               <div className="space-y-4">
@@ -337,7 +337,7 @@ export default function AboutPage() {
 
           <OS8Window
             title="Matt Hanson"
-            variant="body"
+            variant="default"
             animateIn={false}
             className="max-w-4xl mx-auto"
           >
