@@ -34,7 +34,7 @@ export function ShaderTransition({
   transitionKey,
   type = 'fade',
   duration = 300,
-  shaderTheme = ['#1f2937', '#374151', '#FFD700'],
+  shaderTheme = { colors: ['#1f2937', '#374151', '#FFD700'], name: 'transition-theme', primary: '#FFD700', description: 'Transition theme' },
   shaderIntensity = 0.3,
   className = '',
 }: ShaderTransitionProps) {
@@ -130,7 +130,7 @@ export function ShaderTransition({
             opacity={shaderIntensity}
             animated={true}
             colorTheme={shaderTheme}
-            charSet="minimal"
+            charSet="default"
           />
         </div>
       )}
@@ -206,8 +206,8 @@ export function BootSequence({
         <ASCIIUnifiedGrid
           opacity={0.15}
           animated={true}
-          colorTheme={['#1f2937', '#374151', '#FFD700']}
-          charSet="minimal"
+          colorTheme={{ colors: ['#1f2937', '#374151', '#FFD700'], name: 'transition-overlay', primary: '#FFD700', description: 'Transition overlay theme' }}
+          charSet="default"
         />
       </div>
 

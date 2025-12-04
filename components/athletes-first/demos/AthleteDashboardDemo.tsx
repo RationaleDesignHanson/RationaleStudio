@@ -346,8 +346,8 @@ function DashboardContent({
   permissions: Permission[];
   handleTogglePermission: (id: string) => void;
   getStatusColor: (status: Deal['status']) => string;
-  getSentimentIcon: (sentiment: string) => JSX.Element;
-  getPlatformIcon: (platform: string) => JSX.Element;
+  getSentimentIcon: (sentiment: string) => React.JSX.Element;
+  getPlatformIcon: (platform: string) => React.JSX.Element;
   isMobile: boolean;
   collapsedSections: Record<string, boolean>;
   toggleSection: (section: string) => void;
