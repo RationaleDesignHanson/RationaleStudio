@@ -370,6 +370,29 @@ export default function AthletesFirstPitchDeck() {
     );
   };
 
+  // Helper to render text with clickable URLs
+  const renderTextWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan-400 hover:text-cyan-300 underline transition-colors"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   // Render slide content based on type
   const renderSlideContent = (slide: Slide) => {
     // Parse content for bullet points if it includes emoji bullets
@@ -475,8 +498,8 @@ export default function AthletesFirstPitchDeck() {
             {slide.headline}
           </h2>
         {slide.content && !contentBullets && (
-          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-relaxed">
-            {slide.content}
+          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-relaxed whitespace-pre-line">
+            {renderTextWithLinks(slide.content)}
           </p>
         )}
         {contentBullets && (

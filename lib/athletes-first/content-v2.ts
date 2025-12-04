@@ -1012,7 +1012,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
         id: 'next-steps',
         type: 'custom',
         headline: 'Next Steps',
-        content: 'Step 1: Schedule 60-minute deep dive to choose modules.\n\nStep 2: Review custom pilot plan + budget.\n\nStep 3: Sign pilot agreement. Start in 2 weeks.'
+        content: 'Step 1: Schedule 45-minute deep dive to choose modules → https://calendly.com/hanson-rationale/45\n\nStep 2: Review custom pilot plan + budget.\n\nStep 3: Sign pilot agreement. Start in 2 weeks.'
       }
     ]
   }
