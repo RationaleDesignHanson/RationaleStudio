@@ -194,39 +194,6 @@ export default function AthletesFirstPitchDeck() {
 
     return (
       <div className="space-y-6 relative">
-        {/* LIVE DEMO Badge - Holographic with animated gradient */}
-        <div className="absolute -top-3 right-4 z-20">
-          <div className="relative flex items-center gap-2 px-4 py-2 bg-black/80 backdrop-blur-sm border-2 rounded-lg overflow-hidden"
-               style={{
-                 borderColor: currentColor,
-                 boxShadow: `0 0 30px ${currentColor}60, 0 0 15px ${currentColor}40 inset`
-               }}>
-            {/* Holographic animated background using pure CSS classes */}
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${currentColor}40, transparent)`,
-                backgroundSize: '200% 100%',
-                animation: 'shimmer 3s linear infinite'
-              }}
-            />
-
-            <div className="w-2.5 h-2.5 rounded-full animate-pulse relative z-10"
-                 style={{
-                   backgroundColor: currentColor,
-                   boxShadow: `0 0 10px ${currentColor}`
-                 }}
-            />
-            <span className="text-sm font-mono font-bold tracking-wider uppercase relative z-10"
-                  style={{
-                    color: currentColor,
-                    textShadow: `0 0 10px ${currentColor}60`
-                  }}>
-              Live Demo
-            </span>
-          </div>
-        </div>
-
         {/* Demo tabs - Enhanced with Terminal Republic styling */}
         {demos.length > 1 && (
           <div className="flex gap-2 border-b-2 flex-wrap pb-2"

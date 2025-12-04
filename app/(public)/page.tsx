@@ -452,7 +452,7 @@ export default function HomePage() {
             <div className="max-w-5xl mx-auto">
               <OS8Window
                 title="How We De-Risk Your Investment"
-                variant="default"
+                variant="featured"
                 delay={400}
               >
                 <div className="space-y-6">
