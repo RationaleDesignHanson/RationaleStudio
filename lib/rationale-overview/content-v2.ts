@@ -207,7 +207,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'zero-metrics',
         type: 'impact',
         headline: 'Zero: Concept to App Store in 1 Month',
-        content: 'Not a toy prototype. Not a demo. A production iOS app with real users, 10 microservices, and 182 Swift files. Achieved because we validated with 7 prototypes first. Same systematic velocity for every Rationale engagement.',
+        content: 'Not a toy prototype. Not a demo. A production iOS app with real users, 10 microservices, and 182 Swift files. Achieved because we validated with 7 prototypes first.',
         visual: {
           type: 'component',
           component: 'ZeroMetricsDiagram' // Radial achievement with comparison anchors

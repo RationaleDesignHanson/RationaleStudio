@@ -331,10 +331,25 @@ export default function AthletesFirstPitchDeck() {
           <div className="flex items-center gap-3">
             {MODULES.map((module) => {
               const isActive = module.id === currentSection.id;
+              // Map module IDs to section indices
+              const moduleToSectionIndex: Record<string, number> = {
+                'nil-platform': 3,
+                'interactive-pitch': 4,
+                'video-digital-twins': 2,
+                'amplify-ai': 5
+              };
+              const sectionIndex = moduleToSectionIndex[module.id];
+
               return (
-                <div
+                <button
                   key={module.id}
-                  className="px-4 py-2 rounded text-base font-semibold transition-all"
+                  onClick={() => {
+                    if (sectionIndex !== undefined) {
+                      goToSection(sectionIndex);
+                    }
+                  }}
+                  className="px-4 py-2 rounded text-base font-semibold transition-all cursor-pointer
+                             hover:scale-105 hover:shadow-lg active:scale-95"
                   style={{
                     backgroundColor: isActive ? `${module.color}20` : 'transparent',
                     borderLeft: `4px solid ${isActive ? module.color : 'transparent'}`,
@@ -343,7 +358,7 @@ export default function AthletesFirstPitchDeck() {
                   }}
                 >
                   {module.name}
-                </div>
+                </button>
               );
             })}
           </div>
@@ -485,9 +500,9 @@ export default function AthletesFirstPitchDeck() {
     }
 
     return (
-      <div className="min-h-[50vh] md:min-h-[70vh]">
+      <div className="min-h-[50vh] md:min-h-[85vh] relative">
         {renderSectionIndicator()}
-        <div className="flex flex-col justify-center min-h-[calc(70vh-3rem)]">
+        <div className="flex flex-col justify-center min-h-[calc(75vh-3rem)]">
           <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: currentColor }}>
             {slide.headline}
           </h2>
@@ -570,6 +585,18 @@ export default function AthletesFirstPitchDeck() {
               return <Component />;
             })()}
           </div>
+        )}
+
+        {/* Gradient fade overlay - indicates scrollable content below */}
+        {slide.deepDive && (
+          <div className="fixed bottom-0 left-0 right-0 h-32 pointer-events-none z-20 opacity-60"
+               style={{
+                 background: `linear-gradient(to top,
+                   rgba(0,0,0,1) 0%,
+                   ${currentColor}0a 20%,
+                   rgba(0,0,0,0.7) 50%,
+                   transparent 100%)`
+               }} />
         )}
 
         {/* Deep Dive Content - Terminal Republic card styling */}
