@@ -211,8 +211,8 @@ export default function SevenPrototypeFramework() {
       <div className="mt-8 pt-6 border-t border-gray-700">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-2xl font-bold text-[#00FF94]">2 weeks</div>
-            <div className="text-xs text-gray-500 mt-1">Total prototype time</div>
+            <div className="text-2xl font-bold text-[#00FF94]">Flexible timelines</div>
+            <div className="text-xs text-gray-500 mt-1">Adaptive to project needs</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-[#FFD700]">4</div>
