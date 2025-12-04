@@ -116,12 +116,12 @@ export default function NILPlatformFlowDiagram() {
       ctx.fillText('Multi-checkpoint process ensures athlete and family confidence', width / 2, 62);
 
       // Calculate horizontal flow layout
-      const boxWidth = 180;
-      const boxHeight = 140;
-      const boxGap = getResponsiveSpacing(30, isMobile);
+      const boxWidth = 200; // Increased from 180 to fit text better
+      const boxHeight = 120; // Reduced from 140 for more compact layout
+      const boxGap = getResponsiveSpacing(25, isMobile); // Reduced from 30
       const totalWidth = (boxWidth * 5) + (boxGap * 4);
       const startX = (width - totalWidth) / 2;
-      const centerY = height / 2 + 20;
+      const centerY = height / 2 + 10; // Shifted up from +20
 
       // Draw steps and connections
       steps.forEach((step, i) => {
@@ -161,7 +161,7 @@ export default function NILPlatformFlowDiagram() {
           // Checkpoint indicator (if exists)
           if (step.checkpoint) {
             const checkX = fromX + (toX - fromX) / 2;
-            const checkY = arrowY - 35;
+            const checkY = arrowY - 55; // Moved higher from -35
 
             // Checkpoint badge
             ctx.fillStyle = step.color;
