@@ -235,7 +235,7 @@ export default function RationalePitchDeck() {
                   SECTION {currentSlide.sectionNumber}
                 </div>
                 <h2
-                  className="text-7xl sm:text-8xl font-black mb-6 text-center"
+                  className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-center px-4"
                   style={{ color: currentColor }}
                 >
                   {currentSlide.headline}
