@@ -92,7 +92,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           component: 'AIAdoptionCurveDiagram'
         },
         deepDive: {
-          title: 'Understanding the Competitive Landscape',
+          title: 'Competitive Landscape',
           description: 'Market dynamics driving consolidation and the need for systematic advantages',
           sections: [
             {
@@ -326,7 +326,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
         id: 'impact',
         type: 'impact',
         headline: 'Revenue Unlock: $150K-$500K+ Per Athlete',
-        content: '20 regional spots. 1,000 personalized messages. Instant post-game content. All from one 4-hour session.',
+        content: '20 regional spots. 1,000 personalized messages. Instant post-game content. All from one 4-hour session. Athletes First is perfectly positioned to drive the revolution of digital twins and consent-based likeness management.',
         visual: {
           type: 'component',
           component: 'RevenueUnlockDiagram'
