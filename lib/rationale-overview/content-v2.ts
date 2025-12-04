@@ -147,7 +147,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
               content: 'Traditional: Write 20-page spec, debate for weeks, build, discover issues in production. Rationale: Build Prototype 1 in 2 days, put in user hands, get answer. Example: Zero Prototype 3 tested swipe direction. 73% of users expected opposite of our hypothesis. We pivoted immediately—before writing any production code. Cost: 2 days. Savings: 2 weeks of rework.'
             },
             {
-              title: 'The Systematic Framework',
+              title: 'Adaptive, Flexible Frameworks',
               content: 'Not random prototyping. Systematic: (1-2) Core interaction model, (3-4) Information architecture, (5-6) Edge cases and error states, (7) Polish and microinteractions. Each prototype has success criteria. Pass → Next prototype. Fail → Pivot or kill. Zero used this exact framework to go from concept to production-ready architecture in 2 weeks.'
             },
             {
@@ -203,16 +203,17 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         content: 'Zero went concept to App Store in 1 month',
         sectionNumber: 3
       },
-      {
-        id: 'zero-metrics',
-        type: 'impact',
-        headline: 'Zero: Concept to App Store in 1 Month',
-        content: 'Not a toy prototype. Not a demo. A production iOS app with real users, 10 microservices, and 182 Swift files. Achieved because we validated with 7 prototypes first.',
-        visual: {
-          type: 'component',
-          component: 'ZeroMetricsDiagram' // Radial achievement with comparison anchors
-        }
-      },
+      // TEMPORARILY HIDDEN - Needs refinement
+      // {
+      //   id: 'zero-metrics',
+      //   type: 'impact',
+      //   headline: 'Zero: Concept to App Store in 1 Month',
+      //   content: 'Not a toy prototype. Not a demo. A production iOS app with real users, 10 microservices, and 182 Swift files. Achieved because we validated with 7 prototypes first.',
+      //   visual: {
+      //     type: 'component',
+      //     component: 'ZeroMetricsDiagram' // Radial achievement with comparison anchors
+      //   }
+      // },
       {
         id: 'what-zero-proves',
         type: 'impact',
@@ -232,7 +233,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'Velocity Proof',
-              content: 'Week 1-2: 7 prototypes built and tested. Prototype 3 pivot on swipe direction. Week 3-4: Production development with 0 architectural changes (prototypes validated everything). Week 5: App Store submission and approval. Total: Concept to live product in 30 days. Same velocity model available for client partnerships via Rationale Kits.'
+              content: 'Week 1-2: 7 prototypes built and tested. Prototype 3 pivot on swipe direction. Week 3-4: Production development with 0 architectural changes (prototypes validated everything). Week 5: App Store submission and approval. Total: Concept to live product in 30 days.'
             },
             {
               title: 'Product Thinking Proof',
