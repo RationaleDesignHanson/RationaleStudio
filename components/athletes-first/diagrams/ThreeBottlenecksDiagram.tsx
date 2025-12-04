@@ -269,12 +269,12 @@ export default function ThreeBottlenecksDiagram() {
         ctx.fillStyle = green;
         ctx.font = 'bold 24px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight - 15);
+        ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight - 30);
 
         // Potential label
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
-        ctx.fillText(bottleneck.id === 'speed' ? 'WINDOW' : 'POTENTIAL', potentialBarX + barWidth / 2, barBaseY + 20);
+        ctx.fillText(bottleneck.id === 'speed' ? 'WINDOW' : 'POTENTIAL', potentialBarX + barWidth / 2, barBaseY + 25);
 
         // Actual bar (red - current reality)
         ctx.fillStyle = 'rgba(239, 68, 68, 0.3)';
@@ -288,12 +288,12 @@ export default function ThreeBottlenecksDiagram() {
         ctx.fillStyle = red;
         ctx.font = 'bold 24px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight - 15);
+        ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight - 30);
 
         // Actual label
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
-        ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 20);
+        ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 25);
 
         // Unit label
       ctx.font = `${microSize}px monospace`;
@@ -301,7 +301,7 @@ export default function ThreeBottlenecksDiagram() {
         ctx.textAlign = 'center';
         const unitLines = bottleneck.unit.split('/');
         unitLines.forEach((line, idx) => {
-          ctx.fillText(line, centerX, barBaseY + 40 + idx * 12);
+          ctx.fillText(line, centerX, barBaseY + 45 + idx * 12);
         });
 
         // Gap visualization
