@@ -553,7 +553,17 @@ export default function HomePage() {
 
           {/* ZERO: Featured */}
           <div className="mb-8">
-            <Link href="/work/zero" className="block group">
+            <div
+              onClick={() => {
+                const password = prompt('Enter password to view Zero project details:');
+                if (password === '123456') {
+                  window.location.href = '/work/zero';
+                } else if (password !== null) {
+                  alert('Incorrect password');
+                }
+              }}
+              className="block group cursor-pointer"
+            >
               <OS8Window
                 title="Zero · AI Email Triage"
                 variant="featured"
@@ -589,17 +599,20 @@ export default function HomePage() {
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 rounded-full bg-[#FFD700]/20 border border-[#FFD700] text-[#FFD700] text-xs font-semibold">iOS Native</span>
                       <span className="px-3 py-1 rounded-full bg-[#FFD700]/20 border border-[#FFD700] text-[#FFD700] text-xs font-semibold">AI Categorization</span>
-                      <span className="px-3 py-1 rounded-full bg-[#FFD700]/20 border border-[#FFD700] text-[#FFD700] text-xs font-semibold">Production Ready</span>
+                      <span className="px-3 py-1 rounded-full bg-[#FFD700]/20 border border-[#FFD700] text-xs font-semibold">Production Ready</span>
                     </div>
-                    <div className="pt-2">
+                    <div className="pt-2 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-[#FFD700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
                       <span className="text-sm font-semibold text-[#FFD700] group-hover:underline">
-                        View complete details →
+                        View complete details (password protected) →
                       </span>
                     </div>
                   </div>
                 </div>
               </OS8Window>
-            </Link>
+            </div>
           </div>
 
           {/* AR Commerce @ Meta (with subtle Orion reference) */}
