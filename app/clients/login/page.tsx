@@ -16,6 +16,10 @@ const CLIENT_CREDENTIALS: Record<string, { password: string; redirectPath: strin
   'A1': {
     password: 'halloffame',
     redirectPath: '/clients/athletes-first/pitch-deck'
+  },
+  'CREAIT': {
+    password: 'realestate',
+    redirectPath: '/clients/creait/pitch-deck'
   }
 };
 
