@@ -491,15 +491,18 @@ export const siteContent = {
   navigation: {
     primary: [
       { label: "Home", href: "/" },
+      { label: "Overview", href: "/overview" },
       {
         label: "Portfolio",
-        href: "/#portfolio",
+        href: "#",
+        disabled: true,
         dropdown: [
-          { label: "Zero · AI Email Management", href: "/work/zero" },
-          { label: "Compass · AI Video Indexing", href: "/work/compass" }
+          { label: "Coming Soon", href: "#", disabled: true },
+          { label: "Projects", href: "/#portfolio", disabled: true }
         ]
       },
       { label: "About", href: "/about" },
+      { label: "Clients", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
     ]
   },

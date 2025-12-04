@@ -82,14 +82,13 @@ export function Header() {
         Skip to main content
       </a>
 
-      <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md">
-        <div>
+      <header className="sticky top-0 z-50 border-b border-gray-800 bg-black/90 backdrop-blur-md">
         <Container>
           <div className="flex h-12 sm:h-16 items-center justify-between">
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
-            className="text-xs sm:text-base lg:text-xl tracking-tight text-foreground transition-colors hover:text-accent"
+            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-[#FFD700]"
           >
             <span className="font-semibold">Rationale: </span>
             <span className="font-light">A product development company</span>
@@ -100,15 +99,19 @@ export function Header() {
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isDropdownOpen = openDropdown === link.label;
+              const isDisabled = 'disabled' in link && link.disabled;
 
               if (hasDropdown) {
                 return (
                   <div key={link.label} className="relative">
                     <button
-                      onClick={() => setOpenDropdown(isDropdownOpen ? null : link.label)}
-                      onKeyDown={(e) => handleKeyDown(e, link.label)}
-                      className={`text-sm font-medium transition-colors hover:text-accent whitespace-nowrap inline-flex items-center gap-1 ${
-                        isActive(link.href) ? 'text-foreground' : 'text-muted'
+                      onClick={() => !isDisabled && setOpenDropdown(isDropdownOpen ? null : link.label)}
+                      onKeyDown={(e) => !isDisabled && handleKeyDown(e, link.label)}
+                      disabled={isDisabled}
+                      className={`text-sm font-medium transition-colors whitespace-nowrap inline-flex items-center gap-1 ${
+                        isDisabled
+                          ? 'text-gray-600 cursor-not-allowed'
+                          : `hover:text-[#FFD700] ${isActive(link.href) ? 'text-[#FFD700] border-b-2 border-[#FFD700]' : 'text-gray-400'}`
                       }`}
                       aria-expanded={isDropdownOpen}
                       aria-haspopup="true"
@@ -127,23 +130,37 @@ export function Header() {
                     </button>
 
                     {/* Dropdown Menu */}
-                    {isDropdownOpen && (
+                    {isDropdownOpen && !isDisabled && (
                       <div
                         id={`dropdown-${link.label}`}
-                        className="absolute top-full right-0 mt-2 w-56 bg-background border border-border rounded-md shadow-lg overflow-hidden z-50"
+                        className="absolute top-full right-0 mt-2 w-56 bg-gray-900 border border-gray-800 rounded-md shadow-lg overflow-hidden z-50"
                         role="menu"
                         aria-orientation="vertical"
                       >
-                        {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.href}
-                            href={dropdownItem.href}
-                            className="block px-4 py-3 text-sm text-muted hover:bg-accent/5 hover:text-accent transition-colors"
-                            role="menuitem"
-                          >
-                            {dropdownItem.label}
-                          </Link>
-                        ))}
+                        {/* Coming Soon Header */}
+                        <div className="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 border-b border-gray-800">
+                          Coming Soon
+                        </div>
+                        {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => {
+                          const itemDisabled = 'disabled' in dropdownItem && dropdownItem.disabled;
+                          return itemDisabled ? (
+                            <div
+                              key={dropdownItem.href}
+                              className="block px-4 py-3 text-sm text-gray-600 cursor-not-allowed"
+                            >
+                              {dropdownItem.label}
+                            </div>
+                          ) : (
+                            <Link
+                              key={dropdownItem.href}
+                              href={dropdownItem.href}
+                              className="block px-4 py-3 text-sm text-gray-400 hover:bg-[#FFD700]/10 hover:text-[#FFD700] transition-colors"
+                              role="menuitem"
+                            >
+                              {dropdownItem.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -154,8 +171,8 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-accent whitespace-nowrap ${
-                    isActive(link.href) ? 'text-foreground' : 'text-muted'
+                  className={`text-sm font-medium transition-colors hover:text-[#FFD700] whitespace-nowrap ${
+                    isActive(link.href) ? 'text-[#FFD700] border-b-2 border-[#FFD700]' : 'text-gray-400'
                   }`}
                 >
                   {link.label}
@@ -167,7 +184,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 text-muted hover:text-foreground transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+            className="md:hidden p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -184,7 +201,7 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Dropdown - Full Height Overlay */}
         <div
           id="mobile-menu"
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
@@ -193,18 +210,22 @@ export function Header() {
           role="navigation"
           aria-label="Mobile navigation"
         >
-          <nav className="py-4 border-t border-border">
+          <nav className="py-4 border-t border-gray-800 bg-gray-900">
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isExpanded = expandedMobileDropdown === link.label;
+              const isDisabled = 'disabled' in link && link.disabled;
 
               if (hasDropdown) {
                 return (
                   <div key={link.label}>
                     <button
-                      onClick={() => setExpandedMobileDropdown(isExpanded ? null : link.label)}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors hover:bg-accent/5 hover:text-accent ${
-                        isActive(link.href) ? 'text-foreground bg-accent/10' : 'text-muted'
+                      onClick={() => !isDisabled && setExpandedMobileDropdown(isExpanded ? null : link.label)}
+                      disabled={isDisabled}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-lg font-medium transition-colors ${
+                        isDisabled
+                          ? 'text-gray-600 cursor-not-allowed'
+                          : `hover:bg-[#FFD700]/10 hover:text-[#FFD700] ${isActive(link.href) ? 'text-[#FFD700] bg-[#FFD700]/10' : 'text-gray-400'}`
                       }`}
                       aria-expanded={isExpanded}
                       aria-controls={`mobile-dropdown-${link.label}`}
@@ -228,19 +249,33 @@ export function Header() {
                         isExpanded ? 'max-h-96' : 'max-h-0'
                       }`}
                     >
-                      {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => (
-                        <Link
-                          key={dropdownItem.href}
-                          href={dropdownItem.href}
-                          onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            setExpandedMobileDropdown(null);
-                          }}
-                          className="block pl-8 pr-4 py-3 text-sm text-muted hover:bg-accent/5 hover:text-accent transition-colors"
-                        >
-                          {dropdownItem.label}
-                        </Link>
-                      ))}
+                      {/* Coming Soon Header */}
+                      <div className="pl-8 pr-4 py-2 text-xs uppercase tracking-wider text-gray-500 border-b border-gray-800">
+                        Coming Soon
+                      </div>
+                      {Array.isArray(link.dropdown) && link.dropdown.map((dropdownItem) => {
+                        const itemDisabled = 'disabled' in dropdownItem && dropdownItem.disabled;
+                        return itemDisabled ? (
+                          <div
+                            key={dropdownItem.href}
+                            className="block pl-8 pr-4 py-3 text-base text-gray-600 cursor-not-allowed"
+                          >
+                            {dropdownItem.label}
+                          </div>
+                        ) : (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setExpandedMobileDropdown(null);
+                            }}
+                            className="block pl-8 pr-4 py-3 text-base text-gray-400 hover:bg-[#FFD700]/10 hover:text-[#FFD700] transition-colors"
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 );
@@ -251,8 +286,8 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-base font-medium transition-colors hover:bg-accent/5 hover:text-accent ${
-                    isActive(link.href) ? 'text-foreground bg-accent/10' : 'text-muted'
+                  className={`block px-4 py-3 text-lg font-medium transition-colors hover:bg-[#FFD700]/10 hover:text-[#FFD700] ${
+                    isActive(link.href) ? 'text-[#FFD700] bg-[#FFD700]/10' : 'text-gray-400'
                   }`}
                 >
                   {link.label}
@@ -262,7 +297,6 @@ export function Header() {
           </nav>
         </div>
         </Container>
-      </div>
     </header>
     </>
   );
