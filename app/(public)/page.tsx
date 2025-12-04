@@ -31,15 +31,11 @@ export default function HomePage() {
             Building the Wrong Thing
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-6 animate-fade-in-up delay-200">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8 animate-fade-in-up delay-200">
             Rationale gets you to working prototypes in weeks, not quarters. Feel what works early. Build with conviction. Ship with speed.
           </p>
 
-          <p className="text-base text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in-up delay-300">
-            <span className="font-semibold text-white">Proof:</span> Zero went concept to App Store in 1 month with 7 validation prototypes and 10 production microservices.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
             <Link
               href="#portfolio"
               className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
