@@ -126,7 +126,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'section-header-solution',
         type: 'section-header',
         headline: 'The Solution',
-        content: '7 prototypes before production',
+        content: 'build for conviction',
         sectionNumber: 2
       },
       {
