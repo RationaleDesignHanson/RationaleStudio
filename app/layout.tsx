@@ -29,7 +29,7 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://rationale.design'),
   title: {
-    default: "Rationale Studio — Ex-Meta. Building Zero.",
+    default: "Rationale Studio",
     template: "%s — Rationale"
   },
   description: "Product development studio. Ex-Meta Reality Labs (7 years). We build products to prove we can build yours. Zero went from concept to App Store in 1 month.",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://rationale.design',
-    title: "Rationale Studio — Ex-Meta. Building Zero.",
+    title: "Rationale Studio",
     description: "Product development studio. We build products to prove we can build yours.",
     siteName: 'Rationale',
   },
