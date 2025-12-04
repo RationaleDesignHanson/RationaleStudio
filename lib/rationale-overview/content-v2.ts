@@ -55,8 +55,8 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
       {
         id: 'opening-headline',
         type: 'section-header',
-        headline: 'Why Most Teams Waste 6 Months',
-        content: 'Building the Wrong Thing',
+        headline: 'Most Teams Waste 6 Months',
+        content: '(building the wrong thing)',
         sectionNumber: 0,
         visual: {
           type: 'component',
