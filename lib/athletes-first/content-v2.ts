@@ -483,12 +483,6 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           type: 'component',
           component: 'InteractivePitchInterfaceDiagram'
         },
-        contentBullets: [
-          'Compare 3-5 contract offers side-by-side with instant AI analysis',
-          'Live NIL projections based on real market data—adjust variables in real-time',
-          'Visualize 3-year career trajectories with different choices',
-          'Instant risk analysis identifies contract red flags as families ask questions'
-        ],
         deepDive: {
           title: 'What Makes Interactive Pitching Work',
           description: 'Understanding the technology and psychology behind real-time contract modeling',
