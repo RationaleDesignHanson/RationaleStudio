@@ -412,13 +412,13 @@ export default function AthletesFirstPitchDeck() {
               </div>
 
               {/* Main headline */}
-              <h2 className="text-7xl sm:text-8xl font-black mb-6 text-center" style={{ color: currentColor }}>
+              <h2 className="text-5xl sm:text-6xl font-black mb-4 text-center" style={{ color: currentColor }}>
                 {slide.headline}
               </h2>
 
               {/* Subtitle/description */}
               {slide.content && (
-                <p className="text-2xl text-white/70 max-w-2xl text-center font-light">
+                <p className="text-lg text-white/70 max-w-2xl text-center font-light">
                   {slide.content}
                 </p>
               )}
@@ -433,11 +433,11 @@ export default function AthletesFirstPitchDeck() {
         <div className="min-h-[50vh] md:min-h-[70vh]">
           {renderSectionIndicator()}
           <div className="flex flex-col items-center justify-center text-center min-h-[calc(70vh-4rem)]">
-            <h2 className="text-6xl sm:text-7xl font-black mb-6" style={{ color: currentColor }}>
+            <h2 className="text-4xl sm:text-5xl font-black mb-4" style={{ color: currentColor }}>
               {slide.headline}
             </h2>
             {slide.content && (
-              <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mb-8">
+              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mb-6">
                 {slide.content}
               </p>
             )}
@@ -451,7 +451,7 @@ export default function AthletesFirstPitchDeck() {
         <div className="min-h-[50vh] md:min-h-[70vh]">
           {renderSectionIndicator()}
           <div className="min-h-[calc(70vh-4rem)]">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: currentColor }}>
+            <h2 className="text-3xl font-bold mb-3" style={{ color: currentColor }}>
               {slide.headline}
             </h2>
             {slide.demos && renderDemo(slide.demos)}
@@ -471,11 +471,11 @@ export default function AthletesFirstPitchDeck() {
             </div>
           )}
 
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: currentColor }}>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: currentColor }}>
             {slide.headline}
           </h2>
         {slide.content && !contentBullets && (
-          <p className="text-xl text-white/80 mb-8 max-w-4xl leading-relaxed">
+          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-relaxed">
             {slide.content}
           </p>
         )}
