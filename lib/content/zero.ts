@@ -42,7 +42,7 @@ export const zeroHero = {
   subtitle: 'AI-Powered Email Management',
   tagline: 'Transform your inbox chaos into clarity',
   description: 'Zero is your intelligent email companion that helps you achieve and maintain inbox zero through the power of AI. Say goodbye to email overwhelm and hello to a streamlined, stress-free inbox experience.',
-  portalUrl: '/client/zero/dashboard',
+  portalUrl: '/clients/zero/investor',
   appStoreUrl: 'https://apps.apple.com/us/app/zer0-inbox/id6754212668'
 };
 
