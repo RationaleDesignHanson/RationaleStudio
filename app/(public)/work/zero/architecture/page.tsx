@@ -90,7 +90,6 @@ function SystemArchitecture() {
           {/* 1. Gmail */}
           <ArchComponent
             title="Gmail"
-            icon="📧"
             description="OAuth 2.0"
             tags={["Real inbox", "Read-only"]}
             color="border-blue-500/50"
@@ -106,7 +105,6 @@ function SystemArchitecture() {
           {/* 2. Backend API */}
           <ArchComponent
             title="Backend"
-            icon="⚙️"
             description="Python/FastAPI"
             tags={["Queue mgmt", "Security"]}
             color="border-green-500/50"
@@ -122,7 +120,6 @@ function SystemArchitecture() {
           {/* 3. AI Classification */}
           <ArchComponent
             title="AI Layer"
-            icon="🤖"
             description="Claude 3.5"
             tags={["43 intents", "Actions"]}
             color="border-purple-500/50"
@@ -138,7 +135,6 @@ function SystemArchitecture() {
           {/* 4. Database */}
           <ArchComponent
             title="Supabase"
-            icon="🗄️"
             description="PostgreSQL"
             tags={["Results", "History"]}
             color="border-teal-500/50"
@@ -154,7 +150,6 @@ function SystemArchitecture() {
           {/* 5. Frontend */}
           <ArchComponent
             title="Frontend"
-            icon="🖥️"
             description="Next.js/React"
             tags={["Dashboard", "Insights"]}
             color="border-[#FFD700]/50"
@@ -186,20 +181,17 @@ function SystemArchitecture() {
  */
 function ArchComponent({
   title,
-  icon,
   description,
   tags,
   color
 }: {
   title: string;
-  icon: string;
   description: string;
   tags: string[];
   color: string;
 }) {
   return (
     <div className={`bg-gray-800/50 border-2 ${color} rounded-lg p-6 text-center hover:bg-gray-800/70 transition-colors`}>
-      <div className="text-4xl mb-3">{icon}</div>
       <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
       <div className="text-sm text-gray-400 mb-4">{description}</div>
       <div className="space-y-1">

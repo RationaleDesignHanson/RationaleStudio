@@ -24,7 +24,8 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
     // Check authentication from session storage
     const clientAuth = sessionStorage.getItem('client-auth');
 
-    if (!clientAuth || clientAuth !== requiredClient) {
+    // Allow GLOBAL auth token to access all pages
+    if (!clientAuth || (clientAuth !== requiredClient && clientAuth !== 'GLOBAL')) {
       // Not authenticated or wrong client - redirect to login
       router.push('/clients/login');
     } else {

@@ -25,9 +25,9 @@ export default function ZeroInvestorPage() {
   const theme = getSectionTheme('hero');
 
   useEffect(() => {
-    // Check authentication
+    // Check authentication (allow ZERO or GLOBAL)
     const auth = sessionStorage.getItem('client-auth');
-    if (auth !== 'ZERO') {
+    if (auth !== 'ZERO' && auth !== 'GLOBAL') {
       router.push('/clients/login');
     } else {
       setIsAuthenticated(true);

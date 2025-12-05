@@ -96,7 +96,6 @@ function IntentTaxonomy() {
     {
       domain: "Financial",
       color: "#4ADE80",
-      icon: "💰",
       count: 8,
       intents: [
         "Billing inquiry",
@@ -112,7 +111,6 @@ function IntentTaxonomy() {
     {
       domain: "Scheduling",
       color: "#60A5FA",
-      icon: "📅",
       count: 6,
       intents: [
         "Meeting request",
@@ -126,7 +124,6 @@ function IntentTaxonomy() {
     {
       domain: "Logistics",
       color: "#F59E0B",
-      icon: "📦",
       count: 7,
       intents: [
         "Shipping notification",
@@ -141,7 +138,6 @@ function IntentTaxonomy() {
     {
       domain: "Healthcare",
       color: "#EC4899",
-      icon: "⚕️",
       count: 5,
       intents: [
         "Appointment reminder",
@@ -154,7 +150,6 @@ function IntentTaxonomy() {
     {
       domain: "Travel",
       color: "#8B5CF6",
-      icon: "✈️",
       count: 6,
       intents: [
         "Booking confirmation",
@@ -168,7 +163,6 @@ function IntentTaxonomy() {
     {
       domain: "Legal",
       color: "#EF4444",
-      icon: "⚖️",
       count: 5,
       intents: [
         "Contract review",
@@ -181,7 +175,6 @@ function IntentTaxonomy() {
     {
       domain: "General",
       color: "#FFD700",
-      icon: "📧",
       count: 6,
       intents: [
         "Information request",
@@ -227,7 +220,6 @@ function IntentTaxonomy() {
 function DomainNode({
   domain,
   color,
-  icon,
   count,
   intents,
   isExpanded,
@@ -235,7 +227,6 @@ function DomainNode({
 }: {
   domain: string;
   color: string;
-  icon: string;
   count: number;
   intents: string[];
   isExpanded: boolean;
@@ -249,9 +240,6 @@ function DomainNode({
         className="w-full flex items-center justify-between p-4 hover:bg-gray-800/70 transition-colors"
       >
         <div className="flex items-center gap-3">
-          {/* Icon */}
-          <div className="text-2xl">{icon}</div>
-
           {/* Domain Name */}
           <div className="text-left">
             <h3 className="text-lg font-bold text-white">{domain}</h3>
