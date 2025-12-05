@@ -82,7 +82,7 @@ export default function CostComparisonChart() {
                   <div className="text-sm font-semibold text-white">
                     {scenario.label}
                   </div>
-                  <div className="px-2 py-0.5 rounded text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400">
+                  <div className="px-2 py-0.5 rounded text-xs font-mono bg-gray-800 border border-gray-700 text-gray-400">
                     {scenario.discoveryTime}
                   </div>
                 </div>
@@ -168,12 +168,12 @@ export default function CostComparisonChart() {
         <div className="p-3 bg-[#FF4444]/10 border border-[#FF4444]/30 rounded">
           <div className="text-xs font-mono text-[#FF4444] mb-1">TRADITIONAL</div>
           <div className="text-lg font-bold text-white mb-1">12 weeks</div>
-          <div className="text-[10px] text-gray-400">Production waste</div>
+          <div className="text-xs text-gray-400">Production waste</div>
         </div>
         <div className="p-3 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded">
           <div className="text-xs font-mono text-[#00FF94] mb-1">RATIONALE</div>
           <div className="text-lg font-bold text-white mb-1">2 days</div>
-          <div className="text-[10px] text-gray-400">Prototype pivot</div>
+          <div className="text-xs text-gray-400">Prototype pivot</div>
         </div>
       </div>
     </div>

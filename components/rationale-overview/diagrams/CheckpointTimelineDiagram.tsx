@@ -111,7 +111,7 @@ export default function CheckpointTimelineDiagram() {
           <text x={padding - 40} y={padding + chartHeight / 2} className="text-xs fill-gray-500" textAnchor="end">50%</text>
           <text x={padding - 40} y={padding + 3 * chartHeight / 4} className="text-xs fill-gray-500" textAnchor="end">25%</text>
           <text x={padding - 40} y={padding + chartHeight} className="text-xs fill-gray-500" textAnchor="end">0%</text>
-          <text x={padding - 50} y={padding - 20} className="text-[10px] fill-gray-400" textAnchor="middle">Risk</text>
+          <text x={padding - 50} y={padding - 20} className="text-xs fill-gray-400" textAnchor="middle">Risk</text>
 
           {/* Grid lines */}
           {[0, 0.25, 0.5, 0.75, 1].map((fraction, i) => (
@@ -188,7 +188,7 @@ export default function CheckpointTimelineDiagram() {
                 <text
                   x={x}
                   y={y - 20}
-                  className="text-[10px] font-medium"
+                  className="text-xs font-medium"
                   fill={isHovered ? '#FFD700' : '#9CA3AF'}
                   textAnchor="middle"
                 >
@@ -304,7 +304,7 @@ export default function CheckpointTimelineDiagram() {
             <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
               <div className="h-full bg-[#FF4444]" style={{ width: '100%' }} />
             </div>
-            <div className="text-[10px] text-gray-500 mt-1">No checkpoints until Month 4</div>
+            <div className="text-xs text-gray-500 mt-1">No checkpoints until Month 4</div>
           </div>
           <div>
             <div className="flex items-center justify-between mb-1">
@@ -314,7 +314,7 @@ export default function CheckpointTimelineDiagram() {
             <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
               <div className="h-full bg-[#FFD700]" style={{ width: '25%' }} />
             </div>
-            <div className="text-[10px] text-gray-500 mt-1">3 checkpoints in 3 weeks</div>
+            <div className="text-xs text-gray-500 mt-1">3 checkpoints in 3 weeks</div>
           </div>
         </div>
       </div>

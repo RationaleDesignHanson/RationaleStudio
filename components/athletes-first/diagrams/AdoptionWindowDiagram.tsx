@@ -34,14 +34,15 @@ export default function AdoptionWindowDiagram() {
 
     const draw = () => {
       // Use responsiveState for current dimensions
-      const { width, height, isMobile, scale } = responsiveState;
+      const { width, height, isMobile, isLandscape, shouldUseMobileLayout, scale } = responsiveState;
 
       // Declare all font sizes at the top to avoid redeclaration errors
-      const h2Size = getResponsiveFontSize('h2', isMobile);
-      const h1Size = getResponsiveFontSize('h1', isMobile);
-      const bodySize = getResponsiveFontSize('body', isMobile);
-      const captionSize = getResponsiveFontSize('caption', isMobile);
-      const microSize = Math.max(11, getResponsiveFontSize('micro', isMobile));
+      // Use shouldUseMobileLayout instead of isMobile for better landscape handling
+      const h2Size = getResponsiveFontSize('h2', shouldUseMobileLayout);
+      const h1Size = getResponsiveFontSize('h1', shouldUseMobileLayout);
+      const bodySize = getResponsiveFontSize('body', shouldUseMobileLayout);
+      const captionSize = getResponsiveFontSize('caption', shouldUseMobileLayout);
+      const microSize = Math.max(11, getResponsiveFontSize('micro', shouldUseMobileLayout));
 
       // Clear
       ctx.fillStyle = COLORS.mono.black;
@@ -55,10 +56,13 @@ export default function AdoptionWindowDiagram() {
       ctx.fillStyle = COLORS.mono.gray70;
       ctx.fillText('Early movers gain 12-24 months before AI becomes table stakes', width / 2, 62);
 
-      // Timeline
+      // Timeline - use responsive spacing for margins
+      const horizontalMargin = getResponsiveSpacing(SPACING.xxxl, shouldUseMobileLayout);
+      // Reduce vertical spacing in landscape to prevent overflow
+      const verticalSpacing = isLandscape && height < 500 ? 24 : 40;
       const timelineY = height / 2;
-      const timelineStartX = 100;
-      const timelineEndX = width - 100;
+      const timelineStartX = horizontalMargin;
+      const timelineEndX = width - horizontalMargin;
       const timelineWidth = timelineEndX - timelineStartX;
 
       // Timeline base line
@@ -90,11 +94,11 @@ export default function AdoptionWindowDiagram() {
       ctx.fillStyle = COLORS.brand.green;
       ctx.font = getFont('body', 'bold');
       ctx.textAlign = 'center';
-      ctx.fillText('Q1 2025', nowX, timelineY - 40);
+      ctx.fillText('Q1 2025', nowX, timelineY - verticalSpacing);
 
       ctx.font = getFont('micro'); // Upgraded from 11px to TYPE.micro (11px minimum)
       ctx.fillStyle = COLORS.mono.gray70;
-      ctx.fillText('Early Adopter Phase', nowX, timelineY - 22);
+      ctx.fillText('Early Adopter Phase', nowX, timelineY - (verticalSpacing / 2) - 2);
 
       // "WINDOW CLOSING" marker (Q3 2026)
       const lateX = timelineStartX + timelineWidth * 0.8;
@@ -117,11 +121,11 @@ export default function AdoptionWindowDiagram() {
       ctx.fillStyle = COLORS.semantic.error;
       ctx.font = getFont('body', 'bold');
       ctx.textAlign = 'center';
-      ctx.fillText('Q3 2026', lateX, timelineY - 40);
+      ctx.fillText('Q3 2026', lateX, timelineY - verticalSpacing);
 
       ctx.font = getFont('micro'); // Upgraded from 11px to TYPE.micro (11px minimum)
       ctx.fillStyle = COLORS.mono.gray70;
-      ctx.fillText('Table Stakes', lateX, timelineY - 22);
+      ctx.fillText('Table Stakes', lateX, timelineY - (verticalSpacing / 2) - 2);
 
       // Opportunity gradient bar (above timeline)
       const barHeight = 60;

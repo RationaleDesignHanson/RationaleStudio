@@ -222,13 +222,13 @@ export default function DecisionPressureDiagram() {
             <div className="text-xs text-gray-500 mb-2">Traditional Approach</div>
             <div className="text-2xl font-bold text-[#FF4444] mb-1">20 weeks</div>
             <div className="text-xs text-gray-400">at risk before validation</div>
-            <div className="text-[10px] text-gray-500 mt-1">Sunk cost forces bad decisions</div>
+            <div className="text-xs text-gray-500 mt-1">Sunk cost forces bad decisions</div>
           </div>
           <div>
             <div className="text-xs text-gray-500 mb-2">Rationale Approach</div>
             <div className="text-2xl font-bold text-[#00FF94] mb-1">2 weeks</div>
             <div className="text-xs text-gray-400">to validate with 7 prototypes</div>
-            <div className="text-[10px] text-gray-500 mt-1">Pivot freely before commitment</div>
+            <div className="text-xs text-gray-500 mt-1">Pivot freely before commitment</div>
           </div>
         </div>
       </div>

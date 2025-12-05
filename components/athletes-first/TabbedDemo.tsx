@@ -78,7 +78,7 @@ export default function TabbedDemo({ demos, headline }: TabbedDemoProps) {
                   >
                     {/* NEW Badge */}
                     {isNew && (
-                      <div className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">
+                      <div className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">
                         NEW
                       </div>
                     )}
@@ -116,7 +116,7 @@ export default function TabbedDemo({ demos, headline }: TabbedDemoProps) {
                     >
                       {/* NEW Badge */}
                       {isNew && (
-                        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">
+                        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">
                           NEW
                         </div>
                       )}

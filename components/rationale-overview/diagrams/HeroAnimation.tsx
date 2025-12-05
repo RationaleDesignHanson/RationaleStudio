@@ -216,7 +216,7 @@ export default function HeroAnimation() {
             >
               <div className="text-lg mb-1">{p.icon}</div>
               <div className="text-xs font-semibold text-white mb-1">{p.headline}</div>
-              <div className="text-[10px] text-gray-400 leading-relaxed">{p.subtext}</div>
+              <div className="text-xs text-gray-400 leading-relaxed">{p.subtext}</div>
             </button>
           ))}
         </div>

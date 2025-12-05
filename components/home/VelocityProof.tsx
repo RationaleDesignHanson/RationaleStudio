@@ -74,7 +74,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
       {/* Traditional Timeline */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-3">
-          <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wide min-w-[180px]">
+          <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wide sm:min-w-[180px]">
             Traditional Approach
           </h3>
           <div className="text-xs text-gray-400">24 weeks total</div>
@@ -121,7 +121,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
         </div>
 
         <div className="mt-2 flex items-center gap-3">
-          <div className="text-xs text-gray-400 min-w-[180px]">Risk accumulation:</div>
+          <div className="text-xs text-gray-400 sm:min-w-[180px]">Risk accumulation:</div>
           <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
             <div
               className="h-full"
@@ -141,7 +141,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
       {/* Rationale Timeline */}
       <div>
         <div className="flex items-center gap-4 mb-3">
-          <h3 className="text-sm font-medium text-accent uppercase tracking-wide min-w-[180px]">
+          <h3 className="text-sm font-medium text-accent uppercase tracking-wide sm:min-w-[180px]">
             Rationale Approach
           </h3>
           <div className="text-xs text-accent font-bold">11 weeks total</div>
@@ -190,7 +190,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
         </div>
 
         <div className="mt-2 flex items-center gap-3">
-          <div className="text-xs text-gray-400 min-w-[180px]">Risk mitigated early:</div>
+          <div className="text-xs text-gray-400 sm:min-w-[180px]">Risk mitigated early:</div>
           <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
             <div
               className="h-full"

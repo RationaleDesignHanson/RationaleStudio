@@ -202,7 +202,7 @@ export default function ServiceOfferingBreakdown() {
             <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
               <div className="h-full bg-[#FF4444]" style={{ width: '100%' }} />
             </div>
-            <div className="mt-2 text-[10px] text-gray-500">
+            <div className="mt-2 text-xs text-gray-500">
               Includes: hiring delays, learning curve, architectural pivots, sunk cost waste
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function ServiceOfferingBreakdown() {
                 }}
               />
             </div>
-            <div className="mt-2 text-[10px] text-gray-500">
+            <div className="mt-2 text-xs text-gray-500">
               Includes: validation, development, strategy—no waste, no surprises
             </div>
           </div>
@@ -277,17 +277,17 @@ export default function ServiceOfferingBreakdown() {
           <div className="p-4 bg-gray-800/30 border border-gray-700 rounded">
             <div className="text-xs text-gray-500 mb-2">Traditional Agency</div>
             <div className="text-2xl font-bold text-[#FF4444] mb-1">6 months</div>
-            <div className="text-[10px] text-gray-400">No validation, high risk</div>
+            <div className="text-xs text-gray-400">No validation, high risk</div>
           </div>
           <div className="p-4 bg-gray-800/30 border border-gray-700 rounded">
             <div className="text-xs text-gray-500 mb-2">Hire In-House Team</div>
             <div className="text-2xl font-bold text-[#FFA500] mb-1">9 months</div>
-            <div className="text-[10px] text-gray-400">Including hiring delays</div>
+            <div className="text-xs text-gray-400">Including hiring delays</div>
           </div>
           <div className="p-4 border-2 rounded" style={{ borderColor: selectedTierData.color, backgroundColor: `${selectedTierData.color}10` }}>
             <div className="text-xs text-gray-500 mb-2">Rationale {selectedTierData.name}</div>
             <div className="text-2xl font-bold text-white mb-1">${(selectedTierData.investment / 1000).toFixed(0)}K</div>
-            <div className="text-[10px] text-gray-400">{selectedTierData.duration}, validated</div>
+            <div className="text-xs text-gray-400">{selectedTierData.duration}, validated</div>
           </div>
         </div>
       </div>

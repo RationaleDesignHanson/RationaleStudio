@@ -138,7 +138,7 @@ export default function ZeroMetricsDiagram() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-[#00FF94] flex items-center justify-center">
-                <span className="text-[10px] font-black">0</span>
+                <span className="text-xs font-black">0</span>
               </div>
               <span className="text-xs text-gray-400">Post-build pivots</span>
             </div>
@@ -161,7 +161,7 @@ export default function ZeroMetricsDiagram() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-[#FF4444] flex items-center justify-center">
-                <span className="text-[10px] font-black">3-5</span>
+                <span className="text-xs font-black">3-5</span>
               </div>
               <span className="text-xs text-gray-600">Post-build pivots</span>
             </div>

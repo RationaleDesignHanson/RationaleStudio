@@ -55,17 +55,17 @@ export function FeaturedWorkCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors line-clamp-2">
           {title}
         </h3>
-        <p className="text-sm text-gray-400 mb-4">{subtitle}</p>
+        <p className="text-sm text-gray-400 mb-4 line-clamp-2">{subtitle}</p>
 
         {/* Metrics */}
-        <div className="space-y-2 mb-4">
+        <div className="space-y-2 mb-4 min-h-[72px]">
           {metrics.slice(0, 3).map((metric, index) => (
             <div key={index} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-sm text-gray-300">{metric}</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+              <span className="text-sm text-gray-300 line-clamp-1">{metric}</span>
             </div>
           ))}
         </div>

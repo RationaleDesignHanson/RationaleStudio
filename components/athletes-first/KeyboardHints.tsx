@@ -173,7 +173,7 @@ export default function KeyboardHints({ context = 'presentation', hints }: Keybo
 
         {/* Subtle dismiss hint */}
         <div className="mt-3 pt-2 border-t border-white/10">
-          <p className="text-[10px] text-white/40 text-center">
+          <p className="text-xs text-white/70 text-center font-medium">
             Tap any key to dismiss
           </p>
         </div>
