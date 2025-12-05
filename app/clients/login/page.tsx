@@ -48,7 +48,7 @@ export default function ClientLoginPage() {
     // Check global credentials first
     if (username.toLowerCase().trim() === GLOBAL_CREDENTIALS.username && password === GLOBAL_CREDENTIALS.password) {
       sessionStorage.setItem('client-auth', 'GLOBAL');
-      router.push('/');
+      router.push('/clients');
       return;
     }
 
