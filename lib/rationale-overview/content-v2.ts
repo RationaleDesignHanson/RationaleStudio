@@ -299,13 +299,62 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         }
       },
       {
-        id: 'cta',
+        id: 'proof-diversity',
         type: 'custom',
-        headline: 'Start Your 3-Week Validation Sprint',
-        content: 'No long-term commitment. Clear checkpoints. Pivot-friendly. Traditional 6-month build: significant capital at risk. Rationale 3-week sprint: clear exit points and controlled investment.',
+        headline: 'Proof Diversity',
+        content: 'Three proof points demonstrate systematic velocity across domains. Consumer product (Zero), enterprise B2B platform (Case Study 010), complex multi-module system (Case Study 020). Same methodology, different contexts.',
         visual: {
-          type: 'icon',
-          name: 'cta'
+          type: 'stat',
+          data: {
+            proofs: [
+              { title: 'Zero', timeline: '30 days', type: 'Consumer AI' },
+              { title: 'Case Study 010', timeline: '16 weeks', type: 'Enterprise B2B' },
+              { title: 'Case Study 020', timeline: '40+ demos', type: 'Multi-Module' }
+            ]
+          }
+        }
+      },
+      {
+        id: 'who-this-is-for',
+        type: 'custom',
+        headline: 'Who This Is For',
+        content: 'Hands-on builders who need velocity. Founders with conviction but limited runway. Teams open to equity discussions (cash engagements welcome too). Partners who value systematic execution over vendor relationships.',
+        visual: {
+          type: 'stat',
+          data: {
+            criteria: [
+              'Hands-on builders',
+              'Need execution velocity',
+              'Value partnership',
+              'Open to equity discussions'
+            ]
+          }
+        }
+      },
+      {
+        id: 'dual-engine-advantage',
+        type: 'custom',
+        headline: 'The Dual Engine Advantage',
+        content: 'Internal products (Zero, Rationale Site) test methodologies in production. Client partnerships apply proven patterns. Revenue from clients funds internal R&D. Each engine feeds the other—creating systematic competitive advantage.',
+        visual: {
+          type: 'component',
+          component: 'DualEngineModel'
+        }
+      },
+      {
+        id: 'final-cta',
+        type: 'custom',
+        headline: 'Ready to Build?',
+        content: 'Explore our work, understand our thinking, or start a conversation about your project. Three paths forward.',
+        visual: {
+          type: 'stat',
+          data: {
+            links: [
+              { label: 'View Work', href: '/work' },
+              { label: 'Our Services', href: '/services' },
+              { label: 'Book Call', href: '/contact' }
+            ]
+          }
         }
       }
     ]

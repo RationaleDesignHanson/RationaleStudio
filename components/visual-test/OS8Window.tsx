@@ -25,22 +25,22 @@ export function OS8Window({
   const variantStyles = {
     // Legacy variants (kept for backward compatibility)
     default: {
-      window: 'bg-white border-gray-300',
-      titleBar: 'bg-gradient-to-b from-gray-200 to-gray-100 border-b border-gray-300',
-      title: 'text-gray-900',
-      content: 'bg-white',
+      window: 'bg-gray-800 border-gray-600',
+      titleBar: 'bg-gray-900 border-b border-gray-600',
+      title: 'text-gray-100',
+      content: 'bg-gray-800',
     },
     yellow: {
       window: 'bg-black border-[#FFD700]',
       titleBar: 'bg-black border-b border-[#FFD700]',
       title: 'text-[#FFD700]',
-      content: 'bg-white',
+      content: 'bg-black',
     },
     minimal: {
-      window: 'bg-white border-gray-800',
-      titleBar: 'bg-gray-900 border-b border-gray-800',
+      window: 'bg-gray-800 border-gray-600',
+      titleBar: 'bg-gray-900 border-b border-gray-600',
       title: 'text-gray-100',
-      content: 'bg-white',
+      content: 'bg-gray-800',
     },
 
     // NEW: Dark-optimized variants for improved readability

@@ -41,24 +41,24 @@ export function PasswordProtected({ children, password, hint }: PasswordProtecte
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-muted">Loading...</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-gray-900 via-black to-gray-900">
         <GlassCard theme={theme} className="p-8 max-w-md w-full">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Protected Content</h2>
-          <p className="text-sm text-muted mb-6">
+          <h2 className="text-2xl font-bold text-white mb-2">Protected Content</h2>
+          <p className="text-sm text-gray-400 mb-6">
             This case study is password protected. {hint && `Hint: ${hint}`}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
                 Password
               </label>
               <input
@@ -66,7 +66,7 @@ export function PasswordProtected({ children, password, hint }: PasswordProtecte
                 id="password"
                 value={inputPassword}
                 onChange={(e) => setInputPassword(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-background/50 border border-accent/20 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className="w-full px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent/50"
                 placeholder="Enter password"
                 autoFocus
               />

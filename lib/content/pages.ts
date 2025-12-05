@@ -491,16 +491,9 @@ export const siteContent = {
   navigation: {
     primary: [
       { label: "Home", href: "/" },
-      { label: "Overview", href: "/overview" },
-      {
-        label: "Portfolio",
-        href: "#",
-        disabled: true,
-        dropdown: [
-          { label: "Coming Soon", href: "#", disabled: true },
-          { label: "Projects", href: "/#portfolio", disabled: true }
-        ]
-      },
+      { label: "Work", href: "/work" },
+      { label: "Thinking", href: "/thinking" },
+      { label: "Services", href: "/services" },
       { label: "About", href: "/about" },
       { label: "Clients", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
