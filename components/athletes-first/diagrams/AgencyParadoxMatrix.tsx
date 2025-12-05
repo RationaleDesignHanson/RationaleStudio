@@ -13,14 +13,14 @@ export default function AgencyParadoxMatrix() {
         {/* Axes */}
         {/* Y-axis (SCALE) */}
         <div className="absolute left-0 top-0 bottom-0 flex items-center -ml-16">
-          <div className="transform -rotate-90 text-white/60 font-terminal text-sm tracking-widest whitespace-nowrap">
+          <div className="transform -rotate-90 text-white/80 font-terminal text-sm tracking-widest whitespace-nowrap font-semibold">
             SCALE
           </div>
         </div>
 
         {/* X-axis (PERSONAL TOUCH) */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-center -mb-12">
-          <div className="text-white/60 font-terminal text-sm tracking-widest">
+          <div className="text-white/80 font-terminal text-sm tracking-widest font-semibold">
             PERSONAL TOUCH
           </div>
         </div>

@@ -162,7 +162,7 @@ export function TimelineRoadmap({
 
                 {/* Status Badge */}
                 {item.status && (
-                  <div className={`px-2 py-1 rounded text-[10px] font-mono ${
+                  <div className={`px-2 py-1 rounded text-xs font-mono ${
                     item.status === 'complete'
                       ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                       : item.status === 'active'
@@ -190,7 +190,7 @@ export function TimelineRoadmap({
 
               {/* Expand Indicator */}
               {interactive && item.details && (
-                <div className="mt-2 flex items-center gap-1 text-[10px] font-mono text-gray-600">
+                <div className="mt-2 flex items-center gap-1 text-xs font-mono text-gray-600">
                   <span>{isExpanded ? 'COLLAPSE' : 'EXPAND'}</span>
                   <svg
                     className={`w-3 h-3 transition-transform ${

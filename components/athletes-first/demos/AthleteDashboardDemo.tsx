@@ -386,7 +386,7 @@ function DashboardContent({
               <div className="relative">
                 <Bell className="w-5 h-5 text-white/80" />
                 {dashboard.athlete.notifications > 0 && (
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-xs text-white font-bold">
                     {dashboard.athlete.notifications}
                   </div>
                 )}
@@ -502,7 +502,7 @@ function DashboardContent({
                             />
                           </div>
                           <div className="flex items-center gap-2 mt-1">
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${getStatusColor(deal.status)}`}>
+                            <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${getStatusColor(deal.status)}`}>
                               {deal.status.toUpperCase()}
                             </span>
                             <span className="text-xs text-white/60">${deal.monthlyValue.toLocaleString()}/mo</span>
@@ -744,7 +744,7 @@ function DashboardContent({
                   }`}
                 >
                   <tab.icon className="w-5 h-5" />
-                  <span className="text-[10px] font-medium">{tab.label}</span>
+                  <span className="text-xs font-medium">{tab.label}</span>
                 </button>
               ))}
             </div>

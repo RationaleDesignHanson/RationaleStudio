@@ -125,7 +125,7 @@ export default function ASCIITestPage() {
                     <div className="text-left">
                       <div className="font-medium text-sm mb-1">{set.name}</div>
                       <div className="text-xs text-gray-400 mb-1 font-mono">{set.chars}</div>
-                      <div className="text-[10px] text-gray-500">{set.desc}</div>
+                      <div className="text-xs text-gray-500">{set.desc}</div>
                     </div>
                   </button>
                 ))}
@@ -173,7 +173,7 @@ export default function ASCIITestPage() {
             <div className="border-t border-gray-800 pt-4">
               <div className="text-xs font-mono text-gray-400">
                 <div className="mb-1">Current Configuration:</div>
-                <pre className="text-[10px] leading-relaxed">
+                <pre className="text-xs leading-relaxed">
 {`<ASCIIUnifiedGrid
   opacity={${opacity.toFixed(2)}}
   animated={${animated}}

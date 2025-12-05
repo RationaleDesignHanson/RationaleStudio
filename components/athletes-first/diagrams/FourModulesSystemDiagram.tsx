@@ -387,7 +387,7 @@ export default function FourModulesSystemDiagram() {
 
   return (
     <div
-      className="relative w-full h-full min-h-[380px] md:min-h-[450px] bg-black rounded-lg border border-[COLORS.brand.terminalGold]/20 overflow-hidden"
+      className="relative w-full h-full min-h-[380px] md:min-h-[450px] bg-black rounded-lg border border-yellow-400/20 overflow-hidden"
       role="img"
       aria-label="Athlete lifecycle timeline showing four integrated modules: NIL Platform for amateur compliance, Interactive Pitch for recruitment, Video Twins for content creation, and Amplify AI for viral distribution"
     >

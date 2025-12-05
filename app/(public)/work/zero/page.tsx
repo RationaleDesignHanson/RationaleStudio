@@ -1,508 +1,386 @@
 /**
  * Zero Public Marketing Page
  *
- * Full public page showcasing Zero as proof of Rationale's execution capability.
- * Demonstrates speed (1 month concept-to-plan), technical depth, and product thinking.
+ * Full public page showcasing Zero as Rationale's product.
+ * Focus on technical execution and development process.
+ *
+ * CORRECTED VERSION - Accurate claims, proper styling
  */
 
+'use client';
+
 import Link from 'next/link';
-import { Container, Section } from '@/components/layout';
-import { Hero } from '@/components/sections/Hero';
-import { GlassCard } from '@/components/visual';
-import { getSectionTheme } from '@/lib/theme/watercolor-palette';
-import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
-import { zeroHero, zeroFeatures, zeroMetrics, zeroTools } from '@/lib/content/zero';
+import { OS8Window } from '@/components/visual-test';
 import InteractiveDemo from '@/components/zero/InteractiveDemo';
-import GalaxyBackground from '@/components/zero/GalaxyBackground';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Zero — AI Email Management | Rationale',
-  description: 'AI extracts actions from your emails. Track packages, pay bills, sign forms, RSVP to events—all in swipeable cards. Built in 1 month.',
-};
-
 export default function ZeroPage() {
-  const heroTheme = getSectionTheme('hero');
-  const problemTheme = getSectionTheme('content');
-  const metricsTheme = getSectionTheme('process');
-  const featuresTheme = getSectionTheme('services');
-  const techTheme = getSectionTheme('philosophy');
-  const whyTheme = getSectionTheme('founder');
-  const ctaTheme = getSectionTheme('cta');
-
   return (
-    <>
-      {/* Hero */}
-      <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingBottom={true}>
-        <Container>
-          <div className="max-w-4xl mx-auto mb-8">
-            <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <div className="mb-6">
-                <Link href="/ventures" className="text-accent hover:underline text-sm sm:text-base">
-                  ← Back to Products
-                </Link>
-              </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+      {/* Hero Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <Link
+            href="/work"
+            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
+          >
+            ← Back to Work
+          </Link>
 
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <span className="inline-flex items-center px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium">
-                  Live on App Store · Beta Testing
-                </span>
-                <Link
-                  href="/invest/zero"
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-600 border border-blue-500/30 text-sm font-medium hover:bg-blue-500/30 transition-colors"
-                >
-                  💰 Seed Round Open: $600K
-                </Link>
-              </div>
+          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+            RATIONALE PRODUCT // PRODUCTION-READY · PRE-LAUNCH
+          </p>
 
-              <Link
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block hover:opacity-80 transition-opacity"
-              >
-                <Hero
-                  title="Zero: Actions From Your Inbox"
-                  subtitle="Stop reading. Start acting."
-                  description="Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards. Sorted into Mail and Ads."
-                  centered={false}
-                />
-              </Link>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            Zero: AI Email Intelligence
+          </h1>
 
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <ButtonPrimary
-                  href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                  size="md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download on App Store →
-                </ButtonPrimary>
-                <ButtonSecondary href="/contact" size="md">
-                  Need Similar Speed? Work With Us
-                </ButtonSecondary>
-              </div>
-            </GlassCard>
-          </div>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mb-6">
+            Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards.
+          </p>
 
-          {/* Strategic Context: Why Zero Exists */}
-          <div className="max-w-4xl mx-auto mt-8 mb-8">
-            <div className="p-6 rounded-lg border border-accent/20 bg-accent/5 backdrop-blur-sm">
-              <h3 className="text-lg font-bold text-foreground mb-3 text-center">
-                Portfolio IP: Conviction-Backed Ventures We Own
-              </h3>
-              <p className="text-sm text-muted text-center mb-4">
-                Zero isn't client work—it's <span className="font-bold text-accent">Portfolio IP</span> we originated and own. Part of Rationale's dual-engine model: <span className="font-bold text-foreground">Rationale Kits</span> (client engagements that fund runway) + <span className="font-bold text-foreground">Portfolio IP</span> (ventures that appreciate over time).
-              </p>
-              <p className="text-sm text-muted text-center mb-4">
-                <span className="font-bold text-accent">Why this matters to partners:</span> Zero proves we can build conviction-backed products at speed. Same systematic execution, same rigor we bring to every client engagement. 1 month from concept to complete plan. Live on App Store with structured beta rollout. This is how we work.
-              </p>
-              <div className="flex justify-center">
-                <Link
-                  href="/invest/zero"
-                  className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
-                >
-                  📊 View Investment Opportunity: $600K Seed Round
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Three-Path Navigation */}
-          <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-sm text-center text-muted mb-4">Choose your path:</p>
-            <div className="grid md:grid-cols-3 gap-4">
-              <a
-                href="#try-zero"
-                className="group p-6 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">📱</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I Want to Use Zero</h4>
-                <p className="text-xs text-muted">
-                  See how it works, download beta, try the app
-                </p>
-              </a>
-              <Link
-                href="/invest/zero"
-                className="group p-6 rounded-lg border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">💰</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I Want to Invest</h4>
-                <p className="text-xs text-muted">
-                  $600K seed round, live product, traction milestones
-                </p>
-              </Link>
-              <a
-                href="#execution-proof"
-                className="group p-6 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">🎯</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I'm a Partner/Investor</h4>
-                <p className="text-xs text-muted">
-                  See execution proof, tech depth, what Zero proves
-                </p>
-              </a>
-            </div>
+          <div className="flex flex-wrap gap-4 mb-8">
+            <Link
+              href="/contact"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all"
+            >
+              Join Beta Waitlist
+            </Link>
+            <a
+              href="#demo"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+            >
+              Try Interactive Demo
+            </a>
           </div>
 
           {/* Quick Stats */}
-          <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">1 mo</div>
-              <div className="text-xs text-muted">Concept to Plan</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl">
+            <div className="p-4 rounded bg-gray-800/50 border border-gray-700 text-center">
+              <div className="text-2xl font-bold text-[#FFD700]">268</div>
+              <div className="text-xs text-gray-400">Swift Files</div>
             </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">4</div>
-              <div className="text-xs text-muted">Beta Cohorts</div>
+            <div className="p-4 rounded bg-gray-800/50 border border-gray-700 text-center">
+              <div className="text-2xl font-bold text-[#FFD700]">10</div>
+              <div className="text-xs text-gray-400">Microservices</div>
             </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">95%+</div>
-              <div className="text-xs text-muted">AI Accuracy Target</div>
+            <div className="p-4 rounded bg-gray-800/50 border border-gray-700 text-center">
+              <div className="text-2xl font-bold text-[#FFD700]">A-</div>
+              <div className="text-xs text-gray-400">Architecture Grade</div>
             </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">7</div>
-              <div className="text-xs text-muted">Interactive Prototypes</div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Problem Statement */}
-      <Section spacing="large" background="transparent" colorTheme={problemTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={problemTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                ⚡ The Problem: Your Inbox Is Full of Hidden Work
-              </h2>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  You get <span className="font-bold text-foreground">47 emails today</span>. Somewhere in there: a bill that's due tomorrow, a package arriving in an hour, a form your kid needs signed, and an event you need to RSVP to. But to find them, you have to read everything.
-                </p>
-                <p>
-                  Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. <span className="font-bold text-accent">Your inbox is a todo list you have to manually decode.</span>
-                </p>
-                <p>
-                  Zero's AI reads your emails and extracts the actions automatically. <span className="font-bold text-foreground">RSVP to events. Track packages. Pay bills. Sign forms.</span> All in swipeable cards, sorted into Mail and Ads. No reading. Just acting.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Beta Program & Demo */}
-      <div id="try-zero">
-      <Section spacing="large" background="transparent" colorTheme={metricsTheme} className="relative overflow-hidden">
-        <GalaxyBackground />
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              📱 Try Zero: Beta Program Now Open
-            </h2>
-            <p className="text-base text-muted mb-6">
-              Zero is live on the App Store. We're systematically scaling through beta testing to ensure quality and user experience at every stage.
-            </p>
-            <div className="flex justify-center mb-8">
-              <ButtonPrimary
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download on App Store →
-              </ButtonPrimary>
+            <div className="p-4 rounded bg-gray-800/50 border border-gray-700 text-center">
+              <div className="text-2xl font-bold text-[#FFD700]">43</div>
+              <div className="text-xs text-gray-400">Intent Categories</div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* App Demo */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-xl font-bold text-foreground mb-6 text-center">See Zero in Action</h3>
-            <InteractiveDemo />
-            <p className="text-sm text-muted text-center mt-6">
-              Swipe right to take action, left to archive, down to snooze, or up to see all actions.
-            </p>
-          </div>
-
-          {/* Beta Rollout Strategy */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-foreground mb-6 text-center">Systematic Beta Rollout Plan</h3>
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">4 Cohorts</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Controlled Expansion</h4>
-                <p className="text-sm text-muted">
-                  Starting with 10 users (Friends & Family) and expanding to 100+ through targeted cohorts. Each phase validates retention, engagement, and quality before scaling.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">95%+ Accuracy</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">AI Quality Target</h4>
-                <p className="text-sm text-muted">
-                  Systematic AI tuning from 85% launch quality to 95%+ mature accuracy across summarization, classification, and action suggestions through user feedback loops.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">8-Week Checkpoint</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Go/No-Go Decision</h4>
-                <p className="text-sm text-muted">
-                  Clear metrics-driven milestone at Week 8: retention targets, NPS scores, and quality benchmarks determine whether to proceed to public beta.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">&lt;$0.10/user</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Cost Optimization</h4>
-                <p className="text-sm text-muted">
-                  Backend development focused on cost-efficient AI operations while maintaining quality. Target: under $0.10 per user per month at scale.
-                </p>
-              </GlassCard>
-            </div>
-
-            <div className="p-6 rounded-lg border border-accent/20 bg-accent/5 backdrop-blur-sm">
-              <p className="text-sm text-foreground text-center">
-                <span className="font-bold text-accent">Strategy:</span> Systematic scaling through validated learning. Each cohort proves retention and quality before expanding. Same methodical approach we bring to client products.
+      {/* The Problem */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <OS8Window
+            title="The Problem: Your Inbox Is Full of Hidden Work"
+            variant="yellow"
+            animateIn={false}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p className="text-base">
+                You get <span className="font-bold text-black">47 emails today</span>. Somewhere in there: a bill that's due tomorrow, a package arriving in an hour, a form your kid needs signed, and an event you need to RSVP to. But to find them, you have to read everything.
+              </p>
+              <p className="text-base">
+                Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. <span className="font-bold text-black">Your inbox is a todo list you have to manually decode.</span>
+              </p>
+              <p className="text-base border-t border-[#FFD700] pt-4 font-semibold text-black">
+                Zero's AI reads your emails and extracts the actions automatically. RSVP to events. Track packages. Pay bills. Sign forms. All in swipeable cards, sorted into Mail and Ads. No reading. Just acting.
               </p>
             </div>
-          </div>
-        </Container>
-      </Section>
-      </div>
+          </OS8Window>
+        </div>
+      </section>
 
-      {/* Features: What We Built */}
-      <Section spacing="large" background="transparent" colorTheme={featuresTheme}>
-        <Container>
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              ✨ Core Features
+      {/* Interactive Demo */}
+      <section id="demo" className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Try Zero: Interactive Demo
             </h2>
-            <p className="text-base text-muted">
-              AI-powered action extraction with swipeable cards. Mail and Ads categories keep things simple.
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Experience Zero's swipe-based email triage. Swipe right to complete actions, left to archive, down to snooze.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {zeroFeatures.slice(0, 12).map((feature, idx) => (
-              <GlassCard key={idx} theme={featuresTheme} className="p-6">
-                <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                <p className="text-sm text-muted">{feature.description}</p>
-              </GlassCard>
-            ))}
+          <div className="max-w-4xl mx-auto mb-8">
+            <InteractiveDemo />
           </div>
-        </Container>
-      </Section>
 
-      {/* Interactive Prototypes */}
-      <Section spacing="large" background="default" colorTheme={techTheme}>
-        <Container>
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              🔧 7 Interactive Prototypes
+          <OS8Window
+            title="What the Production App Adds"
+            variant="minimal"
+            className="max-w-3xl mx-auto"
+          >
+            <div className="grid sm:grid-cols-2 gap-6">
+              <ul className="text-sm text-gray-100 space-y-2">
+                <li>• Real Gmail integration (OAuth 2.0)</li>
+                <li>• AI classification (43 intent categories)</li>
+                <li>• Entity extraction (tracking #s, dates, amounts)</li>
+              </ul>
+              <ul className="text-sm text-gray-100 space-y-2">
+                <li>• Native device actions (Calendar, Contacts, Wallet)</li>
+                <li>• 10-service backend architecture</li>
+                <li>• Summarization and smart replies</li>
+              </ul>
+            </div>
+          </OS8Window>
+
+          <div className="max-w-3xl mx-auto mt-6 text-center">
+            <p className="text-xs text-gray-500">
+              Curious about our process? We built a <a href="https://swipeer.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:underline">weekend prototype</a> (password: 111111) to validate the concept before investing in production architecture.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Development Journey */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Development Journey
             </h2>
-            <p className="text-base text-muted">
-              Working software, not mockups. These tools helped us validate the product before writing production code.
+            <p className="text-lg text-gray-300">
+              From weekend prototype to production-ready architecture
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {zeroTools.map((tool, idx) => (
-              <GlassCard key={idx} theme={techTheme} className="p-6">
-                <h3 className="text-lg font-bold text-foreground mb-2">{tool.name}</h3>
-                <p className="text-sm text-muted mb-4">{tool.description}</p>
-                <Link
-                  href={`/zero/tools/${tool.filename}`}
-                  target="_blank"
-                  className="text-sm text-accent hover:underline font-medium"
-                >
-                  Launch prototype →
-                </Link>
-              </GlassCard>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link href="/client/zero/dashboard" className="text-accent hover:underline font-medium">
-              Investors/Partners: View full dashboard →
-            </Link>
-          </div>
-        </Container>
-      </Section>
-
-      {/* What Zero Proves About Rationale */}
-      <div id="execution-proof">
-      <Section spacing="large" background="transparent" colorTheme={whyTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                🎯 What Zero Proves About Rationale
-              </h2>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  <span className="font-bold text-foreground">For potential clients and investors:</span> Zero isn't just an email app—it's proof of how we work. We built this to demonstrate what Rationale delivers when we take on a product challenge.
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <OS8Window
+              title="Phase 1: Weekend Prototype"
+              variant="minimal"
+              delay={100}
+            >
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Built interactive swipe prototype to validate the core UX mechanic before committing to production.
                 </p>
-                <p>
-                  <span className="font-bold text-accent">Technical execution:</span> 10 microservices in production (Gateway, Email, Classifier, Summarization, Shopping Agent, Steel Agent, Scheduled Purchase, Smart Replies, Actions, Analytics). 182 Swift files with A+ architecture. Google Gemini 2.0 Flash + OpenAI GPT-4 integration.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">Systematic execution:</span> Live on App Store with 4-cohort beta rollout strategy. Progressive quality scaling from 85% to 95%+ AI accuracy through structured user feedback. 8-week go/no-go checkpoint with clear retention and engagement metrics. These aren't plans—this is methodical execution.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">Product thinking:</span> 7 working prototypes built to test assumptions before production code. 24-week roadmap with bootstrap and funded scenarios. Complete financial model with TAM/SAM/SOM analysis. Beta rollout plan with cohort strategy.
-                </p>
-                <p className="text-foreground">
-                  This is what conviction looks like: working software, validated architecture, and execution plans ready to scale. The same speed and depth we bring to client engagements.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-      </div>
-
-      {/* Tech Stack */}
-      <Section spacing="large" background="transparent" colorTheme={whyTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                ⚙️ Tech Stack
-              </h2>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">Frontend</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• React Native (iOS)</li>
-                    <li>• TypeScript</li>
-                    <li>• Expo</li>
-                    <li>• TanStack Query</li>
-                    <li>• Zustand state management</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">Backend</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• Node.js + Express</li>
-                    <li>• PostgreSQL</li>
-                    <li>• Redis caching</li>
-                    <li>• Gmail API integration</li>
-                    <li>• Anthropic Claude API</li>
-                  </ul>
+                <div className="border-t border-gray-200 pt-3">
+                  <p className="text-xs text-gray-600 mb-2"><span className="font-bold text-black">Goal:</span> Test if swipe-based email triage felt natural</p>
+                  <p className="text-xs text-gray-600 mb-3"><span className="font-bold text-black">Result:</span> Validated UX direction, moved to production build</p>
+                  <a
+                    href="https://swipeer.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-[#FFD700] hover:underline font-medium"
+                  >
+                    Try the weekend prototype → (password: 111111)
+                  </a>
                 </div>
               </div>
-            </GlassCard>
+            </OS8Window>
+
+            <OS8Window
+              title="Phase 2: Production Architecture"
+              variant="minimal"
+              delay={200}
+            >
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  Designed and built production-grade systems from the ground up.
+                </p>
+                <div className="grid grid-cols-2 gap-3 border-t border-gray-200 pt-3">
+                  <div>
+                    <p className="text-xs font-bold text-black mb-1">iOS App:</p>
+                    <ul className="text-xs text-gray-600 space-y-0.5">
+                      <li>• 268 Swift files</li>
+                      <li>• Protocol-driven</li>
+                      <li>• A- grade</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-black mb-1">Backend:</p>
+                    <ul className="text-xs text-gray-600 space-y-0.5">
+                      <li>• 10 microservices</li>
+                      <li>• Gmail OAuth</li>
+                      <li>• Cloud Run</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </OS8Window>
+
+            <OS8Window
+              title="Current Status"
+              variant="minimal"
+              delay={300}
+            >
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  All systems built and deployed. Pre-launch, preparing for user onboarding.
+                </p>
+                <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3">
+                  <li>• Production infrastructure deployed</li>
+                  <li>• Gmail OAuth implemented</li>
+                  <li>• Classification system complete</li>
+                  <li>• iOS app with device integrations ready</li>
+                </ul>
+              </div>
+            </OS8Window>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
+
+      {/* Technical Architecture */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Technical Architecture
+            </h2>
+            <p className="text-lg text-gray-300">
+              Production-ready systems designed for scale
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-8">
+            <OS8Window
+              title="iOS Application"
+              variant="minimal"
+            >
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600"><span className="font-bold text-black">268 Swift files</span> organized as:</p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Core Services (ActionRouter, EmailAPI)</li>
+                  <li>• Integration Services (Calendar, Contacts, Reminders)</li>
+                  <li>• Action Modals (43+ actions)</li>
+                  <li>• Data Services (email persistence)</li>
+                </ul>
+                <p className="text-xs text-gray-600 pt-2 border-t border-gray-200">
+                  <span className="font-bold text-[#FFD700]">Grade: A-</span> (Claude Sonnet assessment)
+                </p>
+              </div>
+            </OS8Window>
+
+            <OS8Window
+              title="Backend Microservices"
+              variant="minimal"
+            >
+              <div className="space-y-3">
+                <p className="text-sm text-gray-600"><span className="font-bold text-black">10 production services:</span></p>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  <li>• Gateway (OAuth, routing)</li>
+                  <li>• Email (Gmail API)</li>
+                  <li>• Classifier (43 intent categories)</li>
+                  <li>• Summarization (Gemini AI)</li>
+                  <li>• Smart Replies, Shopping, Actions...</li>
+                </ul>
+                <p className="text-xs text-gray-600 pt-2 border-t border-gray-200">
+                  <span className="font-bold text-[#FFD700]">Platform:</span> Google Cloud Run
+                </p>
+              </div>
+            </OS8Window>
+          </div>
+
+          <OS8Window
+            title="AI Classification System"
+            variant="default"
+            className="max-w-4xl mx-auto"
+          >
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                <span className="font-bold text-black">43 Intent Categories</span> including commerce (shipping, delivery, returns), billing (invoices, receipts), calendar (meetings, events), and family (school, childcare).
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-bold text-black">Processing Pipeline:</span> Email ingestion → Intent classification → Entity extraction → Action suggestion → Priority scoring → UI rendering. Average processing time: 45-85ms.
+              </p>
+              <p className="text-sm text-gray-600 border-t border-gray-200 pt-4">
+                <span className="font-bold text-black">Baseline Performance:</span> Initial testing shows 91.7% intent classification accuracy, 100% action extraction accuracy. These baselines established before building broader email corpus. Core business intents (billing, finance, healthcare) currently at 100%.
+              </p>
+            </div>
+          </OS8Window>
+        </div>
+      </section>
+
+      {/* What Zero Demonstrates */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <OS8Window
+            title="What Zero Demonstrates"
+            variant="yellow"
+            animateIn={false}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="space-y-4 text-gray-700 leading-relaxed">
+              <p className="text-base">
+                <span className="font-bold text-black">For potential clients:</span> Zero proves Rationale ships real products, not just client work. We built this to demonstrate our execution capability—same speed and technical depth we bring to client engagements.
+              </p>
+              <p className="text-base">
+                <span className="font-bold text-black">Validation → Production:</span> We built a weekend prototype to test the core UX before investing in production infrastructure. Once validated, we designed clean-room production architecture (A- grade) with zero technical debt.
+              </p>
+              <p className="text-base">
+                <span className="font-bold text-black">Technical execution:</span> 268 Swift files with protocol-driven architecture. 10 microservices on Google Cloud Run. Gmail OAuth integration. AI classification with 43 intent categories. Native iOS with device integrations (Calendar, Contacts, Wallet).
+              </p>
+              <p className="text-base border-t border-[#FFD700] pt-4 font-semibold text-black">
+                This is how we build products: fast iteration meets technical excellence.
+              </p>
+            </div>
+          </OS8Window>
+        </div>
+      </section>
 
       {/* Why We Built This */}
-      <Section spacing="large" background="default" colorTheme={whyTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                💭 Why We Built Zero
-              </h2>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  <span className="font-bold text-foreground">Personal need:</span> As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day.
-                </p>
-                <p>
-                  <span className="font-bold text-foreground">Market opportunity:</span> Email tools organize. They don't extract actions. Nobody is automatically pulling out the bill due tomorrow or the package arriving today. That's the gap Zero fills.
-                </p>
-                <p>
-                  <span className="font-bold text-foreground">Build-to-think philosophy:</span> We don't just plan products—we build working software to prove the concept. Zero went from idea to 7 interactive prototypes to complete technical architecture in 1 month.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">This is how we prove our speed and product thinking to potential partners.</span> From concept to complete execution plan, working prototypes, and production-ready architecture in 1 month.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Status & Timeline */}
-      <Section spacing="large" background="transparent" colorTheme={ctaTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={ctaTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-                Status & Timeline
-              </h2>
-
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-bold text-accent uppercase tracking-wide">Current Status</h3>
-                    <span className="px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium">Live on App Store</span>
-                  </div>
-                  <p className="text-sm text-muted">
-                    Zero is available for download on the App Store. Beta rollout underway with 4-cohort expansion strategy targeting 100+ users through systematic quality validation.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-2">Timeline Achieved</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• <span className="font-medium text-foreground">1 month:</span> Complete execution plan (116KB, 3,254 lines)</li>
-                    <li>• <span className="font-medium text-foreground">1 month:</span> Fundraising deck with financials and market analysis</li>
-                    <li>• <span className="font-medium text-foreground">4 weeks:</span> 7 interactive prototypes built and deployed</li>
-                    <li>• <span className="font-medium text-foreground">Now live:</span> App Store launch with beta rollout strategy</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-2">What's Available</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• 24-week roadmap with bootstrap and funded scenarios</li>
-                    <li>• Complete technical architecture and data strategy</li>
-                    <li>• Market analysis with TAM/SAM/SOM</li>
-                    <li>• Financial projections and unit economics</li>
-                    <li>• Beta rollout plan with cohort strategy</li>
-                  </ul>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <OS8Window
+            title="Why We Built Zero"
+            variant="default"
+            animateIn={false}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p className="text-sm">
+                <span className="font-bold text-black">Personal need:</span> As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day.
+              </p>
+              <p className="text-sm">
+                <span className="font-bold text-black">Market gap:</span> Email tools organize. They don't extract actions. Nobody is automatically pulling out the bill due tomorrow or the package arriving today. That's the gap Zero fills.
+              </p>
+              <p className="text-sm">
+                <span className="font-bold text-black">Proof of execution:</span> We don't just plan products—we build working software. Zero demonstrates our process: validate with prototypes, design production-grade architecture, ship real products.
+              </p>
+              <p className="text-sm border-t border-gray-200 pt-4 font-semibold text-black">
+                This is how we work. Fast iteration, technical excellence, and products built to scale.
+              </p>
+            </div>
+          </OS8Window>
+        </div>
+      </section>
 
       {/* Final CTA */}
-      <Section spacing="large" background="accent" colorTheme={ctaTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Use Zero, Invest in Zero, or Work With Us
-            </h2>
-            <p className="text-base sm:text-lg text-muted mb-8">
-              Try Zero's beta on the App Store, review the $600K seed round, or work with us to build your product at the same speed.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <ButtonPrimary
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Try Zero Beta
-              </ButtonPrimary>
-              <ButtonSecondary href="/invest/zero" size="lg">
-                Seed Round: $600K
-              </ButtonSecondary>
-              <ButtonSecondary href="/contact" size="lg">
-                Work With Us
-              </ButtonSecondary>
-            </div>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            Work With Us
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Zero demonstrates how Rationale builds products: validation, technical excellence, and execution speed. Let's build yours.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all"
+            >
+              Start a Conversation
+            </Link>
+            <Link
+              href="/work"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+            >
+              See More Work
+            </Link>
           </div>
-        </Container>
-      </Section>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }

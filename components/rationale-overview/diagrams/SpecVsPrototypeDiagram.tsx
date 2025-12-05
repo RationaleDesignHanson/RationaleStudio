@@ -43,9 +43,9 @@ export default function SpecVsPrototypeDiagram() {
         </div>
 
         <div className="mt-4 text-center">
-          <div className="text-[10px] text-gray-500 mb-1">↓</div>
+          <div className="text-xs text-gray-500 mb-1">↓</div>
           <div className="text-xs text-[#FF4444]">Discovery: Week 16</div>
-          <div className="text-[10px] text-gray-500">4 weeks into production</div>
+          <div className="text-xs text-gray-500">4 weeks into production</div>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export default function SpecVsPrototypeDiagram() {
           >
             <div className="text-sm font-semibold text-white mb-2">Subject Line</div>
             <div className="text-xs text-gray-400">Email content preview...</div>
-            <div className="mt-3 flex justify-between text-[10px] text-gray-500">
+            <div className="mt-3 flex justify-between text-xs text-gray-500">
               <span>← swipe</span>
               <span>swipe →</span>
             </div>
@@ -102,9 +102,9 @@ export default function SpecVsPrototypeDiagram() {
         </div>
 
         <div className="mt-4 text-center">
-          <div className="text-[10px] text-gray-500 mb-1">↓</div>
+          <div className="text-xs text-gray-500 mb-1">↓</div>
           <div className="text-xs text-[#00FF94]">Discovery: Day 3</div>
-          <div className="text-[10px] text-gray-500">Before production commitment</div>
+          <div className="text-xs text-gray-500">Before production commitment</div>
         </div>
       </div>
 

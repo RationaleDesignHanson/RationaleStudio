@@ -368,7 +368,7 @@ export default function ThreeBottlenecksDiagram() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[500px] md:min-h-[650px] bg-black rounded-lg border border-[COLORS.brand.terminalGold]/20 overflow-hidden">
+    <div className="relative w-full h-full min-h-[500px] md:min-h-[650px] bg-black rounded-lg border border-yellow-400/20 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"

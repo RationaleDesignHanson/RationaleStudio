@@ -147,7 +147,7 @@ export default function SevenPrototypeFramework() {
                         ✓
                       </text>
                     </svg>
-                    <div className="absolute hidden group-hover:block top-full mt-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] text-gray-500">
+                    <div className="absolute hidden group-hover:block top-full mt-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500">
                       Pass?
                     </div>
                   </div>

@@ -337,7 +337,7 @@ export default function StatusQuoCeilingDiagram() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[700px] bg-black rounded-lg border border-[COLORS.brand.terminalGold]/20 overflow-hidden">
+    <div className="relative w-full h-full min-h-[700px] bg-black rounded-lg border border-yellow-400/20 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"

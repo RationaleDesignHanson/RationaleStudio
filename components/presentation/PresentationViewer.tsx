@@ -207,10 +207,10 @@ export function PresentationViewer({
                     />
                   </div>
                   <div className="flex justify-between mt-1">
-                    <span className="text-[10px] font-mono text-gray-500">
+                    <span className="text-xs font-mono text-gray-400 font-semibold">
                       {progress.toFixed(0)}% COMPLETE
                     </span>
-                    <span className="text-[10px] font-mono text-gray-500">
+                    <span className="text-xs font-mono text-gray-400 font-semibold">
                       {slides.length - currentSlide - 1} SLIDES REMAINING
                     </span>
                   </div>
@@ -257,7 +257,7 @@ export function PresentationViewer({
 
               {/* Keyboard Shortcuts Hint */}
               <div className="mt-3 text-center">
-                <span className="text-[10px] font-mono text-gray-600">
+                <span className="text-xs font-mono text-gray-400 font-medium leading-relaxed">
                   ARROWS: navigate • SPACE: next • F: fullscreen • ESC: exit
                 </span>
               </div>

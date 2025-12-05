@@ -42,7 +42,7 @@ export function FitFilter() {
       </div>
 
       {/* Criteria Grid */}
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
         {fitCriteria.map((criterion, index) => (
           <div key={index} className="flex gap-4">
             {/* Checkmark */}

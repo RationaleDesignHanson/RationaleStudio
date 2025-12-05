@@ -20,6 +20,10 @@ const CLIENT_CREDENTIALS: Record<string, { password: string; redirectPath: strin
   'CREAIT': {
     password: 'realestate',
     redirectPath: '/clients/creait/pitch-deck'
+  },
+  'ZERO': {
+    password: '123456',
+    redirectPath: '/clients/zero/investor'
   }
 };
 

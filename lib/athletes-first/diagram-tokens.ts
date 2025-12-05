@@ -368,7 +368,7 @@ export function setupResponsiveCanvas(
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   container: HTMLElement
-): { width: number; height: number; deviceCategory: DeviceCategory; deviceSize: DeviceSize; isMobile: boolean; isTablet: boolean; scale: number; dpr: number } {
+): { width: number; height: number; deviceCategory: DeviceCategory; deviceSize: DeviceSize; isMobile: boolean; isTablet: boolean; isLandscape: boolean; shouldUseMobileLayout: boolean; scale: number; dpr: number } {
   const rect = container.getBoundingClientRect();
   const width = rect.width || 1000;
   const height = rect.height || 600;
@@ -376,6 +376,13 @@ export function setupResponsiveCanvas(
   // Detect device categories
   const isMobile = width < 768;
   const isTablet = width >= 768 && width < 1280;
+
+  // Detect landscape orientation (mobile landscape is problematic)
+  const isLandscape = width > height && width < 1024;
+
+  // Determine if mobile layout should be used
+  // Use mobile layout for: true mobile portrait OR landscape with constrained height
+  const shouldUseMobileLayout = (isMobile && !isLandscape) || (isLandscape && height < 500);
 
   // Determine device category
   const deviceCategory: DeviceCategory =
@@ -414,7 +421,7 @@ export function setupResponsiveCanvas(
   canvas.height = height * dpr;
   ctx.scale(dpr, dpr);
 
-  return { width, height, deviceCategory, deviceSize, isMobile, isTablet, scale, dpr };
+  return { width, height, deviceCategory, deviceSize, isMobile, isTablet, isLandscape, shouldUseMobileLayout, scale, dpr };
 }
 
 /**
@@ -534,13 +541,20 @@ export function getMobileSpacing(context: keyof typeof SPACING.mobileContext): n
  * @param complexity - Diagram complexity level
  * @param deviceCategory - Device category (mobile/tablet/desktop)
  * @param viewportHeight - Current viewport height
+ * @param isLandscape - Whether in landscape orientation
  * @returns Minimum height in pixels
  */
 export function getCanvasMinHeight(
   complexity: 'simple' | 'medium' | 'complex' | 'detailed',
   deviceCategory: DeviceCategory,
-  viewportHeight: number
+  viewportHeight: number,
+  isLandscape: boolean = false
 ): number {
+  // Landscape mode: constrain height more aggressively
+  if (isLandscape && viewportHeight < 600) {
+    return { simple: 300, medium: 350, complex: 380, detailed: 420 }[complexity];
+  }
+
   if (deviceCategory === 'desktop') {
     return { simple: 450, medium: 550, complex: 650, detailed: 750 }[complexity];
   }
@@ -551,6 +565,26 @@ export function getCanvasMinHeight(
   const vhMultipliers = { simple: 0.70, medium: 0.80, complex: 0.90, detailed: 1.00 };
   const calculatedHeight = viewportHeight * vhMultipliers[complexity];
   return Math.max(400, Math.min(calculatedHeight, viewportHeight * 0.9));
+}
+
+/**
+ * Adjust spacing for landscape orientation to prevent content overflow
+ *
+ * @param baseSpacing - The base spacing value
+ * @param isLandscape - Whether in landscape orientation
+ * @param viewportHeight - Current viewport height
+ * @returns Adjusted spacing value
+ */
+export function getLandscapeSpacing(
+  baseSpacing: number,
+  isLandscape: boolean,
+  viewportHeight: number
+): number {
+  if (!isLandscape || viewportHeight >= 600) {
+    return baseSpacing;
+  }
+  // In constrained landscape, reduce vertical spacing by 30-40%
+  return Math.max(4, Math.round(baseSpacing * 0.65));
 }
 
 // ============================================================================

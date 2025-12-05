@@ -8,26 +8,26 @@ export default function BreakthroughDiagram() {
       <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         {/* BEFORE */}
         <div className="space-y-6">
-          <h3 className="text-xl md:text-2xl font-bold text-white/60 text-center mb-8">
+          <h3 className="text-xl md:text-2xl font-bold text-white/90 text-center mb-8">
             BEFORE
           </h3>
 
           <div className="space-y-6">
             {/* Agent */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center flex-shrink-0">
-                <User className="w-5 h-5 text-white/60" />
+              <div className="w-10 h-10 rounded-full border-2 border-white/50 flex items-center justify-center flex-shrink-0">
+                <User className="w-5 h-5 text-white/70" />
               </div>
-              <div className="text-white/80 font-terminal text-sm md:text-base">Agent</div>
+              <div className="text-white/90 font-terminal text-sm md:text-base font-semibold">Agent</div>
             </div>
 
             {/* Individual Athletes */}
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="flex items-center gap-3 opacity-60">
-                <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center flex-shrink-0">
-                  <User className="w-5 h-5 text-white/40" />
+                <div className="w-10 h-10 rounded-full border-2 border-white/40 flex items-center justify-center flex-shrink-0">
+                  <User className="w-5 h-5 text-white/50" />
                 </div>
-                <div className="text-white/60 font-terminal text-sm md:text-base">1 Athlete</div>
+                <div className="text-white/75 font-terminal text-sm md:text-base font-medium">1 Athlete</div>
               </div>
             ))}
           </div>

@@ -130,7 +130,7 @@ export default function TraditionalVsRationaleDiagram() {
               <div className="absolute left-[83%] top-0">
                 <div className="flex items-center gap-1">
                   <div className="w-px h-4 bg-gray-600" />
-                  <span className="text-[10px] text-gray-500">First user feedback ↑</span>
+                  <span className="text-xs text-gray-500">First user feedback ↑</span>
                 </div>
               </div>
             </div>
@@ -142,13 +142,13 @@ export default function TraditionalVsRationaleDiagram() {
               <div className="absolute left-[8%] top-0">
                 <div className="flex items-center gap-1">
                   <div className="w-px h-4 bg-gray-600" />
-                  <span className="text-[10px] text-gray-500">User feedback ↑</span>
+                  <span className="text-xs text-gray-500">User feedback ↑</span>
                 </div>
               </div>
               <div className="absolute left-[20%] top-0">
                 <div className="flex items-center gap-1">
                   <div className="w-px h-4 bg-gray-600" />
-                  <span className="text-[10px] text-gray-500">Lock architecture ↑</span>
+                  <span className="text-xs text-gray-500">Lock architecture ↑</span>
                 </div>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function TraditionalVsRationaleDiagram() {
       {/* Week scale reference (subtle) */}
       <div className="mt-4 flex items-center gap-3">
         <div className="min-w-[180px]" />
-        <div className="flex-1 flex justify-between text-[10px] text-gray-600">
+        <div className="flex-1 flex justify-between text-xs text-gray-600">
           <span>Week 0</span>
           <span>Week 6</span>
           <span>Week 12</span>

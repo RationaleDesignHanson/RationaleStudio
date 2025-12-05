@@ -1460,3 +1460,40 @@ a, button, input, select, textarea, label {
     animation-duration: 300ms; /* Faster on mobile */
   }
 }
+
+/* ========================================================================== */
+/* LANDSCAPE ORIENTATION OPTIMIZATIONS */
+/* ========================================================================== */
+
+/* Reduce vertical spacing in landscape on small devices */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* Compress header */
+  header {
+    min-height: 2.5rem !important;
+  }
+  
+  /* Reduce section padding */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Compress hero headings */
+  h1 {
+    line-height: 1.1 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Compress button groups */
+  .flex.flex-col.sm\:flex-row {
+    flex-direction: row !important;
+  }
+}
+
+/* Tablet landscape specific */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* Optimize grid layouts */
+  .grid.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

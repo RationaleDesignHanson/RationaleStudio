@@ -110,7 +110,7 @@ export default function ActionSheet({ email, onClose, onSelectAction }: ActionSh
 
           {/* Quick Actions */}
           <div className="pb-4 border-b border-white/20 mb-4">
-            <div className="text-[10px] font-bold text-white/50 tracking-wider mb-3">
+            <div className="text-xs font-bold text-white/50 tracking-wider mb-3">
               QUICK ACTIONS
             </div>
             <div className="flex gap-4">
