@@ -11,6 +11,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Container } from '@/components/layout/Container';
 
+// Global credentials (works for all clients)
+const GLOBAL_CREDENTIALS = {
+  username: 'claracharliecolette',
+  password: '123456'
+};
+
 // Client credentials mapping
 const CLIENT_CREDENTIALS: Record<string, { password: string; redirectPath: string }> = {
   'A1': {
@@ -38,6 +44,13 @@ export default function ClientLoginPage() {
     e.preventDefault();
     setError('');
     setIsLoading(true);
+
+    // Check global credentials first
+    if (username.toLowerCase().trim() === GLOBAL_CREDENTIALS.username && password === GLOBAL_CREDENTIALS.password) {
+      sessionStorage.setItem('client-auth', 'GLOBAL');
+      router.push('/');
+      return;
+    }
 
     // Simple client-side authentication
     const normalizedUsername = username.toUpperCase().trim();
