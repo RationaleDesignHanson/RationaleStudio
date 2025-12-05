@@ -91,15 +91,15 @@ export function Header() {
             className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-[#FFD700]"
           >
             <span className="font-semibold">Rationale: </span>
-            <span className="font-light">A product development company</span>
+            <span className="font-light">A Product Development Company</span>
           </Link>
 
           {/* Navigation - Hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8" ref={dropdownRef}>
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8" ref={dropdownRef}>
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isDropdownOpen = openDropdown === link.label;
-              const isDisabled = 'disabled' in link && link.disabled;
+              const isDisabled = Boolean('disabled' in link && link.disabled);
 
               if (hasDropdown) {
                 return (
@@ -184,7 +184,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+            className="lg:hidden p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -204,7 +204,7 @@ export function Header() {
         {/* Mobile Navigation Dropdown - Full Height Overlay */}
         <div
           id="mobile-menu"
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
           }`}
           role="navigation"
@@ -214,7 +214,7 @@ export function Header() {
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isExpanded = expandedMobileDropdown === link.label;
-              const isDisabled = 'disabled' in link && link.disabled;
+              const isDisabled = Boolean('disabled' in link && link.disabled);
 
               if (hasDropdown) {
                 return (

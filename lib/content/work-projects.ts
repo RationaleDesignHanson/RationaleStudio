@@ -1,0 +1,83 @@
+/**
+ * Work Projects Content
+ *
+ * Portfolio projects and case studies data
+ */
+
+import { WorkProject } from '@/lib/types/work';
+
+export const workProjects: WorkProject[] = [
+  {
+    id: 'zero',
+    title: 'Zero Inbox',
+    subtitle: 'AI Email Management',
+    slug: 'zero',
+    status: 'live',
+    category: 'consumer',
+    metrics: [
+      { label: 'Timeline', value: '30 days' },
+      { label: 'Accuracy', value: '95%+ AI' },
+      { label: 'Status', value: 'Live on App Store' }
+    ],
+    tags: ['Consumer', 'AI Product', 'Live'],
+    isProtected: false,
+    featured: true,
+    description: 'AI-powered email management that extracts actions from your inbox. Built and shipped in 30 days.'
+  },
+  {
+    id: 'case-study-010',
+    title: 'Case Study 010',
+    subtitle: 'Commercial Real Estate AI',
+    slug: 'case-study-010',
+    status: 'delivered',
+    category: 'b2b',
+    metrics: [
+      { label: 'Timeline', value: '16-week MVP' },
+      { label: 'Scope', value: 'Full-stack' },
+      { label: 'Scale', value: 'Enterprise' }
+    ],
+    tags: ['B2B', 'Data Platform', 'Pilot'],
+    isProtected: true,
+    password: '123456',
+    featured: true,
+    description: 'Enterprise data intelligence platform with AI-powered workflow automation.'
+  },
+  {
+    id: 'case-study-020',
+    title: 'Case Study 020',
+    subtitle: 'Multi-Module Platform',
+    slug: 'case-study-020',
+    status: 'delivered',
+    category: 'complex-systems',
+    metrics: [
+      { label: 'Scope', value: '4 modules' },
+      { label: 'Demos', value: '40+ built' },
+      { label: 'Tech', value: 'Vision Pro' }
+    ],
+    tags: ['Sports Tech', 'Complex Systems', 'Pilot'],
+    isProtected: true,
+    password: '123456',
+    featured: true,
+    description: '4-module integrated platform with wearables and spatial computing integration.'
+  }
+];
+
+export function getFeaturedProjects(): WorkProject[] {
+  return workProjects.filter(project => project.featured);
+}
+
+export function getProjectBySlug(slug: string): WorkProject | undefined {
+  return workProjects.find(project => project.slug === slug);
+}
+
+export function getPublicProjects(): WorkProject[] {
+  return workProjects.filter(project => !project.isProtected);
+}
+
+export function getProtectedProjects(): WorkProject[] {
+  return workProjects.filter(project => project.isProtected);
+}
+
+export function getAllProjects(): WorkProject[] {
+  return workProjects;
+}
