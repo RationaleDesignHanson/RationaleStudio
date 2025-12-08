@@ -126,32 +126,6 @@ export default function WorkPage() {
               />
             ))}
           </div>
-
-          {/* Proof Diversity */}
-          <div className="mt-16 pt-12 border-t border-gray-800">
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Proven Across Domains
-              </h3>
-              <p className="text-gray-400 mb-8">
-                Same systematic approach delivers results across consumer products, enterprise B2B platforms, and complex multi-module systems.
-              </p>
-              <div className="grid sm:grid-cols-3 gap-6">
-                <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                  <div className="text-3xl font-bold text-[#FFD700] mb-2">30 days</div>
-                  <div className="text-sm text-gray-400">Concept to live product</div>
-                </div>
-                <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                  <div className="text-3xl font-bold text-[#FFD700] mb-2">16 weeks</div>
-                  <div className="text-sm text-gray-400">Enterprise MVP delivery</div>
-                </div>
-                <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                  <div className="text-3xl font-bold text-[#FFD700] mb-2">4 modules</div>
-                  <div className="text-sm text-gray-400">Complex system design</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
