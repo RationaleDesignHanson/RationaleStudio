@@ -7,6 +7,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { validatePitchAccess } from '@/lib/pitch/security';
 
+// Force dynamic rendering (don't prerender at build time)
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { companySlug, token, username } = await request.json();

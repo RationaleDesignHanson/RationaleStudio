@@ -42,6 +42,12 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
   }
 
   try {
+    // Skip initialization during build time (no credentials needed)
+    if (process.env.NEXT_PHASE === 'phase-production-build') {
+      console.log('[Firebase Admin] Skipping initialization during build phase');
+      throw new Error('Firebase Admin not available during build');
+    }
+
     // Option 1: Use service account JSON file path
     if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
       adminApp = initializeApp({
@@ -206,6 +212,3 @@ export function getAdminDb(): Firestore {
   const { db } = initializeFirebaseAdmin();
   return db;
 }
-
-// Export singleton adminDb for convenience
-export const adminDb = getAdminDb();

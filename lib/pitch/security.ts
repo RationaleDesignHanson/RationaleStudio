@@ -5,7 +5,7 @@
  * for secure outbound pitch presentations
  */
 
-import { adminDb } from '@/lib/auth/firebase-admin';
+import { getAdminDb } from '@/lib/auth/firebase-admin';
 import crypto from 'crypto';
 
 export interface PitchAccess {
@@ -52,7 +52,7 @@ export async function validatePitchAccess(
 ): Promise<PitchValidationResult> {
   try {
     // Find pitch access record by company slug and token
-    const accessSnapshot = await adminDb
+    const accessSnapshot = await getAdminDb()
       .collection('outbound_pitches')
       .where('companySlug', '==', companySlug)
       .where('token', '==', token)
@@ -150,7 +150,7 @@ async function trackPitchView(
   username: string | null
 ): Promise<void> {
   try {
-    await adminDb.collection('pitch_analytics').add({
+    await getAdminDb().collection('pitch_analytics').add({
       pitchId,
       clientIP,
       username,
@@ -199,7 +199,7 @@ export async function createPitchAccess(
     },
   };
 
-  const docRef = await adminDb.collection('outbound_pitches').add(pitchData);
+  const docRef = await getAdminDb().collection('outbound_pitches').add(pitchData);
 
   return {
     token,
@@ -212,7 +212,7 @@ export async function createPitchAccess(
  * Revoke pitch access
  */
 export async function revokePitchAccess(pitchId: string): Promise<void> {
-  await adminDb.collection('outbound_pitches').doc(pitchId).update({
+  await getAdminDb().collection('outbound_pitches').doc(pitchId).update({
     isRevoked: true,
   });
 }
@@ -224,7 +224,7 @@ export async function extendPitchAccess(
   pitchId: string,
   additionalDays: number
 ): Promise<Date> {
-  const doc = await adminDb.collection('outbound_pitches').doc(pitchId).get();
+  const doc = await getAdminDb().collection('outbound_pitches').doc(pitchId).get();
 
   if (!doc.exists) {
     throw new Error('Pitch access not found');
@@ -253,7 +253,7 @@ export async function extendPitchAccess(
  * Get all pitch accesses for a company
  */
 export async function getPitchAccesses(companySlug: string): Promise<PitchAccess[]> {
-  const snapshot = await adminDb
+  const snapshot = await getAdminDb()
     .collection('outbound_pitches')
     .where('companySlug', '==', companySlug)
     .orderBy('createdAt', 'desc')
@@ -272,7 +272,7 @@ export async function getPitchAccesses(companySlug: string): Promise<PitchAccess
  * Get pitch analytics
  */
 export async function getPitchAnalytics(pitchId: string) {
-  const snapshot = await adminDb
+  const snapshot = await getAdminDb()
     .collection('pitch_analytics')
     .where('pitchId', '==', pitchId)
     .orderBy('viewedAt', 'desc')

@@ -8,6 +8,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getAdminAuth, getAdminUserProfile } from '@/lib/auth/firebase-admin';
 
+// Force dynamic rendering (don't prerender at build time)
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

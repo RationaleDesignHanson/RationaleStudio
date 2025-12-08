@@ -10,6 +10,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createPitchAccess } from '@/lib/pitch/security';
 
+// Force dynamic rendering (don't prerender at build time)
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

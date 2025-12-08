@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getClientById, getClientByUsername } from '@/lib/clients-config';
 
+// Force dynamic rendering (don't prerender at build time)
+export const dynamic = 'force-dynamic';
+
 // Username + Password verification endpoint
 // Verifies both username and password match for the client
 
