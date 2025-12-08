@@ -29,14 +29,14 @@ export const workProjects: WorkProject[] = [
     title: 'Heirloom',
     subtitle: 'Recipe Heritage App',
     slug: 'heirloom',
-    status: 'planning',
+    status: 'building',
     category: 'consumer',
     metrics: [
       { label: 'Platform', value: 'Native iOS' },
-      { label: 'Status', value: 'Planning Complete' },
-      { label: 'Phase', value: 'Pre-Development' }
+      { label: 'Status', value: 'In Development' },
+      { label: 'Progress', value: 'Day 2 Complete' }
     ],
-    tags: ['Consumer', 'iOS', 'Planning'],
+    tags: ['Consumer', 'iOS', 'Active Development'],
     isProtected: false,
     featured: true,
     description: 'Native iOS recipe app combining smart capture, personal expression, and styled sharing to help families preserve their cooking heritage.'

@@ -33,7 +33,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -45,30 +45,38 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
-            <div className="mb-6">
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-300">
-                <span className="font-semibold text-white">Rationale: </span>
-                <span className="font-light">A Product Development Company</span>
+            {/* Eyebrow */}
+            <div className="mb-4">
+              <p className="text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-medium">
+                Rationale &mdash; Product Development Company
               </p>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              We ship products. <br /> Yours and ours.
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-tight">
+              We ship products.{' '}
+              <span className="text-gray-300">Yours and ours.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-6">
-              Product studio with two engines: proprietary software we build and own, <br />
-              and strategic partnerships where we transform strategy into shipped products. <br />
-              Proven at Meta AI Reality Labs. Fee + equity engagements available.
-            </p>
+            {/* Body Copy */}
+            <div className="max-w-2xl mx-auto mb-10 space-y-4">
+              <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
+                Product studio with two engines: proprietary software we build and own,
+                and strategic partnerships where we transform strategy into shipped products.
+              </p>
+              <p className="text-base sm:text-lg text-gray-400">
+                Proven at Meta AI Reality Labs. Fee + equity engagements available.
+              </p>
+            </div>
 
+            {/* CTA Button */}
             <div className="flex justify-center">
               <a
                 href="/overview"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[#FFD700] hover:text-[#FFE34D] border border-[#FFD700] hover:border-[#FFE34D] rounded transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-[#FFD700] hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
               >
-                studio overview
-                <ArrowRight className="w-4 h-4" />
+                Studio Overview
+                <ArrowRight className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -169,14 +177,14 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* Heirloom - Planning Phase */}
+              {/* Heirloom - In Development */}
               <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">Heirloom</h3>
                     <div className="flex items-center gap-2">
                       <span className="px-3 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
-                        Planning Complete
+                        In Development
                       </span>
                     </div>
                   </div>
@@ -190,11 +198,11 @@ export default function HomePage() {
                 <div className="space-y-3 mb-6 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Complete product specs and UX design</span>
+                    <span className="text-gray-400">SwiftUI + SwiftData architecture complete</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Users className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">iOS Reminders integration for smart shopping</span>
+                    <span className="text-gray-400">Day 2 complete: Core models and design system</span>
                   </div>
                 </div>
 
