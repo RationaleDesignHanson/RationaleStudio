@@ -9,3 +9,4 @@ export { Footer } from './Footer';
 export { Container } from './Container';
 export { Section } from './Section';
 export { DashboardHeader } from './DashboardHeader';
+export { LayoutContent } from './LayoutContent';

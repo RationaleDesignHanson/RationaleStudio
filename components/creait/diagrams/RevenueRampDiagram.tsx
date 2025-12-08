@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * RevenueRampDiagram - Stepped growth chart showing 12-month revenue progression
@@ -131,18 +133,18 @@ export default function RevenueRampDiagram() {
 
           // ARR value on top of bar
           ctx.fillStyle = milestone.color;
-          ctx.font = 'bold 24px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
           ctx.textAlign = 'center';
           ctx.fillText(milestone.arr, barX + barWidth / 2, stepY - 15);
 
           // Month label below baseline
-          ctx.fillStyle = `rgba(255, 255, 255, ${stepOpacity * 0.7})`;
-          ctx.font = 'bold 13px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${stepOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(milestone.label, barX + barWidth / 2, baselineY + 25);
 
           // Description below month
-          ctx.fillStyle = `rgba(255, 255, 255, ${stepOpacity * 0.5})`;
-          ctx.font = '11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${stepOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(milestone.description, barX + barWidth / 2, baselineY + 42);
 
           // Customer count with icons
@@ -157,13 +159,24 @@ export default function RevenueRampDiagram() {
           ctx.fill();
           ctx.stroke();
 
-          // Icon + number
-          ctx.font = '16px sans-serif';
-          ctx.fillText('👤', barX + barWidth / 2 - 12, customerY + 3);
+          // Geometric user icon (professional, no emoji)
+          const iconX = barX + barWidth / 2 - 12;
+          const iconY = customerY;
+          ctx.fillStyle = milestone.color;
+          // Head (circle)
+          ctx.beginPath();
+          ctx.arc(iconX, iconY - 4, 4, 0, Math.PI * 2);
+          ctx.fill();
+          // Body (rounded shape)
+          ctx.beginPath();
+          ctx.arc(iconX, iconY + 4, 6, 0, Math.PI, true);
+          ctx.fill();
 
           ctx.fillStyle = milestone.color;
-          ctx.font = 'bold 16px Inter, sans-serif';
-          ctx.fillText(milestone.customers.toString(), barX + barWidth / 2 + 10, customerY + 3);
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(milestone.customers.toString(), barX + barWidth / 2 + 4, customerY);
 
           // Growth arrow (between steps)
           if (index > 0 && stepOpacity > 0.5) {
@@ -225,7 +238,7 @@ export default function RevenueRampDiagram() {
           ctx.stroke();
 
           ctx.fillStyle = CRE_COLORS.success;
-          ctx.font = 'bold 14px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(rate, midX, y + 3);
         });
@@ -234,8 +247,8 @@ export default function RevenueRampDiagram() {
       // Title
       if (progress > 1.1) {
         const titleOpacity = Math.min((progress - 1.1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('12-Month Revenue Ramp', width / 2, 25);
       }

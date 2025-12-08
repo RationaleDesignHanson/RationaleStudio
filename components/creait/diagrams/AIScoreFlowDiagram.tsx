@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * AIScoreFlowDiagram - Data flow visualization showing AI scoring process
@@ -71,9 +73,9 @@ export default function AIScoreFlowDiagram() {
 
       // === LEFT: DATA SOURCES ===
       const sources = [
-        { icon: '🏢', label: 'Property Records', color: CRE_COLORS.primary },
-        { icon: '💰', label: 'Financing Data', color: CRE_COLORS.secondary },
-        { icon: '📊', label: 'Market Trends', color: CRE_COLORS.accent },
+        { type: 'database', label: 'Property Records', color: CRE_COLORS.primary },
+        { type: 'finance', label: 'Financing Data', color: CRE_COLORS.secondary },
+        { type: 'chart', label: 'Market Trends', color: CRE_COLORS.accent },
       ];
 
       sources.forEach((source, index) => {
@@ -86,20 +88,59 @@ export default function AIScoreFlowDiagram() {
         ctx.strokeStyle = source.color;
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.roundRect(x - 60, y - 25, 120, 50, 8);
+        ctx.roundRect(x - CANVAS_SPACING.margin.xxl, y - CANVAS_SPACING.padding.md, 120, CANVAS_SPACING.margin.xl, 8);
         ctx.fill();
         ctx.stroke();
 
-        // Icon
-        ctx.font = '24px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(source.icon, x, y - 5);
+        // Geometric icon (professional, no emojis)
+        ctx.fillStyle = source.color;
+        ctx.strokeStyle = source.color;
+        if (source.type === 'database') {
+          // Database cylinder icon
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.ellipse(x, y - 10, 10, 4, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.rect(x - 10, y - 10, 20, 16);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.ellipse(x, y + 6, 10, 4, 0, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (source.type === 'finance') {
+          // Dollar sign in circle
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(x, y, 10, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.font = `bold 16px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+          ctx.fillStyle = source.color;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('$', x, y);
+        } else if (source.type === 'chart') {
+          // Trend line chart icon
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(x - 10, y + 6);
+          ctx.lineTo(x - 4, y - 2);
+          ctx.lineTo(x + 2, y + 2);
+          ctx.lineTo(x + 10, y - 8);
+          ctx.stroke();
+          // Add dots
+          ctx.fillStyle = source.color;
+          [{ x: x - 10, y: y + 6 }, { x: x - 4, y: y - 2 }, { x: x + 2, y: y + 2 }, { x: x + 10, y: y - 8 }].forEach(point => {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+            ctx.fill();
+          });
+        }
 
         // Label
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.8})`;
-        ctx.font = '11px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * CANVAS_TYPOGRAPHY.opacity.secondary})`;
+        ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
-        ctx.fillText(source.label, x, y + 15);
+        ctx.fillText(source.label, x, y + CANVAS_SPACING.padding.md);
 
         // Create particles occasionally
         if (progress > 0.2 && Math.random() < 0.03) {
@@ -131,18 +172,38 @@ export default function AIScoreFlowDiagram() {
         ctx.arc(brainX, brainY, brainRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // AI icon
-        ctx.font = '48px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = `rgba(255, 255, 255, ${brainOpacity})`;
-        ctx.fillText('🤖', brainX, brainY);
+        // AI icon (geometric neural network representation)
+        ctx.fillStyle = CRE_COLORS.secondary;
+        // Central node
+        ctx.beginPath();
+        ctx.arc(brainX, brainY, 8, 0, Math.PI * 2);
+        ctx.fill();
+        // Four connected nodes in + pattern
+        const aiNodeSize = 5;
+        const aiNodeDist = 20;
+        [
+          { x: brainX, y: brainY - aiNodeDist },
+          { x: brainX + aiNodeDist, y: brainY },
+          { x: brainX, y: brainY + aiNodeDist },
+          { x: brainX - aiNodeDist, y: brainY },
+        ].forEach(node => {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, aiNodeSize, 0, Math.PI * 2);
+          ctx.fill();
+          // Connection line
+          ctx.strokeStyle = CRE_COLORS.secondary;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(brainX, brainY);
+          ctx.lineTo(node.x, node.y);
+          ctx.stroke();
+        });
 
         // "AI Scoring Engine" label
         ctx.fillStyle = `rgba(139, 92, 246, ${brainOpacity})`;
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
-        ctx.fillText('AI Scoring Engine', brainX, brainY + brainRadius + 25);
+        ctx.fillText('AI Scoring Engine', brainX, brainY + brainRadius + CANVAS_SPACING.padding.md);
 
         // Neural network lines (animated)
         const neuronCount = 8;
@@ -187,7 +248,7 @@ export default function AIScoreFlowDiagram() {
           ctx.strokeStyle = `rgba(255, 255, 255, ${oppOpacity * 0.1})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.roundRect(x - 70, y - 20, 140, 40, 6);
+          ctx.roundRect(x - 72, y - CANVAS_SPACING.micro.md, 144, CANVAS_SPACING.margin.lg, 6);
           ctx.fill();
           ctx.stroke();
 
@@ -195,26 +256,26 @@ export default function AIScoreFlowDiagram() {
           const scoreSize = 32;
           ctx.fillStyle = opp.color;
           ctx.beginPath();
-          ctx.roundRect(x - 60, y - 12, scoreSize, scoreSize, 4);
+          ctx.roundRect(x - CANVAS_SPACING.margin.xxl, y - CANVAS_SPACING.micro.sm, scoreSize, scoreSize, 4);
           ctx.fill();
 
           // Score number
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-          ctx.font = 'bold 14px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.primary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.dataSm}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
           ctx.textAlign = 'center';
           ctx.fillText(opp.score.toString(), x - 44, y + 4);
 
           // Property name
-          ctx.fillStyle = `rgba(255, 255, 255, ${oppOpacity * 0.9})`;
-          ctx.font = '12px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${oppOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'left';
-          ctx.fillText(opp.name, x - 20, y + 4);
+          ctx.fillText(opp.name, x - CANVAS_SPACING.micro.md, y + 4);
 
           // Rank indicator
-          ctx.fillStyle = `rgba(255, 255, 255, ${oppOpacity * 0.4})`;
-          ctx.font = '10px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${oppOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'right';
-          ctx.fillText(`#${index + 1}`, x + 65, y + 4);
+          ctx.fillText(`#${index + 1}`, x + CANVAS_SPACING.margin.xxxl, y + 4);
         }
       });
 
@@ -256,10 +317,10 @@ export default function AIScoreFlowDiagram() {
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
-        ctx.fillText('AI Scoring Process', width / 2, 30);
+        ctx.fillText('AI Scoring Process', width / 2, 32);
       }
 
       // Animate

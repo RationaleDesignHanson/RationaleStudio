@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * ValidationMapDiagram - US map showing 25 customer interview locations
@@ -170,13 +172,13 @@ export default function ValidationMapDiagram() {
             ctx.stroke();
 
             // Tooltip text
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+            ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.textAlign = 'left';
             ctx.fillText(interview.city, tooltipX + 10, tooltipY + 20);
 
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-            ctx.font = '11px Inter, sans-serif';
+            ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+            ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.fillText(interview.firm, tooltipX + 10, tooltipY + 38);
           }
         }
@@ -197,13 +199,13 @@ export default function ValidationMapDiagram() {
           const x = mapPadding + market.x * mapWidth;
           const y = mapPadding + market.y * mapHeight;
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${labelOpacity * 0.8})`;
-          ctx.font = 'bold 11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${labelOpacity * CANVAS_TYPOGRAPHY.opacity.secondary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
 
           const lines = market.label.split('\n');
           lines.forEach((line, i) => {
-            ctx.fillText(line, x, y + i * 14);
+            ctx.fillText(line, x, y + i * 16);
           });
         });
       }
@@ -215,7 +217,7 @@ export default function ValidationMapDiagram() {
 
         // Total interviews
         ctx.fillStyle = `rgba(14, 165, 233, ${statsOpacity})`;
-        ctx.font = 'bold 18px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'left';
         ctx.fillText('25 Interviews', mapPadding, statsY);
 
@@ -233,10 +235,10 @@ export default function ValidationMapDiagram() {
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
-        ctx.fillText('Geographic Validation', width / 2, 30);
+        ctx.fillText('Geographic Validation', width / 2, 32);
       }
 
       // Animate

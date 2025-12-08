@@ -226,7 +226,7 @@ export default function InteractiveDemo() {
                 }`}
               >
                 Mail
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                   {sampleEmails.filter(e => e.metadata.type === 'mail').length - dismissed.mail}
                 </span>
               </button>
@@ -239,7 +239,7 @@ export default function InteractiveDemo() {
                 }`}
               >
                 Ads
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                   {sampleEmails.filter(e => e.metadata.type === 'ads').length - dismissed.ads}
                 </span>
               </button>
@@ -396,7 +396,7 @@ export default function InteractiveDemo() {
               }`}
             >
               Mail
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                 {remaining}
               </span>
             </button>
@@ -409,7 +409,7 @@ export default function InteractiveDemo() {
               }`}
             >
               Ads
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                 {sampleEmails.filter(e => e.metadata.type === 'ads').length - dismissed.ads}
               </span>
             </button>

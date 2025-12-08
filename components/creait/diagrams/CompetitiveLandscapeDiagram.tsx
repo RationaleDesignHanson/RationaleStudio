@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * CompetitiveLandscapeDiagram - 2x2 matrix showing competitive positioning
@@ -133,24 +135,28 @@ export default function CompetitiveLandscapeDiagram() {
         ctx.stroke();
 
         // Axis labels
-        ctx.fillStyle = `rgba(255, 255, 255, ${axisOpacity * 0.7})`;
-        ctx.font = 'bold 13px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${axisOpacity * CANVAS_TYPOGRAPHY.opacity.secondary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
 
         // X-axis labels
         ctx.fillText('General', padding + chartWidth * 0.25, padding + chartHeight + 40);
         ctx.fillText('CRE-Specific', padding + chartWidth * 0.75, padding + chartHeight + 40);
 
-        // Y-axis labels
+        // Y-axis labels (positioned at top and bottom of axis)
         ctx.save();
-        ctx.translate(padding - 50, padding + chartHeight * 0.75);
+        ctx.translate(padding - 60, padding + 30);
         ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText('Intelligence', 0, 0);
         ctx.restore();
 
         ctx.save();
-        ctx.translate(padding - 50, padding + chartHeight * 0.25);
+        ctx.translate(padding - 60, padding + chartHeight - 30);
         ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText('Data Storage', 0, 0);
         ctx.restore();
       }
@@ -175,8 +181,8 @@ export default function CompetitiveLandscapeDiagram() {
         ctx.fillRect(centerX, padding, chartWidth / 2, chartHeight / 2);
 
         // Draw quadrant labels
-        ctx.fillStyle = `rgba(255, 255, 255, ${quadOpacity * 0.4})`;
-        ctx.font = '11px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${quadOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+        ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
 
         ctx.fillText('Generic AI Tools', padding + chartWidth * 0.25, padding + chartHeight * 0.15);
@@ -219,47 +225,27 @@ export default function CompetitiveLandscapeDiagram() {
 
             // Label
             ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-            ctx.font = 'bold 16px Inter, sans-serif';
+            ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(competitor.name, x, y);
 
-            // "We sit alone here" pointer
+            // Professional badge label (replaces amateur pointer annotation)
             if (progress > 0.9) {
-              const pointerOpacity = Math.min((progress - 0.9) * 5, 1);
-
-              ctx.strokeStyle = `rgba(14, 165, 233, ${pointerOpacity})`;
-              ctx.lineWidth = 2;
-              ctx.setLineDash([5, 5]);
-              ctx.beginPath();
-              ctx.moveTo(x + 40, y - 40);
-              ctx.lineTo(x + 80, y - 80);
-              ctx.stroke();
-              ctx.setLineDash([]);
-
-              // Arrow head
-              ctx.fillStyle = CRE_COLORS.primary;
-              ctx.beginPath();
-              ctx.moveTo(x + 40, y - 40);
-              ctx.lineTo(x + 35, y - 35);
-              ctx.lineTo(x + 45, y - 35);
-              ctx.closePath();
-              ctx.fill();
-
-              // Text box
-              ctx.fillStyle = `rgba(14, 165, 233, ${pointerOpacity * 0.2})`;
+              const badgeOpacity = Math.min((progress - 0.9) * 5, 1);
+              ctx.fillStyle = `rgba(14, 165, 233, ${badgeOpacity * 0.15})`;
               ctx.strokeStyle = CRE_COLORS.primary;
               ctx.lineWidth = 2;
               ctx.beginPath();
-              ctx.roundRect(x + 85, y - 105, 160, 50, 8);
+              ctx.roundRect(x - 60, y - 60, 120, CANVAS_SPACING.padding.md, CANVAS_SPACING.radius.md);
               ctx.fill();
               ctx.stroke();
 
               ctx.fillStyle = CRE_COLORS.primary;
-              ctx.font = 'bold 13px Inter, sans-serif';
-              ctx.textAlign = 'left';
-              ctx.fillText('We sit alone in the', x + 95, y - 90);
-              ctx.fillText('best quadrant', x + 95, y - 72);
+              ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText('CRE + AI Advantage', x, y - 52);
             }
           } else {
             // Other competitors - muted styling
@@ -272,8 +258,8 @@ export default function CompetitiveLandscapeDiagram() {
             ctx.lineWidth = 1;
             ctx.stroke();
 
-            ctx.fillStyle = `rgba(255, 255, 255, ${compOpacity * 0.7})`;
-            ctx.font = '11px Inter, sans-serif';
+            ctx.fillStyle = `rgba(255, 255, 255, ${compOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+            ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(competitor.name, x, y);
@@ -284,8 +270,8 @@ export default function CompetitiveLandscapeDiagram() {
       // Draw "Competitive Advantage" label
       if (progress > 1.1) {
         const labelOpacity = Math.min((progress - 1.1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${labelOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${labelOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('Competitive Landscape', width / 2, 30);
       }

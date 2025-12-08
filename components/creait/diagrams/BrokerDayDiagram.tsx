@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * BrokerDayDiagram - Visual breakdown of a broker's 8-hour workday
@@ -105,8 +107,8 @@ export default function BrokerDayDiagram() {
           const labelX = centerX + Math.cos(midAngle) * (radius * 0.65);
           const labelY = centerY + Math.sin(midAngle) * (radius * 0.65);
 
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-          ctx.font = 'bold 24px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.primary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(`${segment.percentage}%`, labelX, labelY);
@@ -145,10 +147,10 @@ export default function BrokerDayDiagram() {
 
       // Draw "8 Hours" text in center
       if (progress >= 1) {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-        ctx.font = '12px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
-        ctx.fillText('8 HOURS', centerX, centerY + 25);
+        ctx.fillText('8 HOURS', centerX, centerY + CANVAS_SPACING.padding.md);
       }
 
       // Draw legend below chart
@@ -160,32 +162,32 @@ export default function BrokerDayDiagram() {
 
         // Color box
         ctx.fillStyle = segment.color;
-        ctx.fillRect(legendX - 50, legendY - 8, 16, 16);
+        ctx.fillRect(legendX - CANVAS_SPACING.margin.xl, legendY - CANVAS_SPACING.micro.xs, CANVAS_SPACING.micro.md, CANVAS_SPACING.micro.md);
 
         // Label
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'left';
-        ctx.fillText(segment.label, legendX - 28, legendY);
+        ctx.fillText(segment.label, legendX - CANVAS_SPACING.padding.md, legendY);
 
         // Sublabel
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-        ctx.font = '11px Inter, sans-serif';
-        ctx.fillText(segment.sublabel, legendX - 28, legendY + 15);
+        ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+        ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+        ctx.fillText(segment.sublabel, legendX - CANVAS_SPACING.padding.md, legendY + CANVAS_SPACING.micro.md);
 
         // Hours
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-        ctx.font = 'bold 12px Inter, sans-serif';
-        ctx.fillText(`${segment.hours}h`, legendX - 28, legendY + 30);
+        ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+        ctx.fillText(`${segment.hours}h`, legendX - CANVAS_SPACING.padding.md, legendY + CANVAS_SPACING.gap.normal);
       });
 
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
-        ctx.fillText("A Broker's Day: 40% Wasted", width / 2, 30);
+        ctx.fillText("A Broker's Day: 40% Wasted", width / 2, 32);
       }
 
       // Animate

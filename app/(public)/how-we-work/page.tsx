@@ -89,7 +89,7 @@ export default function HowWeWorkPage() {
               title="Equity Partnerships"
               variant="yellow"
               delay={200}
-              className="h-full lg:scale-105 shadow-2xl relative z-10"
+              className="h-full lg:scale-105 shadow-2xl relative z-10 hover:scale-[1.06] transition-transform duration-300"
             >
               {/* Featured badge */}
               <div className="absolute -top-3 right-4 bg-[#FFD700] text-black px-3 py-1 text-xs font-bold z-10">
@@ -105,11 +105,11 @@ export default function HowWeWorkPage() {
                 </p>
 
                 {/* Callout: Like Zero */}
-                <div className="p-4 border border-[#FFD700] bg-yellow-50">
+                <div className="p-4 bg-yellow-50 border border-[#FFD700]">
                   <p className="text-sm text-black mb-2">
                     <span className="font-bold text-[#FFD700]">Like Zero:</span> We're building our own AI email platform from concept to market. 1 month to complete execution plan, 7 working prototypes. Same conviction we bring to equity partnerships.
                   </p>
-                  <Link href="/work/zero" className="text-sm font-semibold text-[#FFD700] hover:underline">
+                  <Link href="/work/zero" className="text-sm text-[#FFD700] font-semibold hover:underline">
                     See our proof →
                   </Link>
                 </div>
@@ -137,7 +137,7 @@ export default function HowWeWorkPage() {
                 <div className="pt-4 border-t border-[#FFD700]">
                   <Link
                     href="/contact"
-                    className="block w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                    className="block w-full bg-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-all hover:opacity-90"
                   >
                     Start the Conversation →
                   </Link>
@@ -236,11 +236,11 @@ export default function HowWeWorkPage() {
                 <p className="text-sm text-gray-600 leading-relaxed">
                   We become your product co-founder. Equity-only or reduced cash + equity.
                 </p>
-                <div className="p-3 border border-[#FFD700] bg-yellow-50">
+                <div className="p-3 bg-yellow-50 border border-[#FFD700]">
                   <p className="text-sm text-black mb-2">
                     <span className="font-bold text-[#FFD700]">Like Zero:</span> 1 month to plan, 7 prototypes.
                   </p>
-                  <Link href="/work/zero" className="text-sm font-semibold text-[#FFD700]">
+                  <Link href="/work/zero" className="text-sm text-[#FFD700] font-semibold">
                     See proof →
                   </Link>
                 </div>
@@ -254,7 +254,7 @@ export default function HowWeWorkPage() {
                 </div>
                 <Link
                   href="/contact"
-                  className="block w-full bg-[#FFD700] text-black text-center px-4 py-3 font-semibold"
+                  className="block w-full bg-[#FFD700] text-black text-center px-4 py-3 font-semibold transition-all hover:opacity-90"
                 >
                   Start the Conversation →
                 </Link>
@@ -297,7 +297,7 @@ export default function HowWeWorkPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Our Process
             </h2>
-            <p className="text-base sm:text-lg text-gray-400">
+            <p className="text-base sm:text-lg text-gray-300">
               Every engagement starts the same way: understanding your riskiest assumptions.
             </p>
           </div>
@@ -329,7 +329,7 @@ export default function HowWeWorkPage() {
               ].map((step, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-full bg-[#FFD700] text-black flex items-center justify-center font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-[#FFD700] text-black flex items-center justify-center font-bold text-sm transition-transform hover:scale-110">
                       {i + 1}
                     </div>
                   </div>
@@ -360,7 +360,7 @@ export default function HowWeWorkPage() {
 
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-sm font-bold text-[#FFD700] uppercase tracking-wide mb-3">What Changes</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-[#FFD700] mb-3">What Changes</h3>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex gap-2">
                       <span className="text-[#FFD700]">→</span>
@@ -381,7 +381,7 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-[#FFD700] uppercase tracking-wide mb-3">What Doesn't Change</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-[#FFD700] mb-3">What Doesn't Change</h3>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex gap-2">
                       <span className="text-[#FFD700]">→</span>
@@ -417,7 +417,7 @@ export default function HowWeWorkPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               How We Price Engagements
             </h2>
-            <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
               Transparent, customized, and always aligned with what you're building
             </p>
           </div>
@@ -514,13 +514,13 @@ export default function HowWeWorkPage() {
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Link
                   href="/contact"
-                  className="flex-1 bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="flex-1 bg-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-all hover:opacity-90"
                 >
                   Book a Call →
                 </Link>
                 <a
                   href="mailto:studio@rationale.design"
-                  className="flex-1 border border-gray-300 hover:border-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="flex-1 border border-gray-300 hover:border-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-all"
                 >
                   Email Studio
                 </a>

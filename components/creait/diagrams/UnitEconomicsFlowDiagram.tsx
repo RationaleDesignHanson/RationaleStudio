@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * UnitEconomicsFlowDiagram - Sankey-style flow showing revenue breakdown
@@ -133,17 +135,17 @@ export default function UnitEconomicsFlowDiagram() {
 
         // Input label
         ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-        ctx.font = 'bold 24px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('$499', inputX, inputY - 5);
 
-        ctx.font = '11px Inter, sans-serif';
+        ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.fillText('/month', inputX, inputY + 10);
 
         // "Customer Pays" label above
-        ctx.fillStyle = `rgba(255, 255, 255, ${inputOpacity * 0.6})`;
-        ctx.font = 'bold 12px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${inputOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.fillText('Customer Pays', inputX, inputY - 60);
       }
 
@@ -171,12 +173,12 @@ export default function UnitEconomicsFlowDiagram() {
           ctx.stroke();
 
           // Label
-          ctx.fillStyle = `rgba(255, 255, 255, ${flowOpacity * 0.8})`;
-          ctx.font = 'bold 11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${flowOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'right';
           ctx.fillText(flow.label, toX - 35, toY - 5);
 
-          ctx.font = 'bold 14px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
           ctx.fillText(flow.value, toX - 35, toY + 10);
         }
       });
@@ -206,17 +208,17 @@ export default function UnitEconomicsFlowDiagram() {
 
         // LTV value
         ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-        ctx.font = 'bold 28px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.dataMd}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('$2,993', toX, toY - 5);
 
-        ctx.font = '12px Inter, sans-serif';
+        ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.fillText('LTV', toX, toY + 15);
 
         // "Lifetime Value" label above
-        ctx.fillStyle = `rgba(255, 255, 255, ${ltvOpacity * 0.6})`;
-        ctx.font = 'bold 13px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${ltvOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.fillText('Lifetime Value', toX, toY - 70);
       }
 
@@ -237,12 +239,12 @@ export default function UnitEconomicsFlowDiagram() {
 
         // Ratio text
         ctx.fillStyle = CRE_COLORS.primary;
-        ctx.font = 'bold 32px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.displaySm}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('7.2:1', width * 0.5, ratioY);
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${ratioOpacity * 0.7})`;
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${ratioOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.fillText('LTV:CAC Ratio', width * 0.5, ratioY + 25);
 
         // Checkmark
@@ -258,7 +260,7 @@ export default function UnitEconomicsFlowDiagram() {
 
         // "Exceptional" label
         ctx.fillStyle = CRE_COLORS.success;
-        ctx.font = 'bold 12px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'right';
         ctx.fillText('Exceptional', width * 0.2, ratioY + 5);
       }
@@ -266,8 +268,8 @@ export default function UnitEconomicsFlowDiagram() {
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('Unit Economics Flow', width / 2, 30);
       }

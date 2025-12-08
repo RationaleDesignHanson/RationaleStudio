@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * TimingWindowDiagram - Calendar visualization showing missed opportunities
@@ -106,9 +108,9 @@ export default function TimingWindowDiagram() {
 
         // "TODAY" label
         ctx.fillStyle = CRE_COLORS.primary;
-        ctx.font = 'bold 11px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
-        ctx.fillText('TODAY', currentX, timelineY - 20);
+        ctx.fillText('TODAY', currentX, timelineY - 24);
       }
 
       // Draw properties
@@ -146,14 +148,14 @@ export default function TimingWindowDiagram() {
           ctx.stroke();
 
           // Property name
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-          ctx.font = 'bold 11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(property.name, x, cardY - 10);
 
           // Month
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-          ctx.font = '10px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(`Expiry: ${property.month}`, x, cardY + 5);
 
           // Status icon (checkmark or X)
@@ -186,7 +188,7 @@ export default function TimingWindowDiagram() {
           ctx.fillStyle = property.contacted
             ? CRE_COLORS.success
             : CRE_COLORS.score.critical;
-          ctx.font = 'bold 12px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(
             property.contacted ? 'Contacted' : 'MISSED',
@@ -195,10 +197,10 @@ export default function TimingWindowDiagram() {
           );
 
           if (!property.contacted) {
-            ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
-            ctx.font = '10px Inter, sans-serif';
-            ctx.fillText('Competitor got', x, labelY + 15);
-            ctx.fillText('there first', x, labelY + 28);
+            ctx.fillStyle = `rgba(239, 68, 68, ${CANVAS_TYPOGRAPHY.opacity.secondary})`;
+            ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
+            ctx.fillText('Competitor got', x, labelY + 16);
+            ctx.fillText('there first', x, labelY + 32);
           }
         }
       });
@@ -211,7 +213,7 @@ export default function TimingWindowDiagram() {
 
         // Contacted stat
         ctx.fillStyle = CRE_COLORS.success;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'left';
         ctx.fillText(`${contactedCount} Contacted On Time`, padding, summaryY);
 
@@ -224,10 +226,10 @@ export default function TimingWindowDiagram() {
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
-        ctx.fillText('The Cost of Missing Timing', width / 2, 30);
+        ctx.fillText('The Cost of Missing Timing', width / 2, 32);
       }
 
       // Animate

@@ -27,11 +27,194 @@ interface ClientProject {
 
 const CLIENT_PROJECTS: ClientProject[] = [
   {
+    id: 'archived-site',
+    name: 'Archived Site (Redesigned)',
+    description: 'Content from rationalewebsitev1.netlify.app redesigned with Terminal Republic aesthetic. Original purple/glassmorphism styling preserved at live Netlify site.',
+    status: 'Archive',
+    pages: [
+      // Main Pages
+      {
+        title: 'Home',
+        path: '/clients/home',
+        description: 'Main homepage - Conviction-First Venture Studio'
+      },
+      {
+        title: 'About',
+        path: '/clients/about',
+        description: 'Philosophy, mental models, frameworks'
+      },
+      {
+        title: 'Services',
+        path: '/clients/services',
+        description: 'Rationale Kits: Clarity, Prototype, Build Ship Run'
+      },
+      {
+        title: 'How We Work',
+        path: '/clients/how-we-work',
+        description: 'Engagement models and equity structure'
+      },
+      {
+        title: 'Work',
+        path: '/clients/work',
+        description: 'Portfolio case studies and client projects'
+      },
+      {
+        title: 'Founder',
+        path: '/clients/founder',
+        description: 'Matt Hanson - 7 years Meta Reality Labs'
+      },
+      {
+        title: 'Contact',
+        path: '/clients/contact',
+        description: 'Contact form'
+      },
+      // Investment Pages (/invest structure)
+      {
+        title: 'Investment Hub',
+        path: '/clients/invest',
+        description: 'Investment opportunities overview'
+      },
+      {
+        title: 'Studio Investment',
+        path: '/clients/invest/studio',
+        description: '$500K SAFE - Dual-engine studio model'
+      },
+      {
+        title: 'Zero Seed Round',
+        path: '/clients/invest/zero',
+        description: '$600K for 10% - AI email platform'
+      },
+      {
+        title: 'Project Atlas',
+        path: '/clients/invest/atlas',
+        description: '$165K partnership - CRE intelligence'
+      },
+      {
+        title: 'Project Amplify',
+        path: '/clients/invest/amplify',
+        description: '$60-250K partnership - NIL platform'
+      },
+      // Investment Pages (/investment structure - alternate)
+      {
+        title: 'Investment Portal',
+        path: '/clients/investment',
+        description: 'Alternative investment overview'
+      },
+      {
+        title: 'Studio Investment (Alt)',
+        path: '/clients/investment/studio',
+        description: 'Studio investment - alternate view'
+      },
+      {
+        title: 'Zero Investment (Alt)',
+        path: '/clients/investment/zero',
+        description: 'Zero investment - alternate view'
+      },
+      // Portfolio & Ventures
+      {
+        title: 'Ventures',
+        path: '/clients/ventures',
+        description: 'Portfolio IP: Zero, Atlas, Amplify'
+      },
+      {
+        title: 'Ventures - Project Atlas',
+        path: '/clients/ventures/project-atlas',
+        description: 'Atlas venture details'
+      },
+      {
+        title: 'Ventures - Project Amplify',
+        path: '/clients/ventures/project-amplify',
+        description: 'Amplify venture details'
+      },
+      {
+        title: 'Ventures - Zero',
+        path: '/clients/ventures/zero',
+        description: 'Zero venture details'
+      },
+      {
+        title: 'Zero Product Page',
+        path: '/clients/zero',
+        description: 'Zero Inbox AI product marketing page'
+      },
+      {
+        title: 'Zero Shader Test',
+        path: '/clients/zero/shader-test',
+        description: 'Technical demo - ASCII shader'
+      },
+      // Content
+      {
+        title: 'Insights',
+        path: '/clients/insights',
+        description: 'Mental models for the AI era'
+      },
+      // Investor Materials
+      {
+        title: 'Investors Overview',
+        path: '/clients/investors',
+        description: 'Investor information'
+      },
+      {
+        title: 'Investor Deck',
+        path: '/clients/investors/deck',
+        description: 'Pitch deck materials'
+      },
+      // Support
+      {
+        title: 'Dashboard Access',
+        path: '/clients/dashboard-access',
+        description: 'Portal access management'
+      }
+    ]
+  },
+  {
+    id: 'rationale-investments',
+    name: 'Rationale Investments',
+    description: 'Investment Opportunities & Portfolio',
+    status: 'Active',
+    pages: [
+      {
+        title: 'Investment Overview',
+        path: '/investors',
+        description: 'Complete investment opportunities overview'
+      },
+      {
+        title: 'Zero Seed Round',
+        path: '/investors/zero',
+        description: '$600K for 10% equity - Pre-launch AI platform'
+      },
+      {
+        title: 'Studio Investment',
+        path: '/investors/studio',
+        description: 'Portfolio exposure with governance rights'
+      },
+      {
+        title: 'Project Atlas',
+        path: '/investors/atlas',
+        description: 'CRE intelligence platform - $165K partnership'
+      },
+      {
+        title: 'Project Amplify',
+        path: '/investors/amplify',
+        description: 'NIL platform for sports agents - $60-250K'
+      }
+    ]
+  },
+  {
     id: 'zero',
     name: 'Zero Inbox',
     description: 'AI Email Intelligence',
     status: 'Active',
     pages: [
+      {
+        title: 'Product Dashboard',
+        path: '/clients/zero/dashboard',
+        description: 'Interactive demos, execution proof, and beta program details'
+      },
+      {
+        title: 'Execution Tracker',
+        path: '/clients/zero/tracker',
+        description: 'Real-time 24-week roadmap with Firebase sync'
+      },
       {
         title: 'Overview',
         path: '/clients/zero/investor',
@@ -148,35 +331,54 @@ export default function ClientDashboard() {
                       {project.description}
                     </p>
                   </div>
-                  <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">
+                  <span
+                    className={`px-3 py-1 text-xs font-semibold rounded ${
+                      project.status === 'Archive'
+                        ? 'bg-gray-500/20 text-gray-400'
+                        : 'bg-green-500/20 text-green-400'
+                    }`}
+                  >
                     {project.status}
                   </span>
                 </div>
 
                 {/* Pages List */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {project.pages.map((page, idx) => (
-                    <Link
-                      key={idx}
-                      href={page.path}
-                      className="group bg-gray-800/50 border border-gray-700 rounded p-4 hover:border-[#FFD700] transition-all"
-                    >
-                      <h3 className="text-base font-semibold text-white group-hover:text-[#FFD700] transition-colors mb-2">
-                        {page.title}
-                      </h3>
-                      {page.description && (
-                        <p className="text-xs text-gray-400 mb-3">
-                          {page.description}
-                        </p>
-                      )}
-                      <div className="flex items-center text-[#FFD700] text-xs font-medium">
-                        View
-                        <svg className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </Link>
-                  ))}
+                  {project.pages.map((page, idx) => {
+                    const isExternal = page.path.startsWith('http');
+                    const LinkComponent = isExternal ? 'a' : Link;
+                    const linkProps = isExternal
+                      ? { href: page.path, target: '_blank', rel: 'noopener noreferrer' }
+                      : { href: page.path };
+
+                    return (
+                      <LinkComponent
+                        key={idx}
+                        {...linkProps}
+                        className="group bg-gray-800/50 border border-gray-700 rounded p-4 hover:border-[#FFD700] transition-all"
+                      >
+                        <h3 className="text-base font-semibold text-white group-hover:text-[#FFD700] transition-colors mb-2">
+                          {page.title}
+                          {isExternal && (
+                            <svg className="inline-block w-3 h-3 ml-1 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          )}
+                        </h3>
+                        {page.description && (
+                          <p className="text-xs text-gray-400 mb-3">
+                            {page.description}
+                          </p>
+                        )}
+                        <div className="flex items-center text-[#FFD700] text-xs font-medium">
+                          {isExternal ? 'Open External' : 'View'}
+                          <svg className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </LinkComponent>
+                    );
+                  })}
                 </div>
               </div>
             ))}

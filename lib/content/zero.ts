@@ -42,7 +42,7 @@ export const zeroHero = {
   subtitle: 'AI-Powered Email Management',
   tagline: 'Transform your inbox chaos into clarity',
   description: 'Zero is your intelligent email companion that helps you achieve and maintain inbox zero through the power of AI. Say goodbye to email overwhelm and hello to a streamlined, stress-free inbox experience.',
-  portalUrl: '/clients/zero/investor',
+  portalUrl: '/clients/zero/dashboard',
   appStoreUrl: 'https://apps.apple.com/us/app/zer0-inbox/id6754212668'
 };
 
@@ -208,6 +208,13 @@ export const zeroTools: ZeroTool[] = [
     description: 'Full design system component explorer. Browse tokens, components, and design patterns.',
     filename: 'design-system-renderer.html',
     category: 'design'
+  },
+  {
+    name: 'Execution Tracker',
+    slug: 'execution-tracker',
+    description: '24-week launch roadmap with 6 CEO checkpoints. Track progress, milestones, and quality gates.',
+    filename: 'execution-tracker.html',
+    category: 'analytics'
   }
 ];
 

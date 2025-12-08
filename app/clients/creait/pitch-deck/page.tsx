@@ -1,22 +1,21 @@
-import Link from 'next/link';
-import { CRESection } from '@/components/creait/ui';
-import { CRECard } from '@/components/creait/ui';
-import {
-  DisplayLG,
-  H2,
-  H3,
-  BodyLG,
-  BodyMD,
-  LabelSM,
-} from '@/components/creait/typography';
-import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import CREaiTPitchDeck from '@/components/creait/CREaiTPitchDeck';
 
 /**
- * CREaiT Pitch Deck - Landing Page
+ * CREaiT Pitch Deck - Consulting Proposal
  *
- * Navigation hub for all pitch deck slides
+ * Single-page scrollable deck showing:
+ * - Current state assessment (what they have)
+ * - Highest leverage opportunities (what matters most)
+ * - 12-week engagement plan (how we'll get them market-ready)
  */
 export default function CREaiTPitchDeckPage() {
+  return <CREaiTPitchDeck />;
+}
+
+// OLD NAVIGATION HUB (archived)
+// Replaced with single-page consulting proposal deck
+// Individual slide pages preserved at /app/clients/creait/pitch-deck/01-problem/, etc.
+function OldNavigationHub() {
   const slides = [
     {
       number: '01',

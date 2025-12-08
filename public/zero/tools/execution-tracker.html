@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero - Your Inbox, Simplified to Zero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-cyan: #0ea5e9;
+            --secondary-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --dark-bg-1: #1a1a2e;
+            --dark-bg-2: #2d1b4e;
+            --dark-bg-3: #4a1942;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            padding-top: 120px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg-1) 0%, var(--dark-bg-2) 30%, var(--dark-bg-3) 60%, #1f1f3a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Floating Spheres Background */
+        .floating-spheres {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .sphere:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent);
+            top: 10%;
+            left: 10%;
+            animation-duration: 25s;
+        }
+
+        .sphere:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+            animation-duration: 30s;
+        }
+
+        .sphere:nth-child(3) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.35), transparent);
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 10s;
+            animation-duration: 28s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 50px) scale(0.9); }
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .logo-hero {
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -5px;
+            margin-bottom: 15px;
+            animation: pulse 3s ease-in-out infinite;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Demo Container */
+        .demo-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 15px auto 15px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top, #020617, #020617 40%, #000 100%);
+        }
+
+        .demo-iframe {
+            width: 100%;
+            height: 1600px;
+            border: none;
+            background: transparent;
+            overflow: visible;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                max-width: 100%;
+                padding: 0 20px;
+                margin: 40px auto 40px;
+            }
+
+            .demo-iframe {
+                height: 1200px;
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            color: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Zero Sequence Section */
+        .zero-sequence {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+        }
+
+        .sequence-flow {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .sequence-step {
+            flex: 1;
+            min-width: 200px;
+            padding: 32px 24px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .sequence-step:hover {
+            transform: translateY(-8px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 auto 20px;
+        }
+
+        .sequence-step h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .sequence-step p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .sequence-result {
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 20px;
+            margin-top: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sequence-result:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .sequence-result h3 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .sequence-result p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        /* Action Shots Section */
+        .action-shots {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 100px 20px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .action-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: scale(1.02);
+        }
+
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+
+        .action-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .time-saved {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #86efac;
+        }
+
+        /* Value Props Section */
+        .value-props {
+            text-align: center;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            padding: 48px 32px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .value-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 24px;
+            font-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .value-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .value-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .value-stat {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Security Section */
+        .security {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .security-feature {
+            padding: 32px;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        .security-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .security-feature h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .security-feature p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq {
+            max-width: 800px;
+        }
+
+        .faq-item {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .faq-question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .final-cta h2 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+
+        .final-cta p {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 40px; }
+            .hero p { font-size: 18px; }
+            .section-title { font-size: 36px; }
+            .logo-hero { font-size: 70px; margin-bottom: 12px; }
+        }
+    
+        /* Beta Banner - Fixed Top */
+        .beta-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg,
+                rgba(26, 26, 46, 0.95) 0%,
+                rgba(45, 27, 78, 0.95) 30%,
+                rgba(74, 25, 66, 0.95) 60%,
+                rgba(31, 31, 58, 0.95) 100%
+            );
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15),
+                        0 0 40px rgba(139, 92, 246, 0.1);
+            padding: 12px 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .beta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(59, 130, 246, 0.05) 20%,
+                rgba(139, 92, 246, 0.05) 50%,
+                rgba(59, 130, 246, 0.05) 80%,
+                transparent 100%
+            );
+            pointer-events: none;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .beta-banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .beta-banner-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .beta-banner-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .beta-banner-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .beta-banner-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .beta-banner-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .beta-banner-btn.primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #6366f1 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3),
+                        0 0 20px rgba(139, 92, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .beta-banner-btn.primary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: button-shine 3s ease-in-out infinite;
+        }
+
+        @keyframes button-shine {
+            0%, 100% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .beta-banner-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.5),
+                        0 0 40px rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #4f46e5 100%);
+        }
+
+        .beta-banner-btn.secondary {
+            background: rgba(139, 92, 246, 0.1);
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+        }
+
+        .beta-banner-btn.secondary:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Navigation Bar - Below Beta Banner */
+        .main-nav {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.92);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 9998;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            padding: 8px 0;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            background: rgba(139, 92, 246, 0.2);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 130px;
+            right: 20px;
+            z-index: 10000;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.9));
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(45, 27, 78, 0.98));
+            backdrop-filter: blur(20px);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 10001;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 80px 20px 20px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.open {
+            right: 0;
+        }
+
+        .mobile-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .mobile-drawer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .mobile-drawer-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 16px 20px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateX(4px);
+        }
+
+        .mobile-nav-link.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+
+        /* Mobile Backdrop */
+        .mobile-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-backdrop.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Tablet breakpoint */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+            }
+
+            .hero {
+                padding: 60px 20px 40px 20px;
+                min-height: 100vh;
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 18px;
+                margin-bottom: 24px;
+            }
+
+            .beta-banner {
+                padding: 10px 16px;
+            }
+
+            .beta-banner-actions {
+                width: 100%;
+            }
+
+            .beta-banner-btn {
+                flex: 1;
+                text-align: center;
+                padding: 10px 18px;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .demo-container iframe {
+                height: 950px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .floating-spheres {
+                opacity: 0.5;
+            }
+        }
+
+        /* Mobile phone breakpoint */
+        @media (max-width: 480px) {
+            body {
+                padding-top: 0;
+            }
+
+            .hero {
+                padding: 20px 16px 20px 16px;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .logo-hero {
+                font-size: 60px;
+                margin-bottom: 8px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+
+            .beta-banner {
+                padding: 8px 12px;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .beta-banner-content {
+                width: 100%;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .beta-banner-text {
+                text-align: center;
+                width: 100%;
+            }
+
+            .beta-banner-title {
+                font-size: 14px;
+            }
+
+            .beta-banner-subtitle {
+                font-size: 11px;
+            }
+
+            .beta-banner-actions {
+                width: 100%;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .beta-banner-btn {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 14px;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .demo-container {
+                margin-top: 10px;
+                padding: 0;
+            }
+
+            .demo-container iframe {
+                height: 1000px;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            section {
+                padding: 40px 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 16px;
+            }
+
+            .floating-spheres {
+                opacity: 0.3;
+            }
+
+            .sphere {
+                filter: blur(40px);
+            }
+        }
+
+        /* Beta Modal */
+        .beta-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 10002;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .beta-modal-overlay.visible {
+            display: flex;
+        }
+
+        .beta-modal {
+            position: relative;
+            width: 90%;
+            max-width: 480px;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(45, 27, 78, 0.98));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .beta-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            -webkit-touch-callout: none;
+        }
+
+        .beta-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .beta-modal-logo {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .beta-modal-subtitle {
+            font-size: 12px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .beta-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .beta-modal-description {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .beta-form-group {
+            margin-bottom: 20px;
+        }
+
+        .beta-form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 8px;
+        }
+
+        .beta-form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .beta-form-group input:focus {
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .beta-form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .beta-modal-button {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            -webkit-touch-callout: none;
+        }
+
+        .beta-modal-button.primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            margin-bottom: 12px;
+        }
+
+        .beta-modal-button.primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .beta-modal-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .beta-modal-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+
+        .beta-modal-message.success {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            display: block;
+        }
+
+        .beta-modal-message.error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            display: block;
+        }
+
+        .beta-modal-footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .beta-modal-footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .beta-modal-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Firefly Shader Background */
+        .firefly-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .firefly {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            will-change: transform, opacity;
+            animation: firefly-float ease-in-out infinite;
+        }
+
+        .firefly.small {
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(147, 197, 253, 1), rgba(147, 197, 253, 0.5) 40%, transparent 70%);
+            box-shadow: 0 0 10px rgba(147, 197, 253, 0.8), 0 0 20px rgba(147, 197, 253, 0.4);
+        }
+
+        .firefly.medium {
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(circle, rgba(196, 181, 253, 1), rgba(196, 181, 253, 0.6) 40%, transparent 70%);
+            box-shadow: 0 0 15px rgba(196, 181, 253, 0.9), 0 0 30px rgba(196, 181, 253, 0.5);
+        }
+
+        .firefly.warm {
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 1), rgba(251, 191, 36, 0.7) 40%, transparent 70%);
+            box-shadow: 0 0 12px rgba(251, 191, 36, 0.9), 0 0 25px rgba(251, 146, 60, 0.6);
+        }
+
+        @keyframes firefly-float {
+            0%, 100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate3d(var(--tx1), var(--ty1), 0);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate3d(var(--tx2), var(--ty2), 0);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate3d(var(--tx3), var(--ty3), 0);
+                opacity: 0.9;
+            }
+        }
+
+        /* Phone Glow Background Effect */
+        .phone-glow-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 1200px;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(99, 102, 241, 0.85) 0%,
+                rgba(139, 92, 246, 0.7) 25%,
+                rgba(59, 130, 246, 0.5) 50%,
+                transparent 75%
+            );
+            filter: blur(70px);
+            mix-blend-mode: screen;
+            animation: phone-glow-pulse 3s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes phone-glow-pulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1);
+                filter: blur(70px);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+                filter: blur(80px);
+            }
+        }
+
+        /* Responsive glow sizing */
+        @media (max-width: 768px) {
+            .phone-glow-background {
+                width: 450px;
+                height: 1000px;
+            }
+
+            @keyframes phone-glow-pulse {
+                0%, 100% {
+                    opacity: 0.7;
+                    transform: translate(-50%, -50%) scale(1);
+                    filter: blur(60px);
+                }
+                50% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.1);
+                    filter: blur(70px);
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-glow-background {
+                width: 100%;
+                max-width: 400px;
+                height: 900px;
+            }
+
+            @keyframes phone-glow-pulse {
+                0%, 100% {
+                    opacity: 0.7;
+                    transform: translate(-50%, -50%) scale(1);
+                    filter: blur(50px);
+                }
+                50% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.1);
+                    filter: blur(60px);
+                }
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Beta Banner -->
+    <div class="beta-banner">
+        <div class="beta-banner-content">
+            <div class="beta-banner-text">
+                <div class="beta-banner-title">Ready to Experience ZerO Inbox?</div>
+                <div class="beta-banner-subtitle">Join hundreds of beta testers achieving inbox zero every day</div>
+            </div>
+            <div class="beta-banner-actions">
+                <a href="mailto:zerobeta@rationale.work?subject=Zero%20Beta%20Access%20Request" class="beta-banner-btn primary">
+                    Request Beta Access
+                </a>
+                <a href="https://apps.apple.com/us/app/testflight/id899247664" target="_blank" class="beta-banner-btn secondary">
+                    Download TestFlight
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation (Desktop) -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="landing.html" class="nav-link active">Home</a></li>
+                <li><a href="zero-sequence-live.html" class="nav-link">Intent-Action Demo</a></li>
+                <li><a href="action-modal-explorer.html" class="nav-link">Actions</a></li>
+                <li><a href="intent-action-explorer.html" class="nav-link">Intents</a></li>
+                <li><a href="shopping-cart.html" class="nav-link">Shopping</a></li>
+                <li><a href="email-intelligence.html" class="nav-link">Email Intelligence</a></li>
+                <li><a href="architecture-visual.html" class="nav-link">System Architecture</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+        ☰
+    </button>
+
+    <!-- Mobile Backdrop -->
+    <div class="mobile-backdrop" id="mobileBackdrop" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="mobile-drawer-header">
+            <span class="mobile-drawer-title">Navigation</span>
+            <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close">✕</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="landing.html" class="mobile-nav-link active">Home</a></li>
+            <li><a href="zero-sequence-live.html" class="mobile-nav-link">Intent-Action Demo</a></li>
+            <li><a href="action-modal-explorer.html" class="mobile-nav-link">Actions</a></li>
+            <li><a href="intent-action-explorer.html" class="mobile-nav-link">Intents</a></li>
+            <li><a href="shopping-cart.html" class="mobile-nav-link">Shopping</a></li>
+            <li><a href="email-intelligence.html" class="mobile-nav-link">Email Intelligence</a></li>
+            <li><a href="architecture-visual.html" class="mobile-nav-link">System Architecture</a></li>
+        </ul>
+    </div>
+
+    <!-- Floating Spheres Background -->
+    <div class="floating-spheres">
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+        <div class="sphere"></div>
+    </div>
+
+    <!-- Firefly Background -->
+    <div class="firefly-background" id="fireflyBg"></div>
+
+    <div class="content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="logo-hero">zero</div>
+            <h1>Short-form email, swipe and move on.</h1>
+            <p>AI-powered email intelligence that surfaces what matters and handles everything else with one-tap actions</p>
+
+            <!-- Interactive Phone Demo -->
+            <div class="demo-container">
+                <div class="phone-glow-background"></div>
+                <iframe
+                    src="/app-demo.html"
+                    title="Zero Interactive Demo"
+                    class="demo-iframe"
+                    loading="lazy"
+                    scrolling="no"
+                ></iframe>
+            </div>
+        </section>
+
+        <!-- Zero Sequence Section -->
+        <section id="zero-sequence" class="zero-sequence">
+            <h2 class="section-title">The Zero Sequence</h2>
+            <p class="section-subtitle">Every email goes through our 5-step process</p>
+
+            <div class="sequence-flow">
+                <div class="sequence-step">
+                    <div class="step-number">1</div>
+                    <h3>FETCH</h3>
+                    <p>Your emails arrive from Gmail or Outlook in real-time</p>
+                </div>
+
+                <div class="sequence-step">
+                    <div class="step-number">2</div>
+                    <h3>CLASSIFY</h3>
+                    <p>AI identifies intent: meeting, purchase, form, reply needed</p>
+                </div>
+
+                <div class="sequence-step">
+                    <div class="step-number">3</div>
+                    <h3>SUGGEST</h3>
+                    <p>Smart suggestions appear instantly: add to calendar, track package, reply</p>
+                </div>
+
+                <div class="sequence-step">
+                    <div class="step-number">4</div>
+                    <h3>EXECUTE</h3>
+                    <p>Swipe right to complete action instantly—no thinking required</p>
+                </div>
+
+                <div class="sequence-step">
+                    <div class="step-number">5</div>
+                    <h3>ZERO</h3>
+                    <p>Email cleared, action done, inbox always empty</p>
+                </div>
+            </div>
+
+            <a href="zero-sequence-live.html" class="sequence-result">
+                <h3>See How It Works</h3>
+                <p>Discover how Zero classifies emails and suggests actions</p>
+            </a>
+        </section>
+
+        <!-- Action Shots Section -->
+        <section class="action-shots">
+            <h2 class="section-title">One-Tap Actions for Everything</h2>
+            <p class="section-subtitle"><a href="action-modal-explorer.html" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='rgba(59, 130, 246, 1)'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'">See how Zero handles your most common email tasks →</a></p>
+
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-icon">📅</div>
+                    <h3>Meeting Detection</h3>
+                    <p>Email with meeting invite → swipe → added to calendar with location and attendees</p>
+                    <span class="time-saved">2 min saved</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📦</div>
+                    <h3>Package Tracking</h3>
+                    <p>Shipping confirmation → swipe → tracking dashboard updated with delivery estimates</p>
+                    <span class="time-saved">1 min saved</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">📝</div>
+                    <h3>Form Filling</h3>
+                    <p>PDF form email → swipe → form signed with your signature and sent back</p>
+                    <span class="time-saved">5 min saved</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">💬</div>
+                    <h3>Smart Replies</h3>
+                    <p>Customer email → swipe → AI-generated reply sent with your tone</p>
+                    <span class="time-saved">3 min saved</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">💳</div>
+                    <h3>Purchase Tracking</h3>
+                    <p>Receipt email → swipe → added to shopping tracker with warranty info</p>
+                    <span class="time-saved">2 min saved</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">⏰</div>
+                    <h3>Snooze & Remind</h3>
+                    <p>Email needs action later → swipe → snoozed until the perfect time</p>
+                    <span class="time-saved">Anxiety eliminated</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">🛡️</div>
+                    <h3>Smart Unsubscribe</h3>
+                    <p>Newsletter or promo → swipe → safely unsubscribed with 6-layer protection</p>
+                    <span class="time-saved">1 min saved • 60+ domains protected</span>
+                </div>
+
+                <div class="action-card">
+                    <div class="action-icon">🛍️</div>
+                    <h3>Auto Order Tracking</h3>
+                    <p>Receipt email → swipe → order tracked from placed to delivered automatically</p>
+                    <span class="time-saved">2 min saved • 15+ merchants</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Props Section -->
+        <section class="value-props">
+            <h2 class="section-title">Why You'll Love Zero</h2>
+            <p class="section-subtitle">Real benefits from our beta testers</p>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">⏰</div>
+                    <h3>Save Time</h3>
+                    <div class="value-stat">2 hrs</div>
+                    <p>saved per day on average. 99% of emails handled in one tap. Inbox zero in 5 minutes or less.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🧘</div>
+                    <h3>Reduce Stress</h3>
+                    <div class="value-stat">Zero</div>
+                    <p>email anxiety. AI handles the thinking. Never miss important deadlines. Peace of mind guaranteed.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Stay Secure</h3>
+                    <div class="value-stat">100%</div>
+                    <p>privacy protected. We cannot see your emails. Zero-visibility architecture. Bank-level encryption.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section class="security">
+            <h2 class="section-title">Your Privacy is Our Architecture</h2>
+            <p class="section-subtitle">We cannot see your emails—it's technically impossible</p>
+
+            <div class="security-features">
+                <div class="security-feature">
+                    <div class="security-icon">🔐</div>
+                    <h4>Zero-Visibility Design</h4>
+                    <p>Emails flow through our system but are never stored. We process, not keep.</p>
+                </div>
+
+                <div class="security-feature">
+                    <div class="security-icon">🔑</div>
+                    <h4>OAuth 2.0 Only</h4>
+                    <p>Industry-standard authentication. We never see your password.</p>
+                </div>
+
+                <div class="security-feature">
+                    <div class="security-icon">🏦</div>
+                    <h4>Bank-Level Encryption</h4>
+                    <p>All data encrypted in transit and at rest using Google Cloud's infrastructure.</p>
+                </div>
+
+                <div class="security-feature">
+                    <div class="security-icon">🕵️</div>
+                    <h4>No Email Storage</h4>
+                    <p>We removed even temporary caching. Your emails exist only on Gmail/Microsoft servers.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="architecture-visual.html" class="btn btn-secondary">Read Full Security Architecture</a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Can you read my emails?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    NO. Our architecture makes this technically impossible. Emails flow through our system for processing but are never stored. We cannot see your email content even if we wanted to.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    How does the AI work?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We use Google Gemini to classify emails and suggest actions. Email content is processed in memory and immediately discarded. Google doesn't store your emails either. It's similar to Gmail's own AI features.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    What email providers do you support?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Currently Gmail and Microsoft Outlook/Office 365. More providers coming soon based on user demand.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Is this iOS only?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes for now. Android version is planned after we perfect the iOS experience. Join the waitlist to be notified when Android launches.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    How do I delete my data?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Simply logout from the app or revoke OAuth access in your Google/Microsoft account settings. All your data is automatically deleted. We only store OAuth tokens—no email content.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    How much does it cost?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Free during beta! After launch: Free plan (100 emails/day), Pro ($10/month unlimited), Team ($25/user/month with admin dashboard).
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <h2>Ready for Inbox Zero?</h2>
+            <p>Join 100 beta testers experiencing the future of email</p>
+            <div class="cta-buttons">
+                <button onclick="openBetaModal()" class="btn btn-primary">Request Beta Access</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="/splash.html">Beta Tester Login</a>
+                <a href="mailto:zerobeta@rationale.work">Contact</a>
+                <a href="architecture-visual.html">Security</a>
+                <a href="/design-system-renderer.html">Design System</a>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.5); font-size: 14px;">
+                © 2025 Zero Email. Beta access by invitation only.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Beta Modal -->
+    <div id="betaModalOverlay" class="beta-modal-overlay" onclick="closeBetaModal()">
+        <div class="beta-modal" onclick="event.stopPropagation()">
+            <button class="beta-modal-close" onclick="closeBetaModal()">✕</button>
+
+            <div class="beta-modal-logo">zero</div>
+            <div class="beta-modal-subtitle">Email Intelligence Platform</div>
+
+            <h3 class="beta-modal-title">Join the Beta</h3>
+            <p class="beta-modal-description">Get early access to Zero and help shape the future of email management</p>
+
+            <div id="betaMessage" class="beta-modal-message"></div>
+
+            <form id="betaForm" onsubmit="submitBetaRequest(event)">
+                <div class="beta-form-group">
+                    <label for="betaEmail">Email Address *</label>
+                    <input
+                        type="email"
+                        id="betaEmail"
+                        placeholder="your@email.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="beta-form-group">
+                    <label for="betaName">Full Name</label>
+                    <input
+                        type="text"
+                        id="betaName"
+                        placeholder="Your name"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <div class="beta-form-group">
+                    <label for="betaCompany">Company (Optional)</label>
+                    <input
+                        type="text"
+                        id="betaCompany"
+                        placeholder="Your company"
+                        autocomplete="organization"
+                    >
+                </div>
+
+                <button type="submit" id="betaSubmitBtn" class="beta-modal-button primary">
+                    Request Access
+                </button>
+            </form>
+
+            <div class="beta-modal-footer">
+                Already a beta tester? <a href="/splash.html">Login to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileBackdrop');
+            drawer.classList.toggle('open');
+            backdrop.classList.toggle('visible');
+        }
+
+        function closeMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const backdrop = document.getElementById('mobileBackdrop');
+            drawer.classList.remove('open');
+            backdrop.classList.remove('visible');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(closeMobileMenu, 300);
+            });
+        });
+
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const icon = element.querySelector('.faq-question span');
+            icon.textContent = element.classList.contains('active') ? '−' : '+';
+        }
+
+        // Beta Modal Functions
+        function openBetaModal() {
+            const overlay = document.getElementById('betaModalOverlay');
+            overlay.classList.add('visible');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeBetaModal() {
+            const overlay = document.getElementById('betaModalOverlay');
+            overlay.classList.remove('visible');
+            document.body.style.overflow = ''; // Restore scrolling
+
+            // Reset form and message
+            document.getElementById('betaForm').reset();
+            const message = document.getElementById('betaMessage');
+            message.className = 'beta-modal-message';
+            message.textContent = '';
+        }
+
+        async function submitBetaRequest(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('betaSubmitBtn');
+            const message = document.getElementById('betaMessage');
+            const email = document.getElementById('betaEmail').value;
+            const name = document.getElementById('betaName').value;
+            const company = document.getElementById('betaCompany').value;
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                const response = await fetch('/auth/waitlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        name: name || null,
+                        company: company || null
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    message.className = 'beta-modal-message success';
+                    message.textContent = result.message || 'Success! Check your email for next steps.';
+                    document.getElementById('betaForm').reset();
+
+                    // Auto-close after 3 seconds
+                    setTimeout(() => {
+                        closeBetaModal();
+                    }, 3000);
+                } else {
+                    message.className = 'beta-modal-message error';
+                    message.textContent = result.error || 'Failed to submit. Please try again.';
+                }
+            } catch (error) {
+                console.error('Beta request error:', error);
+                message.className = 'beta-modal-message error';
+                message.textContent = 'Connection error. Please try again later.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Access';
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Initialize firefly background
+        (function initFireflies() {
+            const container = document.getElementById('fireflyBg');
+            const fireflyCount = 40;
+
+            for (let i = 0; i < fireflyCount; i++) {
+                const firefly = document.createElement('div');
+                const rand = Math.random();
+                const variant = rand < 0.33 ? 'small' : rand < 0.66 ? 'medium' : 'warm';
+                firefly.className = `firefly ${variant}`;
+
+                firefly.style.left = `${Math.random() * 100}%`;
+                firefly.style.top = `${Math.random() * 100}%`;
+
+                const duration = 8 + Math.random() * 12;
+                firefly.style.animationDuration = `${duration}s`;
+                firefly.style.animationDelay = `${Math.random() * -duration}s`;
+
+                const moveRange = 60 + Math.random() * 80;
+                firefly.style.setProperty('--tx1', `${(Math.random() - 0.5) * moveRange}px`);
+                firefly.style.setProperty('--ty1', `${(Math.random() - 0.5) * moveRange}px`);
+                firefly.style.setProperty('--tx2', `${(Math.random() - 0.5) * moveRange}px`);
+                firefly.style.setProperty('--ty2', `${(Math.random() - 0.5) * moveRange}px`);
+                firefly.style.setProperty('--tx3', `${(Math.random() - 0.5) * moveRange}px`);
+                firefly.style.setProperty('--ty3', `${(Math.random() - 0.5) * moveRange}px`);
+
+                container.appendChild(firefly);
+            }
+        })();
+    </script>
+</body>
+</html>

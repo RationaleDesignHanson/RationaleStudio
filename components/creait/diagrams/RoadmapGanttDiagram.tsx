@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * RoadmapGanttDiagram - Gantt chart showing 14-week MVP roadmap
@@ -91,8 +93,8 @@ export default function RoadmapGanttDiagram() {
         for (let week = 1; week <= 14; week++) {
           const x = padding + (week - 1) * weekWidth;
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${headerOpacity * 0.4})`;
-          ctx.font = '10px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${headerOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(`W${week}`, x + weekWidth / 2, timelineY - 15);
 
@@ -134,21 +136,21 @@ export default function RoadmapGanttDiagram() {
           ctx.stroke();
 
           // Sprint name
-          ctx.fillStyle = `rgba(255, 255, 255, ${sprintOpacity * 0.9})`;
-          ctx.font = 'bold 13px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${sprintOpacity * CANVAS_TYPOGRAPHY.opacity.secondary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'left';
           ctx.fillText(sprint.name, x + 12, y + 20);
 
           // Sprint label
-          ctx.fillStyle = `rgba(255, 255, 255, ${sprintOpacity * 0.7})`;
-          ctx.font = '11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${sprintOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(sprint.label, x + 12, y + 36);
 
           // Tasks on right side
           if (sprintOpacity > 0.8) {
             const taskX = x + barWidth + 15;
-            ctx.fillStyle = `rgba(255, 255, 255, ${(sprintOpacity - 0.8) * 5 * 0.6})`;
-            ctx.font = '10px Inter, sans-serif';
+            ctx.fillStyle = `rgba(255, 255, 255, ${(sprintOpacity - 0.8) * 5 * CANVAS_TYPOGRAPHY.opacity.muted})`;
+            ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.textAlign = 'left';
 
             sprint.tasks.forEach((task, taskIndex) => {
@@ -160,7 +162,7 @@ export default function RoadmapGanttDiagram() {
               ctx.fill();
 
               // Task text
-              ctx.fillStyle = `rgba(255, 255, 255, ${(sprintOpacity - 0.8) * 5 * 0.6})`;
+              ctx.fillStyle = `rgba(255, 255, 255, ${(sprintOpacity - 0.8) * 5 * CANVAS_TYPOGRAPHY.opacity.muted})`;
               ctx.fillText(task, taskX + 8, taskY);
             });
           }
@@ -184,7 +186,7 @@ export default function RoadmapGanttDiagram() {
 
         // "TODAY" label
         ctx.fillStyle = `rgba(34, 197, 94, ${indicatorOpacity})`;
-        ctx.font = 'bold 11px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
         ctx.fillText('TODAY', x, timelineY - 30);
 
@@ -223,8 +225,8 @@ export default function RoadmapGanttDiagram() {
           ctx.fill();
 
           // Milestone label
-          ctx.fillStyle = `rgba(6, 182, 212, ${milestoneOpacity * 0.8})`;
-          ctx.font = 'bold 10px Inter, sans-serif';
+          ctx.fillStyle = `rgba(6, 182, 212, ${milestoneOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(milestone.label, x, y + 22);
         });
@@ -233,8 +235,8 @@ export default function RoadmapGanttDiagram() {
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('14-Week MVP Roadmap', width / 2, 30);
       }

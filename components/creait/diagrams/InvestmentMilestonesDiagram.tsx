@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * InvestmentMilestonesDiagram - Funding stages timeline
@@ -127,30 +129,30 @@ export default function InvestmentMilestonesDiagram() {
 
           // Stage number
           ctx.fillStyle = stage.color;
-          ctx.font = 'bold 18px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText((index + 1).toString(), x, centerY);
 
           // Stage name above
-          ctx.fillStyle = `rgba(255, 255, 255, ${stageOpacity * 0.9})`;
-          ctx.font = 'bold 16px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${stageOpacity * CANVAS_TYPOGRAPHY.opacity.secondary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(stage.name, x, centerY - 60);
 
           // Amount
           ctx.fillStyle = stage.color;
-          ctx.font = 'bold 20px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingMd}px ${CANVAS_TYPOGRAPHY.fonts.data}`;
           ctx.fillText(stage.amount, x, centerY - 80);
 
           // Timing below
-          ctx.fillStyle = `rgba(255, 255, 255, ${stageOpacity * 0.6})`;
-          ctx.font = '12px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${stageOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(stage.timing, x, centerY + 50);
 
           // Status label
           ctx.fillStyle = stage.color;
-          ctx.font = 'bold 11px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(stage.status, x, centerY + 68);
 
           // Outcomes (if fully visible)
@@ -179,8 +181,8 @@ export default function InvestmentMilestonesDiagram() {
             ctx.stroke();
 
             // Outcomes list
-            ctx.fillStyle = `rgba(255, 255, 255, ${outcomeOpacity * 0.8})`;
-            ctx.font = '11px Inter, sans-serif';
+            ctx.fillStyle = `rgba(255, 255, 255, ${outcomeOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+            ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
             ctx.textAlign = 'left';
 
             stage.outcomes.forEach((outcome, outcomeIndex) => {
@@ -193,7 +195,7 @@ export default function InvestmentMilestonesDiagram() {
               ctx.fill();
 
               // Outcome text
-              ctx.fillStyle = `rgba(255, 255, 255, ${outcomeOpacity * 0.8})`;
+              ctx.fillStyle = `rgba(255, 255, 255, ${outcomeOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
               ctx.fillText(outcome, outcomeX - boxWidth / 2 + 25, textY);
             });
           }
@@ -213,33 +215,34 @@ export default function InvestmentMilestonesDiagram() {
         }
       });
 
-      // Draw "You are here" marker on Seed
+      // Draw "Current Stage" marker on Seed (professional, no emoji)
       if (progress > 1) {
         const markerOpacity = Math.min((progress - 1) * 2, 1);
         const x = padding;
         const y = centerY - 110;
 
-        // Arrow pointing down
-        ctx.fillStyle = `rgba(34, 197, 94, ${markerOpacity})`;
+        // Professional badge
+        ctx.fillStyle = `rgba(34, 197, 94, ${markerOpacity * 0.15})`;
+        ctx.strokeStyle = `rgba(34, 197, 94, ${markerOpacity})`;
+        ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(x, y + 10);
-        ctx.lineTo(x - 6, y);
-        ctx.lineTo(x + 6, y);
-        ctx.closePath();
+        ctx.roundRect(x - 50, y - CANVAS_SPACING.micro.md, 100, CANVAS_SPACING.padding.md, CANVAS_SPACING.radius.md);
         ctx.fill();
+        ctx.stroke();
 
-        // "You are here" text
+        // "Current Stage" text
         ctx.fillStyle = `rgba(34, 197, 94, ${markerOpacity})`;
-        ctx.font = 'bold 12px Inter, sans-serif';
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
-        ctx.fillText('← You Are Here', x, y - 8);
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Current Stage', x, y);
       }
 
       // Title
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('Funding Roadmap: Seed to Series B', width / 2, 35);
       }
@@ -247,8 +250,8 @@ export default function InvestmentMilestonesDiagram() {
       // Draw total capital raised projection
       if (progress > 1.2) {
         const totalOpacity = Math.min((progress - 1.2) * 2, 1);
-        ctx.fillStyle = `rgba(139, 92, 246, ${totalOpacity * 0.8})`;
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.fillStyle = `rgba(139, 92, 246, ${totalOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
         ctx.textAlign = 'center';
         ctx.fillText(
           'Total Capital: $14-21M over 3 years',

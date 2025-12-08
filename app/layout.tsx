@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
-import { Header, Footer } from "@/components/layout";
+import { LayoutContent } from "@/components/layout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -58,14 +58,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Note: We can't use usePathname in server components, so we handle archive page layout removal in the client
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} antialiased`}>
-        <Header />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <Footer />
+        <LayoutContent>{children}</LayoutContent>
       </body>
     </html>
   );

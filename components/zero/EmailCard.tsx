@@ -49,7 +49,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
             <path d="M0 2.5A2.5 2.5 0 012.5 0h11A2.5 2.5 0 0116 2.5v11a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 010 13.5v-11zM2.5 1A1.5 1.5 0 001 2.5v11A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0013.5 1h-11z" />
             <path d="M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z" />
           </svg>
-          <span className="text-xs font-semibold text-white/85">View</span>
+          <span className="text-[10px] font-semibold text-white/85">View</span>
         </button>
 
         {/* Sender Block */}
@@ -62,7 +62,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
         <div className="flex items-center gap-2">
           {/* Priority Badge */}
           <span
-            className={`text-xs font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider ${
+            className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider ${
               email.metadata.priority === 'high'
                 ? 'bg-orange-500/90 text-white'
                 : email.metadata.priority === 'medium'
@@ -118,7 +118,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
         <span style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}>{email.subject}</span>
         {email.threadCount && email.threadCount > 1 && (
           <span className="inline-flex items-center gap-1 bg-blue-500/25 border border-blue-500/40 rounded-xl px-2.5 py-1 text-[11px] font-bold text-blue-300 backdrop-blur-sm">
-            <span className="text-xs">💬</span>
+            <span className="text-[10px]">💬</span>
             <span>{email.threadCount}</span>
           </span>
         )}

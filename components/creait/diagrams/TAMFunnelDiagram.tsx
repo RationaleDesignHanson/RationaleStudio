@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { CANVAS_TYPOGRAPHY } from '@/lib/creait/design-tokens/canvas-typography';
+import { CANVAS_SPACING } from '@/lib/creait/design-tokens/canvas-spacing';
 
 /**
  * TAMFunnelDiagram - Inverted pyramid showing market segmentation
@@ -128,7 +130,7 @@ export default function TAMFunnelDiagram() {
           ctx.fill();
 
           ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-          ctx.font = 'bold 18px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText(segment.label, badgeX, badgeY);
@@ -137,37 +139,37 @@ export default function TAMFunnelDiagram() {
           const contentX = width / 2;
 
           // Title
-          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * 0.5})`;
-          ctx.font = '12px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'center';
           ctx.fillText(segment.title.toUpperCase(), contentX, centerY - 35);
 
           // Value (big)
           ctx.fillStyle = segment.color;
-          ctx.font = 'bold 36px Inter, sans-serif';
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.displayMd}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
           ctx.fillText(segment.value, contentX, centerY);
 
           // Subtext
-          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * 0.7})`;
-          ctx.font = '13px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodyMd}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(segment.subtext, contentX, centerY + 25);
 
           // Calculation (small)
-          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * 0.4})`;
-          ctx.font = '11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText(segment.calculation, contentX, centerY + 42);
 
           // Draw percentage indicator (right side)
           const percentX = rightBottom + 40;
           const percent = segment.widthPercent;
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * 0.3})`;
-          ctx.font = 'bold 16px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * CANVAS_TYPOGRAPHY.opacity.muted})`;
+          ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingSm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.textAlign = 'left';
           ctx.fillText(`${percent}%`, percentX, centerY - 5);
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * 0.5})`;
-          ctx.font = '11px Inter, sans-serif';
+          ctx.fillStyle = `rgba(255, 255, 255, ${segmentOpacity * CANVAS_TYPOGRAPHY.opacity.tertiary})`;
+          ctx.font = `${CANVAS_TYPOGRAPHY.sizes.bodySm}px ${CANVAS_TYPOGRAPHY.fonts.body}`;
           ctx.fillText('of market', percentX, centerY + 10);
         }
       });
@@ -203,8 +205,8 @@ export default function TAMFunnelDiagram() {
       // Draw title at top
       if (progress > 1) {
         const titleOpacity = Math.min((progress - 1) * 2, 1);
-        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * 0.8})`;
-        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillStyle = `rgba(255, 255, 255, ${titleOpacity * CANVAS_TYPOGRAPHY.opacity.primary})`;
+        ctx.font = `bold ${CANVAS_TYPOGRAPHY.sizes.headingLg}px ${CANVAS_TYPOGRAPHY.fonts.display}`;
         ctx.textAlign = 'center';
         ctx.fillText('Market Opportunity Funnel', width / 2, 30);
       }
