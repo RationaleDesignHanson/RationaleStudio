@@ -8,15 +8,16 @@
  * - Owner: Matt-only, publishing tools
  */
 
-import { initializeApp, getApps } from 'firebase/app';
+import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
 import {
   getAuth,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   onAuthStateChanged,
   User as FirebaseUser,
+  Auth,
 } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, Firestore } from 'firebase/firestore';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -28,10 +29,35 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase (singleton)
-export const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+// Lazy initialization - only run in browser
+let app: FirebaseApp | null = null;
+let auth: Auth | null = null;
+let db: Firestore | null = null;
+
+function getFirebaseApp(): FirebaseApp {
+  if (typeof window === 'undefined') {
+    throw new Error('Firebase client SDK can only be used in the browser');
+  }
+
+  if (!app) {
+    app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+  }
+  return app;
+}
+
+function getFirebaseAuth(): Auth {
+  if (!auth) {
+    auth = getAuth(getFirebaseApp());
+  }
+  return auth;
+}
+
+function getFirebaseDb(): Firestore {
+  if (!db) {
+    db = getFirestore(getFirebaseApp());
+  }
+  return db;
+}
 
 // User role types (4-tier access control)
 export type UserRole = 'owner' | 'team' | 'partner' | 'investor';
@@ -51,7 +77,7 @@ export interface UserProfile {
  */
 export async function signIn(email: string, password: string): Promise<UserProfile> {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(getFirebaseAuth(), email, password);
     const profile = await getUserProfile(userCredential.user.uid);
 
     if (!profile) {
@@ -97,7 +123,7 @@ export async function signOut(): Promise<void> {
     });
 
     // Sign out from Firebase
-    await firebaseSignOut(auth);
+    await firebaseSignOut(getFirebaseAuth());
   } catch (error) {
     console.error('Sign out error:', error);
     throw new Error('Sign out failed');
@@ -109,7 +135,7 @@ export async function signOut(): Promise<void> {
  */
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
   try {
-    const userDoc = await getDoc(doc(db, 'users', uid));
+    const userDoc = await getDoc(doc(getFirebaseDb(), 'users', uid));
 
     if (!userDoc.exists()) {
       return null;
@@ -128,7 +154,7 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
 async function updateLastLogin(uid: string): Promise<void> {
   try {
     await setDoc(
-      doc(db, 'users', uid),
+      doc(getFirebaseDb(), 'users', uid),
       { lastLogin: Date.now() },
       { merge: true }
     );
@@ -141,7 +167,7 @@ async function updateLastLogin(uid: string): Promise<void> {
  * Auth state change listener
  */
 export function onAuthChange(callback: (user: FirebaseUser | null) => void) {
-  return onAuthStateChanged(auth, callback);
+  return onAuthStateChanged(getFirebaseAuth(), callback);
 }
 
 /**
