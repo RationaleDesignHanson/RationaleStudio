@@ -1,0 +1,13 @@
+{
+  "custom-1": {
+    "name": "Custom 1",
+    "prompt": "",
+    "has_reference": false
+  },
+  "custom-2": {
+    "name": "Custom 2",
+    "prompt": "",
+    "has_reference": false
+  }
+}
+

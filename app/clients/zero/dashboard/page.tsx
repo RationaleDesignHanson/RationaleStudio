@@ -1,544 +1,252 @@
 /**
- * Zero Public Marketing Page
+ * Zero Beta User Dashboard
  *
- * Full public page showcasing Zero as proof of Rationale's execution capability.
- * Demonstrates speed (1 month concept-to-plan), technical depth, and product thinking.
+ * Dashboard for Zero beta testers with onboarding progress,
+ * usage stats, settings, and help resources.
  */
 
+'use client';
+
 import Link from 'next/link';
-import { Container, Section } from '@/components/layout';
-import { Hero } from '@/components/sections/Hero';
-import { ASCIIWaveDivider, ASCIIUnifiedGrid, GlassCard, SectionMarker } from '@/components/visual';
-import { getSectionTheme } from '@/lib/theme/watercolor-palette';
-import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
-import { zeroHero, zeroFeatures, zeroMetrics, zeroTools } from '@/lib/content/zero';
-import InteractiveDemo from '@/components/zero/InteractiveDemo';
-import GalaxyBackground from '@/components/zero/GalaxyBackground';
-import type { Metadata } from 'next';
+import { OnboardingProgressTracker } from '@/components/zero/OnboardingProgressTracker';
+import { ASCIIUnifiedGrid } from '@/components/visual';
+import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { Mail, Zap, TrendingUp, HelpCircle, MessageSquare, Settings, Download, ExternalLink, Book, FileText } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Zero — AI Email Management | Rationale',
-  description: 'AI extracts actions from your emails. Track packages, pay bills, sign forms, RSVP to events—all in swipeable cards. Built in 1 month.',
-};
-
-export default function ZeroPage() {
-  const heroTheme = getSectionTheme('hero');
-  const problemTheme = getSectionTheme('content');
-  const metricsTheme = getSectionTheme('process');
-  const featuresTheme = getSectionTheme('services');
-  const techTheme = getSectionTheme('philosophy');
-  const whyTheme = getSectionTheme('founder');
-  const ctaTheme = getSectionTheme('cta');
-
+export default function ZeroDashboardPage() {
   return (
-    <>
-      {/* Hero */}
-      <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingBottom={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={heroTheme} opacity={0.25} />
-        <Container className="relative z-20">
-          <div className="max-w-4xl mx-auto mb-8">
-            <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <div className="mb-6">
-                <Link href="/ventures" className="text-accent hover:underline text-sm sm:text-base">
-                  ← Back to Products
-                </Link>
-              </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+      {/* ASCII Grid Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <ASCIIUnifiedGrid
+          opacity={0.04}
+          animated={true}
+          colorTheme={watercolorThemes.terminalSubtle}
+          charSet="default"
+        />
+      </div>
 
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <span className="inline-flex items-center px-4 py-2 rounded-full bg-accent/20 text-accent text-sm font-medium">
-                  Live on App Store · Beta Testing
-                </span>
-                <Link
-                  href="/invest/zero"
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-blue-500/20 text-blue-600 border border-blue-500/30 text-sm font-medium hover:bg-blue-500/30 transition-colors"
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
+        <div className="mb-8">
+          <Link
+            href="/work/zero"
+            className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          >
+            ← Back to Zero
+          </Link>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+            Zero Beta Dashboard
+          </h1>
+          <p className="text-gray-400">
+            Welcome to Zero beta. Track your setup progress and get help below.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Left Column - Onboarding & Stats */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Onboarding Progress */}
+            <section>
+              <OnboardingProgressTracker />
+            </section>
+
+            {/* Usage Stats (Placeholder) */}
+            <section className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-[#FFD700]" />
+                Your Usage Stats
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-center">
+                  <div className="text-2xl font-bold text-[#FFD700] mb-1">--</div>
+                  <div className="text-xs text-gray-400">Emails Processed</div>
+                </div>
+                <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-center">
+                  <div className="text-2xl font-bold text-[#FFD700] mb-1">--</div>
+                  <div className="text-xs text-gray-400">Actions Completed</div>
+                </div>
+                <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-center">
+                  <div className="text-2xl font-bold text-[#FFD700] mb-1">--</div>
+                  <div className="text-xs text-gray-400">Time Saved</div>
+                </div>
+                <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg text-center">
+                  <div className="text-2xl font-bold text-[#FFD700] mb-1">--</div>
+                  <div className="text-xs text-gray-400">Days Active</div>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-4 text-center">
+                Stats will appear after you connect your Gmail account
+              </p>
+            </section>
+
+            {/* Feedback Form */}
+            <section className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-[#FFD700]" />
+                Send Feedback
+              </h2>
+              <p className="text-sm text-gray-300 mb-4">
+                As a beta tester, your feedback is crucial. Let us know what's working and what needs improvement.
+              </p>
+              <div className="space-y-3">
+                <a
+                  href="mailto:hello@rationale.work?subject=Zero Beta Feedback"
+                  className="flex items-center gap-2 px-4 py-3 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-medium rounded-lg transition-all"
                 >
-                  💰 Seed Round Open: $600K
-                </Link>
+                  <Mail className="w-4 h-4" />
+                  Email Feedback
+                </a>
+                <p className="text-xs text-gray-500">
+                  Or report issues directly in the app using the feedback button
+                </p>
               </div>
+            </section>
+          </div>
 
-              <Link
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block hover:opacity-80 transition-opacity"
-              >
-                <Hero
-                  title="Zero: Actions From Your Inbox"
-                  subtitle="Stop reading. Start acting."
-                  description="Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards. Sorted into Mail and Ads."
-                  centered={false}
-                />
-              </Link>
-
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <ButtonPrimary
+          {/* Right Column - Quick Actions & Resources */}
+          <div className="space-y-8">
+            {/* Quick Actions */}
+            <section className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
+              <div className="space-y-3">
+                <a
                   href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                  size="md"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors group"
                 >
-                  Download on App Store →
-                </ButtonPrimary>
-                <ButtonSecondary href="/contact" size="md">
-                  Need Similar Speed? Work With Us
-                </ButtonSecondary>
-              </div>
-            </GlassCard>
-          </div>
+                  <div className="flex items-center gap-3">
+                    <Download className="w-5 h-5 text-[#FFD700]" />
+                    <span className="text-sm text-white">Download App</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-[#FFD700]" />
+                </a>
 
-          {/* Strategic Context: Why Zero Exists */}
-          <div className="max-w-4xl mx-auto mt-8 mb-8">
-            <div className="p-6 rounded-lg border border-accent/20 bg-accent/5 backdrop-blur-sm">
-              <h3 className="text-lg font-bold text-foreground mb-3 text-center">
-                Portfolio IP: Conviction-Backed Ventures We Own
-              </h3>
-              <p className="text-sm text-muted text-center mb-4">
-                Zero isn't client work—it's <span className="font-bold text-accent">Portfolio IP</span> we originated and own. Part of Rationale's dual-engine model: <span className="font-bold text-foreground">Rationale Kits</span> (client engagements that fund runway) + <span className="font-bold text-foreground">Portfolio IP</span> (ventures that appreciate over time).
-              </p>
-              <p className="text-sm text-muted text-center mb-4">
-                <span className="font-bold text-accent">Why this matters to partners:</span> Zero proves we can build conviction-backed products at speed. Same systematic execution, same rigor we bring to every client engagement. 1 month from concept to complete plan. Live on App Store with structured beta rollout. This is how we work.
-              </p>
-              <div className="flex justify-center">
                 <Link
-                  href="/invest/zero"
-                  className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
+                  href="/work/zero"
+                  className="flex items-center justify-between p-3 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors group"
                 >
-                  📊 View Investment Opportunity: $600K Seed Round
+                  <div className="flex items-center gap-3">
+                    <Book className="w-5 h-5 text-[#FFD700]" />
+                    <span className="text-sm text-white">View Documentation</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-[#FFD700]" />
                 </Link>
+
+                <a
+                  href="mailto:hello@rationale.work"
+                  className="flex items-center justify-between p-3 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <HelpCircle className="w-5 h-5 text-[#FFD700]" />
+                    <span className="text-sm text-white">Get Help</span>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-[#FFD700]" />
+                </a>
               </div>
-            </div>
-          </div>
+            </section>
 
-          {/* Three-Path Navigation */}
-          <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-sm text-center text-muted mb-4">Choose your path:</p>
-            <div className="grid md:grid-cols-3 gap-4">
-              <a
-                href="#try-zero"
-                className="group p-6 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">📱</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I Want to Use Zero</h4>
-                <p className="text-xs text-muted">
-                  See how it works, download beta, try the app
-                </p>
-              </a>
-              <Link
-                href="/invest/zero"
-                className="group p-6 rounded-lg border border-blue-500/30 bg-blue-500/10 hover:bg-blue-500/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">💰</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I Want to Invest</h4>
-                <p className="text-xs text-muted">
-                  $600K seed round, live product, traction milestones
-                </p>
-              </Link>
-              <a
-                href="#execution-proof"
-                className="group p-6 rounded-lg border border-accent/30 bg-accent/10 hover:bg-accent/20 backdrop-blur-sm transition-all text-center"
-              >
-                <div className="text-3xl mb-2">🎯</div>
-                <h4 className="text-base font-bold text-foreground mb-2">I'm a Partner/Investor</h4>
-                <p className="text-xs text-muted">
-                  See execution proof, tech depth, what Zero proves
-                </p>
-              </a>
-            </div>
-          </div>
+            {/* Help Resources */}
+            <section className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h2 className="text-xl font-bold text-white mb-4">Help Resources</h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-sm font-semibold text-white mb-2">Getting Started</h3>
+                  <ul className="space-y-2 text-sm text-gray-300">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>Connect your Gmail account for read-only access</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>Swipe right to complete actions</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>Swipe left to archive</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>Swipe down to snooze</span>
+                    </li>
+                  </ul>
+                </div>
 
-          {/* Quick Stats */}
-          <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">1 mo</div>
-              <div className="text-xs text-muted">Concept to Plan</div>
-            </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">4</div>
-              <div className="text-xs text-muted">Beta Cohorts</div>
-            </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">95%+</div>
-              <div className="text-xs text-muted">AI Accuracy Target</div>
-            </div>
-            <div className="p-4 rounded-lg border border-border bg-background/80 backdrop-blur-sm text-center">
-              <div className="text-2xl font-bold text-accent">7</div>
-              <div className="text-xs text-muted">Interactive Prototypes</div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <ASCIIWaveDivider colorTheme={heroTheme} opacity={0.3} />
-
-      {/* Problem Statement */}
-      <Section spacing="large" background="transparent" colorTheme={problemTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={problemTheme} opacity={0.15} />
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={problemTheme} className="p-6 sm:p-8">
-              <SectionMarker symbol="⚡" className="mb-4" color={problemTheme.primary}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  The Problem: Your Inbox Is Full of Hidden Work
-                </h2>
-              </SectionMarker>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  You get <span className="font-bold text-foreground">47 emails today</span>. Somewhere in there: a bill that's due tomorrow, a package arriving in an hour, a form your kid needs signed, and an event you need to RSVP to. But to find them, you have to read everything.
-                </p>
-                <p>
-                  Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. <span className="font-bold text-accent">Your inbox is a todo list you have to manually decode.</span>
-                </p>
-                <p>
-                  Zero's AI reads your emails and extracts the actions automatically. <span className="font-bold text-foreground">RSVP to events. Track packages. Pay bills. Sign forms.</span> All in swipeable cards, sorted into Mail and Ads. No reading. Just acting.
-                </p>
+                <div>
+                  <h3 className="text-sm font-semibold text-white mb-2">Privacy & Security</h3>
+                  <ul className="space-y-2 text-sm text-gray-300">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>Read-only Gmail access via OAuth 2.0</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>No email content stored on servers</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#FFD700] mt-0.5">→</span>
+                      <span>All data encrypted in transit</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
+            </section>
 
-      <ASCIIWaveDivider colorTheme={problemTheme} opacity={0.3} />
-
-      {/* Beta Program & Demo */}
-      <div id="try-zero">
-      <Section spacing="large" background="transparent" colorTheme={metricsTheme} className="relative overflow-hidden">
-        <GalaxyBackground />
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <SectionMarker symbol="📱" className="justify-center mb-4" color={metricsTheme.primary}>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                Try Zero: Beta Program Now Open
-              </h2>
-            </SectionMarker>
-            <p className="text-base text-muted mb-6">
-              Zero is live on the App Store. We're systematically scaling through beta testing to ensure quality and user experience at every stage.
-            </p>
-            <div className="flex justify-center mb-8">
-              <ButtonPrimary
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download on App Store →
-              </ButtonPrimary>
-            </div>
-          </div>
-
-          {/* App Demo */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-xl font-bold text-foreground mb-6 text-center">See Zero in Action</h3>
-            <InteractiveDemo />
-            <p className="text-sm text-muted text-center mt-6">
-              Swipe right to take action, left to archive, down to snooze, or up to see all actions.
-            </p>
-          </div>
-
-          {/* Beta Rollout Strategy */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-foreground mb-6 text-center">Systematic Beta Rollout Plan</h3>
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">4 Cohorts</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Controlled Expansion</h4>
-                <p className="text-sm text-muted">
-                  Starting with 10 users (Friends & Family) and expanding to 100+ through targeted cohorts. Each phase validates retention, engagement, and quality before scaling.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">95%+ Accuracy</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">AI Quality Target</h4>
-                <p className="text-sm text-muted">
-                  Systematic AI tuning from 85% launch quality to 95%+ mature accuracy across summarization, classification, and action suggestions through user feedback loops.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">8-Week Checkpoint</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Go/No-Go Decision</h4>
-                <p className="text-sm text-muted">
-                  Clear metrics-driven milestone at Week 8: retention targets, NPS scores, and quality benchmarks determine whether to proceed to public beta.
-                </p>
-              </GlassCard>
-
-              <GlassCard theme={metricsTheme} className="p-6">
-                <div className="text-3xl font-bold text-accent mb-2">&lt;$0.10/user</div>
-                <h4 className="text-sm font-bold text-foreground mb-2">Cost Optimization</h4>
-                <p className="text-sm text-muted">
-                  Backend development focused on cost-efficient AI operations while maintaining quality. Target: under $0.10 per user per month at scale.
-                </p>
-              </GlassCard>
-            </div>
-
-            <div className="p-6 rounded-lg border border-accent/20 bg-accent/5 backdrop-blur-sm">
-              <p className="text-sm text-foreground text-center">
-                <span className="font-bold text-accent">Strategy:</span> Systematic scaling through validated learning. Each cohort proves retention and quality before expanding. Same methodical approach we bring to client products.
+            {/* Beta Program Info */}
+            <section className="p-6 bg-gradient-to-b from-[#FFD700]/10 to-transparent border border-[#FFD700]/30 rounded-lg">
+              <h2 className="text-lg font-bold text-white mb-2">Beta Program</h2>
+              <p className="text-sm text-gray-300 mb-4">
+                You're part of our systematic 4-cohort beta rollout. Your feedback helps us achieve 95%+ AI accuracy.
               </p>
-            </div>
+              <div className="text-xs text-gray-400">
+                <p>Current phase: Cohort 1 (Friends & Family)</p>
+                <p>Target: 10 active users</p>
+                <p>Next milestone: Week 8 checkpoint</p>
+              </div>
+            </section>
           </div>
-        </Container>
-      </Section>
-      </div>
+        </div>
 
-      <ASCIIWaveDivider colorTheme={metricsTheme} opacity={0.3} />
+        {/* Additional Resources */}
+        <section className="mt-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+          <h2 className="text-xl font-bold text-white mb-4">Additional Resources</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <Link
+              href="/work/zero/taxonomy"
+              className="p-4 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors"
+            >
+              <FileText className="w-6 h-6 text-[#FFD700] mb-2" />
+              <h3 className="text-sm font-semibold text-white mb-1">Intent Categories</h3>
+              <p className="text-xs text-gray-400">
+                View all 43 intent categories Zero recognizes
+              </p>
+            </Link>
 
-      {/* Features: What We Built */}
-      <Section spacing="large" background="transparent" colorTheme={featuresTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={featuresTheme} opacity={0.15} />
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <SectionMarker symbol="✨" className="justify-center mb-4" color={featuresTheme.primary}>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                Core Features
-              </h2>
-            </SectionMarker>
-            <p className="text-base text-muted">
-              AI-powered action extraction with swipeable cards. Mail and Ads categories keep things simple.
-            </p>
-          </div>
+            <Link
+              href="/work/zero/architecture"
+              className="p-4 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors"
+            >
+              <Zap className="w-6 h-6 text-[#FFD700] mb-2" />
+              <h3 className="text-sm font-semibold text-white mb-1">Technical Architecture</h3>
+              <p className="text-xs text-gray-400">
+                See how Zero processes your emails
+              </p>
+            </Link>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {zeroFeatures.slice(0, 12).map((feature, idx) => (
-              <GlassCard key={idx} theme={featuresTheme} className="p-6">
-                <h3 className="text-lg font-bold text-foreground mb-3">{feature.title}</h3>
-                <p className="text-sm text-muted">{feature.description}</p>
-              </GlassCard>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <ASCIIWaveDivider colorTheme={featuresTheme} opacity={0.3} />
-
-      {/* Interactive Prototypes */}
-      <Section spacing="large" background="default" colorTheme={techTheme}>
-        <Container>
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <SectionMarker symbol="🔧" className="justify-center mb-4" color={techTheme.primary}>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                7 Interactive Prototypes
-              </h2>
-            </SectionMarker>
-            <p className="text-base text-muted">
-              Working software, not mockups. These tools helped us validate the product before writing production code.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {zeroTools.map((tool, idx) => (
-              <GlassCard key={idx} theme={techTheme} className="p-6">
-                <h3 className="text-lg font-bold text-foreground mb-2">{tool.name}</h3>
-                <p className="text-sm text-muted mb-4">{tool.description}</p>
-                <Link
-                  href={`/zero/tools/${tool.filename}`}
-                  target="_blank"
-                  className="text-sm text-accent hover:underline font-medium"
-                >
-                  Launch prototype →
-                </Link>
-              </GlassCard>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link href="/client/zero/dashboard" className="text-accent hover:underline font-medium">
-              Investors/Partners: View full dashboard →
+            <Link
+              href="/contact"
+              className="p-4 bg-gray-800/50 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-colors"
+            >
+              <HelpCircle className="w-6 h-6 text-[#FFD700] mb-2" />
+              <h3 className="text-sm font-semibold text-white mb-1">Need Help?</h3>
+              <p className="text-xs text-gray-400">
+                Contact us for technical support
+              </p>
             </Link>
           </div>
-        </Container>
-      </Section>
-
-      <ASCIIWaveDivider colorTheme={techTheme} opacity={0.3} />
-
-      {/* What Zero Proves About Rationale */}
-      <div id="execution-proof">
-      <Section spacing="large" background="transparent" colorTheme={whyTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={whyTheme} opacity={0.15} />
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <SectionMarker symbol="🎯" className="mb-4" color={whyTheme.primary}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  What Zero Proves About Rationale
-                </h2>
-              </SectionMarker>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  <span className="font-bold text-foreground">For potential clients and investors:</span> Zero isn't just an email app—it's proof of how we work. We built this to demonstrate what Rationale delivers when we take on a product challenge.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">Technical execution:</span> 10 microservices in production (Gateway, Email, Classifier, Summarization, Shopping Agent, Steel Agent, Scheduled Purchase, Smart Replies, Actions, Analytics). 182 Swift files with A+ architecture. Google Gemini 2.0 Flash + OpenAI GPT-4 integration.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">Systematic execution:</span> Live on App Store with 4-cohort beta rollout strategy. Progressive quality scaling from 85% to 95%+ AI accuracy through structured user feedback. 8-week go/no-go checkpoint with clear retention and engagement metrics. These aren't plans—this is methodical execution.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">Product thinking:</span> 7 working prototypes built to test assumptions before production code. 24-week roadmap with bootstrap and funded scenarios. Complete financial model with TAM/SAM/SOM analysis. Beta rollout plan with cohort strategy.
-                </p>
-                <p className="text-foreground">
-                  This is what conviction looks like: working software, validated architecture, and execution plans ready to scale. The same speed and depth we bring to client engagements.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
+        </section>
       </div>
-
-      <ASCIIWaveDivider colorTheme={whyTheme} opacity={0.3} />
-
-      {/* Tech Stack */}
-      <Section spacing="large" background="transparent" colorTheme={whyTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={whyTheme} opacity={0.15} />
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <SectionMarker symbol="⚙️" className="mb-4" color={whyTheme.primary}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  Tech Stack
-                </h2>
-              </SectionMarker>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">Frontend</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• React Native (iOS)</li>
-                    <li>• TypeScript</li>
-                    <li>• Expo</li>
-                    <li>• TanStack Query</li>
-                    <li>• Zustand state management</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-3">Backend</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• Node.js + Express</li>
-                    <li>• PostgreSQL</li>
-                    <li>• Redis caching</li>
-                    <li>• Gmail API integration</li>
-                    <li>• Anthropic Claude API</li>
-                  </ul>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-
-      <ASCIIWaveDivider colorTheme={whyTheme} opacity={0.3} />
-
-      {/* Why We Built This */}
-      <Section spacing="large" background="default" colorTheme={whyTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={whyTheme} className="p-6 sm:p-8">
-              <SectionMarker symbol="💭" className="mb-4" color={whyTheme.primary}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  Why We Built Zero
-                </h2>
-              </SectionMarker>
-
-              <div className="space-y-4 text-base text-muted">
-                <p>
-                  <span className="font-bold text-foreground">Personal need:</span> As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day.
-                </p>
-                <p>
-                  <span className="font-bold text-foreground">Market opportunity:</span> Email tools organize. They don't extract actions. Nobody is automatically pulling out the bill due tomorrow or the package arriving today. That's the gap Zero fills.
-                </p>
-                <p>
-                  <span className="font-bold text-foreground">Build-to-think philosophy:</span> We don't just plan products—we build working software to prove the concept. Zero went from idea to 7 interactive prototypes to complete technical architecture in 1 month.
-                </p>
-                <p>
-                  <span className="font-bold text-accent">This is how we prove our speed and product thinking to potential partners.</span> From concept to complete execution plan, working prototypes, and production-ready architecture in 1 month.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-
-      <ASCIIWaveDivider colorTheme={whyTheme} opacity={0.3} />
-
-      {/* Status & Timeline */}
-      <Section spacing="large" background="transparent" colorTheme={ctaTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid animated={true} colorTheme={ctaTheme} opacity={0.2} />
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-3xl mx-auto">
-            <GlassCard theme={ctaTheme} className="p-6 sm:p-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-                Status & Timeline
-              </h2>
-
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-bold text-accent uppercase tracking-wide">Current Status</h3>
-                    <span className="px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium">Live on App Store</span>
-                  </div>
-                  <p className="text-sm text-muted">
-                    Zero is available for download on the App Store. Beta rollout underway with 4-cohort expansion strategy targeting 100+ users through systematic quality validation.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-2">Timeline Achieved</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• <span className="font-medium text-foreground">1 month:</span> Complete execution plan (116KB, 3,254 lines)</li>
-                    <li>• <span className="font-medium text-foreground">1 month:</span> Fundraising deck with financials and market analysis</li>
-                    <li>• <span className="font-medium text-foreground">4 weeks:</span> 7 interactive prototypes built and deployed</li>
-                    <li>• <span className="font-medium text-foreground">Now live:</span> App Store launch with beta rollout strategy</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-2">What's Available</h3>
-                  <ul className="space-y-2 text-sm text-muted">
-                    <li>• 24-week roadmap with bootstrap and funded scenarios</li>
-                    <li>• Complete technical architecture and data strategy</li>
-                    <li>• Market analysis with TAM/SAM/SOM</li>
-                    <li>• Financial projections and unit economics</li>
-                    <li>• Beta rollout plan with cohort strategy</li>
-                  </ul>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Final CTA */}
-      <Section spacing="large" background="accent" colorTheme={ctaTheme}>
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Use Zero, Invest in Zero, or Work With Us
-            </h2>
-            <p className="text-base sm:text-lg text-muted mb-8">
-              Try Zero's beta on the App Store, review the $600K seed round, or work with us to build your product at the same speed.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <ButtonPrimary
-                href="https://apps.apple.com/us/app/zer0-inbox/id6754212668"
-                size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Try Zero Beta
-              </ButtonPrimary>
-              <ButtonSecondary href="/invest/zero" size="lg">
-                Seed Round: $600K
-              </ButtonSecondary>
-              <ButtonSecondary href="/contact" size="lg">
-                Work With Us
-              </ButtonSecondary>
-            </div>
-          </div>
-        </Container>
-      </Section>
-    </>
+    </main>
   );
 }

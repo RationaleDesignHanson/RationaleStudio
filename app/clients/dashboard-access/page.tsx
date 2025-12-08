@@ -97,7 +97,7 @@ function DashboardAccessForm() {
             <GlassCard theme={formTheme} className="p-6 sm:p-8 lg:p-12">
               {status === 'success' ? (
                 <div className="text-center py-12">
-                  <div className="text-5xl mb-4">✓</div>
+                  <div className="text-5xl mb-4">→</div>
                   <h3 className="text-2xl font-bold text-foreground mb-4">Request Received</h3>
                   <p className="text-base text-muted mb-6">
                     We'll review your request and send access credentials within 24 hours. Check your email for next steps.

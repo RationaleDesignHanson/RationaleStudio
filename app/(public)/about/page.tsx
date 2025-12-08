@@ -136,8 +136,8 @@ export default function AboutPage() {
               <Link href="/thinking/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
                 Read the full model →
               </Link>
-              <Link href="/services" className="text-accent hover:underline font-medium text-sm">
-                View services →
+              <Link href="/partnerships" className="text-accent hover:underline font-medium text-sm">
+                View partnerships →
               </Link>
             </div>
           </GlassCard>
@@ -159,10 +159,10 @@ export default function AboutPage() {
               Book intro call
             </Link>
             <Link
-              href="/services"
+              href="/partnerships"
               className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
             >
-              View services
+              View partnerships
             </Link>
           </div>
         </div>

@@ -149,10 +149,10 @@ export default function ThinkingPage() {
               Book intro call
             </Link>
             <Link
-              href="/services"
+              href="/partnerships"
               className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
             >
-              View services
+              View partnerships
             </Link>
           </div>
         </div>

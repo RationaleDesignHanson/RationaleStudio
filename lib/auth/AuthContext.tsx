@@ -1,0 +1,94 @@
+/**
+ * Auth Context Provider
+ *
+ * Manages authentication state across the application
+ */
+
+'use client';
+
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { User as FirebaseUser } from 'firebase/auth';
+import { onAuthChange, getUserProfile, UserProfile, signIn, signOut } from './firebase';
+
+interface AuthContextType {
+  user: FirebaseUser | null;
+  profile: UserProfile | null;
+  loading: boolean;
+  error: string | null;
+  signIn: (email: string, password: string) => Promise<UserProfile>;
+  signOut: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Subscribe to auth state changes
+    const unsubscribe = onAuthChange(async (firebaseUser) => {
+      setUser(firebaseUser);
+
+      if (firebaseUser) {
+        // Load user profile
+        const userProfile = await getUserProfile(firebaseUser.uid);
+        setProfile(userProfile);
+      } else {
+        setProfile(null);
+      }
+
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignIn = async (email: string, password: string): Promise<UserProfile> => {
+    try {
+      setError(null);
+      setLoading(true);
+      const userProfile = await signIn(email, password);
+      setProfile(userProfile);
+      return userProfile;
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      setError(null);
+      await signOut();
+      setUser(null);
+      setProfile(null);
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    }
+  };
+
+  const value = {
+    user,
+    profile,
+    loading,
+    error,
+    signIn: handleSignIn,
+    signOut: handleSignOut,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}

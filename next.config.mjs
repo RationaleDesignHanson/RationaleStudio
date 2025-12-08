@@ -3,6 +3,12 @@ const nextConfig = {
   // Enable React strict mode for better development
   reactStrictMode: true,
 
+  // Enable compression
+  compress: true,
+
+  // Disable X-Powered-By header for security
+  poweredByHeader: false,
+
   // Optimize images
   images: {
     remotePatterns: [

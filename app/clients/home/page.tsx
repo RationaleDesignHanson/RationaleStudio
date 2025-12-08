@@ -43,7 +43,7 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
             <Link
-              href="/services"
+              href="/partnerships"
               className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               View Rationale Kits →
@@ -265,7 +265,7 @@ export default function HomePage() {
 
               <div className="flex flex-col gap-3 pt-4">
                 <Link
-                  href="/services"
+                  href="/partnerships"
                   className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   View Rationale Kits →

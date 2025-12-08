@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { OnboardingFlow } from './OnboardingFlow';
 
 interface BetaSignupButtonProps {
   appStoreUrl: string;
@@ -10,6 +11,7 @@ interface BetaSignupButtonProps {
 
 export default function BetaSignupButton({ appStoreUrl, className, children }: BetaSignupButtonProps) {
   const [showModal, setShowModal] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,13 +52,9 @@ export default function BetaSignupButton({ appStoreUrl, className, children }: B
         throw new Error('Failed to submit');
       }
 
-      // Close modal and open App Store
+      // Close modal and show onboarding flow
       setShowModal(false);
-      window.open(appStoreUrl, '_blank', 'noopener,noreferrer');
-
-      // Reset form
-      setEmail('');
-      setName('');
+      setShowOnboarding(true);
     } catch (error) {
       console.error('Failed to send beta signup notification:', error);
       setError('Something went wrong. Please try again.');
@@ -68,6 +66,13 @@ export default function BetaSignupButton({ appStoreUrl, className, children }: B
   const handleClose = () => {
     setShowModal(false);
     setError('');
+    setEmail('');
+    setName('');
+  };
+
+  const handleOnboardingClose = () => {
+    setShowOnboarding(false);
+    // Reset form after onboarding
     setEmail('');
     setName('');
   };
@@ -161,6 +166,13 @@ export default function BetaSignupButton({ appStoreUrl, className, children }: B
           </div>
         </div>
       )}
+
+      {/* Onboarding Flow */}
+      <OnboardingFlow
+        isOpen={showOnboarding}
+        onClose={handleOnboardingClose}
+        userEmail={email}
+      />
     </>
   );
 }

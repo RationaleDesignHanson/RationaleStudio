@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUBO Thumbnail Generator v6.0</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="styles_v2.css?v=8">
+    <link rel="stylesheet" href="styles_fubo.css?v=7">
+</head>
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
+    <!-- Slim Top Bar -->
+    <div class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-bold" style="color: #FF6C00;">FUBO Thumbnail Generator</h1>
+            <span class="text-xs text-gray-500 px-2 py-1 bg-gray-100 rounded">v6.0</span>
+        </div>
+        <div class="flex gap-2">
+            <button id="imageInputsBtn" onclick="openImageInputsModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+                <i data-feather="sliders" class="w-5 h-5"></i>
+                <span class="text-sm">Image Inputs</span>
+            </button>
+            <button id="compositingBtn" onclick="openCompositingModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+                <i data-feather="layers" class="w-5 h-5"></i>
+                <span class="text-sm">Compositing</span>
+            </button>
+            <button id="importBtn" onclick="openImportModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+                <i data-feather="upload" class="w-5 h-5"></i>
+                <span class="text-sm">Import</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Layout: Sidebar + Canvas -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- ========== LEFT SIDEBAR (Fixed 320px) ========== -->
+        <div class="w-80 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0">
+            <div class="p-4 space-y-4">
+                
+                <!-- Style Selection Section -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+                        <i data-feather="image" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                        Styles & Subjects
+                    </h3>
+                    
+                    <!-- Wide -->
+                    <div class="mb-4">
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Wide (16:9)</label>
+                        <select id="v6WideStyle" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm mb-2">
+                            <option value="photo-real">Photo Real</option>
+                            <option value="bold-posterized">Bold Posterized</option>
+                            <option value="gradient">Gradient</option>
+                            <option value="comic-book">Comic Book</option>
+                            <option value="cinematic-grain">Cinematic Grain</option>
+                            <option value="halftone-retro">Halftone Retro</option>
+                            <option value="studio-lighting">Studio Lighting</option>
+                            <option value="video-game">Video Game</option>
+                            <option value="ink-splatter">Ink Splatter</option>
+                            <option value="layered-papercraft">Layered Papercraft</option>
+                            <option value="risograph">Risograph</option>
+                            <option value="custom-1" disabled>Custom 1</option>
+                            <option value="custom-2" disabled>Custom 2</option>
+                        </select>
+                        <div class="segmented-toggle">
+                            <button class="toggle-btn active" data-value="action" onclick="setSubjectV6('Wide', 'action')">Action</button>
+                            <button class="toggle-btn" data-value="player" onclick="setSubjectV6('Wide', 'player')">Player</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tall -->
+                    <div>
+                        <label class="text-sm font-medium text-gray-700 mb-1 block">Tall (2:3)</label>
+                        <select id="v6TallStyle" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm mb-2">
+                            <option value="photo-real">Photo Real</option>
+                            <option value="bold-posterized" selected>Bold Posterized</option>
+                            <option value="gradient">Gradient</option>
+                            <option value="comic-book">Comic Book</option>
+                            <option value="cinematic-grain">Cinematic Grain</option>
+                            <option value="halftone-retro">Halftone Retro</option>
+                            <option value="studio-lighting">Studio Lighting</option>
+                            <option value="video-game">Video Game</option>
+                            <option value="ink-splatter">Ink Splatter</option>
+                            <option value="layered-papercraft">Layered Papercraft</option>
+                            <option value="risograph">Risograph</option>
+                            <option value="custom-1" disabled>Custom 1</option>
+                            <option value="custom-2" disabled>Custom 2</option>
+                        </select>
+                        <div class="segmented-toggle">
+                            <button class="toggle-btn active" data-value="action" onclick="setSubjectV6('Tall', 'action')">Action</button>
+                            <button class="toggle-btn" data-value="player" onclick="setSubjectV6('Tall', 'player')">Player</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teams Section -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+                        <i data-feather="users" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                        Teams
+                    </h3>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="text-sm font-medium text-gray-700 mb-1 block">League</label>
+                            <select id="v6LeagueSelect" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                <option value="NFL">NFL</option>
+                                <option value="NBA">NBA</option>
+                                <option value="WNBA">WNBA</option>
+                                <option value="MLB">MLB</option>
+                                <option value="NHL">NHL</option>
+                                <option value="MLS">MLS</option>
+                                <option value="Premier League">Premier League</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="flex items-center text-sm">
+                                <input type="radio" name="v6GenerationMode" value="test" checked class="mr-2">
+                                Test (4 teams)
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="radio" name="v6GenerationMode" value="all" class="mr-2">
+                                All teams
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="v6GenerateBtn" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all shadow-md">
+                    <i data-feather="zap" class="w-5 h-5 inline mr-2"></i>
+                    Generate Images
+                </button>
+                <button id="v6StopBtn" class="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-700 transition-all hidden">
+                    <i data-feather="square" class="w-5 h-5 inline mr-2"></i>
+                    Stop Generation
+                </button>
+                
+                <!-- Time Estimate -->
+                <div id="v6TimeEstimate" class="text-xs text-gray-500 text-center hidden">
+                    <i data-feather="clock" class="w-3 h-3 inline mr-1"></i>
+                    Estimated: <span id="v6TimeEstimateText">--</span>
+                </div>
+                
+                <!-- Generation Progress -->
+                <div id="v6Progress" class="border border-gray-200 rounded-lg p-3 hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-700">Generating...</span>
+                        <span id="v6ProgressCount" class="text-xs text-gray-500">0 / 0</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="v6ProgressBar" class="bg-orange-500 h-2 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <div id="v6ProgressStatus" class="text-xs text-gray-500 mt-2">Starting...</div>
+                </div>
+
+                <!-- Results Filter Section -->
+                <div id="v6ResultsSection" class="border border-gray-200 rounded-lg p-4 hidden">
+                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center justify-between">
+                        <span class="flex items-center">
+                            <i data-feather="grid" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                            Results <span id="v6ResultCount" class="ml-2 text-sm text-gray-500">(0)</span>
+                        </span>
+                    </h3>
+                    <div class="space-y-2">
+                        <select id="v6QAFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                            <option value="all">All Images</option>
+                            <option value="90">QA ≥ 90</option>
+                            <option value="80">QA ≥ 80</option>
+                            <option value="70">QA ≥ 70</option>
+                        </select>
+                        <select id="v6LeagueFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                            <option value="all">All Leagues</option>
+                            <option value="NFL">NFL</option>
+                            <option value="NBA">NBA</option>
+                            <option value="WNBA">WNBA</option>
+                            <option value="MLB">MLB</option>
+                            <option value="NHL">NHL</option>
+                            <option value="MLS">MLS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Export Section -->
+                <div id="v6ExportSection" class="bg-orange-50 border border-orange-200 rounded-lg p-4 hidden">
+                    <h3 class="font-semibold text-orange-800 mb-3 flex items-center">
+                        <i data-feather="download" class="w-5 h-5 mr-2"></i>
+                        Export All Results
+                    </h3>
+                    <button id="v6ExportAllBtn" class="w-full bg-orange-600 text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-orange-700 transition-colors">
+                        <i data-feather="download" class="w-4 h-4 inline mr-2"></i>
+                        Export All Images
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========== CENTER CANVAS (Flex Grow) ========== -->
+        <div class="flex-1 flex flex-col overflow-hidden bg-gray-50">
+            
+            <!-- Filter Checkboxes -->
+            <div class="bg-white border-b border-gray-200 px-6 py-3 flex gap-6 items-center flex-shrink-0">
+                <span class="text-sm font-medium text-gray-700">Show:</span>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="showWide" checked onchange="applyResultFilters()" class="mr-2">
+                    <i data-feather="monitor" class="w-4 h-4 inline mr-1"></i>
+                    <span class="text-sm">Wide <span id="wideCount" class="ml-1 text-xs text-gray-500">(0)</span></span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="showTall" checked onchange="applyResultFilters()" class="mr-2">
+                    <i data-feather="smartphone" class="w-4 h-4 inline mr-1"></i>
+                    <span class="text-sm">Tall <span id="tallCount" class="ml-1 text-xs text-gray-500">(0)</span></span>
+                </label>
+            </div>
+
+            <!-- Canvas Content Area -->
+            <div class="flex-1 overflow-y-auto p-6">
+                
+                <!-- Empty State -->
+                <div id="emptyState" class="flex items-center justify-center h-full text-center">
+                    <div class="max-w-md">
+                        <i data-feather="image" class="w-16 h-16 mx-auto mb-4 text-gray-300"></i>
+                        <h2 class="text-xl font-semibold text-gray-700 mb-2">No Images Yet</h2>
+                        <p class="text-gray-500">Configure styles and teams in the sidebar, then click Generate Images to get started</p>
+                    </div>
+                </div>
+
+                <!-- Results Container -->
+                <div id="resultsContainer" class="hidden space-y-8">
+                    <!-- Wide Results Section -->
+                    <div id="wideResultsSection">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                            <i data-feather="monitor" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                            Wide (16:9) <span id="wideSectionCount" class="ml-2 text-sm font-normal text-gray-500"></span>
+                        </h3>
+                        <div id="wideResultsGrid" class="grid gap-6" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                            <!-- Wide images will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Tall Results Section -->
+                    <div id="tallResultsSection">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                            <i data-feather="smartphone" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                            Tall (2:3) <span id="tallSectionCount" class="ml-2 text-sm font-normal text-gray-500"></span>
+                        </h3>
+                        <div id="tallResultsGrid" class="grid gap-6" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                            <!-- Tall images will be added here -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Image Inputs Modal -->
+    <div id="imageInputsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] m-4 flex flex-col">
+            <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0 z-10">
+                <div>
+                    <h2 class="text-xl font-bold" style="color: #FF6C00;">Image Inputs</h2>
+                    <p class="text-sm text-gray-500 mt-1">Output dimensions and custom style editor</p>
+                </div>
+                <button onclick="closeImageInputsModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-4 space-y-4 overflow-y-auto">
+                
+                <!-- Dimensions Section -->
+                <div class="bg-gray-50 border border-gray-200 rounded p-3">
+                    <h3 class="text-sm font-semibold text-gray-800 mb-2">Output Dimensions</h3>
+                    <div class="flex gap-4 items-center text-sm">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-gray-700">Wide</span>
+                            <input type="number" id="v6WideWidth" value="3320" class="w-20 px-2 py-0.5 border border-gray-300 rounded text-xs">
+                            <span class="text-xs text-gray-400">×</span>
+                            <input type="number" id="v6WideHeight" value="1480" readonly class="w-20 px-2 py-0.5 border border-gray-300 rounded bg-gray-100 text-xs">
+                            <span class="text-xs text-gray-500 ml-2">±700px H, ±200px V</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-gray-700">Tall</span>
+                            <input type="number" id="v6TallWidth" value="1600" class="w-20 px-2 py-0.5 border border-gray-300 rounded text-xs">
+                            <span class="text-xs text-gray-400">×</span>
+                            <input type="number" id="v6TallHeight" value="2420" readonly class="w-20 px-2 py-0.5 border border-gray-300 rounded bg-gray-100 text-xs">
+                            <span class="text-xs text-gray-500 ml-2">±160px H, ±250px V</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Styles Editor -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-800 mb-2">Style Editor</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="text-xs font-medium text-gray-700 mb-1 block">Select Style</label>
+                            <select id="styleEditorSelect" onchange="handleStyleEditorSelect()" class="w-full px-2 py-1 border border-gray-300 rounded text-sm">
+                                <optgroup label="Custom Styles">
+                                    <option value="custom-1">Custom 1</option>
+                                    <option value="custom-2">Custom 2</option>
+                                </optgroup>
+                                <optgroup label="Built-in Styles (View Only)">
+                                    <option value="photo-real">Photo Real</option>
+                                    <option value="bold-posterized">Bold Posterized</option>
+                                    <option value="gradient">Gradient</option>
+                                    <option value="comic-book">Comic Book</option>
+                                    <option value="cinematic-grain">Cinematic Grain</option>
+                                    <option value="halftone-retro">Halftone Retro</option>
+                                    <option value="studio-lighting">Studio Lighting</option>
+                                    <option value="video-game">Video Game</option>
+                                    <option value="ink-splatter">Ink Splatter</option>
+                                    <option value="layered-papercraft">Layered Papercraft</option>
+                                    <option value="risograph">Risograph</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div id="styleEditorContent" class="border border-gray-200 rounded p-3 space-y-2">
+                            <div>
+                                <label class="text-xs font-medium text-gray-700 mb-1 block">Prompt</label>
+                                <textarea id="stylePromptEditor" rows="3" class="w-full px-2 py-1 border border-gray-300 rounded text-xs font-mono" placeholder="Enter custom style prompt..."></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="text-xs font-medium text-gray-700 mb-1 block">Reference Image</label>
+                                <div class="flex gap-2 items-start">
+                                    <img id="styleReferencePreview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Reference" class="w-20 h-20 object-cover border border-gray-300 rounded bg-gray-50 flex-shrink-0">
+                                    <div class="flex-1 space-y-1">
+                                        <p id="styleReferenceFilename" class="text-xs text-gray-600">None</p>
+                                        <input type="file" id="styleReferenceFile" accept="image/*" class="text-xs w-full" onchange="handleStyleReferenceSelect()">
+                                        <div class="flex gap-1">
+                                            <button id="styleReferenceUploadBtn" onclick="uploadStyleReference()" class="hidden btn-primary text-xs px-2 py-0.5">Upload</button>
+                                            <button id="styleReferenceRemoveBtn" onclick="removeStyleReference()" class="hidden text-xs px-2 py-0.5 border border-red-300 text-red-600 rounded hover:bg-red-50">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2 pt-1 border-t border-gray-200">
+                                <button id="saveStyleBtn" onclick="saveCustomStyle()" class="btn-primary px-3 py-1 text-xs">Save</button>
+                                <button id="clearStyleBtn" onclick="clearCustomStyle()" class="px-3 py-1 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 text-xs">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Compositing Modal -->
+    <div id="compositingModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] m-4 flex flex-col">
+            <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0 z-10">
+                <div>
+                    <h2 class="text-xl font-bold" style="color: #FF6C00;">Compositing</h2>
+                    <p class="text-sm text-gray-500 mt-1">Transparency and overlay management</p>
+                </div>
+                <button onclick="closeCompositingModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto">
+                
+                <!-- Transparency & Compositing Options -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Options</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="v6DisableCompositing" class="mr-2">
+                            <span class="text-sm font-semibold">Disable Compositing</span>
+                            <span class="text-xs text-gray-500 ml-2">(raw images only)</span>
+                        </label>
+                        
+                        <div class="flex gap-4 pt-2 border-t border-gray-200">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="v6WideWithAlpha" class="mr-2">
+                                <span class="text-sm">Wide transparency</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="v6TallWithAlpha" class="mr-2">
+                                <span class="text-sm">Tall transparency</span>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-500">Uses rembg (U2-Net) for background removal</p>
+                    </div>
+                </div>
+
+                <!-- Overlay Image Management -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Overlay Images</h3>
+                    
+                    <!-- Tab Navigation -->
+                    <div class="flex border-b border-gray-200 mb-3">
+                        <button id="wideTab" onclick="handleOverlayTabSwitch('wide')" class="px-3 py-1.5 text-sm font-medium border-b-2 border-orange-500 text-orange-600">
+                            Wide (16:9)
+                        </button>
+                        <button id="tallTab" onclick="handleOverlayTabSwitch('tall')" class="px-3 py-1.5 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                            Tall (2:3)
+                        </button>
+                    </div>
+                    
+                    <!-- Wide Tab Content -->
+                    <div id="wideTabContent" class="space-y-3">
+                        <!-- Wide Overlay -->
+                        <div class="border border-gray-200 rounded p-2">
+                            <h5 class="text-xs font-semibold text-gray-700 mb-1">Overlay (on top)</h5>
+                            <div class="flex gap-2 items-start">
+                                <img id="wideOverlayPreview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Preview" class="w-20 h-12 object-contain border border-gray-300 rounded bg-gray-50 flex-shrink-0">
+                                <div class="flex-1 space-y-1">
+                                    <p id="wideOverlayFilename" class="text-xs text-gray-600">overlays/16x9/overlay.png</p>
+                                    <input type="file" id="wideOverlayFile" accept="image/png" class="text-xs w-full" onchange="handleOverlayFileSelect('wide-overlay')">
+                                    <div class="flex gap-1">
+                                        <button id="wideOverlayUploadBtn" onclick="uploadOverlay('wide-overlay')" class="hidden btn-primary text-xs px-2 py-0.5">Upload</button>
+                                        <button onclick="removeOverlay('wide-overlay')" class="text-xs px-2 py-0.5 border border-red-300 text-red-600 rounded hover:bg-red-50">Remove</button>
+                                        <button onclick="restoreDefaultOverlay('wide-overlay')" class="text-xs px-2 py-0.5 border border-gray-300 text-gray-700 rounded hover:bg-gray-50">Restore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Wide Underlay -->
+                        <div class="border border-gray-200 rounded p-2">
+                            <h5 class="text-xs font-semibold text-gray-700 mb-1">Underlay (behind player)</h5>
+                            <div class="flex gap-2 items-start">
+                                <img id="wideUnderlayPreview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Preview" class="w-20 h-12 object-contain border border-gray-300 rounded bg-gray-50 flex-shrink-0">
+                                <div class="flex-1 space-y-1">
+                                    <p id="wideUnderlayFilename" class="text-xs text-gray-600">overlays/16x9/underlay.png</p>
+                                    <input type="file" id="wideUnderlayFile" accept="image/png" class="text-xs w-full" onchange="handleOverlayFileSelect('wide-underlay')">
+                                    <div class="flex gap-1">
+                                        <button id="wideUnderlayUploadBtn" onclick="uploadOverlay('wide-underlay')" class="hidden btn-primary text-xs px-2 py-0.5">Upload</button>
+                                        <button onclick="removeOverlay('wide-underlay')" class="text-xs px-2 py-0.5 border border-red-300 text-red-600 rounded hover:bg-red-50">Remove</button>
+                                        <button onclick="restoreDefaultOverlay('wide-underlay')" class="text-xs px-2 py-0.5 border border-gray-300 text-gray-700 rounded hover:bg-gray-50">Restore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tall Tab Content -->
+                    <div id="tallTabContent" class="space-y-3 hidden">
+                        <!-- Tall Overlay -->
+                        <div class="border border-gray-200 rounded p-2">
+                            <h5 class="text-xs font-semibold text-gray-700 mb-1">Overlay (on top)</h5>
+                            <div class="flex gap-2 items-start">
+                                <img id="tallOverlayPreview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Preview" class="w-12 h-18 object-contain border border-gray-300 rounded bg-gray-50 flex-shrink-0">
+                                <div class="flex-1 space-y-1">
+                                    <p id="tallOverlayFilename" class="text-xs text-gray-600">overlays/2x3/overlay.png</p>
+                                    <input type="file" id="tallOverlayFile" accept="image/png" class="text-xs w-full" onchange="handleOverlayFileSelect('tall-overlay')">
+                                    <div class="flex gap-1">
+                                        <button id="tallOverlayUploadBtn" onclick="uploadOverlay('tall-overlay')" class="hidden btn-primary text-xs px-2 py-0.5">Upload</button>
+                                        <button onclick="removeOverlay('tall-overlay')" class="text-xs px-2 py-0.5 border border-red-300 text-red-600 rounded hover:bg-red-50">Remove</button>
+                                        <button onclick="restoreDefaultOverlay('tall-overlay')" class="text-xs px-2 py-0.5 border border-gray-300 text-gray-700 rounded hover:bg-gray-50">Restore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tall Underlay -->
+                        <div class="border border-gray-200 rounded p-2">
+                            <h5 class="text-xs font-semibold text-gray-700 mb-1">Underlay (behind player)</h5>
+                            <div class="flex gap-2 items-start">
+                                <img id="tallUnderlayPreview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Preview" class="w-12 h-18 object-contain border border-gray-300 rounded bg-gray-50 flex-shrink-0">
+                                <div class="flex-1 space-y-1">
+                                    <p id="tallUnderlayFilename" class="text-xs text-gray-600">overlays/2x3/underlay.png</p>
+                                    <input type="file" id="tallUnderlayFile" accept="image/png" class="text-xs w-full" onchange="handleOverlayFileSelect('tall-underlay')">
+                                    <div class="flex gap-1">
+                                        <button id="tallUnderlayUploadBtn" onclick="uploadOverlay('tall-underlay')" class="hidden btn-primary text-xs px-2 py-0.5">Upload</button>
+                                        <button onclick="removeOverlay('tall-underlay')" class="text-xs px-2 py-0.5 border border-red-300 text-red-600 rounded hover:bg-red-50">Remove</button>
+                                        <button onclick="restoreDefaultOverlay('tall-underlay')" class="text-xs px-2 py-0.5 border border-gray-300 text-gray-700 rounded hover:bg-gray-50">Restore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-2xl w-full m-4 flex flex-col">
+            <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0 z-10">
+                <div>
+                    <h2 class="text-xl font-bold" style="color: #FF6C00;">Import</h2>
+                    <p class="text-sm text-gray-500 mt-1">Import images from organized folders</p>
+                </div>
+                <button onclick="closeImportModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                
+                <!-- Import Section -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Import Images</h3>
+                    <p class="text-sm text-gray-600 mb-3">Import from /Imports/{league}/{team}/ structure</p>
+                    <input type="text" id="v6ImportPath" placeholder="/path/to/Imports/NFL/Dallas_Cowboys" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm mb-3">
+                    <button id="v6ImportBtn" class="btn-primary">
+                        <i data-feather="upload" class="w-4 h-4 inline mr-2"></i>
+                        Import Folder
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed top-4 left-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 hidden z-50">
+        <div class="flex items-center gap-3">
+            <i data-feather="info" class="w-5 h-5"></i>
+            <span id="notificationText"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app_v6.js?v=47"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

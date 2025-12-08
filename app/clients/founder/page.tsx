@@ -243,9 +243,9 @@ export default function FounderPage() {
                 No co-founder conflicts. No partner dilution. One person makes decisions, ships products, and owns outcomes. This is why Zero went from concept to App Store in 1 month.
               </p>
               <ul className="text-xs text-gray-300 space-y-2">
-                <li>✓ No board drama or founder disputes</li>
-                <li>✓ 100% execution alignment</li>
-                <li>✓ Fast decisions, faster shipping</li>
+                <li>→ No board drama or founder disputes</li>
+                <li>→ 100% execution alignment</li>
+                <li>→ Fast decisions, faster shipping</li>
               </ul>
             </OS8Window>
 
@@ -258,9 +258,9 @@ export default function FounderPage() {
                 7 years building 0-1 products at Meta means enterprise-grade architecture, not agency shortcuts. Zero has 10 microservices and 182 Swift files—built by one person in 6 weeks.
               </p>
               <ul className="text-xs text-gray-300 space-y-2">
-                <li>✓ Production-ready from day 1</li>
-                <li>✓ Scalable architecture patterns</li>
-                <li>✓ No technical debt shortcuts</li>
+                <li>→ Production-ready from day 1</li>
+                <li>→ Scalable architecture patterns</li>
+                <li>→ No technical debt shortcuts</li>
               </ul>
             </OS8Window>
 
@@ -273,9 +273,9 @@ export default function FounderPage() {
                 Leverages AI for everything from architecture to code generation. This isn't "prompt engineering"—it's systematic use of AI as a force multiplier for senior execution.
               </p>
               <ul className="text-xs text-gray-300 space-y-2">
-                <li>✓ 1 month: Zero concept → complete plan</li>
-                <li>✓ 3 weeks: Atlas 103KB roadmap</li>
-                <li>✓ 2 weeks: Amplify 129KB blueprint</li>
+                <li>→ 1 month: Zero concept → complete plan</li>
+                <li>→ 3 weeks: Atlas 103KB roadmap</li>
+                <li>→ 2 weeks: Amplify 129KB blueprint</li>
               </ul>
             </OS8Window>
 
@@ -288,9 +288,9 @@ export default function FounderPage() {
                 Not just building one product—building a systematic model that can launch 2-3 ventures per year. Zero, Atlas, and Amplify prove the process works across different markets.
               </p>
               <ul className="text-xs text-gray-300 space-y-2">
-                <li>✓ 3 ventures built in 6 months</li>
-                <li>✓ Different sectors (productivity, CRE, sports)</li>
-                <li>✓ Repeatable execution playbook</li>
+                <li>→ 3 ventures built in 6 months</li>
+                <li>→ Different sectors (productivity, CRE, sports)</li>
+                <li>→ Repeatable execution playbook</li>
               </ul>
             </OS8Window>
           </div>

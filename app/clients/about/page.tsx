@@ -61,7 +61,7 @@ export default function AboutPage() {
 
           <div className="relative z-10 max-w-5xl mx-auto">
             <OS8Window
-              title="⚡ Two Engines, One System"
+              title="Two Engines, One System"
               variant="featured"
               animateIn={false}
             >
@@ -74,7 +74,7 @@ export default function AboutPage() {
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 {/* Rationale Kits */}
                 <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/60">
-                  <h3 className="text-2xl font-bold mb-3">🛠️ Rationale Kits</h3>
+                  <h3 className="text-2xl font-bold mb-3">Rationale Kits</h3>
                   <p className="text-sm text-[#FFD700] font-medium mb-4">Productized Client Engagements</p>
                   <p className="text-sm text-gray-100 mb-6">
                     2-week sprints to 18-month builds. Cash, equity, or hybrid payment. Every engagement validates our execution systems and generates market data.
@@ -93,14 +93,14 @@ export default function AboutPage() {
                       <p className="text-sm text-gray-100">Compound execution capability with every project</p>
                     </div>
                   </div>
-                  <Link href="/services" className="text-sm text-[#FFD700] hover:underline font-medium">
+                  <Link href="/partnerships" className="text-sm text-[#FFD700] hover:underline font-medium">
                     View Rationale Kits →
                   </Link>
                 </div>
 
                 {/* Portfolio IP */}
                 <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/60">
-                  <h3 className="text-2xl font-bold mb-3">💎 Portfolio IP</h3>
+                  <h3 className="text-2xl font-bold mb-3">Portfolio IP</h3>
                   <p className="text-sm text-[#FFD700] font-medium mb-4">Conviction-Backed Ventures We Own</p>
                   <p className="text-sm text-gray-100 mb-6">
                     Products we originate and own. Built with conviction, designed to appreciate over time. IP accumulation, not time-trading.
@@ -352,7 +352,7 @@ export default function AboutPage() {
                     <ul className="space-y-2">
                       {framework.outcomes.map((outcome, idx) => (
                         <li key={idx} className="flex gap-3 text-sm sm:text-base">
-                          <span className="text-[#FFD700]">✓</span>
+                          <span className="text-[#FFD700]">→</span>
                           <span className="text-gray-100">{outcome}</span>
                         </li>
                       ))}
@@ -392,7 +392,7 @@ export default function AboutPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             <OS8Window
-              title="💡 Portfolio IP—Systematic Execution at Scale"
+              title="Portfolio IP—Systematic Execution at Scale"
               variant="featured"
               animateIn={false}
             >
@@ -638,7 +638,7 @@ export default function AboutPage() {
                   <ButtonPrimary href="/contact" size="lg">
                     Start a conversation
                   </ButtonPrimary>
-                  <ButtonSecondary href="/services" size="lg">
+                  <ButtonSecondary href="/partnerships" size="lg">
                     View Rationale Kits
                   </ButtonSecondary>
                 </div>

@@ -223,7 +223,7 @@ export default function InvestorsPage() {
                 className="flex gap-3 p-4 rounded-lg border border-[#FFD700]/20 bg-black/60"
               >
                 <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700]/10 flex items-center justify-center">
-                  <span className="text-[#FFD700] text-sm font-bold">✓</span>
+                  <span className="text-[#FFD700] text-sm font-bold">→</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-100">{item}</p>
               </div>

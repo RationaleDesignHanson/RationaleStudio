@@ -1,19 +1,25 @@
 /**
  * Work Portfolio Index
  *
- * Public portfolio showing all projects
- * Displays Zero + password-protected case studies
+ * Reorganized: Our products first, then partnerships
+ * Clear separation between ventures we own vs. client work
  */
 
 'use client';
 
+import Link from 'next/link';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { FeaturedWorkCard } from '@/components/work/FeaturedWorkCard';
 import { getAllProjects } from '@/lib/content/work-projects';
+import { Rocket, Handshake } from 'lucide-react';
 
 export default function WorkPage() {
   const projects = getAllProjects();
+
+  // Separate our products from partnerships
+  const ourProducts = projects.filter(p => p.category === 'consumer' && !p.isProtected);
+  const partnerships = projects.filter(p => p.category !== 'consumer' || p.isProtected);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
@@ -33,13 +39,71 @@ export default function WorkPage() {
             Our Work
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Products we've built and client engagements that prove our methodology.
-            Consumer apps, enterprise platforms, and complex multi-module systems.
+            Products we build and own, plus select partnership engagements where we applied our methodology to solve complex problems.
           </p>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Our Products Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="absolute inset-0 pointer-events-none">
+          <ASCIIUnifiedGrid
+            opacity={0.04}
+            animated={true}
+            colorTheme={watercolorThemes.terminalSubtle}
+            charSet="default"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-3 bg-[#FFD700]/10 rounded-lg">
+              <Rocket className="w-6 h-6 text-[#FFD700]" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-white">Our Ventures</h2>
+              <p className="text-sm text-gray-400">Products we build, own, and operate</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ourProducts.map((project) => (
+              <FeaturedWorkCard
+                key={project.id}
+                title={project.title}
+                subtitle={project.subtitle}
+                metrics={project.metrics.map(m => m.value)}
+                tags={project.tags}
+                href={`/work/${project.slug}`}
+                status={project.status}
+                isProtected={project.isProtected}
+              />
+            ))}
+
+            {/* Coming Soon Cards */}
+            <div className="p-6 bg-gray-900/30 border border-gray-700 rounded-lg border-dashed">
+              <h3 className="text-xl font-bold text-white mb-2">Atlas</h3>
+              <p className="text-sm text-gray-400 mb-4">CRE Intelligence Platform</p>
+              <div className="text-xs text-gray-500">Coming Q1 2025</div>
+            </div>
+
+            <div className="p-6 bg-gray-900/30 border border-gray-700 rounded-lg border-dashed">
+              <h3 className="text-xl font-bold text-white mb-2">Amplify</h3>
+              <p className="text-sm text-gray-400 mb-4">NIL Platform for Athletes</p>
+              <div className="text-xs text-gray-500">Coming Q2 2025</div>
+            </div>
+          </div>
+
+          {/* Products Callout */}
+          <div className="mt-12 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <p className="text-sm text-gray-400">
+              <span className="font-semibold text-white">Why we build our own products:</span> It keeps our skills sharp, validates our methodology with real market feedback, and creates ownership alignment. We only partner when we believe in the opportunity as much as our own ventures.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -51,8 +115,18 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-3 bg-[#FFD700]/10 rounded-lg">
+              <Handshake className="w-6 h-6 text-[#FFD700]" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
+              <p className="text-sm text-gray-400">Select engagements where we partnered with companies to build custom products</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
+            {partnerships.map((project) => (
               <FeaturedWorkCard
                 key={project.id}
                 title={project.title}
@@ -69,11 +143,11 @@ export default function WorkPage() {
           {/* Proof Diversity */}
           <div className="mt-16 pt-12 border-t border-gray-800">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Diverse Proof of Execution
-              </h2>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Proven Across Domains
+              </h3>
               <p className="text-gray-400 mb-8">
-                Our portfolio demonstrates systematic velocity across consumer products, enterprise B2B platforms, and complex multi-module systems. Same methodology, different domains.
+                Same systematic approach delivers results across consumer products, enterprise B2B platforms, and complex multi-module systems.
               </p>
               <div className="grid sm:grid-cols-3 gap-6">
                 <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
@@ -106,23 +180,23 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to build?</h2>
+          <h2 className="text-2xl font-bold mb-4">Interested in partnering?</h2>
           <p className="text-gray-300 mb-8">
-            We bring the same systematic approach to every engagement—whether it's a consumer app, enterprise platform, or complex multi-module system.
+            We take on select partnerships where we see strong alignment and opportunity to apply our product expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contact"
               className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
-              Book intro call
-            </a>
-            <a
-              href="/services"
+              Schedule Intro Call
+            </Link>
+            <Link
+              href="/partnerships"
               className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
             >
-              View services
-            </a>
+              View Partnership Models
+            </Link>
           </div>
         </div>
       </section>

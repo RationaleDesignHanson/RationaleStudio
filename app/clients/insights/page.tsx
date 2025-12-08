@@ -231,7 +231,7 @@ export default function InsightsPage() {
               <ButtonPrimary href="/contact" size="lg">
                 Get in touch
               </ButtonPrimary>
-              <ButtonSecondary href="/services" size="lg">
+              <ButtonSecondary href="/partnerships" size="lg">
                 View our services
               </ButtonSecondary>
             </div>

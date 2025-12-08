@@ -158,7 +158,7 @@ export default function InvestorDeckPage() {
                     className="flex gap-3 p-4 rounded-lg border border-border bg-muted"
                   >
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                      <span className="text-accent text-sm font-bold">✓</span>
+                      <span className="text-accent text-sm font-bold">→</span>
                     </div>
                     <p className="text-sm text-foreground">{item}</p>
                   </div>
@@ -406,7 +406,7 @@ export default function InvestorDeckPage() {
                       key={index}
                       className="flex gap-3 p-4 rounded-lg border border-border bg-muted"
                     >
-                      <span className="text-accent">✓</span>
+                      <span className="text-accent">→</span>
                       <p className="text-sm text-foreground">{point}</p>
                     </div>
                   ))}
@@ -534,7 +534,7 @@ export default function InvestorDeckPage() {
                   className="flex gap-3 p-4 rounded-lg border border-border bg-muted"
                 >
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                    <span className="text-accent text-sm font-bold">✓</span>
+                    <span className="text-accent text-sm font-bold">→</span>
                   </div>
                   <p className="text-sm sm:text-base text-foreground">{item}</p>
                 </div>

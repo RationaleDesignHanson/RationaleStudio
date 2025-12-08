@@ -139,7 +139,7 @@ export default function UnitEconomicsSlidePage() {
             <ul className="space-y-2 pt-4 border-t border-white/10">
               {tier.features.map((feature, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="text-green-400 mt-1">✓</span>
+                  <span className="text-green-400 mt-1">→</span>
                   <BodyMD color={CRE_COLORS.text.secondary}>{feature}</BodyMD>
                 </li>
               ))}

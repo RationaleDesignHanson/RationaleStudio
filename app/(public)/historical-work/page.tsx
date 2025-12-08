@@ -36,11 +36,76 @@ export default function HistoricalWorkPage() {
             </p>
           </div>
 
+          {/* META REALITY LABS: Core Experience */}
+          <div className="mb-12 max-w-6xl mx-auto">
+            <OS8Window
+              title="Meta Reality Labs · AR Platform Leadership"
+              variant="featured"
+              animateIn={false}
+            >
+              <div className="space-y-6">
+                <div>
+                  <span className="text-xs font-bold text-[#FFD700] uppercase tracking-wide">
+                    Product Manager · 2018-2022 · Shipped to Billions of Users
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-[#FFD700]">
+                  Building AR Platforms at Meta Scale
+                </h3>
+
+                <p className="text-sm text-gray-100 leading-relaxed">
+                  Led Spark AR platform development from inception at Meta Reality Labs, scaling from 2 to 22 team members and defining the product vision for augmented reality experiences across Facebook, Instagram, and Messenger. Shipped AR tools and features to millions of creators worldwide, with 15+ patents in AR/AI domains.
+                </p>
+
+                <div className="bg-gray-900/50 border border-[#FFD700]/20 rounded-lg p-6">
+                  <h4 className="text-lg font-bold text-[#FFD700] mb-4">Key Contributions</h4>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                    <div>
+                      <p className="font-semibold text-white mb-2">Platform Development</p>
+                      <ul className="space-y-1 text-xs">
+                        <li>• Built AR creation platform from ground up</li>
+                        <li>• Scaled to millions of active creators</li>
+                        <li>• 150% YoY platform growth</li>
+                        <li>• Unified experiences across FB, IG, Messenger</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white mb-2">Innovation & IP</p>
+                      <ul className="space-y-1 text-xs">
+                        <li>• 15+ patents in AR/AI technology</li>
+                        <li>• Real-time computer vision systems</li>
+                        <li>• Interactive camera effects at scale</li>
+                        <li>• Privacy-first architecture design</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <Link
+                    href="/work/spark-ar"
+                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                  >
+                    Full Spark AR Case Study →
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">AR Platform Development</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Team Leadership (2→22)</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">15+ Patents</span>
+                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Billions of Users</span>
+                </div>
+              </div>
+            </OS8Window>
+          </div>
+
           {/* RUMI: Independent Venture */}
           <div className="mb-12 max-w-6xl mx-auto">
             <OS8Window
               title="Rumi · Context-Aware AI Companion"
-              variant="featured"
+              variant="interactive"
               animateIn={false}
             >
               <div className="space-y-6">

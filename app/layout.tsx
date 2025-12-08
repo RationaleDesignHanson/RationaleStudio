@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import { LayoutContent } from "@/components/layout";
+import { AuthProvider } from "@/lib/auth/AuthContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,12 +28,27 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rationale.design'),
+  metadataBase: new URL('https://rationale.work'),
   title: {
-    default: "Rationale Studio",
+    default: "Rationale — Product Studio Building AI-Powered Ventures",
     template: "%s — Rationale"
   },
-  description: "Product development studio. Ex-Meta Reality Labs (7 years). We build products to prove we can build yours. Zero went from concept to App Store in 1 month.",
+  description: "Product studio building AI-powered ventures: Zero (email AI), Atlas (CRE intelligence), Amplify (NIL platform). We build our own products and partner with companies for equity + cash.",
+  keywords: [
+    'product studio',
+    'AI ventures',
+    'email AI',
+    'Zero',
+    'product development',
+    'startup studio',
+    'venture studio',
+    'AI products',
+    'Meta Reality Labs',
+    'product expertise',
+  ],
+  authors: [{ name: 'Matt Hanson' }],
+  creator: 'Rationale',
+  publisher: 'Rationale',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -42,14 +58,38 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://rationale.design',
-    title: "Rationale Studio",
-    description: "Product development studio. We build products to prove we can build yours.",
+    url: 'https://rationale.work',
+    title: "Rationale — Product Studio Building AI-Powered Ventures",
+    description: "Product studio building AI-powered ventures. We build our own products (Zero, Atlas, Amplify) and partner with companies for equity + cash.",
     siteName: 'Rationale',
+    images: [
+      {
+        url: 'https://rationale.work/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Rationale Product Studio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Rationale — Product Studio Building AI-Powered Ventures",
+    description: "Product studio building AI-powered ventures. We build our own products and partner with companies.",
+    images: ['https://rationale.work/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://rationale.work',
   },
 };
 
@@ -62,7 +102,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} antialiased`}>
-        <LayoutContent>{children}</LayoutContent>
+        <AuthProvider>
+          <LayoutContent>{children}</LayoutContent>
+        </AuthProvider>
       </body>
     </html>
   );

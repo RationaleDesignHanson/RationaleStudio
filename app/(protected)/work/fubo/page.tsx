@@ -1,0 +1,59 @@
+/**
+ * FUBO AI Sports Thumbnail Generator Case Study
+ *
+ * PASSWORD-PROTECTED BY CLIENT REQUEST
+ *
+ * This case study showcases the AI-powered thumbnail generation
+ * system built for FUBO's sports streaming platform.
+ */
+
+'use client';
+
+import Link from 'next/link';
+import { OS8Window } from '@/components/visual-test';
+import { ExternalLink, Zap, Layers, Palette } from 'lucide-react';
+
+export default function FUBOCaseStudyPage() {
+  return ( <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white"> {/* Hero Section */} <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="max-w-5xl mx-auto"> <Link
+            href="/#portfolio"
+            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
+          > ← Back to Portfolio </Link> <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full"> <span className="text-sm text-red-400 font-medium">Client Confidential • By Request Only</span> </div> <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4"> STRATEGIC SPRINT // 2-WEEK DELIVERY // 2024 </p> <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"> FUBO AI Thumbnail Generator </h1> <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mb-6"> AI-powered sports thumbnail generation with 24 visual styles, enabling scalable content creation for FUBO's streaming platform across 200+ teams and 8 major leagues. </p> <div className="flex flex-wrap gap-2"> <span className="px-3 py-1 rounded-full bg-[#FF6C00]/10 border border-[#FF6C00]/30 text-[#FF6C00] text-xs font-semibold"> Google Gemini AI </span> <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold"> Python Flask </span> <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold"> Real-time Generation </span> <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold"> 200+ Teams </span> </div> </div> </section> {/* Overview */} <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="max-w-5xl mx-auto"> <OS8Window
+            title="Project Overview"
+            variant="yellow"
+            animateIn={false}
+            className="max-w-4xl mx-auto"
+          > <div className="space-y-4 text-gray-700 leading-relaxed"> <p className="text-base"> <span className="font-bold text-black">Challenge:</span> Sports streaming platforms need massive amounts of stylized thumbnail content across hundreds of teams and events. FUBO required a system to generate brand-consistent thumbnails for 200+ teams across 8 major leagues (NFL, NBA, NHL, MLS, EPL, La Liga, Bundesliga, F1) without manual design bottlenecks. </p> <p className="text-base"> <span className="font-bold text-black">Solution:</span> Built AI-powered generation system using Google Gemini 2.5 Flash with 24 visual styles, two-step generation process, and sport-aware styling. Complete system delivered in 2-week strategic sprint with bulk processing, style blending, and quality assurance. </p> <p className="text-base border-t border-[#FF6C00] pt-4 font-semibold text-black"> Impact: Enabled scalable content creation across 200+ teams with 3-5 second generation time per image, 24 distinct visual styles, and complete brand consistency. </p> </div> </OS8Window> </div> </section> {/* Key Features */} <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="max-w-7xl mx-auto"> <div className="text-center mb-12"> <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"> System Capabilities </h2> </div> <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"> {/* AI Generation */} <OS8Window
+              title="AI Generation"
+              variant="minimal"
+              delay={100}
+            > <div className="space-y-3"> <Zap className="w-8 h-8 text-[#FF6C00] mb-2" /> <p className="text-sm text-gray-600 leading-relaxed"> Google Gemini 2.5 Flash integration with two-step generation process: base image creation + style application. </p> <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3"> <li>• 3-5 second generation time</li> <li>• Subject preservation prompting</li> <li>• Team color accuracy</li> <li>• Sport-aware context</li> </ul> </div> </OS8Window> {/* 24 Visual Styles */} <OS8Window
+              title="24 Visual Styles"
+              variant="minimal"
+              delay={200}
+            > <div className="space-y-3"> <Palette className="w-8 h-8 text-[#FF6C00] mb-2" /> <p className="text-sm text-gray-600 leading-relaxed"> Comprehensive style catalog covering artistic, digital, photography, and conceptual aesthetics. </p> <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3"> <li>• Comic Book, Neon Noir, Cinematic</li> <li>• Watercolor, Pixel Art, Glitch Art</li> <li>• Style blending (up to 3 styles)</li> <li>• Weighted control per style</li> </ul> </div> </OS8Window> {/* Bulk Processing */} <OS8Window
+              title="Enterprise Scale"
+              variant="minimal"
+              delay={300}
+            > <div className="space-y-3"> <Layers className="w-8 h-8 text-[#FF6C00] mb-2" /> <p className="text-sm text-gray-600 leading-relaxed"> Process entire league rosters in single batch operations with organized export system. </p> <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3"> <li>• 200+ teams supported</li> <li>• 8 major leagues (NFL, NBA, NHL+)</li> <li>• Bulk generation workflows</li> <li>• Quality assurance scoring</li> </ul> </div> </OS8Window> </div> </div> </section> {/* Technical Approach */} <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="max-w-5xl mx-auto"> <h2 className="text-3xl sm:text-4xl font-bold mb-8">Technical Approach</h2> <div className="space-y-6"> {/* Two-Step Process */} <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"> <h3 className="text-xl font-bold text-[#FF6C00] mb-4"> Two-Step Generation Process </h3> <div className="space-y-3 text-sm text-gray-300"> <div> <span className="font-semibold text-white">Step 1: Base Image Generation</span> <p className="text-xs text-gray-400 mt-1"> Input: Team name, colors, sport context → Output: Subject-preserved base image </p> </div> <div> <span className="font-semibold text-white">Step 2: Style Application</span> <p className="text-xs text-gray-400 mt-1"> Input: Base image + style references + weights → Output: Stylized thumbnail </p> </div> </div> </div> {/* Style Blending Example */} <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"> <h3 className="text-xl font-bold text-[#FF6C00] mb-4"> Style Blending System </h3> <pre className="text-xs text-gray-300 bg-black/30 p-4 rounded overflow-x-auto">
+{`# Example: Combine styles with weighted control
+styles = ['comic-book', 'neon-noir']
+weights = [0.7, 0.3]
+team = 'Golden State Warriors'
+league = 'NBA'
+
+generate_thumbnail(
+  team=team,
+  styles=styles,
+  weights=weights,
+  aspect_ratio='2:3'
+)
+
+# Creates: Dark superhero aesthetic
+# Comic Book (70%) + Neon Noir (30%)`}</pre> </div> {/* Supported Leagues */} <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"> <h3 className="text-xl font-bold text-[#FF6C00] mb-4"> Supported Leagues & Teams </h3> <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm"> <div> <span className="font-semibold text-white">NFL</span> <p className="text-xs text-gray-400">32 teams</p> </div> <div> <span className="font-semibold text-white">NBA</span> <p className="text-xs text-gray-400">30 teams</p> </div> <div> <span className="font-semibold text-white">NHL</span> <p className="text-xs text-gray-400">32 teams</p> </div> <div> <span className="font-semibold text-white">MLS</span> <p className="text-xs text-gray-400">29 teams</p> </div> <div> <span className="font-semibold text-white">EPL</span> <p className="text-xs text-gray-400">20 teams</p> </div> <div> <span className="font-semibold text-white">La Liga</span> <p className="text-xs text-gray-400">20 teams</p> </div> <div> <span className="font-semibold text-white">Bundesliga</span> <p className="text-xs text-gray-400">18 teams</p> </div> <div> <span className="font-semibold text-white">F1</span> <p className="text-xs text-gray-400">10 teams</p> </div> </div> </div> </div> </div> </section> {/* Live Demo */} <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="max-w-5xl mx-auto"> <div className="text-center mb-8"> <h2 className="text-3xl sm:text-4xl font-bold mb-4"> Working Prototype </h2> <p className="text-gray-400 max-w-2xl mx-auto"> Fully functional thumbnail generator with 11 visual styles, 200+ teams, and real-time AI generation. </p> </div> <div className="p-8 bg-gray-900/50 border border-[#FF6C00]/30 rounded-lg"> <div className="flex flex-col items-center gap-6"> <div className="w-16 h-16 bg-[#FF6C00]/20 border border-[#FF6C00]/40 rounded-full flex items-center justify-center"> <ExternalLink className="w-8 h-8 text-[#FF6C00]" /> </div> <div className="text-center"> <h3 className="text-xl font-bold text-white mb-2"> FUBO Thumbnail Generator v6.0 </h3> <p className="text-sm text-gray-400 mb-6"> Launch the working prototype to generate thumbnails in real-time.
+                  Requires Google Gemini API key (free tier available). </p> </div> <a
+                href="/prototypes/fubo/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#FF6C00] hover:bg-[#FF6C00]/90 text-white font-semibold rounded-lg transition-colors"
+              > <ExternalLink className="w-5 h-5" /> Launch Prototype </a> <div className="mt-4 p-4 bg-black/30 border border-gray-800 rounded-lg text-xs text-gray-400 max-w-md"> <p className="mb-2"><span className="font-semibold text-white">Setup Required:</span></p> <ol className="list-decimal list-inside space-y-1"> <li>Get free API key from aistudio.google.com/app/apikey</li> <li>Enter key when prompted in the prototype</li> <li>Select styles and teams to generate thumbnails</li> </ol> </div> </div> </div> </div> </section> {/* Deliverables */} <section className="py-20 px-4 sm:px-6 lg:px-8"> <div className="max-w-5xl mx-auto"> <h2 className="text-3xl sm:text-4xl font-bold mb-8">Delivered System</h2> <div className="grid md:grid-cols-2 gap-6"> <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"> <h3 className="text-lg font-bold text-[#FF6C00] mb-3"> Core Features </h3> <ul className="space-y-2 text-sm text-gray-300"> <li> Web-based UI (runs in browser)</li> <li> 11 built-in visual styles</li> <li> 200+ sports teams (8 leagues)</li> <li> Real-time AI generation (3-5s)</li> <li> Style blending (up to 3 styles)</li> <li> Bulk processing workflows</li> </ul> </div> <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"> <h3 className="text-lg font-bold text-[#FF6C00] mb-3"> Advanced Capabilities </h3> <ul className="space-y-2 text-sm text-gray-300"> <li> Professional background removal</li> <li> Custom overlay graphics system</li> <li> Quality assurance scoring</li> <li> Organized export system</li> <li> Custom dimensions support</li> <li> Import/export workflows</li> </ul> </div> </div> <div className="mt-8 p-6 bg-gray-900/30 border border-gray-800 rounded-lg"> <p className="text-sm text-gray-400"> <span className="font-semibold text-white">Timeline:</span> Complete system delivered in 2-week strategic sprint from concept to working prototype with full feature set and documentation. </p> </div> </div> </section> </main> );
+}

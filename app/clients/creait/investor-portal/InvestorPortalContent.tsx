@@ -316,7 +316,7 @@ function RoadmapSection() {
               <LabelSM color={CRE_COLORS.text.muted}>MILESTONES</LabelSM>
               {phase.milestones.map((milestone, mIdx) => (
                 <div key={mIdx} className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span className="text-[#FFD700] mt-1">→</span>
                   <BodyMD color={CRE_COLORS.text.secondary}>{milestone}</BodyMD>
                 </div>
               ))}

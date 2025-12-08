@@ -1,13 +1,12 @@
 /**
  * Rationale Homepage
  *
- * Restructured per December 2025 plan:
- * - Hero with equity positioning
- * - Credibility strip with Dual Engine tooltip
- * - Featured Work (3 projects)
- * - Velocity Proof (from /overview)
- * - How We Work
- * - Fit Filter (softened)
+ * Product Studio Positioning (Phase 2):
+ * - Hero: Product studio identity
+ * - Current Focus: Zero beta + Pipeline
+ * - How We Ship: Kits methodology
+ * - Portfolio: Own products + Partnerships
+ * - Three Paths: Invest/Partner/Collaborate
  */
 
 'use client';
@@ -18,226 +17,88 @@ import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { FeaturedWorkGrid } from '@/components/work/FeaturedWorkGrid';
 import { VelocityProof } from '@/components/home/VelocityProof';
 import { FitFilter } from '@/components/home/FitFilter';
-import { Info } from 'lucide-react';
+import { Info, ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 
 export default function HomePage() {
   const [showDualEngineTooltip, setShowDualEngineTooltip] = useState(false);
 
+  const structuredData = [
+    generateOrganizationStructuredData(),
+    generateBreadcrumbStructuredData([{ name: 'Home', url: '/' }]),
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* 1. HERO SECTION */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
-        {/* ASCII Grid Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
+    <>
+    <MultipleStructuredData dataBlocks={structuredData} /> <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white"> {/* 1. HERO SECTION - Product Studio Identity */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden"> {/* ASCII Grid Background */} <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.08}
             animated={true}
             colorTheme={watercolorThemes.terminalGold}
             charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            We launch products
-            <br />
-            with builders.
-          </h1>
-
-          <p className="text-lg sm:text-xl md:text-2xl text-[#FFD700] font-semibold mb-8">
-            Equity when the fit is right.
-          </p>
-
-          <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-10">
-            Rationale gets you to working prototypes in weeks, not quarters.
-            Feel what works early. Build with conviction. Ship with speed.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="#featured-work"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
-            >
-              See our work
-            </Link>
-            <Link
-              href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
-            >
-              Book intro call
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. CREDIBILITY STRIP */}
-      <section className="relative py-8 px-4 sm:px-6 lg:px-8 border-b border-gray-800 bg-gray-900/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-gray-400">
-            <div className="flex items-center gap-2">
-              <span className="text-[#FFD700]">★</span>
-              <span>Meta</span>
-            </div>
-            <span className="text-gray-600">·</span>
-            <div>15+ Patents</div>
-            <span className="text-gray-600">·</span>
-            <div>7 Years AR/AI</div>
-            <span className="text-gray-600">·</span>
-            <div
+          /> </div> <div className="relative z-10 max-w-5xl mx-auto text-center"> {/* Product Studio Badge */} <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-full mb-6"> <Zap className="w-4 h-4 text-[#FFD700]" /> <span className="text-sm text-[#FFD700] font-medium">Product Studio</span> </div> <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"> Product studio building <br /> AI-powered ventures </h1> <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-10"> We build and own our own products—Zero, Atlas, Amplify.
+            When not building our ventures, we partner with companies that need proven
+            product expertise and AI acceleration. Same methodology, applied to their opportunity. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center"> <Link
+              href="#current-focus"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)] flex items-center justify-center gap-2"
+            > See what we're building <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 2. CREDIBILITY STRIP */} <section className="relative py-8 px-4 sm:px-6 lg:px-8 border-b border-gray-800 bg-gray-900/50"> <div className="max-w-5xl mx-auto"> <div className="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-gray-400"> <div className="flex items-center gap-2"> <span className="text-[#FFD700]"></span> <span>Meta</span> </div> <span className="text-gray-600">·</span> <div>15+ Patents</div> <span className="text-gray-600">·</span> <div>7 Years AR/AI</div> <span className="text-gray-600">·</span> <div
               className="relative flex items-center gap-1.5 cursor-help"
               onMouseEnter={() => setShowDualEngineTooltip(true)}
               onMouseLeave={() => setShowDualEngineTooltip(false)}
-            >
-              <span>Dual Engine</span>
-              <Info className="w-4 h-4 text-[#FFD700]" />
-
-              {/* Tooltip */}
-              {showDualEngineTooltip && (
-                <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 p-3 bg-gray-900 border border-gray-700 rounded-md shadow-xl text-xs text-gray-300 z-10">
-                  <p className="mb-2">
-                    <span className="font-semibold text-white">Two engines:</span> Products we build & own (like Zero) + Client partnerships for equity & cash.
-                  </p>
-                  <Link href="/about" className="text-[#FFD700] hover:underline text-xs">
-                    Learn more →
-                  </Link>
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-gray-700 rotate-45" />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FEATURED WORK */}
-      <section id="featured-work" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
+            > <span>Dual Engine</span> <Info className="w-4 h-4 text-[#FFD700]" /> {/* Tooltip */}
+              {showDualEngineTooltip && ( <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 p-3 bg-gray-900 border border-gray-700 rounded-md shadow-xl text-xs text-gray-300 z-10"> <p className="mb-2"> <span className="font-semibold text-white">Two engines:</span> Products we build & own (like Zero) + Client partnerships for equity & cash. </p> <Link href="/about" className="text-[#FFD700] hover:underline text-xs"> Learn more → </Link> <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-gray-700 rotate-45" /> </div> )} </div> </div> </div> </section> {/* 3. CURRENT FOCUS - Zero Beta + Pipeline */} <section id="current-focus" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
             charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <FeaturedWorkGrid />
-        </div>
-      </section>
-
-      {/* 4. VELOCITY PROOF */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
+          /> </div> <div className="relative z-10 max-w-6xl mx-auto"> <div className="text-center mb-12"> <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4"> Current Focus </h2> <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto"> What we're building right now. </p> </div> <div className="grid md:grid-cols-2 gap-8"> {/* Zero - Beta/Dogfooding */} <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#FFD700]/30 rounded-lg"> <div className="flex items-start justify-between mb-4"> <div> <h3 className="text-2xl font-bold text-white mb-2">Zero</h3> <div className="flex items-center gap-2"> <span className="px-3 py-1 bg-[#FFD700]/20 border border-[#FFD700]/40 rounded-full text-xs text-[#FFD700] font-medium"> Beta · Dogfooding </span> </div> </div> </div> <p className="text-gray-300 mb-6 leading-relaxed"> AI email assistant that achieves Inbox Zero autonomously. Learns your preferences,
+                handles routine responses, and keeps you focused on what matters. </p> <div className="space-y-3 mb-6 text-sm"> <div className="flex items-start gap-2"> <TrendingUp className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" /> <span className="text-gray-400">Used daily by our team to validate core workflows</span> </div> <div className="flex items-start gap-2"> <Users className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" /> <span className="text-gray-400">Investor preview available for qualified partners</span> </div> </div> <Link
+                href="/work/zero"
+                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+              > Learn about Zero <ArrowRight className="w-4 h-4" /> </Link> </div> {/* Pipeline */} <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg"> <div className="mb-6"> <h3 className="text-2xl font-bold text-white mb-2">Pipeline</h3> <div className="flex items-center gap-2"> <span className="px-3 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium"> Q1–Q2 2025 </span> </div> </div> <p className="text-gray-300 mb-6 leading-relaxed"> Multiple products in development across sectors. We're exploring opportunities
+                in productivity, knowledge work, and enterprise automation. </p> <div className="space-y-3 text-sm text-gray-400"> <div>Validation phase for 3 concepts</div> <div>Prototype testing with select partners</div> <div>Looking for product-minded investors</div> </div> <div className="mt-6 pt-6 border-t border-gray-700"> <p className="text-sm text-gray-400 mb-3"> Interested in early access or investment opportunities? </p> <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                > Get in touch <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </div> </div> </section> {/* 4. HOW WE SHIP - Kits Methodology */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
             charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          {/* Mobile: simplified version */}
-          <div className="block md:hidden">
-            <VelocityProof simplified={true} />
-          </div>
-
-          {/* Desktop: full version */}
-          <div className="hidden md:block">
-            <VelocityProof simplified={false} />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. HOW WE WORK */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
+          /> </div> <div className="relative z-10 max-w-4xl mx-auto"> {/* Mobile: simplified version */} <div className="block md:hidden"> <VelocityProof simplified={true} /> </div> {/* Desktop: full version */} <div className="hidden md:block"> <VelocityProof simplified={false} /> </div> <div className="mt-12 text-center"> <Link
+              href="/how-we-work"
+              className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+            > See the full methodology <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 5. PORTFOLIO - Selected Work */} <section id="portfolio" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
             charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              How We Work
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
-              Three engagement models, all using the same systematic approach:
-              7 prototypes before production, risk mitigated early, working software over endless specs.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Clarity Kit */}
-            <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-              <h3 className="text-xl font-bold text-white mb-2">Clarity Kit</h3>
-              <div className="text-sm text-gray-400 mb-4">
-                2-week audit · $15-25K
-              </div>
-              <p className="text-sm text-gray-300 mb-4">
-                Current state assessment, opportunity identification, prototype roadmap, go/no-go recommendation.
-              </p>
-              <Link href="/services/clarity-kit" className="text-[#FFD700] text-sm hover:underline">
-                Learn more →
-              </Link>
-            </div>
-
-            {/* Prototype Kit */}
-            <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-              <h3 className="text-xl font-bold text-white mb-2">Prototype Kit</h3>
-              <div className="text-sm text-gray-400 mb-4">
-                4-week sprint · $40-60K
-              </div>
-              <p className="text-sm text-gray-300 mb-4">
-                Interactive prototypes (3-7), technical architecture, user testing insights, implementation roadmap.
-              </p>
-              <Link href="/services/prototype-kit" className="text-[#FFD700] text-sm hover:underline">
-                Learn more →
-              </Link>
-            </div>
-
-            {/* Build Ship Run */}
-            <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-              <h3 className="text-xl font-bold text-white mb-2">Build Ship Run</h3>
-              <div className="text-sm text-gray-400 mb-4">
-                8-12 week pilot · $80-150K+
-              </div>
-              <p className="text-sm text-gray-300 mb-4">
-                Production-ready MVP, deployment & infrastructure, beta rollout strategy, ongoing support options.
-              </p>
-              <Link href="/services/build-ship-run" className="text-[#FFD700] text-sm hover:underline">
-                Learn more →
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link href="/services" className="text-[#FFD700] hover:underline font-medium">
-              View all services →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. FIT FILTER */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
+          /> </div> <div className="relative z-10 max-w-6xl mx-auto"> <div className="text-center mb-12"> <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4"> Selected Work </h2> <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto"> Products we've built and partnerships we've formed. </p> </div> <FeaturedWorkGrid /> <div className="mt-12 text-center"> <Link
+              href="/work"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-gray-600 hover:border-[#FFD700] text-white font-medium transition-colors"
+            > View all work <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 6. THREE PATHS - Invest / Partner / Collaborate */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
             charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <FitFilter />
-        </div>
-      </section>
-    </main>
+          /> </div> <div className="relative z-10 max-w-5xl mx-auto"> <div className="text-center mb-12"> <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4"> Three Ways to Work Together </h2> <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto"> Choose the path that fits your goals. </p> </div> <div className="grid md:grid-cols-3 gap-8"> {/* Invest */} <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors"> <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4"> <TrendingUp className="w-6 h-6 text-[#FFD700]" /> </div> <h3 className="text-xl font-bold text-white mb-3">Invest</h3> <p className="text-sm text-gray-300 mb-6 leading-relaxed"> Back our product portfolio. Get early access to Zero and our pipeline products.
+                We're looking for product-minded investors who can open doors. </p> <Link
+                href="/contact?interest=invest"
+                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+              > Learn more <ArrowRight className="w-4 h-4" /> </Link> </div> {/* Partner */} <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors"> <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4"> <Users className="w-6 h-6 text-[#FFD700]" /> </div> <h3 className="text-xl font-bold text-white mb-3">Partner</h3> <p className="text-sm text-gray-300 mb-6 leading-relaxed"> Launch products together. We take equity + cash for product development
+                and go-to-market. Best for founders with distribution and capital. </p> <Link
+                href="/contact?interest=partner"
+                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+              > Explore partnership <ArrowRight className="w-4 h-4" /> </Link> </div> {/* Collaborate */} <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors"> <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4"> <Zap className="w-6 h-6 text-[#FFD700]" /> </div> <h3 className="text-xl font-bold text-white mb-3">Collaborate</h3> <p className="text-sm text-gray-300 mb-6 leading-relaxed"> Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
+                Get to working software in weeks, not quarters. </p> <Link
+                href="/partnerships"
+                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+              > View partnerships <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </div> </section> {/* 7. FIT FILTER (Optional - keep softened) */} <section className="relative py-20 px-4 sm:px-6 lg:px-8"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
+            opacity={0.04}
+            animated={true}
+            colorTheme={watercolorThemes.terminalSubtle}
+            charSet="default"
+          /> </div> <div className="relative z-10 max-w-4xl mx-auto"> <FitFilter /> </div> </section> </main>
+    </>
   );
 }

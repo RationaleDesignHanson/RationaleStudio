@@ -1,0 +1,601 @@
+/* FUBO Branded Dark Theme
+ * Primary: FUBO Orange #FF6C00
+ * Background: Charcoal Grey #2D2D2D
+ * Text: White #FFFFFF
+ */
+
+:root {
+    /* FUBO Color System */
+    --fubo-orange: #FF6C00;
+    --fubo-orange-hover: #FF8534;
+    --fubo-orange-light: #FFA366;
+    
+    /* Backgrounds */
+    --bg-primary: #2D2D2D;
+    --bg-surface: #3A3A3A;
+    --bg-elevated: #404040;
+    --bg-input: #353535;
+    
+    /* Borders */
+    --border-primary: #4A4A4A;
+    --border-focus: var(--fubo-orange);
+    
+    /* Text */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-tertiary: #808080;
+    
+    /* Status Colors */
+    --status-success: #10B981;
+    --status-warning: #F59E0B;
+    --status-error: #EF4444;
+    --status-info: #3B82F6;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-orange: 0 0 20px rgba(255, 108, 0, 0.3);
+}
+
+/* Base Styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Override Tailwind defaults for dark theme */
+.bg-gray-100 {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-white {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+}
+
+.bg-gray-50 {
+    background-color: var(--bg-elevated) !important;
+}
+
+.text-gray-800,
+.text-gray-700,
+.text-gray-600 {
+    color: var(--text-primary) !important;
+}
+
+.text-gray-500 {
+    color: var(--text-secondary) !important;
+}
+
+.border-gray-300,
+.border-gray-200 {
+    border-color: var(--border-primary) !important;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.section-header {
+    border-left: 4px solid var(--fubo-orange);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Step Indicators */
+.step-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--fubo-orange);
+    color: white;
+    font-weight: 700;
+    margin-right: 0.75rem;
+    box-shadow: var(--shadow-orange);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--fubo-orange);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--fubo-orange-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg), var(--shadow-orange);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--fubo-orange);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: 2px solid var(--fubo-orange);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 108, 0, 0.1);
+    border-color: var(--fubo-orange-hover);
+}
+
+/* Cards */
+.card {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-primary);
+}
+
+.card-elevated {
+    background-color: var(--bg-elevated);
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--fubo-orange);
+    box-shadow: 0 0 0 3px rgba(255, 108, 0, 0.1);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+input:read-only,
+input:disabled {
+    background-color: var(--bg-surface);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Radio & Checkbox */
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--fubo-orange);
+}
+
+/* Progress Bars */
+.progress-bar {
+    background-color: var(--bg-elevated);
+    border-radius: 9999px;
+    height: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: var(--fubo-orange);
+    height: 100%;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 108, 0, 0.5);
+}
+
+/* QA Badges */
+.qa-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.qa-badge-pass {
+    background-color: var(--status-success);
+    color: white;
+}
+
+.qa-badge-review {
+    background-color: var(--status-warning);
+    color: white;
+}
+
+.qa-badge-fail {
+    background-color: var(--status-error);
+    color: white;
+}
+
+/* Section Backgrounds - Override Tailwind */
+.bg-blue-50 {
+    background-color: rgba(255, 108, 0, 0.05) !important;
+    border-color: rgba(255, 108, 0, 0.2) !important;
+}
+
+.bg-green-50 {
+    background-color: rgba(16, 185, 129, 0.05) !important;
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.bg-purple-50 {
+    background-color: rgba(139, 92, 246, 0.05) !important;
+    border-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.bg-yellow-50 {
+    background-color: rgba(245, 158, 11, 0.05) !important;
+    border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.bg-orange-50 {
+    background-color: rgba(255, 108, 0, 0.05) !important;
+    border-color: rgba(255, 108, 0, 0.2) !important;
+}
+
+.bg-indigo-50 {
+    background-color: rgba(99, 102, 241, 0.05) !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Text Color Overrides for Headers in Colored Sections */
+.bg-blue-50 h3,
+.bg-blue-50 h4,
+.bg-green-50 h3,
+.bg-green-50 h4,
+.bg-purple-50 h3,
+.bg-purple-50 h4 {
+    color: var(--text-primary) !important;
+}
+
+/* Loading Spinner */
+.spinner-orange {
+    border-color: var(--fubo-orange);
+    border-right-color: transparent;
+}
+
+/* Hover Effects */
+.hover-orange:hover {
+    background-color: rgba(255, 108, 0, 0.1);
+    border-color: var(--fubo-orange-hover);
+}
+
+/* Tab System */
+.tab-button {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--text-primary);
+}
+
+.tab-button.active {
+    border-bottom-color: var(--fubo-orange);
+    color: var(--fubo-orange);
+}
+
+/* Segmented Toggle Buttons */
+.toggle-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    flex: 1;
+    border-radius: 0.375rem;
+}
+
+.toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.toggle-btn.active {
+    background-color: var(--fubo-orange);
+    color: white;
+}
+
+/* Notifications */
+.notification {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.notification-success {
+    background-color: var(--status-success);
+    color: white;
+}
+
+.notification-error {
+    background-color: var(--status-error);
+    color: white;
+}
+
+.notification-warning {
+    background-color: var(--status-warning);
+    color: white;
+}
+
+.notification-info {
+    background-color: var(--fubo-orange);
+    color: white;
+}
+
+/* Result Cards */
+.result-card {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-primary);
+    transition: all 0.2s ease;
+}
+
+.result-card:hover {
+    border-color: var(--fubo-orange);
+    box-shadow: var(--shadow-lg), var(--shadow-orange);
+    transform: translateY(-2px);
+}
+
+/* Modal/Preview */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--fubo-orange);
+}
+
+/* Collapsible Sections */
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: var(--bg-elevated);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.collapsible-header:hover {
+    background-color: rgba(255, 108, 0, 0.05);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+    padding: 0;
+}
+
+.collapsible-content-expanded {
+    max-height: 5000px;
+    opacity: 1;
+    padding: 1rem;
+}
+
+/* Quick Start */
+.quick-start-card {
+    background: linear-gradient(135deg, var(--fubo-orange), var(--fubo-orange-hover));
+    padding: 2rem;
+    border-radius: 0.75rem;
+    color: white;
+    box-shadow: var(--shadow-lg), var(--shadow-orange);
+    margin-bottom: 1.5rem;
+}
+
+.quick-start-button {
+    background-color: white;
+    color: var(--fubo-orange);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s ease;
+}
+
+.quick-start-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Scrollbar Styling (for dark theme) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--fubo-orange);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+    outline: 2px solid var(--fubo-orange);
+    outline-offset: 2px;
+}
+
+/* Utility Classes */
+.text-orange {
+    color: var(--fubo-orange) !important;
+}
+
+.bg-orange {
+    background-color: var(--fubo-orange) !important;
+}
+
+.border-orange {
+    border-color: var(--fubo-orange) !important;
+}
+
+.glow-orange {
+    box-shadow: var(--shadow-orange);
+}
+
+/* Animation */
+@keyframes pulse-orange {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse-orange {
+    animation: pulse-orange 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Image Preview Enhancement */
+.image-preview-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.image-preview-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 108, 0, 0.2),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.image-preview-wrapper:hover::before {
+    left: 100%;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--bg-surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--fubo-orange);
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--fubo-orange);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Segmented Button Toggle */
+.segmented-toggle {
+    display: inline-flex;
+    background-color: var(--bg-elevated);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    border: 1px solid var(--border-primary);
+}
+
+.segmented-toggle-option {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    border: none;
+    background: transparent;
+}
+
+.segmented-toggle-option:hover {
+    color: var(--text-primary);
+}
+
+.segmented-toggle-option-active {
+    background-color: var(--fubo-orange);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+

@@ -150,7 +150,7 @@ export default function WorkPage() {
                     <ul className="grid sm:grid-cols-2 gap-2">
                       {project.impact.map((item, idx) => (
                         <li key={idx} className="flex gap-2 text-sm text-gray-100">
-                          <span className="text-[#FFD700]">✓</span>
+                          <span className="text-[#FFD700]">→</span>
                           <span>{item}</span>
                         </li>
                       ))}

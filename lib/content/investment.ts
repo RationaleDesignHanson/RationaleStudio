@@ -10,7 +10,7 @@ export const investmentContent = {
     hero: {
       title: "Investment Opportunities",
       subtitle: "Two ways to participate: Zero direct equity or Studio portfolio exposure",
-      description: "We're raising capital to accelerate systematic portfolio building. Path 1: Invest directly in Zero ($600K for 10% equity) for concentrated exposure to our AI email platform launching Q1 2025. Path 2: Invest in Rationale studio for diversified exposure across Zero, Atlas, Amplify, and future ventures—partners help decide which bets we make together."
+      description: "We're raising capital to accelerate systematic portfolio building. Path 1: Invest directly in Zero ($600K for 10% equity) for concentrated exposure to our AI email platform currently in beta. Path 2: Invest in Rationale studio for diversified exposure across Zero, Atlas, Amplify, and future ventures—partners help decide which bets we make together."
     },
 
     model: {
@@ -50,21 +50,21 @@ export const investmentContent = {
         portfolioCompanies: [
           {
             name: "Zero",
-            status: "Q1 2025 LAUNCH",
+            status: "BETA · DOGFOODING",
             ownership: "80% owned by Rationale",
             stage: "Seed Round Open ($600K for 10%)",
             investors: "Founder + Seed investors"
           },
           {
             name: "Atlas",
-            status: "Q2 2025",
+            status: "PIPELINE Q1-Q2 2025",
             ownership: "80-90% owned by Rationale",
             stage: "Blueprint complete",
             investors: "Rationale-funded"
           },
           {
             name: "Amplify",
-            status: "Q2 2025",
+            status: "PIPELINE Q1-Q2 2025",
             ownership: "80-90% owned by Rationale",
             stage: "Blueprint complete",
             investors: "Rationale-funded"
@@ -88,10 +88,10 @@ export const investmentContent = {
       tagline: "$600K for 10% equity",
       status: "OPEN NOW",
       highlight: "Highest Return Concentration",
-      description: "Direct investment in Zero Inbox, our AI email triage platform launching Q1 2025 with production-ready infrastructure and sophisticated architecture.",
+      description: "Direct investment in Zero Inbox, our AI email triage platform currently in beta with production-ready infrastructure and sophisticated architecture.",
 
       keyMetrics: [
-        { label: "Status", value: "Pre-Launch", trend: "Beta Q1 2025" },
+        { label: "Status", value: "Beta", trend: "Dogfooding Now" },
         { label: "Architecture", value: "268 Swift files", subtext: "iOS app complete" },
         { label: "Backend", value: "10 microservices", subtext: "Production-ready" },
         { label: "Market", value: "$28B+ TAM", subtext: "Email productivity" }
@@ -283,23 +283,23 @@ export const investmentContent = {
     {
       id: "zero",
       title: 'Zero',
-      subtitle: '$600K Seed Round · Pre-Launch Product',
-      description: 'AI email intelligence for busy parents. Beta launching Q1 2025. Production-ready infrastructure with structured traction milestones.',
+      subtitle: '$600K Seed Round · Beta Dogfooding',
+      description: 'AI email intelligence platform currently in beta. Production-ready infrastructure with structured traction milestones. Public launch Q1 2025.',
       highlights: [
-        'Status: 268 Swift files, 10 microservices ready',
+        'Status: Beta (Dogfooding Now)',
+        'Architecture: 268 Swift files, 10 microservices ready',
         'Market: $28B+ productivity software TAM',
-        'Architecture: 91.7% AI classification accuracy',
-        'Economics: 6:1 LTV:CAC ratio target',
+        'AI Accuracy: 91.7% classification accuracy',
       ],
       href: '/investors/zero',
-      badge: 'Pre-Launch',
+      badge: 'Beta',
       badgeColor: 'blue',
       icon: '📧',
     },
     {
       id: "atlas",
       title: 'Project Atlas',
-      subtitle: 'Partnership + Capital Opportunity',
+      subtitle: 'Partnership + Capital Opportunity · Q1-Q2 2025',
       description: 'CRE intelligence platform with complete 12-week roadmap. Seeking strategic partner with industry distribution + execution capital.',
       highlights: [
         'Documentation: 103KB complete technical architecture',
@@ -308,14 +308,14 @@ export const investmentContent = {
         'Timeline: 12 weeks to production-ready',
       ],
       href: '/investors/atlas',
-      badge: 'Pre-Build',
+      badge: 'Pipeline',
       badgeColor: 'yellow',
       icon: '🏢',
     },
     {
       id: "amplify",
       title: 'Project Amplify',
-      subtitle: 'Partnership + Capital Opportunity',
+      subtitle: 'Partnership + Capital Opportunity · Q1-Q2 2025',
       description: 'NIL + recruiting platform for sports agents. Complete 16-week roadmap with 4 integrated modules. Seeking agency partner network + capital.',
       highlights: [
         'Documentation: 129KB complete blueprint',
@@ -324,7 +324,7 @@ export const investmentContent = {
         'Timeline: 16 weeks to MVP',
       ],
       href: '/investors/amplify',
-      badge: 'Pre-Build',
+      badge: 'Pipeline',
       badgeColor: 'yellow',
       icon: '🏈',
     },

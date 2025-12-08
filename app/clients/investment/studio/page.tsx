@@ -134,7 +134,7 @@ export default function StudioInvestmentPage() {
                 <ul className="space-y-2">
                   {studioTier?.governance?.rights?.items.map((right, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-muted">
-                      <span className="text-accent mt-0.5">✓</span>
+                      <span className="text-accent mt-0.5">→</span>
                       <span>{right}</span>
                     </li>
                   ))}

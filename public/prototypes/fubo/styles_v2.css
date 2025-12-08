@@ -1,0 +1,428 @@
+/* Fubo Thumbnail Style Generator v2.0 - Modern Dashboard Styles */
+
+/* Custom CSS for the v2.0 modern dashboard interface */
+
+/* Image Preview Modal Styles */
+#imagePreviewModal {
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s ease-in-out;
+}
+
+#imagePreviewModal .bg-white {
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+#imagePreviewModal:not(.hidden) .bg-white {
+    transform: scale(1);
+}
+
+/* Hover effects for clickable images */
+.cursor-pointer:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Smooth transitions for modal content */
+#previewImage {
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Base styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Navigation styles */
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Style card animations */
+.style-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fade-in animation for Test All Styles results */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.style-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.style-card:hover::before {
+    left: 100%;
+}
+
+.style-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-color: #3b82f6;
+}
+
+.style-card.selected {
+    border: 3px solid #3b82f6;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    transform: scale(1.05);
+}
+
+/* Category tab styles */
+.category-tab {
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.category-tab.active::before {
+    opacity: 1;
+}
+
+.category-tab.active {
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Preview container styles */
+.preview-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.preview-container:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-overlay i {
+    animation: pulse 2s infinite;
+}
+
+/* Modal styles */
+#stylePreviewModal {
+    backdrop-filter: blur(8px);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Progress bar styles */
+#progressBar {
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8, #7c3aed);
+    background-size: 200% 100%;
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Button hover effects */
+button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* File upload area styles */
+.border-dashed {
+    border-style: dashed;
+    transition: all 0.3s ease;
+}
+
+.border-dashed:hover {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+    transform: scale(1.02);
+}
+
+/* Dashboard stats cards */
+.dashboard-stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.dashboard-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+/* Notification styles */
+.notification {
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .style-card {
+        transform: none;
+    }
+    
+    .style-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .dashboard-stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dashboard-stat-card {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .style-card {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .style-card:hover {
+        background: #374151;
+        border-color: #3b82f6;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Focus states for accessibility */
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .style-card {
+        border-width: 2px;
+    }
+    
+    .style-card:hover {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Result card size constraints */
+.result-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Wide image cards - max 480x270 */
+#wideResultsGrid .result-card {
+    max-width: 480px;
+}
+
+/* Tall image cards - max 240x360 (2:3 ratio) */
+#tallResultsGrid .result-card {
+    max-width: 240px;
+}
+
+/* Position control button styling */
+.position-btn {
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.position-btn:hover {
+    background: #FF6C00;
+    border-color: #FF6C00;
+    transform: scale(1.1);
+}
+
+.position-btn:active {
+    transform: scale(0.95);
+}

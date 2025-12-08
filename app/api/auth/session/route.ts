@@ -1,0 +1,86 @@
+/**
+ * Session Management API Route
+ *
+ * Creates secure Firebase session cookies for authenticated sessions
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+import { getAdminAuth, getAdminUserProfile } from '@/lib/auth/firebase-admin';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { idToken } = body;
+
+    if (!idToken) {
+      return NextResponse.json(
+        { error: 'Missing Firebase ID token' },
+        { status: 400 }
+      );
+    }
+
+    // Verify the Firebase ID token using Firebase Admin SDK
+    const adminAuth = getAdminAuth();
+    const decodedToken = await adminAuth.verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+
+    // Get user profile from Firestore using Admin SDK (bypasses security rules)
+    const userProfile = await getAdminUserProfile(uid);
+
+    if (!userProfile || !userProfile.role) {
+      return NextResponse.json(
+        { error: 'User profile not found or missing role' },
+        { status: 403 }
+      );
+    }
+
+    // Create Firebase session cookie (expires in 7 days)
+    const expiresIn = 60 * 60 * 24 * 7 * 1000; // 7 days in ms
+    const sessionCookie = await adminAuth.createSessionCookie(idToken, {
+      expiresIn,
+    });
+
+    // Set secure HTTP-only cookie
+    const cookieStore = await cookies();
+    cookieStore.set('session', sessionCookie, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+    });
+
+    return NextResponse.json({
+      success: true,
+      user: {
+        uid: userProfile.uid,
+        email: userProfile.email,
+        role: userProfile.role,
+        name: userProfile.name,
+      },
+    });
+  } catch (error) {
+    console.error('Session creation error:', error);
+    return NextResponse.json(
+      { error: 'Failed to create session', details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE() {
+  try {
+    // Clear session cookie
+    const cookieStore = await cookies();
+    cookieStore.delete('session');
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Session deletion error:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete session' },
+      { status: 500 }
+    );
+  }
+}

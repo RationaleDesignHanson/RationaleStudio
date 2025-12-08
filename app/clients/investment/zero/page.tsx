@@ -237,20 +237,20 @@ export default function ZeroInvestmentPage() {
                 <div className="p-4 rounded-lg border border-border bg-background/50">
                   <h3 className="text-sm font-semibold text-foreground mb-2">Product Status</h3>
                   <ul className="text-xs text-muted space-y-1">
-                    <li>✓ Live on iOS App Store (production)</li>
-                    <li>✓ 182 Swift files, 10 microservices, full AI/ML pipeline</li>
-                    <li>✓ 7 working prototypes built during development</li>
-                    <li>✓ Complete technical documentation (116KB+)</li>
+                    <li>→ Live on iOS App Store (production)</li>
+                    <li>→ 182 Swift files, 10 microservices, full AI/ML pipeline</li>
+                    <li>→ 7 working prototypes built during development</li>
+                    <li>→ Complete technical documentation (116KB+)</li>
                   </ul>
                 </div>
 
                 <div className="p-4 rounded-lg border border-border bg-background/50">
                   <h3 className="text-sm font-semibold text-foreground mb-2">Market Validation</h3>
                   <ul className="text-xs text-muted space-y-1">
-                    <li>✓ 40% monthly user growth (organic, no marketing spend)</li>
-                    <li>✓ Revenue from day 1 (users pay for AI email intelligence)</li>
-                    <li>✓ Competing against Superhuman ($33M raised) and SaneBox</li>
-                    <li>✓ Built for 100x less capital than competitors</li>
+                    <li>→ 40% monthly user growth (organic, no marketing spend)</li>
+                    <li>→ Revenue from day 1 (users pay for AI email intelligence)</li>
+                    <li>→ Competing against Superhuman ($33M raised) and SaneBox</li>
+                    <li>→ Built for 100x less capital than competitors</li>
                   </ul>
                 </div>
               </div>

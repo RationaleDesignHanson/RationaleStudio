@@ -361,7 +361,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
                   key={index}
                   className="flex gap-3 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
                 >
-                  <span className="text-white">✓</span>
+                  <span className="text-white">→</span>
                   <p className="text-sm sm:text-base text-white/90">{future}</p>
                 </div>
               ))}
