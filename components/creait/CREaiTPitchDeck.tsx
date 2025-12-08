@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { getAllSections, Section, Slide } from '@/lib/creait/pitch-deck-content';
 import dynamic from 'next/dynamic';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
+import { DisplayLG, BodyLG } from '@/components/creait/typography/Typography';
 
 // Loading component for dynamic imports
 const LoadingComponent = () => (
@@ -328,7 +329,12 @@ export default function CREaiTPitchDeck() {
         <ASCIIUnifiedGrid
           opacity={0.03}
           animated={true}
-          colorTheme={{ primary: currentColor }}
+          colorTheme={{
+            name: 'CREaiT Theme',
+            colors: [currentColor],
+            primary: currentColor,
+            description: 'CRE pitch deck theme'
+          }}
           charSet="default"
         />
       </div>

@@ -60,19 +60,20 @@ export default function ZeroInvestmentPage() {
       </Section>
 
       {/* Key Metrics */}
-      <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={tiersTheme} />
-        <ASCIIUnifiedGrid animated={true} colorTheme={tiersTheme} opacity={0.25} />
+      {zeroTier.keyMetrics && (
+        <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
+          <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={tiersTheme} />
+          <ASCIIUnifiedGrid animated={true} colorTheme={tiersTheme} opacity={0.25} />
 
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-5xl mx-auto">
-            <GlassCard theme={tiersTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center" style={{ color: tiersTheme.foreground }}>
-                Product Status & Metrics
-              </h2>
+          <Container className="relative z-20 pt-16 sm:pt-20">
+            <div className="max-w-5xl mx-auto">
+              <GlassCard theme={tiersTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center" style={{ color: tiersTheme.foreground }}>
+                  Product Status & Metrics
+                </h2>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {zeroTier.keyMetrics.map((metric, idx) => (
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {zeroTier.keyMetrics.map((metric, idx) => (
                   <div
                     key={idx}
                     className="rounded-lg p-6 text-center"
@@ -103,168 +104,173 @@ export default function ZeroInvestmentPage() {
             </GlassCard>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* Investment Terms */}
-      <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} />
-        <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} />
+      {zeroTier.investment && (
+        <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}>
+          <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} />
+          <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} />
 
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Investment Details */}
-              <GlassCard theme={comparisonTheme} className="p-6 sm:p-8" borderRadius="1rem">
-                <h3 className="text-xl font-bold mb-6" style={{ color: comparisonTheme.foreground }}>
-                  Investment Terms
-                </h3>
+          <Container className="relative z-20 pt-16 sm:pt-20">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Investment Details */}
+                <GlassCard theme={comparisonTheme} className="p-6 sm:p-8" borderRadius="1rem">
+                  <h3 className="text-xl font-bold mb-6" style={{ color: comparisonTheme.foreground }}>
+                    Investment Terms
+                  </h3>
 
-                <div className="space-y-4">
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Amount
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Amount
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.investment.amount}
+                      </div>
                     </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.investment.amount}
-                    </div>
-                  </div>
 
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Equity
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Equity
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.investment.equity}
+                      </div>
                     </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.investment.equity}
-                    </div>
-                  </div>
 
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Valuation
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Valuation
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.investment.valuation}
+                      </div>
                     </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.investment.valuation}
-                    </div>
-                  </div>
 
-                  <div
-                    className="p-4 rounded-lg mt-6"
-                    style={{
-                      border: `1px solid ${comparisonTheme.border}`,
-                      backgroundColor: `${comparisonTheme.background}80`
-                    }}
-                  >
-                    <div className="text-sm font-semibold mb-2" style={{ color: comparisonTheme.foreground }}>
-                      Use of Funds
-                    </div>
-                    <div className="text-sm" style={{ color: comparisonTheme.muted }}>
-                      {zeroTier.investment.use}
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-
-              {/* Round Status */}
-              <GlassCard theme={comparisonTheme} className="p-6 sm:p-8" borderRadius="1rem">
-                <h3 className="text-xl font-bold mb-6" style={{ color: comparisonTheme.foreground }}>
-                  {zeroTier.urgency.title}
-                </h3>
-
-                <div className="space-y-4">
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Committed
-                    </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.urgency.committed}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Target
-                    </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.urgency.target}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
-                      Remaining
-                    </div>
-                    <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
-                      {zeroTier.urgency.remaining}
-                    </div>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="mt-6">
                     <div
-                      className="h-3 rounded-full overflow-hidden"
+                      className="p-4 rounded-lg mt-6"
                       style={{
-                        backgroundColor: `${comparisonTheme.muted}33`
+                        border: `1px solid ${comparisonTheme.border}`,
+                        backgroundColor: `${comparisonTheme.background}80`
                       }}
                     >
-                      <div
-                        className="h-full transition-all duration-500"
-                        style={{
-                          backgroundColor: comparisonTheme.accent,
-                          width: '25%' // $150K / $600K
-                        }}
-                      />
+                      <div className="text-sm font-semibold mb-2" style={{ color: comparisonTheme.foreground }}>
+                        Use of Funds
+                      </div>
+                      <div className="text-sm" style={{ color: comparisonTheme.muted }}>
+                        {zeroTier.investment.use}
+                      </div>
                     </div>
                   </div>
+                </GlassCard>
 
-                  <div
-                    className="p-4 rounded-lg mt-6"
-                    style={{
-                      border: `1px solid ${comparisonTheme.accent}4D`,
-                      backgroundColor: `${comparisonTheme.accent}0D`
-                    }}
-                  >
-                    <p className="text-sm" style={{ color: comparisonTheme.muted }}>
-                      {zeroTier.urgency.note}
-                    </p>
+                {/* Round Status */}
+                <GlassCard theme={comparisonTheme} className="p-6 sm:p-8" borderRadius="1rem">
+                  <h3 className="text-xl font-bold mb-6" style={{ color: comparisonTheme.foreground }}>
+                    {zeroTier.urgency.title}
+                  </h3>
+
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Committed
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.urgency.committed}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Target
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.urgency.target}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-sm font-semibold mb-1" style={{ color: comparisonTheme.muted }}>
+                        Remaining
+                      </div>
+                      <div className="text-2xl font-bold" style={{ color: comparisonTheme.accent }}>
+                        {zeroTier.urgency.remaining}
+                      </div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="mt-6">
+                      <div
+                        className="h-3 rounded-full overflow-hidden"
+                        style={{
+                          backgroundColor: `${comparisonTheme.muted}33`
+                        }}
+                      >
+                        <div
+                          className="h-full transition-all duration-500"
+                          style={{
+                            backgroundColor: comparisonTheme.accent,
+                            width: '25%' // $150K / $600K
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      className="p-4 rounded-lg mt-6"
+                      style={{
+                        border: `1px solid ${comparisonTheme.accent}4D`,
+                        backgroundColor: `${comparisonTheme.accent}0D`
+                      }}
+                    >
+                      <p className="text-sm" style={{ color: comparisonTheme.muted }}>
+                        {zeroTier.urgency.note}
+                      </p>
+                    </div>
                   </div>
+                </GlassCard>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Why Invest */}
+      {zeroTier.why && (
+        <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingTop={true}>
+          <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={heroTheme} />
+          <ASCIIUnifiedGrid animated={true} colorTheme={heroTheme} opacity={0.25} />
+
+          <Container className="relative z-20 pt-16 sm:pt-20">
+            <div className="max-w-4xl mx-auto">
+              <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center" style={{ color: heroTheme.foreground }}>
+                  Why Invest in Zero?
+                </h2>
+
+                <div className="space-y-4">
+                  {zeroTier.why.map((reason, idx) => (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-lg flex items-start gap-3"
+                      style={{
+                        border: `1px solid ${heroTheme.border}`,
+                        backgroundColor: `${heroTheme.background}80`
+                      }}
+                    >
+                      <span className="text-xl mt-1" style={{ color: heroTheme.accent }}>✓</span>
+                      <span className="text-base" style={{ color: heroTheme.foreground }}>{reason}</span>
+                    </div>
+                  ))}
                 </div>
               </GlassCard>
             </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Why Invest */}
-      <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={heroTheme} />
-        <ASCIIUnifiedGrid animated={true} colorTheme={heroTheme} opacity={0.25} />
-
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-4xl mx-auto">
-            <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center" style={{ color: heroTheme.foreground }}>
-                Why Invest in Zero?
-              </h2>
-
-              <div className="space-y-4">
-                {zeroTier.why.map((reason, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-lg flex items-start gap-3"
-                    style={{
-                      border: `1px solid ${heroTheme.border}`,
-                      backgroundColor: `${heroTheme.background}80`
-                    }}
-                  >
-                    <span className="text-xl mt-1" style={{ color: heroTheme.accent }}>✓</span>
-                    <span className="text-base" style={{ color: heroTheme.foreground }}>{reason}</span>
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      )}
 
       {/* Product Details Link */}
       <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>

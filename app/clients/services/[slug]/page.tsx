@@ -11,7 +11,6 @@ import Link from 'next/link';
 import { OS8Window } from '@/components/visual-test';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { BreadcrumbWithContainer } from '@/components/navigation';
 import { serviceKits, getKitBySlug } from '@/lib/content/kits';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
 import type { Metadata } from 'next';
@@ -55,15 +54,6 @@ export default async function KitDetailPage({ params }: KitPageProps) {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* Breadcrumb Navigation */}
-      <BreadcrumbWithContainer
-        items={[
-          { label: 'Home', href: '/' },
-          { label: 'Services', href: '/services' },
-          { label: kit.name, href: `/services/${kit.slug}` },
-        ]}
-      />
-
       {/* Hero */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

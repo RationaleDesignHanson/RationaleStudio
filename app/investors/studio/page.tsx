@@ -61,21 +61,22 @@ export default function StudioInvestmentPage() {
       </Section>
 
       {/* Three Entry Points */}
-      <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
-        <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={tiersTheme} />
-        <ASCIIUnifiedGrid animated={true} colorTheme={tiersTheme} opacity={0.25} />
+      {studioTier.entryPoints && (
+        <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
+          <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={tiersTheme} />
+          <ASCIIUnifiedGrid animated={true} colorTheme={tiersTheme} opacity={0.25} />
 
-        <Container className="relative z-20 pt-16 sm:pt-20">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: tiersTheme.foreground }}>
-                {studioTier.entryPoints.title}
-              </h2>
-              <p className="text-base" style={{ color: tiersTheme.muted }}>{studioTier.entryPoints.description}</p>
-            </div>
+          <Container className="relative z-20 pt-16 sm:pt-20">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: tiersTheme.foreground }}>
+                  {studioTier.entryPoints.title}
+                </h2>
+                <p className="text-base" style={{ color: tiersTheme.muted }}>{studioTier.entryPoints.description}</p>
+              </div>
 
-            <div className="space-y-6">
-              {studioTier.entryPoints.options.map((option, idx) => (
+              <div className="space-y-6">
+                {studioTier.entryPoints.options.map((option, idx) => (
                 <GlassCard key={idx} theme={tiersTheme} className="p-6 sm:p-8" borderRadius="1rem">
                   <h3 className="text-xl font-bold mb-3" style={{ color: tiersTheme.foreground }}>
                     {option.type}
@@ -129,10 +130,12 @@ export default function StudioInvestmentPage() {
             </div>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* Governance Process */}
-      <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}>
+      {studioTier.governance && (
+        <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}>
         <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} />
         <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} />
 
@@ -227,10 +230,12 @@ export default function StudioInvestmentPage() {
             </GlassCard>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* Current Portfolio */}
-      <Section spacing="large" background="transparent" colorTheme={faqTheme} noPaddingTop={true}>
+      {studioTier.portfolio && (
+        <Section spacing="large" background="transparent" colorTheme={faqTheme} noPaddingTop={true}>
         <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={faqTheme} />
         <ASCIIUnifiedGrid animated={true} colorTheme={faqTheme} opacity={0.25} />
 
@@ -285,10 +290,12 @@ export default function StudioInvestmentPage() {
             </GlassCard>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* Portfolio Vision */}
-      <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingTop={true}>
+      {studioTier.vision && (
+        <Section spacing="large" background="transparent" colorTheme={heroTheme} noPaddingTop={true}>
         <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={heroTheme} />
         <ASCIIUnifiedGrid animated={true} colorTheme={heroTheme} opacity={0.25} />
 
@@ -347,10 +354,12 @@ export default function StudioInvestmentPage() {
             </GlassCard>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* Studio Economics */}
-      <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
+      {studioTier.structure && (
+        <Section spacing="large" background="transparent" colorTheme={tiersTheme} noPaddingTop={true}>
         <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={tiersTheme} />
         <ASCIIUnifiedGrid animated={true} colorTheme={tiersTheme} opacity={0.25} />
 
@@ -379,7 +388,8 @@ export default function StudioInvestmentPage() {
             </GlassCard>
           </div>
         </Container>
-      </Section>
+        </Section>
+      )}
 
       {/* CTA */}
       <Section spacing="large" background="accent" colorTheme={getSectionTheme('cta')}>

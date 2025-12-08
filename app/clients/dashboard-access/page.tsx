@@ -7,7 +7,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container, Section } from '@/components/layout';
 import { Hero } from '@/components/sections/Hero';
@@ -15,7 +15,7 @@ import { ASCIIWaveDivider, ASCIIUnifiedGrid, GlassCard } from '@/components/visu
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary } from '@/components/ui';
 
-export default function DashboardAccessPage() {
+function DashboardAccessForm() {
   const searchParams = useSearchParams();
   const defaultProject = searchParams.get('project') || '';
 
@@ -249,5 +249,13 @@ export default function DashboardAccessPage() {
         </Container>
       </Section>
     </>
+  );
+}
+
+export default function DashboardAccessPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DashboardAccessForm />
+    </Suspense>
   );
 }

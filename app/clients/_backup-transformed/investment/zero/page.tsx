@@ -183,7 +183,7 @@ export default function ZeroInvestmentPage() {
                 </div>
                 <div className="flex justify-between text-xs mt-2">
                   <span className="text-muted">{zeroTier?.urgency?.remaining} remaining</span>
-                  <span className="text-muted">{zeroTier?.urgency?.daysRemaining} until {zeroTier?.urgency?.closingDate}</span>
+                  <span className="text-muted">{zeroTier?.urgency?.remaining}</span>
                 </div>
               </div>
 

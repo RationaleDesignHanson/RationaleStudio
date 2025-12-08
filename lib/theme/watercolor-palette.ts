@@ -10,6 +10,12 @@ export type WatercolorTheme = {
   colors: readonly string[];        // 2-3 colors that blend together
   primary: string;         // Main color for accents
   description: string;
+  // Extended theme properties for UI components
+  accent?: string;         // Accent color (defaults to primary)
+  foreground?: string;     // Text color
+  background?: string;     // Background color
+  border?: string;         // Border color
+  muted?: string;          // Muted/secondary text color
 };
 
 /**
