@@ -90,8 +90,8 @@ export function Header() {
             href="/"
             className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-[#FFD700]"
           >
-            <span className="font-semibold">Rationale: </span>
-            <span className="font-light">A Product Development Company</span>
+            <span className="font-semibold">Rationale{pathname !== '/' ? ': ' : ''}</span>
+            {pathname !== '/' && <span className="font-light">A Product Development Company</span>}
           </Link>
 
           {/* Navigation - Hidden on mobile */}
