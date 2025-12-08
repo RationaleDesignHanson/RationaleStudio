@@ -25,6 +25,23 @@ export const workProjects: WorkProject[] = [
     description: 'AI-powered email management that extracts actions from your inbox. Built and shipped in 30 days.'
   },
   {
+    id: 'heirloom',
+    title: 'Heirloom',
+    subtitle: 'Recipe Heritage App',
+    slug: 'heirloom',
+    status: 'planning',
+    category: 'consumer',
+    metrics: [
+      { label: 'Platform', value: 'Native iOS' },
+      { label: 'Status', value: 'Planning Complete' },
+      { label: 'Phase', value: 'Pre-Development' }
+    ],
+    tags: ['Consumer', 'iOS', 'Planning'],
+    isProtected: false,
+    featured: true,
+    description: 'Native iOS recipe app combining smart capture, personal expression, and styled sharing to help families preserve their cooking heritage.'
+  },
+  {
     id: 'case-study-010',
     title: 'Case Study 010',
     subtitle: 'Commercial Real Estate AI',
