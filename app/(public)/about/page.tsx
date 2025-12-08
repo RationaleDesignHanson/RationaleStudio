@@ -35,6 +35,22 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Credentials */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-gray-400">
+            <div className="flex items-center gap-2">
+              <span className="text-[#FFD700]">✦</span>
+              <span>Meta</span>
+            </div>
+            <span className="text-gray-600">·</span>
+            <div>15+ Patents</div>
+            <span className="text-gray-600">·</span>
+            <div>7 Years AR/AI</div>
+          </div>
+        </div>
+      </section>
+
       {/* Manifesto */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">

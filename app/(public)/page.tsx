@@ -14,16 +14,13 @@
 import Link from 'next/link';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { FeaturedWorkGrid } from '@/components/work/FeaturedWorkGrid';
 import { VelocityProof } from '@/components/home/VelocityProof';
 import { FitFilter } from '@/components/home/FitFilter';
-import { Info, ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 
 export default function HomePage() {
-  const [showDualEngineTooltip, setShowDualEngineTooltip] = useState(false);
 
   const structuredData = [
     generateOrganizationStructuredData(),
@@ -39,15 +36,7 @@ export default function HomePage() {
             charSet="default"
           /> </div> <div className="relative z-10 max-w-5xl mx-auto text-center"> {/* Product Studio Badge */} <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-full mb-6"> <Zap className="w-4 h-4 text-[#FFD700]" /> <span className="text-sm text-[#FFD700] font-medium">Product Studio</span> </div> <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"> Product studio building <br /> AI-powered ventures </h1> <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-10"> We build and own our own products—Zero, Atlas, Amplify.
             When not building our ventures, we partner with companies that need proven
-            product expertise and AI acceleration. Same methodology, applied to their opportunity. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center"> <Link
-              href="#current-focus"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)] flex items-center justify-center gap-2"
-            > See what we're building <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 2. CREDIBILITY STRIP */} <section className="relative py-8 px-4 sm:px-6 lg:px-8 border-b border-gray-800 bg-gray-900/50"> <div className="max-w-5xl mx-auto"> <div className="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-gray-400"> <div className="flex items-center gap-2"> <span className="text-[#FFD700]"></span> <span>Meta</span> </div> <span className="text-gray-600">·</span> <div>15+ Patents</div> <span className="text-gray-600">·</span> <div>7 Years AR/AI</div> <span className="text-gray-600">·</span> <div
-              className="relative flex items-center gap-1.5 cursor-help"
-              onMouseEnter={() => setShowDualEngineTooltip(true)}
-              onMouseLeave={() => setShowDualEngineTooltip(false)}
-            > <span>Dual Engine</span> <Info className="w-4 h-4 text-[#FFD700]" /> {/* Tooltip */}
-              {showDualEngineTooltip && ( <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 p-3 bg-gray-900 border border-gray-700 rounded-md shadow-xl text-xs text-gray-300 z-10"> <p className="mb-2"> <span className="font-semibold text-white">Two engines:</span> Products we build & own (like Zero) + Client partnerships for equity & cash. </p> <Link href="/about" className="text-[#FFD700] hover:underline text-xs"> Learn more → </Link> <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-gray-700 rotate-45" /> </div> )} </div> </div> </div> </section> {/* 3. CURRENT FOCUS - Zero Beta + Pipeline */} <section id="current-focus" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
+            product expertise and AI acceleration. Same methodology, applied to their opportunity. </p> </div> </section> {/* 3. CURRENT FOCUS - Zero Beta + Pipeline */} <section id="current-focus" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
@@ -68,15 +57,7 @@ export default function HomePage() {
           /> </div> <div className="relative z-10 max-w-4xl mx-auto"> {/* Mobile: simplified version */} <div className="block md:hidden"> <VelocityProof simplified={true} /> </div> {/* Desktop: full version */} <div className="hidden md:block"> <VelocityProof simplified={false} /> </div> <div className="mt-12 text-center"> <Link
               href="/how-we-work"
               className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
-            > See the full methodology <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 5. PORTFOLIO - Selected Work */} <section id="portfolio" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          /> </div> <div className="relative z-10 max-w-6xl mx-auto"> <div className="text-center mb-12"> <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4"> Selected Work </h2> <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto"> Products we've built and partnerships we've formed. </p> </div> <FeaturedWorkGrid /> <div className="mt-12 text-center"> <Link
-              href="/work"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-gray-600 hover:border-[#FFD700] text-white font-medium transition-colors"
-            > View all work <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 6. THREE PATHS - Invest / Partner / Collaborate */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
+            > See the full methodology <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </section> {/* 5. THREE PATHS - Invest / Partner / Collaborate */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
