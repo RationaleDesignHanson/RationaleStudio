@@ -28,22 +28,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Subscribe to auth state changes
-    const unsubscribe = onAuthChange(async (firebaseUser) => {
-      setUser(firebaseUser);
+    try {
+      // Subscribe to auth state changes
+      const unsubscribe = onAuthChange(async (firebaseUser) => {
+        setUser(firebaseUser);
 
-      if (firebaseUser) {
-        // Load user profile
-        const userProfile = await getUserProfile(firebaseUser.uid);
-        setProfile(userProfile);
-      } else {
-        setProfile(null);
-      }
+        if (firebaseUser) {
+          // Load user profile
+          const userProfile = await getUserProfile(firebaseUser.uid);
+          setProfile(userProfile);
+        } else {
+          setProfile(null);
+        }
 
+        setLoading(false);
+      });
+
+      return () => unsubscribe();
+    } catch (err) {
+      // Firebase initialization failed - this is OK for public pages
+      console.error('[AuthContext] Firebase initialization failed:', err);
+      setError('Authentication system unavailable');
       setLoading(false);
-    });
-
-    return () => unsubscribe();
+      // Don't throw - let the page render without auth
+    }
   }, []);
 
   const handleSignIn = async (email: string, password: string): Promise<UserProfile> => {

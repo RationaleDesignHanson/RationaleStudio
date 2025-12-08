@@ -33,14 +33,31 @@ const firebaseConfig = {
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 let db: Firestore | null = null;
+let initError: Error | null = null;
 
 function getFirebaseApp(): FirebaseApp {
   if (typeof window === 'undefined') {
     throw new Error('Firebase client SDK can only be used in the browser');
   }
 
+  // If we've already tried and failed, throw the cached error
+  if (initError) {
+    throw initError;
+  }
+
   if (!app) {
-    app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+    try {
+      // Validate that we have the required config
+      if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'undefined') {
+        throw new Error('Firebase API key is missing or invalid. Please check environment variables.');
+      }
+
+      app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+    } catch (error) {
+      initError = error as Error;
+      console.error('[Firebase] Initialization failed:', error);
+      throw initError;
+    }
   }
   return app;
 }
