@@ -183,8 +183,20 @@ export default function RationalePitchDeck() {
                   </button>
                 ))}
               </div>
-              <div className="text-xs text-white/40 font-mono">
-                Use ← → ↑ ↓ to navigate
+              <div className="flex items-center gap-4">
+                <div className="text-xs text-white/40 font-mono">
+                  Use ← → ↑ ↓ to navigate
+                </div>
+                <a
+                  href="/"
+                  className="p-2 rounded hover:bg-white/10 text-white/60 hover:text-white transition-colors"
+                  aria-label="Close overview"
+                  title="Close and return to homepage"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
