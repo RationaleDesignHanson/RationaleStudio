@@ -71,9 +71,9 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
               > Explore partnership <ArrowRight className="w-4 h-4" /> </Link> </div> {/* Collaborate */} <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors"> <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4"> <Zap className="w-6 h-6 text-[#FFD700]" /> </div> <h3 className="text-xl font-bold text-white mb-3">Collaborate</h3> <p className="text-sm text-gray-300 mb-6 leading-relaxed"> Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                 Get to working software in weeks, not quarters. </p> <Link
-                href="/partnerships"
+                href="/how-we-work"
                 className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
-              > View partnerships <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </div> </section> {/* 7. FIT FILTER (Optional - keep softened) */} <section className="relative py-20 px-4 sm:px-6 lg:px-8"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
+              > See how we work <ArrowRight className="w-4 h-4" /> </Link> </div> </div> </div> </section> {/* 7. FIT FILTER (Optional - keep softened) */} <section className="relative py-20 px-4 sm:px-6 lg:px-8"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
             opacity={0.04}
             animated={true}
             colorTheme={watercolorThemes.terminalSubtle}
