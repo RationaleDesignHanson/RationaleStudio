@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { OS8Window } from '@/components/visual-test';
+import { FitFilter } from '@/components/home/FitFilter';
 
 export default function HowWeWorkPage() {
   return (
@@ -404,6 +405,13 @@ export default function HowWeWorkPage() {
               </div>
             </div>
           </OS8Window>
+        </div>
+      </section>
+
+      {/* What Makes a Great Fit */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <FitFilter />
         </div>
       </section>
 

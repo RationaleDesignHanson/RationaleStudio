@@ -59,6 +59,27 @@ const nextConfig = {
     ];
   },
 
+  // Redirects
+  async redirects() {
+    return [
+      {
+        source: '/services',
+        destination: '/how-we-work',
+        permanent: true,
+      },
+      {
+        source: '/partnerships',
+        destination: '/how-we-work',
+        permanent: true,
+      },
+      {
+        source: '/partnerships/:slug',
+        destination: '/how-we-work',
+        permanent: true,
+      },
+    ];
+  },
+
   // Webpack optimization
   webpack: (config, { dev, isServer }) => {
     // Production optimizations

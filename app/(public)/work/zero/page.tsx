@@ -138,7 +138,7 @@ export default function ZeroPage() {
 
           <div className="max-w-3xl mx-auto mt-6 text-center">
             <p className="text-xs text-gray-500">
-              Curious about our process? We built a <a href="https://swipeer.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:underline">weekend prototype</a> (password: 111111) to validate the concept before investing in production architecture.
+              Curious about our process? We built a <a href="/zero/originalprototype" className="text-[#FFD700] hover:underline">weekend prototype</a> to validate the concept before investing in production architecture.
             </p>
           </div>
         </div>

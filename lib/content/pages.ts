@@ -493,7 +493,7 @@ export const siteContent = {
       { label: "Home", href: "/" },
       { label: "Work", href: "/work" },
       { label: "Thinking", href: "/thinking" },
-      { label: "Services", href: "/services" },
+      { label: "How We Work", href: "/how-we-work" },
       { label: "About", href: "/about" },
       { label: "Clients", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
