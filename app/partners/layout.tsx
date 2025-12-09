@@ -95,34 +95,34 @@ export default function PartnersLayout({
           </div>
 
           {/* Mobile Navigation */}
-          <nav className="flex md:hidden items-center gap-4 text-xs pb-4 overflow-x-auto">
+          <nav className="flex md:hidden items-center gap-2 text-xs pb-4 flex-wrap">
             <Link
               href="/partners"
-              className="text-gray-400 hover:text-[#00FF94] transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-[#00FF94] transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Dashboard
             </Link>
             <Link
               href="/partners/engagement-models"
-              className="text-gray-400 hover:text-[#00FF94] transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-[#00FF94] transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Engagement
             </Link>
             <Link
               href="/partners/portfolio"
-              className="text-gray-400 hover:text-[#00FF94] transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-[#00FF94] transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Portfolio
             </Link>
             <Link
               href="/partners/governance"
-              className="text-gray-400 hover:text-[#00FF94] transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-[#00FF94] transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Governance
             </Link>
             <Link
               href="/partners/resources"
-              className="text-gray-400 hover:text-[#00FF94] transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-[#00FF94] transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Resources
             </Link>

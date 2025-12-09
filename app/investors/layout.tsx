@@ -95,34 +95,34 @@ export default function InvestorsLayout({
           </div>
 
           {/* Mobile Navigation */}
-          <nav className="flex md:hidden items-center gap-4 text-xs pb-4 overflow-x-auto">
+          <nav className="flex md:hidden items-center gap-2 text-xs pb-4 flex-wrap">
             <Link
               href="/investors"
-              className="text-gray-400 hover:text-blue-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-blue-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Overview
             </Link>
             <Link
               href="/investors/zero"
-              className="text-gray-400 hover:text-blue-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-blue-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Zero
             </Link>
             <Link
               href="/investors/atlas"
-              className="text-gray-400 hover:text-blue-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-blue-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Atlas
             </Link>
             <Link
               href="/investors/amplify"
-              className="text-gray-400 hover:text-blue-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-blue-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Amplify
             </Link>
             <Link
               href="/investors/studio"
-              className="text-gray-400 hover:text-blue-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-blue-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Studio
             </Link>

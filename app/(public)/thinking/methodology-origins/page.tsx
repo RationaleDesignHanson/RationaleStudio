@@ -30,9 +30,9 @@ export default function MethodologyOriginsPage() {
         <div className="max-w-3xl mx-auto">
           <Link
             href="/thinking"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors py-2 px-1 -ml-1"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-5 h-5" />
             Back to Thinking
           </Link>
         </div>
@@ -49,7 +49,7 @@ export default function MethodologyOriginsPage() {
               <span className="text-xs text-gray-500">•</span>
               <span className="text-xs text-gray-400">5 min read</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
               The Whiteboard Moment
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">

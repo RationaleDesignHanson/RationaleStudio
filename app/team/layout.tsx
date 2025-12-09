@@ -86,28 +86,28 @@ export default function TeamLayout({
           </div>
 
           {/* Mobile Navigation */}
-          <nav className="flex md:hidden items-center gap-4 text-xs pb-4 overflow-x-auto">
+          <nav className="flex md:hidden items-center gap-2 text-xs pb-4 flex-wrap">
             <Link
               href="/team"
-              className="text-gray-400 hover:text-purple-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-purple-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Dashboard
             </Link>
             <Link
               href="/team/projects"
-              className="text-gray-400 hover:text-purple-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-purple-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Projects
             </Link>
             <Link
               href="/team/docs"
-              className="text-gray-400 hover:text-purple-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-purple-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Documentation
             </Link>
             <Link
               href="/team/admin"
-              className="text-gray-400 hover:text-purple-400 transition-colors whitespace-nowrap"
+              className="text-gray-400 hover:text-purple-400 transition-colors px-3 py-2 rounded bg-gray-800/30"
             >
               Admin
             </Link>
