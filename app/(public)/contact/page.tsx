@@ -152,7 +152,7 @@ export default function ContactPage() {
               )}
             </div>
 
-            <div className="mt-6 p-4 bg-[#FFD700]/5 border border-[#FFD700]/20 rounded">
+            <div className="mt-6 p-4 bg-[#FFD700]/5 border border-[#FFD700]/20 rounded text-center">
               <p className="text-sm text-gray-300">
                 <span className="font-bold text-[#FFD700]">Not the right fit?</span> We'll tell you
                 honestly and recommend alternatives. No hard feelings.
