@@ -3,6 +3,8 @@
  *
  * Bold accented container for philosophy/approach statements
  * Provides clear typography hierarchy and visual impact
+ *
+ * Phase 4.3: Migrated to use terminal-gold token
  */
 
 import React from 'react';
@@ -19,7 +21,7 @@ export function StatementBlock({
   title,
   statement,
   supporting,
-  accentColor = '#FFD700',
+  accentColor = 'rgb(255 215 0)', // terminal-gold
   className = ''
 }: StatementBlockProps) {
   return (

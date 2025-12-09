@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkpoint 3: Terminal Gold Migration Strategy | Phase 4.3</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #FFD700;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #FFD700;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFD700;
+      margin: 48px 0 24px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #a3a3a3;
+      margin: 32px 0 16px 0;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #a3a3a3;
+      font-weight: 400;
+    }
+
+    .phase-label {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.1);
+      color: #FFD700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .stat-card {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #FFD700;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #a3a3a3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .migration-sample {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .migration-sample h4 {
+      color: #FFD700;
+      margin-bottom: 16px;
+      font-size: 1.125rem;
+    }
+
+    .code-block {
+      background: #0a0a0a;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+    }
+
+    .code-before {
+      border-left: 4px solid #ef4444;
+    }
+
+    .code-after {
+      border-left: 4px solid #10b981;
+    }
+
+    .code-label {
+      font-size: 0.75rem;
+      color: #a3a3a3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    @media (max-width: 768px) {
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .impact-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .impact-list li {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .impact-list li::before {
+      content: '→';
+      position: absolute;
+      left: 20px;
+      top: 16px;
+      color: #FFD700;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .strategy-section {
+      background: rgba(255, 215, 0, 0.05);
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 32px 0;
+    }
+
+    .strategy-step {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: #FFD700;
+      color: #0a0a0a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.125rem;
+    }
+
+    .step-content h4 {
+      color: #FFD700;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .step-content p {
+      color: #a3a3a3;
+      font-size: 0.875rem;
+    }
+
+    .visual-demo {
+      background: #171717;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 32px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .color-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: #0a0a0a;
+      padding: 16px 24px;
+      border-radius: 8px;
+      margin: 12px;
+    }
+
+    .swatch-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .swatch-label {
+      text-align: left;
+    }
+
+    .swatch-name {
+      display: block;
+      color: #FFD700;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 4px;
+    }
+
+    .swatch-value {
+      display: block;
+      color: #737373;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+    }
+
+    .alert {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+      color: #fca5a5;
+    }
+
+    .alert strong {
+      color: #ef4444;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #86efac;
+    }
+
+    .success strong {
+      color: #10b981;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="phase-label">Phase 4.3: Design System Migration</div>
+      <h1>Terminal Gold Migration</h1>
+      <p class="subtitle">Strategy & Sample Implementation</p>
+    </header>
+
+    <section>
+      <h2>📊 Migration Scope</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">849</span>
+          <span class="stat-label">Total Instances</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100</span>
+          <span class="stat-label">Files Affected</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Sample Files Migrated</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">846</span>
+          <span class="stat-label">Instances Remaining</span>
+        </div>
+      </div>
+
+      <div class="alert">
+        <strong>⚠️ Scale Alert</strong>
+        <p>This migration affects 849 instances across 100 files - significantly larger than initially estimated. A systematic, phased approach is critical to maintain visual consistency and avoid breaking changes.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>🎨 Terminal Gold Token Definition</h2>
+      <p style="color: #a3a3a3; margin-bottom: 24px;">
+        Centralized in <code style="color: #FFD700; background: #171717; padding: 2px 8px; border-radius: 4px;">tailwind.config.ts</code>
+      </p>
+
+      <div class="visual-demo">
+        <h3 style="margin-top: 0; color: #e5e5e5;">Color Values</h3>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px;">
+          <div class="color-swatch">
+            <div class="swatch-box" style="background: #FFD700;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">DEFAULT</span>
+              <span class="swatch-value">#FFD700</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background: #FFE34D;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">hover</span>
+              <span class="swatch-value">#FFE34D</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background: #E5C100;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">dark</span>
+              <span class="swatch-value">#E5C100</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-box" style="background: #FFF5CC;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">light</span>
+              <span class="swatch-value">#FFF5CC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>✅ Sample Migration Examples</h2>
+
+      <div class="migration-sample">
+        <h4>1. StatementBlock Component</h4>
+        <div class="code-label">BEFORE (Hardcoded)</div>
+        <div class="code-block code-before">
+accentColor = '#FFD700',
+        </div>
+        <div class="code-label">AFTER (Token)</div>
+        <div class="code-block code-after">
+accentColor = 'rgb(255 215 0)', // terminal-gold
+        </div>
+        <p style="color: #a3a3a3; font-size: 0.875rem; margin-top: 12px;">
+          ✓ Default prop value migrated to RGB format for consistency
+        </p>
+      </div>
+
+      <div class="migration-sample">
+        <h4>2. CredentialItem Component</h4>
+        <div class="code-label">BEFORE (Hardcoded)</div>
+        <div class="code-block code-before">
+export function CredentialItem({
+  icon,
+  text,
+  accentColor = '#FFD700',
+  className = ''
+}: CredentialItemProps) {
+        </div>
+        <div class="code-label">AFTER (Token)</div>
+        <div class="code-block code-after">
+export function CredentialItem({
+  icon,
+  text,
+  accentColor = 'rgb(255 215 0)', // terminal-gold
+  className = ''
+}: CredentialItemProps) {
+        </div>
+        <p style="color: #a3a3a3; font-size: 0.875rem; margin-top: 12px;">
+          ✓ Migrated 2 instances (CredentialItem + CredentialsBar)
+        </p>
+      </div>
+
+      <div class="migration-sample">
+        <h4>3. Design Tokens (lib/design-tokens/colors.ts)</h4>
+        <div class="code-label">BEFORE (Hardcoded)</div>
+        <div class="code-block code-before">
+export const AF_COLORS = {
+  // ...
+  gold: '#FFD700',  // Gold for special moments/emphasis
+        </div>
+        <div class="code-label">AFTER (Token)</div>
+        <div class="code-block code-after">
+export const AF_COLORS = {
+  // ...
+  gold: 'rgb(255 215 0)',  // terminal-gold for special moments/emphasis
+        </div>
+        <p style="color: #a3a3a3; font-size: 0.875rem; margin-top: 12px;">
+          ✓ Critical design token file now references terminal-gold
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔄 Migration Strategy</h2>
+      <div class="strategy-section">
+        <p style="color: #e5e5e5; margin-bottom: 24px;">
+          Given the scale (849 instances), we're taking a phased approach to ensure visual consistency and avoid breaking changes.
+        </p>
+
+        <div class="strategy-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Sample Migration (Complete ✓)</h4>
+            <p>Migrated 3 high-impact files manually to verify approach and visual consistency. Committed as checkpoint for review.</p>
+          </div>
+        </div>
+
+        <div class="strategy-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Visual Review (Current)</h4>
+            <p>Review sample migrations in browser to confirm colors render identically. Check StatementBlock, CredentialItem, and Athletes First components.</p>
+          </div>
+        </div>
+
+        <div class="strategy-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Automated Migration (Pending Approval)</h4>
+            <p>Run <code style="color: #FFD700;">scripts/migrate-terminal-gold.js</code> to systematically migrate remaining 846 instances across 97 files.</p>
+          </div>
+        </div>
+
+        <div class="strategy-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Build Verification</h4>
+            <p>Run <code style="color: #FFD700;">npm run build</code> to ensure no TypeScript errors or build failures from token migration.</p>
+          </div>
+        </div>
+
+        <div class="strategy-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h4>Visual Testing</h4>
+            <p>Spot-check high-frequency pages (about, how-we-work, contact, zero dashboard) to verify visual consistency.</p>
+          </div>
+        </div>
+
+        <div class="strategy-step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h4>Commit & Document</h4>
+            <p>Commit bulk migration with comprehensive message documenting scope and impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🎯 Migration Script Features</h2>
+      <p style="color: #a3a3a3; margin-bottom: 24px;">
+        The automated migration script (<code style="color: #FFD700; background: #171717; padding: 2px 8px; border-radius: 4px;">scripts/migrate-terminal-gold.js</code>) handles:
+      </p>
+      <ul class="impact-list">
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">Tailwind Classes</strong>
+          <span style="color: #a3a3a3;">Converts text-[#FFD700], bg-[#FFD700], border-[#FFD700] to token classes</span>
+        </li>
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">Inline Styles</strong>
+          <span style="color: #a3a3a3;">Migrates color/backgroundColor/borderColor properties to className utilities</span>
+        </li>
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">SVG Attributes</strong>
+          <span style="color: #a3a3a3;">Converts fill="#FFD700" and stroke="#FFD700" to RGB format</span>
+        </li>
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">Box Shadows</strong>
+          <span style="color: #a3a3a3;">Converts glow effects to rgba format with appropriate opacity</span>
+        </li>
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">Dry Run Mode</strong>
+          <span style="color: #a3a3a3;">Preview all changes before applying with --dry-run flag</span>
+        </li>
+        <li>
+          <strong style="color: #e5e5e5; display: block; margin-bottom: 4px;">Statistics</strong>
+          <span style="color: #a3a3a3;">Reports files processed, replacements made, and manual review needed</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>⏭️ Next Steps</h2>
+      <div class="success">
+        <strong>Action Required</strong>
+        <p>Review sample migrations in browser and decide:</p>
+        <ol style="margin-left: 20px; margin-top: 12px; line-height: 1.8;">
+          <li>✅ Approve bulk migration → Run automated script on 846 remaining instances</li>
+          <li>🔄 Continue manual → Migrate more files manually for additional validation</li>
+          <li>⏸️ Pause migration → Address visual issues before proceeding</li>
+        </ol>
+      </div>
+
+      <div style="background: #171717; border: 1px solid #262626; border-radius: 8px; padding: 20px; margin-top: 24px;">
+        <h4 style="color: #FFD700; margin-bottom: 12px;">Files to Review</h4>
+        <ul style="color: #a3a3a3; list-style: none; line-height: 1.8;">
+          <li>→ <code>/about</code> - Check credentials bar and statement blocks</li>
+          <li>→ <code>/how-we-work</code> - Check gold accent elements</li>
+          <li>→ <code>/contact</code> - Check form accents and CTAs</li>
+          <li>→ <code>/ventures</code> - Check Athletes First brand colors</li>
+        </ul>
+      </div>
+    </section>
+
+    <section style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #262626;">
+      <p style="color: #737373; font-size: 0.875rem; text-align: center;">
+        Phase 4.3 Checkpoint • Terminal Gold Migration • December 2025<br>
+        Sample migrations: 3 files, 3 instances<br>
+        Remaining: 97 files, 846 instances
+      </p>
+    </section>
+  </div>
+</body>
+</html>

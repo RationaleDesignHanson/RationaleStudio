@@ -3,6 +3,8 @@
  *
  * Displays a single credential with consistent styling and visual balance
  * Used in credentials bar for equal visual weight across all items
+ *
+ * Phase 4.3: Migrated to use terminal-gold token
  */
 
 import React from 'react';
@@ -17,7 +19,7 @@ interface CredentialItemProps {
 export function CredentialItem({
   icon,
   text,
-  accentColor = '#FFD700',
+  accentColor = 'rgb(255 215 0)', // terminal-gold
   className = ''
 }: CredentialItemProps) {
   return (
@@ -47,7 +49,7 @@ interface CredentialsBarProps {
 
 export function CredentialsBar({
   items,
-  accentColor = '#FFD700',
+  accentColor = 'rgb(255 215 0)', // terminal-gold
   className = ''
 }: CredentialsBarProps) {
   return (

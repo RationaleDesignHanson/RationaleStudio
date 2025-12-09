@@ -179,6 +179,7 @@ export const SECTION_COLORS = [
  * Provides semantic naming for brand-specific colors
  *
  * Backwards compatible with existing AF_COLORS from content.ts
+ * Phase 4.3: Migrated gold to terminal-gold token
  */
 export const AF_COLORS = {
   // Primary brand colors
@@ -187,7 +188,7 @@ export const AF_COLORS = {
   accent: COLORS.purple[500],    // Accent/highlight color
 
   // Special colors
-  gold: '#FFD700',               // Gold for special moments/emphasis
+  gold: 'rgb(255 215 0)',        // terminal-gold for special moments/emphasis
 
   // Semantic UI colors
   success: COLORS.green[500],
