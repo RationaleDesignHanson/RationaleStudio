@@ -1,11 +1,97 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { GlassCard } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function AboutPage() {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  };
+
+  const methodologySections = [
+    {
+      id: 'meta-context',
+      title: 'The Meta Reality Labs Context',
+      content: [
+        '7 years building augmented reality and AI products at Meta Reality Labs. Not research. Not prototypes. Production systems shipping to billions of users on Instagram and Facebook.',
+        'When you\'re building AR features that reach 2 billion users, you can\'t afford to guess. You can\'t iterate in production. You have to validate before launch.'
+      ]
+    },
+    {
+      id: 'what-we-built',
+      title: 'What We Built',
+      subsections: [
+        {
+          title: 'Spark AR Platform',
+          subtitle: 'Creator tools powering Instagram and Facebook AR effects',
+          description: 'Enabled millions of creators to build AR experiences. Required systematic prototyping to validate interaction models before shipping to creator community.'
+        },
+        {
+          title: 'AR Commerce Strategy',
+          subtitle: 'Virtual try-on for Nike, Target, Sephora',
+          description: 'Built frameworks for brands to create AR shopping experiences. Every interaction pattern validated with rapid prototypes before production.'
+        },
+        {
+          title: '15+ Patents Filed',
+          subtitle: 'Novel AR/AI interaction patterns',
+          description: 'Each patent required extensive prototyping to validate feasibility and user comprehension before filing.'
+        }
+      ]
+    },
+    {
+      id: 'what-we-learned',
+      title: 'What We Learned',
+      intro: 'The pattern repeated across every product:',
+      insights: [
+        {
+          title: 'Specs Failed in Predictable Ways',
+          description: 'Detailed specs described interactions clearly. But they couldn\'t predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can\'t spec your way to understanding those.',
+          color: '#00D9FF'
+        },
+        {
+          title: 'Prototypes Revealed Truth',
+          description: 'Put a prototype in someone\'s hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.',
+          color: '#00FF94'
+        },
+        {
+          title: 'Scale Amplified Mistakes',
+          description: 'When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.',
+          color: '#FFD700'
+        }
+      ],
+      conclusion: 'This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.'
+    },
+    {
+      id: 'why-it-matters',
+      title: 'Why This Matters for Rationale',
+      content: [
+        'That 7 years of experience isn\'t résumé decoration. It\'s the foundation of how we work.',
+        'Every Rationale engagement applies patterns proven at Meta scale:'
+      ],
+      bullets: [
+        'Rapid prototyping to validate before committing to production architecture',
+        'Systematic testing of interaction patterns with real users',
+        'Clear binary decision points: pass/fail criteria for each prototype',
+        'Pivot-friendly development that treats changes as learning, not failure'
+      ]
+    },
+    {
+      id: 'transfer',
+      title: 'The Transfer from Meta to Startups',
+      content: [
+        'Startups face the same problem as Meta, just with higher stakes: limited runway means you can\'t afford to build the wrong thing.',
+        'Meta had resources to recover from mistakes. Startups don\'t. That makes validated learning even more critical.',
+        'The methodology that worked at billion-user scale works even better at 0-to-1 scale. Validate early. Pivot cheap. Ship with conviction.'
+      ]
+    }
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Background Grid */}
@@ -51,7 +137,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Manifesto */}
+      {/* Our Approach - Accordion */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <GlassCard className="p-8" borderRadius="0.75rem">
@@ -59,9 +145,103 @@ export default function AboutPage() {
             <p className="text-lg text-gray-300 leading-relaxed mb-4">
               Working software is the oxygen for ideas. We validate before we commit. Build to prove, not to guess.
             </p>
-            <p className="text-base text-gray-400 leading-relaxed">
+            <p className="text-base text-gray-400 leading-relaxed mb-6">
               Build-to-think methodology: prototype to learn, validate before committing, ship to prove. No guesswork.
             </p>
+
+            {/* Methodology Accordion */}
+            <div className="space-y-3">
+              {methodologySections.map((section) => (
+                <div key={section.id} className="border border-gray-700 rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full flex items-center justify-between p-4 bg-gray-900/30 hover:bg-gray-900/50 transition-colors text-left"
+                  >
+                    <span className="text-base font-semibold text-white">{section.title}</span>
+                    {expandedSection === section.id ? (
+                      <ChevronUp className="w-5 h-5 text-[#FFD700] flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-[#FFD700] flex-shrink-0" />
+                    )}
+                  </button>
+
+                  {expandedSection === section.id && (
+                    <div className="p-6 bg-gray-900/20 border-t border-gray-700">
+                      {/* Meta Context */}
+                      {section.id === 'meta-context' && (
+                        <div className="space-y-4">
+                          {section.content?.map((paragraph, idx) => (
+                            <p key={idx} className="text-gray-300 leading-relaxed">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* What We Built */}
+                      {section.id === 'what-we-built' && (
+                        <div className="space-y-4">
+                          {section.subsections?.map((subsection, idx) => (
+                            <div key={idx} className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
+                              <h3 className="text-base font-bold text-white mb-1">{subsection.title}</h3>
+                              <p className="text-xs text-gray-400 mb-2">{subsection.subtitle}</p>
+                              <p className="text-sm text-gray-300">{subsection.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* What We Learned */}
+                      {section.id === 'what-we-learned' && (
+                        <div className="space-y-4">
+                          <p className="text-gray-300 leading-relaxed mb-4">{section.intro}</p>
+                          <div className="space-y-3 mb-4">
+                            {section.insights?.map((insight, idx) => (
+                              <div key={idx} className="border-l-4 pl-4 py-2" style={{ borderColor: insight.color }}>
+                                <h4 className="text-white font-bold mb-2 text-sm">{insight.title}</h4>
+                                <p className="text-gray-300 text-sm leading-relaxed">{insight.description}</p>
+                              </div>
+                            ))}
+                          </div>
+                          <p className="text-gray-300 leading-relaxed">{section.conclusion}</p>
+                        </div>
+                      )}
+
+                      {/* Why It Matters */}
+                      {section.id === 'why-it-matters' && (
+                        <div className="space-y-4">
+                          {section.content?.map((paragraph, idx) => (
+                            <p key={idx} className="text-gray-300 leading-relaxed">
+                              {paragraph}
+                            </p>
+                          ))}
+                          <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg space-y-2 mt-4">
+                            {section.bullets?.map((bullet, idx) => (
+                              <div key={idx} className="flex items-start gap-2">
+                                <span className="text-[#00D9FF] text-lg flex-shrink-0">→</span>
+                                <p className="text-sm text-gray-300">{bullet}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Transfer */}
+                      {section.id === 'transfer' && (
+                        <div className="space-y-4">
+                          {section.content?.map((paragraph, idx) => (
+                            <p key={idx} className="text-gray-300 leading-relaxed">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <div className="mt-6 pt-6 border-t border-gray-700">
               <Link href="/thinking" className="text-accent hover:underline font-medium">
                 read about our approach →
@@ -71,11 +251,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Background & Proof */}
+      {/* Background & Approach */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
-            Background & Proof
+            Background & Approach
           </h2>
 
           <GlassCard className="p-8" borderRadius="0.75rem">
@@ -98,7 +278,7 @@ export default function AboutPage() {
               <div>
                 <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">Proving It On Our Own</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  Zero Inbox went from concept to App Store in 30 days using the same methodology. 7 prototypes validated every decision. 0 architectural pivots. Zero exists to prove the methodology works—on our own products, with our own capital.
+                  Zero Inbox went from concept to App Store in 30 days using the same methodology. 0 architectural pivots. Zero exists to prove the methodology works—on our own products, with our own capital.
                 </p>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Now we apply those same patterns to client partnerships using a fee + equity model that aligns incentives.
@@ -149,7 +329,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="mt-6 pt-6 border-t border-gray-700 flex gap-4">
-              <Link href="/thinking/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
+              <Link href="/investors/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
                 Read the full model →
               </Link>
               <Link href="/partnerships" className="text-accent hover:underline font-medium text-sm">

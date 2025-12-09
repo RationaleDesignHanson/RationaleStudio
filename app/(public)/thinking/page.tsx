@@ -53,14 +53,6 @@ const essays: Essay[] = [
     description: '7 years at Meta Reality Labs shipping AR/AI products to billions. Where Rationale\'s approach comes from.',
     readTime: '7 min',
     category: 'Origin Story'
-  },
-  {
-    id: '5',
-    title: 'The Dual Engine Model',
-    slug: 'dual-engine-model',
-    description: 'Why we build our own products alongside client work—and how each engine feeds the other.',
-    readTime: '9 min',
-    category: 'Business Model'
   }
 ];
 

@@ -11,6 +11,7 @@ import { ASCIIUnifiedGrid, GlassCard } from '@/components/visual';
 import { investmentContent } from '@/lib/content';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
+import DualEngineModel from '@/components/rationale-overview/diagrams/DualEngineModel';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -42,7 +43,24 @@ export default function InvestorsPage() {
                       border: `1px solid ${tiersTheme.border}`,
                       backgroundColor: `${tiersTheme.background}80`
                     }}
-                  > <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: tiersTheme.accent }}> {metric.value} </div> <div className="text-sm font-semibold mb-1" style={{ color: tiersTheme.foreground }}> {metric.label} </div> <div className="text-xs" style={{ color: tiersTheme.muted }}> {metric.subtext} </div> </div> ))} </div> </GlassCard> </div> </Container> </Section> {/* AI Acceleration */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-4xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <div className="text-center mb-6"> <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: comparisonTheme.foreground }}> {overview.aiAcceleration.title} </h2> <p className="text-lg" style={{ color: comparisonTheme.muted }}>{overview.aiAcceleration.subtitle}</p> </div> <div className="space-y-3"> {overview.aiAcceleration.points.map((point, idx) => ( <div
+                  > <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: tiersTheme.accent }}> {metric.value} </div> <div className="text-sm font-semibold mb-1" style={{ color: tiersTheme.foreground }}> {metric.label} </div> <div className="text-xs" style={{ color: tiersTheme.muted }}> {metric.subtext} </div> </div> ))} </div>
+
+              {/* Visual Diagram */}
+              <div className="mt-12">
+                <DualEngineModel />
+              </div>
+
+              {/* Link to Full Essay */}
+              <div className="mt-8 text-center">
+                <Link
+                  href="/investors/dual-engine-model"
+                  className="inline-flex items-center gap-2 font-medium transition-colors"
+                  style={{ color: tiersTheme.accent }}
+                >
+                  Read the full dual-engine strategy →
+                </Link>
+              </div>
+            </GlassCard> </div> </Container> </Section> {/* AI Acceleration */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-4xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <div className="text-center mb-6"> <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: comparisonTheme.foreground }}> {overview.aiAcceleration.title} </h2> <p className="text-lg" style={{ color: comparisonTheme.muted }}>{overview.aiAcceleration.subtitle}</p> </div> <div className="space-y-3"> {overview.aiAcceleration.points.map((point, idx) => ( <div
                     key={idx}
                     className="p-4 rounded-lg text-sm"
                     style={{

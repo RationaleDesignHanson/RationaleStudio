@@ -2,7 +2,6 @@
  * Essay: The Dual Engine Model
  *
  * Why we build our own products alongside client work
- * Extracted from /overview presentation
  */
 
 'use client';
@@ -30,11 +29,11 @@ export default function DualEngineModelPage() {
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-8">
         <div className="max-w-3xl mx-auto">
           <Link
-            href="/thinking"
+            href="/investors"
             className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Thinking
+            Back to Investors
           </Link>
         </div>
       </div>
@@ -236,22 +235,13 @@ export default function DualEngineModelPage() {
 
           {/* Footer Navigation */}
           <div className="mt-12 pt-8 border-t border-gray-800">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-center">
               <Link
-                href="/thinking/methodology-origins"
+                href="/investors"
                 className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Previous: Methodology Origins
-              </Link>
-              <Link
-                href="/thinking"
-                className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors"
-              >
-                All essays
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                Back to Investors Overview
               </Link>
             </div>
           </div>

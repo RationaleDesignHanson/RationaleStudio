@@ -1,8 +1,7 @@
 /**
- * Essay: Methodology Origins
+ * Essay: The Whiteboard Moment
  *
- * Where Rationale's approach comes from
- * Extracted from /overview presentation
+ * The origin story of Rationale's founding principle
  */
 
 'use client';
@@ -48,138 +47,138 @@ export default function MethodologyOriginsPage() {
                 Origin Story
               </span>
               <span className="text-xs text-gray-500">•</span>
-              <span className="text-xs text-gray-400">7 min read</span>
+              <span className="text-xs text-gray-400">5 min read</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Methodology Origins
+              The Whiteboard Moment
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              7 years at Meta Reality Labs shipping AR/AI products to billions taught us: specs fail, prototypes work. That experience isn't decoration—it's the methodology we bring to every Rationale engagement.
+              One conversation at Meta Reality Labs changed everything. A simple drawing on a whiteboard became the founding principle of Rationale.
             </p>
           </header>
 
-          {/* Content Sections */}
+          {/* The Story */}
           <div className="prose prose-invert max-w-none">
             <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">The Meta Reality Labs Context</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">The Vision Video Request</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                7 years building augmented reality and AI products at Meta Reality Labs. Not research. Not prototypes. Production systems shipping to billions of users on Instagram and Facebook.
+                When I worked at Meta, right after they acquired Oculus, I wanted to create a vision video for our augmented reality platform. I went to my skip manager (who would later form Reality Labs) to request budget approval.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                When you're building AR features that reach 2 billion users, you can't afford to guess. You can't iterate in production. You have to validate before launch.
+                He stopped me and told me this story: Someone once came to his office asking for a few million dollars to finish a feature film about virtual reality. It was impressive, expensive, but the entire film only had about 10 minutes of actual in-headset product experience. You couldn't really understand what it did.
               </p>
             </GlassCard>
 
             <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">What We Built</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">The Drawing</h2>
+              <p className="text-gray-300 leading-relaxed mb-6">
+                He went to the whiteboard. On the left, he drew a lightbulb (an idea). On the right, a ship (a shipping product). He drew a line connecting them.
+              </p>
 
+              {/* Visual Representation */}
+              <div className="my-8 p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+                <div className="flex items-center justify-between max-w-2xl mx-auto">
+                  {/* Lightbulb */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-4xl">
+                      💡
+                    </div>
+                    <p className="text-xs text-gray-400 text-center">AN IDEA</p>
+                  </div>
+
+                  {/* Line with markers */}
+                  <div className="flex-1 mx-8 relative">
+                    <div className="h-0.5 bg-gradient-to-r from-[#FFD700] to-[#00D9FF]"></div>
+                    {/* Vision video marker (left) */}
+                    <div className="absolute left-[15%] -top-8">
+                      <div className="flex flex-col items-center">
+                        <div className="w-3 h-3 bg-red-500 rounded-full mb-1"></div>
+                        <p className="text-xs text-red-400 whitespace-nowrap">Vision videos</p>
+                      </div>
+                    </div>
+                    {/* Target marker (right) */}
+                    <div className="absolute right-[15%] -top-8">
+                      <div className="flex flex-col items-center">
+                        <div className="w-3 h-3 bg-[#00FF94] rounded-full mb-1"></div>
+                        <p className="text-xs text-[#00FF94] whitespace-nowrap">Where you want to be</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Ship */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-4xl">
+                      🚢
+                    </div>
+                    <p className="text-xs text-gray-400 text-center">SHIPPING<br/>PRODUCT</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-300 leading-relaxed mb-4">
+                He made a checkmark close to the lightbulb and said, "This is where vision videos are."
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Then he walked to the right side and made a mark close to the ship: <span className="font-bold text-[#00FF94]">"This is where you want to be. Get the work so close to shipping that all you need is engineering resources to make it real."</span>
+              </p>
+            </GlassCard>
+
+            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
+              <h2 className="text-2xl font-bold text-white mb-4">The Lesson</h2>
+              <div className="border-l-4 border-[#FFD700] pl-6 py-4 mb-6 bg-gray-900/30">
+                <p className="text-lg text-gray-300 leading-relaxed italic">
+                  "Anything to the left of that mark doesn't get you much value."
+                </p>
+              </div>
+              <p className="text-gray-300 leading-relaxed">
+                That conversation changed everything for me. It crystallized a principle I'd seen work at scale but never articulated so clearly: the closer you get to real, shipping software, the more value you create. The further left you stay—in concepts, presentations, specs—the less certain you are about what actually works.
+              </p>
+            </GlassCard>
+
+            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
+              <h2 className="text-2xl font-bold text-white mb-4">Why This Founded Rationale</h2>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                That whiteboard drawing became the founding principle of Rationale: help teams get to that critical point—close to shipping—before committing significant resources.
+              </p>
+              <p className="text-gray-300 leading-relaxed mb-6">
+                Most consultancies and agencies keep you on the left side of that line. They deliver specs, wireframes, design files. Beautiful documentation that tells you what could be built. But you're still far from knowing if it will actually work.
+              </p>
+              <p className="text-gray-300 leading-relaxed mb-6">
+                Rationale exists to move teams to the right side of the line—to that mark close to shipping. We build working prototypes. We validate with real users. We de-risk the expensive parts before you commit to full production.
+              </p>
+              <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg">
+                <h3 className="text-white font-bold mb-3 text-sm uppercase tracking-wide">The Rationale Principle</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Get the work so close to shipping that you know it will work before you scale the team, commit the budget, or build the production system. Validate with working software. Prove before you commit.
+                </p>
+              </div>
+            </GlassCard>
+
+            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
+              <h2 className="text-2xl font-bold text-white mb-4">Where This Shows Up Today</h2>
               <div className="space-y-4">
-                <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg">
-                  <h3 className="text-lg font-bold text-white mb-2">Spark AR Platform</h3>
-                  <p className="text-sm text-gray-400 mb-3">
-                    Creator tools powering Instagram and Facebook AR effects
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    Enabled millions of creators to build AR experiences. Required systematic prototyping to validate interaction models before shipping to creator community.
-                  </p>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                  <div>
+                    <p className="text-white font-semibold mb-1">Clarity Kit (2 weeks)</p>
+                    <p className="text-sm text-gray-300">Moves you from idea to validated plan with working prototypes</p>
+                  </div>
                 </div>
-
-                <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg">
-                  <h3 className="text-lg font-bold text-white mb-2">AR Commerce Strategy</h3>
-                  <p className="text-sm text-gray-400 mb-3">
-                    Virtual try-on for Nike, Target, Sephora
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    Built frameworks for brands to create AR shopping experiences. Every interaction pattern validated with rapid prototypes before production.
-                  </p>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                  <div>
+                    <p className="text-white font-semibold mb-1">Prototype Kit (4-6 weeks)</p>
+                    <p className="text-sm text-gray-300">Gets you close to shipping—interactive software that validates with real users</p>
+                  </div>
                 </div>
-
-                <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg">
-                  <h3 className="text-lg font-bold text-white mb-2">15+ Patents Filed</h3>
-                  <p className="text-sm text-gray-400 mb-3">
-                    Novel AR/AI interaction patterns
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    Each patent required extensive prototyping to validate feasibility and user comprehension before filing.
-                  </p>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                  <div>
+                    <p className="text-white font-semibold mb-1">Build Ship Run (6-18 months)</p>
+                    <p className="text-sm text-gray-300">Takes you all the way to the ship—production software in market</p>
+                  </div>
                 </div>
               </div>
-            </GlassCard>
-
-            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">What We Learned</h2>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                The pattern repeated across every product:
-              </p>
-
-              <div className="space-y-4 mb-6">
-                <div className="border-l-4 border-[#00D9FF] pl-6 py-2">
-                  <h4 className="text-white font-bold mb-2">Specs Failed in Predictable Ways</h4>
-                  <p className="text-gray-300 text-sm">
-                    Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can't spec your way to understanding those.
-                  </p>
-                </div>
-
-                <div className="border-l-4 border-[#00FF94] pl-6 py-2">
-                  <h4 className="text-white font-bold mb-2">Prototypes Revealed Truth</h4>
-                  <p className="text-gray-300 text-sm">
-                    Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.
-                  </p>
-                </div>
-
-                <div className="border-l-4 border-[#FFD700] pl-6 py-2">
-                  <h4 className="text-white font-bold mb-2">Scale Amplified Mistakes</h4>
-                  <p className="text-gray-300 text-sm">
-                    When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-gray-300 leading-relaxed">
-                This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.
-              </p>
-            </GlassCard>
-
-            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">Why This Matters for Rationale</h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                That 7 years of experience isn't résumé decoration. It's the foundation of how we work.
-              </p>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                Every Rationale engagement applies patterns proven at Meta scale:
-              </p>
-
-              <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="text-[#00D9FF] text-xl">→</span>
-                  <p className="text-sm text-gray-300">Rapid prototyping to validate before committing to production architecture</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#00D9FF] text-xl">→</span>
-                  <p className="text-sm text-gray-300">Systematic testing of interaction patterns with real users</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#00D9FF] text-xl">→</span>
-                  <p className="text-sm text-gray-300">Clear binary decision points: pass/fail criteria for each prototype</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#00D9FF] text-xl">→</span>
-                  <p className="text-sm text-gray-300">Pivot-friendly development that treats changes as learning, not failure</p>
-                </div>
-              </div>
-            </GlassCard>
-
-            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">The Transfer from Meta to Startups</h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Startups face the same problem as Meta, just with higher stakes: limited runway means you can't afford to build the wrong thing.
-              </p>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Meta had resources to recover from mistakes. Startups don't. That makes validated learning even more critical.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                The methodology that worked at billion-user scale works even better at 0-to-1 scale. Validate early. Pivot cheap. Ship with conviction.
-              </p>
             </GlassCard>
           </div>
 
@@ -194,10 +193,10 @@ export default function MethodologyOriginsPage() {
                 Previous: Spec vs Prototype
               </Link>
               <Link
-                href="/thinking/dual-engine-model"
+                href="/about"
                 className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent transition-colors"
               >
-                Next: Dual Engine Model
+                Learn More About Us
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
