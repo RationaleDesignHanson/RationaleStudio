@@ -76,6 +76,74 @@ const UNIT_NORMALIZATION: Record<string, string> = {
   'pkg': 'package',
 };
 
+// ========== UNIT CONVERSION ==========
+
+// Convert volume units to teaspoons (base unit for volume conversion)
+const VOLUME_TO_TSP: Record<string, number> = {
+  'tsp': 1,
+  'tbsp': 3,
+  'cup': 48,
+  'fl oz': 6,
+  'pt': 96,
+  'qt': 192,
+  'gal': 768,
+  'ml': 0.202884, // 1 ml ≈ 0.202884 tsp
+  'l': 202.884,   // 1 liter ≈ 202.884 tsp
+};
+
+// Normalized volume unit names for conversion
+const NORMALIZED_VOLUME_UNITS = new Set(['tsp', 'tbsp', 'cup', 'fl oz', 'pt', 'qt', 'gal', 'ml', 'l']);
+
+/**
+ * Check if a unit is a volume unit that can be converted
+ */
+export function isConvertibleVolume(unit: string): boolean {
+  const normalized = UNIT_NORMALIZATION[unit] || unit;
+  return NORMALIZED_VOLUME_UNITS.has(normalized);
+}
+
+/**
+ * Convert a quantity from one volume unit to another
+ */
+export function convertVolume(quantity: number, fromUnit: string, toUnit: string): number {
+  const normalizedFrom = UNIT_NORMALIZATION[fromUnit] || fromUnit;
+  const normalizedTo = UNIT_NORMALIZATION[toUnit] || toUnit;
+
+  // If same unit, no conversion needed
+  if (normalizedFrom === normalizedTo) {
+    return quantity;
+  }
+
+  // Convert to base unit (tsp), then to target unit
+  const inTsp = quantity * (VOLUME_TO_TSP[normalizedFrom] || 0);
+  const result = inTsp / (VOLUME_TO_TSP[normalizedTo] || 1);
+
+  return result;
+}
+
+/**
+ * Determine the best display unit for a quantity in teaspoons
+ * Prefers larger units when appropriate for readability
+ */
+export function selectBestVolumeUnit(quantityInTsp: number): { quantity: number; unit: string } {
+  // Order matters: check larger units first
+  const unitPreferences: { unit: string; minTsp: number }[] = [
+    { unit: 'cup', minTsp: 24 },    // Use cups for 0.5+ cups (24+ tsp)
+    { unit: 'tbsp', minTsp: 1.5 },  // Use tbsp for 0.5+ tbsp (1.5+ tsp)
+    { unit: 'tsp', minTsp: 0 },     // Default to tsp for small amounts
+  ];
+
+  for (const { unit, minTsp } of unitPreferences) {
+    const converted = quantityInTsp / VOLUME_TO_TSP[unit];
+    if (quantityInTsp >= minTsp) {
+      return { quantity: converted, unit };
+    }
+  }
+
+  // Fallback to tsp
+  return { quantity: quantityInTsp, unit: 'tsp' };
+}
+
 // ========== CATEGORY DETECTION ==========
 
 const CATEGORY_KEYWORDS: Record<IngredientCategory, string[]> = {

@@ -11,6 +11,7 @@
  */
 
 import { useState } from 'react'
+import { isConvertibleVolume, convertVolume, selectBestVolumeUnit, formatQuantity } from '../shared/ingredientParser'
 
 interface Ingredient {
   id: string
@@ -101,16 +102,9 @@ export function ShoppingListDemo({ dinnerPartyAdded = false }: ShoppingListDemoP
   }
 
   const formatAmount = (value: number, unit: string): string => {
-    // Convert to fraction if close to common fractions
-    if (Math.abs(value - 0.25) < 0.01) return `¼ ${unit}`
-    if (Math.abs(value - 0.33) < 0.01) return `⅓ ${unit}`
-    if (Math.abs(value - 0.5) < 0.01) return `½ ${unit}`
-    if (Math.abs(value - 0.67) < 0.01) return `⅔ ${unit}`
-    if (Math.abs(value - 0.75) < 0.01) return `¾ ${unit}`
-
-    // Otherwise use decimal, but clean it up
-    if (value % 1 === 0) return `${Math.round(value)} ${unit}`
-    return `${value.toFixed(2).replace(/\.?0+$/, '')} ${unit}`
+    // Use the formatQuantity function from ingredientParser for proper fraction display
+    const formattedQuantity = formatQuantity(value)
+    return unit ? `${formattedQuantity} ${unit}` : formattedQuantity
   }
 
   const aggregateIngredients = (): Record<string, AggregatedIngredient[]> => {
@@ -151,11 +145,25 @@ export function ShoppingListDemo({ dinnerPartyAdded = false }: ShoppingListDemoP
           const sameUnit = units.every(u => u === units[0])
 
           if (sameUnit) {
+            // Same unit - simple sum
             const total = parsed.reduce((sum, p) => sum + p.value, 0)
             ing.totalAmount = formatAmount(total, units[0])
           } else {
-            // Different units, show breakdown
-            ing.totalAmount = ing.individualAmounts.join(' + ')
+            // Different units - check if they're convertible volumes
+            const allVolumes = parsed.every(p => isConvertibleVolume(p.unit))
+
+            if (allVolumes) {
+              // Convert all to teaspoons (base unit), sum, then convert to best display unit
+              const totalInTsp = parsed.reduce((sum, p) => {
+                return sum + convertVolume(p.value, p.unit, 'tsp')
+              }, 0)
+
+              const { quantity, unit } = selectBestVolumeUnit(totalInTsp)
+              ing.totalAmount = formatAmount(quantity, unit)
+            } else {
+              // Can't convert (incompatible units), show breakdown
+              ing.totalAmount = ing.individualAmounts.join(' + ')
+            }
           }
         } else {
           // Can't parse, show breakdown
