@@ -3,6 +3,8 @@
  *
  * Displays CEO checkpoint review information including critical questions,
  * red flags, success criteria, and decision frameworks.
+ *
+ * Phase 4.2: Migrated to use Badge component from design system
  */
 
 'use client';
@@ -10,6 +12,8 @@
 import { useState } from 'react';
 import { GlassCard } from '@/components/visual';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
+import { CheckpointBadge } from '@/components/ui/Badge';
+import type { CheckpointTypeKey } from '@/lib/design-tokens/semantic-colors';
 
 interface CriticalQuestion {
   q: string;
@@ -45,17 +49,6 @@ export function CheckpointCard({
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const theme = getSectionTheme('default');
 
-  const typeColors: Record<string, string> = {
-    design: 'bg-green-500/10 text-green-600 border-green-200',
-    data: 'bg-orange-500/10 text-orange-600 border-orange-200',
-    technical: 'bg-blue-500/10 text-blue-600 border-blue-200',
-    integration: 'bg-purple-500/10 text-purple-600 border-purple-200',
-    qa: 'bg-pink-500/10 text-pink-600 border-pink-200',
-    launch: 'bg-red-500/10 text-red-600 border-red-200',
-  };
-
-  const colorClass = typeColors[type] || 'bg-accent/10 text-accent border-accent/20';
-
   return (
     <GlassCard theme={theme} className="overflow-hidden">
       {/* Header */}
@@ -70,9 +63,7 @@ export function CheckpointCard({
               <p className="text-sm text-muted">Week {week}</p>
             </div>
           </div>
-          <span className={`px-3 py-1 text-xs font-medium uppercase tracking-wide rounded-full border ${colorClass}`}>
-            {type}
-          </span>
+          <CheckpointBadge type={type as CheckpointTypeKey} size="md" />
         </div>
         <p className="text-sm text-muted italic">{purpose}</p>
       </div>

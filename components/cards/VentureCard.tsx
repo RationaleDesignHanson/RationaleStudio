@@ -3,23 +3,20 @@
  *
  * Displays internal IP lab ventures for /ventures page.
  * Shows problem, solution, and current status.
+ *
+ * Phase 4.2: Migrated to use Badge component from design system
  */
 
 import Link from 'next/link';
 import { Venture } from '@/lib/content/ventures';
 import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
+import { StatusBadge } from '@/components/ui/Badge';
+import type { StatusKey } from '@/lib/design-tokens/semantic-colors';
 
 interface VentureCardProps {
   venture: Venture;
   className?: string;
 }
-
-const statusColors = {
-  'In Development': 'bg-blue-100 text-blue-700',
-  'Active': 'bg-green-100 text-green-700',
-  'Spinout': 'bg-purple-100 text-purple-700',
-  'Archived': 'bg-gray-100 text-gray-700',
-};
 
 export function VentureCard({ venture, className = '' }: VentureCardProps) {
   // Check if this venture has a dedicated product page
@@ -41,14 +38,7 @@ export function VentureCard({ venture, className = '' }: VentureCardProps) {
         >
         {/* Status Badge */}
         <div className="absolute top-4 right-4">
-          <span
-            className={`
-              text-xs font-semibold px-3 py-1 rounded-full
-              ${statusColors[venture.status]}
-            `}
-          >
-            {venture.status}
-          </span>
+          <StatusBadge status={venture.status as StatusKey} size="md" />
         </div>
 
         {/* Header */}
@@ -164,9 +154,7 @@ export function VentureCardCompact({ venture, className = '' }: VentureCardProps
           <ResponsiveText variant="h4" className="group-hover:text-accent transition-colors">
             {venture.title}
           </ResponsiveText>
-          <span className={`text-xs font-semibold px-2 py-1 rounded-full ${statusColors[venture.status]} shrink-0 ml-2`}>
-            {venture.status}
-          </span>
+          <StatusBadge status={venture.status as StatusKey} size="sm" className="shrink-0 ml-2" />
         </div>
 
         <p className="text-sm text-muted mb-4 line-clamp-2">{venture.tagline}</p>

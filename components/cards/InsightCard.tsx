@@ -3,25 +3,21 @@
  *
  * Displays blog/insight articles for /insights page.
  * Shows title, excerpt, category, read time, and publish date.
+ *
+ * Phase 4.2: Migrated to use Badge component from design system
  */
 
 import Link from 'next/link';
 import { InsightArticle } from '@/lib/content/insights';
 import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
+import { CategoryBadge } from '@/components/ui/Badge';
+import type { CategoryKey } from '@/lib/design-tokens/semantic-colors';
 
 interface InsightCardProps {
   article: InsightArticle;
   featured?: boolean;
   className?: string;
 }
-
-const categoryColors = {
-  'Product': 'bg-blue-100 text-blue-700',
-  'AI': 'bg-purple-100 text-purple-700',
-  'Design': 'bg-pink-100 text-pink-700',
-  'Strategy': 'bg-green-100 text-green-700',
-  'Process': 'bg-orange-100 text-orange-700',
-};
 
 export function InsightCard({ article, featured = false, className = '' }: InsightCardProps) {
   const formattedDate = new Date(article.publishedAt).toLocaleDateString('en-US', {
@@ -45,14 +41,7 @@ export function InsightCard({ article, featured = false, className = '' }: Insig
       >
         {/* Category Badge */}
         <div className="mb-4">
-          <span
-            className={`
-              text-xs font-semibold px-3 py-1 rounded-full
-              ${categoryColors[article.category]}
-            `}
-          >
-            {article.category}
-          </span>
+          <CategoryBadge category={article.category as CategoryKey} size="md" />
         </div>
 
         {/* Title & Subtitle */}
@@ -137,9 +126,7 @@ export function InsightCardList({ article, className = '' }: InsightCardProps) {
               {article.title}
             </h4>
             <div className="flex items-center gap-2 text-xs text-muted">
-              <span className={`px-2 py-0.5 rounded ${categoryColors[article.category]}`}>
-                {article.category}
-              </span>
+              <CategoryBadge category={article.category as CategoryKey} size="sm" />
               <span>{article.readTime}</span>
             </div>
           </div>
