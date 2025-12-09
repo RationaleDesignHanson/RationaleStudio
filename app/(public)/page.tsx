@@ -69,7 +69,7 @@ export default function HomePage() {
             <div className="flex justify-center">
               <a
                 href="/overview"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-terminal-gold-hover rounded-lg transition-all duration-200 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105"
               >
                 Studio Overview
                 <ArrowRight className="w-5 h-5" />
@@ -132,7 +132,7 @@ export default function HomePage() {
 
                 <Link
                   href="/work/zero"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
                 >
                   Learn about Zero
                   <ArrowRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
                 >
                   Get in touch
                   <ArrowRight className="w-4 h-4" />
@@ -250,7 +250,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact?interest=invest"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
                 >
                   Learn more
                   <ArrowRight className="w-4 h-4" />
@@ -269,7 +269,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact?interest=partner"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
                 >
                   Explore partnership
                   <ArrowRight className="w-4 h-4" />
@@ -288,7 +288,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/how-we-work"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
                 >
                   See how we work
                   <ArrowRight className="w-4 h-4" />
@@ -332,7 +332,7 @@ export default function HomePage() {
             <div className="mt-12 text-center">
               <Link
                 href="/how-we-work"
-                className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
               >
                 See the full methodology
                 <ArrowRight className="w-4 h-4" />

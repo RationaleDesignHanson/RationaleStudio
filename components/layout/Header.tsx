@@ -117,7 +117,7 @@ export function Header() {
                       className={`text-sm font-medium transition-colors whitespace-nowrap inline-flex items-center gap-1 ${
                         isDisabled
                           ? 'text-gray-600 cursor-not-allowed'
-                          : `hover:text-[#FFD700] ${isActive(link.href) ? 'text-[#FFD700] border-b-2 border-[#FFD700]' : 'text-gray-400'}`
+                          : `hover:text-terminal-gold ${isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'}`
                       }`}
                       aria-expanded={isDropdownOpen}
                       aria-haspopup="true"
@@ -177,7 +177,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-[#FFD700] whitespace-nowrap ${
+                  className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap ${
                     isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                   }`}
                 >
@@ -231,7 +231,7 @@ export function Header() {
                       className={`w-full flex items-center justify-between px-4 py-3 text-lg font-medium transition-colors ${
                         isDisabled
                           ? 'text-gray-600 cursor-not-allowed'
-                          : `hover:bg-[#FFD700]/10 hover:text-[#FFD700] ${isActive(link.href) ? 'text-[#FFD700] bg-[#FFD700]/10' : 'text-gray-400'}`
+                          : `hover:bg-terminal-gold/10 hover:text-terminal-gold ${isActive(link.href) ? 'text-terminal-gold bg-terminal-gold/10' : 'text-gray-400'}`
                       }`}
                       aria-expanded={isExpanded}
                       aria-controls={`mobile-dropdown-${link.label}`}
@@ -292,7 +292,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-lg font-medium transition-colors hover:bg-[#FFD700]/10 hover:text-[#FFD700] ${
+                  className={`block px-4 py-3 text-lg font-medium transition-colors hover:bg-terminal-gold/10 hover:text-terminal-gold ${
                     isActive(link.href) ? 'text-terminal-gold bg-terminal-gold/10' : 'text-gray-400'
                   }`}
                 >
