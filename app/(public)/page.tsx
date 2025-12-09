@@ -100,7 +100,7 @@ export default function HomePage() {
             </div>
 
             {/* Row 1: Zero and Heirloom */}
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
               <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#FFD700]/30 rounded-lg">
                 <div className="flex items-start justify-between mb-4">
@@ -179,7 +179,7 @@ export default function HomePage() {
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-white mb-2">Pipeline</h3>
                 <div className="flex items-center gap-2">
