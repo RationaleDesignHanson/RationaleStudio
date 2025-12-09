@@ -224,7 +224,7 @@ export default function MotivoPage() {
 
               <div className="pt-3 border-t border-gray-200 text-center">
                 <p className="text-xs text-gray-500">
-                  studio@rationale.design
+                  <a href="/contact" className="hover:text-[#FFD700] transition-colors">Contact us</a>
                 </p>
               </div>
             </div>

@@ -76,8 +76,8 @@ function getFirebaseDb(): Firestore {
   return db;
 }
 
-// User role types (4-tier access control)
-export type UserRole = 'owner' | 'team' | 'partner' | 'investor';
+// User role types (5-tier access control + client access)
+export type UserRole = 'owner' | 'team' | 'partner' | 'investor' | 'client';
 
 export interface UserProfile {
   uid: string;
@@ -86,6 +86,8 @@ export interface UserProfile {
   name?: string;
   createdAt: number;
   lastLogin: number;
+  // Client-specific custom claim (for role: 'client')
+  clientId?: string; // 'athletes-first' | 'creait' | 'zero'
 }
 
 /**
@@ -193,10 +195,11 @@ export function onAuthChange(callback: (user: FirebaseUser | null) => void) {
  */
 export function hasRole(userRole: UserRole, requiredRole: UserRole): boolean {
   const roleHierarchy: Record<UserRole, number> = {
-    owner: 4,
-    team: 3,
-    partner: 2,
-    investor: 1,
+    owner: 5,
+    team: 4,
+    partner: 3,
+    investor: 2,
+    client: 1,
   };
 
   return roleHierarchy[userRole] >= roleHierarchy[requiredRole];

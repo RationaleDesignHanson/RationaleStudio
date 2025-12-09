@@ -8,7 +8,7 @@
 
 'use client';
 
-import { PasswordProtected } from '@/components/auth/PasswordProtected';
+import { PasswordGate } from '@/components/sections/PasswordGate';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import Link from 'next/link';
@@ -16,9 +16,11 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 export default function CaseStudy010Page() {
   return (
-    <PasswordProtected
+    <PasswordGate
       password="123456"
-      hint="Hint: Six ones, but actually sixes"
+      storageKey="case-study-010-access"
+      title="Case Study 010"
+      description="This case study is password protected. Hint: Six ones, but actually sixes."
     >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Header */}
@@ -49,9 +51,15 @@ export default function CaseStudy010Page() {
                 <h1 className="text-4xl sm:text-5xl font-bold mb-4">
                   Case Study 010
                 </h1>
-                <p className="text-xl text-gray-300">
-                  Commercial Real Estate Intelligence Platform
+                <p className="text-xl text-gray-300 mb-4">
+                  CRM to Worker Optimization
                 </p>
+                <Link
+                  href="/clients/creait/pitch-deck"
+                  className="inline-flex items-center gap-2 text-sm text-[#FFD700] hover:underline"
+                >
+                  View Presentation Deck →
+                </Link>
               </div>
             </div>
           </div>
@@ -362,6 +370,6 @@ export default function CaseStudy010Page() {
           </div>
         </section>
       </main>
-    </PasswordProtected>
+    </PasswordGate>
   );
 }

@@ -1,78 +1,66 @@
 /**
  * Client Login Page
  *
- * Password-protected gate for client presentations
- * Credentials: af1 / halloffame → Athletes First deck
+ * Firebase Authentication for client portal access
+ * Redirects to client-specific dashboards based on custom claims
  */
 
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Container } from '@/components/layout/Container';
+import { useAuth } from '@/lib/auth/AuthContext';
 
-// Global credentials (works for all clients)
-const GLOBAL_CREDENTIALS = {
-  username: 'claracharliecolette',
-  password: '123456'
+// Client redirect mapping based on clientId custom claim
+const CLIENT_REDIRECTS: Record<string, string> = {
+  'athletes-first': '/clients/athletes-first/pitch-deck',
+  'creait': '/clients/creait/pitch-deck',
+  'zero': '/clients/zero/investor',
+  'global': '/clients', // For owner/team with global access
 };
 
-// Client credentials mapping
-const CLIENT_CREDENTIALS: Record<string, { password: string; redirectPath: string }> = {
-  'A1': {
-    password: 'halloffame',
-    redirectPath: '/clients/athletes-first/pitch-deck'
-  },
-  'CREAIT': {
-    password: 'realestate',
-    redirectPath: '/clients/creait/pitch-deck'
-  },
-  'ZERO': {
-    password: '123456',
-    redirectPath: '/clients/zero/investor'
-  }
-};
-
-export default function ClientLoginPage() {
+function ClientLoginForm() {
   const router = useRouter();
-  const [username, setUsername] = useState('');
+  const searchParams = useSearchParams();
+  const { signIn } = useAuth();
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const redirect = searchParams.get('redirect');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // Check global credentials first
-    if (username.toLowerCase().trim() === GLOBAL_CREDENTIALS.username && password === GLOBAL_CREDENTIALS.password) {
-      sessionStorage.setItem('client-auth', 'GLOBAL');
-      router.push('/clients');
-      return;
-    }
+    try {
+      const profile = await signIn(email, password);
 
-    // Simple client-side authentication
-    const normalizedUsername = username.toUpperCase().trim();
-    const client = CLIENT_CREDENTIALS[normalizedUsername];
+      // Determine redirect based on role and clientId custom claim
+      let destination = '/clients';
 
-    if (!client) {
-      setError('Invalid credentials');
+      if (profile.role === 'client' && profile.clientId) {
+        // Client user - redirect to their specific portal
+        destination = CLIENT_REDIRECTS[profile.clientId] || '/clients';
+      } else if (['owner', 'team'].includes(profile.role)) {
+        // Owner/team can access all clients
+        destination = redirect || '/clients';
+      } else {
+        // Other roles don't have client access
+        setError('You do not have access to the client portal');
+        setIsLoading(false);
+        return;
+      }
+
+      router.push(destination);
+    } catch (err: any) {
+      setError(err.message || 'Authentication failed');
       setIsLoading(false);
-      return;
     }
-
-    if (client.password !== password) {
-      setError('Invalid credentials');
-      setIsLoading(false);
-      return;
-    }
-
-    // Store authentication in session storage
-    sessionStorage.setItem('client-auth', normalizedUsername);
-
-    // Redirect to client's presentation
-    router.push(client.redirectPath);
   };
 
   return (
@@ -100,20 +88,20 @@ export default function ClientLoginPage() {
 
               <div>
                 <label
-                  htmlFor="username"
+                  htmlFor="email"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Username
+                  Email
                 </label>
                 <input
-                  id="username"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   autoFocus
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent transition-colors"
-                  placeholder="Enter username"
+                  placeholder="Enter your email"
                 />
               </div>
 
@@ -140,7 +128,7 @@ export default function ClientLoginPage() {
                 disabled={isLoading}
                 className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-[#FFD700]/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Authenticating...' : 'Access Presentation'}
+{isLoading ? 'Signing in...' : 'Sign In'}
               </button>
             </form>
 
@@ -170,5 +158,17 @@ export default function ClientLoginPage() {
         </div>
       </Container>
     </div>
+  );
+}
+
+export default function ClientLoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-[#FFD700]">Loading...</div>
+      </div>
+    }>
+      <ClientLoginForm />
+    </Suspense>
   );
 }

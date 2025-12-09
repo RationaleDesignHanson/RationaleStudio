@@ -1,1 +1,0 @@
-export { PasswordProtected } from './PasswordProtected';

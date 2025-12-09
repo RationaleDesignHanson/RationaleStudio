@@ -280,10 +280,10 @@ export default function InstitutionalGridPage() {
             </button>
 
             <a
-              href="mailto:studio@rationale.design"
+              href="/contact"
               className="text-gray-400 hover:text-[#FFD700] font-mono transition-colors underline hover:no-underline"
             >
-              studio@rationale.design
+              Contact us
             </a>
           </div>
 

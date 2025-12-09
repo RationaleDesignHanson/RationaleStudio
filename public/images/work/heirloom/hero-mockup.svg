@@ -1,0 +1,35 @@
+<svg width="2400" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="2400" height="1600" fill="#F5F1E8"/>
+
+  <!-- iPhone Mockup -->
+  <g transform="translate(850, 200)">
+    <!-- Phone body -->
+    <rect x="0" y="0" width="400" height="820" rx="50" fill="#1A1A1A"/>
+    <rect x="10" y="10" width="380" height="800" rx="45" fill="#000"/>
+
+    <!-- Screen -->
+    <rect x="20" y="60" width="360" height="740" rx="30" fill="#FFF"/>
+
+    <!-- Heirloom branding on screen -->
+    <text x="200" y="150" font-family="serif" font-size="48" font-weight="bold" fill="#E85D42" text-anchor="middle">Heirloom</text>
+    <text x="200" y="200" font-family="sans-serif" font-size="20" fill="#666" text-anchor="middle">Recipe App</text>
+
+    <!-- Recipe card mockup -->
+    <rect x="40" y="250" width="320" height="400" rx="20" fill="#F5F1E8"/>
+    <text x="200" y="300" font-family="serif" font-size="24" font-weight="bold" fill="#333" text-anchor="middle">Grandma's Apple Pie</text>
+    <text x="200" y="340" font-family="sans-serif" font-size="16" fill="#666" text-anchor="middle">A family tradition</text>
+
+    <!-- Decorative elements -->
+    <circle cx="80" cy="550" r="30" fill="#F4A261" opacity="0.6"/>
+    <circle cx="320" cy="580" r="25" fill="#2A9D8F" opacity="0.6"/>
+    <circle cx="140" cy="620" r="20" fill="#E76F51" opacity="0.6"/>
+
+    <!-- Home indicator -->
+    <rect x="140" y="770" width="120" height="5" rx="2.5" fill="#666"/>
+  </g>
+
+  <!-- Label -->
+  <text x="1200" y="1400" font-family="sans-serif" font-size="32" fill="#666" text-anchor="middle">Heirloom iOS App</text>
+  <text x="1200" y="1450" font-family="sans-serif" font-size="24" fill="#999" text-anchor="middle">Preserve family recipes with style</text>
+</svg>

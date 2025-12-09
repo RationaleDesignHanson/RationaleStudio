@@ -15,7 +15,7 @@
         }
 
         body {
-            padding-top: 110px;
+            padding-top: 20px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 30%, #4a1942 60%, #1f1f3a 100%);
             color: white;
@@ -1147,72 +1147,7 @@
     </style>
 </head>
 <body>
-    <!-- Beta Banner -->
-    <div class="beta-banner">
-        <div class="beta-banner-content">
-            <div class="beta-banner-text">
-                <div class="beta-banner-title">Ready to Experience ZerO Inbox?</div>
-                <div class="beta-banner-subtitle">Join hundreds of beta testers achieving inbox zero every day</div>
-            </div>
-            <div class="beta-banner-actions">
-                <a href="mailto:zerobeta@rationale.work?subject=Zero%20Beta%20Access%20Request" class="beta-banner-btn primary">
-                    Request Beta Access
-                </a>
-                <a href="https://apps.apple.com/us/app/testflight/id899247664" target="_blank" class="beta-banner-btn secondary">
-                    Download TestFlight
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Navigation (Desktop) -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="landing.html" class="nav-link">Home</a></li>
-                <li><a href="app-demo.html" class="nav-link">Live Demo</a></li>
-                <li><a href="zero-sequence-live.html" class="nav-link active">Intent-Action Demo</a></li>
-                <li><a href="action-modal-explorer.html" class="nav-link">Actions</a></li>
-                <li><a href="intent-action-explorer.html" class="nav-link">Intents</a></li>
-                <li><a href="shopping-cart.html" class="nav-link">Shopping</a></li>
-                <li><a href="architecture-visual.html" class="nav-link">System Architecture</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
-        ☰
-    </button>
-
-    <!-- Mobile Backdrop -->
-    <div class="mobile-backdrop" id="mobileBackdrop" onclick="closeMobileMenu()"></div>
-
-    <!-- Mobile Drawer -->
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="mobile-drawer-header">
-            <span class="mobile-drawer-title">Navigation</span>
-            <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close">✕</button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="landing.html" class="mobile-nav-link">Home</a></li>
-            <li><a href="app-demo.html" class="mobile-nav-link">Live Demo</a></li>
-            <li><a href="zero-sequence-live.html" class="mobile-nav-link active">Intent-Action Demo</a></li>
-            <li><a href="action-modal-explorer.html" class="mobile-nav-link">Actions</a></li>
-            <li><a href="intent-action-explorer.html" class="mobile-nav-link">Intents</a></li>
-            <li><a href="shopping-cart.html" class="mobile-nav-link">Shopping</a></li>
-            <li><a href="architecture-visual.html" class="mobile-nav-link">System Architecture</a></li>
-        </ul>
-    </div>
-
     <div class="main-container">
-        <div class="page-header">
-            <h1 class="page-title">Intent-Action Demo</h1>
-            <p class="page-subtitle">
-                Test the complete pipeline with side-by-side detailed analysis
-            </p>
-        </div>
-
         <!-- Status Banner -->
         <div id="status-banner" class="status-banner" style="display: none;">
             <span class="status-icon" id="status-icon">✅</span>

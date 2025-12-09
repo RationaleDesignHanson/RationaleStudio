@@ -297,17 +297,17 @@ export default function ContactPage() {
 
           {/* Mobile: Stack vertically */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Clarity Kit */}
+            {/* Discovery Sprint */}
             <a
-              href="mailto:hanson@rationale.work?subject=Clarity%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Clarity%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Discovery%20Sprint%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Discovery%20Sprint%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
               className="block p-6 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group h-full"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-4">
                   <p className="text-xs font-mono text-[#FFD700] mb-3">2 WEEKS</p>
-                  <h3 className="text-lg font-bold text-white mb-3">Clarity Kit</h3>
+                  <h3 className="text-lg font-bold text-white mb-3">Discovery Sprint</h3>
                   <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                    Get technical plan, market positioning, and go/no-go recommendation
+                    Get technical plan, market positioning, and clear direction: build, pivot, or pass
                   </p>
                 </div>
                 <div className="mt-auto">
@@ -322,15 +322,15 @@ export default function ContactPage() {
               </div>
             </a>
 
-            {/* Prototype Kit */}
+            {/* Prototype Sprint */}
             <a
-              href="mailto:hanson@rationale.work?subject=Prototype%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Prototype%20Sprint%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Sprint%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
               className="block p-6 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group h-full"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-4">
                   <p className="text-xs font-mono text-[#FFD700] mb-3">4-6 WEEKS</p>
-                  <h3 className="text-lg font-bold text-white mb-3">Prototype Kit</h3>
+                  <h3 className="text-lg font-bold text-white mb-3">Prototype Sprint</h3>
                   <p className="text-sm text-gray-300 mb-4 leading-relaxed">
                     Get interactive software to validate with real users before full build
                   </p>

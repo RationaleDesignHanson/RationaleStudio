@@ -1,0 +1,103 @@
+{
+  "flows": {
+    "sign_form": {
+      "title": "Sign Form",
+      "steps": [
+        {
+          "label": "1. Form Email",
+          "html": "<div class=\"modal-email-card\"><div style=\"font-size: 16px; font-weight: 600; margin-bottom: 8px;\">Permission Form</div><div style=\"font-size: 13px; opacity: 0.8; margin-bottom: 12px;\">Signature required</div><div style=\"display: inline-flex; padding: 8px 14px; background: rgba(147, 51, 234, 0.3); border-radius: 10px; font-size: 13px;\"><span>✍️</span> Sign</div></div>"
+        },
+        {
+          "label": "2. Draw Signature",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">✍️ Sign Form</div><div style=\"background: rgba(255,255,255,0.95); height: 80px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999; font-style: italic;\">Draw your signature</div></div>"
+        },
+        {
+          "label": "3. Confirm",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">✍️ Confirm Signature</div><div style=\"background: rgba(147, 51, 234, 0.15); border: 2px solid rgba(147, 51, 234, 0.4); padding: 16px; border-radius: 12px; margin-bottom: 16px;\"><div style=\"font-weight: 600; margin-bottom: 8px;\">Field Trip Permission Form</div><div style=\"font-size: 14px; opacity: 0.8;\">Ready to send with your signature</div></div><div style=\"background: rgba(147, 51, 234, 0.3); padding: 14px; border-radius: 10px; text-align: center; font-weight: 600;\">✓ Send Signed Form</div></div>"
+        },
+        {
+          "label": "4. Signed",
+          "html": "<div class=\"modal-success-state\"><div class=\"modal-success-icon\">✓</div><div style=\"font-size: 20px; font-weight: 700; margin-bottom: 8px;\">Form Signed!</div><div style=\"opacity: 0.8;\">Reply sent with signature</div></div>"
+        }
+      ]
+    },
+    "pay_invoice": {
+      "title": "Pay Invoice",
+      "steps": [
+        {
+          "label": "1. Invoice Email",
+          "html": "<div class=\"modal-email-card\"><div style=\"font-size: 16px; font-weight: 600; margin-bottom: 8px;\">Invoice #INV-2025-1234</div><div style=\"font-size: 24px; font-weight: 700; color: #FFD700; margin: 10px 0;\">$599.00</div><div style=\"font-size: 13px; opacity: 0.8; margin-bottom: 12px;\">Due: Oct 30, 2025</div><div style=\"display: inline-flex; padding: 8px 14px; background: rgba(52, 199, 89, 0.3); border-radius: 10px; font-size: 13px;\"><span>💳</span> Pay Now</div></div>"
+        },
+        {
+          "label": "2. Payment Method",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">💳 Pay Invoice</div><div style=\"background: rgba(255,255,255,0.08); padding: 16px; border-radius: 10px; margin-bottom: 12px;\"><div style=\"opacity: 0.7; font-size: 12px;\">Amount Due</div><div style=\"font-size: 28px; font-weight: 700; color: #FFD700;\">$599.00</div></div><div style=\"background: rgba(52, 199, 89, 0.3); padding: 12px; border-radius: 10px; text-align: center; font-weight: 600;\"> Pay with Apple Pay</div></div>"
+        },
+        {
+          "label": "3. Processing",
+          "html": "<div class=\"modal-preview-card\" style=\"background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4);\"><div style=\"width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #3B82F6; border-radius: 50%; margin: 0 auto 16px; animation: spin 1s linear infinite;\"></div><div style=\"text-align: center; font-weight: 600;\">Processing Payment...</div></div>"
+        },
+        {
+          "label": "4. Complete",
+          "html": "<div class=\"modal-success-state\"><div class=\"modal-success-icon\">✓</div><div style=\"font-size: 20px; font-weight: 700; margin-bottom: 8px;\">Payment Sent!</div><div style=\"opacity: 0.8;\">$599.00 paid to Acme Corp</div></div>"
+        }
+      ]
+    },
+    "track_package": {
+      "title": "Track Package",
+      "steps": [
+        {
+          "label": "1. Shipping Email",
+          "html": "<div class=\"modal-email-card\"><div style=\"font-size: 16px; font-weight: 600; margin-bottom: 8px;\">Your order has shipped</div><div style=\"font-size: 13px; opacity: 0.8; margin-bottom: 12px;\">UPS • Arrives Friday</div><div style=\"display: inline-flex; padding: 8px 14px; background: rgba(255, 149, 0, 0.3); border-radius: 10px; font-size: 13px;\"><span>📦</span> Track</div></div>"
+        },
+        {
+          "label": "2. Tracking Details",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">📦 Package Tracking</div><div style=\"background: rgba(255,255,255,0.08); padding: 12px; border-radius: 10px; margin-bottom: 10px;\"><div style=\"font-size: 12px; opacity: 0.7;\">Status</div><div style=\"font-weight: 600; color: #FFD700;\">Out for Delivery</div></div><div style=\"display: flex; gap: 8px; margin-top: 12px;\"><div style=\"flex: 1; height: 4px; background: rgba(52, 199, 89, 0.8); border-radius: 2px;\"></div><div style=\"flex: 1; height: 4px; background: rgba(52, 199, 89, 0.8); border-radius: 2px;\"></div><div style=\"flex: 1; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px;\"></div></div></div>"
+        },
+        {
+          "label": "3. Live Updates",
+          "html": "<div class=\"modal-success-state\"><div class=\"modal-success-icon\">✓</div><div style=\"font-size: 20px; font-weight: 700; margin-bottom: 8px;\">Tracking Active</div><div style=\"opacity: 0.8;\">Push notifications enabled</div></div>"
+        }
+      ]
+    },
+    "check_in_flight": {
+      "title": "Check In Flight",
+      "steps": [
+        {
+          "label": "1. Check-in Email",
+          "html": "<div class=\"modal-email-card\"><div style=\"font-size: 16px; font-weight: 600; margin-bottom: 8px;\">UA 1234 Ready for Check-in</div><div style=\"font-size: 13px; opacity: 0.8; margin-bottom: 12px;\">SFO → JFK • Tomorrow 9:00 AM</div><div style=\"display: inline-flex; padding: 8px 14px; background: rgba(59, 130, 246, 0.3); border-radius: 10px; font-size: 13px;\"><span>✈️</span> Check In</div></div>"
+        },
+        {
+          "label": "2. Seat Selection",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">✈️ Check In</div><div style=\"background: rgba(255,255,255,0.08); padding: 12px; border-radius: 10px; margin-bottom: 10px;\"><div style=\"font-weight: 600;\">Flight UA 1234</div><div style=\"font-size: 13px; opacity: 0.7; margin-top: 4px;\">Seat 12A</div></div><div style=\"background: rgba(59, 130, 246, 0.3); padding: 12px; border-radius: 10px; text-align: center; font-weight: 600;\">Confirm Check-in</div></div>"
+        },
+        {
+          "label": "3. Boarding Pass",
+          "html": "<div class=\"modal-success-state\"><div class=\"modal-success-icon\">✓</div><div style=\"font-size: 20px; font-weight: 700; margin-bottom: 8px;\">Check-in Complete!</div><div style=\"opacity: 0.8;\">Boarding pass saved to Wallet</div></div>"
+        }
+      ]
+    },
+    "cancel_subscription": {
+      "title": "Cancel Subscription",
+      "steps": [
+        {
+          "label": "1. Subscription Email",
+          "html": "<div class=\"modal-email-card\"><div style=\"font-size: 16px; font-weight: 600; margin-bottom: 8px;\">Premium Subscription</div><div style=\"font-size: 20px; font-weight: 700; margin: 10px 0;\">$9.99/mo</div><div style=\"display: inline-flex; padding: 8px 14px; background: rgba(255, 59, 48, 0.3); border-radius: 10px; font-size: 13px;\"><span>❌</span> Cancel</div></div>"
+        },
+        {
+          "label": "2. Confirm Cancel",
+          "html": "<div class=\"modal-preview-card\"><div style=\"font-size: 18px; font-weight: 700; margin-bottom: 16px;\">❌ Cancel Subscription</div><div style=\"background: rgba(255, 59, 48, 0.15); border: 2px solid rgba(255, 59, 48, 0.4); padding: 16px; border-radius: 12px; margin-bottom: 16px;\"><div style=\"font-weight: 600; margin-bottom: 8px;\">Are you sure?</div><div style=\"font-size: 14px; opacity: 0.8;\">Your subscription will end on the current billing date</div></div><div style=\"background: rgba(255, 59, 48, 0.3); padding: 14px; border-radius: 10px; text-align: center; font-weight: 600;\">Confirm Cancellation</div></div>"
+        },
+        {
+          "label": "3. Cancelled",
+          "html": "<div class=\"modal-success-state\"><div class=\"modal-success-icon\">✓</div><div style=\"font-size: 20px; font-weight: 700; margin-bottom: 8px;\">Subscription Cancelled</div><div style=\"opacity: 0.8;\">No future charges</div></div>"
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "extractedFlows": 5,
+    "totalFlows": "50+",
+    "status": "sample",
+    "note": "Initial extraction of 5 representative flows for validation. Will extract remaining flows after React components are built and validated."
+  }
+}

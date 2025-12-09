@@ -27,24 +27,24 @@ export const workProjects: WorkProject[] = [
   {
     id: 'heirloom',
     title: 'Heirloom',
-    subtitle: 'Recipe Heritage App',
+    subtitle: 'iOS Recipe App',
     slug: 'heirloom',
     status: 'building',
     category: 'consumer',
     metrics: [
-      { label: 'Platform', value: 'Native iOS' },
-      { label: 'Status', value: 'In Development' },
-      { label: 'Progress', value: 'Day 2 Complete' }
+      { label: 'Platform', value: 'iOS 17+ Native' },
+      { label: 'Timeline', value: '5-week MVP' },
+      { label: 'Progress', value: 'Week 3 of 5' }
     ],
-    tags: ['Consumer', 'iOS', 'Active Development'],
+    tags: ['Consumer', 'iOS', 'SwiftUI', 'Product Design'],
     isProtected: false,
     featured: true,
-    description: 'Native iOS recipe app combining smart capture, personal expression, and styled sharing to help families preserve their cooking heritage.'
+    description: 'Native app for preserving family recipes with smart shopping list integration, vintage aesthetic, and iOS Reminders sync. Built with SwiftUI and SwiftData.'
   },
   {
     id: 'case-study-010',
     title: 'Case Study 010',
-    subtitle: 'Commercial Real Estate AI',
+    subtitle: 'CRM to Worker Optimization',
     slug: 'case-study-010',
     status: 'delivered',
     category: 'b2b',
@@ -57,12 +57,12 @@ export const workProjects: WorkProject[] = [
     isProtected: true,
     password: '123456',
     featured: true,
-    description: 'Enterprise data intelligence platform with AI-powered workflow automation.'
+    description: 'Enterprise platform connecting CRM data to workforce optimization with AI-powered automation.'
   },
   {
     id: 'case-study-020',
     title: 'Case Study 020',
-    subtitle: 'Multi-Module Platform',
+    subtitle: 'Sports & Entertainment Modernization',
     slug: 'case-study-020',
     status: 'delivered',
     category: 'complex-systems',
@@ -75,7 +75,7 @@ export const workProjects: WorkProject[] = [
     isProtected: true,
     password: '123456',
     featured: true,
-    description: '4-module integrated platform with wearables and spatial computing integration.'
+    description: 'Sports and entertainment modernization platform with 4 integrated modules, wearables, and spatial computing.'
   }
 ];
 

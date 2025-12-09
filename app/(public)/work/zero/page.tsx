@@ -14,6 +14,8 @@ import { OS8Window } from '@/components/visual-test';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import InteractiveDemo from '@/components/zero/InteractiveDemo';
+import GalaxyBackground from '@/components/zero/GalaxyBackground';
+import { ZeroSequenceDemo } from '@/components/zero-sequence';
 import type { Metadata } from 'next';
 
 export default function ZeroPage() {
@@ -57,21 +59,12 @@ export default function ZeroPage() {
 
       {/* The Problem */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto">
           {/* Section Header */}
           <div className="mb-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               The Problem: Your Inbox Is Full of Hidden Work
             </h2>
-            <div className="h-1 w-20 bg-[#FFD700]" />
           </div>
 
           {/* Content - Direct Typography */}
@@ -94,15 +87,13 @@ export default function ZeroPage() {
       </section>
 
       {/* Interactive Demo */}
-      <section id="demo" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
+      <section id="demo" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        {/* Galaxy Background with Fireflies */}
+        <div className="absolute inset-0">
+          <GalaxyBackground />
         </div>
+
+        {/* Content on top of galaxy */}
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -117,24 +108,47 @@ export default function ZeroPage() {
             <InteractiveDemo />
           </div>
 
-          <OS8Window
-            title="What the Production App Adds"
-            variant="minimal"
-            className="max-w-3xl mx-auto"
-          >
-            <div className="grid sm:grid-cols-2 gap-6">
-              <ul className="text-sm text-gray-100 space-y-2">
-                <li>• Real Gmail integration (OAuth 2.0)</li>
-                <li>• AI classification (43 intent categories)</li>
-                <li>• Entity extraction (tracking #s, dates, amounts)</li>
-              </ul>
-              <ul className="text-sm text-gray-100 space-y-2">
-                <li>• Native device actions (Calendar, Contacts, Wallet)</li>
-                <li>• 10-service backend architecture</li>
-                <li>• Summarization and smart replies</li>
-              </ul>
+          {/* What the Production App Adds - Homepage Card Pattern */}
+          <div className="max-w-4xl mx-auto">
+            <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#FFD700]/30 rounded-lg">
+              <h3 className="text-2xl font-bold text-white mb-4">What the Production App Adds</h3>
+
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                The production app extends the prototype with real-world integrations, scalable architecture, and native iOS capabilities.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">Real Gmail integration (OAuth 2.0)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">AI classification (43 intent categories)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">Entity extraction (tracking #s, dates, amounts)</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">Native device actions (Calendar, Contacts, Wallet)</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">10-service backend architecture</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                    <span className="text-sm text-gray-300">Summarization and smart replies</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </OS8Window>
+          </div>
 
           <div className="max-w-3xl mx-auto mt-6 text-center">
             <p className="text-xs text-gray-500">
@@ -144,16 +158,54 @@ export default function ZeroPage() {
         </div>
       </section>
 
+      {/* Why We Built Zero */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="relative z-10 max-w-5xl mx-auto">
+          {/* Section Header */}
+          <div className="mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Why We Built Zero
+            </h2>
+          </div>
+
+          {/* Content - OS8Window Grid */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <OS8Window title="Personal Need" variant="minimal">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day. Email tools organize. They don't extract actions. That's the gap Zero fills.
+              </p>
+            </OS8Window>
+
+            <OS8Window title="Proof of Capability" variant="minimal">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Zero proves Rationale ships real products, not just client work. We built this to demonstrate our execution capability—same speed and technical depth we bring to client engagements.
+              </p>
+            </OS8Window>
+
+            <OS8Window title="Validation → Production" variant="minimal">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                We built a weekend prototype to test the core UX before investing in production infrastructure. Once validated, we designed clean-room production architecture with zero technical debt.
+              </p>
+            </OS8Window>
+
+            <OS8Window title="Technical Execution" variant="minimal">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                268 Swift files with protocol-driven architecture. 10 microservices on Google Cloud Run. Gmail OAuth integration. AI classification with 43 intent categories. Native iOS with device integrations (Calendar, Contacts, Wallet).
+              </p>
+            </OS8Window>
+          </div>
+
+          {/* Summary CTA */}
+          <div className="mt-8 pt-8 border-t border-[#FFD700]/30 text-center max-w-3xl mx-auto">
+            <p className="text-xl font-bold text-[#FFD700]">
+              This is how we build products: fast iteration meets technical excellence.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Development Journey */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -170,14 +222,6 @@ export default function ZeroPage() {
 
       {/* Technical Architecture */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -191,124 +235,21 @@ export default function ZeroPage() {
           <SystemArchitecture />
 
           <div className="mt-12">
-            <IntentTaxonomy />
-          </div>
-        </div>
-      </section>
-
-      {/* Why We Built Zero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto">
-          {/* Section Header */}
-          <div className="mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Why We Built Zero
-            </h2>
-            <div className="h-1 w-20 bg-[#FFD700]" />
-          </div>
-
-          {/* Content - Left Border Cards */}
-          <div className="space-y-6">
-            {/* Personal Need */}
-            <div className="p-6 bg-gray-900/30 border-l-4 border-[#FFD700] rounded-r-lg">
-              <h3 className="text-xl font-bold text-white mb-3">Personal Need</h3>
-              <p className="text-base text-gray-300 leading-relaxed">
-                As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day. Email tools organize. They don't extract actions. That's the gap Zero fills.
-              </p>
-            </div>
-
-            {/* Proof of Capability */}
-            <div className="p-6 bg-gray-900/30 border-l-4 border-[#FFD700] rounded-r-lg">
-              <h3 className="text-xl font-bold text-white mb-3">Proof of Capability</h3>
-              <p className="text-base text-gray-300 leading-relaxed">
-                Zero proves Rationale ships real products, not just client work. We built this to demonstrate our execution capability—same speed and technical depth we bring to client engagements.
-              </p>
-            </div>
-
-            {/* Validation → Production */}
-            <div className="p-6 bg-gray-900/30 border-l-4 border-[#FFD700] rounded-r-lg">
-              <h3 className="text-xl font-bold text-white mb-3">Validation → Production</h3>
-              <p className="text-base text-gray-300 leading-relaxed">
-                We built a weekend prototype to test the core UX before investing in production infrastructure. Once validated, we designed clean-room production architecture with zero technical debt.
-              </p>
-            </div>
-
-            {/* Technical Execution */}
-            <div className="p-6 bg-gray-900/30 border-l-4 border-[#FFD700] rounded-r-lg">
-              <h3 className="text-xl font-bold text-white mb-3">Technical Execution</h3>
-              <p className="text-base text-gray-300 leading-relaxed">
-                268 Swift files with protocol-driven architecture. 10 microservices on Google Cloud Run. Gmail OAuth integration. AI classification with 43 intent categories. Native iOS with device integrations (Calendar, Contacts, Wallet).
-              </p>
-            </div>
-
-            {/* Summary CTA */}
-            <div className="pt-8 border-t border-[#FFD700]/30 text-center">
-              <p className="text-xl font-bold text-[#FFD700]">
-                This is how we build products: fast iteration meets technical excellence.
-              </p>
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-8 text-center">
+                <h3 className="text-3xl font-bold text-white mb-3">See How Zero Classifies Intent Live</h3>
+                <p className="text-base text-gray-300 max-w-3xl mx-auto">
+                  Test email classification with our golden corpus or your own examples. Watch Zero extract entities, identify intent, and generate response flows in real time—backend included as we refine the system.
+                </p>
+              </div>
+              <div className="relative w-full">
+                <ZeroSequenceDemo />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            Work With Us
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Zero demonstrates how Rationale builds products: validation, technical excellence, and execution speed. Let's build yours.
-          </p>
-
-          {/* Velocity Stats */}
-          <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-10">
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">54%</div>
-              <div className="text-sm text-gray-400">Faster time to market</div>
-            </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">75%</div>
-              <div className="text-sm text-gray-400">Risk reduction</div>
-            </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">7x</div>
-              <div className="text-sm text-gray-400">More validation cycles</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all"
-            >
-              Start a Conversation
-            </Link>
-            <Link
-              href="/work"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
-            >
-              See More Work
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
@@ -603,167 +544,5 @@ function ArchKeyPoint({
       <h4 className="text-sm font-bold text-[#FFD700] mb-2">{title}</h4>
       <p className="text-xs text-gray-100 leading-relaxed">{description}</p>
     </div>
-  );
-}
-
-/**
- * Intent Taxonomy Component
- */
-function IntentTaxonomy() {
-  const taxonomy = [
-    {
-      domain: "Financial",
-      color: "#4ADE80",
-      count: 8,
-      intents: [
-        "Billing inquiry",
-        "Payment confirmation",
-        "Invoice request",
-        "Subscription management",
-        "Refund request",
-        "Budget approval",
-        "Expense report",
-        "Tax documentation"
-      ]
-    },
-    {
-      domain: "Scheduling",
-      color: "#60A5FA",
-      count: 6,
-      intents: [
-        "Meeting request",
-        "Calendar invite",
-        "Reschedule request",
-        "Availability query",
-        "Event reminder",
-        "Appointment confirmation"
-      ]
-    },
-    {
-      domain: "Logistics",
-      color: "#F59E0B",
-      count: 7,
-      intents: [
-        "Shipping notification",
-        "Delivery update",
-        "Order confirmation",
-        "Return request",
-        "Tracking inquiry",
-        "Address update",
-        "Package pickup"
-      ]
-    },
-    {
-      domain: "Healthcare",
-      color: "#EC4899",
-      count: 5,
-      intents: [
-        "Appointment reminder",
-        "Test results",
-        "Prescription refill",
-        "Insurance claim",
-        "Medical records request"
-      ]
-    },
-    {
-      domain: "Travel",
-      color: "#8B5CF6",
-      count: 6,
-      intents: [
-        "Booking confirmation",
-        "Itinerary update",
-        "Check-in reminder",
-        "Flight change",
-        "Hotel reservation",
-        "Travel advisory"
-      ]
-    },
-    {
-      domain: "Legal",
-      color: "#EF4444",
-      count: 5,
-      intents: [
-        "Contract review",
-        "Compliance notice",
-        "Legal document",
-        "NDA request",
-        "Terms update"
-      ]
-    },
-    {
-      domain: "General",
-      color: "#FFD700",
-      count: 6,
-      intents: [
-        "Information request",
-        "Newsletter",
-        "Notification",
-        "Feedback request",
-        "Survey invitation",
-        "General inquiry"
-      ]
-    }
-  ];
-
-  return (
-    <OS8Window
-      title="43 Intent Categories, 7 Domains"
-      variant="minimal"
-      animateIn={false}
-      className="max-w-5xl mx-auto"
-    >
-      <div className="py-8">
-        <div className="space-y-4">
-          {taxonomy.map((item, i) => (
-            <div key={i} className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 hover:border-[#FFD700] transition-colors">
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <h3 className="text-lg font-bold text-white">{item.domain}</h3>
-                  <div className="text-xs text-gray-400">
-                    {item.count} intent{item.count !== 1 ? 's' : ''}
-                  </div>
-                </div>
-                <div
-                  className="w-12 h-1 rounded-full"
-                  style={{ backgroundColor: item.color }}
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-2">
-                {item.intents.map((intent, j) => (
-                  <div
-                    key={j}
-                    className="flex items-center gap-2 text-sm text-gray-100 p-2 rounded"
-                  >
-                    <div
-                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: item.color }}
-                    />
-                    {intent}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">7</div>
-            <div className="text-xs text-gray-400">Total Domains</div>
-          </div>
-          <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">43</div>
-            <div className="text-xs text-gray-400">Total Intents</div>
-          </div>
-          <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">6.1</div>
-            <div className="text-xs text-gray-400">Avg per Domain</div>
-          </div>
-          <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">91.7%</div>
-            <div className="text-xs text-gray-400">Coverage</div>
-          </div>
-        </div>
-      </div>
-    </OS8Window>
   );
 }

@@ -43,6 +43,9 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   DualEngineModel: dynamic(() => import('./diagrams/DualEngineModel'), { loading: () => <LoadingComponent /> }),
   HeroAnimation: dynamic(() => import('./diagrams/HeroAnimation'), { loading: () => <LoadingComponent /> }),
   MethodologyOriginShowcase: dynamic(() => import('./diagrams/MethodologyOriginShowcase'), { loading: () => <LoadingComponent /> }),
+  ProofDiversityInfographic: dynamic(() => import('./diagrams/ProofDiversityInfographic'), { loading: () => <LoadingComponent /> }),
+  WhoThisIsForInfographic: dynamic(() => import('./diagrams/WhoThisIsForInfographic'), { loading: () => <LoadingComponent /> }),
+  ReadyToBuildInfographic: dynamic(() => import('./diagrams/ReadyToBuildInfographic'), { loading: () => <LoadingComponent /> }),
 };
 
 // Section colors - Terminal Republic palette
@@ -184,18 +187,19 @@ export default function RationalePitchDeck() {
                 ))}
               </div>
               <div className="flex items-center gap-4">
-                <div className="text-xs text-white/40 font-mono">
-                  Use ← → ↑ ↓ to navigate
+                <div className="text-xs text-white/40 font-mono hidden sm:block">
+                  Click anywhere or use arrow keys
                 </div>
                 <a
                   href="/"
-                  className="p-2 rounded hover:bg-white/10 text-white/60 hover:text-white transition-colors"
-                  aria-label="Close overview"
-                  title="Close and return to homepage"
+                  className="flex items-center gap-2 px-3 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-colors"
+                  aria-label="Exit overview"
+                  title="Exit and return to homepage"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
+                  <span className="text-sm hidden md:inline">Exit</span>
                 </a>
               </div>
             </div>
@@ -203,20 +207,37 @@ export default function RationalePitchDeck() {
         </div>
 
         {/* Slide Content */}
-        <div className="flex-1 pt-24 pb-12">
+        <div className="flex-1 pt-24 pb-12 cursor-pointer" onClick={nextSlide}>
           <div className="px-4 sm:px-8 max-w-6xl mx-auto">
             {/* Slide Controls */}
-            <div className="flex items-center gap-3 mb-8">
-              <button
-                disabled={activeSlide === 0 && activeSection === 0}
-                onClick={previousSlide}
-                className="p-1.5 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-                aria-label="Previous slide"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+            <div className="flex items-center justify-between gap-3 mb-8" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center gap-2">
+                <button
+                  disabled={activeSlide === 0 && activeSection === 0}
+                  onClick={previousSlide}
+                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
+                  aria-label="Previous slide"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <span className="text-sm hidden sm:inline">Previous</span>
+                </button>
+
+                <a
+                  href="/"
+                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-all"
+                  aria-label="Exit overview"
+                  title="Exit and return to homepage"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span className="text-sm">Exit</span>
+                </a>
+              </div>
+
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-white/40">{currentSection.title}</span>
                 <span className="text-white/40">·</span>
@@ -224,12 +245,14 @@ export default function RationalePitchDeck() {
                   {activeSlide + 1} of {totalSlides}
                 </span>
               </div>
+
               <button
                 disabled={activeSlide === totalSlides - 1 && activeSection === sections.length - 1}
                 onClick={nextSlide}
-                className="p-1.5 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
                 aria-label="Next slide"
               >
+                <span className="text-sm hidden sm:inline">Next</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -271,7 +294,7 @@ export default function RationalePitchDeck() {
 
                 {/* Visual/Diagram */}
                 {currentSlide.visual && (
-                  <div className="mt-8">
+                  <div className="mt-8" onClick={(e) => e.stopPropagation()}>
                     {currentSlide.visual.type === 'component' && currentSlide.visual.component && (
                       renderDiagram(currentSlide.visual.component)
                     )}
@@ -288,6 +311,7 @@ export default function RationalePitchDeck() {
                   <details
                     className="mt-8 border-t border-gray-700 pt-6"
                     open={expandedDeepDive === 'expanded-by-default'}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <summary
                       className="text-sm font-mono uppercase tracking-wide cursor-pointer hover:text-[#FFE34D] transition-colors"

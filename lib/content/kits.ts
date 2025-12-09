@@ -36,14 +36,14 @@ export type ServiceKit = {
 
 export const serviceKits: ServiceKit[] = [
   {
-    slug: "clarity-kit",
-    name: "Clarity Kit",
+    slug: "discovery-sprint",
+    name: "Discovery Sprint",
     tagline: "Fast conviction for critical decisions",
     duration: "2-4 weeks",
     pricing: "2-week sprint · Cash or equity",
 
     description:
-      "Know if your idea will work before committing your seed round. In 2-4 weeks, we validate your core assumptions, identify the hardest technical risks, and deliver a go/no-go recommendation based on real analysis—not intuition. You get the clarity to move forward confidently or pivot intelligently, saving months of wasted runway.",
+      "Know if your idea will work before committing your seed round. In 2-4 weeks, we validate your core assumptions, identify the hardest technical risks, and deliver clear direction: build, pivot, or pass—based on real analysis, not intuition. You get the clarity to move forward confidently or pivot intelligently, saving months of wasted runway.",
 
     whatYouGet: [
       "Vision, user types, mental models",
@@ -51,7 +51,7 @@ export const serviceKits: ServiceKit[] = [
       "Early prototype & success metrics",
       "Problem space analysis & opportunity mapping",
       "Competitive landscape & strategic positioning",
-      "Go/no-go recommendation with rationale"
+      "Clear direction: build, pivot, or pass"
     ],
 
     deliverables: [
@@ -97,8 +97,8 @@ export const serviceKits: ServiceKit[] = [
   },
 
   {
-    slug: "prototype-kit",
-    name: "Prototype Kit",
+    slug: "prototype-sprint",
+    name: "Prototype Sprint",
     tagline: "Working prototypes that demonstrate your vision",
     duration: "4-6 weeks",
     pricing: "4-6 week engagement · Cash or equity",
@@ -166,13 +166,13 @@ export const serviceKits: ServiceKit[] = [
     pricing: "Scoped validation · Cash or equity",
 
     description:
-      "Don't build for 6 months only to discover users don't want it. If you have a prototype or concept, we test it with real users in your target market. In 2-6 weeks, you get hard data on whether your assumptions hold up, what needs to change, and a clear go/no-go/pivot recommendation. Make your next major investment decision based on evidence, not hope.",
+      "Don't build for 6 months only to discover users don't want it. If you have a prototype or concept, we test it with real users in your target market. In 2-6 weeks, you get hard data on whether your assumptions hold up, what needs to change, and clear direction: build, pivot, or pass. Make your next major investment decision based on evidence, not hope.",
 
     whatYouGet: [
       "Structured user testing with target audience",
       "User behavior analysis & insights report",
       "Market signal analysis & competitive assessment",
-      "Go / no-go / pivot recommendation",
+      "Clear direction: build, pivot, or pass",
       "Testing protocol design and execution",
       "Risk assessment with validated assumptions"
     ],
@@ -180,7 +180,7 @@ export const serviceKits: ServiceKit[] = [
     deliverables: [
       "Comprehensive user testing insights report",
       "Validated (or invalidated) assumptions",
-      "Go/no-go recommendation with evidence",
+      "Clear direction with evidence",
       "Pivot opportunities (if relevant)",
       "Strategic next steps with priorities",
       "Market validation summary and signals"
@@ -439,11 +439,11 @@ export const expertiseAreas = [
  * Service selection guide
  */
 export const selectionGuide = {
-  clarityKit: {
+  discoverySprint: {
     when: "You need fast conviction (1-2 weeks)",
-    needs: ["Go/no-go decision", "Feature roadmap", "Strategic validation", "Investment pitch support"]
+    needs: ["Clear direction", "Feature roadmap", "Strategic validation", "Investment pitch support"]
   },
-  prototypeKit: {
+  prototypeSprint: {
     when: "You need a working prototype (2-4 weeks)",
     needs: ["User testing & validation", "Technical architecture", "Engineering handoff", "Investor demo"]
   },
@@ -457,7 +457,7 @@ export const selectionGuide = {
   },
   validationKit: {
     when: "You need to test and validate (2-6 weeks)",
-    needs: ["User testing", "Market signals", "Go/no-go recommendation", "Assumption validation"]
+    needs: ["User testing", "Market signals", "Clear direction", "Assumption validation"]
   },
   buildPartner: {
     when: "You need long-term collaboration",

@@ -14,7 +14,6 @@ interface ServiceTier {
   description: string;
   duration: string;
   investment: number;
-  roiMultiple: string;
   color: string;
   services: {
     category: string;
@@ -22,7 +21,7 @@ interface ServiceTier {
   }[];
   diyCost: number;
   rationaleCost: number;
-  savings: string;
+  outcome: string;
 }
 
 export default function ServiceOfferingBreakdown() {
@@ -35,7 +34,6 @@ export default function ServiceOfferingBreakdown() {
       description: 'De-risk hypothesis with prototypes before heavy investment',
       duration: '3 weeks',
       investment: 50000,
-      roiMultiple: '10-15x',
       color: '#00FF94',
       services: [
         {
@@ -49,8 +47,8 @@ export default function ServiceOfferingBreakdown() {
         {
           category: 'Prototyping & Validation',
           items: [
-            '7 interactive prototypes (Figma + functional)',
-            'User testing with 15-30 participants',
+            'Interactive prototypes (Figma + functional)',
+            'User testing with target participants',
             'Behavioral data analysis (not just surveys)'
           ]
         },
@@ -65,7 +63,7 @@ export default function ServiceOfferingBreakdown() {
       ],
       diyCost: 500000,
       rationaleCost: 50000,
-      savings: 'significant waste avoided'
+      outcome: 'Clear conviction: build, pivot, or pass'
     },
     {
       id: 'pilot',
@@ -73,14 +71,13 @@ export default function ServiceOfferingBreakdown() {
       description: 'Ship validated product from concept to real users',
       duration: '12 weeks',
       investment: 200000,
-      roiMultiple: '15-20x',
       color: '#FFD700',
       services: [
         {
           category: 'Full Validation Sprint (Week 1-3)',
           items: [
             'All Sprint deliverables if starting from zero',
-            '7 prototypes, user testing, architecture locked'
+            'Prototypes, user testing, architecture locked'
           ]
         },
         {
@@ -106,7 +103,7 @@ export default function ServiceOfferingBreakdown() {
       ],
       diyCost: 3000000,
       rationaleCost: 200000,
-      savings: 'major waste avoided + 6 months faster'
+      outcome: 'Shipped product with validated strategy'
     }
   ];
 
@@ -117,7 +114,7 @@ export default function ServiceOfferingBreakdown() {
       <div className="mb-8">
         <h3 className="text-xl font-bold text-white mb-2">What You're Actually Buying</h3>
         <p className="text-sm text-gray-400">
-          Not consulting hours. Systematic de-risking that saves 10-20x the investment in avoided waste.
+          Not consulting hours. Systematic de-risking that delivers conviction and validated direction.
         </p>
       </div>
 
@@ -149,13 +146,8 @@ export default function ServiceOfferingBreakdown() {
               </div>
               <div className="flex items-center gap-4 mt-4">
                 <div>
-                  <div className="text-xs text-gray-500">ROI Multiple</div>
-                  <div className="text-lg font-bold" style={{ color: tier.color }}>{tier.roiMultiple}</div>
-                </div>
-                <div className="w-px h-8 bg-gray-700" />
-                <div>
-                  <div className="text-xs text-gray-500">Investment</div>
-                  <div className="text-sm font-semibold text-white">${(tier.investment / 1000).toFixed(0)}K</div>
+                  <div className="text-xs text-gray-500">Duration</div>
+                  <div className="text-lg font-bold" style={{ color: tier.color }}>{tier.duration}</div>
                 </div>
               </div>
             </button>
@@ -186,18 +178,16 @@ export default function ServiceOfferingBreakdown() {
         </div>
       </div>
 
-      {/* ROI Comparison */}
+      {/* Value Comparison */}
       <div className="p-6 bg-gray-800/50 border-2 rounded-lg mb-6" style={{ borderColor: selectedTierData.color }}>
-        <div className="text-sm font-semibold text-white mb-6">ROI Analysis: DIY vs Rationale</div>
+        <div className="text-sm font-semibold text-white mb-6">Value: DIY vs Rationale</div>
 
         <div className="space-y-6">
-          {/* DIY Cost */}
+          {/* DIY Approach */}
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="text-xs text-gray-400">DIY Approach (hiring team + trial & error)</div>
-              <div className="text-lg font-bold text-[#FF4444]">
-                ${(selectedTierData.diyCost / 1000).toFixed(0)}K
-              </div>
+              <div className="text-sm font-bold text-[#FF4444]">High Risk</div>
             </div>
             <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
               <div className="h-full bg-[#FF4444]" style={{ width: '100%' }} />
@@ -207,13 +197,11 @@ export default function ServiceOfferingBreakdown() {
             </div>
           </div>
 
-          {/* Rationale Cost */}
+          {/* Rationale Partnership */}
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="text-xs text-gray-400">Rationale Partnership</div>
-              <div className="text-lg font-bold" style={{ color: selectedTierData.color }}>
-                ${(selectedTierData.investment / 1000).toFixed(0)}K
-              </div>
+              <div className="text-sm font-bold" style={{ color: selectedTierData.color }}>Validated</div>
             </div>
             <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
               <div
@@ -230,40 +218,32 @@ export default function ServiceOfferingBreakdown() {
           </div>
         </div>
 
-        {/* Savings */}
+        {/* Outcome */}
         <div className="mt-6 pt-6 border-t border-gray-700">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-xs text-gray-500 mb-1">Net Savings</div>
-              <div className="text-sm text-gray-300">{selectedTierData.savings}</div>
-            </div>
-            <div className="text-right">
-              <div className="text-xs text-gray-500 mb-1">ROI Multiple</div>
-              <div className="text-2xl font-bold" style={{ color: selectedTierData.color }}>
-                {selectedTierData.roiMultiple}
-              </div>
-            </div>
+          <div>
+            <div className="text-xs text-gray-500 mb-2">What You Get</div>
+            <div className="text-base font-semibold text-white">{selectedTierData.outcome}</div>
           </div>
         </div>
       </div>
 
-      {/* Why This ROI Multiple */}
+      {/* Why This Approach Works */}
       <div className="p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg">
         <div className="flex items-start gap-3">
           <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FFD700]/20 flex items-center justify-center">
-            <span className="text-[#FFD700] text-sm">📊</span>
+            <span className="text-[#FFD700] text-sm">→</span>
           </div>
           <div>
-            <div className="text-sm font-semibold text-white mb-2">How We Calculate {selectedTierData.roiMultiple} ROI</div>
+            <div className="text-sm font-semibold text-white mb-2">Why This Approach Works</div>
             <div className="text-xs text-gray-300 leading-relaxed space-y-2">
               <div>
-                <span className="font-semibold text-white">Avoided waste:</span> Traditional approach builds for 12+ weeks before validation. When UX fails, you've sunk months of work. Rationale validates in Week 2 with minimal investment. That's substantial savings per failed hypothesis.
+                <span className="font-semibold text-white">Validated assumptions:</span> Traditional approach builds for 12+ weeks before validation. When UX fails, you've sunk months of work. Rationale validates in Week 2 with minimal investment.
               </div>
               <div>
-                <span className="font-semibold text-white">Speed premium:</span> 6 months faster to market = 6 months competitive advantage. For time-sensitive products, this compounds into millions in first-mover value.
+                <span className="font-semibold text-white">Speed advantage:</span> 6 months faster to market = 6 months competitive advantage. For time-sensitive products, this creates substantial first-mover value.
               </div>
               <div>
-                <span className="font-semibold text-white">Zero pivots:</span> No architectural rework, no "we should have tested this" moments. Single-pass development because prototypes validated everything. This alone saves 30-40% of typical project budgets.
+                <span className="font-semibold text-white">Zero pivots:</span> No architectural rework, no "we should have tested this" moments. Single-pass development because prototypes validated everything.
               </div>
             </div>
           </div>
@@ -286,8 +266,8 @@ export default function ServiceOfferingBreakdown() {
           </div>
           <div className="p-4 border-2 rounded" style={{ borderColor: selectedTierData.color, backgroundColor: `${selectedTierData.color}10` }}>
             <div className="text-xs text-gray-500 mb-2">Rationale {selectedTierData.name}</div>
-            <div className="text-2xl font-bold text-white mb-1">${(selectedTierData.investment / 1000).toFixed(0)}K</div>
-            <div className="text-xs text-gray-400">{selectedTierData.duration}, validated</div>
+            <div className="text-2xl font-bold text-white mb-1">{selectedTierData.duration}</div>
+            <div className="text-xs text-gray-400">Validated approach</div>
           </div>
         </div>
       </div>

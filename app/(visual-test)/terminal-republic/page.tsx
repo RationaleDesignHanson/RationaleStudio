@@ -343,10 +343,10 @@ export default function TerminalRepublicPage() {
             </YellowGlow>
 
             <a
-              href="mailto:studio@rationale.design"
+              href="/contact"
               className="text-[#FFD700] hover:text-[#FFE34D] font-mono text-lg underline hover:no-underline transition-all"
             >
-              studio@rationale.design
+              Contact us
             </a>
           </div>
 

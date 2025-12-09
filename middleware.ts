@@ -20,8 +20,8 @@ const protectedRoutes: Record<string, string[]> = {
   '/team': ['team', 'owner'],
   '/partners': ['partner', 'team', 'owner'],
   '/investors': ['investor', 'partner', 'team', 'owner'],
-  // Legacy /clients route - redirect to appropriate dashboard
-  '/clients': ['investor', 'partner', 'team', 'owner'],
+  // Client portal - accessible by clients, team, and owner
+  '/clients': ['client', 'team', 'owner'],
 };
 
 export async function middleware(request: NextRequest) {

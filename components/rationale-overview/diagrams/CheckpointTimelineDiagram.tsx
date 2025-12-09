@@ -187,7 +187,7 @@ export default function CheckpointTimelineDiagram() {
                 {/* Checkpoint title */}
                 <text
                   x={x}
-                  y={y - 20}
+                  y={y - 50}
                   className="text-xs font-medium"
                   fill={isHovered ? '#FFD700' : '#9CA3AF'}
                   textAnchor="middle"

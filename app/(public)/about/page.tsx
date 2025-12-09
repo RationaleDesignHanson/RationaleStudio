@@ -1,97 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { GlassCard } from '@/components/visual';
+import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function AboutPage() {
-  const [expandedSection, setExpandedSection] = useState<string | null>(null);
-
-  const toggleSection = (sectionId: string) => {
-    setExpandedSection(expandedSection === sectionId ? null : sectionId);
-  };
-
-  const methodologySections = [
-    {
-      id: 'meta-context',
-      title: 'The Meta Reality Labs Context',
-      content: [
-        '7 years building augmented reality and AI products at Meta Reality Labs. Not research. Not prototypes. Production systems shipping to billions of users on Instagram and Facebook.',
-        'When you\'re building AR features that reach 2 billion users, you can\'t afford to guess. You can\'t iterate in production. You have to validate before launch.'
-      ]
-    },
-    {
-      id: 'what-we-built',
-      title: 'What We Built',
-      subsections: [
-        {
-          title: 'Spark AR Platform',
-          subtitle: 'Creator tools powering Instagram and Facebook AR effects',
-          description: 'Enabled millions of creators to build AR experiences. Required systematic prototyping to validate interaction models before shipping to creator community.'
-        },
-        {
-          title: 'AR Commerce Strategy',
-          subtitle: 'Virtual try-on for Nike, Target, Sephora',
-          description: 'Built frameworks for brands to create AR shopping experiences. Every interaction pattern validated with rapid prototypes before production.'
-        },
-        {
-          title: '15+ Patents Filed',
-          subtitle: 'Novel AR/AI interaction patterns',
-          description: 'Each patent required extensive prototyping to validate feasibility and user comprehension before filing.'
-        }
-      ]
-    },
-    {
-      id: 'what-we-learned',
-      title: 'What We Learned',
-      intro: 'The pattern repeated across every product:',
-      insights: [
-        {
-          title: 'Specs Failed in Predictable Ways',
-          description: 'Detailed specs described interactions clearly. But they couldn\'t predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can\'t spec your way to understanding those.',
-          color: '#00D9FF'
-        },
-        {
-          title: 'Prototypes Revealed Truth',
-          description: 'Put a prototype in someone\'s hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.',
-          color: '#00FF94'
-        },
-        {
-          title: 'Scale Amplified Mistakes',
-          description: 'When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.',
-          color: '#FFD700'
-        }
-      ],
-      conclusion: 'This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.'
-    },
-    {
-      id: 'why-it-matters',
-      title: 'Why This Matters for Rationale',
-      content: [
-        'That 7 years of experience isn\'t résumé decoration. It\'s the foundation of how we work.',
-        'Every Rationale engagement applies patterns proven at Meta scale:'
-      ],
-      bullets: [
-        'Rapid prototyping to validate before committing to production architecture',
-        'Systematic testing of interaction patterns with real users',
-        'Clear binary decision points: pass/fail criteria for each prototype',
-        'Pivot-friendly development that treats changes as learning, not failure'
-      ]
-    },
-    {
-      id: 'transfer',
-      title: 'The Transfer from Meta to Startups',
-      content: [
-        'Startups face the same problem as Meta, just with higher stakes: limited runway means you can\'t afford to build the wrong thing.',
-        'Meta had resources to recover from mistakes. Startups don\'t. That makes validated learning even more critical.',
-        'The methodology that worked at billion-user scale works even better at 0-to-1 scale. Validate early. Pivot cheap. Ship with conviction.'
-      ]
-    }
-  ];
-
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Background Grid */}
@@ -116,136 +30,205 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl">
-            We spent 7 years at Meta Reality Labs shipping AR/AI to billions. Learned specs fail, prototypes work. Now we apply that systematic execution to our own portfolio IP and select equity partnerships.
+            Most innovation dies in slide decks. At Meta, we shipped AR platforms for 400+ people by building working software first, not debating specs. Now we do the same for our studio IP and partners who trade equity for velocity.
           </p>
         </div>
       </section>
 
-      {/* Credentials */}
+      {/* Our Approach Introduction */}
       <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-gray-400">
-            <div className="flex items-center gap-2">
-              <span className="text-[#FFD700]">✦</span>
-              <span>Meta</span>
+          <StatementBlock
+            title="Our Approach"
+            statement="Working software is the oxygen for ideas. We validate before we commit."
+            supporting="Build → Validate → Ship. No guesswork."
+          />
+        </div>
+      </section>
+
+      {/* The Meta Reality Labs Context */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <GlassCard className="p-8" borderRadius="0.75rem">
+            <h2 className="text-2xl font-bold text-white mb-4">The Meta Reality Labs Context</h2>
+            <div className="space-y-4">
+              <p className="text-gray-300 leading-relaxed">
+                Led Product and Experience Design for Meta's AR platform—a 400+ person organization serving 2B+ users. Designed strategy for the horizontal platform and four verticals: Commerce, World AR, Avatars, and consumer experiences across Instagram/Facebook. Scaled mobile AR team from 2 to 22 people across product design, prototyping, technical art, and UX research.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                At scale, you don't iterate—you validate. When a feature ships to 2 billion users, there's no room for guesswork. That constraint hardened a systematic approach to de-risking product direction: prototype to compress decision time, validate before committing engineering, build working software to force honest conversation. It's the same discipline we bring to every engagement.
+              </p>
             </div>
-            <span className="text-gray-600">·</span>
-            <div>15+ Patents</div>
-            <span className="text-gray-600">·</span>
-            <div>7 Years AR/AI</div>
+          </GlassCard>
+        </div>
+      </section>
+
+      {/* Proof at Scale - 3 Card Grid */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Proof at Scale</h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1: Spark AR */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <h3 className="text-xl font-bold text-white mb-2">Spark AR: Platform + Verticals</h3>
+              <p className="text-sm text-gray-400 mb-4">400+ person XFN org, 2B+ users</p>
+              <div className="space-y-3 text-sm text-gray-300">
+                <p>Built horizontal AR platform + multiple verticals:</p>
+                <div className="pl-4 space-y-2">
+                  <div>
+                    <span className="font-semibold text-white">Commerce:</span> Virtual try-on for Nike, Target, Sephora. 150% platform growth first year, 100x inventory volume.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-white">Entertainment:</span> World AR experiences on Instagram/Facebook.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-white">Avatars:</span> Consumer avatar systems.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-white">Other:</span> Diverse consumer experiences across Meta apps.
+                  </div>
+                </div>
+                <p className="pt-2 border-t border-gray-700">
+                  Pioneered mobile AR prototyping: <span className="text-[#00FF94] font-semibold">60% velocity increase</span>
+                </p>
+                <p>Scaled mobile AR team: <span className="text-[#00FF94] font-semibold">2→22 people</span></p>
+              </div>
+            </GlassCard>
+
+            {/* Card 2: Orion */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <h3 className="text-xl font-bold text-white mb-2">Orion AR Glasses + Quest MR</h3>
+              <p className="text-sm text-gray-400 mb-4">Never-before-built AR hardware</p>
+              <div className="space-y-3 text-sm text-gray-300">
+                <p>Led team building experiences showcasing why revolutionary AR hardware matters.</p>
+                <p>Created product vision demonstrating value proposition for next-generation wearables.</p>
+                <p>Meta leadership and board were the customer—had to prove the "why" behind the hardware investment.</p>
+                <p className="pt-2 border-t border-gray-700">
+                  15+ patents filed in AR/AI interaction systems.
+                </p>
+              </div>
+            </GlassCard>
+
+            {/* Card 3: Cross-Functional Leadership */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <h3 className="text-xl font-bold text-white mb-2">Cross-Functional Leadership</h3>
+              <p className="text-sm text-gray-400 mb-4">Deep understanding of all functions</p>
+              <div className="space-y-3 text-sm text-gray-300">
+                <p>Directly managed diverse disciplines:</p>
+                <ul className="pl-4 space-y-1 list-disc list-inside">
+                  <li>Product designers</li>
+                  <li>Prototypers</li>
+                  <li>Technical artists</li>
+                  <li>UX researchers</li>
+                </ul>
+                <p className="pt-2 border-t border-gray-700">
+                  Cross-functional nature of leading a 400+ person org gave deep understanding of ALL functions: engineering, PM, research, operations.
+                </p>
+                <p className="font-semibold text-white">
+                  This breadth enables Rationale's end-to-end execution from strategy to production.
+                </p>
+              </div>
+            </GlassCard>
           </div>
         </div>
       </section>
 
-      {/* Our Approach - Accordion */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      {/* What We Learned - Colored Insight Cards */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <GlassCard className="p-8" borderRadius="0.75rem">
-            <h2 className="text-2xl font-bold text-white mb-4">Our Approach</h2>
-            <p className="text-lg text-gray-300 leading-relaxed mb-4">
-              Working software is the oxygen for ideas. We validate before we commit. Build to prove, not to guess.
-            </p>
-            <p className="text-base text-gray-400 leading-relaxed mb-6">
-              Build-to-think methodology: prototype to learn, validate before committing, ship to prove. No guesswork.
-            </p>
+          <h2 className="text-3xl font-bold text-white mb-4 text-center">What We Learned</h2>
+          <p className="text-center text-gray-300 mb-8">The pattern repeated across every product:</p>
 
-            {/* Methodology Accordion */}
-            <div className="space-y-3">
-              {methodologySections.map((section) => (
-                <div key={section.id} className="border border-gray-700 rounded-lg overflow-hidden">
-                  <button
-                    onClick={() => toggleSection(section.id)}
-                    className="w-full flex items-center justify-between p-4 bg-gray-900/30 hover:bg-gray-900/50 transition-colors text-left"
-                  >
-                    <span className="text-base font-semibold text-white">{section.title}</span>
-                    {expandedSection === section.id ? (
-                      <ChevronUp className="w-5 h-5 text-[#FFD700] flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-[#FFD700] flex-shrink-0" />
-                    )}
-                  </button>
-
-                  {expandedSection === section.id && (
-                    <div className="p-6 bg-gray-900/20 border-t border-gray-700">
-                      {/* Meta Context */}
-                      {section.id === 'meta-context' && (
-                        <div className="space-y-4">
-                          {section.content?.map((paragraph, idx) => (
-                            <p key={idx} className="text-gray-300 leading-relaxed">
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* What We Built */}
-                      {section.id === 'what-we-built' && (
-                        <div className="space-y-4">
-                          {section.subsections?.map((subsection, idx) => (
-                            <div key={idx} className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
-                              <h3 className="text-base font-bold text-white mb-1">{subsection.title}</h3>
-                              <p className="text-xs text-gray-400 mb-2">{subsection.subtitle}</p>
-                              <p className="text-sm text-gray-300">{subsection.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* What We Learned */}
-                      {section.id === 'what-we-learned' && (
-                        <div className="space-y-4">
-                          <p className="text-gray-300 leading-relaxed mb-4">{section.intro}</p>
-                          <div className="space-y-3 mb-4">
-                            {section.insights?.map((insight, idx) => (
-                              <div key={idx} className="border-l-4 pl-4 py-2" style={{ borderColor: insight.color }}>
-                                <h4 className="text-white font-bold mb-2 text-sm">{insight.title}</h4>
-                                <p className="text-gray-300 text-sm leading-relaxed">{insight.description}</p>
-                              </div>
-                            ))}
-                          </div>
-                          <p className="text-gray-300 leading-relaxed">{section.conclusion}</p>
-                        </div>
-                      )}
-
-                      {/* Why It Matters */}
-                      {section.id === 'why-it-matters' && (
-                        <div className="space-y-4">
-                          {section.content?.map((paragraph, idx) => (
-                            <p key={idx} className="text-gray-300 leading-relaxed">
-                              {paragraph}
-                            </p>
-                          ))}
-                          <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg space-y-2 mt-4">
-                            {section.bullets?.map((bullet, idx) => (
-                              <div key={idx} className="flex items-start gap-2">
-                                <span className="text-[#00D9FF] text-lg flex-shrink-0">→</span>
-                                <p className="text-sm text-gray-300">{bullet}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Transfer */}
-                      {section.id === 'transfer' && (
-                        <div className="space-y-4">
-                          {section.content?.map((paragraph, idx) => (
-                            <p key={idx} className="text-gray-300 leading-relaxed">
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
+          <div className="space-y-6 mb-8">
+            {/* Insight 1 */}
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00D9FF' }}>
+              <h3 className="text-xl font-bold text-white mb-2">Specs Failed in Predictable Ways</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can't spec your way to understanding those.
+              </p>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-700">
-              <Link href="/thinking" className="text-accent hover:underline font-medium">
-                read about our approach →
-              </Link>
+            {/* Insight 2 */}
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00FF94' }}>
+              <h3 className="text-xl font-bold text-white mb-2">Prototypes Revealed Truth</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.
+              </p>
+            </div>
+
+            {/* Insight 3 */}
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#FFD700' }}>
+              <h3 className="text-xl font-bold text-white mb-2">Scale Amplified Mistakes</h3>
+              <p className="text-gray-300 leading-relaxed">
+                When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.
+          </p>
+
+          <div className="mt-8 text-center">
+            <Link href="/thinking" className="text-accent hover:underline font-medium">
+              read about our approach →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why This Matters for Rationale */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <GlassCard className="p-8" borderRadius="0.75rem">
+            <h2 className="text-2xl font-bold text-white mb-4">Why This Matters for Rationale</h2>
+            <div className="space-y-4 mb-6">
+              <p className="text-gray-300 leading-relaxed">
+                Building platforms from 0→1, scaling teams across multiple disciplines, and shipping to billions—that's not résumé decoration. It's the foundation of how we work.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Every Rationale engagement applies patterns proven at Meta scale:
+              </p>
+            </div>
+
+            <div className="bg-gray-900/50 border border-gray-700 p-6 rounded-lg space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                <p className="text-gray-300">Rapid prototyping to validate before committing to production architecture</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                <p className="text-gray-300">Systematic testing of interaction patterns with real users</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                <p className="text-gray-300">Clear binary decision points: pass/fail criteria for each prototype</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-[#00D9FF] text-xl flex-shrink-0">→</span>
+                <p className="text-gray-300">Pivot-friendly development that treats changes as learning, not failure</p>
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </section>
+
+      {/* The Transfer from Meta to Startups */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <GlassCard className="p-8" borderRadius="0.75rem">
+            <h2 className="text-2xl font-bold text-white mb-4">The Transfer from Meta to Startups</h2>
+            <div className="space-y-4">
+              <p className="text-gray-300 leading-relaxed">
+                Startups face the same problem as Meta, just with higher stakes: limited runway means you can't afford to build the wrong thing.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Meta had resources to recover from mistakes. Startups don't. That makes validated learning even more critical.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                The methodology that worked at billion-user scale works even better at 0-to-1 scale. Validate early. Pivot cheap. Ship with conviction.
+              </p>
             </div>
           </GlassCard>
         </div>
@@ -259,29 +242,26 @@ export default function AboutPage() {
           </h2>
 
           <GlassCard className="p-8" borderRadius="0.75rem">
-            <h3 className="text-2xl font-bold text-white mb-2">Matt Hanson</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Matt Hanson: Founder</h3>
             <p className="text-gray-300 mb-8">
               20+ years building products—from motion design and brand strategy to shipping AR/AI features at Meta to 2B+ users. Former Head of Design at FuboTV. Now building Rationale's dual-engine model: portfolio IP and client partnerships.
             </p>
 
             <div className="space-y-6 mb-8">
               <div>
-                <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">The Pattern</h4>
+                <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">From Meta Scale to Studio Discipline</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  7 years at Meta Reality Labs taught us one lesson you can't learn from theory: specs fail, prototypes work. When you're building AR Shopping for Nike and Target, or shipping features to 2 billion Instagram users, you can't iterate in production. Every UX mistake hits millions. We learned to validate everything before committing—not as best practice, but as production necessity.
-                </p>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  AR Shopping: 100%+ inventory growth first year. F8 2018 stage presenter. 15+ patents in AR/AI interaction systems. But that experience wasn't about credentials. It was about discovering what works when you can't afford to guess.
+                  At Meta, building at 2B+ user scale meant validating everything before committing—prototypes compressed decision cycles from months to weeks. That discipline transferred directly: startups face the same constraint with higher stakes. Limited runway means you can't afford to build the wrong thing. The same methodology that worked at billion-user scale works better at 0-to-1 scale.
                 </p>
               </div>
 
               <div>
                 <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">Proving It On Our Own</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  Zero Inbox went from concept to App Store in 30 days using the same methodology. 0 architectural pivots. Zero exists to prove the methodology works—on our own products, with our own capital.
+                  Zero Inbox went from concept to App Store in 30 days using the same build-to-think methodology. No architectural pivots. Zero exists to prove the approach works on our own products, with our own capital, before we ask clients to trust it.
                 </p>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  Now we apply those same patterns to client partnerships using a fee + equity model that aligns incentives.
+                <p className="text-gray-300 leading-relaxed">
+                  Now we apply those patterns to client partnerships using a fee + equity model that aligns long-term incentives. Client work funds R&D. Internal products test methodologies in production. Each engine validates the other.
                 </p>
               </div>
             </div>
@@ -304,39 +284,70 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Business Model */}
+      {/* How We Work */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
             How We Work
           </h2>
 
-          <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-            <h3 className="text-xl font-bold text-white mb-3">Two Engines, One System</h3>
-            <p className="text-gray-300 leading-relaxed mb-6">
-              Rationale runs two engines: <span className="text-white font-semibold">Portfolio IP</span> (products we own like Zero) and <span className="text-white font-semibold">Client Partnerships</span> (fee + equity engagements). Internal products test methodologies in production. Client work funds R&D and provides real-world validation. Each engine feeds the other.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
-                <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 1</div>
-                <div className="text-white font-bold mb-1">Portfolio IP</div>
-                <div className="text-sm text-gray-400">Zero, Compass, future products</div>
+          <div className="space-y-8">
+            {/* AI Acceleration */}
+            <GlassCard className="p-8" borderRadius="0.75rem">
+              <div className="flex items-start gap-3 mb-6">
+                <div className="text-3xl">⚡</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">AI-Accelerated Execution</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    Modern tooling fundamentally changed the economics of product development. Claude Code and Cursor mean small, disciplined teams ship faster than large teams could in 2023. Zero went from concept to App Store in 30 days. Same capital buys more validation cycles—more shots on goal before committing to full production.
+                  </p>
+                </div>
               </div>
-              <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
-                <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 2</div>
-                <div className="text-white font-bold mb-1">Client Partnerships</div>
-                <div className="text-sm text-gray-400">Clarity Kit, Prototype Kit, Build Ship Run</div>
+
+              <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-gray-700">
+                <div>
+                  <div className="text-2xl font-bold text-[#00FF94] mb-1">30 days</div>
+                  <div className="text-sm text-gray-400">Concept → App Store (Zero)</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-[#00FF94] mb-1">2-3x</div>
+                  <div className="text-sm text-gray-400">Ventures per year vs industry</div>
+                </div>
               </div>
-            </div>
-            <div className="mt-6 pt-6 border-t border-gray-700 flex gap-4">
-              <Link href="/investors/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
-                Read the full model →
-              </Link>
-              <Link href="/partnerships" className="text-accent hover:underline font-medium text-sm">
-                View partnerships →
-              </Link>
-            </div>
-          </GlassCard>
+            </GlassCard>
+
+            {/* Dual Engine Model */}
+            <GlassCard className="p-8" borderRadius="0.75rem">
+              <h3 className="text-xl font-bold text-white mb-3">Two Engines, Proven in Production</h3>
+              <p className="text-gray-300 leading-relaxed mb-6">
+                Rationale runs two integrated engines: <span className="text-white font-semibold">Portfolio IP</span> (products we own like Zero) proves methodologies work with our own capital. <span className="text-white font-semibold">Client Partnerships</span> (fee + equity engagements) apply those same patterns to your highest-stakes product decisions. Internal products test approaches before we recommend them. Client work funds continued R&D. You get methods hardened in production, not theory.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
+                  <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 1</div>
+                  <div className="text-white font-bold mb-1">Portfolio IP</div>
+                  <div className="text-sm text-gray-400 mb-3">Zero, Compass, future products</div>
+                  <div className="text-xs text-[#00FF94]">Proves methodology with our capital</div>
+                </div>
+                <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
+                  <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 2</div>
+                  <div className="text-white font-bold mb-1">Client Partnerships</div>
+                  <div className="text-sm text-gray-400 mb-3">Discovery Sprint, Prototype Sprint, Build Ship Run</div>
+                  <div className="text-xs text-[#00FF94]">Applies proven patterns to your roadmap</div>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-gray-700 flex gap-4">
+                <Link href="/investors/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
+                  Read the full model →
+                </Link>
+                <Link href="/partnerships" className="text-accent hover:underline font-medium text-sm">
+                  View partnerships →
+                </Link>
+              </div>
+            </GlassCard>
+          </div>
         </div>
       </section>
 

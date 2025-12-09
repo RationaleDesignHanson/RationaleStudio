@@ -280,7 +280,7 @@ export default function HomePage() {
 
               <div className="pt-3 border-t border-[#FFD700]/30 text-center">
                 <p className="text-xs text-[#FFD700]/70">
-                  studio@rationale.design
+                  <a href="/contact" className="hover:text-[#FFE34D] transition-colors">Contact us</a>
                 </p>
               </div>
             </div>

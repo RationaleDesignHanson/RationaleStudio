@@ -59,9 +59,9 @@ export default function SevenPrototypeFramework() {
   return (
     <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg overflow-hidden">
       <div className="mb-6">
-        <h2 className="text-lg font-medium text-white mb-2">7-Prototype Framework</h2>
+        <h2 className="text-lg font-medium text-white mb-2">Sample Prototype Framework</h2>
         <p className="text-sm text-gray-400">
-          Systematic validation before production commitment
+          Systematic validation before production commitment. This is one example—not all products follow the same path. We adapt the framework to your specific needs.
         </p>
       </div>
 

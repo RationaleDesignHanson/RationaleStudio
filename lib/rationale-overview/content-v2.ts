@@ -133,7 +133,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'build-to-think',
         type: 'solution',
         headline: 'Build-to-Think Methodology',
-        content: 'Rationale\'s build-to-think methodology: Rapid prototypes answer binary questions. Each prototype tests one assumption. 7 prototypes = 7 validated decisions before production. Zero guesswork.',
+        content: 'Rationale\'s build-to-think methodology: Rapid prototypes answer binary questions. Each prototype tests one assumption. Not all products follow the same path—we adapt the framework to your specific validation needs. Zero guesswork.',
         visual: {
           type: 'component',
           component: 'SevenPrototypeFramework' // Horizontal process flow with gates
@@ -304,14 +304,8 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         headline: 'Proof Diversity',
         content: 'Three proof points demonstrate systematic velocity across domains. Consumer product (Zero), enterprise B2B platform (Case Study 010), complex multi-module system (Case Study 020). Same methodology, different contexts.',
         visual: {
-          type: 'stat',
-          data: {
-            proofs: [
-              { title: 'Zero', timeline: '30 days', type: 'Consumer AI' },
-              { title: 'Case Study 010', timeline: '16 weeks', type: 'Enterprise B2B' },
-              { title: 'Case Study 020', timeline: '40+ demos', type: 'Multi-Module' }
-            ]
-          }
+          type: 'component',
+          component: 'ProofDiversityInfographic'
         }
       },
       {
@@ -320,15 +314,8 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         headline: 'Who This Is For',
         content: 'Hands-on builders who need velocity. Founders with conviction but limited runway. Teams open to equity discussions (cash engagements welcome too). Partners who value systematic execution over vendor relationships.',
         visual: {
-          type: 'stat',
-          data: {
-            criteria: [
-              'Hands-on builders',
-              'Need execution velocity',
-              'Value partnership',
-              'Open to equity discussions'
-            ]
-          }
+          type: 'component',
+          component: 'WhoThisIsForInfographic'
         }
       },
       {
@@ -347,14 +334,8 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         headline: 'Ready to Build?',
         content: 'Explore our work, understand our thinking, or start a conversation about your project. Three paths forward.',
         visual: {
-          type: 'stat',
-          data: {
-            links: [
-              { label: 'View Work', href: '/work' },
-              { label: 'Our Services', href: '/services' },
-              { label: 'Book Call', href: '/contact' }
-            ]
-          }
+          type: 'component',
+          component: 'ReadyToBuildInfographic'
         }
       }
     ]

@@ -1,0 +1,32 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F5F1E8"/>
+
+  <!-- iPhone mockup -->
+  <g transform="translate(100, 115)">
+    <!-- Phone -->
+    <rect x="0" y="0" width="200" height="400" rx="25" fill="#1A1A1A"/>
+    <rect x="5" y="5" width="190" height="390" rx="22" fill="#FFF"/>
+
+    <!-- Screen content -->
+    <text x="100" y="80" font-family="serif" font-size="32" font-weight="bold" fill="#E85D42" text-anchor="middle">Heirloom</text>
+    <rect x="20" y="120" width="160" height="220" rx="12" fill="#F5F1E8"/>
+    <text x="100" y="160" font-family="serif" font-size="18" font-weight="bold" fill="#333" text-anchor="middle">Family Recipes</text>
+
+    <!-- Decorative -->
+    <circle cx="60" cy="270" r="18" fill="#F4A261" opacity="0.6"/>
+    <circle cx="140" cy="300" r="15" fill="#2A9D8F" opacity="0.6"/>
+  </g>
+
+  <!-- Text content -->
+  <text x="400" y="180" font-family="serif" font-size="56" font-weight="bold" fill="#E85D42">Heirloom</text>
+  <text x="400" y="240" font-family="sans-serif" font-size="32" fill="#333">iOS Recipe App</text>
+  <text x="400" y="300" font-family="sans-serif" font-size="24" fill="#666" style="max-width: 500px;">Preserve family recipes with smart</text>
+  <text x="400" y="340" font-family="sans-serif" font-size="24" fill="#666">shopping lists and vintage aesthetics</text>
+
+  <!-- Tag line -->
+  <text x="400" y="450" font-family="sans-serif" font-size="20" fill="#999">Native iOS 17+ · SwiftUI · Product Design</text>
+
+  <!-- Rationale branding -->
+  <text x="1100" y="600" font-family="sans-serif" font-size="18" fill="#999" text-anchor="end">By Rationale</text>
+</svg>

@@ -1,0 +1,92 @@
+{
+  "templates": [
+    {
+      "id": "permission_form",
+      "category": "forms",
+      "label": "Permission Form",
+      "description": "School field trip form",
+      "email": {
+        "subject": "Field Trip Permission Form - Please Sign",
+        "from": "Mrs. Johnson <teacher@school.edu>",
+        "body": "Dear Parents,\n\nPlease sign the attached permission form for our science museum field trip on October 25th. The cost is $15 per student. Forms must be returned by October 20th.\n\nThank you,\nMrs. Johnson"
+      }
+    },
+    {
+      "id": "compound_form_payment",
+      "category": "forms",
+      "label": "Form + Fee",
+      "description": "Compound: Sign & Pay",
+      "email": {
+        "subject": "Permission Form & Field Trip Fee - Action Required",
+        "from": "Lincoln Elementary <office@lincolnelementary.edu>",
+        "body": "Dear Parents,\n\nTwo items require your immediate attention for the upcoming Museum of Natural History field trip:\n\n1. PERMISSION FORM: Please sign the attached permission slip for your child to attend on November 12th.\n\n2. FIELD TRIP FEE: $25.00 per student (covers admission + transportation)\n   Pay online: https://lincolnelementary.edu/pay/fieldtrip2025\n\nBoth must be completed by November 5th.\n\nStudent: Alex Rodriguez - Grade 4\nTeacher: Ms. Patterson\n\nThank you,\nLincoln Elementary Administration"
+      }
+    },
+    {
+      "id": "invoice",
+      "category": "payments",
+      "label": "Invoice Payment",
+      "description": "Invoice due reminder",
+      "email": {
+        "subject": "Invoice #INV-2025-1234 Due",
+        "from": "Acme Corp <billing@acmecorp.com>",
+        "body": "Dear Customer,\n\nYour invoice INV-2025-1234 is now due.\n\nAmount: $599.00\nDue Date: October 30, 2025\n\nPay online: https://pay.acmecorp.com/INV-2025-1234"
+      }
+    },
+    {
+      "id": "medical_bill",
+      "category": "payments",
+      "label": "Medical Bill",
+      "description": "Healthcare payment due",
+      "email": {
+        "subject": "Medical Bill Statement - Amount Due $450.00",
+        "from": "City Hospital Billing <billing@cityhospital.org>",
+        "body": "CITY HOSPITAL\nPatient Billing Statement\n\nAccount #: 782945-2025\nDate of Service: September 15, 2025\nAmount Due: $450.00\nDue Date: November 10, 2025\n\nService: Annual Physical Examination\nInsurance Applied: $125.00\nPatient Responsibility: $450.00\n\nPayment Options:\n- Pay Online: https://cityhospital.org/billing/pay\n- Phone: (555) 789-0123\n- Mail: City Hospital, PO Box 4567, San Francisco, CA 94102\n\nQuestions about your bill? Contact our billing department at (555) 789-0123.\n\nThank you,\nCity Hospital Billing Department"
+      }
+    },
+    {
+      "id": "flight_checkin",
+      "category": "travel",
+      "label": "Flight Check-in",
+      "description": "Airline check-in",
+      "email": {
+        "subject": "Check in now for flight UA 123",
+        "from": "United Airlines <noreply@united.com>",
+        "body": "Your flight UA 123 departs tomorrow at 9:00 AM from SFO to LAX.\n\nCheck in now: https://www.united.com/checkin/ABC123\n\nConfirmation: ABC123"
+      }
+    },
+    {
+      "id": "package_tracking",
+      "category": "travel",
+      "label": "Package Tracking",
+      "description": "Shipment notification",
+      "email": {
+        "subject": "Your Amazon.com order has shipped",
+        "from": "Amazon <shipment-tracking@amazon.com>",
+        "body": "Hello,\n\nYour order #112-8493829-3847262 has shipped!\n\nTracking number: 1Z999AA10123456784\nCarrier: UPS\nExpected delivery: October 28, 2025\n\nTrack your package: https://www.amazon.com/tracking"
+      }
+    },
+    {
+      "id": "appointment_scheduling",
+      "category": "appointments",
+      "label": "Schedule Appointment",
+      "description": "Doctor appointment request",
+      "email": {
+        "subject": "Schedule Your Annual Physical - Dr. Martinez",
+        "from": "Valley Medical Center <appointments@valleymedical.com>",
+        "body": "Dear Patient,\n\nIt's time to schedule your annual physical examination with Dr. Martinez.\n\nPlease call us at (555) 123-4567 to schedule, or book online: https://valleymedical.com/schedule\n\nAvailable times:\n- Monday, Nov 4 at 2:00 PM\n- Wednesday, Nov 6 at 10:30 AM\n- Friday, Nov 8 at 3:00 PM\n\nWe look forward to seeing you!\n\nValley Medical Center"
+      }
+    },
+    {
+      "id": "subscription_cancel",
+      "category": "appointments",
+      "label": "Cancel Subscription",
+      "description": "Netflix subscription cancellation",
+      "email": {
+        "subject": "We're sorry to see you go - Cancel Netflix",
+        "from": "Netflix <membership@netflix.com>",
+        "body": "Hi there,\n\nWe noticed you're considering canceling your Netflix subscription.\n\nYour current plan: Premium ($22.99/month)\nNext billing date: November 15, 2025\n\nIf you'd like to cancel, click here: https://www.netflix.com/cancelplan\n\nWe'd love to have you stay. Here's 50% off your next month if you keep your subscription.\n\nThe Netflix Team"
+      }
+    }
+  ]
+}

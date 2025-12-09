@@ -1,11 +1,12 @@
 /**
  * Rationale Homepage
  *
- * Product Studio Positioning (Phase 2):
+ * Product Studio Positioning:
  * - Hero: Product studio identity
- * - How We Ship: Kits methodology (moved up)
- * - Current Focus: Zero, Heirloom + Pipeline
+ * - Current Focus: Zero, Heirloom + Pipeline (Two engines)
  * - Three Paths: Invest/Partner/Collaborate
+ * - How We Ship: Kits methodology
+ * - Fit Filter: What makes a great fit
  */
 
 'use client';
@@ -33,7 +34,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -45,25 +46,20 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
-            {/* Eyebrow */}
-            <div className="mb-4">
-              <p className="text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-medium">
-                Rationale &mdash; Product Development Company
-              </p>
+            {/* Main Headline - Large */}
+            <div className="mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight whitespace-nowrap">
+                Rationale: <span className="font-light">Product Development Company</span>
+              </h1>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-tight">
-              We ship products.{' '}
-              <span className="text-gray-300">Yours and ours.</span>
-            </h1>
+            {/* Subheadline - One Line */}
+            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl font-medium mb-8 tracking-tight">
+              We ship products. <span className="text-gray-300">Yours and ours.</span>
+            </p>
 
             {/* Body Copy */}
-            <div className="max-w-2xl mx-auto mb-10 space-y-4">
-              <p className="text-lg sm:text-xl text-gray-200 leading-relaxed">
-                Product studio with two engines: proprietary software we build and own,
-                and strategic partnerships where we transform strategy into shipped products.
-              </p>
+            <div className="max-w-2xl mx-auto mb-10">
               <p className="text-base sm:text-lg text-gray-400">
                 Proven at Meta AI Reality Labs. Fee + equity engagements available.
               </p>
@@ -82,42 +78,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 2. HOW WE SHIP FASTER - Kits Methodology */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-4xl mx-auto">
-            {/* Mobile: simplified version */}
-            <div className="block md:hidden">
-              <VelocityProof simplified={true} />
-            </div>
-
-            {/* Desktop: full version */}
-            <div className="hidden md:block">
-              <VelocityProof simplified={false} />
-            </div>
-
-            <div className="mt-12 text-center">
-              <Link
-                href="/how-we-work"
-                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
-              >
-                See the full methodology
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
-        <section id="current-focus" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
+        <section id="current-focus" className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -132,8 +94,8 @@ export default function HomePage() {
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
                 Current Focus
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
-                What we're building right now.
+              <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+                Product studio with two engines: proprietary software we build and own, and strategic partnerships where we transform strategy into shipped products.
               </p>
             </div>
 
@@ -191,18 +153,18 @@ export default function HomePage() {
                 </div>
 
                 <p className="text-gray-300 mb-6 leading-relaxed">
-                  Native iOS recipe app combining smart capture, personal expression, and styled sharing
-                  to help families preserve their cooking heritage.
+                  Where family recipes live—styled, shared, and passed down exactly as you made them.
+                  Modern recipe box where grandma's handwritten cards sit alongside NYT bookmarks.
                 </p>
 
                 <div className="space-y-3 mb-6 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">SwiftUI + SwiftData architecture complete</span>
+                    <span className="text-gray-400">Native iOS app built for TestFlight launch</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Users className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Day 2 complete: Core models and design system</span>
+                    <span className="text-gray-400">Recipe capture, styling, and sharing workflows complete</span>
                   </div>
                 </div>
 
@@ -254,7 +216,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 4. THREE PATHS - Invest / Partner / Collaborate */}
+        {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -277,18 +239,18 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* Invest */}
-              <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
                 <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-[#FFD700]" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Invest</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
                   Back our product portfolio. Get early access to Zero and our pipeline products.
                   We're looking for product-minded investors who can open doors.
                 </p>
                 <Link
                   href="/contact?interest=invest"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   Learn more
                   <ArrowRight className="w-4 h-4" />
@@ -296,18 +258,18 @@ export default function HomePage() {
               </div>
 
               {/* Partner */}
-              <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
                 <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-[#FFD700]" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Partner</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
                   Launch products together. We take equity + cash for product development
                   and go-to-market. Best for founders with distribution and capital.
                 </p>
                 <Link
                   href="/contact?interest=partner"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   Explore partnership
                   <ArrowRight className="w-4 h-4" />
@@ -315,23 +277,66 @@ export default function HomePage() {
               </div>
 
               {/* Collaborate */}
-              <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
                 <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
                   <Zap className="w-6 h-6 text-[#FFD700]" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Collaborate</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                   Get to working software in weeks, not quarters.
                 </p>
                 <Link
                   href="/how-we-work"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   See how we work
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. HOW WE SHIP FASTER - Kits Methodology */}
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+          <div className="absolute inset-0 pointer-events-none">
+            <ASCIIUnifiedGrid
+              opacity={0.04}
+              animated={true}
+              colorTheme={watercolorThemes.terminalSubtle}
+              charSet="default"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                How We Ship Faster
+              </h2>
+              <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+                Proven methodology from Meta Reality Labs. Working software in weeks, not quarters.
+              </p>
+            </div>
+
+            {/* Mobile: simplified version */}
+            <div className="block md:hidden">
+              <VelocityProof simplified={true} />
+            </div>
+
+            {/* Desktop: full version */}
+            <div className="hidden md:block">
+              <VelocityProof simplified={false} />
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link
+                href="/how-we-work"
+                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+              >
+                See the full methodology
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </section>

@@ -30,7 +30,7 @@ export default function ZeroArchitectureDiagram() {
       title: 'Technical Execution',
       metric: '10 Microservices',
       color: '#00D9FF',
-      icon: '⚙️',
+      icon: '',
       layers: [
         {
           title: 'Backend Services (Node.js)',
@@ -69,7 +69,7 @@ export default function ZeroArchitectureDiagram() {
       title: 'Systematic Velocity',
       metric: '0 Pivots',
       color: '#00FF94',
-      icon: '⚡',
+      icon: '',
       layers: [
         {
           title: 'Week 1-2: Prototyping Phase',
@@ -107,7 +107,7 @@ export default function ZeroArchitectureDiagram() {
       title: 'Product Thinking',
       metric: 'Complete Strategy',
       color: '#FFD700',
-      icon: '📊',
+      icon: '',
       layers: [
         {
           title: 'Go-To-Market Strategy',
@@ -146,7 +146,7 @@ export default function ZeroArchitectureDiagram() {
   return (
     <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
       <div className="mb-8">
-        <h3 className="text-xl font-bold text-white mb-2">Zero: Complete Technical Proof</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Zero: Production-Grade Reference</h3>
         <p className="text-sm text-gray-400">
           Not a demo. A production iOS app with 10 microservices, complete strategy, and 0 architectural pivots.
         </p>

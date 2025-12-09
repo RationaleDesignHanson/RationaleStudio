@@ -3,19 +3,23 @@
  *
  * Reorganized: Our products first, then partnerships
  * Clear separation between ventures we own vs. client work
+ * OS8 aesthetic treatment for visual brand consistency
  */
 
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
+import { OS8Window } from '@/components/visual-test/OS8Window';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { FeaturedWorkCard } from '@/components/work/FeaturedWorkCard';
-import { getAllProjects } from '@/lib/content/work-projects';
-import { Rocket, Handshake } from 'lucide-react';
+import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
+import { Rocket, Handshake, Lock, ExternalLink, ArrowRight } from 'lucide-react';
 
 export default function WorkPage() {
   const projects = getAllProjects();
+  const zero = getProjectBySlug('zero');
+  const heirloom = getProjectBySlug('heirloom');
 
   // Separate our products from partnerships
   const ourProducts = projects.filter(p => p.category === 'consumer' && !p.isProtected);
@@ -39,12 +43,12 @@ export default function WorkPage() {
             Our Work
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Products we build and own, plus select partnership engagements where we applied our methodology to solve complex problems.
+            Products we ship, systems we build, problems we solve. Everything here demonstrates our methodology under real market pressure.
           </p>
         </div>
       </section>
 
-      {/* Our Products Section */}
+      {/* Featured Projects Hero - Zero & Heirloom */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -55,38 +59,206 @@ export default function WorkPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-              <Rocket className="w-6 h-6 text-[#FFD700]" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-white">Our Ventures</h2>
-              <p className="text-sm text-gray-400">Products we build, own, and operate</p>
-            </div>
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+            <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ourProducts.map((project) => (
-              <FeaturedWorkCard
-                key={project.id}
-                title={project.title}
-                subtitle={project.subtitle}
-                metrics={project.metrics.map(m => m.value)}
-                tags={project.tags}
-                href={`/work/${project.slug}`}
-                status={project.status}
-                isProtected={project.isProtected}
-              />
-            ))}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Zero Inbox - Featured Hero */}
+            {zero && (
+              <Link href={`/work/${zero.slug}`} className="group block">
+                <OS8Window
+                  title={`${zero.title} — ${zero.subtitle}`}
+                  variant="featured"
+                  className="h-full hover:scale-[1.02] transition-transform duration-300"
+                >
+                  <div className="space-y-6">
+                    {/* Status Badge */}
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                        ● LIVE
+                      </span>
+                      <span className="text-xs text-gray-400 font-mono">STATUS: PRODUCTION</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-300 leading-relaxed">
+                      AI email assistant that achieves Inbox Zero autonomously. Early beta used daily by our team to validate core workflows. Learn your preferences, handle routine responses, stay focused on what matters.
+                    </p>
+
+                    {/* Metrics Grid */}
+                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-[#FFD700]/20">
+                      <div>
+                        <div className="text-2xl font-bold text-[#FFD700] mb-1">30 days</div>
+                        <div className="text-xs text-gray-400 uppercase tracking-wider">Timeline</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-[#FFD700] mb-1">Live</div>
+                        <div className="text-xs text-gray-400 uppercase tracking-wider">Status</div>
+                      </div>
+                    </div>
+
+                    {/* Demo Preview Placeholder */}
+                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-8 text-center">
+                      <div className="text-sm text-gray-400 mb-2 font-mono">[ INTERACTIVE DEMO ]</div>
+                      <p className="text-xs text-gray-500">Swipeable action cards • AI classification • Real-time processing</p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {zero.tags.map((tag) => (
+                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#FFD700]/10 text-[#FFD700] font-semibold border border-[#FFD700]/20">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* View Project Link */}
+                    <div className="flex items-center gap-2 text-[#FFD700] font-semibold group-hover:gap-4 transition-all">
+                      <span>View Full Case Study</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </OS8Window>
+              </Link>
+            )}
+
+            {/* Heirloom - Featured Hero */}
+            {heirloom && (
+              <Link href={`/work/${heirloom.slug}`} className="group block">
+                <OS8Window
+                  title={`${heirloom.title} — ${heirloom.subtitle}`}
+                  variant="featured"
+                  className="h-full hover:scale-[1.02] transition-transform duration-300"
+                >
+                  <div className="space-y-6">
+                    {/* Status Badge */}
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
+                        ● BUILDING
+                      </span>
+                      <span className="text-xs text-gray-400 font-mono">STATUS: WEEK 3/5</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-300 leading-relaxed">
+                      Native iOS app for preserving family recipes with smart shopping lists, vintage aesthetic, and iOS Reminders sync. Built with SwiftUI and SwiftData.
+                    </p>
+
+                    {/* Metrics Grid */}
+                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-[#FFD700]/20">
+                      {heirloom.metrics.map((metric, idx) => (
+                        <div key={idx}>
+                          <div className="text-lg font-bold text-[#FFD700] mb-1">{metric.value}</div>
+                          <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Demo Preview Placeholder */}
+                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-8 text-center">
+                      <div className="text-sm text-gray-400 mb-2 font-mono">[ DEVICE MOCKUP ]</div>
+                      <p className="text-xs text-gray-500">Recipe cards • Smart shopping • OCR scanning • iOS Reminders integration</p>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {heirloom.tags.map((tag) => (
+                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#FFD700]/10 text-[#FFD700] font-semibold border border-[#FFD700]/20">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* View Project Link */}
+                    <div className="flex items-center gap-2 text-[#FFD700] font-semibold group-hover:gap-4 transition-all">
+                      <span>View Development Progress</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </OS8Window>
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Ventures - If we add more consumer products */}
+      {ourProducts.length > 2 && (
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+          <div className="absolute inset-0 pointer-events-none">
+            <ASCIIUnifiedGrid
+              opacity={0.04}
+              animated={true}
+              colorTheme={watercolorThemes.terminalSubtle}
+              charSet="default"
+            />
           </div>
 
-          {/* Products Callout */}
-          <div className="mt-12 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-            <p className="text-sm text-gray-400">
-              <span className="font-semibold text-white">Why we build our own products:</span> It keeps our skills sharp, validates our methodology with real market feedback, and creates ownership alignment. We only partner when we believe in the opportunity as much as our own ventures.
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="flex items-center gap-3 mb-12">
+              <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+              <h2 className="text-3xl font-bold text-white">More Ventures</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {ourProducts.slice(2).map((project) => (
+                <Link key={project.id} href={`/work/${project.slug}`} className="group block">
+                  <OS8Window
+                    title={`${project.title}`}
+                    variant="interactive"
+                    className="h-full"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
+                          project.status === 'live' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                          project.status === 'building' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' :
+                          'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                        }`}>
+                          {project.status.toUpperCase()}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-300 text-sm">{project.description}</p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="px-2 py-1 rounded text-xs bg-gray-700 text-gray-300">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </OS8Window>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Why We Build Products - Philosophy */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <div className="absolute inset-0 pointer-events-none">
+          <ASCIIUnifiedGrid
+            opacity={0.04}
+            animated={true}
+            colorTheme={watercolorThemes.terminalSubtle}
+            charSet="default"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <OS8Window title="Why We Build Our Own Products" variant="subtle">
+            <p className="text-sm text-gray-300 leading-relaxed">
+              <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
+              only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
+              We only partner when we believe in the opportunity as much as our own ventures.
             </p>
-          </div>
+          </OS8Window>
         </div>
       </section>
 
@@ -102,29 +274,142 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-              <Handshake className="w-6 h-6 text-[#FFD700]" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
-              <p className="text-sm text-gray-400">Pre-Kickoff engagements where we partnered with companies to build custom products</p>
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+            <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
+            <div className="text-sm text-gray-400 ml-auto hidden sm:block">
+              Pre-Kickoff Engagements
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partnerships.map((project) => (
-              <FeaturedWorkCard
-                key={project.id}
-                title={project.title}
-                subtitle={project.subtitle}
-                metrics={project.metrics.map(m => m.value)}
-                tags={project.tags}
-                href={`/work/${project.slug}`}
-                status={project.status}
-                isProtected={project.isProtected}
-              />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {partnerships.map((project) => {
+              // Special treatment for protected/confidential work
+              const isConfidential = project.isProtected;
+              const needsBlur = isConfidential;
+
+              return (
+                <div key={project.id} className="relative group">
+                  <Link href={`/work/${project.slug}`} className="block">
+                    <OS8Window
+                      title={`${project.title} — ${isConfidential ? 'CLASSIFIED' : project.subtitle}`}
+                      variant={isConfidential ? 'body' : 'interactive'}
+                      className="h-full"
+                    >
+                      <div className={`space-y-4 ${needsBlur ? 'relative' : ''}`}>
+                        {/* Confidential Badge */}
+                        {isConfidential && (
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <Lock className="w-3 h-3 text-amber-400" />
+                              <span className="text-xs font-mono text-amber-400 font-bold">
+                                PASSWORD PROTECTED
+                              </span>
+                            </div>
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
+                              project.status === 'delivered' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                              'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+                            }`}>
+                              {project.status.toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+
+                        {!isConfidential && (
+                          <div className="flex items-center justify-between">
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
+                              project.status === 'delivered' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                              'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+                            }`}>
+                              {project.status.toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Blur effect for confidential content */}
+                        <div className={needsBlur ? 'filter blur-sm group-hover:blur-0 transition-all duration-300' : ''}>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            {project.description}
+                          </p>
+
+                          {/* Metrics */}
+                          <div className="grid grid-cols-3 gap-3 py-4 border-y border-gray-700">
+                            {project.metrics.map((metric, idx) => (
+                              <div key={idx}>
+                                <div className="text-sm font-bold text-[#FFD700]">{metric.value}</div>
+                                <div className="text-xs text-gray-500 uppercase tracking-wider">{metric.label}</div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span key={tag} className="px-2 py-1 rounded text-xs bg-gray-800 text-gray-400 border border-gray-700">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Protected Case Study CTA */}
+                        {isConfidential && (
+                          <div className="pt-4 border-t border-amber-400/20">
+                            <p className="text-xs text-amber-400/70 mb-3">
+                              Enter password to view full case study details
+                            </p>
+                            <div className="flex items-center gap-2 text-amber-400 text-sm font-semibold">
+                              <Lock className="w-3 h-3" />
+                              <span>Unlock Case Study</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Regular CTA */}
+                        {!isConfidential && (
+                          <div className="flex items-center gap-2 text-gray-400 group-hover:text-[#FFD700] transition-colors">
+                            <span className="text-sm">View Details</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
+                        )}
+                      </div>
+                    </OS8Window>
+                  </Link>
+
+                  {/* Auth-protected client presentation links */}
+                  {(project.id === 'case-study-010' || project.id === 'case-study-020') && (
+                    <div className="mt-4">
+                      <OS8Window title="Client Team Access" variant="subtle" className="text-xs">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-500">
+                            {project.id === 'case-study-010' ? 'CREaiT' : 'Athletes First'} Team
+                          </span>
+                          <Link
+                            href={project.id === 'case-study-010' ? '/clients/creait/pitch-deck' : '/clients/athletes-first/pitch-deck'}
+                            className="flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] transition-colors font-semibold"
+                          >
+                            <Lock className="w-3 h-3" />
+                            <span>View Presentation</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </Link>
+                        </div>
+                      </OS8Window>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Partnership Philosophy */}
+          <div className="mt-12">
+            <OS8Window title="Partnership Model" variant="subtle">
+              <p className="text-sm text-gray-300 leading-relaxed">
+                <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
+                strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
+                is confidential and password-protected—we respect our partners' need for discretion.
+              </p>
+            </OS8Window>
           </div>
         </div>
       </section>
@@ -141,20 +426,20 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Interested in partnering?</h2>
-          <p className="text-gray-300 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-white">Interested in partnering?</h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
             We take on select partnerships where we see strong alignment and opportunity to apply our product expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-[#FFD700] hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
             >
               Schedule Intro Call
             </Link>
             <Link
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors rounded-lg"
             >
               View Partnership Models
             </Link>

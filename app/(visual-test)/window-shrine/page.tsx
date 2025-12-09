@@ -423,16 +423,16 @@ export default function WindowShrinePage() {
                     Start Clarity Kit →
                   </button>
                   <a
-                    href="mailto:studio@rationale.design"
+                    href="/contact"
                     className="flex-1 px-6 py-3 bg-white border border-gray-300 hover:bg-gray-50 transition-colors font-semibold text-center"
                   >
-                    Email Studio
+                    Contact Us
                   </a>
                 </div>
 
                 <div className="pt-3 border-t border-gray-200">
                   <p className="text-xs text-gray-500">
-                    studio@rationale.design
+                    <a href="/contact" className="hover:text-[#FFD700] transition-colors">Contact us</a>
                   </p>
                 </div>
               </div>

@@ -18,3 +18,5 @@ export { ZeroASCIIGrid } from './ZeroASCIIGrid';
 
 // Other Visual Components
 export { GlassCard } from './GlassCard';
+export { CredentialItem, CredentialsBar } from './CredentialItem';
+export { StatementBlock } from './StatementBlock';

@@ -84,14 +84,14 @@ export function Header() {
 
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-black/90 backdrop-blur-md">
         <Container>
-          <div className="flex h-12 sm:h-16 items-center justify-between">
+          <div className={`flex h-12 sm:h-16 items-center ${pathname === '/' ? 'justify-start' : 'justify-between'}`}>
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
             className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-[#FFD700]"
           >
             {pathname === '/' ? (
-              <span className="font-semibold">®</span>
+              <span className="font-semibold text-2xl sm:text-3xl lg:text-4xl">®</span>
             ) : (
               <>
                 <span className="font-semibold">Rationale: </span>
@@ -101,7 +101,7 @@ export function Header() {
           </Link>
 
           {/* Navigation - Hidden on mobile */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8" ref={dropdownRef}>
+          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${pathname === '/' ? 'ml-8' : ''}`} ref={dropdownRef}>
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isDropdownOpen = openDropdown === link.label;
@@ -190,7 +190,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+            className="flex items-center justify-center p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] lg:!hidden"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
