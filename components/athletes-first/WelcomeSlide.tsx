@@ -24,7 +24,7 @@ export default function WelcomeSlide() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#FFD700] font-mono mb-8">
+      <h1 className="text-4xl md:text-5xl font-bold text-terminal-gold font-mono mb-8">
         Athletes First × Rationale
       </h1>
 
@@ -37,12 +37,12 @@ export default function WelcomeSlide() {
           {isMobile ? (
             <>
               <p>Tap &lt; &gt; buttons at top to navigate.</p>
-              <p className="text-[#FFD700] text-lg">Tap &gt; to start</p>
+              <p className="text-terminal-gold text-lg">Tap &gt; to start</p>
             </>
           ) : (
             <>
               <p>Use ← → arrow keys or &lt; &gt; buttons at top to navigate.</p>
-              <p className="text-[#FFD700] text-lg">Press → on keyboard to start</p>
+              <p className="text-terminal-gold text-lg">Press → on keyboard to start</p>
             </>
           )}
         </div>

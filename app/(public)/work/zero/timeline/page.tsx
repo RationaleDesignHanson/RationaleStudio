@@ -19,7 +19,7 @@ export default function TimelinePage() {
           <div className="mb-8">
             <Link
               href="/work/zero"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Zero
             </Link>
@@ -27,7 +27,7 @@ export default function TimelinePage() {
 
           {/* Page Header */}
           <div className="mb-12 text-center">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
               INFOGRAPHIC TEST // DEVELOPMENT TIMELINE
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -137,7 +137,7 @@ function DevelopmentTimeline() {
                     <h3 className="text-xl font-bold text-white mb-1">
                       {item.title}
                     </h3>
-                    <div className="text-sm text-[#FFD700] font-medium">
+                    <div className="text-sm text-terminal-gold font-medium">
                       {item.date}
                     </div>
                   </div>

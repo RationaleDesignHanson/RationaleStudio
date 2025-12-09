@@ -124,10 +124,10 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
           disabled={disabled || loading}
           className="
             px-8 py-3
-            bg-gray-800 border-2 border-[#FFD700]
+            bg-gray-800 border-2 border-terminal-gold
             text-white text-base font-semibold
             rounded-lg
-            hover:bg-[#FFD700] hover:text-black
+            hover:bg-terminal-gold hover:text-black
             disabled:opacity-50 disabled:cursor-not-allowed
             transition-all
             focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900
@@ -138,7 +138,7 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
       </div>
 
       {/* Email Form Fields */}
-      <div className="p-6 bg-gray-900 border-2 border-[#FFD700] rounded-lg space-y-4">
+      <div className="p-6 bg-gray-900 border-2 border-terminal-gold rounded-lg space-y-4">
         <h3 className="text-lg font-semibold text-white mb-4">
           Email Details
         </h3>
@@ -161,7 +161,7 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
               text-white text-sm
               rounded
               placeholder:text-gray-500
-              focus:outline-none focus:border-[#FFD700]
+              focus:outline-none focus:border-terminal-gold
               disabled:opacity-50 disabled:cursor-not-allowed
             "
             required
@@ -186,7 +186,7 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
               text-white text-sm
               rounded
               placeholder:text-gray-500
-              focus:outline-none focus:border-[#FFD700]
+              focus:outline-none focus:border-terminal-gold
               disabled:opacity-50 disabled:cursor-not-allowed
             "
             required
@@ -211,7 +211,7 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
               text-white text-sm font-mono
               rounded
               placeholder:text-gray-500
-              focus:outline-none focus:border-[#FFD700]
+              focus:outline-none focus:border-terminal-gold
               disabled:opacity-50 disabled:cursor-not-allowed
               resize-y
             "
@@ -225,7 +225,7 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
           disabled={!isFormValid || disabled || loading}
           className="
             w-full px-8 py-4
-            bg-[#FFD700] text-black
+            bg-terminal-gold text-black
             text-base font-semibold
             rounded-lg
             hover:bg-[#FFE34D]

@@ -22,7 +22,7 @@ const timelineItems: TimelineItem[] = [
         <p>• Capture session + data collection</p>
         <p>• Rules engine setup + compliance framework</p>
         <p>• Contract data collection + scenario modeling</p>
-        <p className="text-[#FFD700] font-bold mt-3">Time Investment: 8-10 hours</p>
+        <p className="text-terminal-gold font-bold mt-3">Time Investment: 8-10 hours</p>
       </div>
     )
   },
@@ -38,7 +38,7 @@ const timelineItems: TimelineItem[] = [
         <p>• AI training + quality validation</p>
         <p>• Agent training + deal template library</p>
         <p>• Interactive tool development</p>
-        <p className="text-[#FFD700] font-bold mt-3">Time Investment: 3-4 hours/week</p>
+        <p className="text-terminal-gold font-bold mt-3">Time Investment: 3-4 hours/week</p>
       </div>
     )
   },
@@ -54,7 +54,7 @@ const timelineItems: TimelineItem[] = [
         <p>✅ First regional campaign live (Week 6)</p>
         <p>✅ First deal analyzed (Week 4)</p>
         <p>✅ First interactive pitch (Week 3)</p>
-        <p className="text-[#FFD700] font-bold mt-3">Quick Wins Start Here</p>
+        <p className="text-terminal-gold font-bold mt-3">Quick Wins Start Here</p>
       </div>
     )
   },
@@ -70,7 +70,7 @@ const timelineItems: TimelineItem[] = [
         <p>• 10+ regional campaigns deployed</p>
         <p>• 50+ deals processed with high accuracy</p>
         <p>• 20+ interactive pitches completed</p>
-        <p className="text-[#FFD700] font-bold mt-3">Time Investment: 2-3 hours/week</p>
+        <p className="text-terminal-gold font-bold mt-3">Time Investment: 2-3 hours/week</p>
       </div>
     )
   },
@@ -87,7 +87,7 @@ const timelineItems: TimelineItem[] = [
         <p>• $50K-$150K in new deal revenue</p>
         <p>• 95%+ compliance accuracy rate</p>
         <p>• 15-25 point improvement in close rate</p>
-        <p className="text-[#FFD700] font-bold mt-3">Go/No-Go Decision Point</p>
+        <p className="text-terminal-gold font-bold mt-3">Go/No-Go Decision Point</p>
       </div>
     )
   }
@@ -100,11 +100,11 @@ export default function PilotTimelineSlide() {
         {/* Section Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-[#FFD700] mb-4">
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-terminal-gold mb-4">
             90-Day Pilot Timeline
           </h2>
           <p className="text-gray-300 font-mono text-sm max-w-2xl mx-auto">
@@ -122,16 +122,16 @@ export default function PilotTimelineSlide() {
 
         {/* Bottom Info */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="text-center p-4 rounded-lg bg-black/50 border border-[#FFD700]/20">
-            <div className="text-2xl font-mono font-bold text-[#FFD700] mb-2">4-6 hrs/week</div>
+          <div className="text-center p-4 rounded-lg bg-black/50 border border-terminal-gold/20">
+            <div className="text-2xl font-mono font-bold text-terminal-gold mb-2">4-6 hrs/week</div>
             <div className="text-xs font-mono text-gray-400">Time Investment</div>
           </div>
-          <div className="text-center p-4 rounded-lg bg-black/50 border border-[#FFD700]/20">
-            <div className="text-2xl font-mono font-bold text-[#FFD700] mb-2">3 Checkpoints</div>
+          <div className="text-center p-4 rounded-lg bg-black/50 border border-terminal-gold/20">
+            <div className="text-2xl font-mono font-bold text-terminal-gold mb-2">3 Checkpoints</div>
             <div className="text-xs font-mono text-gray-400">Week 4, 8, 12</div>
           </div>
-          <div className="text-center p-4 rounded-lg bg-black/50 border border-[#FFD700]/20">
-            <div className="text-2xl font-mono font-bold text-[#FFD700] mb-2">Clear Exit Criteria</div>
+          <div className="text-center p-4 rounded-lg bg-black/50 border border-terminal-gold/20">
+            <div className="text-2xl font-mono font-bold text-terminal-gold mb-2">Clear Exit Criteria</div>
             <div className="text-xs font-mono text-gray-400">Go/No-Go Decisions</div>
           </div>
         </div>

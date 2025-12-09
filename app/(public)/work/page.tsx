@@ -61,7 +61,7 @@ export default function WorkPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
             <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
           </div>
 
@@ -89,13 +89,13 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-[#FFD700]/20">
+                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-terminal-gold/20">
                       <div>
-                        <div className="text-2xl font-bold text-[#FFD700] mb-1">30 days</div>
+                        <div className="text-2xl font-bold text-terminal-gold mb-1">30 days</div>
                         <div className="text-xs text-gray-400 uppercase tracking-wider">Timeline</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-[#FFD700] mb-1">Live</div>
+                        <div className="text-2xl font-bold text-terminal-gold mb-1">Live</div>
                         <div className="text-xs text-gray-400 uppercase tracking-wider">Status</div>
                       </div>
                     </div>
@@ -109,14 +109,14 @@ export default function WorkPage() {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
                       {zero.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#FFD700]/10 text-[#FFD700] font-semibold border border-[#FFD700]/20">
+                        <span key={tag} className="px-3 py-1 rounded text-xs bg-terminal-gold/10 text-terminal-gold font-semibold border border-terminal-gold/20">
                           {tag}
                         </span>
                       ))}
                     </div>
 
                     {/* View Project Link */}
-                    <div className="flex items-center gap-2 text-[#FFD700] font-semibold group-hover:gap-4 transition-all">
+                    <div className="flex items-center gap-2 text-terminal-gold font-semibold group-hover:gap-4 transition-all">
                       <span>View Full Case Study</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -148,10 +148,10 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-[#FFD700]/20">
+                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
                       {heirloom.metrics.map((metric, idx) => (
                         <div key={idx}>
-                          <div className="text-lg font-bold text-[#FFD700] mb-1">{metric.value}</div>
+                          <div className="text-lg font-bold text-terminal-gold mb-1">{metric.value}</div>
                           <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
                         </div>
                       ))}
@@ -166,14 +166,14 @@ export default function WorkPage() {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
                       {heirloom.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#FFD700]/10 text-[#FFD700] font-semibold border border-[#FFD700]/20">
+                        <span key={tag} className="px-3 py-1 rounded text-xs bg-terminal-gold/10 text-terminal-gold font-semibold border border-terminal-gold/20">
                           {tag}
                         </span>
                       ))}
                     </div>
 
                     {/* View Project Link */}
-                    <div className="flex items-center gap-2 text-[#FFD700] font-semibold group-hover:gap-4 transition-all">
+                    <div className="flex items-center gap-2 text-terminal-gold font-semibold group-hover:gap-4 transition-all">
                       <span>View Development Progress</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -199,7 +199,7 @@ export default function WorkPage() {
 
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="flex items-center gap-3 mb-12">
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold" />
               <h2 className="text-3xl font-bold text-white">More Ventures</h2>
             </div>
 
@@ -275,7 +275,7 @@ export default function WorkPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
             <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
             <div className="text-sm text-gray-400 ml-auto hidden sm:block">
               Pre-Kickoff Engagements
@@ -336,7 +336,7 @@ export default function WorkPage() {
                           <div className="grid grid-cols-3 gap-3 py-4 border-y border-gray-700">
                             {project.metrics.map((metric, idx) => (
                               <div key={idx}>
-                                <div className="text-sm font-bold text-[#FFD700]">{metric.value}</div>
+                                <div className="text-sm font-bold text-terminal-gold">{metric.value}</div>
                                 <div className="text-xs text-gray-500 uppercase tracking-wider">{metric.label}</div>
                               </div>
                             ))}
@@ -367,7 +367,7 @@ export default function WorkPage() {
 
                         {/* Regular CTA */}
                         {!isConfidential && (
-                          <div className="flex items-center gap-2 text-gray-400 group-hover:text-[#FFD700] transition-colors">
+                          <div className="flex items-center gap-2 text-gray-400 group-hover:text-terminal-gold transition-colors">
                             <span className="text-sm">View Details</span>
                             <ArrowRight className="w-4 h-4" />
                           </div>
@@ -386,7 +386,7 @@ export default function WorkPage() {
                           </span>
                           <Link
                             href={project.id === 'case-study-010' ? '/clients/creait/pitch-deck' : '/clients/athletes-first/pitch-deck'}
-                            className="flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] transition-colors font-semibold"
+                            className="flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] transition-colors font-semibold"
                           >
                             <Lock className="w-3 h-3" />
                             <span>View Presentation</span>
@@ -433,13 +433,13 @@ export default function WorkPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-[#FFD700] hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
             >
               Schedule Intro Call
             </Link>
             <Link
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors rounded-lg"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors rounded-lg"
             >
               View Partnership Models
             </Link>

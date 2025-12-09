@@ -29,7 +29,7 @@ export default function FounderPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 text-center animate-fade-in-up">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 text-center animate-fade-in-up">
             MEET THE FOUNDER
           </p>
 
@@ -37,7 +37,7 @@ export default function FounderPage() {
             {founderProfile.name}
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#FFD700] leading-relaxed text-center mb-2 animate-fade-in-up delay-200">
+          <p className="text-lg sm:text-xl text-terminal-gold leading-relaxed text-center mb-2 animate-fade-in-up delay-200">
             {founderProfile.role}
           </p>
 
@@ -56,17 +56,17 @@ export default function FounderPage() {
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60 backdrop-blur-sm text-center">
-              <div className="text-3xl font-bold text-[#FFD700] mb-1">7 years</div>
+            <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60 backdrop-blur-sm text-center">
+              <div className="text-3xl font-bold text-terminal-gold mb-1">7 years</div>
               <div className="text-xs text-gray-300">Meta Reality Labs</div>
             </div>
-            <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60 backdrop-blur-sm text-center">
-              <div className="text-3xl font-bold text-[#FFD700] mb-1">3</div>
+            <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60 backdrop-blur-sm text-center">
+              <div className="text-3xl font-bold text-terminal-gold mb-1">3</div>
               <div className="text-xs text-gray-300">Ventures Built</div>
               <div className="text-xs text-green-400 mt-1">Zero live, 2 ready</div>
             </div>
-            <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60 backdrop-blur-sm text-center">
-              <div className="text-3xl font-bold text-[#FFD700] mb-1">1 month</div>
+            <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60 backdrop-blur-sm text-center">
+              <div className="text-3xl font-bold text-terminal-gold mb-1">1 month</div>
               <div className="text-xs text-gray-300">Concept to Plan</div>
               <div className="text-xs text-gray-300 mt-1">AI-accelerated</div>
             </div>
@@ -91,7 +91,7 @@ export default function FounderPage() {
             variant="featured"
             animateIn={false}
           >
-            <p className="text-lg text-[#FFD700] text-center mb-6">{originStory.subtitle}</p>
+            <p className="text-lg text-terminal-gold text-center mb-6">{originStory.subtitle}</p>
 
             <div className="space-y-4 mb-6">
               {founderProfile.personalStory.map((paragraph, idx) => (
@@ -101,7 +101,7 @@ export default function FounderPage() {
               ))}
             </div>
 
-            <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/40">
+            <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/40">
               <p className="text-sm text-gray-100 italic text-center">
                 "{originStory.response}"
               </p>
@@ -133,11 +133,11 @@ export default function FounderPage() {
           >
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div>
-                <h3 className="text-base font-semibold text-[#FFD700] mb-4">Meta Achievements</h3>
+                <h3 className="text-base font-semibold text-terminal-gold mb-4">Meta Achievements</h3>
                 <div className="space-y-2">
                   {founderProfile.trackRecord.slice(0, 6).map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-sm text-gray-100">
-                      <span className="text-[#FFD700] mt-0.5">•</span>
+                      <span className="text-terminal-gold mt-0.5">•</span>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -145,11 +145,11 @@ export default function FounderPage() {
               </div>
 
               <div>
-                <h3 className="text-base font-semibold text-[#FFD700] mb-4">Technical Capabilities</h3>
+                <h3 className="text-base font-semibold text-terminal-gold mb-4">Technical Capabilities</h3>
                 <div className="space-y-2">
                   {founderProfile.capabilities.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-sm text-gray-100">
-                      <span className="text-[#FFD700] mt-0.5">•</span>
+                      <span className="text-terminal-gold mt-0.5">•</span>
                       <span>{item}</span>
                     </div>
                   ))}
@@ -159,8 +159,8 @@ export default function FounderPage() {
 
             <div className="grid sm:grid-cols-3 gap-4">
               {pastExperience.slice(0, 3).map((project, idx) => (
-                <div key={idx} className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/40">
-                  <div className="text-xs text-[#FFD700] font-semibold mb-1">{project.company}</div>
+                <div key={idx} className="p-4 rounded-lg border border-terminal-gold/20 bg-black/40">
+                  <div className="text-xs text-terminal-gold font-semibold mb-1">{project.company}</div>
                   <h4 className="text-sm font-semibold text-white mb-2">{project.title}</h4>
                   <p className="text-xs text-gray-300 mb-2">{project.tagline}</p>
                   <div className="text-xs text-gray-400">{project.timeline}</div>
@@ -193,21 +193,21 @@ export default function FounderPage() {
             animateIn={false}
           >
             <div className="space-y-6">
-              <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/40 text-center">
+              <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/40 text-center">
                 <p className="text-base text-gray-100 italic">
                   "{founderPhilosophy.coreBelief}"
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/40">
-                <h3 className="text-sm font-semibold text-[#FFD700] mb-3">Approach</h3>
+              <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/40">
+                <h3 className="text-sm font-semibold text-terminal-gold mb-3">Approach</h3>
                 <p className="text-sm text-gray-100 leading-relaxed">
                   {founderPhilosophy.approach}
                 </p>
               </div>
 
-              <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/40">
-                <h3 className="text-sm font-semibold text-[#FFD700] mb-3">Vision</h3>
+              <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/40">
+                <h3 className="text-sm font-semibold text-terminal-gold mb-3">Vision</h3>
                 <p className="text-sm text-gray-100 leading-relaxed">
                   {founderPhilosophy.vision}
                 </p>
@@ -318,7 +318,7 @@ export default function FounderPage() {
             variant="body"
             animateIn={false}
           >
-            <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/40">
+            <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/40">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
@@ -326,7 +326,7 @@ export default function FounderPage() {
                   </h3>
                   <p className="text-sm text-gray-300">{founderProfile.patent.description}</p>
                 </div>
-                <span className="text-xs px-3 py-1 rounded-full bg-[#FFD700]/20 text-[#FFD700] font-medium">
+                <span className="text-xs px-3 py-1 rounded-full bg-terminal-gold/20 text-terminal-gold font-medium">
                   {founderProfile.patent.year}
                 </span>
               </div>
@@ -366,9 +366,9 @@ export default function FounderPage() {
                   variant="body"
                   animateIn={false}
                 >
-                  <p className="text-sm text-[#FFD700] mb-3">{advisor.title}</p>
+                  <p className="text-sm text-terminal-gold mb-3">{advisor.title}</p>
                   <p className="text-xs text-gray-300 mb-3">{advisor.background}</p>
-                  <div className="pt-3 border-t border-[#FFD700]/20">
+                  <div className="pt-3 border-t border-terminal-gold/20">
                     <p className="text-xs font-semibold text-white mb-1">Expertise:</p>
                     <p className="text-xs text-gray-300">{advisor.expertise}</p>
                   </div>
@@ -376,9 +376,9 @@ export default function FounderPage() {
               ))}
             </div>
 
-            <div className="max-w-3xl mx-auto p-6 rounded-lg border border-[#FFD700]/20 bg-black/40 text-center">
+            <div className="max-w-3xl mx-auto p-6 rounded-lg border border-terminal-gold/20 bg-black/40 text-center">
               <p className="text-sm text-gray-100">
-                <span className="font-bold text-[#FFD700]">Solo founder doesn't mean solo execution.</span>
+                <span className="font-bold text-terminal-gold">Solo founder doesn't mean solo execution.</span>
                 {' '}Matt has assembled a seasoned advisory board with deep expertise in product scaling, exits, and AI deployment to derisk key operational areas.
               </p>
             </div>
@@ -405,7 +405,7 @@ export default function FounderPage() {
             className="max-w-3xl"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed text-center">
+              <p className="text-base text-terminal-gold leading-relaxed text-center">
                 Whether you're investing in Zero, partnering on portfolio ventures, or joining the studio waitlist—you're backing proven execution velocity and systematic thinking.
               </p>
 
@@ -418,8 +418,8 @@ export default function FounderPage() {
                 </ButtonSecondary>
               </div>
 
-              <p className="text-sm text-gray-300 text-center pt-4 border-t border-[#FFD700]/20">
-                Email: <a href={`mailto:${founderProfile.contact.email}`} className="text-[#FFD700] hover:underline">{founderProfile.contact.email}</a>
+              <p className="text-sm text-gray-300 text-center pt-4 border-t border-terminal-gold/20">
+                Email: <a href={`mailto:${founderProfile.contact.email}`} className="text-terminal-gold hover:underline">{founderProfile.contact.email}</a>
               </p>
             </div>
           </OS8Window>

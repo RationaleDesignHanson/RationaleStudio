@@ -131,7 +131,7 @@ export default function ImmersivePitchDemo() {
             onClick={() => setActiveView(view.key)}
             className={`px-6 py-3 rounded-lg font-mono text-sm font-semibold transition-all ${
               activeView === view.key
-                ? 'bg-[#FFD700] text-black'
+                ? 'bg-terminal-gold text-black'
                 : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/20'
             }`}
           >
@@ -142,12 +142,12 @@ export default function ImmersivePitchDemo() {
       </div>
 
       {/* Content Container */}
-      <div className="min-h-[600px] bg-black rounded-lg border-2 border-[#FFD700]/30 p-8">
+      <div className="min-h-[600px] bg-black rounded-lg border-2 border-terminal-gold/30 p-8">
         {/* NIL Calculator View */}
         {activeView === 'nil-calculator' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#FFD700] font-mono mb-2">NIL EARNING POTENTIAL</h2>
+              <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">NIL EARNING POTENTIAL</h2>
               <p className="text-white/60 font-mono">Adjust variables to see real-time projections</p>
             </div>
 
@@ -203,7 +203,7 @@ export default function ImmersivePitchDemo() {
                       onClick={() => setMarketTier(tier)}
                       className={`flex-1 px-4 py-2 rounded font-mono text-sm font-bold transition-all ${
                         marketTier === tier
-                          ? 'bg-[#FFD700] text-black'
+                          ? 'bg-terminal-gold text-black'
                           : 'bg-white/10 text-white/60 hover:bg-white/20'
                       }`}
                     >
@@ -247,11 +247,11 @@ export default function ImmersivePitchDemo() {
             </div>
 
             {/* Total */}
-            <div className="text-center p-8 bg-[#FFD700]/10 border-2 border-[#FFD700] rounded-lg">
-              <div className="text-sm font-mono font-bold text-[#FFD700] mb-2">
+            <div className="text-center p-8 bg-terminal-gold/10 border-2 border-terminal-gold rounded-lg">
+              <div className="text-sm font-mono font-bold text-terminal-gold mb-2">
                 TOTAL PROJECTED NIL VALUE (ANNUAL)
               </div>
-              <div className="text-6xl font-bold font-mono text-[#FFD700]">
+              <div className="text-6xl font-bold font-mono text-terminal-gold">
                 ${(totalNIL / 1000).toFixed(0)}K
               </div>
               <div className="text-sm font-mono text-white/60 mt-4">
@@ -265,7 +265,7 @@ export default function ImmersivePitchDemo() {
         {activeView === 'career-pathways' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#FFD700] font-mono mb-2">CAREER PATHWAY EXPLORER</h2>
+              <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">CAREER PATHWAY EXPLORER</h2>
               <p className="text-white/60 font-mono">Compare different career decisions side-by-side</p>
             </div>
 
@@ -290,7 +290,7 @@ export default function ImmersivePitchDemo() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Timeline */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold font-mono text-[#FFD700]">YEAR-BY-YEAR BREAKDOWN</h3>
+                <h3 className="text-xl font-bold font-mono text-terminal-gold">YEAR-BY-YEAR BREAKDOWN</h3>
                 {[
                   { label: 'Year 1', value: currentScenario.year1 },
                   { label: 'Year 2', value: currentScenario.year2 },
@@ -305,9 +305,9 @@ export default function ImmersivePitchDemo() {
                     <span className="font-mono font-bold text-[#00FF94]">{year.value}</span>
                   </div>
                 ))}
-                <div className="p-6 bg-[#FFD700]/10 border-2 border-[#FFD700] rounded-lg">
+                <div className="p-6 bg-terminal-gold/10 border-2 border-terminal-gold rounded-lg">
                   <div className="text-sm font-mono text-white/60 mb-2">TOTAL VALUE</div>
-                  <div className="text-4xl font-bold font-mono text-[#FFD700]">
+                  <div className="text-4xl font-bold font-mono text-terminal-gold">
                     {currentScenario.total}
                   </div>
                 </div>
@@ -347,7 +347,7 @@ export default function ImmersivePitchDemo() {
         {activeView === 'risk-analysis' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#FFD700] font-mono mb-2">RISK ANALYSIS ENGINE</h2>
+              <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">RISK ANALYSIS ENGINE</h2>
               <p className="text-white/60 font-mono">AI-powered contract red flag detection</p>
             </div>
 
@@ -420,7 +420,7 @@ export default function ImmersivePitchDemo() {
                       <h4 className="font-mono font-bold text-[#00FF94]">{item.protection}</h4>
                       <span className={`px-2 py-1 text-xs font-mono font-bold rounded ${
                         item.strength === 'Excellent' ? 'bg-[#00FF94] text-black' :
-                        item.strength === 'Strong' ? 'bg-[#FFD700] text-black' :
+                        item.strength === 'Strong' ? 'bg-terminal-gold text-black' :
                         'bg-white/20 text-white'
                       }`}>
                         {item.strength.toUpperCase()}
@@ -433,9 +433,9 @@ export default function ImmersivePitchDemo() {
             </div>
 
             {/* Overall Risk Score */}
-            <div className="p-8 bg-[#FFD700]/10 border-2 border-[#FFD700] rounded-lg text-center">
+            <div className="p-8 bg-terminal-gold/10 border-2 border-terminal-gold rounded-lg text-center">
               <div className="text-sm font-mono text-white/60 mb-2">OVERALL RISK SCORE</div>
-              <div className="text-6xl font-bold font-mono text-[#FFD700] mb-4">7.2/10</div>
+              <div className="text-6xl font-bold font-mono text-terminal-gold mb-4">7.2/10</div>
               <div className="text-sm font-mono text-white/80">
                 MEDIUM RISK - 3 critical clauses require negotiation before signing
               </div>
@@ -447,7 +447,7 @@ export default function ImmersivePitchDemo() {
         {activeView === 'recruiting-videos' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#FFD700] font-mono mb-2">PERSONALIZED RECRUITING VIDEOS</h2>
+              <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">PERSONALIZED RECRUITING VIDEOS</h2>
               <p className="text-white/60 font-mono">AI-generated cinematic pitches at scale</p>
               <p className="text-white/40 font-mono text-sm mt-2">
                 Note: Videos shown are test generations and not accurate to the described concepts
@@ -462,7 +462,7 @@ export default function ImmersivePitchDemo() {
                 >
                   ← Back to Gallery
                 </button>
-                <div className="aspect-video bg-black rounded-lg overflow-hidden border-2 border-[#FFD700]">
+                <div className="aspect-video bg-black rounded-lg overflow-hidden border-2 border-terminal-gold">
                   <video
                     src={selectedVideo}
                     controls
@@ -477,7 +477,7 @@ export default function ImmersivePitchDemo() {
                   <button
                     key={video.id}
                     onClick={() => setSelectedVideo(video.url)}
-                    className="group relative overflow-hidden rounded-lg border-2 border-white/20 hover:border-[#FFD700] transition-all hover:scale-105"
+                    className="group relative overflow-hidden rounded-lg border-2 border-white/20 hover:border-terminal-gold transition-all hover:scale-105"
                   >
                     <div className="aspect-video bg-gradient-to-br from-[#FFD700]/20 to-[#FF6B00]/20 flex items-center justify-center">
                     </div>
@@ -485,8 +485,8 @@ export default function ImmersivePitchDemo() {
                       <h3 className="font-mono font-bold text-white mb-1">{video.title}</h3>
                       <p className="font-mono text-sm text-white/60">{video.description}</p>
                     </div>
-                    <div className="absolute inset-0 bg-[#FFD700]/0 group-hover:bg-[#FFD700]/10 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <span className="px-4 py-2 bg-[#FFD700] text-black font-mono font-bold rounded-lg">
+                    <div className="absolute inset-0 bg-[#FFD700]/0 group-hover:bg-terminal-gold/10 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <span className="px-4 py-2 bg-terminal-gold text-black font-mono font-bold rounded-lg">
                         PLAY VIDEO
                       </span>
                     </div>

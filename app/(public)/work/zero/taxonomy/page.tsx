@@ -20,7 +20,7 @@ export default function TaxonomyPage() {
           <div className="mb-8">
             <Link
               href="/work/zero"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Zero
             </Link>
@@ -28,7 +28,7 @@ export default function TaxonomyPage() {
 
           {/* Page Header */}
           <div className="mb-12 text-center">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
               INFOGRAPHIC TEST // INTENT TAXONOMY
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -305,7 +305,7 @@ function DomainNode({
 function SummaryStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="text-center p-3 bg-gray-900/50 border border-gray-700 rounded">
-      <div className="text-2xl font-bold text-[#FFD700] mb-1">{value}</div>
+      <div className="text-2xl font-bold text-terminal-gold mb-1">{value}</div>
       <div className="text-xs text-gray-400">{label}</div>
     </div>
   );

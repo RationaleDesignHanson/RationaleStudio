@@ -92,7 +92,7 @@ export default function PartnershipsPage() {
       {/* Header */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <div className="inline-block px-4 py-2 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-full text-sm text-[#FFD700] mb-6">
+          <div className="inline-block px-4 py-2 bg-terminal-gold/10 border border-terminal-gold/30 rounded-full text-sm text-terminal-gold mb-6">
             Strategic Partnerships
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
@@ -108,8 +108,8 @@ export default function PartnershipsPage() {
       <section className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gray-900/30 border-b border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="flex items-start gap-4 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-            <div className="p-3 bg-[#FFD700]/10 rounded-lg flex-shrink-0">
-              <Sparkles className="w-6 h-6 text-[#FFD700]" />
+            <div className="p-3 bg-terminal-gold/10 rounded-lg flex-shrink-0">
+              <Sparkles className="w-6 h-6 text-terminal-gold" />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white mb-2">Why Partner with Us?</h3>
@@ -143,8 +143,8 @@ export default function PartnershipsPage() {
                   <GlassCard className="h-full p-8 hover:border-accent/50 transition-all duration-300" borderRadius="0.75rem">
                     {/* Icon & Number */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-                        <Icon className="w-6 h-6 text-[#FFD700]" />
+                      <div className="p-3 bg-terminal-gold/10 rounded-lg">
+                        <Icon className="w-6 h-6 text-terminal-gold" />
                       </div>
                       <div className="px-3 py-1 bg-gray-900/50 border border-gray-700 rounded text-xs font-mono text-gray-400">
                         0{index + 1}
@@ -319,13 +319,13 @@ export default function PartnershipsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Schedule Intro Call
             </Link>
             <Link
               href="/work"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View Our Work
             </Link>

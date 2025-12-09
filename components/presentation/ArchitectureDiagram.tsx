@@ -84,8 +84,8 @@ export function ArchitectureDiagram({
         <div
           className={`relative px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
             isActive
-              ? 'border-[#FFD700] bg-[#FFD700]/10 scale-105 shadow-lg shadow-[#FFD700]/20'
-              : 'border-gray-700 bg-gray-900/50 hover:border-[#FFD700]/50'
+              ? 'border-[#FFD700] bg-terminal-gold/10 scale-105 shadow-lg shadow-[#FFD700]/20'
+              : 'border-gray-700 bg-gray-900/50 hover:border-terminal-gold/50'
           }`}
           style={{
             borderColor: isActive ? node.color || '#FFD700' : undefined,
@@ -93,7 +93,7 @@ export function ArchitectureDiagram({
         >
           {/* Icon */}
           {node.icon && (
-            <div className="flex justify-center mb-2 text-[#FFD700]">
+            <div className="flex justify-center mb-2 text-terminal-gold">
               {node.icon}
             </div>
           )}
@@ -101,7 +101,7 @@ export function ArchitectureDiagram({
           {/* Label */}
           <div
             className={`text-sm font-mono text-center transition-colors ${
-              isActive ? 'text-[#FFD700]' : 'text-gray-300'
+              isActive ? 'text-terminal-gold' : 'text-gray-300'
             }`}
           >
             {node.label}
@@ -110,7 +110,7 @@ export function ArchitectureDiagram({
           {/* Connection Indicator */}
           {node.connections && node.connections.length > 0 && (
             <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700]/60" />
+              <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold/60" />
             </div>
           )}
         </div>
@@ -118,7 +118,7 @@ export function ArchitectureDiagram({
         {/* Expanded Description */}
         {isSelected && node.description && (
           <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 z-20 w-64">
-            <div className="bg-gray-900 border border-[#FFD700]/30 rounded-lg p-3 shadow-xl">
+            <div className="bg-gray-900 border border-terminal-gold/30 rounded-lg p-3 shadow-xl">
               <div className="text-xs text-gray-400 leading-relaxed">
                 {node.description}
               </div>
@@ -136,10 +136,10 @@ export function ArchitectureDiagram({
           <div key={layer} className="relative">
             {/* Layer Label */}
             <div className="mb-4 flex items-center gap-2">
-              <span className="text-xs font-mono text-[#FFD700]">
+              <span className="text-xs font-mono text-terminal-gold">
                 LAYER {layer}
               </span>
-              <div className="flex-1 h-px bg-[#FFD700]/20" />
+              <div className="flex-1 h-px bg-terminal-gold/20" />
             </div>
 
             {/* Nodes in Layer */}
@@ -174,13 +174,13 @@ export function ArchitectureDiagram({
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <div className="flex gap-1">
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
             </div>
             <h3 className="text-xl font-semibold text-gray-100">{title}</h3>
           </div>
-          <div className="h-px bg-[#FFD700]/20" />
+          <div className="h-px bg-terminal-gold/20" />
         </div>
       )}
 
@@ -192,7 +192,7 @@ export function ArchitectureDiagram({
 
       {/* Legend */}
       {interactive && (
-        <div className="mt-8 pt-6 border-t border-[#FFD700]/20">
+        <div className="mt-8 pt-6 border-t border-terminal-gold/20">
           <div className="text-xs font-mono text-gray-500 text-center">
             {selectedNode ? 'CLICK NODE TO DESELECT' : 'CLICK NODE FOR DETAILS • HOVER TO HIGHLIGHT CONNECTIONS'}
           </div>
@@ -258,7 +258,7 @@ export function DataFlowDiagram({
                 <div
                   className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-mono ${
                     status === 'active'
-                      ? 'bg-[#FFD700] text-black'
+                      ? 'bg-terminal-gold text-black'
                       : status === 'complete'
                       ? 'bg-green-500 text-black'
                       : 'bg-gray-800 text-gray-500'
@@ -269,7 +269,7 @@ export function DataFlowDiagram({
 
                 {/* Icon */}
                 {step.icon && (
-                  <div className="flex-shrink-0 text-[#FFD700]">{step.icon}</div>
+                  <div className="flex-shrink-0 text-terminal-gold">{step.icon}</div>
                 )}
 
                 {/* Content */}

@@ -35,7 +35,7 @@ export default function PrototypeEmbed() {
               onClick={() => setActiveDemo('swipe')}
               className={`px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2 ${
                 activeDemo === 'swipe'
-                  ? 'bg-[#FFD700] text-black shadow-lg scale-105'
+                  ? 'bg-terminal-gold text-black shadow-lg scale-105'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
               }`}
             >
@@ -46,7 +46,7 @@ export default function PrototypeEmbed() {
               onClick={() => setActiveDemo('classification')}
               className={`px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2 ${
                 activeDemo === 'classification'
-                  ? 'bg-[#FFD700] text-black shadow-lg scale-105'
+                  ? 'bg-terminal-gold text-black shadow-lg scale-105'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
               }`}
             >
@@ -58,7 +58,7 @@ export default function PrototypeEmbed() {
 
         {/* Demo Container */}
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border-4 border-[#FFD700]/20 shadow-2xl overflow-hidden bg-gray-900/70">
+          <div className="rounded-2xl border-4 border-terminal-gold/20 shadow-2xl overflow-hidden bg-gray-900/70">
             {activeDemo === 'swipe' && (
               <div className="p-8">
                 <InteractiveDemo />
@@ -72,7 +72,7 @@ export default function PrototypeEmbed() {
           </div>
 
           {/* Instructions */}
-          <div className="mt-8 rounded-xl bg-gray-900/70 border border-[#FFD700]/30 p-6">
+          <div className="mt-8 rounded-xl bg-gray-900/70 border border-terminal-gold/30 p-6">
             <h4 className="mb-3 font-semibold text-white">
               How to use the demos:
             </h4>
@@ -80,19 +80,19 @@ export default function PrototypeEmbed() {
             {activeDemo === 'swipe' && (
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">1.</span>
+                  <span className="text-terminal-gold">1.</span>
                   <span>Swipe right to complete actions (pay bill, RSVP, etc.)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">2.</span>
+                  <span className="text-terminal-gold">2.</span>
                   <span>Swipe left to archive emails you've handled</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">3.</span>
+                  <span className="text-terminal-gold">3.</span>
                   <span>Swipe down to snooze for later</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">4.</span>
+                  <span className="text-terminal-gold">4.</span>
                   <span>Toggle between Mail and Ads to separate promotional content</span>
                 </li>
               </ul>
@@ -101,19 +101,19 @@ export default function PrototypeEmbed() {
             {activeDemo === 'classification' && (
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">1.</span>
+                  <span className="text-terminal-gold">1.</span>
                   <span>Test email classification with the golden corpus or your own examples</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">2.</span>
+                  <span className="text-terminal-gold">2.</span>
                   <span>Watch Zero extract entities (tracking numbers, dates, amounts)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">3.</span>
+                  <span className="text-terminal-gold">3.</span>
                   <span>See how the AI identifies intent and generates response flows</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FFD700]">4.</span>
+                  <span className="text-terminal-gold">4.</span>
                   <span>Backend included as we refine the classification system</span>
                 </li>
               </ul>
@@ -121,7 +121,7 @@ export default function PrototypeEmbed() {
           </div>
 
           {/* What the Production App Adds */}
-          <div className="mt-8 rounded-xl bg-gray-900/70 border border-[#FFD700]/30 p-8">
+          <div className="mt-8 rounded-xl bg-gray-900/70 border border-terminal-gold/30 p-8">
             <h3 className="text-2xl font-bold text-white mb-4">What the Production App Adds</h3>
 
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -131,29 +131,29 @@ export default function PrototypeEmbed() {
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">Real Gmail integration (OAuth 2.0)</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">AI classification (43 intent categories)</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">Entity extraction (tracking #s, dates, amounts)</span>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">Native device actions (Calendar, Contacts, Wallet)</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">10-service backend architecture</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-terminal-gold mt-2 flex-shrink-0" />
                   <span className="text-sm text-gray-300">Summarization and smart replies</span>
                 </div>
               </div>

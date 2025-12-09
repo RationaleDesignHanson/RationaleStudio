@@ -128,7 +128,7 @@ export function TimelineRoadmap({
                 interactive ? 'cursor-pointer hover:scale-[1.02]' : ''
               } ${
                 isExpanded
-                  ? 'bg-[#FFD700]/10 border-[#FFD700] shadow-lg shadow-[#FFD700]/20'
+                  ? 'bg-terminal-gold/10 border-terminal-gold shadow-lg shadow-[#FFD700]/20'
                   : ''
               }`}
               onClick={() =>
@@ -140,14 +140,14 @@ export function TimelineRoadmap({
                 <div className="flex items-start gap-3">
                   {/* Icon */}
                   {item.icon && (
-                    <div className="flex-shrink-0 text-[#FFD700]">{item.icon}</div>
+                    <div className="flex-shrink-0 text-terminal-gold">{item.icon}</div>
                   )}
 
                   {/* Title & Date */}
                   <div>
                     <h4
                       className={`text-sm font-semibold transition-colors ${
-                        isExpanded ? 'text-[#FFD700]' : 'text-gray-100'
+                        isExpanded ? 'text-terminal-gold' : 'text-gray-100'
                       }`}
                     >
                       {item.title}
@@ -166,7 +166,7 @@ export function TimelineRoadmap({
                     item.status === 'complete'
                       ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                       : item.status === 'active'
-                      ? 'bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/30'
+                      ? 'bg-terminal-gold/20 text-terminal-gold border border-terminal-gold/30'
                       : 'bg-gray-800 text-gray-500 border border-gray-700'
                   }`}>
                     {item.status.toUpperCase()}
@@ -183,7 +183,7 @@ export function TimelineRoadmap({
 
               {/* Expanded Details */}
               {isExpanded && item.details && (
-                <div className="mt-4 pt-4 border-t border-[#FFD700]/20">
+                <div className="mt-4 pt-4 border-t border-terminal-gold/20">
                   <div className="text-xs text-gray-300">{item.details}</div>
                 </div>
               )}
@@ -224,13 +224,13 @@ export function TimelineRoadmap({
           <div className="mb-6">
             <div className="flex items-center gap-3">
               <div className="flex gap-1">
-                <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-                <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-                <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+                <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+                <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+                <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
               </div>
               <h3 className="text-lg font-semibold text-gray-100">{phase}</h3>
             </div>
-            <div className="mt-2 h-px bg-[#FFD700]/20" />
+            <div className="mt-2 h-px bg-terminal-gold/20" />
           </div>
         )}
 
@@ -251,13 +251,13 @@ export function TimelineRoadmap({
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <div className="flex gap-1">
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
             </div>
             <h2 className="text-xl font-semibold text-gray-100">{title}</h2>
           </div>
-          <div className="h-px bg-[#FFD700]/20" />
+          <div className="h-px bg-terminal-gold/20" />
         </div>
       )}
 
@@ -304,7 +304,7 @@ export function CompactTimeline({ items, className = '' }: CompactTimelineProps)
               item.status === 'complete'
                 ? 'bg-green-500'
                 : item.status === 'active'
-                ? 'bg-[#FFD700]'
+                ? 'bg-terminal-gold'
                 : 'bg-gray-600'
             }`}
             title={`${item.label}${item.date ? ` (${item.date})` : ''}`}

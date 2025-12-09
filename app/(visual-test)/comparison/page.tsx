@@ -115,7 +115,7 @@ export default function ComparisonPage() {
           </YellowGlow>
 
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Three Approaches to <span className="text-[#FFD700]">Systematic Execution</span>
+            Three Approaches to <span className="text-terminal-gold">Systematic Execution</span>
           </h2>
           <p className="text-lg text-gray-400">
             Each variation maintains core messaging while exploring different levels of visual intensity.
@@ -134,14 +134,14 @@ export default function ComparisonPage() {
                 className="block group animate-fade-in-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="bg-black border border-gray-800 hover:border-[#FFD700] transition-all duration-300 overflow-hidden h-full flex flex-col">
+                <div className="bg-black border border-gray-800 hover:border-terminal-gold transition-all duration-300 overflow-hidden h-full flex flex-col">
                   {/* Header - Clean Typography */}
                   <div className="p-8 border-b border-gray-800">
                     <div className="mb-6">
                       <p className="text-xs font-mono text-gray-500 tracking-wider mb-2">
                         VARIATION {String.fromCharCode(65 + index)}
                       </p>
-                      <h3 className="text-2xl font-bold mb-2 group-hover:text-[#FFD700] transition-colors">
+                      <h3 className="text-2xl font-bold mb-2 group-hover:text-terminal-gold transition-colors">
                         {variation.name}
                       </h3>
                       <p className="text-sm text-gray-400 leading-relaxed">
@@ -177,7 +177,7 @@ export default function ComparisonPage() {
                     <ul className="space-y-3 text-sm text-gray-400 mb-8">
                       {variation.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start leading-relaxed">
-                          <span className="text-[#FFD700] mr-3 mt-0.5 text-xs">—</span>
+                          <span className="text-terminal-gold mr-3 mt-0.5 text-xs">—</span>
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -203,10 +203,10 @@ export default function ComparisonPage() {
                   {/* Footer - Subtle CTA */}
                   <div className="px-8 py-6 border-t border-gray-800 bg-gray-950/50">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-400 group-hover:text-[#FFD700] transition-colors">
+                      <span className="text-gray-400 group-hover:text-terminal-gold transition-colors">
                         View full variation
                       </span>
-                      <span className="text-[#FFD700] group-hover:translate-x-1 transition-transform inline-block">
+                      <span className="text-terminal-gold group-hover:translate-x-1 transition-transform inline-block">
                         →
                       </span>
                     </div>
@@ -250,42 +250,42 @@ export default function ComparisonPage() {
                 <div className="text-gray-400">Visual Intensity</div>
                 <div className="text-center text-gray-300">High</div>
                 <div className="text-center text-gray-300">Low</div>
-                <div className="text-center text-[#FFD700]">Medium</div>
+                <div className="text-center text-terminal-gold">Medium</div>
               </div>
 
               <div className="grid grid-cols-4 gap-6 items-center text-sm py-3 border-t border-gray-800/50">
                 <div className="text-gray-400">Yellow Usage</div>
                 <div className="text-center text-gray-300">Heavy</div>
                 <div className="text-center text-gray-300">Accent</div>
-                <div className="text-center text-[#FFD700]">Medium</div>
+                <div className="text-center text-terminal-gold">Medium</div>
               </div>
 
               <div className="grid grid-cols-4 gap-6 items-center text-sm py-3 border-t border-gray-800/50">
                 <div className="text-gray-400">Window Layout</div>
                 <div className="text-center text-gray-300">Overlapping</div>
                 <div className="text-center text-gray-300">Contained</div>
-                <div className="text-center text-[#FFD700]">Zoned</div>
+                <div className="text-center text-terminal-gold">Zoned</div>
               </div>
 
               <div className="grid grid-cols-4 gap-6 items-center text-sm py-3 border-t border-gray-800/50">
                 <div className="text-gray-400">Animation Style</div>
                 <div className="text-center text-gray-300">Aggressive</div>
                 <div className="text-center text-gray-300">Subtle</div>
-                <div className="text-center text-[#FFD700]">Smooth</div>
+                <div className="text-center text-terminal-gold">Smooth</div>
               </div>
 
               <div className="grid grid-cols-4 gap-6 items-center text-sm py-3 border-t border-gray-800/50">
                 <div className="text-gray-400">Brand Feeling</div>
                 <div className="text-center text-gray-300">Disruptive</div>
                 <div className="text-center text-gray-300">Professional</div>
-                <div className="text-center text-[#FFD700]">Confident</div>
+                <div className="text-center text-terminal-gold">Confident</div>
               </div>
 
               <div className="grid grid-cols-4 gap-6 items-center text-sm py-3 border-t border-gray-800/50">
                 <div className="text-gray-400">Retro-Futurist</div>
                 <div className="text-center text-gray-300">Fully Realized</div>
                 <div className="text-center text-gray-300">Minimal</div>
-                <div className="text-center text-[#FFD700]">Integrated</div>
+                <div className="text-center text-terminal-gold">Integrated</div>
               </div>
             </div>
           </div>
@@ -295,7 +295,7 @@ export default function ComparisonPage() {
       {/* Recommendation */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-black border border-[#FFD700] p-12">
+          <div className="bg-black border border-terminal-gold p-12">
             <p className="text-xs font-mono text-gray-500 mb-4 tracking-wider">RECOMMENDATION</p>
             <h2 className="text-2xl font-bold mb-4">Window Shrine (Variation C)</h2>
             <p className="text-gray-400 leading-relaxed mb-6">
@@ -306,15 +306,15 @@ export default function ComparisonPage() {
             <div className="grid grid-cols-3 gap-4 text-xs border-t border-gray-800 pt-6">
               <div>
                 <p className="text-gray-500 font-mono mb-2">BRAND SCORE</p>
-                <p className="text-[#FFD700] text-lg font-bold">8.1/10</p>
+                <p className="text-terminal-gold text-lg font-bold">8.1/10</p>
               </div>
               <div>
                 <p className="text-gray-500 font-mono mb-2">UX SCORE</p>
-                <p className="text-[#FFD700] text-lg font-bold">8.2/10</p>
+                <p className="text-terminal-gold text-lg font-bold">8.2/10</p>
               </div>
               <div>
                 <p className="text-gray-500 font-mono mb-2">MARKETING SCORE</p>
-                <p className="text-[#FFD700] text-lg font-bold">8.4/10</p>
+                <p className="text-terminal-gold text-lg font-bold">8.4/10</p>
               </div>
             </div>
           </div>

@@ -46,7 +46,7 @@ export default function ASCIITestPage() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-2 text-[#FFD700]">
+            <h1 className="text-4xl font-bold mb-2 text-terminal-gold">
               ASCII Grid Test Lab
             </h1>
             <p className="text-gray-400">
@@ -56,12 +56,12 @@ export default function ASCIITestPage() {
 
           {/* Control Panel Card */}
           <div className="bg-gray-900/50 backdrop-blur-md border border-gray-800 rounded-lg p-6 mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-[#FFD700]">Controls</h2>
+            <h2 className="text-xl font-semibold mb-4 text-terminal-gold">Controls</h2>
 
             {/* Opacity Control */}
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">
-                Opacity: <span className="text-[#FFD700]">{opacity.toFixed(2)}</span>
+                Opacity: <span className="text-terminal-gold">{opacity.toFixed(2)}</span>
               </label>
               <input
                 type="range"
@@ -118,7 +118,7 @@ export default function ASCIITestPage() {
                     onClick={() => setCharSet(set.id as any)}
                     className={`p-3 rounded border transition-all ${
                       charSet === set.id
-                        ? 'border-[#FFD700] bg-[#FFD700]/10'
+                        ? 'border-terminal-gold bg-terminal-gold/10'
                         : 'border-gray-700 hover:border-gray-600'
                     }`}
                   >
@@ -146,7 +146,7 @@ export default function ASCIITestPage() {
                       onClick={() => setThemeName(name)}
                       className={`p-3 rounded border transition-all ${
                         themeName === name
-                          ? 'border-[#FFD700] bg-[#FFD700]/10'
+                          ? 'border-terminal-gold bg-terminal-gold/10'
                           : 'border-gray-700 hover:border-gray-600'
                       }`}
                     >
@@ -226,7 +226,7 @@ export default function ASCIITestPage() {
 
           {/* Noise Pattern Info */}
           <div className="mt-8 bg-gray-900/50 backdrop-blur-md border border-gray-800 rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4 text-[#FFD700]">
+            <h2 className="text-xl font-semibold mb-4 text-terminal-gold">
               Noise Patterns (cycles every 8s)
             </h2>
             <div className="grid grid-cols-2 gap-3 text-sm mb-6">
@@ -251,7 +251,7 @@ export default function ASCIITestPage() {
 
           {/* Brand Guidelines */}
           <div className="mt-8 bg-gray-900/50 backdrop-blur-md border border-gray-800 rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4 text-[#FFD700]">
+            <h2 className="text-xl font-semibold mb-4 text-terminal-gold">
               Brand Guidelines
             </h2>
             <div className="space-y-3 text-sm text-gray-300">
@@ -330,7 +330,7 @@ function SectionPreview({
         <h3 className="text-lg font-semibold text-gray-50 mb-1">{title}</h3>
         <p className="text-sm text-gray-400 mb-2">{subtitle}</p>
         <div className="text-xs text-gray-500">
-          Recommended opacity: <span className="text-[#FFD700]">{recommendedOpacity}</span>
+          Recommended opacity: <span className="text-terminal-gold">{recommendedOpacity}</span>
           {' '}(showing {previewOpacity.toFixed(2)}{glowLabels[glowIntensity]})
         </div>
       </div>

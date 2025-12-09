@@ -28,7 +28,7 @@ export function CreaitRoadmap() {
     <div className="min-h-screen flex items-center justify-center">
       <Container>
         <div className="max-w-md mx-auto text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-[#FFD700] mx-auto mb-6" />
+          <Loader2 className="w-12 h-12 animate-spin text-terminal-gold mx-auto mb-6" />
           <h1 className="text-2xl font-bold text-white mb-2">
             Loading Strategic Roadmap
           </h1>

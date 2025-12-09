@@ -125,7 +125,7 @@ export default function DualEngineModelPage() {
               </p>
 
               <div className="space-y-4">
-                <div className="border-l-4 border-[#FFD700] pl-6 py-3">
+                <div className="border-l-4 border-terminal-gold pl-6 py-3">
                   <h4 className="text-white font-bold mb-2">Internal → Client</h4>
                   <p className="text-sm text-gray-300 mb-2">
                     When we build Zero, we test the 7-prototype framework in production. We discover what works at each stage. We validate timing, tooling, and team structure.
@@ -135,7 +135,7 @@ export default function DualEngineModelPage() {
                   </p>
                 </div>
 
-                <div className="border-l-4 border-[#FFD700] pl-6 py-3">
+                <div className="border-l-4 border-terminal-gold pl-6 py-3">
                   <h4 className="text-white font-bold mb-2">Client → Internal</h4>
                   <p className="text-sm text-gray-300 mb-2">
                     Client work reveals problems at scale. Enterprise B2B surfaces different challenges than consumer apps. Complex systems expose edge cases.
@@ -145,7 +145,7 @@ export default function DualEngineModelPage() {
                   </p>
                 </div>
 
-                <div className="border-l-4 border-[#FFD700] pl-6 py-3">
+                <div className="border-l-4 border-terminal-gold pl-6 py-3">
                   <h4 className="text-white font-bold mb-2">Compounding Advantage</h4>
                   <p className="text-sm text-gray-300 mb-2">
                     Each cycle makes both engines stronger. Internal products prove methodologies. Client work funds improvements. Better methodologies win better clients. Better clients surface harder problems.

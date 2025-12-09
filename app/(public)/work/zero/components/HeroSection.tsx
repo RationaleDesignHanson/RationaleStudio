@@ -33,11 +33,11 @@ export default function HeroSection() {
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#FFD700]">Role:</span>
+                <span className="font-semibold text-terminal-gold">Role:</span>
                 <span>Product Strategy, AI Engineering, iOS Development</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#FFD700]">Platform:</span>
+                <span className="font-semibold text-terminal-gold">Platform:</span>
                 <span>iOS 17+ with Cloud Backend</span>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 onClick={() => {
                   document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#FFD700] px-8 py-4 font-semibold text-[#FFD700] transition-all hover:bg-[#FFD700] hover:text-black"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-terminal-gold px-8 py-4 font-semibold text-terminal-gold transition-all hover:bg-terminal-gold hover:text-black"
               >
                 Try Interactive Demo
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

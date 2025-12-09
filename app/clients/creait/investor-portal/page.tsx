@@ -61,9 +61,9 @@ export default function InvestorPortalPage() {
                 placeholder="Enter access password"
               /> </div> <button
               type="submit"
-              className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-[#FFD700]/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
+              className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
             > Access Portal </button> </form> {/* Back Link */} <div className="mt-6 text-center"> <a
               href="/clients/creait/pitch-deck/12-why-we-win"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             > ← Back to Pitch Deck </a> </div> </CRECard> </div> </div> );
 }

@@ -20,12 +20,12 @@ export default function FirebaseAdminSetupPage() {
           <div className="mb-8">
             <Link
               href="/team/admin"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
             >
               ← Back to Admin
             </Link>
             <div className="flex items-center gap-3 mb-4">
-              <FileText className="w-8 h-8 text-[#FFD700]" />
+              <FileText className="w-8 h-8 text-terminal-gold" />
               <h1 className="text-3xl sm:text-4xl font-bold text-white">
                 Firebase Admin SDK Setup
               </h1>
@@ -43,7 +43,7 @@ export default function FirebaseAdminSetupPage() {
                 <h2 className="text-xl font-bold text-white mb-2">Prerequisites</h2>
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li>• Firebase project created (rationale-studio or zero-studio)</li>
-                  <li>• Firebase CLI installed: <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">npm install -g firebase-tools</code></li>
+                  <li>• Firebase CLI installed: <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">npm install -g firebase-tools</code></li>
                   <li>• Node.js 18+ installed</li>
                   <li>• Owner role access to Firebase Console</li>
                 </ul>
@@ -54,8 +54,8 @@ export default function FirebaseAdminSetupPage() {
           {/* Step 1: Generate Service Account */}
           <div className="p-6 bg-gray-900/30 border border-gray-800 rounded-lg mb-6">
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-2 bg-[#FFD700]/10 rounded-lg">
-                <Key className="w-5 h-5 text-[#FFD700]" />
+              <div className="p-2 bg-terminal-gold/10 rounded-lg">
+                <Key className="w-5 h-5 text-terminal-gold" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-white mb-3">Step 1: Generate Service Account Key</h3>
@@ -64,7 +64,7 @@ export default function FirebaseAdminSetupPage() {
                   <li>
                     <span className="text-white font-medium">1. Open Firebase Console:</span>
                     <br />
-                    Navigate to <a href="https://console.firebase.google.com" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:underline">console.firebase.google.com</a>
+                    Navigate to <a href="https://console.firebase.google.com" target="_blank" rel="noopener noreferrer" className="text-terminal-gold hover:underline">console.firebase.google.com</a>
                   </li>
                   <li>
                     <span className="text-white font-medium">2. Select Your Project:</span>
@@ -89,7 +89,7 @@ export default function FirebaseAdminSetupPage() {
                   <li>
                     <span className="text-white font-medium">6. Save the JSON File:</span>
                     <br />
-                    A JSON file will download - save it securely as <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">firebase-admin-key.json</code>
+                    A JSON file will download - save it securely as <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">firebase-admin-key.json</code>
                   </li>
                 </ol>
               </div>
@@ -99,8 +99,8 @@ export default function FirebaseAdminSetupPage() {
           {/* Step 2: Add to Environment Variables */}
           <div className="p-6 bg-gray-900/30 border border-gray-800 rounded-lg mb-6">
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-2 bg-[#FFD700]/10 rounded-lg">
-                <Terminal className="w-5 h-5 text-[#FFD700]" />
+              <div className="p-2 bg-terminal-gold/10 rounded-lg">
+                <Terminal className="w-5 h-5 text-terminal-gold" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-white mb-3">Step 2: Configure Environment Variables</h3>
@@ -111,7 +111,7 @@ export default function FirebaseAdminSetupPage() {
                   </p>
 
                   <div className="p-4 bg-black/50 rounded border border-gray-700 overflow-x-auto">
-                    <code className="text-[#FFD700] text-xs">
+                    <code className="text-terminal-gold text-xs">
                       # Convert JSON to base64 (macOS/Linux)<br />
                       cat firebase-admin-key.json | base64 &gt; firebase-admin-key.base64<br />
                       <br />
@@ -121,11 +121,11 @@ export default function FirebaseAdminSetupPage() {
                   </div>
 
                   <p className="text-gray-400">
-                    Add the base64 string to your <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">.env.local</code> file:
+                    Add the base64 string to your <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">.env.local</code> file:
                   </p>
 
                   <div className="p-4 bg-black/50 rounded border border-gray-700 overflow-x-auto">
-                    <code className="text-[#FFD700] text-xs">
+                    <code className="text-terminal-gold text-xs">
                       FIREBASE_ADMIN_KEY_BASE64=your_base64_encoded_json_here
                     </code>
                   </div>
@@ -137,19 +137,19 @@ export default function FirebaseAdminSetupPage() {
           {/* Step 3: Initialize in Code */}
           <div className="p-6 bg-gray-900/30 border border-gray-800 rounded-lg mb-6">
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-2 bg-[#FFD700]/10 rounded-lg">
-                <Shield className="w-5 h-5 text-[#FFD700]" />
+              <div className="p-2 bg-terminal-gold/10 rounded-lg">
+                <Shield className="w-5 h-5 text-terminal-gold" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-white mb-3">Step 3: Initialize Firebase Admin SDK</h3>
 
                 <div className="space-y-4 text-sm">
                   <p className="text-gray-400">
-                    The Firebase Admin SDK is already initialized in <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">/lib/firebase/admin.ts</code>
+                    The Firebase Admin SDK is already initialized in <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">/lib/firebase/admin.ts</code>
                   </p>
 
                   <div className="p-4 bg-black/50 rounded border border-gray-700 overflow-x-auto">
-                    <code className="text-[#FFD700] text-xs">
+                    <code className="text-terminal-gold text-xs">
                       {`import admin from 'firebase-admin';
 
 if (!admin.apps.length) {
@@ -177,8 +177,8 @@ export const adminDb = admin.firestore();`}
           {/* Step 4: Deploy to Production */}
           <div className="p-6 bg-gray-900/30 border border-gray-800 rounded-lg mb-8">
             <div className="flex items-start gap-3 mb-4">
-              <div className="p-2 bg-[#FFD700]/10 rounded-lg">
-                <CheckCircle className="w-5 h-5 text-[#FFD700]" />
+              <div className="p-2 bg-terminal-gold/10 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-terminal-gold" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-white mb-3">Step 4: Deploy to Production (Netlify)</h3>
@@ -192,7 +192,7 @@ export const adminDb = admin.firestore();`}
                   <li>
                     <span className="text-white font-medium">2. Add Environment Variable:</span>
                     <br />
-                    Key: <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">FIREBASE_ADMIN_KEY_BASE64</code>
+                    Key: <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">FIREBASE_ADMIN_KEY_BASE64</code>
                     <br />
                     Value: Paste your base64 string (without quotes or line breaks)
                   </li>
@@ -246,7 +246,7 @@ export const adminDb = admin.firestore();`}
               <div>
                 <p className="text-white font-medium mb-1">Error: "Failed to initialize app"</p>
                 <p className="text-gray-400">
-                  Verify that <code className="px-2 py-1 bg-black/50 rounded text-[#FFD700]">FIREBASE_ADMIN_KEY_BASE64</code> environment variable is set correctly.
+                  Verify that <code className="px-2 py-1 bg-black/50 rounded text-terminal-gold">FIREBASE_ADMIN_KEY_BASE64</code> environment variable is set correctly.
                 </p>
               </div>
             </div>
@@ -256,7 +256,7 @@ export const adminDb = admin.firestore();`}
           <div className="mt-8 text-center">
             <Link
               href="/team/admin"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Admin Dashboard
             </Link>

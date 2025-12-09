@@ -59,12 +59,12 @@ export default function StudioDataRoomPage() {
           <div className="mb-8">
             <Link
               href="/investors/studio"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
             >
               ← Back to Studio Investment
             </Link>
             <div className="flex items-center gap-3 mb-4">
-              <Lock className="w-8 h-8 text-[#FFD700]" />
+              <Lock className="w-8 h-8 text-terminal-gold" />
               <h1 className="text-3xl sm:text-4xl font-bold text-white">
                 Studio Data Room
               </h1>
@@ -107,7 +107,7 @@ export default function StudioDataRoomPage() {
                   className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <Icon className="w-6 h-6 text-[#FFD700]" />
+                    <Icon className="w-6 h-6 text-terminal-gold" />
                     <h3 className="text-xl font-bold text-white">{category.name}</h3>
                   </div>
 
@@ -148,7 +148,7 @@ export default function StudioDataRoomPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
             >
               Contact Investor Relations
             </Link>

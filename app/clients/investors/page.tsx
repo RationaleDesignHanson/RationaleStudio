@@ -30,7 +30,7 @@ export default function InvestorsPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 text-center animate-fade-in-up">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 text-center animate-fade-in-up">
             {investorOverview.tagline}
           </p>
 
@@ -114,16 +114,16 @@ export default function InvestorsPage() {
 
           {/* Revenue Streams */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">{businessModel.revenueStreams.title}</h3>
+            <h3 className="text-xl font-bold mb-4 text-terminal-gold">{businessModel.revenueStreams.title}</h3>
             <div className="grid md:grid-cols-3 gap-4">
               {businessModel.revenueStreams.streams.map((stream, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60"
+                  className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60"
                 >
                   <h4 className="font-semibold text-white mb-2">{stream.name}</h4>
                   <p className="text-sm text-gray-100 mb-2">{stream.description}</p>
-                  <p className="text-xs text-[#FFD700] font-medium">{stream.revenue}</p>
+                  <p className="text-xs text-terminal-gold font-medium">{stream.revenue}</p>
                 </div>
               ))}
             </div>
@@ -138,7 +138,7 @@ export default function InvestorsPage() {
             <div className="grid sm:grid-cols-3 gap-6 text-center">
               {businessModel.unitEconomics.metrics.map((metric, index) => (
                 <div key={index}>
-                  <p className="text-3xl font-bold text-[#FFD700] mb-1">{metric.value}</p>
+                  <p className="text-3xl font-bold text-terminal-gold mb-1">{metric.value}</p>
                   <p className="text-sm text-gray-300">{metric.label}</p>
                 </div>
               ))}
@@ -175,7 +175,7 @@ export default function InvestorsPage() {
             <div className="grid sm:grid-cols-3 gap-6 text-center">
               {marketOpportunity.marketSize.segments.map((segment, index) => (
                 <div key={index}>
-                  <p className="text-2xl font-bold text-[#FFD700] mb-1">{segment.size}</p>
+                  <p className="text-2xl font-bold text-terminal-gold mb-1">{segment.size}</p>
                   <p className="text-sm text-gray-100">{segment.name}</p>
                 </div>
               ))}
@@ -184,12 +184,12 @@ export default function InvestorsPage() {
 
           {/* Target Segments */}
           <div className="mt-8">
-            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">{marketOpportunity.targetSegments.title}</h3>
+            <h3 className="text-xl font-bold mb-4 text-terminal-gold">{marketOpportunity.targetSegments.title}</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {marketOpportunity.targetSegments.segments.map((segment, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60"
+                  className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60"
                 >
                   <h4 className="font-semibold text-white mb-2">{segment.name}</h4>
                   <p className="text-sm text-gray-100">{segment.description}</p>
@@ -220,10 +220,10 @@ export default function InvestorsPage() {
             {investorOverview.traction.map((item, index) => (
               <div
                 key={index}
-                className="flex gap-3 p-4 rounded-lg border border-[#FFD700]/20 bg-black/60"
+                className="flex gap-3 p-4 rounded-lg border border-terminal-gold/20 bg-black/60"
               >
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFD700]/10 flex items-center justify-center">
-                  <span className="text-[#FFD700] text-sm font-bold">→</span>
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-terminal-gold/10 flex items-center justify-center">
+                  <span className="text-terminal-gold text-sm font-bold">→</span>
                 </div>
                 <p className="text-sm sm:text-base text-gray-100">{item}</p>
               </div>
@@ -266,7 +266,7 @@ export default function InvestorsPage() {
                 <p className="text-sm text-gray-100 mb-4">
                   AI-powered email management for busy parents. View roadmap, fundraising strategy, and execution plan.
                 </p>
-                <div className="text-sm text-[#FFD700] font-medium group-hover:underline">
+                <div className="text-sm text-terminal-gold font-medium group-hover:underline">
                   View Dashboard →
                 </div>
               </OS8Window>
@@ -286,7 +286,7 @@ export default function InvestorsPage() {
                 <p className="text-sm text-gray-100 mb-4">
                   NIL compliance and student-athlete management platform. View project roadmap and strategy.
                 </p>
-                <div className="text-sm text-[#FFD700] font-medium group-hover:underline">
+                <div className="text-sm text-terminal-gold font-medium group-hover:underline">
                   View Dashboard →
                 </div>
               </OS8Window>
@@ -306,7 +306,7 @@ export default function InvestorsPage() {
                 <p className="text-sm text-gray-100 mb-4">
                   AI-powered commercial real estate intelligence platform. View project roadmap and execution.
                 </p>
-                <div className="text-sm text-[#FFD700] font-medium group-hover:underline">
+                <div className="text-sm text-terminal-gold font-medium group-hover:underline">
                   View Dashboard →
                 </div>
               </OS8Window>
@@ -332,7 +332,7 @@ export default function InvestorsPage() {
             variant="cta"
             animateIn={false}
           >
-            <p className="text-base sm:text-lg text-[#FFD700] leading-relaxed text-center">
+            <p className="text-base sm:text-lg text-terminal-gold leading-relaxed text-center">
               {investorOverview.ask}
             </p>
           </OS8Window>
@@ -358,7 +358,7 @@ export default function InvestorsPage() {
             className="max-w-3xl"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed text-center">
+              <p className="text-base text-terminal-gold leading-relaxed text-center">
                 Access our comprehensive investor deck with capital strategy, operating model, roadmap, financials, and team details.
               </p>
 

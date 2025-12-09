@@ -206,7 +206,7 @@ export default function DigitalTwinFlowDiagram() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[450px] bg-black rounded-lg border border-[#FFD700]/20 overflow-hidden">
+    <div className="relative w-full h-full min-h-[450px] bg-black rounded-lg border border-terminal-gold/20 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"

@@ -69,7 +69,7 @@ export default function HomePage() {
             <div className="flex justify-center">
               <a
                 href="/overview"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-[#FFD700] hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
               >
                 Studio Overview
                 <ArrowRight className="w-5 h-5" />
@@ -102,12 +102,12 @@ export default function HomePage() {
             {/* Row 1: Zero and Heirloom */}
             <div className="grid md:grid-cols-2 gap-8 mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#FFD700]/30 rounded-lg">
+              <div className="p-6 sm:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">Zero</h3>
                     <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 bg-[#FFD700]/20 border border-[#FFD700]/40 rounded-full text-xs text-[#FFD700] font-medium">
+                      <span className="px-3 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
                         Beta · Dogfooding
                       </span>
                     </div>
@@ -121,18 +121,18 @@ export default function HomePage() {
 
                 <div className="space-y-3 mb-6 text-sm">
                   <div className="flex items-start gap-2">
-                    <TrendingUp className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                    <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Used daily by our team to validate core workflows</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                    <Users className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Investor preview available for qualified partners</span>
                   </div>
                 </div>
 
                 <Link
                   href="/work/zero"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
                 >
                   Learn about Zero
                   <ArrowRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
                 >
                   Get in touch
                   <ArrowRight className="w-4 h-4" />
@@ -239,9 +239,9 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* Invest */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-                <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="w-6 h-6 text-terminal-gold" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Invest</h3>
                 <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -250,7 +250,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact?interest=invest"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   Learn more
                   <ArrowRight className="w-4 h-4" />
@@ -258,9 +258,9 @@ export default function HomePage() {
               </div>
 
               {/* Partner */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-                <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-terminal-gold" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Partner</h3>
                 <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -269,7 +269,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/contact?interest=partner"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   Explore partnership
                   <ArrowRight className="w-4 h-4" />
@@ -277,9 +277,9 @@ export default function HomePage() {
               </div>
 
               {/* Collaborate */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700] transition-colors">
-                <div className="w-12 h-12 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
+                  <Zap className="w-6 h-6 text-terminal-gold" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Collaborate</h3>
                 <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -288,7 +288,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/how-we-work"
-                  className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors self-start"
                 >
                   See how we work
                   <ArrowRight className="w-4 h-4" />
@@ -332,7 +332,7 @@ export default function HomePage() {
             <div className="mt-12 text-center">
               <Link
                 href="/how-we-work"
-                className="inline-flex items-center gap-2 text-[#FFD700] hover:text-[#FFE34D] font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
               >
                 See the full methodology
                 <ArrowRight className="w-4 h-4" />

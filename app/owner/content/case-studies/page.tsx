@@ -33,7 +33,7 @@ export default function CaseStudiesPage() {
       <div className="mb-8">
         <Link
           href="/owner/content"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Content Library
         </Link>
@@ -51,7 +51,7 @@ export default function CaseStudiesPage() {
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <Folder className="w-6 h-6 text-[#FFD700]" />
+                <Folder className="w-6 h-6 text-terminal-gold" />
                 <div>
                   <h3 className="text-xl font-bold text-white">{study.project}</h3>
                   <p className="text-sm text-gray-400">{study.formats.length} formats available</p>

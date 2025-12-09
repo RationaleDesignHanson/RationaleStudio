@@ -236,13 +236,13 @@ export default function ClarityKitPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Book intro call
             </Link>
             <Link
               href="/partnerships"
-              className="px-8 py-4 border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               Compare all services
             </Link>

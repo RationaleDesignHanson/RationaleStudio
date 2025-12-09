@@ -28,8 +28,8 @@ export default function OwnerLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-[#FFD700] rounded-full animate-pulse" />
-              <h1 className="text-lg font-bold text-[#FFD700]">
+              <div className="w-2 h-2 bg-terminal-gold rounded-full animate-pulse" />
+              <h1 className="text-lg font-bold text-terminal-gold">
                 Owner Dashboard
               </h1>
               <span className="text-xs text-gray-500 font-mono">
@@ -39,25 +39,25 @@ export default function OwnerLayout({
             <nav className="flex items-center gap-6 text-sm">
               <a
                 href="/owner"
-                className="text-gray-400 hover:text-[#FFD700] transition-colors"
+                className="text-gray-400 hover:text-terminal-gold transition-colors"
               >
                 Dashboard
               </a>
               <a
                 href="/owner/content"
-                className="text-gray-400 hover:text-[#FFD700] transition-colors"
+                className="text-gray-400 hover:text-terminal-gold transition-colors"
               >
                 Content Library
               </a>
               <a
                 href="/owner/reference"
-                className="text-gray-400 hover:text-[#FFD700] transition-colors"
+                className="text-gray-400 hover:text-terminal-gold transition-colors"
               >
                 Reference
               </a>
               <a
                 href="/"
-                className="text-gray-400 hover:text-[#FFD700] transition-colors"
+                className="text-gray-400 hover:text-terminal-gold transition-colors"
               >
                 ← Public Site
               </a>

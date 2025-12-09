@@ -126,15 +126,15 @@ export default function ZeroMetricsDiagram() {
           {/* Rationale: Validate First */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="text-2xl font-black text-[#FFD700] tabular-nums">7</div>
+              <div className="text-2xl font-black text-terminal-gold tabular-nums">7</div>
               <div>
                 <div className="text-sm font-bold text-white">Prototypes First</div>
                 <div className="text-xs text-gray-400">Then build production</div>
               </div>
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <div className="flex-1 h-3 bg-[#FFD700] rounded-full" />
-              <span className="text-xs text-[#FFD700] font-bold">7 iterations</span>
+              <div className="flex-1 h-3 bg-terminal-gold rounded-full" />
+              <span className="text-xs text-terminal-gold font-bold">7 iterations</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-[#00FF94] flex items-center justify-center">

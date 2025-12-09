@@ -248,11 +248,11 @@ export default function CapabilitiesPage() {
                   borderRadius="0.75rem"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-[#FFD700]/10 rounded-lg flex-shrink-0">
-                      <Icon className="w-6 h-6 text-[#FFD700]" />
+                    <div className="p-3 bg-terminal-gold/10 rounded-lg flex-shrink-0">
+                      <Icon className="w-6 h-6 text-terminal-gold" />
                     </div>
                     <div>
-                      <div className="text-xs text-[#FFD700] font-medium mb-1 uppercase tracking-wide">
+                      <div className="text-xs text-terminal-gold font-medium mb-1 uppercase tracking-wide">
                         {capability.category}
                       </div>
                       <h3 className="text-lg font-bold text-white">
@@ -288,7 +288,7 @@ export default function CapabilitiesPage() {
                     <ul className="space-y-1">
                       {capability.examples.map((example, idx) => (
                         <li key={idx} className="text-xs text-gray-400 flex items-start gap-2">
-                          <span className="text-[#FFD700] mt-1">→</span>
+                          <span className="text-terminal-gold mt-1">→</span>
                           <span>{example}</span>
                         </li>
                       ))}
@@ -309,19 +309,19 @@ export default function CapabilitiesPage() {
           </h2>
           <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">7+</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-2">7+</div>
               <div className="text-sm text-gray-400">Years AR/AI</div>
             </div>
             <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">15+</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-2">15+</div>
               <div className="text-sm text-gray-400">Patents Filed</div>
             </div>
             <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">3</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-2">3</div>
               <div className="text-sm text-gray-400">Products Shipped (2024)</div>
             </div>
             <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <div className="text-4xl font-bold text-[#FFD700] mb-2">Meta</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-2">Meta</div>
               <div className="text-sm text-gray-400">Background</div>
             </div>
           </div>
@@ -336,21 +336,21 @@ export default function CapabilitiesPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <GlassCard className="p-6 text-center" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-[#FFD700] mb-3">1</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-3">1</div>
               <h3 className="text-lg font-bold text-white mb-2">Understand</h3>
               <p className="text-sm text-gray-400">
                 Deep dive into your problem space, users, and technical constraints
               </p>
             </GlassCard>
             <GlassCard className="p-6 text-center" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-[#FFD700] mb-3">2</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-3">2</div>
               <h3 className="text-lg font-bold text-white mb-2">Prototype</h3>
               <p className="text-sm text-gray-400">
                 Rapid prototypes to validate assumptions before committing to production
               </p>
             </GlassCard>
             <GlassCard className="p-6 text-center" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-[#FFD700] mb-3">3</div>
+              <div className="text-4xl font-bold text-terminal-gold mb-3">3</div>
               <h3 className="text-lg font-bold text-white mb-2">Ship</h3>
               <p className="text-sm text-gray-400">
                 Production-ready code with testing, monitoring, and documentation
@@ -370,13 +370,13 @@ export default function CapabilitiesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Discuss Your Project
             </Link>
             <Link
               href="/work"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View Our Work
             </Link>

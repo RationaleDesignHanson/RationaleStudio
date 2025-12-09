@@ -91,7 +91,7 @@ export default function BetaSignupsAdmin() {
             <div className="text-sm font-medium text-gray-500 mb-1">Total Signups</div>
             <div className="text-3xl font-bold text-gray-900">{stats.total}</div>
           </div>
-          <div className="bg-white rounded-lg border-2 border-[#FFD700] p-6">
+          <div className="bg-white rounded-lg border-2 border-terminal-gold p-6">
             <div className="text-sm font-medium text-gray-500 mb-1">Zero</div>
             <div className="text-3xl font-bold text-gray-900">{stats.zero}</div>
           </div>
@@ -123,7 +123,7 @@ export default function BetaSignupsAdmin() {
                 onClick={() => setFilter('zero')}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   filter === 'zero'
-                    ? 'bg-[#FFD700] text-black'
+                    ? 'bg-terminal-gold text-black'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -193,7 +193,7 @@ export default function BetaSignupsAdmin() {
                         <span
                           className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                             signup.app_name === 'zero'
-                              ? 'bg-[#FFD700]/20 text-[#B8860B]'
+                              ? 'bg-terminal-gold/20 text-[#B8860B]'
                               : 'bg-[#E85D4D]/20 text-[#B8341A]'
                           }`}
                         >

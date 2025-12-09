@@ -213,15 +213,15 @@ export function BootSequence({
 
       {/* Boot Messages */}
       <div className="relative z-10 max-w-md w-full px-4">
-        <div className="border border-[#FFD700]/30 bg-black/80 backdrop-blur-sm p-6 rounded-lg">
+        <div className="border border-terminal-gold/30 bg-black/80 backdrop-blur-sm p-6 rounded-lg">
           {/* Terminal Header */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#FFD700]/20">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-terminal-gold/20">
             <div className="flex gap-1">
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-              <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+              <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
             </div>
-            <span className="text-xs font-mono text-[#FFD700]">system.boot</span>
+            <span className="text-xs font-mono text-terminal-gold">system.boot</span>
           </div>
 
           {/* Messages */}
@@ -230,10 +230,10 @@ export function BootSequence({
               <div
                 key={index}
                 className={`flex items-center gap-2 ${
-                  index === currentMessage ? 'text-[#FFD700]' : 'text-gray-500'
+                  index === currentMessage ? 'text-terminal-gold' : 'text-gray-500'
                 }`}
               >
-                <span className="text-[#FFD700]">{'>'}</span>
+                <span className="text-terminal-gold">{'>'}</span>
                 <span>{message}</span>
                 {index === currentMessage && (
                   <span className="animate-pulse">_</span>
@@ -243,7 +243,7 @@ export function BootSequence({
           </div>
 
           {/* Progress Bar */}
-          <div className="mt-4 pt-4 border-t border-[#FFD700]/20">
+          <div className="mt-4 pt-4 border-t border-terminal-gold/20">
             <div className="h-1 bg-gray-800 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-[#FFD700]/50 to-[#FFD700] transition-all duration-300"

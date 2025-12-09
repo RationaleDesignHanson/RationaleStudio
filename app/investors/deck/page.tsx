@@ -20,12 +20,12 @@ export default function InvestorsDeckPage() {
           <div className="mb-8">
             <Link
               href="/investors"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
             >
               ← Back to Investment Opportunities
             </Link>
             <div className="flex items-center gap-3 mb-4">
-              <FileText className="w-8 h-8 text-[#FFD700]" />
+              <FileText className="w-8 h-8 text-terminal-gold" />
               <h1 className="text-3xl sm:text-4xl font-bold text-white">
                 Rationale Studio Pitch Deck
               </h1>
@@ -42,8 +42,8 @@ export default function InvestorsDeckPage() {
           <div className="max-w-4xl mx-auto">
             <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg mb-8">
               <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-                  <FileText className="w-8 h-8 text-[#FFD700]" />
+                <div className="p-3 bg-terminal-gold/10 rounded-lg">
+                  <FileText className="w-8 h-8 text-terminal-gold" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-xl font-bold text-white mb-2">Investment Deck</h2>
@@ -93,7 +93,7 @@ export default function InvestorsDeckPage() {
               <h3 className="text-xl font-bold text-white mb-6">Deck Contents</h3>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-sm font-semibold text-[#FFD700] mb-3">Section 1: Studio Overview</h4>
+                  <h4 className="text-sm font-semibold text-terminal-gold mb-3">Section 1: Studio Overview</h4>
                   <ul className="space-y-2 text-sm text-gray-400">
                     <li>• Product studio thesis</li>
                     <li>• Dual-engine model (ventures + partnerships)</li>
@@ -102,7 +102,7 @@ export default function InvestorsDeckPage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-[#FFD700] mb-3">Section 2: Portfolio Companies</h4>
+                  <h4 className="text-sm font-semibold text-terminal-gold mb-3">Section 2: Portfolio Companies</h4>
                   <ul className="space-y-2 text-sm text-gray-400">
                     <li>• Zero: Email AI (launching Q1 2025)</li>
                     <li>• Atlas: CRE intelligence (pipeline)</li>
@@ -111,7 +111,7 @@ export default function InvestorsDeckPage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-[#FFD700] mb-3">Section 3: Financials</h4>
+                  <h4 className="text-sm font-semibold text-terminal-gold mb-3">Section 3: Financials</h4>
                   <ul className="space-y-2 text-sm text-gray-400">
                     <li>• Runway & burn rate</li>
                     <li>• Revenue projections (ventures + kits)</li>
@@ -120,7 +120,7 @@ export default function InvestorsDeckPage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-[#FFD700] mb-3">Section 4: Investment Terms</h4>
+                  <h4 className="text-sm font-semibold text-terminal-gold mb-3">Section 4: Investment Terms</h4>
                   <ul className="space-y-2 text-sm text-gray-400">
                     <li>• Zero seed round: $600K for 10%</li>
                     <li>• Studio investment options</li>
@@ -140,7 +140,7 @@ export default function InvestorsDeckPage() {
               <div className="flex gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                  className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   Schedule Investor Call
                 </Link>

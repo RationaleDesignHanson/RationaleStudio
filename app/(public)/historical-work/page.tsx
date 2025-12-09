@@ -25,10 +25,10 @@ export default function HistoricalWorkPage() {
       <Section spacing="large" background="default" colorTheme={theme}>
         <Container>
           <div className="max-w-4xl mx-auto mb-12">
-            <Link href="/" className="text-[#FFD700] hover:underline text-sm mb-6 block">
+            <Link href="/" className="text-terminal-gold hover:underline text-sm mb-6 block">
               ← Back to Home
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#FFD700] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-terminal-gold mb-4">
               Historical Work
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
@@ -45,12 +45,12 @@ export default function HistoricalWorkPage() {
             >
               <div className="space-y-6">
                 <div>
-                  <span className="text-xs font-bold text-[#FFD700] uppercase tracking-wide">
+                  <span className="text-xs font-bold text-terminal-gold uppercase tracking-wide">
                     Product Manager · 2018-2022 · Shipped to Billions of Users
                   </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-[#FFD700]">
+                <h3 className="text-2xl md:text-3xl font-bold text-terminal-gold">
                   Building AR Platforms at Meta Scale
                 </h3>
 
@@ -58,8 +58,8 @@ export default function HistoricalWorkPage() {
                   Led Spark AR platform development from inception at Meta Reality Labs, scaling from 2 to 22 team members and defining the product vision for augmented reality experiences across Facebook, Instagram, and Messenger. Shipped AR tools and features to millions of creators worldwide, with 15+ patents in AR/AI domains.
                 </p>
 
-                <div className="bg-gray-900/50 border border-[#FFD700]/20 rounded-lg p-6">
-                  <h4 className="text-lg font-bold text-[#FFD700] mb-4">Key Contributions</h4>
+                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-6">
+                  <h4 className="text-lg font-bold text-terminal-gold mb-4">Key Contributions</h4>
                   <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
                     <div>
                       <p className="font-semibold text-white mb-2">Platform Development</p>
@@ -85,17 +85,17 @@ export default function HistoricalWorkPage() {
                 <div className="flex gap-4">
                   <Link
                     href="/work/spark-ar"
-                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-terminal-gold/90 transition-colors"
                   >
                     Full Spark AR Case Study →
                   </Link>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">AR Platform Development</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Team Leadership (2→22)</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">15+ Patents</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Billions of Users</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">AR Platform Development</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Team Leadership (2→22)</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">15+ Patents</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Billions of Users</span>
                 </div>
               </div>
             </OS8Window>
@@ -110,12 +110,12 @@ export default function HistoricalWorkPage() {
             >
               <div className="space-y-6">
                 <div>
-                  <span className="text-xs font-bold text-[#FFD700] uppercase tracking-wide">
+                  <span className="text-xs font-bold text-terminal-gold uppercase tracking-wide">
                     Co-Founded as Head of Design · 2024 · Founding Equity Partner
                   </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-[#FFD700]">
+                <h3 className="text-2xl md:text-3xl font-bold text-terminal-gold">
                   End-to-End Product Development: Brand to Prototype
                 </h3>
 
@@ -125,21 +125,21 @@ export default function HistoricalWorkPage() {
 
                 {/* Case Study Images Grid */}
                 <div className="grid md:grid-cols-3 gap-4">
-                  <div className="rounded-lg overflow-hidden border border-[#FFD700]/20">
+                  <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
                     <img
                       src="/images/work/rumi/rumi-problem.png"
                       alt="Rumi problem statement: vision wasn't the problem, definition was"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="rounded-lg overflow-hidden border border-[#FFD700]/20">
+                  <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
                     <img
                       src="/images/work/rumi/rumi-brand-system.png"
                       alt="Rumi brand system showing modular typography and color palette"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="rounded-lg overflow-hidden border border-[#FFD700]/20">
+                  <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
                     <img
                       src="/images/work/rumi/rumi-product-screens.png"
                       alt="Rumi product screens showing rewards system and auto mode"
@@ -154,16 +154,16 @@ export default function HistoricalWorkPage() {
                     href="/prototypes/rumi/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-terminal-gold/90 transition-colors"
                   >
                     Launch Interactive Prototype →
                   </a>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Brand System Design</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Interactive Prototype</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">UX Flow Design</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Brand System Design</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Interactive Prototype</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">UX Flow Design</span>
                 </div>
               </div>
             </OS8Window>
@@ -178,12 +178,12 @@ export default function HistoricalWorkPage() {
             >
               <div className="space-y-6">
                 <div>
-                  <span className="text-xs font-bold text-[#FFD700] uppercase tracking-wide">
+                  <span className="text-xs font-bold text-terminal-gold uppercase tracking-wide">
                     Client Engagement · 2016 · Technical Lead
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-[#FFD700]">
+                <h3 className="text-2xl font-bold text-terminal-gold">
                   Building Large-Scale Mixed Reality Installations
                 </h3>
 
@@ -191,8 +191,8 @@ export default function HistoricalWorkPage() {
                   Led technical development for Viacom's "Composition VI" mixed reality installation at their Times Square headquarters. Interactive experience combining physical space, projection mapping, and real-time motion capture.
                 </p>
 
-                <div className="bg-gray-900/50 border border-[#FFD700]/20 rounded-lg p-6">
-                  <h4 className="text-lg font-bold text-[#FFD700] mb-4">What Was Built</h4>
+                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-6">
+                  <h4 className="text-lg font-bold text-terminal-gold mb-4">What Was Built</h4>
                   <ul className="space-y-2 text-sm text-gray-300">
                     <li>• Real-time motion tracking system for multi-user interactions</li>
                     <li>• Custom projection mapping software synchronized across multiple displays</li>
@@ -206,7 +206,7 @@ export default function HistoricalWorkPage() {
                     href="https://slanted.studio/work/viacom-composition-vi/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#FFD700] hover:underline text-sm font-semibold"
+                    className="text-terminal-gold hover:underline text-sm font-semibold"
                   >
                     View Case Study →
                   </a>
@@ -214,16 +214,16 @@ export default function HistoricalWorkPage() {
                     href="https://motionographer.com/2016/10/18/making-mixed-reality-behind-the-scenes-of-the-history-of-viacom-installation/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#FFD700] hover:underline text-sm font-semibold"
+                    className="text-terminal-gold hover:underline text-sm font-semibold"
                   >
                     Behind The Scenes Article →
                   </a>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Motion Tracking</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Projection Mapping</span>
-                  <span className="px-3 py-1 rounded-full bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold">Real-time Systems</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Motion Tracking</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Projection Mapping</span>
+                  <span className="px-3 py-1 rounded-full bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold text-xs font-semibold">Real-time Systems</span>
                 </div>
               </div>
             </OS8Window>

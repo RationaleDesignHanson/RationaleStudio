@@ -20,7 +20,7 @@ export default function WindowShrinePage() {
         <div className="max-w-6xl mx-auto text-center space-y-12">
           {/* Poster Typography */}
           <div className="space-y-6 animate-fade-in-up">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest">
               PROVEN VELOCITY // 7 PROTOTYPES BEFORE PRODUCTION
             </p>
 
@@ -29,13 +29,13 @@ export default function WindowShrinePage() {
               <br />
               Building the
               <br />
-              <span className="text-[#FFD700]">Wrong Thing</span>
+              <span className="text-terminal-gold">Wrong Thing</span>
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Rationale gets you to working prototypes in weeks, not quarters.
               <br />
-              <span className="text-[#FFD700]">Feel what works early.</span> Build with conviction. Ship with speed.
+              <span className="text-terminal-gold">Feel what works early.</span> Build with conviction. Ship with speed.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export default function WindowShrinePage() {
                   <button className="px-4 py-2 bg-white border border-gray-300 hover:bg-gray-50 transition-colors font-semibold text-sm">
                     Learn More
                   </button>
-                  <button className="px-4 py-2 bg-[#FFD700] hover:bg-[#FFE34D] transition-colors font-semibold text-sm">
+                  <button className="px-4 py-2 bg-terminal-gold hover:bg-[#FFE34D] transition-colors font-semibold text-sm">
                     Start Now →
                   </button>
                 </div>
@@ -76,7 +76,7 @@ export default function WindowShrinePage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               <span className="relative inline-block">
                 How Rationale Works
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFD700]" />
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-terminal-gold" />
               </span>
             </h2>
             <p className="text-sm text-gray-400 font-mono tracking-wider">TWO ENGINES // ONE FLYWHEEL</p>
@@ -343,26 +343,26 @@ export default function WindowShrinePage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Design Leadership at Publicly Traded Scale,
               <br />
-              <span className="text-[#FFD700]">Studio Execution Speed</span>
+              <span className="text-terminal-gold">Studio Execution Speed</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="animate-fade-in-up delay-100">
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 border-l-2 border-[#FFD700]">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 border-l-2 border-terminal-gold">
                 <p className="text-xs font-mono text-gray-400 mb-3">WHAT SCALE TAUGHT US</p>
                 <h3 className="text-xl font-bold mb-4">Systematic Execution Under Pressure</h3>
                 <ul className="space-y-2 text-gray-300 leading-relaxed">
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>Design systems shipping 100+ features/quarter</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>AI tools serving billions of users daily</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>Infrastructure that doesn't break under load</span>
                   </li>
                 </ul>
@@ -370,20 +370,20 @@ export default function WindowShrinePage() {
             </div>
 
             <div className="animate-fade-in-up delay-200">
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 border-l-2 border-[#FFD700]">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 border-l-2 border-terminal-gold">
                 <p className="text-xs font-mono text-gray-400 mb-3">WHAT THAT MEANS FOR YOU</p>
                 <h3 className="text-xl font-bold mb-4">Studio Speed, Enterprise Discipline</h3>
                 <ul className="space-y-2 text-gray-300 leading-relaxed">
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>Prototypes in weeks, not months</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>Systems that scale from the start</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#FFD700] mr-3 text-xs mt-1">—</span>
+                    <span className="text-terminal-gold mr-3 text-xs mt-1">—</span>
                     <span>No technical debt, no shortcuts</span>
                   </li>
                 </ul>
@@ -401,7 +401,7 @@ export default function WindowShrinePage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               Stop Guessing.
               <br />
-              <span className="text-[#FFD700]">Start Feeling What Works.</span>
+              <span className="text-terminal-gold">Start Feeling What Works.</span>
             </h2>
           </div>
 
@@ -419,7 +419,7 @@ export default function WindowShrinePage() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
-                  <button className="flex-1 px-6 py-3 bg-[#FFD700] hover:bg-[#FFE34D] transition-colors font-semibold">
+                  <button className="flex-1 px-6 py-3 bg-terminal-gold hover:bg-[#FFE34D] transition-colors font-semibold">
                     Start Clarity Kit →
                   </button>
                   <a
@@ -432,7 +432,7 @@ export default function WindowShrinePage() {
 
                 <div className="pt-3 border-t border-gray-200">
                   <p className="text-xs text-gray-500">
-                    <a href="/contact" className="hover:text-[#FFD700] transition-colors">Contact us</a>
+                    <a href="/contact" className="hover:text-terminal-gold transition-colors">Contact us</a>
                   </p>
                 </div>
               </div>

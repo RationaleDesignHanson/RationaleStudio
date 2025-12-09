@@ -36,7 +36,7 @@ export default function SocialContentPage() {
       <div className="mb-8">
         <Link
           href="/owner/content"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Content Library
         </Link>
@@ -52,12 +52,12 @@ export default function SocialContentPage() {
           return (
             <div
               key={idx}
-              className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700]/30 transition-colors"
+              className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/30 transition-colors"
             >
-              <Icon className="w-8 h-8 text-[#FFD700] mb-4" />
+              <Icon className="w-8 h-8 text-terminal-gold mb-4" />
               <h3 className="text-lg font-bold text-white mb-2">{template.type}</h3>
               <p className="text-sm text-gray-400 mb-4">{template.category}</p>
-              <div className="text-2xl font-bold text-[#FFD700] mb-4">{template.count}</div>
+              <div className="text-2xl font-bold text-terminal-gold mb-4">{template.count}</div>
               <button
                 disabled
                 className="w-full px-4 py-2 bg-gray-800 text-gray-600 text-sm font-medium rounded-lg cursor-not-allowed"

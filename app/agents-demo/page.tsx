@@ -171,7 +171,7 @@ export default function AgentsDemoPage() {
               <button
                 onClick={handleInvoke}
                 disabled={loading}
-                className="w-full bg-[#FFD700] hover:bg-[#FFE34D] disabled:bg-gray-600 text-black font-semibold px-6 py-3 transition-colors"
+                className="w-full bg-terminal-gold hover:bg-[#FFE34D] disabled:bg-gray-600 text-black font-semibold px-6 py-3 transition-colors"
               >
                 {loading ? 'Invoking...' : 'Invoke Agent'}
               </button>
@@ -262,7 +262,7 @@ export default function AgentsDemoPage() {
               {/* Reasoning */}
               {response.reasoning && (
                 <div>
-                  <div className="text-sm font-semibold text-[#FFD700] mb-2">Reasoning:</div>
+                  <div className="text-sm font-semibold text-terminal-gold mb-2">Reasoning:</div>
                   <div className="text-sm text-gray-100 whitespace-pre-wrap">{response.reasoning}</div>
                 </div>
               )}
@@ -270,11 +270,11 @@ export default function AgentsDemoPage() {
               {/* Suggestions */}
               {response.suggestions && response.suggestions.length > 0 && (
                 <div>
-                  <div className="text-sm font-semibold text-[#FFD700] mb-2">Suggestions:</div>
+                  <div className="text-sm font-semibold text-terminal-gold mb-2">Suggestions:</div>
                   <ul className="space-y-1">
                     {response.suggestions.map((suggestion, i) => (
                       <li key={i} className="text-sm text-gray-100 flex gap-2">
-                        <span className="text-[#FFD700]">→</span>
+                        <span className="text-terminal-gold">→</span>
                         <span>{suggestion}</span>
                       </li>
                     ))}
@@ -285,11 +285,11 @@ export default function AgentsDemoPage() {
               {/* Next Steps */}
               {response.nextSteps && response.nextSteps.length > 0 && (
                 <div>
-                  <div className="text-sm font-semibold text-[#FFD700] mb-2">Next Steps:</div>
+                  <div className="text-sm font-semibold text-terminal-gold mb-2">Next Steps:</div>
                   <ol className="space-y-1">
                     {response.nextSteps.map((step, i) => (
                       <li key={i} className="text-sm text-gray-100 flex gap-2">
-                        <span className="text-[#FFD700]">{i + 1}.</span>
+                        <span className="text-terminal-gold">{i + 1}.</span>
                         <span>{step}</span>
                       </li>
                     ))}

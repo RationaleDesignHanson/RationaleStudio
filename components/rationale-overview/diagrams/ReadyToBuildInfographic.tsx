@@ -96,7 +96,7 @@ export default function ReadyToBuildInfographic() {
       {/* Alternative CTA */}
       <div className="mt-12 lg:mt-16 pt-8 border-t border-gray-700 text-center">
         <p className="text-base text-gray-400">
-          Or <a href="/contact" className="text-[#FFD700] hover:text-[#FFE34D] transition-colors font-semibold">get in touch via our contact page</a>
+          Or <a href="/contact" className="text-terminal-gold hover:text-[#FFE34D] transition-colors font-semibold">get in touch via our contact page</a>
         </p>
       </div>
     </div>

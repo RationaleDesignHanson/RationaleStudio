@@ -62,7 +62,7 @@ export default function VisionProSpatialDemo() {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-[#FFD700] font-mono mb-2">
+        <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">
           EXPERIENCE YOUR FUTURE
         </h2>
         <p className="text-white/60 font-mono">
@@ -125,11 +125,11 @@ export default function VisionProSpatialDemo() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="p-6 bg-gradient-to-r from-[#FFD700]/10 to-[#FF6B00]/10 border-2 border-[#FFD700]/30 rounded-lg">
+      <div className="p-6 bg-gradient-to-r from-[#FFD700]/10 to-[#FF6B00]/10 border-2 border-terminal-gold/30 rounded-lg">
         <div className="flex items-start gap-4">
           <span className="text-4xl">🥽</span>
           <div>
-            <h4 className="font-mono font-bold text-[#FFD700] text-lg mb-2">
+            <h4 className="font-mono font-bold text-terminal-gold text-lg mb-2">
               VISCERAL DECISION-MAKING
             </h4>
             <p className="font-mono text-sm text-white/80 mb-3">

@@ -134,7 +134,7 @@ export function OnboardingProgressTracker({
       <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-bold text-white">Getting Started</h3>
-          <span className="text-xs text-[#FFD700]">
+          <span className="text-xs text-terminal-gold">
             {completedCount}/{totalCount} complete
           </span>
         </div>
@@ -148,7 +148,7 @@ export function OnboardingProgressTracker({
           {visibleSteps.slice(0, 3).map((step) => (
             <div key={step.id} className="flex items-center gap-2 text-xs text-gray-300">
               {step.completed ? (
-                <CheckCircle2 className="w-4 h-4 text-[#FFD700] flex-shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-terminal-gold flex-shrink-0" />
               ) : (
                 <Circle className="w-4 h-4 text-gray-600 flex-shrink-0" />
               )}
@@ -172,7 +172,7 @@ export function OnboardingProgressTracker({
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-xl font-bold text-white">Complete Your Setup</h2>
-          <span className="text-sm text-[#FFD700]">
+          <span className="text-sm text-terminal-gold">
             {completedCount} of {totalCount} completed
           </span>
         </div>
@@ -193,14 +193,14 @@ export function OnboardingProgressTracker({
               className={`p-4 rounded-lg border transition-all ${
                 step.completed
                   ? 'bg-gray-900/30 border-gray-800'
-                  : 'bg-gray-800/50 border-gray-700 hover:border-[#FFD700]'
+                  : 'bg-gray-800/50 border-gray-700 hover:border-terminal-gold'
               }`}
             >
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   {step.completed ? (
-                    <div className="w-10 h-10 bg-[#FFD700]/20 border border-[#FFD700]/50 rounded-lg flex items-center justify-center">
-                      <CheckCircle2 className="w-5 h-5 text-[#FFD700]" />
+                    <div className="w-10 h-10 bg-terminal-gold/20 border border-terminal-gold/50 rounded-lg flex items-center justify-center">
+                      <CheckCircle2 className="w-5 h-5 text-terminal-gold" />
                     </div>
                   ) : (
                     <div className="w-10 h-10 bg-gray-900/50 border border-gray-700 rounded-lg flex items-center justify-center">
@@ -226,7 +226,7 @@ export function OnboardingProgressTracker({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => handleStepComplete(step.id)}
-                        className="inline-block px-4 py-2 bg-[#FFD700] hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-all"
+                        className="inline-block px-4 py-2 bg-terminal-gold hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-all"
                       >
                         {step.action.label}
                       </a>
@@ -236,7 +236,7 @@ export function OnboardingProgressTracker({
                           step.action?.onClick?.();
                           handleStepComplete(step.id);
                         }}
-                        className="px-4 py-2 bg-[#FFD700] hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-all"
+                        className="px-4 py-2 bg-terminal-gold hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-all"
                       >
                         {step.action.label}
                       </button>
@@ -250,15 +250,15 @@ export function OnboardingProgressTracker({
       </div>
 
       {completedCount === totalCount && (
-        <div className="mt-6 p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg text-center">
-          <CheckCircle2 className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
+        <div className="mt-6 p-4 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg text-center">
+          <CheckCircle2 className="w-12 h-12 text-terminal-gold mx-auto mb-2" />
           <h3 className="text-lg font-bold text-white mb-1">Setup Complete</h3>
           <p className="text-sm text-gray-300 mb-4">
             You're all set! Start using Zero to manage your inbox.
           </p>
           <Link
             href="/work/zero"
-            className="inline-block px-6 py-2 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-medium rounded transition-all"
+            className="inline-block px-6 py-2 bg-terminal-gold hover:bg-[#FFE34D] text-black font-medium rounded transition-all"
           >
             Learn More About Zero
           </Link>

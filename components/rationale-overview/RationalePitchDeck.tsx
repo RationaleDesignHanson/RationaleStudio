@@ -22,7 +22,7 @@ const ASCIIUnifiedGrid = dynamic(
 const LoadingComponent = () => (
   <div className="flex items-center justify-center min-h-[400px]">
     <div className="text-center">
-      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#FFD700] mb-4"></div>
+      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-terminal-gold mb-4"></div>
       <p className="text-white/60 text-sm">Loading...</p>
     </div>
   </div>
@@ -192,7 +192,7 @@ export default function RationalePitchDeck() {
                 </div>
                 <a
                   href="/"
-                  className="flex items-center gap-2 px-3 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-colors"
                   aria-label="Exit overview"
                   title="Exit and return to homepage"
                 >
@@ -215,7 +215,7 @@ export default function RationalePitchDeck() {
                 <button
                   disabled={activeSlide === 0 && activeSection === 0}
                   onClick={previousSlide}
-                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
                   aria-label="Previous slide"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@ export default function RationalePitchDeck() {
 
                 <a
                   href="/"
-                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-all"
                   aria-label="Exit overview"
                   title="Exit and return to homepage"
                   onClick={(e) => e.stopPropagation()}
@@ -249,7 +249,7 @@ export default function RationalePitchDeck() {
               <button
                 disabled={activeSlide === totalSlides - 1 && activeSection === sections.length - 1}
                 onClick={nextSlide}
-                className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
                 aria-label="Next slide"
               >
                 <span className="text-sm hidden sm:inline">Next</span>

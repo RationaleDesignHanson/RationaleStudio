@@ -11,12 +11,12 @@ export default function CardVariantsPage() {
         <div className="max-w-7xl mx-auto">
           <Link
             href="/"
-            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
+            className="text-sm text-gray-400 hover:text-terminal-gold font-semibold transition-colors mb-6 inline-block"
           >
             ← Back to Home
           </Link>
 
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
             DESIGN SYSTEM PREVIEW
           </p>
 
@@ -50,7 +50,7 @@ export default function CardVariantsPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-[#FFD700]">
+              <h3 className="text-2xl font-bold text-terminal-gold">
                 Premium Content Heading
               </h3>
               <p className="text-base text-gray-100 leading-relaxed">
@@ -171,14 +171,14 @@ export default function CardVariantsPage() {
             className="max-w-lg mx-auto"
           >
             <div className="space-y-6 text-center">
-              <h3 className="text-2xl font-bold text-[#FFD700]">
+              <h3 className="text-2xl font-bold text-terminal-gold">
                 Ready to Ship?
               </h3>
-              <p className="text-base text-[#FFD700] leading-relaxed">
+              <p className="text-base text-terminal-gold leading-relaxed">
                 The highest-impact variant with black background and strong yellow glow. Demands immediate attention and action. Use sparingly for conversion points like contact CTAs, booking prompts, or critical next steps.
               </p>
               <div className="pt-4">
-                <button className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-colors">
+                <button className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-colors">
                   Start a Conversation →
                 </button>
               </div>
@@ -282,7 +282,7 @@ export default function CardVariantsPage() {
               variant="cta"
               animateIn={false}
             >
-              <p className="text-sm text-[#FFD700]">
+              <p className="text-sm text-terminal-gold">
                 Maximum conversion focus. Use sparingly for critical action points.
               </p>
             </OS8Window>
@@ -325,7 +325,7 @@ export default function CardVariantsPage() {
               <div>
                 <h3 className="text-lg font-bold text-gray-100 mb-3">Suggested Page Applications</h3>
                 <div className="space-y-4">
-                  <div className="border-l-2 border-[#FFD700] pl-4">
+                  <div className="border-l-2 border-terminal-gold pl-4">
                     <p className="text-sm font-semibold text-gray-200">Homepage</p>
                     <p className="text-xs text-gray-400 mt-1">
                       Featured: Hero portfolio showcase • Body: Process sections • Interactive: Portfolio grid • CTA: Contact prompt

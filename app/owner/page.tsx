@@ -44,9 +44,9 @@ export default function OwnerDashboardPage() {
           return (
             <div
               key={stat.label}
-              className="p-6 bg-gray-900/70 border border-gray-800 rounded-lg hover:border-[#FFD700]/30 transition-colors"
+              className="p-6 bg-gray-900/70 border border-gray-800 rounded-lg hover:border-terminal-gold/30 transition-colors"
             >
-              <Icon className="w-6 h-6 text-[#FFD700] mb-3" />
+              <Icon className="w-6 h-6 text-terminal-gold mb-3" />
               <div className="text-3xl font-bold text-white mb-1">
                 {stat.value}
               </div>
@@ -61,7 +61,7 @@ export default function OwnerDashboardPage() {
         {/* Content Library */}
         <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
           <div className="flex items-center gap-3 mb-6">
-            <FileText className="w-6 h-6 text-[#FFD700]" />
+            <FileText className="w-6 h-6 text-terminal-gold" />
             <h3 className="text-xl font-bold text-white">Content Library</h3>
           </div>
 
@@ -72,7 +72,7 @@ export default function OwnerDashboardPage() {
           <div className="space-y-3">
             <Link
               href="/owner/content/blog"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Blog Posts</div>
               <div className="text-xs text-gray-400">
@@ -82,7 +82,7 @@ export default function OwnerDashboardPage() {
 
             <Link
               href="/owner/content/case-studies"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Case Studies</div>
               <div className="text-xs text-gray-400">
@@ -92,7 +92,7 @@ export default function OwnerDashboardPage() {
 
             <Link
               href="/owner/content/social"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Social Content</div>
               <div className="text-xs text-gray-400">
@@ -105,7 +105,7 @@ export default function OwnerDashboardPage() {
         {/* Reference Materials */}
         <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
           <div className="flex items-center gap-3 mb-6">
-            <Book className="w-6 h-6 text-[#FFD700]" />
+            <Book className="w-6 h-6 text-terminal-gold" />
             <h3 className="text-xl font-bold text-white">Reference</h3>
           </div>
 
@@ -116,7 +116,7 @@ export default function OwnerDashboardPage() {
           <div className="space-y-3">
             <Link
               href="/owner/reference/agents"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Agent System</div>
               <div className="text-xs text-gray-400">
@@ -126,7 +126,7 @@ export default function OwnerDashboardPage() {
 
             <Link
               href="/owner/reference/playbooks"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Playbooks</div>
               <div className="text-xs text-gray-400">
@@ -136,7 +136,7 @@ export default function OwnerDashboardPage() {
 
             <Link
               href="/owner/reference/templates"
-              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
             >
               <div className="font-semibold text-white mb-1">Templates</div>
               <div className="text-xs text-gray-400">
@@ -150,7 +150,7 @@ export default function OwnerDashboardPage() {
       {/* Recently Viewed */}
       <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
         <div className="flex items-center gap-3 mb-6">
-          <Clock className="w-5 h-5 text-[#FFD700]" />
+          <Clock className="w-5 h-5 text-terminal-gold" />
           <h3 className="text-lg font-bold text-white">Recently Viewed</h3>
         </div>
 
@@ -159,7 +159,7 @@ export default function OwnerDashboardPage() {
             <Link
               key={index}
               href={item.path}
-              className="block p-4 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-800 hover:border-[#FFD700]/20 rounded-lg transition-colors"
+              className="block p-4 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-800 hover:border-terminal-gold/20 rounded-lg transition-colors"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -176,7 +176,7 @@ export default function OwnerDashboardPage() {
       {/* Publishing Tools (Placeholder) */}
       <div className="mt-8 p-6 bg-gray-900/30 border border-gray-800 rounded-lg">
         <div className="flex items-center gap-3 mb-3">
-          <Zap className="w-5 h-5 text-[#FFD700]" />
+          <Zap className="w-5 h-5 text-terminal-gold" />
           <h4 className="text-sm font-bold text-white">Publishing Tools</h4>
         </div>
         <p className="text-xs text-gray-400 mb-4">

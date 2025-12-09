@@ -70,7 +70,7 @@ function ClientLoginForm() {
           <div className="bg-gray-900 border border-gray-800 rounded-lg p-8">
             {/* Logo/Header */}
             <div className="text-center mb-8">
-              <h1 className="text-2xl font-semibold text-[#FFD700] mb-2">
+              <h1 className="text-2xl font-semibold text-terminal-gold mb-2">
                 Rationale Client Portal
               </h1>
               <p className="text-gray-400 text-sm">
@@ -126,7 +126,7 @@ function ClientLoginForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-[#FFD700]/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
 {isLoading ? 'Signing in...' : 'Sign In'}
               </button>
@@ -138,7 +138,7 @@ function ClientLoginForm() {
                 Need access?{' '}
                 <a
                   href="/contact"
-                  className="text-[#FFD700] hover:text-[#FFD700]/80 transition-colors"
+                  className="text-[#FFD700] hover:text-terminal-gold/80 transition-colors"
                 >
                   Contact us
                 </a>
@@ -150,7 +150,7 @@ function ClientLoginForm() {
           <div className="mt-6 text-center">
             <a
               href="/"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Rationale.studio
             </a>
@@ -165,7 +165,7 @@ export default function ClientLoginPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-[#FFD700]">Loading...</div>
+        <div className="text-terminal-gold">Loading...</div>
       </div>
     }>
       <ClientLoginForm />

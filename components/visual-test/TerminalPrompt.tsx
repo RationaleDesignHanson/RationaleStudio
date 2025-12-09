@@ -42,13 +42,13 @@ export function TerminalPrompt({
 
   return (
     <div className={cn('font-mono text-lg sm:text-xl md:text-2xl', className)}>
-      <span className="text-[#FFD700]">{'>'}</span>{' '}
+      <span className="text-terminal-gold">{'>'}</span>{' '}
       <span>{displayText}</span>
       {showCursor && !isComplete && (
-        <span className="inline-block w-[2px] h-[1em] bg-[#FFD700] ml-1 animate-cursor-blink" />
+        <span className="inline-block w-[2px] h-[1em] bg-terminal-gold ml-1 animate-cursor-blink" />
       )}
       {showCursor && isComplete && (
-        <span className="inline-block w-[2px] h-[1em] bg-[#FFD700]/50 ml-1" />
+        <span className="inline-block w-[2px] h-[1em] bg-terminal-gold/50 ml-1" />
       )}
     </div>
   );

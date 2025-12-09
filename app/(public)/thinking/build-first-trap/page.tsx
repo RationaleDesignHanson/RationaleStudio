@@ -75,7 +75,7 @@ export default function BuildFirstTrapPage() {
               <p className="text-gray-300 leading-relaxed mb-4">
                 Users don't know what they want until they feel it. A 20-page spec describes an interaction. A prototype lets users experience it. Experience reveals problems specs can't predict.
               </p>
-              <div className="border-l-4 border-[#FFD700] pl-6 py-2 my-6">
+              <div className="border-l-4 border-terminal-gold pl-6 py-2 my-6">
                 <p className="text-white font-medium mb-2">Example: Zero Inbox</p>
                 <p className="text-gray-300 leading-relaxed">
                   Zero's spec said "swipe left to archive." Prototype testing revealed 73% of users expected swipe right. We pivoted in Day 3, not Month 4.
@@ -98,19 +98,19 @@ export default function BuildFirstTrapPage() {
                 <h3 className="text-lg font-bold text-white mb-3">The Timeline of Regret</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex gap-3">
-                    <span className="text-[#FFD700] font-mono">Week 4:</span>
+                    <span className="text-terminal-gold font-mono">Week 4:</span>
                     <span className="text-gray-300">Capital invested, UX issue found</span>
                   </div>
                   <div className="flex gap-3">
-                    <span className="text-[#FFD700] font-mono">Week 8:</span>
+                    <span className="text-terminal-gold font-mono">Week 8:</span>
                     <span className="text-gray-300">More sunk, core interaction failing tests</span>
                   </div>
                   <div className="flex gap-3">
-                    <span className="text-[#FFD700] font-mono">Week 12:</span>
+                    <span className="text-terminal-gold font-mono">Week 12:</span>
                     <span className="text-gray-300">Months wasted, user feedback confirms it's wrong</span>
                   </div>
                   <div className="flex gap-3">
-                    <span className="text-[#FFD700] font-mono">Week 16:</span>
+                    <span className="text-terminal-gold font-mono">Week 16:</span>
                     <span className="text-gray-300">Too deep to pivot—launch with known problems or kill</span>
                   </div>
                 </div>

@@ -40,7 +40,7 @@ export default function LogoutPage() {
           <div className="p-8">
             {isLoggingOut ? (
               <>
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFD700] mx-auto mb-6"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-terminal-gold mx-auto mb-6"></div>
                 <h1 className="text-2xl font-semibold text-white mb-2">
                   Signing Out
                 </h1>
@@ -58,7 +58,7 @@ export default function LogoutPage() {
                 </p>
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                  className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   Retry
                 </button>

@@ -228,10 +228,10 @@ export default function ServiceOfferingBreakdown() {
       </div>
 
       {/* Why This Approach Works */}
-      <div className="p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg">
+      <div className="p-4 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg">
         <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FFD700]/20 flex items-center justify-center">
-            <span className="text-[#FFD700] text-sm">→</span>
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-terminal-gold/20 flex items-center justify-center">
+            <span className="text-terminal-gold text-sm">→</span>
           </div>
           <div>
             <div className="text-sm font-semibold text-white mb-2">Why This Approach Works</div>

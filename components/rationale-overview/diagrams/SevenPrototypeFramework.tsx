@@ -132,8 +132,8 @@ export default function SevenPrototypeFramework() {
                     <svg className="w-6 h-6" viewBox="0 0 24 24">
                       <path
                         d="M12 2 L22 12 L12 22 L2 12 Z"
-                        fill="#FFD700"
-                        stroke="#FFD700"
+                        fill="rgb(255 215 0)"
+                        stroke="rgb(255 215 0)"
                         strokeWidth="2"
                       />
                       <text
@@ -166,7 +166,7 @@ export default function SevenPrototypeFramework() {
           ))}
 
           {/* LOCK ARCH */}
-          <div className="px-3 py-1.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] border-2 border-[#FFD700] rounded text-xs font-bold text-black">
+          <div className="px-3 py-1.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] border-2 border-terminal-gold rounded text-xs font-bold text-black">
             LOCK ARCH
           </div>
         </div>
@@ -215,7 +215,7 @@ export default function SevenPrototypeFramework() {
             <div className="text-xs text-gray-500 mt-1">Adaptive to project needs</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-[#FFD700]">4</div>
+            <div className="text-2xl font-bold text-terminal-gold">4</div>
             <div className="text-xs text-gray-500 mt-1">Validation gates</div>
           </div>
           <div>
@@ -226,7 +226,7 @@ export default function SevenPrototypeFramework() {
       </div>
 
       {/* Key insight */}
-      <div className="mt-6 p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg">
+      <div className="mt-6 p-4 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg">
         <div className="flex items-start gap-3">
           <div className="text-2xl">💡</div>
           <div>

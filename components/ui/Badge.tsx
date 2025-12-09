@@ -115,9 +115,14 @@ export function Badge({
   const sizeClasses = getSizeClasses(size);
   const baseClasses = 'inline-flex items-center rounded-full font-medium border';
 
+  // For project-status variant, display the label instead of the key
+  const displayValue = variant === 'project-status'
+    ? (PROJECT_STATUS_COLORS[value as ProjectStatusKey]?.label || value)
+    : value;
+
   return (
     <span className={`${baseClasses} ${sizeClasses} ${colorClasses} ${className}`}>
-      {value}
+      {displayValue}
     </span>
   );
 }
@@ -184,10 +189,7 @@ export function ProjectStatusBadge({
   size?: BadgeProps['size'];
   className?: string;
 }) {
-  const label = PROJECT_STATUS_COLORS[status]?.label || status;
-  return <Badge variant="project-status" value={status} size={size} className={className}>
-    {label}
-  </Badge>;
+  return <Badge variant="project-status" value={status} size={size} className={className} />;
 }
 
 export default Badge;

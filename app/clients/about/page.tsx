@@ -34,7 +34,7 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 text-center animate-fade-in-up">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 text-center animate-fade-in-up">
               CONVICTION-FIRST VENTURE STUDIO
             </p>
 
@@ -66,84 +66,84 @@ export default function AboutPage() {
               animateIn={false}
             >
               <div className="text-center mb-8">
-                <p className="text-base sm:text-lg text-[#FFD700] font-medium">
+                <p className="text-base sm:text-lg text-terminal-gold font-medium">
                   How we build conviction-backed IP through systematic execution
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 {/* Rationale Kits */}
-                <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/60">
+                <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/60">
                   <h3 className="text-2xl font-bold mb-3">Rationale Kits</h3>
-                  <p className="text-sm text-[#FFD700] font-medium mb-4">Productized Client Engagements</p>
+                  <p className="text-sm text-terminal-gold font-medium mb-4">Productized Client Engagements</p>
                   <p className="text-sm text-gray-100 mb-6">
                     2-week sprints to 18-month builds. Cash, equity, or hybrid payment. Every engagement validates our execution systems and generates market data.
                   </p>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Fund Portfolio exploration and de-risk new ideas</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Validate market assumptions with real clients</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Compound execution capability with every project</p>
                     </div>
                   </div>
-                  <Link href="/partnerships" className="text-sm text-[#FFD700] hover:underline font-medium">
+                  <Link href="/partnerships" className="text-sm text-terminal-gold hover:underline font-medium">
                     View Rationale Kits →
                   </Link>
                 </div>
 
                 {/* Portfolio IP */}
-                <div className="p-6 rounded-lg border border-[#FFD700]/20 bg-black/60">
+                <div className="p-6 rounded-lg border border-terminal-gold/20 bg-black/60">
                   <h3 className="text-2xl font-bold mb-3">Portfolio IP</h3>
-                  <p className="text-sm text-[#FFD700] font-medium mb-4">Conviction-Backed Ventures We Own</p>
+                  <p className="text-sm text-terminal-gold font-medium mb-4">Conviction-Backed Ventures We Own</p>
                   <p className="text-sm text-gray-100 mb-6">
                     Products we originate and own. Built with conviction, designed to appreciate over time. IP accumulation, not time-trading.
                   </p>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Zero: Live on App Store with beta rollout</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Project Atlas: Complete CRE intelligence roadmap</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-[#FFD700]">→</span>
+                      <span className="text-terminal-gold">→</span>
                       <p className="text-sm text-gray-100">Project Amplify: Full NIL platform architecture</p>
                     </div>
                   </div>
-                  <Link href="/ventures" className="text-sm text-[#FFD700] hover:underline font-medium">
+                  <Link href="/ventures" className="text-sm text-terminal-gold hover:underline font-medium">
                     View Portfolio IP →
                   </Link>
                 </div>
               </div>
 
               {/* How They Work Together */}
-              <div className="p-6 rounded-lg border border-[#FFD700]/30 bg-[#FFD700]/5">
+              <div className="p-6 rounded-lg border border-terminal-gold/30 bg-terminal-gold/5">
                 <h4 className="text-lg font-bold mb-4 text-center">How They Work Together</h4>
                 <div className="grid md:grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-[#FFD700] mb-2">Kits Fund Runway</div>
+                    <div className="text-2xl font-bold text-terminal-gold mb-2">Kits Fund Runway</div>
                     <p className="text-xs text-gray-300">Client engagements generate revenue for Portfolio exploration</p>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-[#FFD700] mb-2">Portfolio Proves Conviction</div>
+                    <div className="text-2xl font-bold text-terminal-gold mb-2">Portfolio Proves Conviction</div>
                     <p className="text-xs text-gray-300">Ventures demonstrate our systematic execution at speed</p>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-[#FFD700] mb-2">Both Compound Value</div>
+                    <div className="text-2xl font-bold text-terminal-gold mb-2">Both Compound Value</div>
                     <p className="text-xs text-gray-300">Every engagement strengthens our execution systems</p>
                   </div>
                 </div>
-                <p className="text-sm text-center mt-6 pt-6 border-t border-[#FFD700]/20">
-                  <span className="font-bold text-[#FFD700]">Result:</span> Systematic IP accumulation. Conviction first, IP always.
+                <p className="text-sm text-center mt-6 pt-6 border-t border-terminal-gold/20">
+                  <span className="font-bold text-terminal-gold">Result:</span> Systematic IP accumulation. Conviction first, IP always.
                 </p>
               </div>
             </OS8Window>
@@ -168,7 +168,7 @@ export default function AboutPage() {
               animateIn={false}
             >
               <div className="mb-6 text-center">
-                <p className="text-sm sm:text-base lg:text-lg text-[#FFD700] font-medium">
+                <p className="text-sm sm:text-base lg:text-lg text-terminal-gold font-medium">
                   {aboutContent.originStory.subtitle}
                 </p>
               </div>
@@ -181,7 +181,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-[#FFD700]/20">
+              <div className="mt-8 pt-8 border-t border-terminal-gold/20">
                 <p className="text-sm sm:text-base text-center text-gray-100 italic">
                   This moment defined our approach: we help teams build the conviction they need before committing resources to engineering.
                 </p>
@@ -220,7 +220,7 @@ export default function AboutPage() {
                   animateIn={false}
                 >
                   <div className="mb-4">
-                    <p className="text-sm sm:text-base text-[#FFD700] font-medium">
+                    <p className="text-sm sm:text-base text-terminal-gold font-medium">
                       {model.tagline}
                     </p>
                   </div>
@@ -231,8 +231,8 @@ export default function AboutPage() {
                   </p>
 
                   {/* Analogy */}
-                  <div className="mb-6 p-4 sm:p-6 rounded-lg bg-[#FFD700]/5 border border-[#FFD700]/20">
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                  <div className="mb-6 p-4 sm:p-6 rounded-lg bg-terminal-gold/5 border border-terminal-gold/20">
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                       Analogy
                     </h4>
                     <div className="space-y-3 text-sm sm:text-base">
@@ -244,13 +244,13 @@ export default function AboutPage() {
 
                   {/* Application */}
                   <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                       In Practice
                     </h4>
                     <ul className="space-y-2">
                       {model.application.map((app, idx) => (
                         <li key={idx} className="flex gap-3 text-sm sm:text-base">
-                          <span className="text-[#FFD700]">→</span>
+                          <span className="text-terminal-gold">→</span>
                           <span className="text-gray-100">{app}</span>
                         </li>
                       ))}
@@ -292,7 +292,7 @@ export default function AboutPage() {
                   animateIn={false}
                 >
                   <div className="mb-4">
-                    <p className="text-sm sm:text-base text-[#FFD700] font-medium">
+                    <p className="text-sm sm:text-base text-terminal-gold font-medium">
                       {framework.tagline}
                     </p>
                   </div>
@@ -304,13 +304,13 @@ export default function AboutPage() {
 
                   {/* When to Use */}
                   <div className="mb-6">
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                       When to Use This
                     </h4>
                     <ul className="space-y-2">
                       {framework.whenToUse.map((use, idx) => (
                         <li key={idx} className="flex gap-3 text-sm sm:text-base">
-                          <span className="text-[#FFD700]">→</span>
+                          <span className="text-terminal-gold">→</span>
                           <span className="text-gray-100">{use}</span>
                         </li>
                       ))}
@@ -319,16 +319,16 @@ export default function AboutPage() {
 
                   {/* How It Works */}
                   <div className="mb-6">
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                       How It Works
                     </h4>
                     <div className="space-y-4">
                       {framework.howItWorks.map((step, idx) => (
                         <div
                           key={idx}
-                          className="flex gap-4 p-4 rounded-lg bg-[#FFD700]/5 border border-[#FFD700]/20"
+                          className="flex gap-4 p-4 rounded-lg bg-terminal-gold/5 border border-terminal-gold/20"
                         >
-                          <div className="flex-shrink-0 w-8 h-8 rounded bg-[#FFD700] text-black flex items-center justify-center font-bold text-sm">
+                          <div className="flex-shrink-0 w-8 h-8 rounded bg-terminal-gold text-black flex items-center justify-center font-bold text-sm">
                             {idx + 1}
                           </div>
                           <div>
@@ -346,13 +346,13 @@ export default function AboutPage() {
 
                   {/* Outcomes */}
                   <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                    <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                       Outcomes
                     </h4>
                     <ul className="space-y-2">
                       {framework.outcomes.map((outcome, idx) => (
                         <li key={idx} className="flex gap-3 text-sm sm:text-base">
-                          <span className="text-[#FFD700]">→</span>
+                          <span className="text-terminal-gold">→</span>
                           <span className="text-gray-100">{outcome}</span>
                         </li>
                       ))}
@@ -402,18 +402,18 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="mb-8 p-6 rounded-lg border border-[#FFD700]/20 bg-[#FFD700]/5">
+              <div className="mb-8 p-6 rounded-lg border border-terminal-gold/20 bg-terminal-gold/5">
                 <div className="grid sm:grid-cols-3 gap-6 mb-6">
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">3</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">3</div>
                     <div className="text-sm text-gray-300">Active Ventures</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">1 mo</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">1 mo</div>
                     <div className="text-sm text-gray-300">Concept to Plan</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">350KB+</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">350KB+</div>
                     <div className="text-sm text-gray-300">Documentation</div>
                   </div>
                 </div>
@@ -423,17 +423,17 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-4 mb-8">
-                <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60">
+                <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60">
                   <h4 className="text-lg font-bold mb-2">Zero · AI Email Triage</h4>
                   <p className="text-sm text-gray-100 mb-3">
                     Full transparency: 97% size reduction, 67% faster builds, complete fundraising deck. This is how we prove speed.
                   </p>
-                  <Link href="/ventures/zero" className="text-sm text-[#FFD700] hover:underline">
+                  <Link href="/ventures/zero" className="text-sm text-terminal-gold hover:underline">
                     View complete details →
                   </Link>
                 </div>
 
-                <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60">
+                <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60">
                   <div className="flex items-center gap-2 mb-2">
                     <h4 className="text-lg font-bold">Project Atlas · CRE Intelligence</h4>
                     <span className="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium">Stealth</span>
@@ -441,12 +441,12 @@ export default function AboutPage() {
                   <p className="text-sm text-gray-100 mb-3">
                     12-week MVP with complete technical architecture. 103KB of documentation proving we can design complex data platforms.
                   </p>
-                  <Link href="/ventures/project-atlas" className="text-sm text-[#FFD700] hover:underline">
+                  <Link href="/ventures/project-atlas" className="text-sm text-terminal-gold hover:underline">
                     View overview →
                   </Link>
                 </div>
 
-                <div className="p-4 rounded-lg border border-[#FFD700]/20 bg-black/60">
+                <div className="p-4 rounded-lg border border-terminal-gold/20 bg-black/60">
                   <div className="flex items-center gap-2 mb-2">
                     <h4 className="text-lg font-bold">Project Amplify · NIL Platform</h4>
                     <span className="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium">Stealth</span>
@@ -454,7 +454,7 @@ export default function AboutPage() {
                   <p className="text-sm text-gray-100 mb-3">
                     4-module platform with complete user stories and flows. 129KB of documentation showing we can handle complex multi-product builds.
                   </p>
-                  <Link href="/ventures/project-amplify" className="text-sm text-[#FFD700] hover:underline">
+                  <Link href="/ventures/project-amplify" className="text-sm text-terminal-gold hover:underline">
                     View overview →
                   </Link>
                 </div>
@@ -492,7 +492,7 @@ export default function AboutPage() {
             >
               {/* Tagline */}
               <div className="mb-6">
-                <p className="text-sm sm:text-base text-[#FFD700] font-medium">
+                <p className="text-sm sm:text-base text-terminal-gold font-medium">
                   {founderProfile.tagline}
                 </p>
               </div>
@@ -504,7 +504,7 @@ export default function AboutPage() {
 
               {/* Personal Story */}
               <div className="mb-6">
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                   The Story
                 </h4>
                 <div className="space-y-4">
@@ -519,13 +519,13 @@ export default function AboutPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Capabilities */}
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                     Capabilities
                   </h4>
                   <ul className="space-y-2">
                     {founderProfile.capabilities.map((capability, index) => (
                       <li key={index} className="flex gap-2 text-sm sm:text-base">
-                        <span className="text-[#FFD700]">•</span>
+                        <span className="text-terminal-gold">•</span>
                         <span className="text-gray-100">{capability}</span>
                       </li>
                     ))}
@@ -534,13 +534,13 @@ export default function AboutPage() {
 
                 {/* Track Record */}
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                     Track Record
                   </h4>
                   <ul className="space-y-2">
                     {founderProfile.trackRecord.map((item, index) => (
                       <li key={index} className="flex gap-2 text-sm sm:text-base">
-                        <span className="text-[#FFD700]">•</span>
+                        <span className="text-terminal-gold">•</span>
                         <span className="text-gray-100">{item}</span>
                       </li>
                     ))}
@@ -549,8 +549,8 @@ export default function AboutPage() {
               </div>
 
               {/* Patent */}
-              <div className="mt-6 pt-6 border-t border-[#FFD700]/20">
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-3">
+              <div className="mt-6 pt-6 border-t border-terminal-gold/20">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-3">
                   Innovation
                 </h4>
                 <p className="text-sm sm:text-base text-gray-100">
@@ -559,7 +559,7 @@ export default function AboutPage() {
                     href={founderProfile.patent.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#FFD700] hover:underline"
+                    className="text-terminal-gold hover:underline"
                   >
                     {founderProfile.patent.title}
                   </a>
@@ -568,15 +568,15 @@ export default function AboutPage() {
               </div>
 
               {/* Contact */}
-              <div className="mt-6 pt-6 border-t border-[#FFD700]/20">
+              <div className="mt-6 pt-6 border-t border-terminal-gold/20">
                 <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
                   <div>
-                    <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-2">
+                    <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-2">
                       Get in Touch
                     </h4>
                     <a
                       href={`mailto:${founderProfile.contact.email}`}
-                      className="text-sm sm:text-base text-white hover:text-[#FFD700] transition-colors"
+                      className="text-sm sm:text-base text-white hover:text-terminal-gold transition-colors"
                     >
                       {founderProfile.contact.email}
                     </a>
@@ -588,7 +588,7 @@ export default function AboutPage() {
                           href={founderProfile.contact.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#FFD700] hover:underline text-sm"
+                          className="text-terminal-gold hover:underline text-sm"
                         >
                           LinkedIn →
                         </a>
@@ -598,7 +598,7 @@ export default function AboutPage() {
                           href={founderProfile.contact.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#FFD700] hover:underline text-sm"
+                          className="text-terminal-gold hover:underline text-sm"
                         >
                           Twitter →
                         </a>
@@ -630,7 +630,7 @@ export default function AboutPage() {
               className="max-w-3xl"
             >
               <div className="space-y-6">
-                <p className="text-base text-[#FFD700] leading-relaxed text-center">
+                <p className="text-base text-terminal-gold leading-relaxed text-center">
                   Ready to apply these mental models to your product challenge? Let's talk about how we can help you build conviction.
                 </p>
 

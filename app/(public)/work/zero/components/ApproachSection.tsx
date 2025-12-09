@@ -48,8 +48,8 @@ export default function ApproachSection() {
           </div>
 
           {/* Solution Statement */}
-          <div className="mt-12 pt-8 border-t border-[#FFD700]/30">
-            <p className="text-xl font-semibold text-[#FFD700] text-center">
+          <div className="mt-12 pt-8 border-t border-terminal-gold/30">
+            <p className="text-xl font-semibold text-terminal-gold text-center">
               Zero's AI reads your emails and extracts the actions automatically. No reading. Just acting.
             </p>
           </div>

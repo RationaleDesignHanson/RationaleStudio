@@ -110,6 +110,6 @@ export default function WhyWeWinSlidePage() {
               seed round funds go-to-market execution, not unproven ideas. </BodyLG> </div> </div> </CRECard> {/* Contact CTA */} <div className="mt-8 text-center"> <CRECard variant="critical" size="large"> <H2 className="mb-4">Let's Build the Future of CRE Together</H2> <BodyLG color={CRE_COLORS.text.secondary} className="mb-6"> Ready to dive deeper? Let's discuss pilot data, technical architecture, or
             go-to-market strategy. </BodyLG> <div className="flex flex-col md:flex-row items-center justify-center gap-6"> <div> <LabelSM color={CRE_COLORS.text.muted}>FOUNDER</LabelSM> <H3 className="mt-1">Matt Hanson</H3> </div> <div> <LabelSM color={CRE_COLORS.text.muted}>EMAIL</LabelSM> <H3 className="mt-1">matt@creait.io</H3> </div> <div> <LabelSM color={CRE_COLORS.text.muted}>DECK</LabelSM> <H3 className="mt-1">pitch.creait.io</H3> </div> </div> {/* Subtle Portal Link */} <div className="mt-8 pt-6 border-t border-white/10"> <a
               href="/clients/creait/investor-portal"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-[#FFD700] transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-terminal-gold transition-colors"
             > <span>•••</span> <span className="opacity-0 group-hover:opacity-100 transition-opacity">Internal Portal</span> </a> </div> </CRECard> </div> </CRESection> );
 }

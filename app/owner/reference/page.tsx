@@ -16,7 +16,7 @@ export default function ReferenceLibraryPage() {
       <div className="mb-8">
         <Link
           href="/owner"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Dashboard
         </Link>
@@ -30,9 +30,9 @@ export default function ReferenceLibraryPage() {
         {/* Agent System */}
         <Link
           href="/owner/reference/agents"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <Cpu className="w-8 h-8 text-[#FFD700] mb-4" />
+          <Cpu className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Agent System</h3>
           <p className="text-sm text-gray-400 mb-4">
             Documentation for Zero, Atlas, Amplify, and internal agents.
@@ -43,9 +43,9 @@ export default function ReferenceLibraryPage() {
         {/* Playbooks */}
         <Link
           href="/owner/reference/playbooks"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <BookOpen className="w-8 h-8 text-[#FFD700] mb-4" />
+          <BookOpen className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Playbooks</h3>
           <p className="text-sm text-gray-400 mb-4">
             Product studio processes, methodologies, and frameworks.
@@ -56,9 +56,9 @@ export default function ReferenceLibraryPage() {
         {/* Templates */}
         <Link
           href="/owner/reference/templates"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <FileCode className="w-8 h-8 text-[#FFD700] mb-4" />
+          <FileCode className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Templates</h3>
           <p className="text-sm text-gray-400 mb-4">
             Pitch decks, proposals, content templates, and formats.
@@ -84,7 +84,7 @@ export default function ReferenceLibraryPage() {
               </div>
               <Link
                 href="/owner/reference/playbooks"
-                className="text-xs text-[#FFD700] hover:underline"
+                className="text-xs text-terminal-gold hover:underline"
               >
                 View →
               </Link>
@@ -103,7 +103,7 @@ export default function ReferenceLibraryPage() {
               </div>
               <Link
                 href="/owner/reference/agents"
-                className="text-xs text-[#FFD700] hover:underline"
+                className="text-xs text-terminal-gold hover:underline"
               >
                 View →
               </Link>
@@ -122,7 +122,7 @@ export default function ReferenceLibraryPage() {
               </div>
               <Link
                 href="/owner/reference/playbooks"
-                className="text-xs text-[#FFD700] hover:underline"
+                className="text-xs text-terminal-gold hover:underline"
               >
                 View →
               </Link>

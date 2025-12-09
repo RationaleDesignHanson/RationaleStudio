@@ -54,12 +54,12 @@ export default function PlaybooksPage() {
       <div className="mb-8">
         <Link
           href="/owner/reference"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Reference Library
         </Link>
         <div className="flex items-center gap-3 mb-4">
-          <BookOpen className="w-8 h-8 text-[#FFD700]" />
+          <BookOpen className="w-8 h-8 text-terminal-gold" />
           <h1 className="text-3xl font-bold text-white">Playbooks</h1>
         </div>
         <p className="text-gray-400">
@@ -71,7 +71,7 @@ export default function PlaybooksPage() {
         {playbooks.map((playbook, idx) => (
           <div
             key={idx}
-            className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700]/30 transition-colors"
+            className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/30 transition-colors"
           >
             <div className="flex items-start justify-between mb-3">
               <h3 className="text-lg font-bold text-white">{playbook.title}</h3>

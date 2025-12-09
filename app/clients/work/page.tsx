@@ -34,7 +34,7 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 text-center animate-fade-in-up">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 text-center animate-fade-in-up">
             EVIDENCE OVER PITCH DECKS
           </p>
 
@@ -83,7 +83,7 @@ export default function WorkPage() {
               return (
                 <div
                   key={caseStudy.slug}
-                  className="rounded-lg border border-[#FFD700]/20 backdrop-blur-sm overflow-hidden transition-all hover:border-[#FFD700] hover:shadow-lg"
+                  className="rounded-lg border border-[#FFD700]/20 backdrop-blur-sm overflow-hidden transition-all hover:border-terminal-gold hover:shadow-lg"
                   style={{
                     background: `linear-gradient(135deg, ${colors[0]}20 0%, ${colors[1]}15 50%, ${colors[2]}10 100%)`
                   }}
@@ -129,10 +129,10 @@ export default function WorkPage() {
                 <div className="space-y-4">
                   {/* Header Info */}
                   <div>
-                    <p className="text-sm text-[#FFD700] font-medium mb-2">
+                    <p className="text-sm text-terminal-gold font-medium mb-2">
                       {project.company} • {project.timeline} • {project.role}
                     </p>
-                    <p className="text-base text-[#FFD700] font-medium">
+                    <p className="text-base text-terminal-gold font-medium">
                       {project.tagline}
                     </p>
                   </div>
@@ -150,7 +150,7 @@ export default function WorkPage() {
                     <ul className="grid sm:grid-cols-2 gap-2">
                       {project.impact.map((item, idx) => (
                         <li key={idx} className="flex gap-2 text-sm text-gray-100">
-                          <span className="text-[#FFD700]">→</span>
+                          <span className="text-terminal-gold">→</span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -176,10 +176,10 @@ export default function WorkPage() {
 
                   {/* Related Insight */}
                   {project.relatedInsight && (
-                    <div className="pt-4 border-t border-[#FFD700]/20">
+                    <div className="pt-4 border-t border-terminal-gold/20">
                       <Link
                         href={`/insights/${project.relatedInsight}`}
-                        className="text-sm text-[#FFD700] hover:underline inline-flex items-center gap-1"
+                        className="text-sm text-terminal-gold hover:underline inline-flex items-center gap-1"
                       >
                         Read the full story →
                       </Link>
@@ -211,14 +211,14 @@ export default function WorkPage() {
             className="max-w-lg"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed text-center">
+              <p className="text-base text-terminal-gold leading-relaxed text-center">
                 Our case studies include detailed breakdowns of challenges, constraints, solutions, and outcomes. Get in touch for access.
               </p>
 
               <div className="flex flex-col gap-3 pt-4">
                 <Link
                   href="/contact"
-                  className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full bg-terminal-gold hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   Request access
                 </Link>

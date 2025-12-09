@@ -104,7 +104,7 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-400">Step {currentStep + 1} of {steps.length}</span>
-            <span className="text-sm text-[#FFD700]">{Math.round(((currentStep + 1) / steps.length) * 100)}% complete</span>
+            <span className="text-sm text-terminal-gold">{Math.round(((currentStep + 1) / steps.length) * 100)}% complete</span>
           </div>
           <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
             <div
@@ -117,8 +117,8 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
         {/* Step content */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <StepIcon className="w-8 h-8 text-[#FFD700]" />
+            <div className="w-16 h-16 bg-terminal-gold/10 border border-terminal-gold/30 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <StepIcon className="w-8 h-8 text-terminal-gold" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white mb-1">
@@ -140,15 +140,15 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
               <h3 className="text-sm font-bold text-white mb-2">What you'll need:</h3>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>iPhone running iOS 15 or later</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>Active Gmail account</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>5 minutes for initial setup</span>
                 </li>
               </ul>
@@ -160,15 +160,15 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
               <h3 className="text-sm font-bold text-white mb-2">Privacy & Security:</h3>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>Read-only access to your Gmail</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>No email content stored on our servers</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                   <span>OAuth 2.0 secure authentication</span>
                 </li>
               </ul>
@@ -180,12 +180,12 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
               <h3 className="text-sm font-bold text-white mb-2">Getting help:</h3>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li className="flex items-start gap-2">
-                  <Mail className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
-                  <span>Email us at <a href="mailto:hello@rationale.work" className="text-[#FFD700] hover:underline">hello@rationale.work</a></span>
+                  <Mail className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                  <span>Email us at <a href="mailto:hello@rationale.work" className="text-terminal-gold hover:underline">hello@rationale.work</a></span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FFD700] mt-0.5 flex-shrink-0" />
-                  <span>Check out the <Link href="/work/zero" className="text-[#FFD700] hover:underline">full documentation</Link></span>
+                  <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                  <span>Check out the <Link href="/work/zero" className="text-terminal-gold hover:underline">full documentation</Link></span>
                 </li>
               </ul>
             </div>
@@ -206,7 +206,7 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
           {isLastStep ? (
             <button
               onClick={onClose}
-              className="ml-auto px-8 py-3 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
+              className="ml-auto px-8 py-3 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
             >
               Get Started
               <ArrowRight className="w-4 h-4" />
@@ -217,7 +217,7 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
               target={currentStepData.action.external ? '_blank' : undefined}
               rel={currentStepData.action.external ? 'noopener noreferrer' : undefined}
               onClick={() => handleStepComplete(currentStep)}
-              className="ml-auto px-8 py-3 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
+              className="ml-auto px-8 py-3 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
             >
               {currentStepData.action.label}
               <ArrowRight className="w-4 h-4" />
@@ -225,7 +225,7 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
           ) : (
             <button
               onClick={() => handleStepComplete(currentStep)}
-              className="ml-auto px-8 py-3 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
+              className="ml-auto px-8 py-3 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all flex items-center gap-2"
             >
               Continue
               <ArrowRight className="w-4 h-4" />
@@ -242,7 +242,7 @@ export function OnboardingFlow({ isOpen, onClose, userEmail }: OnboardingFlowPro
                 onClick={() => setCurrentStep(index)}
                 className={`p-2 rounded-lg text-xs transition-all ${
                   index === currentStep
-                    ? 'bg-[#FFD700]/20 border border-[#FFD700]/50 text-white'
+                    ? 'bg-terminal-gold/20 border border-terminal-gold/50 text-white'
                     : completedSteps.includes(index)
                     ? 'bg-gray-800 border border-gray-700 text-gray-300'
                     : 'bg-gray-900 border border-gray-800 text-gray-500'

@@ -16,7 +16,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
   return (
     <div className="space-y-6">
       {/* Action Count */}
-      <div className="p-6 bg-gray-900 border-2 border-[#FFD700] rounded-lg">
+      <div className="p-6 bg-gray-900 border-2 border-terminal-gold rounded-lg">
         <div className="text-sm text-gray-400 mb-3">Matched Actions</div>
         <div className="text-3xl font-bold text-white">
           {data.actions.length}
@@ -25,8 +25,8 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
 
       {/* Primary Action (if present) */}
       {data.primaryAction && (
-        <div className="p-5 bg-gray-800 border-2 border-[#FFD700] rounded-lg">
-          <div className="text-sm text-[#FFD700] font-semibold mb-3">
+        <div className="p-5 bg-gray-800 border-2 border-terminal-gold rounded-lg">
+          <div className="text-sm text-terminal-gold font-semibold mb-3">
             Primary Action
           </div>
 
@@ -42,7 +42,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
             <div className="flex items-center gap-6 pt-2">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold text-gray-400">Modal Steps:</span>
-                <span className="text-sm font-bold text-[#FFD700]">
+                <span className="text-sm font-bold text-terminal-gold">
                   {data.primaryAction.modalCount}
                 </span>
               </div>
@@ -50,7 +50,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
               {data.primaryAction.confidence !== undefined && (
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-semibold text-gray-400">Confidence:</span>
-                  <span className="text-sm font-bold text-[#FFD700]">
+                  <span className="text-sm font-bold text-terminal-gold">
                     {Math.round(data.primaryAction.confidence * 100)}%
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
                   border ${isPrimary ? 'border-[#FFD700]/30' : 'border-gray-700'}
                   rounded-lg
                   transition-all
-                  hover:border-[#FFD700]/50
+                  hover:border-terminal-gold/50
                 `}
               >
                 <div className="space-y-2">
@@ -89,7 +89,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
                     </h5>
 
                     {isPrimary && (
-                      <span className="text-xs text-[#FFD700] font-semibold">
+                      <span className="text-xs text-terminal-gold font-semibold">
                         Primary
                       </span>
                     )}

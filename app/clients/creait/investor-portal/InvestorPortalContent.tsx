@@ -36,7 +36,7 @@ export default function InvestorPortalContent() {
             <div className="flex items-center gap-4">
               <a
                 href="/clients/creait/pitch-deck/12-why-we-win"
-                className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+                className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
               >
                 ← Back to Deck
               </a>
@@ -62,7 +62,7 @@ export default function InvestorPortalContent() {
                 onClick={() => setActiveSection(section.key as any)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeSection === section.key
-                    ? 'bg-[#FFD700] text-black'
+                    ? 'bg-terminal-gold text-black'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                 }`}
               >
@@ -161,7 +161,7 @@ function OverviewSection() {
             <ul className="space-y-2">
               {projectOverview.team.ceo.responsibilities.map((resp, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">•</span>
+                  <span className="text-terminal-gold mt-1">•</span>
                   <BodyMD color={CRE_COLORS.text.secondary}>{resp}</BodyMD>
                 </li>
               ))}
@@ -176,7 +176,7 @@ function OverviewSection() {
               {projectOverview.team.contractors.skills.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] rounded-full text-sm"
+                  className="px-3 py-1 bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold rounded-full text-sm"
                 >
                   {skill}
                 </span>
@@ -229,7 +229,7 @@ function ProductSection() {
           <LabelSM color={CRE_COLORS.text.muted}>SUPPORTING JOBS</LabelSM>
           {creaitContent.jtbd.supporting.map((job, idx) => (
             <div key={idx} className="flex items-start gap-2">
-              <span className="text-[#FFD700] mt-1">{idx + 1}.</span>
+              <span className="text-terminal-gold mt-1">{idx + 1}.</span>
               <BodyMD color={CRE_COLORS.text.secondary}>{job}</BodyMD>
             </div>
           ))}
@@ -267,7 +267,7 @@ function TechnicalSection() {
             <ul className="space-y-2">
               {component.items.map((item, itemIdx) => (
                 <li key={itemIdx} className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">•</span>
+                  <span className="text-terminal-gold mt-1">•</span>
                   <BodyMD color={CRE_COLORS.text.secondary}>{item}</BodyMD>
                 </li>
               ))}
@@ -316,7 +316,7 @@ function RoadmapSection() {
               <LabelSM color={CRE_COLORS.text.muted}>MILESTONES</LabelSM>
               {phase.milestones.map((milestone, mIdx) => (
                 <div key={mIdx} className="flex items-start gap-2">
-                  <span className="text-[#FFD700] mt-1">→</span>
+                  <span className="text-terminal-gold mt-1">→</span>
                   <BodyMD color={CRE_COLORS.text.secondary}>{milestone}</BodyMD>
                 </div>
               ))}

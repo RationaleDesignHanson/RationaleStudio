@@ -48,7 +48,7 @@ export default function InsightsPage() {
         <div className="py-16">
           {/* Header */}
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-full text-sm text-[#FFD700] mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-terminal-gold/10 border border-terminal-gold/30 rounded-full text-sm text-terminal-gold mb-6">
               <BookOpen className="w-4 h-4" />
               Insights & Case Studies
             </div>
@@ -70,19 +70,19 @@ export default function InsightsPage() {
                   href={`/clients/insights/${insight.slug}`}
                   className="group"
                 >
-                  <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700]/50 transition-all h-full flex flex-col">
+                  <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-                        <Icon className="w-6 h-6 text-[#FFD700]" />
+                      <div className="p-3 bg-terminal-gold/10 rounded-lg">
+                        <Icon className="w-6 h-6 text-terminal-gold" />
                       </div>
-                      <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-[#FFD700] transition-colors" />
+                      <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-terminal-gold transition-colors" />
                     </div>
 
                     <div className="flex-1">
-                      <p className="text-xs text-[#FFD700] font-medium mb-2 uppercase tracking-wide">
+                      <p className="text-xs text-terminal-gold font-medium mb-2 uppercase tracking-wide">
                         {insight.category}
                       </p>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FFD700] transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-terminal-gold transition-colors">
                         {insight.title}
                       </h3>
                       <p className="text-sm text-gray-400 mb-4">
@@ -111,7 +111,7 @@ export default function InsightsPage() {
             <div className="flex gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
               >
                 Get in Touch
               </Link>

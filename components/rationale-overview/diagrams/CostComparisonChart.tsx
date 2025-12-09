@@ -150,8 +150,8 @@ export default function CostComparisonChart() {
       <div className="mt-8 pt-6 border-t border-gray-700">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 rounded-full bg-[#FFD700]/20 flex items-center justify-center">
-              <span className="text-[#FFD700] text-sm">💡</span>
+            <div className="w-8 h-8 rounded-full bg-terminal-gold/20 flex items-center justify-center">
+              <span className="text-terminal-gold text-sm">💡</span>
             </div>
           </div>
           <div>

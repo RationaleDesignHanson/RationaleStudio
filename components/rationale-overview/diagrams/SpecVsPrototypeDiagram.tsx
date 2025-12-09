@@ -50,10 +50,10 @@ export default function SpecVsPrototypeDiagram() {
       </div>
 
       {/* Prototype Side */}
-      <div className="p-6 bg-gray-800/30 border-2 border-[#FFD700] rounded-lg relative">
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FFD700] rounded-full animate-pulse" />
+      <div className="p-6 bg-gray-800/30 border-2 border-terminal-gold rounded-lg relative">
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-terminal-gold rounded-full animate-pulse" />
 
-        <div className="text-xs font-bold text-[#FFD700] mb-4 uppercase tracking-wide">
+        <div className="text-xs font-bold text-terminal-gold mb-4 uppercase tracking-wide">
           Interactive Prototype
         </div>
 

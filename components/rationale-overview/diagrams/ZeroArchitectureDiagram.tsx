@@ -234,7 +234,7 @@ export default function ZeroArchitectureDiagram() {
           <div className="text-2xl font-bold text-white mb-1">0</div>
           <div className="text-xs text-gray-400">Architectural pivots</div>
         </div>
-        <div className="p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg">
+        <div className="p-4 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg">
           <div className="text-2xl font-bold text-white mb-1">30</div>
           <div className="text-xs text-gray-400">Days to App Store</div>
         </div>
@@ -242,7 +242,7 @@ export default function ZeroArchitectureDiagram() {
 
       {/* What This Proves */}
       <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
-        <div className="text-xs font-mono text-[#FFD700] mb-3 uppercase tracking-wide">What This Proves About Rationale</div>
+        <div className="text-xs font-mono text-terminal-gold mb-3 uppercase tracking-wide">What This Proves About Rationale</div>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 text-[#00D9FF] text-lg">⚙️</div>
@@ -263,7 +263,7 @@ export default function ZeroArchitectureDiagram() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 text-[#FFD700] text-lg">📊</div>
+            <div className="flex-shrink-0 text-terminal-gold text-lg">📊</div>
             <div>
               <div className="text-sm font-semibold text-white mb-1">We Think Like Operators</div>
               <div className="text-xs text-gray-400 leading-relaxed">

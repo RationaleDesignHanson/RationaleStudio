@@ -89,7 +89,7 @@ export default function OutboundDashboardPage() {
           <div className="mb-8">
             <Link
               href="/owner"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
             >
               ← Back to Owner Dashboard
             </Link>
@@ -104,7 +104,7 @@ export default function OutboundDashboardPage() {
               </div>
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                className="flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
               >
                 <Plus className="w-5 h-5" />
                 Create New Pitch
@@ -125,7 +125,7 @@ export default function OutboundDashboardPage() {
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm text-gray-400">Total Views</p>
-                <Eye className="w-5 h-5 text-[#FFD700]" />
+                <Eye className="w-5 h-5 text-terminal-gold" />
               </div>
               <p className="text-3xl font-bold text-white">
                 {pitches.reduce((sum, p) => sum + p.viewCount, 0)}
@@ -162,7 +162,7 @@ export default function OutboundDashboardPage() {
                 </p>
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   <Plus className="w-5 h-5" />
                   Create Pitch
@@ -450,7 +450,7 @@ function CreatePitchModal({ onClose }: { onClose: () => void }) {
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+              className="flex-1 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
             >
               Create Pitch
             </button>

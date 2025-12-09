@@ -37,7 +37,7 @@ export default function CaseStudy020Page() {
           <div className="relative z-10 max-w-5xl mx-auto">
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[#FFD700] hover:underline mb-6"
+              className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Work
@@ -56,7 +56,7 @@ export default function CaseStudy020Page() {
                 </p>
                 <Link
                   href="/clients/athletes-first/pitch-deck"
-                  className="inline-flex items-center gap-2 text-sm text-[#FFD700] hover:underline"
+                  className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline"
                 >
                   View Presentation Deck →
                 </Link>
@@ -110,15 +110,15 @@ export default function CaseStudy020Page() {
                 <h2 className="text-2xl font-bold mb-6">Key Outcomes</h2>
                 <div className="space-y-4">
                   <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                    <div className="text-3xl font-bold text-[#FFD700] mb-1">4 modules</div>
+                    <div className="text-3xl font-bold text-terminal-gold mb-1">4 modules</div>
                     <div className="text-sm text-gray-400">Interconnected system design</div>
                   </div>
                   <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                    <div className="text-3xl font-bold text-[#FFD700] mb-1">40 days</div>
+                    <div className="text-3xl font-bold text-terminal-gold mb-1">40 days</div>
                     <div className="text-sm text-gray-400">Per module pilot delivery</div>
                   </div>
                   <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                    <div className="text-3xl font-bold text-[#FFD700] mb-1">Vision Pro</div>
+                    <div className="text-3xl font-bold text-terminal-gold mb-1">Vision Pro</div>
                     <div className="text-sm text-gray-400">Spatial computing integration</div>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function CaseStudy020Page() {
                 Sports agencies face three critical bottlenecks: limited bandwidth for personalized athlete guidance, manual deal evaluation that misses opportunities, and content creation that can't scale. With 800+ certified NFL agents competing for ~250 draft picks annually, systematic advantages are essential.
               </p>
 
-              <div className="bg-gray-900/50 border-l-4 border-[#FFD700] p-6 my-8">
+              <div className="bg-gray-900/50 border-l-4 border-terminal-gold p-6 my-8">
                 <p className="text-white font-medium mb-2">Core Problem</p>
                 <p className="text-gray-300 italic">
                   "How do we scale high-touch, personalized service to hundreds of athletes without sacrificing quality or burning out our team?"
@@ -321,11 +321,11 @@ export default function CaseStudy020Page() {
                 { category: 'Infrastructure', items: ['AWS', 'Docker', 'CI/CD', 'Monitoring'] }
               ].map((stack, idx) => (
                 <div key={idx} className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg">
-                  <div className="font-bold text-[#FFD700] mb-2">{stack.category}</div>
+                  <div className="font-bold text-terminal-gold mb-2">{stack.category}</div>
                   <ul className="space-y-1 text-sm text-gray-300">
                     {stack.items.map((item, i) => (
                       <li key={i} className="flex gap-2">
-                        <span className="text-[#FFD700]">→</span>
+                        <span className="text-terminal-gold">→</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -352,19 +352,19 @@ export default function CaseStudy020Page() {
 
             <div className="grid md:grid-cols-4 gap-6 mb-12">
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-[#FFD700] mb-2">4</div>
+                <div className="text-4xl font-bold text-terminal-gold mb-2">4</div>
                 <div className="text-sm text-gray-400">Pilot modules delivered</div>
               </div>
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-[#FFD700] mb-2">40 days</div>
+                <div className="text-4xl font-bold text-terminal-gold mb-2">40 days</div>
                 <div className="text-sm text-gray-400">Per module timeline</div>
               </div>
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-[#FFD700] mb-2">100%</div>
+                <div className="text-4xl font-bold text-terminal-gold mb-2">100%</div>
                 <div className="text-sm text-gray-400">On-time delivery</div>
               </div>
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-[#FFD700] mb-2">Vision Pro</div>
+                <div className="text-4xl font-bold text-terminal-gold mb-2">Vision Pro</div>
                 <div className="text-sm text-gray-400">Spatial computing</div>
               </div>
             </div>
@@ -373,23 +373,23 @@ export default function CaseStudy020Page() {
               <h3 className="text-xl font-bold mb-4">What We Delivered</h3>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex gap-3">
-                  <span className="text-[#FFD700]">→</span>
+                  <span className="text-terminal-gold">→</span>
                   <span>Four interconnected pilot modules with working prototypes</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-[#FFD700]">→</span>
+                  <span className="text-terminal-gold">→</span>
                   <span>Vision Pro spatial computing integration for immersive brand pitches</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-[#FFD700]">→</span>
+                  <span className="text-terminal-gold">→</span>
                   <span>Digital twin video generation system for scalable content</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-[#FFD700]">→</span>
+                  <span className="text-terminal-gold">→</span>
                   <span>AI-powered agent toolkit for recruitment and content automation</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-[#FFD700]">→</span>
+                  <span className="text-terminal-gold">→</span>
                   <span>Comprehensive technical documentation and system architecture</span>
                 </li>
               </ul>
@@ -416,13 +416,13 @@ export default function CaseStudy020Page() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+                className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
               >
                 Book intro call
               </Link>
               <Link
                 href="/work"
-                className="px-8 py-4 border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+                className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
               >
                 View more work
               </Link>

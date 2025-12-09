@@ -29,7 +29,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 animate-fade-in-up">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 animate-fade-in-up">
             CONVICTION-FIRST VENTURE STUDIO
           </p>
 
@@ -44,13 +44,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
             <Link
               href="/partnerships"
-              className="px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               View Rationale Kits →
             </Link>
             <Link
               href="/ventures"
-              className="px-8 py-4 border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               See Portfolio IP
             </Link>
@@ -87,21 +87,21 @@ export default function HomePage() {
               delay={100}
             >
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[#FFD700]">Client Engagements</h3>
+                <h3 className="text-lg font-bold text-terminal-gold">Client Engagements</h3>
                 <p className="text-sm text-gray-100 leading-relaxed">
                   Productized engagements from 2-week Clarity Kits to 18-month Build Ship Run. Cash, equity, or hybrid structures. Fund exploration and de-risk ideas systematically.
                 </p>
                 <ul className="text-xs text-gray-300 space-y-2">
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Clarity Kit: 2 weeks to validated direction</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Prototype Kit: 4-6 weeks to working software</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Build Ship Run: 6-18 months to App Store</span>
                   </li>
                 </ul>
@@ -114,21 +114,21 @@ export default function HomePage() {
               delay={200}
             >
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-[#FFD700]">Ventures We Own</h3>
+                <h3 className="text-lg font-bold text-terminal-gold">Ventures We Own</h3>
                 <p className="text-sm text-gray-100 leading-relaxed">
                   We design, build, and launch proprietary products. These prove systematic execution and generate IP we can scale or license. Built with conviction, designed to appreciate.
                 </p>
                 <ul className="text-xs text-gray-300 space-y-2">
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Zero: AI email triage (live on App Store)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Project Atlas: CRE intelligence platform</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FFD700] mt-0.5">→</span>
+                    <span className="text-terminal-gold mt-0.5">→</span>
                     <span>Project Amplify: NIL marketplace</span>
                   </li>
                 </ul>
@@ -188,16 +188,16 @@ export default function HomePage() {
                 className="hover:scale-[1.01] transition-transform duration-300"
               >
                 <div className="space-y-4">
-                  <span className="text-xs font-bold text-[#FFD700] uppercase tracking-wide">
+                  <span className="text-xs font-bold text-terminal-gold uppercase tracking-wide">
                     Live on App Store · Concept to Launch &lt;1 Month
                   </span>
-                  <h3 className="text-2xl font-bold text-[#FFD700]">
+                  <h3 className="text-2xl font-bold text-terminal-gold">
                     Proving AI-Powered Speed: Real Product, Real Users, Real Fast
                   </h3>
                   <p className="text-sm text-gray-100 leading-relaxed">
                     Built to prove we could move faster using AI tools. Swipeable email triage with intelligent categorization. 10 microservices in production. 182 Swift files with A+ architecture.
                   </p>
-                  <span className="text-sm font-semibold text-[#FFD700] group-hover:underline inline-block pt-2">
+                  <span className="text-sm font-semibold text-terminal-gold group-hover:underline inline-block pt-2">
                     View complete details →
                   </span>
                 </div>
@@ -259,27 +259,27 @@ export default function HomePage() {
             className="max-w-lg"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed">
+              <p className="text-base text-terminal-gold leading-relaxed">
                 Partner with a studio that ships. Same velocity we brought to Zero. Same systematic execution for your product.
               </p>
 
               <div className="flex flex-col gap-3 pt-4">
                 <Link
                   href="/partnerships"
-                  className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full bg-terminal-gold hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   View Rationale Kits →
                 </Link>
                 <Link
                   href="/investment"
-                  className="w-full border border-[#FFD700] hover:border-[#FFE34D] text-[#FFD700] hover:text-[#FFE34D] text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full border border-terminal-gold hover:border-[#FFE34D] text-terminal-gold hover:text-[#FFE34D] text-center px-6 py-3 font-semibold transition-colors"
                 >
                   Investment Opportunities
                 </Link>
               </div>
 
-              <div className="pt-3 border-t border-[#FFD700]/30 text-center">
-                <p className="text-xs text-[#FFD700]/70">
+              <div className="pt-3 border-t border-terminal-gold/30 text-center">
+                <p className="text-xs text-terminal-gold/70">
                   <a href="/contact" className="hover:text-[#FFE34D] transition-colors">Contact us</a>
                 </p>
               </div>

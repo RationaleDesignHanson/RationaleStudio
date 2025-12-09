@@ -161,7 +161,7 @@ export default function SpecVsPrototypePage() {
               <p className="text-gray-300 leading-relaxed">
                 Now you're choosing between two bad options: ship subpar UX or throw away weeks of work.
               </p>
-              <div className="border-l-4 border-[#FFD700] pl-6 py-2 my-6">
+              <div className="border-l-4 border-terminal-gold pl-6 py-2 my-6">
                 <p className="text-white font-medium mb-2">The Alternative</p>
                 <p className="text-gray-300 leading-relaxed">
                   Prototype in 2 days. Test with users. Find the issue before writing production code. Pivot costs 2 days instead of 2 weeks.

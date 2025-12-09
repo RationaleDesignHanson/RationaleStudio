@@ -51,12 +51,12 @@ export default function TemplatesPage() {
       <div className="mb-8">
         <Link
           href="/owner/reference"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Reference Library
         </Link>
         <div className="flex items-center gap-3 mb-4">
-          <FileCode className="w-8 h-8 text-[#FFD700]" />
+          <FileCode className="w-8 h-8 text-terminal-gold" />
           <h1 className="text-3xl font-bold text-white">Templates</h1>
         </div>
         <p className="text-gray-400">
@@ -72,7 +72,7 @@ export default function TemplatesPage() {
               {category.templates.map((template, tidx) => (
                 <div
                   key={tidx}
-                  className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700]/30 transition-colors"
+                  className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/30 transition-colors"
                 >
                   <h3 className="text-sm font-bold text-white mb-2">{template.name}</h3>
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-3">

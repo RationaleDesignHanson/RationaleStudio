@@ -40,11 +40,11 @@ export default function ModulesOverviewSlide() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/30" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/30" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-mono font-bold text-[#FFD700] mb-4">
+          <h2 className="text-3xl md:text-4xl font-mono font-bold text-terminal-gold mb-4">
             Choose What to Pilot First
           </h2>
           <p className="text-gray-300 font-mono text-sm max-w-2xl mx-auto">
@@ -77,7 +77,7 @@ export default function ModulesOverviewSlide() {
               </div>
 
               {/* Details */}
-              <div className="text-sm text-gray-400 font-mono leading-relaxed mt-4 pt-4 border-t border-[#FFD700]/20">
+              <div className="text-sm text-gray-400 font-mono leading-relaxed mt-4 pt-4 border-t border-terminal-gold/20">
                 {module.details}
               </div>
             </InteractiveCard>
@@ -86,9 +86,9 @@ export default function ModulesOverviewSlide() {
 
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
-          <div className="inline-block px-6 py-3 rounded-lg bg-black/50 border border-[#FFD700]/30">
+          <div className="inline-block px-6 py-3 rounded-lg bg-black/50 border border-terminal-gold/30">
             <p className="text-sm font-mono text-gray-300">
-              <span className="text-[#FFD700] font-bold">TIP:</span> Most agencies start with Video & NIL Platform for maximum impact
+              <span className="text-terminal-gold font-bold">TIP:</span> Most agencies start with Video & NIL Platform for maximum impact
             </p>
           </div>
         </div>

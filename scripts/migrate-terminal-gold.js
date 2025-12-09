@@ -12,9 +12,9 @@
  *   node scripts/migrate-terminal-gold.js            # Apply changes
  */
 
-const fs = require('fs');
-const path = require('path');
-const { glob } = require('glob');
+import fs from 'fs';
+import path from 'path';
+import { glob } from 'glob';
 
 // Configuration
 const DRY_RUN = process.argv.includes('--dry-run');

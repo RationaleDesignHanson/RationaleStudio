@@ -75,7 +75,7 @@ export function InteractiveCard({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-lg border border-[#FFD700]/30 bg-black transition-all duration-300 ${
+      className={`relative overflow-hidden rounded-lg border border-terminal-gold/30 bg-black transition-all duration-300 ${
         isClickable ? 'cursor-pointer' : ''
       } ${isHovered ? 'scale-[1.02] shadow-lg shadow-[#FFD700]/20' : ''} ${
         variantStyles[variant]
@@ -125,18 +125,18 @@ export function InteractiveCard({
         {/* Terminal-style Header */}
         <div className="flex items-center gap-2 mb-3">
           <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/60" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/40" />
-            <div className="w-2 h-2 rounded-full bg-[#FFD700]/20" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/60" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/40" />
+            <div className="w-2 h-2 rounded-full bg-terminal-gold/20" />
           </div>
-          <div className="h-px flex-1 bg-[#FFD700]/20" />
+          <div className="h-px flex-1 bg-terminal-gold/20" />
         </div>
 
         {/* Title */}
         <h3
           className={`font-semibold text-gray-100 mb-2 transition-colors ${
             variantTitleStyles[variant]
-          } ${isHovered ? 'text-[#FFD700]' : ''}`}
+          } ${isHovered ? 'text-terminal-gold' : ''}`}
         >
           {title}
         </h3>
@@ -157,7 +157,7 @@ export function InteractiveCard({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-2 py-1 text-xs font-mono rounded bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700]"
+                className="px-2 py-1 text-xs font-mono rounded bg-terminal-gold/10 border border-terminal-gold/30 text-terminal-gold"
               >
                 {tag}
               </span>
@@ -168,15 +168,15 @@ export function InteractiveCard({
         {/* Hover Indicator */}
         {isClickable && (
           <div
-            className={`mt-4 pt-4 border-t border-[#FFD700]/20 flex items-center justify-between transition-opacity duration-200 ${
+            className={`mt-4 pt-4 border-t border-terminal-gold/20 flex items-center justify-between transition-opacity duration-200 ${
               isHovered ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <span className="text-xs font-mono text-[#FFD700]">
+            <span className="text-xs font-mono text-terminal-gold">
               {href ? 'OPEN LINK' : 'CLICK TO INTERACT'}
             </span>
             <svg
-              className="w-4 h-4 text-[#FFD700] transition-transform duration-200"
+              className="w-4 h-4 text-terminal-gold transition-transform duration-200"
               style={{
                 transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
               }}

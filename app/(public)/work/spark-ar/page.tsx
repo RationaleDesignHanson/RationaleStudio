@@ -11,12 +11,12 @@ export default function SparkARPage() {
         <div className="max-w-5xl mx-auto">
           <Link
             href="/#portfolio"
-            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
+            className="text-sm text-gray-400 hover:text-terminal-gold font-semibold transition-colors mb-6 inline-block"
           >
             ← Back to Portfolio
           </Link>
 
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
             META 2018-2022 // AR PLATFORM LEADERSHIP
           </p>
 
@@ -61,7 +61,7 @@ export default function SparkARPage() {
               <p className="text-base">
                 <span className="font-bold text-black">Approach:</span> Led Spark AR platform development from inception, defining product vision, building the team from 2 to 22 people, and establishing the technical architecture for AR experiences at Meta scale. Unified camera UX across products while enabling creator innovation.
               </p>
-              <p className="text-base border-t border-[#FFD700] pt-4 font-semibold text-black">
+              <p className="text-base border-t border-terminal-gold pt-4 font-semibold text-black">
                 Impact: 150% YoY platform growth, millions of active creators, unified AR experience across Meta's family of apps.
               </p>
             </div>
@@ -218,13 +218,13 @@ export default function SparkARPage() {
               <div className="flex flex-col gap-3 pt-4">
                 <Link
                   href="/contact"
-                  className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full bg-terminal-gold hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   Start a Conversation →
                 </Link>
                 <Link
                   href="/how-we-work"
-                  className="w-full border border-gray-300 hover:border-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full border border-gray-300 hover:border-terminal-gold text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   How We Work
                 </Link>
@@ -232,7 +232,7 @@ export default function SparkARPage() {
 
               <div className="pt-3 border-t border-gray-200 text-center">
                 <p className="text-xs text-gray-500">
-                  <a href="/contact" className="hover:text-[#FFD700] transition-colors">Contact us</a>
+                  <a href="/contact" className="hover:text-terminal-gold transition-colors">Contact us</a>
                 </p>
               </div>
             </div>

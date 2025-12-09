@@ -2,32 +2,32 @@
 
 export default function AtAGlance() {
   return (
-    <div className="rounded-2xl border-2 border-[#FFD700] bg-gradient-to-br from-gray-900 to-gray-800 p-8 shadow-xl">
+    <div className="rounded-2xl border-2 border-terminal-gold bg-gradient-to-br from-gray-900 to-gray-800 p-8 shadow-xl">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFD700] text-2xl text-black">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-terminal-gold text-2xl text-black">
           ⚡
         </div>
         <h3 className="text-2xl font-bold text-white">At a Glance</h3>
       </div>
 
       <div className="mb-6 grid gap-4 md:grid-cols-3">
-        <div className="rounded-lg border border-[#FFD700]/20 bg-gray-800/50 p-4">
+        <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-4">
           <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Platform</div>
-          <div className="text-3xl font-bold text-[#FFD700]">iOS 17+</div>
+          <div className="text-3xl font-bold text-terminal-gold">iOS 17+</div>
           <div className="mt-1 text-sm text-gray-300">Native SwiftUI</div>
           <div className="mt-2 text-xs text-[#4ADE80]">✓ Cloud backend integration</div>
         </div>
 
-        <div className="rounded-lg border border-[#FFD700]/20 bg-gray-800/50 p-4">
+        <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-4">
           <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">AI Power</div>
-          <div className="text-3xl font-bold text-[#FFD700]">43</div>
+          <div className="text-3xl font-bold text-terminal-gold">43</div>
           <div className="mt-1 text-sm text-gray-300">Intent categories</div>
           <div className="mt-2 text-xs text-[#4ADE80]">✓ Claude 3.5 Sonnet</div>
         </div>
 
-        <div className="rounded-lg border border-[#FFD700]/20 bg-gray-800/50 p-4">
+        <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-4">
           <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Status</div>
-          <div className="text-3xl font-bold text-[#FFD700]">Beta</div>
+          <div className="text-3xl font-bold text-terminal-gold">Beta</div>
           <div className="mt-1 text-sm text-gray-300">Available now</div>
           <div className="mt-2 text-xs text-[#4ADE80]">✓ Gmail OAuth ready</div>
         </div>
@@ -56,7 +56,7 @@ export default function AtAGlance() {
         </div>
       </div>
 
-      <div className="border-t-2 border-[#FFD700]/20 pt-6">
+      <div className="border-t-2 border-terminal-gold/20 pt-6">
         <h4 className="mb-4 text-base font-bold text-white">Key Capabilities</h4>
         <div className="grid gap-3 text-sm md:grid-cols-2">
           <div className="flex items-start gap-2">
@@ -98,9 +98,9 @@ export default function AtAGlance() {
         </div>
       </div>
 
-      <div className="mt-6 rounded-lg bg-[#FFD700]/10 border border-[#FFD700]/30 p-4">
+      <div className="mt-6 rounded-lg bg-terminal-gold/10 border border-terminal-gold/30 p-4">
         <p className="text-sm text-gray-300">
-          <span className="font-bold text-[#FFD700]">Try It Now:</span> Zero's interactive demos below let you experience the swipe interface and AI classification in action. No email connection required—see how Zero extracts actions from real email examples.
+          <span className="font-bold text-terminal-gold">Try It Now:</span> Zero's interactive demos below let you experience the swipe interface and AI classification in action. No email connection required—see how Zero extracts actions from real email examples.
         </p>
       </div>
     </div>

@@ -40,7 +40,7 @@ export default function AppStoreGuidePage() {
         <div className="mb-8">
           <Link
             href="/clients/zero/dashboard"
-            className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+            className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
           >
             ← Back to Dashboard
           </Link>
@@ -55,19 +55,19 @@ export default function AppStoreGuidePage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">30</div>
+            <div className="text-2xl font-bold text-terminal-gold mb-1">30</div>
             <div className="text-xs text-gray-400">Max App Name Chars</div>
           </div>
           <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">100</div>
+            <div className="text-2xl font-bold text-terminal-gold mb-1">100</div>
             <div className="text-xs text-gray-400">Max Keyword Chars</div>
           </div>
           <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">43</div>
+            <div className="text-2xl font-bold text-terminal-gold mb-1">43</div>
             <div className="text-xs text-gray-400">Search Keywords</div>
           </div>
           <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-            <div className="text-2xl font-bold text-[#FFD700] mb-1">6</div>
+            <div className="text-2xl font-bold text-terminal-gold mb-1">6</div>
             <div className="text-xs text-gray-400">Screenshots</div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function AppStoreGuidePage() {
         {/* Primary Metadata */}
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <Smartphone className="w-6 h-6 text-[#FFD700]" />
+            <Smartphone className="w-6 h-6 text-terminal-gold" />
             Primary Metadata
           </h2>
 
@@ -91,7 +91,7 @@ export default function AppStoreGuidePage() {
                     className="p-1 hover:bg-gray-800 rounded transition-colors"
                   >
                     {copiedField === 'appName' ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
+                      <CheckCircle2 className="w-4 h-4 text-terminal-gold" />
                     ) : (
                       <Copy className="w-4 h-4 text-gray-400" />
                     )}
@@ -114,7 +114,7 @@ export default function AppStoreGuidePage() {
                     className="p-1 hover:bg-gray-800 rounded transition-colors"
                   >
                     {copiedField === 'subtitle' ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
+                      <CheckCircle2 className="w-4 h-4 text-terminal-gold" />
                     ) : (
                       <Copy className="w-4 h-4 text-gray-400" />
                     )}
@@ -137,7 +137,7 @@ export default function AppStoreGuidePage() {
                     className="p-1 hover:bg-gray-800 rounded transition-colors"
                   >
                     {copiedField === 'promo' ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
+                      <CheckCircle2 className="w-4 h-4 text-terminal-gold" />
                     ) : (
                       <Copy className="w-4 h-4 text-gray-400" />
                     )}
@@ -162,7 +162,7 @@ export default function AppStoreGuidePage() {
                     className="p-1 hover:bg-gray-800 rounded transition-colors"
                   >
                     {copiedField === 'keywords' ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
+                      <CheckCircle2 className="w-4 h-4 text-terminal-gold" />
                     ) : (
                       <Copy className="w-4 h-4 text-gray-400" />
                     )}
@@ -180,14 +180,14 @@ export default function AppStoreGuidePage() {
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-              <Eye className="w-6 h-6 text-[#FFD700]" />
+              <Eye className="w-6 h-6 text-terminal-gold" />
               App Description
             </h2>
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-400">{appStoreMetadata.description.length}/4000</span>
               <button
                 onClick={() => copyToClipboard(appStoreMetadata.description, 'description')}
-                className="px-3 py-1 bg-[#FFD700] hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-colors"
+                className="px-3 py-1 bg-terminal-gold hover:bg-[#FFE34D] text-black text-sm font-medium rounded transition-colors"
               >
                 Copy Full Description
               </button>
@@ -203,13 +203,13 @@ export default function AppStoreGuidePage() {
         {/* Screenshot Specifications */}
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <Smartphone className="w-6 h-6 text-[#FFD700]" />
+            <Smartphone className="w-6 h-6 text-terminal-gold" />
             Screenshot Specifications
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {appStoreMetadata.screenshots.map((screenshot, index) => (
               <div key={index} className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
-                <div className="text-sm font-semibold text-[#FFD700] mb-2">
+                <div className="text-sm font-semibold text-terminal-gold mb-2">
                   Screenshot {index + 1}
                 </div>
                 <h3 className="text-base font-bold text-white mb-2">{screenshot.title}</h3>
@@ -220,7 +220,7 @@ export default function AppStoreGuidePage() {
               </div>
             ))}
           </div>
-          <div className="mt-4 p-4 bg-gray-800/50 border border-[#FFD700]/30 rounded-lg">
+          <div className="mt-4 p-4 bg-gray-800/50 border border-terminal-gold/30 rounded-lg">
             <h3 className="text-sm font-semibold text-white mb-2">Technical Requirements:</h3>
             <ul className="text-sm text-gray-300 space-y-1">
               <li>• 6.7" iPhone Pro Max: 1290 x 2796 pixels</li>
@@ -235,7 +235,7 @@ export default function AppStoreGuidePage() {
         {/* Keyword Strategy */}
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <Search className="w-6 h-6 text-[#FFD700]" />
+            <Search className="w-6 h-6 text-terminal-gold" />
             Keyword Strategy
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -244,7 +244,7 @@ export default function AppStoreGuidePage() {
               <div className="p-3 bg-gray-800/50 border border-gray-700 rounded mb-2">
                 <div className="flex flex-wrap gap-2 mb-2">
                   {keywordStrategy.primary.keywords.map((keyword, i) => (
-                    <span key={i} className="px-2 py-1 bg-[#FFD700]/20 border border-[#FFD700]/40 rounded text-xs text-[#FFD700]">
+                    <span key={i} className="px-2 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded text-xs text-terminal-gold">
                       {keyword}
                     </span>
                   ))}
@@ -300,7 +300,7 @@ export default function AppStoreGuidePage() {
         {/* App Store Connect Checklist */}
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <CheckCircle2 className="w-6 h-6 text-[#FFD700]" />
+            <CheckCircle2 className="w-6 h-6 text-terminal-gold" />
             App Store Connect Checklist
           </h2>
 
@@ -358,7 +358,7 @@ export default function AppStoreGuidePage() {
         {/* A/B Testing Plan */}
         <section className="mb-8 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
           <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-[#FFD700]" />
+            <TrendingUp className="w-6 h-6 text-terminal-gold" />
             A/B Testing Recommendations
           </h2>
 
@@ -368,7 +368,7 @@ export default function AppStoreGuidePage() {
               <div className="grid md:grid-cols-2 gap-4">
                 {abTestingPlan.screenshotVariants.map((variant, i) => (
                   <div key={i} className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
-                    <div className="text-sm font-semibold text-[#FFD700] mb-2">Variant {variant.variant}</div>
+                    <div className="text-sm font-semibold text-terminal-gold mb-2">Variant {variant.variant}</div>
                     <p className="text-sm text-white mb-2">{variant.approach}</p>
                     <p className="text-xs text-gray-400">{variant.hypothesis}</p>
                   </div>
@@ -381,7 +381,7 @@ export default function AppStoreGuidePage() {
               <div className="grid md:grid-cols-3 gap-4">
                 {abTestingPlan.titleVariants.map((variant, i) => (
                   <div key={i} className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
-                    <div className="text-sm font-semibold text-[#FFD700] mb-2">{variant.variant}</div>
+                    <div className="text-sm font-semibold text-terminal-gold mb-2">{variant.variant}</div>
                     <p className="text-sm text-white mb-2 font-mono">{variant.title}</p>
                     <p className="text-xs text-gray-400">{variant.hypothesis}</p>
                   </div>
@@ -392,12 +392,12 @@ export default function AppStoreGuidePage() {
         </section>
 
         {/* Export Actions */}
-        <section className="p-6 bg-gradient-to-r from-[#FFD700]/10 to-transparent border border-[#FFD700]/30 rounded-lg">
+        <section className="p-6 bg-gradient-to-r from-[#FFD700]/10 to-transparent border border-terminal-gold/30 rounded-lg">
           <h2 className="text-xl font-bold text-white mb-4">Export & Resources</h2>
           <div className="flex flex-wrap gap-4">
             <button
               onClick={() => copyToClipboard(JSON.stringify(appStoreMetadata, null, 2), 'json')}
-              className="px-4 py-2 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-medium rounded transition-colors flex items-center gap-2"
+              className="px-4 py-2 bg-terminal-gold hover:bg-[#FFE34D] text-black font-medium rounded transition-colors flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Export as JSON
@@ -416,7 +416,7 @@ export default function AppStoreGuidePage() {
             </Link>
           </div>
           {copiedField === 'json' && (
-            <p className="text-sm text-[#FFD700] mt-2">Metadata copied to clipboard</p>
+            <p className="text-sm text-terminal-gold mt-2">Metadata copied to clipboard</p>
           )}
         </section>
       </div>

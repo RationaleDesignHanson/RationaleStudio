@@ -218,7 +218,7 @@ export default function EngagementModelsGrid() {
               <tr className="border-b border-gray-700">
                 <th className="text-left text-gray-400 font-medium py-3 px-3"></th>
                 <th className="text-center text-[#00FF94] font-medium py-3 px-3">Sprint</th>
-                <th className="text-center text-[#FFD700] font-medium py-3 px-3">Pilot</th>
+                <th className="text-center text-terminal-gold font-medium py-3 px-3">Pilot</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-800">
@@ -260,8 +260,8 @@ export default function EngagementModelsGrid() {
       {/* Key Insight */}
       <div className="mt-8 p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
         <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FFD700]/20 flex items-center justify-center">
-            <span className="text-[#FFD700] text-sm">💡</span>
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-terminal-gold/20 flex items-center justify-center">
+            <span className="text-terminal-gold text-sm">💡</span>
           </div>
           <div>
             <div className="text-sm font-semibold text-white mb-1">Why This De-Risks Your Investment</div>

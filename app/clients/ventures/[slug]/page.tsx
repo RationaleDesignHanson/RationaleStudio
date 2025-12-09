@@ -64,7 +64,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
 
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="mb-6">
-            <Link href="/ventures" className="text-[#FFD700] hover:underline text-sm">
+            <Link href="/ventures" className="text-terminal-gold hover:underline text-sm">
               ← Back to Ventures
             </Link>
           </div>
@@ -72,7 +72,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             {venture.title}
           </h1>
-          <p className="text-xl sm:text-2xl text-[#FFD700] font-medium mb-4">
+          <p className="text-xl sm:text-2xl text-terminal-gold font-medium mb-4">
             {venture.tagline}
           </p>
           <p className="text-lg text-gray-300 max-w-3xl">
@@ -86,19 +86,19 @@ export default async function VenturePage({ params }: VenturePageProps) {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid sm:grid-cols-3 gap-6">
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-2">
                 Status
               </h4>
               <p className="text-sm text-white">{venture.status}</p>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-2">
                 Timeline
               </h4>
               <p className="text-sm text-white">{venture.meta.timeline}</p>
             </div>
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-[#FFD700] mb-2">
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-terminal-gold mb-2">
                 Project Type
               </h4>
               <p className="text-sm text-white">{venture.meta.type}</p>
@@ -110,7 +110,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
               {venture.meta.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-3 py-1 rounded-full bg-[#FFD700]/10 text-[#FFD700] font-medium border border-[#FFD700]/20"
+                  className="text-xs px-3 py-1 rounded-full bg-terminal-gold/10 text-terminal-gold font-medium border border-terminal-gold/20"
                 >
                   {tag}
                 </span>
@@ -141,7 +141,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
 
           {venture.problem.painPoints.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                 Key Pain Points
               </h4>
               <div className="grid md:grid-cols-2 gap-4">
@@ -150,7 +150,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
                     key={index}
                     className="flex gap-3 p-4 rounded-lg border border-gray-700 bg-black/40"
                   >
-                    <span className="text-[#FFD700]">•</span>
+                    <span className="text-terminal-gold">•</span>
                     <p className="text-sm text-gray-300">{point}</p>
                   </div>
                 ))}
@@ -175,7 +175,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             {venture.solution.title}
           </h2>
-          <div className="p-6 rounded-lg border-2 border-[#FFD700]/30 bg-[#FFD700]/10 mb-8">
+          <div className="p-6 rounded-lg border-2 border-terminal-gold/30 bg-terminal-gold/10 mb-8">
             <p className="text-base sm:text-lg text-white leading-relaxed">
               {venture.solution.description}
             </p>
@@ -183,7 +183,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
 
           {venture.solution.approach.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                 How We're Solving It
               </h4>
               <div className="space-y-3">
@@ -192,7 +192,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
                     key={index}
                     className="flex gap-3 p-4 rounded-lg border border-gray-700 bg-black/40"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded bg-[#FFD700] text-black flex items-center justify-center font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 rounded bg-terminal-gold text-black flex items-center justify-center font-bold text-sm">
                       {index + 1}
                     </div>
                     <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
@@ -258,7 +258,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
           <div className="space-y-6">
             {venture.tech.stack.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                   Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -276,7 +276,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
 
             {venture.tech.highlights.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold uppercase tracking-wide text-[#FFD700] mb-4">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-4">
                   Technical Highlights
                 </h4>
                 <div className="space-y-3">
@@ -285,7 +285,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
                       key={index}
                       className="flex gap-3 p-4 rounded-lg border border-gray-700 bg-black/40"
                     >
-                      <span className="text-[#FFD700]">▸</span>
+                      <span className="text-terminal-gold">▸</span>
                       <p className="text-sm sm:text-base text-gray-300">{highlight}</p>
                     </div>
                   ))}
@@ -317,9 +317,9 @@ export default async function VenturePage({ params }: VenturePageProps) {
               {Object.values(venture.metrics).map((metric: any, index: number) => (
                 <div
                   key={index}
-                  className="rounded-lg border-2 border-[#FFD700]/30 bg-[#FFD700]/5 p-6 text-center hover:border-[#FFD700] transition-colors"
+                  className="rounded-lg border-2 border-[#FFD700]/30 bg-terminal-gold/5 p-6 text-center hover:border-terminal-gold transition-colors"
                 >
-                  <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">
+                  <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">
                     {metric.value}
                   </div>
                   <h4 className="text-sm font-semibold text-white mb-2">
@@ -389,7 +389,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
             className="max-w-3xl"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed text-center">
+              <p className="text-base text-terminal-gold leading-relaxed text-center">
                 {venture.cta.description}
               </p>
 

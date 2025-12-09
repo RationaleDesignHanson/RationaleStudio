@@ -130,7 +130,7 @@ export default function OutboundTrackerPage() {
                 Track pitch sends, opens, responses, and conversions
               </p>
             </div>
-            <button className="px-4 py-2 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-medium rounded transition-all flex items-center gap-2">
+            <button className="px-4 py-2 bg-terminal-gold hover:bg-[#FFE34D] text-black font-medium rounded transition-all flex items-center gap-2">
               <Plus className="w-4 h-4" />
               New Lead
             </button>
@@ -141,7 +141,7 @@ export default function OutboundTrackerPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <div className="flex items-center justify-between mb-2">
-              <Users className="w-5 h-5 text-[#FFD700]" />
+              <Users className="w-5 h-5 text-terminal-gold" />
               <span className="text-xs text-gray-400">Total Leads</span>
             </div>
             <div className="text-3xl font-bold text-white">{totalLeads}</div>
@@ -182,7 +182,7 @@ export default function OutboundTrackerPage() {
                 placeholder="Search companies, contacts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white placeholder-gray-400 focus:outline-none focus:border-[#FFD700]"
+                className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white placeholder-gray-400 focus:outline-none focus:border-terminal-gold"
               />
             </div>
           </div>
@@ -190,7 +190,7 @@ export default function OutboundTrackerPage() {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white focus:outline-none focus:border-[#FFD700]"
+            className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white focus:outline-none focus:border-terminal-gold"
           >
             <option value="all">All Status</option>
             <option value="sent">Sent</option>
@@ -200,7 +200,7 @@ export default function OutboundTrackerPage() {
             <option value="qualified">Qualified</option>
           </select>
 
-          <button className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white hover:border-[#FFD700] transition-colors flex items-center gap-2">
+          <button className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded text-white hover:border-terminal-gold transition-colors flex items-center gap-2">
             <Download className="w-4 h-4" />
             Export CSV
           </button>
@@ -259,7 +259,7 @@ export default function OutboundTrackerPage() {
                       <div className="flex items-center gap-2">
                         <div className="w-12 h-2 bg-gray-800 rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-[#FFD700]"
+                            className="h-full bg-terminal-gold"
                             style={{ width: `${lead.score}%` }}
                           />
                         </div>
@@ -272,7 +272,7 @@ export default function OutboundTrackerPage() {
                        lead.sentDate?.toLocaleDateString() || 'Not sent'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <button className="text-[#FFD700] hover:text-[#FFE34D] font-medium">
+                      <button className="text-terminal-gold hover:text-[#FFE34D] font-medium">
                         View Details
                       </button>
                     </td>
@@ -288,7 +288,7 @@ export default function OutboundTrackerPage() {
           {/* Status Breakdown */}
           <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-[#FFD700]" />
+              <BarChart3 className="w-5 h-5 text-terminal-gold" />
               Pipeline Breakdown
             </h3>
             <div className="space-y-3">
@@ -304,7 +304,7 @@ export default function OutboundTrackerPage() {
                   <div className="flex items-center gap-3">
                     <div className="w-32 h-2 bg-gray-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#FFD700]"
+                        className="h-full bg-terminal-gold"
                         style={{ width: `${sentLeads > 0 ? (count / sentLeads * 100) : 0}%` }}
                       />
                     </div>
@@ -318,7 +318,7 @@ export default function OutboundTrackerPage() {
           {/* Vertical Performance */}
           <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5 text-[#FFD700]" />
+              <Target className="w-5 h-5 text-terminal-gold" />
               Performance by Vertical
             </h3>
             <div className="space-y-3">

@@ -40,7 +40,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4 text-center animate-fade-in-up">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4 text-center animate-fade-in-up">
               ENGINE 1 // CLIENT ENGAGEMENTS
             </p>
 
@@ -74,20 +74,20 @@ export default function ServicesPage() {
               <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-100 mb-4">
                 <div>
                   <p className="mb-2">
-                    <span className="font-bold text-[#FFD700]">Rationale Kits</span> (this page): Client engagements that fund exploration, validate our systems, and generate market data.
+                    <span className="font-bold text-terminal-gold">Rationale Kits</span> (this page): Client engagements that fund exploration, validate our systems, and generate market data.
                   </p>
                 </div>
                 <div>
                   <p className="mb-2">
-                    <span className="font-bold text-[#FFD700]">Portfolio IP</span>{' '}
-                    <Link href="/ventures" className="text-[#FFD700] hover:underline">
+                    <span className="font-bold text-terminal-gold">Portfolio IP</span>{' '}
+                    <Link href="/ventures" className="text-terminal-gold hover:underline">
                       (see ventures)
                     </Link>
                     : Conviction-backed products we originate and own. Built to appreciate, not trade time.
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-center text-gray-300 pt-4 border-t border-[#FFD700]/20">
+              <p className="text-xs text-center text-gray-300 pt-4 border-t border-terminal-gold/20">
                 <span className="font-bold text-gray-100">Result:</span> Every Kit engagement compounds our execution capability. Every Portfolio venture proves our conviction. Systematic IP accumulation.
               </p>
             </OS8Window>
@@ -110,7 +110,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                 {paymentFlexibility.title}
               </h2>
-              <p className="text-lg text-[#FFD700] font-medium mb-3">
+              <p className="text-lg text-terminal-gold font-medium mb-3">
                 {paymentFlexibility.subtitle}
               </p>
               <p className="text-base text-gray-300">
@@ -127,10 +127,10 @@ export default function ServicesPage() {
                   animateIn={false}
                 >
                   <div className="text-center space-y-3">
-                    <div className="text-4xl font-bold text-[#FFD700] mb-4">
+                    <div className="text-4xl font-bold text-terminal-gold mb-4">
                       {model.icon}
                     </div>
-                    <p className="text-sm font-medium text-[#FFD700]">{model.label}</p>
+                    <p className="text-sm font-medium text-terminal-gold">{model.label}</p>
                     <p className="text-sm text-gray-100 leading-relaxed">
                       {model.description}
                     </p>
@@ -138,7 +138,7 @@ export default function ServicesPage() {
                       {model.availability}
                     </p>
                     {model.ventureLink && (
-                      <Link href={model.ventureLink} className="text-xs text-[#FFD700] hover:underline inline-flex items-center gap-1">
+                      <Link href={model.ventureLink} className="text-xs text-terminal-gold hover:underline inline-flex items-center gap-1">
                         See example →
                       </Link>
                     )}
@@ -154,7 +154,7 @@ export default function ServicesPage() {
                 </p>
                 {paymentFlexibility.venturesNote && (
                   <p className="text-sm text-gray-100">
-                    <Link href="/ventures" className="text-[#FFD700] hover:underline font-medium">
+                    <Link href="/ventures" className="text-terminal-gold hover:underline font-medium">
                       {paymentFlexibility.venturesNote}
                     </Link>
                   </p>
@@ -187,7 +187,7 @@ export default function ServicesPage() {
               </p>
               <button
                 onClick={() => setShowQuiz(true)}
-                className="px-6 py-3 border border-[#FFD700] hover:border-[#FFE34D] text-[#FFD700] hover:text-[#FFE34D] font-semibold transition-colors"
+                className="px-6 py-3 border border-terminal-gold hover:border-[#FFE34D] text-terminal-gold hover:text-[#FFE34D] font-semibold transition-colors"
               >
                 Take the quiz →
               </button>
@@ -195,7 +195,7 @@ export default function ServicesPage() {
 
             {/* Featured Kit */}
             <div className="mb-8 max-w-4xl mx-auto">
-              <div className="rounded-lg border border-[#FFD700]/30 bg-[#FFD700]/5 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-lg border border-terminal-gold/30 bg-terminal-gold/5 backdrop-blur-sm overflow-hidden">
                 <KitCard kit={featuredKit} featured />
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function ServicesPage() {
               {otherKits.map((kit) => (
                 <div
                   key={kit.slug}
-                  className="rounded-lg border border-gray-700 hover:border-[#FFD700] bg-gray-900/50 backdrop-blur-sm overflow-hidden transition-colors"
+                  className="rounded-lg border border-gray-700 hover:border-terminal-gold bg-gray-900/50 backdrop-blur-sm overflow-hidden transition-colors"
                 >
                   <KitCard kit={kit} />
                 </div>
@@ -244,7 +244,7 @@ export default function ServicesPage() {
                   animateIn={false}
                 >
                   <div className="space-y-4">
-                    <p className="text-sm text-[#FFD700] font-medium">{kit.tagline}</p>
+                    <p className="text-sm text-terminal-gold font-medium">{kit.tagline}</p>
                     <div>
                       <h4 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
                         Perfect for:
@@ -252,7 +252,7 @@ export default function ServicesPage() {
                       <ul className="space-y-2">
                         {kit.perfectFor.map((item, idx) => (
                           <li key={idx} className="flex gap-2 text-sm text-gray-100">
-                            <span className="text-[#FFD700]">→</span>
+                            <span className="text-terminal-gold">→</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -260,7 +260,7 @@ export default function ServicesPage() {
                     </div>
                     <Link
                       href={`/partnerships/${kit.slug}`}
-                      className="text-sm text-[#FFD700] hover:underline inline-flex items-center gap-1"
+                      className="text-sm text-terminal-gold hover:underline inline-flex items-center gap-1"
                     >
                       View details →
                     </Link>
@@ -323,7 +323,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">
                 {servicesContent.comparison.title}
               </h2>
-              <p className="text-lg text-[#FFD700] font-medium">
+              <p className="text-lg text-terminal-gold font-medium">
                 {servicesContent.comparison.subtitle}
               </p>
             </div>
@@ -340,16 +340,16 @@ export default function ServicesPage() {
                   <thead>
                     <tr className="border-b border-gray-700">
                       <th className="py-4 px-4 text-sm font-semibold text-gray-400">Aspect</th>
-                      <th className="py-4 px-4 text-sm font-semibold text-[#FFD700]">Rationale</th>
+                      <th className="py-4 px-4 text-sm font-semibold text-terminal-gold">Rationale</th>
                       <th className="py-4 px-4 text-sm font-semibold text-gray-400">Agencies</th>
                       <th className="py-4 px-4 text-sm font-semibold text-gray-400">Consultants</th>
                     </tr>
                   </thead>
                   <tbody>
                     {servicesContent.comparison.categories.map((row, index) => (
-                      <tr key={index} className="border-b border-gray-800 hover:bg-[#FFD700]/5 transition-colors">
+                      <tr key={index} className="border-b border-gray-800 hover:bg-terminal-gold/5 transition-colors">
                         <td className="py-4 px-4 text-sm font-medium text-gray-100">{row.aspect}</td>
-                        <td className="py-4 px-4 text-sm text-[#FFD700] font-medium">{row.rationale}</td>
+                        <td className="py-4 px-4 text-sm text-terminal-gold font-medium">{row.rationale}</td>
                         <td className="py-4 px-4 text-sm text-gray-400">{row.agencies}</td>
                         <td className="py-4 px-4 text-sm text-gray-400">{row.consultants}</td>
                       </tr>
@@ -365,8 +365,8 @@ export default function ServicesPage() {
                 <OS8Window key={index} title={row.aspect} variant="body" animateIn={false}>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-xs font-semibold text-[#FFD700] mb-1">Rationale</p>
-                      <p className="text-sm text-[#FFD700] font-medium">{row.rationale}</p>
+                      <p className="text-xs font-semibold text-terminal-gold mb-1">Rationale</p>
+                      <p className="text-sm text-terminal-gold font-medium">{row.rationale}</p>
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-400 mb-1">Agencies</p>
@@ -385,10 +385,10 @@ export default function ServicesPage() {
               <OS8Window title="Our Philosophy" variant="subtle" animateIn={false}>
                 <div className="text-center space-y-3">
                   <p className="text-sm text-gray-100">
-                    We're not here to trade time for money. Kits fund our runway and prove our systems. Portfolio IP appreciates over time. <span className="font-bold text-[#FFD700]">Conviction first, IP always.</span> When we believe in what you're building, we partner with equity.
+                    We're not here to trade time for money. Kits fund our runway and prove our systems. Portfolio IP appreciates over time. <span className="font-bold text-terminal-gold">Conviction first, IP always.</span> When we believe in what you're building, we partner with equity.
                   </p>
                   <p className="text-sm text-gray-100">
-                    <Link href="/ventures" className="text-[#FFD700] hover:underline font-medium">
+                    <Link href="/ventures" className="text-terminal-gold hover:underline font-medium">
                       See our Portfolio IP for proof of conviction →
                     </Link>
                   </p>
@@ -417,14 +417,14 @@ export default function ServicesPage() {
               className="max-w-lg"
             >
               <div className="space-y-6">
-                <p className="text-base text-[#FFD700] leading-relaxed text-center">
+                <p className="text-base text-terminal-gold leading-relaxed text-center">
                   Let's talk about your opportunity. We'll help you figure out which kit makes sense—or if you need something custom.
                 </p>
 
                 <div className="flex flex-col gap-3 pt-4">
                   <Link
                     href="/contact"
-                    className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                    className="w-full bg-terminal-gold hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                   >
                     Start a conversation
                   </Link>

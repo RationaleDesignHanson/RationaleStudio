@@ -26,7 +26,7 @@ export default function InstitutionalGridPage() {
             <br />
             <span className="relative inline-block">
               Building the Wrong Thing
-              <span className="absolute -right-1 top-0 w-[3px] h-full bg-[#FFD700] animate-cursor-blink" />
+              <span className="absolute -right-1 top-0 w-[3px] h-full bg-terminal-gold animate-cursor-blink" />
             </span>
           </h1>
 
@@ -35,7 +35,7 @@ export default function InstitutionalGridPage() {
           </p>
 
           <div className="pt-8 animate-fade-in-up delay-300">
-            <button className="px-8 py-4 bg-black text-white font-semibold hover:bg-gray-900 transition-all duration-300 border-2 border-transparent hover:border-[#FFD700] group">
+            <button className="px-8 py-4 bg-black text-white font-semibold hover:bg-gray-900 transition-all duration-300 border-2 border-transparent hover:border-terminal-gold group">
               Start Feeling What Works in 2 Weeks
               <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
             </button>
@@ -61,7 +61,7 @@ export default function InstitutionalGridPage() {
                   <div className="space-y-4">
                     <div className="group">
                       <div className="flex items-baseline justify-between mb-1">
-                        <p className="font-semibold text-black group-hover:text-[#FFD700] transition-colors">
+                        <p className="font-semibold text-black group-hover:text-terminal-gold transition-colors">
                           Zero
                         </p>
                         <span className="text-xs text-gray-500 font-mono">Financial Accountability</span>
@@ -75,7 +75,7 @@ export default function InstitutionalGridPage() {
 
                     <div className="group">
                       <div className="flex items-baseline justify-between mb-1">
-                        <p className="font-semibold text-black group-hover:text-[#FFD700] transition-colors">
+                        <p className="font-semibold text-black group-hover:text-terminal-gold transition-colors">
                           Compass
                         </p>
                         <span className="text-xs text-gray-500 font-mono">Executive Clarity</span>
@@ -88,7 +88,7 @@ export default function InstitutionalGridPage() {
 
                   <div className="pt-4 border-t border-gray-300">
                     <p className="text-xs text-gray-600">
-                      <span className="text-[#FFD700]">→</span> Proving systematic execution through owned products
+                      <span className="text-terminal-gold">→</span> Proving systematic execution through owned products
                     </p>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export default function InstitutionalGridPage() {
                   <div className="space-y-4">
                     <div className="group cursor-pointer">
                       <div className="flex items-baseline justify-between mb-1">
-                        <p className="font-semibold text-black group-hover:text-[#FFD700] transition-colors">
+                        <p className="font-semibold text-black group-hover:text-terminal-gold transition-colors">
                           Clarity Kit
                         </p>
                         <span className="text-xs font-mono text-gray-500">2 Weeks</span>
@@ -123,7 +123,7 @@ export default function InstitutionalGridPage() {
 
                     <div className="group cursor-pointer">
                       <div className="flex items-baseline justify-between mb-1">
-                        <p className="font-semibold text-black group-hover:text-[#FFD700] transition-colors">
+                        <p className="font-semibold text-black group-hover:text-terminal-gold transition-colors">
                           Prototype Kit
                         </p>
                         <span className="text-xs font-mono text-gray-500">4-6 Weeks</span>
@@ -137,7 +137,7 @@ export default function InstitutionalGridPage() {
 
                     <div className="group cursor-pointer">
                       <div className="flex items-baseline justify-between mb-1">
-                        <p className="font-semibold text-black group-hover:text-[#FFD700] transition-colors">
+                        <p className="font-semibold text-black group-hover:text-terminal-gold transition-colors">
                           Build Ship Run
                         </p>
                         <span className="text-xs font-mono text-gray-500">8-12 Weeks</span>
@@ -150,7 +150,7 @@ export default function InstitutionalGridPage() {
 
                   <div className="pt-4 border-t border-gray-300">
                     <p className="text-xs text-gray-600">
-                      <span className="text-[#FFD700]">→</span> Zero proof: 7 prototypes validated mechanics
+                      <span className="text-terminal-gold">→</span> Zero proof: 7 prototypes validated mechanics
                     </p>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export default function InstitutionalGridPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="font-semibold text-black mb-2 flex items-center">
-                        <span className="text-[#FFD700] mr-2 text-xs">■</span>
+                        <span className="text-terminal-gold mr-2 text-xs">■</span>
                         Engine 1 — Portfolio IP
                       </p>
                       <p className="text-sm text-gray-700 pl-5">
@@ -183,7 +183,7 @@ export default function InstitutionalGridPage() {
 
                     <div>
                       <p className="font-semibold text-black mb-2 flex items-center">
-                        <span className="text-[#FFD700] mr-2 text-xs">■</span>
+                        <span className="text-terminal-gold mr-2 text-xs">■</span>
                         Engine 2 — Client Kits
                       </p>
                       <p className="text-sm text-gray-700 pl-5">
@@ -192,7 +192,7 @@ export default function InstitutionalGridPage() {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t-2 border-[#FFD700]">
+                  <div className="pt-4 border-t-2 border-terminal-gold">
                     <p className="text-xs text-gray-700 font-medium">
                       Both engines fund each other. Portfolio IP becomes Client IP. Client learnings
                       improve Portfolio systems. One flywheel.
@@ -213,7 +213,7 @@ export default function InstitutionalGridPage() {
             <br />
             <span className="relative inline-block mt-2">
               Operator Systems from Meta
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#FFD700]" />
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-terminal-gold" />
             </span>
           </h2>
 
@@ -223,15 +223,15 @@ export default function InstitutionalGridPage() {
               <h3 className="text-2xl font-bold mb-4">Systematic Execution at Scale</h3>
               <ul className="space-y-3">
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>Design systems that ship 100+ features per quarter</span>
                 </li>
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>AI-powered tools serving billions of users</span>
                 </li>
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>Production-grade infrastructure from day one</span>
                 </li>
               </ul>
@@ -242,15 +242,15 @@ export default function InstitutionalGridPage() {
               <h3 className="text-2xl font-bold mb-4">Studio Speed, Meta Quality</h3>
               <ul className="space-y-3">
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>Prototypes in weeks, not months</span>
                 </li>
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>Systems that scale from the start</span>
                 </li>
                 <li className="flex items-start text-gray-700">
-                  <span className="text-[#FFD700] mr-3 font-mono text-xs mt-1">→</span>
+                  <span className="text-terminal-gold mr-3 font-mono text-xs mt-1">→</span>
                   <span>No technical debt, no shortcuts</span>
                 </li>
               </ul>
@@ -269,19 +269,19 @@ export default function InstitutionalGridPage() {
             <br />
             <span className="relative inline-block mt-2">
               Start Feeling What Works.
-              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#FFD700]" />
+              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-terminal-gold" />
             </span>
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-            <button className="group px-10 py-5 bg-white text-black font-semibold hover:bg-[#FFD700] hover:text-black transition-all duration-300 border-2 border-white hover:border-[#FFD700]">
+            <button className="group px-10 py-5 bg-white text-black font-semibold hover:bg-terminal-gold hover:text-black transition-all duration-300 border-2 border-white hover:border-terminal-gold">
               Boot Clarity Kit
               <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
             </button>
 
             <a
               href="/contact"
-              className="text-gray-400 hover:text-[#FFD700] font-mono transition-colors underline hover:no-underline"
+              className="text-gray-400 hover:text-terminal-gold font-mono transition-colors underline hover:no-underline"
             >
               Contact us
             </a>
@@ -291,7 +291,7 @@ export default function InstitutionalGridPage() {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-600">
               <p>System Status: Online</p>
               <p>Execution Mode: Systematic</p>
-              <p>Velocity Protocol: <span className="text-[#FFD700]">Active</span></p>
+              <p>Velocity Protocol: <span className="text-terminal-gold">Active</span></p>
             </div>
           </div>
         </div>

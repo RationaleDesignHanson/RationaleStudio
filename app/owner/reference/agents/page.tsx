@@ -42,12 +42,12 @@ export default function AgentsPage() {
       <div className="mb-8">
         <Link
           href="/owner/reference"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Reference Library
         </Link>
         <div className="flex items-center gap-3 mb-4">
-          <Cpu className="w-8 h-8 text-[#FFD700]" />
+          <Cpu className="w-8 h-8 text-terminal-gold" />
           <h1 className="text-3xl font-bold text-white">Agent System</h1>
         </div>
         <p className="text-gray-400">

@@ -21,7 +21,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
             CONVICTION-FIRST EXECUTION
           </p>
 
@@ -158,7 +158,7 @@ export default function AboutPage() {
             </div>
 
             {/* Insight 3 */}
-            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#FFD700' }}>
+            <div className="border-l-4 border-terminal-gold pl-6 py-4">
               <h3 className="text-xl font-bold text-white mb-2">Scale Amplified Mistakes</h3>
               <p className="text-gray-300 leading-relaxed">
                 When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.
@@ -249,14 +249,14 @@ export default function AboutPage() {
 
             <div className="space-y-6 mb-8">
               <div>
-                <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">From Meta Scale to Studio Discipline</h4>
+                <h4 className="text-sm font-mono text-terminal-gold uppercase tracking-wide mb-3">From Meta Scale to Studio Discipline</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   At Meta, building at 2B+ user scale meant validating everything before committing—prototypes compressed decision cycles from months to weeks. That discipline transferred directly: startups face the same constraint with higher stakes. Limited runway means you can't afford to build the wrong thing. The same methodology that worked at billion-user scale works better at 0-to-1 scale.
                 </p>
               </div>
 
               <div>
-                <h4 className="text-sm font-mono text-[#FFD700] uppercase tracking-wide mb-3">Proving It On Our Own</h4>
+                <h4 className="text-sm font-mono text-terminal-gold uppercase tracking-wide mb-3">Proving It On Our Own</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
                   Zero Inbox went from concept to App Store in 30 days using the same build-to-think methodology. No architectural pivots. Zero exists to prove the approach works on our own products, with our own capital, before we ask clients to trust it.
                 </p>
@@ -361,13 +361,13 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Book intro call
             </Link>
             <Link
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-[#FFD700] text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View partnerships
             </Link>

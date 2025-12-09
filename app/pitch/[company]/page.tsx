@@ -96,7 +96,7 @@ export default function PitchPage({ params }: { params: { company: string } }) {
       <div className="min-h-screen bg-black flex items-center justify-center">
         <Container>
           <div className="max-w-md mx-auto text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFD700] mx-auto mb-6"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-terminal-gold mx-auto mb-6"></div>
             <h1 className="text-2xl font-semibold text-white mb-2">
               Validating Access
             </h1>
@@ -117,8 +117,8 @@ export default function PitchPage({ params }: { params: { company: string } }) {
           <div className="max-w-md mx-auto">
             <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-[#FFD700]/10 rounded-lg">
-                  <Lock className="w-6 h-6 text-[#FFD700]" />
+                <div className="p-3 bg-terminal-gold/10 rounded-lg">
+                  <Lock className="w-6 h-6 text-terminal-gold" />
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold text-white">Username Required</h1>
@@ -154,7 +154,7 @@ export default function PitchPage({ params }: { params: { company: string } }) {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                  className="w-full px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   Access Pitch
                 </button>
@@ -194,7 +194,7 @@ export default function PitchPage({ params }: { params: { company: string } }) {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                   >
                     <Mail className="w-5 h-5" />
                     Request New Access
@@ -294,7 +294,7 @@ function PitchContent({ companySlug }: { companySlug: string }) {
       {/* Placeholder for pitch content */}
       <div className="p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
         <p className="text-gray-400 text-center">
-          Pitch content for <span className="text-[#FFD700] font-semibold">{companySlug}</span> will be loaded here.
+          Pitch content for <span className="text-terminal-gold font-semibold">{companySlug}</span> will be loaded here.
         </p>
         <p className="text-gray-500 text-sm text-center mt-4">
           This is a placeholder. Actual pitch content will be fetched from Firestore or rendered from custom components.
@@ -311,7 +311,7 @@ function PitchContent({ companySlug }: { companySlug: string }) {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-[#FFD700]/90 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
         >
           <Mail className="w-5 h-5" />
           Schedule a Call

@@ -39,7 +39,7 @@ export default function BlogContentPage() {
       <div className="mb-8">
         <Link
           href="/owner/content"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Content Library
         </Link>
@@ -63,7 +63,7 @@ export default function BlogContentPage() {
         {drafts.map((draft, idx) => (
           <div
             key={idx}
-            className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-[#FFD700]/30 transition-colors"
+            className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/30 transition-colors"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">

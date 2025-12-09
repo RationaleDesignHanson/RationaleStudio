@@ -294,7 +294,7 @@ export default function ClientDashboard() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-[#FFD700] text-lg">Loading...</div>
+        <div className="text-terminal-gold text-lg">Loading...</div>
       </div>
     );
   }
@@ -309,7 +309,7 @@ export default function ClientDashboard() {
         <div className="py-20">
           {/* Header */}
           <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-[#FFD700]">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-terminal-gold">
               Client Portal
             </h1>
             <p className="text-lg text-gray-400">
@@ -355,9 +355,9 @@ export default function ClientDashboard() {
                       <LinkComponent
                         key={idx}
                         {...linkProps}
-                        className="group bg-gray-800/50 border border-gray-700 rounded p-4 hover:border-[#FFD700] transition-all"
+                        className="group bg-gray-800/50 border border-gray-700 rounded p-4 hover:border-terminal-gold transition-all"
                       >
-                        <h3 className="text-base font-semibold text-white group-hover:text-[#FFD700] transition-colors mb-2">
+                        <h3 className="text-base font-semibold text-white group-hover:text-terminal-gold transition-colors mb-2">
                           {page.title}
                           {isExternal && (
                             <svg className="inline-block w-3 h-3 ml-1 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -370,7 +370,7 @@ export default function ClientDashboard() {
                             {page.description}
                           </p>
                         )}
-                        <div className="flex items-center text-[#FFD700] text-xs font-medium">
+                        <div className="flex items-center text-terminal-gold text-xs font-medium">
                           {isExternal ? 'Open External' : 'View'}
                           <svg className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -388,7 +388,7 @@ export default function ClientDashboard() {
           <div className="mt-12 pt-8 border-t border-gray-800 flex items-center justify-between">
             <Link
               href="/"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Rationale.studio
             </Link>
@@ -398,7 +398,7 @@ export default function ClientDashboard() {
                 sessionStorage.removeItem('client-auth');
                 router.push('/clients/login');
               }}
-              className="px-4 py-2 text-sm border border-gray-700 hover:border-[#FFD700] text-gray-400 hover:text-[#FFD700] transition-colors rounded"
+              className="px-4 py-2 text-sm border border-gray-700 hover:border-terminal-gold text-gray-400 hover:text-terminal-gold transition-colors rounded"
             >
               Logout
             </button>

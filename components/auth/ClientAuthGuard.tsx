@@ -39,7 +39,7 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
   if (isLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-[#FFD700] text-lg">Loading...</div>
+        <div className="text-terminal-gold text-lg">Loading...</div>
       </div>
     );
   }

@@ -18,7 +18,7 @@ export default function ContentLibraryPage() {
       <div className="mb-8">
         <Link
           href="/owner"
-          className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors mb-4 inline-block"
+          className="text-sm text-gray-400 hover:text-terminal-gold transition-colors mb-4 inline-block"
         >
           ← Back to Dashboard
         </Link>
@@ -32,9 +32,9 @@ export default function ContentLibraryPage() {
         {/* Blog Posts */}
         <Link
           href="/owner/content/blog"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <FileText className="w-8 h-8 text-[#FFD700] mb-4" />
+          <FileText className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Blog Posts</h3>
           <p className="text-sm text-gray-400 mb-4">
             Drafts ready for /thinking section. One-click publish workflow.
@@ -45,9 +45,9 @@ export default function ContentLibraryPage() {
         {/* Case Studies */}
         <Link
           href="/owner/content/case-studies"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <Folder className="w-8 h-8 text-[#FFD700] mb-4" />
+          <Folder className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Case Studies</h3>
           <p className="text-sm text-gray-400 mb-4">
             Multiple formats: long, short, carousel, talk outlines, LinkedIn posts.
@@ -58,9 +58,9 @@ export default function ContentLibraryPage() {
         {/* Social Content */}
         <Link
           href="/owner/content/social"
-          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-[#FFD700]/30 rounded-lg transition-colors"
+          className="p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/30 rounded-lg transition-colors"
         >
-          <Share2 className="w-8 h-8 text-[#FFD700] mb-4" />
+          <Share2 className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Social Content</h3>
           <p className="text-sm text-gray-400 mb-4">
             LinkedIn posts, Twitter threads, carousel templates.

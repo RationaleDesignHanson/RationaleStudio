@@ -19,7 +19,7 @@ export default function ArchitecturePage() {
           <div className="mb-8">
             <Link
               href="/work/zero"
-              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
             >
               ← Back to Zero
             </Link>
@@ -27,7 +27,7 @@ export default function ArchitecturePage() {
 
           {/* Page Header */}
           <div className="mb-12 text-center">
-            <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
               INFOGRAPHIC TEST // SYSTEM ARCHITECTURE
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -97,7 +97,7 @@ function SystemArchitecture() {
 
           {/* Arrow */}
           <div className="hidden lg:flex items-center justify-center">
-            <svg className="w-8 h-8 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -112,7 +112,7 @@ function SystemArchitecture() {
 
           {/* Arrow */}
           <div className="hidden lg:flex items-center justify-center">
-            <svg className="w-8 h-8 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -127,7 +127,7 @@ function SystemArchitecture() {
 
           {/* Arrow */}
           <div className="hidden lg:flex items-center justify-center">
-            <svg className="w-8 h-8 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -142,7 +142,7 @@ function SystemArchitecture() {
 
           {/* Arrow */}
           <div className="hidden lg:flex items-center justify-center">
-            <svg className="w-8 h-8 text-[#FFD700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -217,7 +217,7 @@ function ArchKeyPoint({
 }) {
   return (
     <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
-      <h4 className="text-sm font-bold text-[#FFD700] mb-2">{title}</h4>
+      <h4 className="text-sm font-bold text-terminal-gold mb-2">{title}</h4>
       <p className="text-xs text-gray-100 leading-relaxed">{description}</p>
     </div>
   );

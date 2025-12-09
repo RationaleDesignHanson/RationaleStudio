@@ -88,7 +88,7 @@ export function Header() {
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
-            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-[#FFD700]"
+            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-terminal-gold"
           >
             {pathname === '/' ? (
               <span className="font-semibold text-2xl sm:text-3xl lg:text-4xl">®</span>
@@ -160,7 +160,7 @@ export function Header() {
                             <Link
                               key={dropdownItem.href}
                               href={dropdownItem.href}
-                              className="block px-4 py-3 text-sm text-gray-400 hover:bg-[#FFD700]/10 hover:text-[#FFD700] transition-colors"
+                              className="block px-4 py-3 text-sm text-gray-400 hover:bg-terminal-gold/10 hover:text-terminal-gold transition-colors"
                               role="menuitem"
                             >
                               {dropdownItem.label}
@@ -178,7 +178,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={`text-sm font-medium transition-colors hover:text-[#FFD700] whitespace-nowrap ${
-                    isActive(link.href) ? 'text-[#FFD700] border-b-2 border-[#FFD700]' : 'text-gray-400'
+                    isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                   }`}
                 >
                   {link.label}
@@ -190,7 +190,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex items-center justify-center p-3 text-gray-400 hover:text-[#FFD700] transition-colors min-w-[48px] min-h-[48px] lg:!hidden"
+            className="flex items-center justify-center p-3 text-gray-400 hover:text-terminal-gold transition-colors min-w-[48px] min-h-[48px] lg:!hidden"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -276,7 +276,7 @@ export function Header() {
                               setIsMobileMenuOpen(false);
                               setExpandedMobileDropdown(null);
                             }}
-                            className="block pl-8 pr-4 py-3 text-base text-gray-400 hover:bg-[#FFD700]/10 hover:text-[#FFD700] transition-colors"
+                            className="block pl-8 pr-4 py-3 text-base text-gray-400 hover:bg-terminal-gold/10 hover:text-terminal-gold transition-colors"
                           >
                             {dropdownItem.label}
                           </Link>
@@ -293,7 +293,7 @@ export function Header() {
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-4 py-3 text-lg font-medium transition-colors hover:bg-[#FFD700]/10 hover:text-[#FFD700] ${
-                    isActive(link.href) ? 'text-[#FFD700] bg-[#FFD700]/10' : 'text-gray-400'
+                    isActive(link.href) ? 'text-terminal-gold bg-terminal-gold/10' : 'text-gray-400'
                   }`}
                 >
                   {link.label}

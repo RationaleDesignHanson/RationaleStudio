@@ -19,7 +19,7 @@ export default function IntentClassification({ data }: IntentClassificationProps
   return (
     <div className="space-y-6">
       {/* Main Intent Display */}
-      <div className="p-6 bg-gray-900 border-2 border-[#FFD700] rounded-lg">
+      <div className="p-6 bg-gray-900 border-2 border-terminal-gold rounded-lg">
         <div className="text-sm text-gray-400 mb-3">Detected Intent</div>
         <div className="text-2xl font-bold text-white">
           {data.detectedIntent.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -36,7 +36,7 @@ export default function IntentClassification({ data }: IntentClassificationProps
           </div>
           <div className="mt-2 h-2 bg-gray-700 rounded-full overflow-hidden">
             <div
-              className="h-full bg-[#FFD700] transition-all duration-500"
+              className="h-full bg-terminal-gold transition-all duration-500"
               style={{ width: `${confidencePercent}%` }}
             />
           </div>
@@ -63,8 +63,8 @@ export default function IntentClassification({ data }: IntentClassificationProps
       {(data.deadline || data.paymentAmount) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data.deadline && (
-            <div className="p-4 bg-gray-800 border border-[#FFD700] rounded-lg">
-              <div className="text-sm text-[#FFD700] mb-2">Deadline Detected</div>
+            <div className="p-4 bg-gray-800 border border-terminal-gold rounded-lg">
+              <div className="text-sm text-terminal-gold mb-2">Deadline Detected</div>
               <div className="text-lg font-semibold text-white">
                 {data.deadline}
               </div>
@@ -72,8 +72,8 @@ export default function IntentClassification({ data }: IntentClassificationProps
           )}
 
           {data.paymentAmount && (
-            <div className="p-4 bg-gray-800 border border-[#FFD700] rounded-lg">
-              <div className="text-sm text-[#FFD700] mb-2">Payment Detected</div>
+            <div className="p-4 bg-gray-800 border border-terminal-gold rounded-lg">
+              <div className="text-sm text-terminal-gold mb-2">Payment Detected</div>
               <div className="text-lg font-semibold text-white">
                 {formatCurrency(data.paymentAmount)}
               </div>
@@ -89,7 +89,7 @@ export default function IntentClassification({ data }: IntentClassificationProps
           <ul className="space-y-2">
             {data.suggestedActions.map((action, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="text-[#FFD700] text-sm mt-1">›</span>
+                <span className="text-terminal-gold text-sm mt-1">›</span>
                 <span className="text-sm text-white">{action}</span>
               </li>
             ))}

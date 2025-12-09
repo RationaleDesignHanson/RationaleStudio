@@ -31,7 +31,7 @@ export default function HowWeWorkPage() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             How We Work
           </h1>
-          <p className="text-xl sm:text-2xl text-[#FFD700] font-medium mb-4">
+          <p className="text-xl sm:text-2xl text-terminal-gold font-medium mb-4">
             Engagement models built for speed and alignment
           </p>
           <p className="text-lg text-gray-300 max-w-3xl">
@@ -68,7 +68,7 @@ export default function HowWeWorkPage() {
               variant="body"
               animateIn={false}
             >
-              <p className="text-sm text-[#FFD700] font-medium mb-3">When you need speed and certainty</p>
+              <p className="text-sm text-terminal-gold font-medium mb-3">When you need speed and certainty</p>
               <p className="text-base text-gray-300 leading-relaxed mb-4">
                 Fixed-scope sprints and validation engagements. You pay, we deliver, no equity complexity. Best for teams with runway who need fast answers or prototypes to de-risk direction.
               </p>
@@ -99,16 +99,16 @@ export default function HowWeWorkPage() {
               title="% Equity Partnerships"
               variant="featured"
               animateIn={false}
-              className="border-2 border-[#FFD700]/30"
+              className="border-2 border-terminal-gold/30"
             >
-              <p className="text-sm text-[#FFD700] font-medium mb-3">When we believe in what you're building</p>
+              <p className="text-sm text-terminal-gold font-medium mb-3">When we believe in what you're building</p>
               <p className="text-base text-gray-300 leading-relaxed mb-4">
                 We become your product co-founder. Equity-only or reduced cash + equity. Highly selective (2-3 active at a time). We only partner when our expertise creates strategic advantage in AI, AR, or 0-1 products.
               </p>
-              <div className="mb-4 p-4 rounded-lg bg-[#FFD700]/5 border border-[#FFD700]/20">
+              <div className="mb-4 p-4 rounded-lg bg-terminal-gold/5 border border-terminal-gold/20">
                 <p className="text-sm text-white">
-                  <span className="font-bold text-[#FFD700]">Like Zero:</span> We're building our own AI email platform from concept to market. 1 month to complete execution plan, 7 working prototypes. Same conviction we bring to equity partnerships.{' '}
-                  <Link href="/ventures/zero" className="text-[#FFD700] hover:underline">See our proof →</Link>
+                  <span className="font-bold text-terminal-gold">Like Zero:</span> We're building our own AI email platform from concept to market. 1 month to complete execution plan, 7 working prototypes. Same conviction we bring to equity partnerships.{' '}
+                  <Link href="/ventures/zero" className="text-terminal-gold hover:underline">See our proof →</Link>
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -139,7 +139,7 @@ export default function HowWeWorkPage() {
               variant="body"
               animateIn={false}
             >
-              <p className="text-sm text-[#FFD700] font-medium mb-3">Most common for longer engagements</p>
+              <p className="text-sm text-terminal-gold font-medium mb-3">Most common for longer engagements</p>
               <p className="text-base text-gray-300 leading-relaxed mb-4">
                 Reduced cash rate + equity stake. You conserve runway, we share upside. Typical for 3-12 month builds where mutual belief is high but you need to preserve capital for engineering and growth.
               </p>
@@ -239,21 +239,21 @@ export default function HowWeWorkPage() {
 
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-sm font-bold text-[#FFD700] uppercase tracking-wide mb-3">What Changes</h3>
+                <h3 className="text-sm font-bold text-terminal-gold uppercase tracking-wide mb-3">What Changes</h3>
                 <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We say no to bad ideas (even if billable)</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We prioritize long-term value over scope</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We are incentivized to build IP, not deliverables</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We care about your Series A, not just handoff</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We say no to bad ideas (even if billable)</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We prioritize long-term value over scope</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We are incentivized to build IP, not deliverables</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We care about your Series A, not just handoff</span></li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-[#FFD700] uppercase tracking-wide mb-3">What Does Not Change</h3>
+                <h3 className="text-sm font-bold text-terminal-gold uppercase tracking-wide mb-3">What Does Not Change</h3>
                 <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We still move fast (equity ≠ slow)</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>You still own your company and roadmap</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>We are selective, not transactional</span></li>
-                  <li className="flex gap-2"><span className="text-[#FFD700]">•</span><span>Clear deliverables and milestones still exist</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We still move fast (equity ≠ slow)</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>You still own your company and roadmap</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>We are selective, not transactional</span></li>
+                  <li className="flex gap-2"><span className="text-terminal-gold">•</span><span>Clear deliverables and milestones still exist</span></li>
                 </ul>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function HowWeWorkPage() {
             className="max-w-3xl"
           >
             <div className="space-y-6">
-              <p className="text-base text-[#FFD700] leading-relaxed text-center">
+              <p className="text-base text-terminal-gold leading-relaxed text-center">
                 Every engagement starts with a conversation about your timeline, runway, and what you're trying to prove.
               </p>
 

@@ -11,12 +11,12 @@ export default function PartnrPage() {
         <div className="max-w-5xl mx-auto">
           <Link
             href="/#portfolio"
-            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
+            className="text-sm text-gray-400 hover:text-terminal-gold font-semibold transition-colors mb-6 inline-block"
           >
             ← Back to Portfolio
           </Link>
 
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
+          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
             META FAIR // EMBODIED AI RESEARCH
           </p>
 
@@ -61,7 +61,7 @@ export default function PartnrPage() {
               <p className="text-base">
                 <span className="font-bold text-black">Approach:</span> PARTNR (Planning And Reasoning Tasks in humaN-Robot collaboration) establishes the largest benchmark of its kind—100,000 natural language tasks across 60 simulated homes with 5,800+ unique objects. Built on Habitat 3.0, the framework evaluates how LLMs/VLMs collaborate with humans in real-world scenarios like cleaning, cooking, and home management.
               </p>
-              <p className="text-base border-t border-[#FFD700] pt-4 font-semibold text-black">
+              <p className="text-base border-t border-terminal-gold pt-4 font-semibold text-black">
                 Impact: Successfully deployed on Boston Dynamics Spot robot, validating real-world applicability beyond simulation.
               </p>
             </div>
@@ -210,13 +210,13 @@ export default function PartnrPage() {
               <div className="flex flex-col gap-3 pt-4">
                 <Link
                   href="/contact"
-                  className="w-full bg-[#FFD700] hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full bg-terminal-gold hover:bg-[#FFE34D] text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   Start a Conversation →
                 </Link>
                 <Link
                   href="/how-we-work"
-                  className="w-full border border-gray-300 hover:border-[#FFD700] text-black text-center px-6 py-3 font-semibold transition-colors"
+                  className="w-full border border-gray-300 hover:border-terminal-gold text-black text-center px-6 py-3 font-semibold transition-colors"
                 >
                   How We Work
                 </Link>
@@ -224,7 +224,7 @@ export default function PartnrPage() {
 
               <div className="pt-3 border-t border-gray-200 text-center">
                 <p className="text-xs text-gray-500">
-                  <a href="/contact" className="hover:text-[#FFD700] transition-colors">Contact us</a>
+                  <a href="/contact" className="hover:text-terminal-gold transition-colors">Contact us</a>
                 </p>
               </div>
             </div>

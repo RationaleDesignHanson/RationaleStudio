@@ -23,19 +23,19 @@ export default function ChallengeSection() {
             {/* Key Pain Points */}
             <div className="mt-8 grid md:grid-cols-3 gap-4">
               <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-[#FFD700] mb-2">Hidden Actions</h4>
+                <h4 className="text-sm font-bold text-terminal-gold mb-2">Hidden Actions</h4>
                 <p className="text-sm text-gray-400">
                   Bills, RSVPs, tracking numbers buried in prose
                 </p>
               </div>
               <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-[#FFD700] mb-2">Context Switching</h4>
+                <h4 className="text-sm font-bold text-terminal-gold mb-2">Context Switching</h4>
                 <p className="text-sm text-gray-400">
                   Jump between inbox and external sites to complete tasks
                 </p>
               </div>
               <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-[#FFD700] mb-2">Manual Triage</h4>
+                <h4 className="text-sm font-bold text-terminal-gold mb-2">Manual Triage</h4>
                 <p className="text-sm text-gray-400">
                   Read every email to identify what needs action
                 </p>

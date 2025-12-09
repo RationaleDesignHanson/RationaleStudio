@@ -153,7 +153,7 @@ export function PresentationViewer({
       {/* Slide Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Terminal-style header */}
-        <div className="border-b border-[#FFD700]/30 bg-black/50 backdrop-blur-sm">
+        <div className="border-b border-terminal-gold/30 bg-black/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export function PresentationViewer({
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-xs font-mono text-[#FFD700]">
+                <span className="text-xs font-mono text-terminal-gold">
                   presentation.session
                 </span>
               </div>
@@ -172,7 +172,7 @@ export function PresentationViewer({
                 </span>
                 <button
                   onClick={toggleFullscreen}
-                  className="text-xs font-mono text-gray-400 hover:text-[#FFD700] transition-colors"
+                  className="text-xs font-mono text-gray-400 hover:text-terminal-gold transition-colors"
                   title="Toggle fullscreen (F)"
                 >
                   {isFullscreen ? '[EXIT]' : '[FULLSCREEN]'}
@@ -195,7 +195,7 @@ export function PresentationViewer({
 
         {/* Navigation & Progress */}
         {showNavigation && (
-          <div className="border-t border-[#FFD700]/30 bg-black/50 backdrop-blur-sm">
+          <div className="border-t border-terminal-gold/30 bg-black/50 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
               {/* Progress Bar */}
               {showProgress && (
@@ -222,7 +222,7 @@ export function PresentationViewer({
                 <button
                   onClick={prevSlide}
                   disabled={currentSlide === 0}
-                  className="px-4 py-2 text-sm font-mono text-[#FFD700] hover:bg-[#FFD700]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border border-[#FFD700]/30 rounded"
+                  className="px-4 py-2 text-sm font-mono text-terminal-gold hover:bg-terminal-gold/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border border-terminal-gold/30 rounded"
                 >
                   ← PREV
                 </button>
@@ -237,7 +237,7 @@ export function PresentationViewer({
                         index === currentSlide
                           ? 'bg-[#FFD700] w-8'
                           : index < currentSlide
-                          ? 'bg-[#FFD700]/50'
+                          ? 'bg-terminal-gold/50'
                           : 'bg-gray-600'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
@@ -249,7 +249,7 @@ export function PresentationViewer({
                 <button
                   onClick={nextSlide}
                   disabled={currentSlide === slides.length - 1}
-                  className="px-4 py-2 text-sm font-mono text-[#FFD700] hover:bg-[#FFD700]/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border border-[#FFD700]/30 rounded"
+                  className="px-4 py-2 text-sm font-mono text-terminal-gold hover:bg-terminal-gold/10 disabled:opacity-30 disabled:cursor-not-allowed transition-colors border border-terminal-gold/30 rounded"
                 >
                   NEXT →
                 </button>

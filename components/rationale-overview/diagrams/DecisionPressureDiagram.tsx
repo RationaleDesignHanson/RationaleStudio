@@ -96,7 +96,7 @@ export default function DecisionPressureDiagram() {
                 onClick={() => setSelectedWeek(point.week)}
                 className={`p-3 rounded-lg border-2 transition-all ${
                   isSelected
-                    ? 'bg-gray-800/70 border-[#FFD700]'
+                    ? 'bg-gray-800/70 border-terminal-gold'
                     : 'bg-gray-800/30 border-gray-700 hover:border-gray-600'
                 }`}
               >
@@ -124,10 +124,10 @@ export default function DecisionPressureDiagram() {
       </div>
 
       {/* Selected Decision Point Detail */}
-      <div className="mb-8 p-6 bg-gray-800/50 border-2 border-[#FFD700] rounded-lg">
+      <div className="mb-8 p-6 bg-gray-800/50 border-2 border-terminal-gold rounded-lg">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <div className="text-xs font-mono text-[#FFD700] mb-1">WEEK {selectedPoint.week}</div>
+            <div className="text-xs font-mono text-terminal-gold mb-1">WEEK {selectedPoint.week}</div>
             <div className="text-lg font-bold text-white mb-2">${(selectedPoint.investment / 1000).toFixed(0)}K Invested</div>
           </div>
           <div className="text-right">

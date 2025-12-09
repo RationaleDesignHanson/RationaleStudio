@@ -354,7 +354,7 @@ export default function ContractModelingCanvas() {
             onClick={() => setSelectedMetric(metric.key)}
             className={`px-4 py-2 rounded font-mono text-sm transition-all ${
               selectedMetric === metric.key
-                ? 'bg-[#FFD700]/20 text-[#FFD700] border-2 border-[#FFD700]'
+                ? 'bg-terminal-gold/20 text-terminal-gold border-2 border-terminal-gold'
                 : 'bg-white/5 text-white/60 border-2 border-white/20 hover:border-white/40'
             }`}
           >
@@ -364,7 +364,7 @@ export default function ContractModelingCanvas() {
       </div>
 
       {/* Canvas */}
-      <div className="relative w-full min-h-[700px] bg-black rounded-lg border border-[#FFD700]/20 overflow-hidden">
+      <div className="relative w-full min-h-[700px] bg-black rounded-lg border border-terminal-gold/20 overflow-hidden">
         <canvas
           ref={canvasRef}
           className="w-full h-full"
@@ -387,7 +387,7 @@ export default function ContractModelingCanvas() {
           <span>Low Risk</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#FFD700]"></div>
+          <div className="w-3 h-3 rounded-full bg-terminal-gold"></div>
           <span>Medium Risk</span>
         </div>
         <div className="flex items-center gap-2">

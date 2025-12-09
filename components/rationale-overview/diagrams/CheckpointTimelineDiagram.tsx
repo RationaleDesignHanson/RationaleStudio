@@ -262,7 +262,7 @@ export default function CheckpointTimelineDiagram() {
           <div className="space-y-1">
             {checkpoints[hoveredCheckpoint].activities.map((activity, idx) => (
               <div key={idx} className="text-xs text-gray-400 flex items-start gap-2">
-                <span className="text-[#FFD700]">→</span>
+                <span className="text-terminal-gold">→</span>
                 <span>{activity}</span>
               </div>
             ))}
@@ -309,10 +309,10 @@ export default function CheckpointTimelineDiagram() {
           <div>
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs text-gray-400">Rationale Approach</span>
-              <span className="text-xs text-[#FFD700]">Controlled risk</span>
+              <span className="text-xs text-terminal-gold">Controlled risk</span>
             </div>
             <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-              <div className="h-full bg-[#FFD700]" style={{ width: '25%' }} />
+              <div className="h-full bg-terminal-gold" style={{ width: '25%' }} />
             </div>
             <div className="text-xs text-gray-500 mt-1">3 checkpoints in 3 weeks</div>
           </div>

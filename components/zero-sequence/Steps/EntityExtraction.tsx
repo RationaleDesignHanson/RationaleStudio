@@ -69,7 +69,7 @@ export default function EntityExtraction({ data }: EntityExtractionProps) {
   return (
     <div className="space-y-6">
       {/* Entity Count Summary */}
-      <div className="p-6 bg-gray-900 border-2 border-[#FFD700] rounded-lg">
+      <div className="p-6 bg-gray-900 border-2 border-terminal-gold rounded-lg">
         <div className="text-sm text-gray-400 mb-3">Total Entities</div>
         <div className="text-3xl font-bold text-white">
           {data.totalCount}

@@ -125,7 +125,7 @@ export default function MethodologyOriginsPage() {
 
             <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
               <h2 className="text-2xl font-bold text-white mb-4">The Lesson</h2>
-              <div className="border-l-4 border-[#FFD700] pl-6 py-4 mb-6 bg-gray-900/30">
+              <div className="border-l-4 border-terminal-gold pl-6 py-4 mb-6 bg-gray-900/30">
                 <p className="text-lg text-gray-300 leading-relaxed italic">
                   "Anything to the left of that mark doesn't get you much value."
                 </p>

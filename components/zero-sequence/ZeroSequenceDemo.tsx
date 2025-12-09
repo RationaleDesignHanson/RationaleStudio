@@ -83,7 +83,7 @@ export default function ZeroSequenceDemo() {
             <button
               onClick={reset}
               disabled={loading}
-              className="px-6 py-2 bg-gray-800 border border-gray-600 text-white text-sm font-semibold rounded-lg hover:border-[#FFD700] hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900"
+              className="px-6 py-2 bg-gray-800 border border-gray-600 text-white text-sm font-semibold rounded-lg hover:border-terminal-gold hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               Reset
             </button>
