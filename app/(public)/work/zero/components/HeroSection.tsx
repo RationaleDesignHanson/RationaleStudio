@@ -78,25 +78,16 @@ export default function HeroSection() {
           {/* Right: Device Mockup or Visual */}
           <div className="relative">
             <div className="relative z-10">
-              {/* Checkerboard placeholder for mockup */}
-              <div
-                className="aspect-[3/4] mx-auto max-w-md rounded-2xl border-4 border-[#FFD700]/20 shadow-2xl overflow-hidden relative flex items-center justify-center"
-                style={{
-                  backgroundImage: `
-                    repeating-conic-gradient(
-                      #1f2937 0% 25%,
-                      #374151 0% 50%
-                    )
-                  `,
-                  backgroundSize: '40px 40px',
-                  backgroundPosition: '0 0, 20px 20px'
-                }}
-              >
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📱</div>
-                  <p className="text-white font-semibold text-lg">App Mockup</p>
-                  <p className="text-gray-300 text-sm">Coming Soon</p>
-                </div>
+              {/* App Hero Image */}
+              <div className="aspect-square mx-auto max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
+                <Image
+                  src="/zero/app-mockup-hero.png"
+                  alt="Zero App - AI Email Intelligence"
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>

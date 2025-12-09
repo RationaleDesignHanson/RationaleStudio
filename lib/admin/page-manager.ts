@@ -98,7 +98,7 @@ function categorizeRoute(filePath: string): PageEntry['category'] {
  * Check if a route requires authentication
  */
 function isProtectedRoute(filePath: string): boolean {
-  const protectedPaths = ['/clients/', '/team/', '/owner/', '/admin/', '/invest', '/investors'];
+  const protectedPaths = ['/client/', '/clients/', '/team/', '/owner/', '/admin/', '/invest', '/investors'];
   return protectedPaths.some(p => filePath.includes(p));
 }
 

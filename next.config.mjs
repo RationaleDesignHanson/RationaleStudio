@@ -62,6 +62,7 @@ const nextConfig = {
   // Redirects
   async redirects() {
     return [
+      // Public route redirects
       {
         source: '/services',
         destination: '/how-we-work',
@@ -75,6 +76,49 @@ const nextConfig = {
       {
         source: '/partnerships/:slug',
         destination: '/how-we-work',
+        permanent: true,
+      },
+
+      // Investor route consolidation (Phase 2)
+      // Consolidate /invest/* and /investment/* → /investors/*
+      {
+        source: '/invest',
+        destination: '/investors',
+        permanent: true,
+      },
+      {
+        source: '/invest/amplify',
+        destination: '/investors/amplify',
+        permanent: true,
+      },
+      {
+        source: '/invest/atlas',
+        destination: '/investors/atlas',
+        permanent: true,
+      },
+      {
+        source: '/invest/studio',
+        destination: '/investors/studio',
+        permanent: true,
+      },
+      {
+        source: '/invest/studio/data-room',
+        destination: '/investors/studio/data-room',
+        permanent: true,
+      },
+      {
+        source: '/invest/zero',
+        destination: '/investors/zero',
+        permanent: true,
+      },
+      {
+        source: '/investment',
+        destination: '/investors',
+        permanent: true,
+      },
+      {
+        source: '/investment/zero',
+        destination: '/investors/zero',
         permanent: true,
       },
     ];
