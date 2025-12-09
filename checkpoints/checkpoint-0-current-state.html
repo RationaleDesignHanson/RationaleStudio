@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint 0: Current Site State - Rationale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #000000, #1a1a1a);
+            color: #e5e5e5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #FFD700;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #999;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card.danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .stat-card.danger .number {
+            color: #ef4444;
+        }
+
+        .controls {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .controls h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group label {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            background: #000;
+            border: 1px solid #444;
+            color: #e5e5e5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .filter-group button {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-group button:hover {
+            background: #FFE34D;
+            transform: scale(1.05);
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .sitemap {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .category-header h3 {
+            font-size: 1.5rem;
+            color: #FFD700;
+        }
+
+        .category-count {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .route-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .route-item {
+            background: #000;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 15px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .route-item:hover {
+            border-color: #FFD700;
+            transform: translateX(5px);
+        }
+
+        .route-item.duplicate {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .route-item.protected {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .route-item.deletion-candidate {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .route-path {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e5e5e5;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .route-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .route-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-duplicate {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .badge-protected {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .badge-deletion {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .legend {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Checkpoint 0: Current Site State</h1>
+            <p>Visual baseline before cleanup operations • Phase 0 Complete</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number">151</div>
+                <div class="label">Total Routes</div>
+            </div>
+            <div class="stat-card danger">
+                <div class="number">57</div>
+                <div class="label">Duplicates</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">8</div>
+                <div class="label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">25</div>
+                <div class="label">Protected Routes</div>
+            </div>
+            <div class="stat-card danger">
+                <div class="number">42</div>
+                <div class="label">Deletion Candidates</div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <h2>Filters & Controls</h2>
+            <div class="filter-group">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="public">Public</option>
+                    <option value="client-portal">Client Portal</option>
+                    <option value="investor">Investor</option>
+                    <option value="team">Team</option>
+                    <option value="partner">Partner</option>
+                    <option value="visual-test">Visual Test</option>
+                    <option value="admin">Admin</option>
+                    <option value="api">API</option>
+                </select>
+
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="duplicate">Duplicates Only</option>
+                    <option value="protected">Protected Only</option>
+                    <option value="deletion">Deletion Candidates</option>
+                </select>
+
+                <label for="searchInput">Search:</label>
+                <input type="text" id="searchInput" placeholder="Search routes...">
+
+                <button onclick="resetFilters()">Reset</button>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #ef4444;"></div>
+                    <span>Duplicate Route</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #10b981;"></div>
+                    <span>Protected Route</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #f59e0b;"></div>
+                    <span>Deletion Candidate</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #444;"></div>
+                    <span>Normal Route</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Site Map -->
+        <div class="sitemap" id="sitemap">
+            <!-- Public Pages -->
+            <div class="category-section" data-category="public">
+                <div class="category-header">
+                    <h3>Public Pages</h3>
+                    <span class="category-count">12 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected" data-status="protected">
+                        <div class="route-path">/</div>
+                        <div class="route-meta">
+                            <span>app/(public)/page.tsx</span>
+                            <span class="route-badge badge-protected">Protected</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/about</div>
+                        <div class="route-meta">
+                            <span>app/(public)/about/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/capabilities</div>
+                        <div class="route-meta">
+                            <span>app/(public)/capabilities/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/contact</div>
+                        <div class="route-meta">
+                            <span>app/(public)/contact/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/how-we-work</div>
+                        <div class="route-meta">
+                            <span>app/(public)/how-we-work/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/overview</div>
+                        <div class="route-meta">
+                            <span>app/(public)/overview/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/partnerships</div>
+                        <div class="route-meta">
+                            <span>app/(public)/partnerships/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/work</div>
+                        <div class="route-meta">
+                            <span>app/(public)/work/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/work/heirloom</div>
+                        <div class="route-meta">
+                            <span>app/(public)/work/heirloom/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/work/zero</div>
+                        <div class="route-meta">
+                            <span>app/(public)/work/zero/page.tsx</span>
+                        </div>
+                    </div>
+                    <div class="route-item duplicate" data-status="duplicate">
+                        <div class="route-path">/investment</div>
+                        <div class="route-meta">
+                            <span>app/(public)/investment/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate of /invest</span>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <div class="route-path">/invest</div>
+                        <div class="route-meta">
+                            <span>app/(public)/invest/page.tsx</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Portal Pages -->
+            <div class="category-section" data-category="client-portal">
+                <div class="category-header">
+                    <h3>Client Portal Pages</h3>
+                    <span class="category-count">78 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected duplicate deletion-candidate" data-status="duplicate deletion">
+                        <div class="route-path">/clients/athletes-first/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/clients/athletes-first/dashboard/page.tsx</span>
+                            <span class="route-badge badge-protected">Protected</span>
+                            <span class="route-badge badge-duplicate">Duplicate</span>
+                            <span class="route-badge badge-deletion">Delete Candidate</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected duplicate deletion-candidate" data-status="duplicate deletion">
+                        <div class="route-path">/clients/athletes-first/dashboard/home</div>
+                        <div class="route-meta">
+                            <span>app/clients/athletes-first/dashboard/home/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate</span>
+                            <span class="route-badge badge-deletion">Delete Candidate</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected duplicate deletion-candidate" data-status="duplicate deletion">
+                        <div class="route-path">/clients/athletes-first/insights</div>
+                        <div class="route-meta">
+                            <span>app/clients/athletes-first/insights/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate</span>
+                            <span class="route-badge badge-deletion">Delete Candidate</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected deletion-candidate" data-status="deletion">
+                        <div class="route-path">/clients/athletes-first/archive/*</div>
+                        <div class="route-meta">
+                            <span>Multiple archive pages (15 total)</span>
+                            <span class="route-badge badge-deletion">Archive - Should Delete</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected duplicate deletion-candidate" data-status="duplicate deletion">
+                        <div class="route-path">/clients/creait/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/clients/creait/dashboard/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate</span>
+                            <span class="route-badge badge-deletion">Delete Candidate</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected deletion-candidate" data-status="deletion">
+                        <div class="route-path">/clients/zero/dashboard-old</div>
+                        <div class="route-meta">
+                            <span>app/clients/zero/dashboard-old/page.tsx</span>
+                            <span class="route-badge badge-deletion">Old Version - Delete</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected">
+                        <div class="route-path">/clients/zero/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/clients/zero/dashboard/page.tsx</span>
+                            <span class="route-badge badge-protected">Current Version</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investor Pages -->
+            <div class="category-section" data-category="investor">
+                <div class="category-header">
+                    <h3>Investor Pages</h3>
+                    <span class="category-count">18 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected">
+                        <div class="route-path">/invest</div>
+                        <div class="route-meta">
+                            <span>app/invest/page.tsx</span>
+                            <span class="route-badge badge-protected">Protected</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected duplicate" data-status="duplicate">
+                        <div class="route-path">/investors</div>
+                        <div class="route-meta">
+                            <span>app/investors/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate of /invest</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected duplicate deletion-candidate" data-status="duplicate deletion">
+                        <div class="route-path">/investors/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/investors/dashboard/page.tsx</span>
+                            <span class="route-badge badge-duplicate">Duplicate</span>
+                            <span class="route-badge badge-deletion">Delete Candidate</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected">
+                        <div class="route-path">/invest/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/invest/dashboard/page.tsx</span>
+                            <span class="route-badge badge-protected">Keep This One</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Test Pages -->
+            <div class="category-section" data-category="visual-test">
+                <div class="category-header">
+                    <h3>Visual Test Pages</h3>
+                    <span class="category-count">23 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item deletion-candidate" data-status="deletion">
+                        <div class="route-path">/visual-test/*</div>
+                        <div class="route-meta">
+                            <span>Multiple test pages (23 total)</span>
+                            <span class="route-badge badge-deletion">Consider archiving after visual audit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Pages -->
+            <div class="category-section" data-category="team">
+                <div class="category-header">
+                    <h3>Team/Owner Pages</h3>
+                    <span class="category-count">8 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected" data-status="protected">
+                        <div class="route-path">/owner/site-admin</div>
+                        <div class="route-meta">
+                            <span>app/owner/site-admin/page.tsx</span>
+                            <span class="route-badge badge-protected">Admin Dashboard - NEW</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected">
+                        <div class="route-path">/team/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/team/dashboard/page.tsx</span>
+                            <span class="route-badge badge-protected">Protected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partner Pages -->
+            <div class="category-section" data-category="partner">
+                <div class="category-header">
+                    <h3>Partner Pages</h3>
+                    <span class="category-count">5 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected">
+                        <div class="route-path">/partners/dashboard</div>
+                        <div class="route-meta">
+                            <span>app/partners/dashboard/page.tsx</span>
+                            <span class="route-badge badge-protected">Protected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Routes -->
+            <div class="category-section" data-category="api">
+                <div class="category-header">
+                    <h3>API Routes</h3>
+                    <span class="category-count">7 routes</span>
+                </div>
+                <div class="route-list">
+                    <div class="route-item protected" data-status="protected">
+                        <div class="route-path">/api/admin/pages</div>
+                        <div class="route-meta">
+                            <span>app/api/admin/pages/route.ts</span>
+                            <span class="route-badge badge-protected">Admin API - NEW</span>
+                        </div>
+                    </div>
+                    <div class="route-item protected">
+                        <div class="route-path">/api/signup</div>
+                        <div class="route-meta">
+                            <span>app/api/signup/route.ts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const categoryFilter = document.getElementById('categoryFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const searchInput = document.getElementById('searchInput');
+
+        function applyFilters() {
+            const category = categoryFilter.value;
+            const status = statusFilter.value;
+            const search = searchInput.value.toLowerCase();
+
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => {
+                const sectionCategory = section.getAttribute('data-category');
+
+                // Filter by category
+                if (category !== 'all' && sectionCategory !== category) {
+                    section.classList.add('hidden');
+                    return;
+                } else {
+                    section.classList.remove('hidden');
+                }
+
+                // Filter routes within section
+                const routes = section.querySelectorAll('.route-item');
+                routes.forEach(route => {
+                    const routePath = route.querySelector('.route-path').textContent.toLowerCase();
+                    const routeMeta = route.querySelector('.route-meta').textContent.toLowerCase();
+                    const routeStatus = route.getAttribute('data-status') || '';
+
+                    let visible = true;
+
+                    // Status filter
+                    if (status !== 'all') {
+                        visible = routeStatus.includes(status);
+                    }
+
+                    // Search filter
+                    if (search && visible) {
+                        visible = routePath.includes(search) || routeMeta.includes(search);
+                    }
+
+                    if (visible) {
+                        route.classList.remove('hidden');
+                    } else {
+                        route.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        function resetFilters() {
+            categoryFilter.value = 'all';
+            statusFilter.value = 'all';
+            searchInput.value = '';
+            applyFilters();
+        }
+
+        // Add event listeners
+        categoryFilter.addEventListener('change', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+        searchInput.addEventListener('input', applyFilters);
+
+        // Initial render
+        applyFilters();
+    </script>
+</body>
+</html>
