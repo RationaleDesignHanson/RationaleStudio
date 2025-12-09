@@ -123,7 +123,7 @@ export default function OutboundTrackerPage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
                 Outbound Tracker
               </h1>
               <p className="text-gray-400">
@@ -138,7 +138,7 @@ export default function OutboundTrackerPage() {
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-5 h-5 text-[#FFD700]" />
