@@ -8,6 +8,29 @@ import { ChevronDown, ChevronUp, Mail, MessageSquare, Calendar, CheckCircle2 } f
 
 export default function ContactPage() {
   const [showWhatToInclude, setShowWhatToInclude] = useState(false);
+  const [emailRevealed, setEmailRevealed] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  // Email obfuscation - decoded on click
+  const getEmail = () => {
+    const parts = ['hanson', '@', 'rationale', '.', 'work'];
+    return parts.join('');
+  };
+
+  const handleRevealEmail = () => {
+    setEmailRevealed(true);
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(getEmail());
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      // Fallback - just reveal the email
+      setEmailRevealed(true);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
@@ -60,12 +83,31 @@ export default function ContactPage() {
                 Get in Touch
               </h2>
 
-              <a
-                href="mailto:studio@rationale.design"
-                className="inline-block px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 text-lg mb-6"
-              >
-                studio@rationale.design
-              </a>
+              {!emailRevealed ? (
+                <button
+                  onClick={handleRevealEmail}
+                  className="inline-block px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 text-lg mb-6"
+                >
+                  Click to Reveal Email
+                </button>
+              ) : (
+                <div className="space-y-3 mb-6">
+                  <a
+                    href={`mailto:${getEmail()}`}
+                    className="inline-block px-8 py-4 bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 text-lg"
+                  >
+                    {getEmail()}
+                  </a>
+                  <div>
+                    <button
+                      onClick={handleCopyEmail}
+                      className="text-sm text-[#FFD700] hover:text-[#FFE34D] transition-colors"
+                    >
+                      {emailCopied ? '✓ Copied to clipboard!' : 'Copy to clipboard'}
+                    </button>
+                  </div>
+                </div>
+              )}
 
               <p className="text-sm text-gray-400">
                 We typically respond within 24 hours with initial feedback and next steps.
@@ -256,7 +298,7 @@ export default function ContactPage() {
           <div className="max-w-3xl mx-auto space-y-4">
             {/* Clarity Kit */}
             <a
-              href="mailto:studio@rationale.design?subject=Clarity%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Clarity%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Clarity%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Clarity%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
               className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
             >
               <div className="flex justify-between items-start">
@@ -278,7 +320,7 @@ export default function ContactPage() {
 
             {/* Prototype Kit */}
             <a
-              href="mailto:studio@rationale.design?subject=Prototype%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Prototype%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
               className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
             >
               <div className="flex justify-between items-start">
@@ -300,7 +342,7 @@ export default function ContactPage() {
 
             {/* Build Ship Run */}
             <a
-              href="mailto:studio@rationale.design?subject=Build%20Ship%20Run%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Build%20Ship%20Run%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Build%20Ship%20Run%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Build%20Ship%20Run%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
               className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
             >
               <div className="flex justify-between items-start">
@@ -322,7 +364,7 @@ export default function ContactPage() {
 
             {/* Not Sure */}
             <a
-              href="mailto:studio@rationale.design?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
+              href="mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
               className="block p-5 bg-gray-900/50 border border-gray-600 hover:border-[#FFD700] rounded-lg transition-all group"
             >
               <div className="flex justify-between items-center">
