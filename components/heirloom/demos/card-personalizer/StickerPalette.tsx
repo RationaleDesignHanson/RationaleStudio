@@ -107,7 +107,6 @@ function DraggableSticker({ sticker, onPlace }: DraggableStickerProps) {
   return (
     <motion.div
       ref={dragRef}
-      {...bind()}
       className="relative cursor-grab active:cursor-grabbing"
       style={{
         touchAction: 'none',
@@ -115,6 +114,9 @@ function DraggableSticker({ sticker, onPlace }: DraggableStickerProps) {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       title={sticker.name}
+      onPointerDown={bind().onPointerDown}
+      onPointerUp={bind().onPointerUp}
+      onPointerMove={bind().onPointerMove}
     >
       <div
         className="w-14 h-14 rounded-lg flex items-center justify-center transition-all"
@@ -184,7 +186,6 @@ export function PlacedStickerControls({
   return (
     <motion.div
       ref={stickerRef}
-      {...bind()}
       className="absolute cursor-grab active:cursor-grabbing group"
       style={{
         left: `${position.x}%`,
@@ -195,6 +196,9 @@ export function PlacedStickerControls({
       initial={{ scale: 0 }}
       animate={{ scale: sticker.scale }}
       transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+      onPointerDown={bind().onPointerDown}
+      onPointerUp={bind().onPointerUp}
+      onPointerMove={bind().onPointerMove}
     >
       {/* Sticker Image */}
       <img

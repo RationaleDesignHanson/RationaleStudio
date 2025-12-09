@@ -196,7 +196,6 @@ export function PlacedAnnotationControls({
   return (
     <motion.div
       ref={annotationRef}
-      {...bind()}
       className="absolute cursor-grab active:cursor-grabbing group whitespace-nowrap select-none"
       style={{
         left: `${position.x}%`,
@@ -211,6 +210,9 @@ export function PlacedAnnotationControls({
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+      onPointerDown={bind().onPointerDown}
+      onPointerUp={bind().onPointerUp}
+      onPointerMove={bind().onPointerMove}
     >
       {annotation.text}
 

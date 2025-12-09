@@ -95,17 +95,9 @@ export function SmallifyDemo() {
 
       // Apply scaling
       let scaledQty = ingredient.quantity * adjustedScaleFactor
-      let scaledQtyMax: number | undefined
-
-      if (ingredient.quantityMax) {
-        scaledQtyMax = ingredient.quantityMax * adjustedScaleFactor
-      }
 
       // Round to practical measurements
       scaledQty = roundToPracticalMeasurement(scaledQty, ingredient.unit)
-      if (scaledQtyMax) {
-        scaledQtyMax = roundToPracticalMeasurement(scaledQtyMax, ingredient.unit)
-      }
 
       const wasAdjusted = Math.abs(adjustedScaleFactor - scaleFactor) > 0.01
       const adjustmentReason = wasAdjusted ? ADJUSTMENT_NAMES[ingredient.type] : undefined
@@ -113,7 +105,6 @@ export function SmallifyDemo() {
       return {
         ingredient,
         scaledQuantity: scaledQty,
-        scaledQuantityMax: scaledQtyMax,
         wasAdjusted,
         adjustmentReason
       }
@@ -224,7 +215,7 @@ export function SmallifyDemo() {
               </h4>
               <div className="space-y-2">
                 {scaledIngredients.map((item, index) => {
-                  const { ingredient, scaledQuantity, scaledQuantityMax, wasAdjusted, adjustmentReason } = item
+                  const { ingredient, scaledQuantity, wasAdjusted, adjustmentReason } = item
                   const isSignificantChange = Math.abs(scaleFactor - 1.0) > 0.15
 
                   return (
@@ -240,7 +231,7 @@ export function SmallifyDemo() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-semibold text-[#2D2D2D]">
-                              {formatQuantity(scaledQuantity, scaledQuantityMax)} {ingredient.unit}
+                              {formatQuantity(scaledQuantity)} {ingredient.unit}
                             </span>
                             <span className="text-gray-700">{ingredient.name}</span>
                             {wasAdjusted && isSignificantChange && (
@@ -257,7 +248,7 @@ export function SmallifyDemo() {
                         </div>
                         <div className="text-right text-xs">
                           <div className="text-gray-400">
-                            was: {formatQuantity(ingredient.quantity, ingredient.quantityMax)} {ingredient.unit}
+                            was: {formatQuantity(ingredient.quantity)} {ingredient.unit}
                           </div>
                         </div>
                       </div>

@@ -256,7 +256,7 @@ export function CardPersonalizerDemo() {
               {isExporting ? 'Exporting...' : 'Download Card'}
             </button>
 
-            {typeof navigator !== 'undefined' && navigator.share && (
+            {typeof navigator !== 'undefined' && 'share' in navigator && (
               <button
                 onClick={handleShare}
                 disabled={isExporting}
