@@ -373,20 +373,14 @@ export default function ContactPage() {
             </a>
           </div>
 
-          {/* Not Sure - Full Width Below */}
-          <div className="mt-6 max-w-4xl mx-auto">
-            <a
-              href="mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
-              className="block p-5 bg-gray-900/50 border border-gray-600 hover:border-[#FFD700] rounded-lg transition-all group"
-            >
-              <div className="flex justify-between items-center">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-white mb-1">Not sure which fits?</p>
-                  <p className="text-xs text-gray-400">Let's talk — we'll help you figure out the right approach</p>
-                </div>
-                <span className="text-[#FFD700] text-lg group-hover:translate-x-1 transition-transform">→</span>
-              </div>
-            </a>
+          {/* Not Sure - Simple Text Line */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-400">
+              Not sure which fits? <a
+                href="mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
+                className="text-[#FFD700] hover:text-[#FFE34D] transition-colors font-medium"
+              >Let's talk — we'll help you figure out the right approach →</a>
+            </p>
           </div>
         </div>
       </section>
