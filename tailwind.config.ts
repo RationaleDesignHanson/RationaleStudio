@@ -14,6 +14,13 @@ const config: Config = {
         accent: "var(--accent)",
         border: "var(--border)",
         muted: "var(--muted)",
+        // Terminal Gold Design Tokens (Phase 4.1)
+        'terminal-gold': {
+          DEFAULT: '#FFD700',
+          hover: '#FFE34D',
+          dark: '#E5C100',
+          light: '#FFF5CC',
+        },
       },
       screens: {
         'landscape': { 'raw': '(orientation: landscape) and (max-height: 600px)' },

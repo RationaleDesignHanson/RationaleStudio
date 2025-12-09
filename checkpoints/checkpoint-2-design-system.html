@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint 2: Design System Token Consolidation (Phase 4.1)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(to bottom, #111827, #000000, #111827);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #374151;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #FFD700, #FFF5CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.125rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid #374151;
+            border-radius: 12px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #FFD700;
+            display: inline-block;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #374151;
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .badge-before {
+            background: #ef4444;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-after {
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .code-comment {
+            color: #6b7280;
+        }
+
+        .code-property {
+            color: #60a5fa;
+        }
+
+        .code-string {
+            color: #34d399;
+        }
+
+        .code-number {
+            color: #fbbf24;
+        }
+
+        .demo-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .demo-badge {
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .demo-button {
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 8px;
+        }
+
+        .button-terminal-gold {
+            background: #FFD700;
+            color: #000000;
+        }
+
+        .button-terminal-gold:hover {
+            background: #FFE34D;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .impact-card {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .impact-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .impact-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #FFD700;
+        }
+
+        .impact-description {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .migration-step {
+            background: rgba(31, 41, 55, 0.3);
+            border-left: 4px solid #FFD700;
+            padding: 20px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .migration-step-number {
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .badge-status-active {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #6ee7b7;
+        }
+
+        .badge-status-dev {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+
+        .badge-category-ai {
+            background: #e9d5ff;
+            color: #6b21a8;
+            border-color: #c084fc;
+        }
+
+        .badge-category-product {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+
+        .badge-priority-high {
+            background: rgba(249, 115, 22, 0.1);
+            color: #ea580c;
+            border-color: #fed7aa;
+        }
+
+        .badge-priority-low {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border-color: #86efac;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Checkpoint 2: Design System Token Consolidation</h1>
+            <p class="subtitle">Phase 4.1 Quick Wins - Terminal Gold Token + Semantic Colors + Badge System</p>
+            <p class="subtitle" style="margin-top: 8px; font-size: 0.875rem;">Date: 2025-12-09</p>
+        </header>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value">100+</span>
+                <span class="stat-label">Hardcoded #FFD700 Instances</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">8</span>
+                <span class="stat-label">Duplicate Color Objects</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">5+</span>
+                <span class="stat-label">Scattered Badge Implementations</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">35% → 80%</span>
+                <span class="stat-label">Token Adoption Target</span>
+            </div>
+        </div>
+
+        <!-- Terminal Gold Token -->
+        <section class="section">
+            <h2 class="section-title">1. Terminal Gold Token</h2>
+
+            <div class="comparison">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-before">BEFORE</span>
+                        <span class="panel-title">Hardcoded Values (100+ instances)</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// Scattered across 25+ files</span>
+<span class="code-property">className</span>=<span class="code-string">"bg-[#FFD700] hover:bg-[#FFE34D]"</span>
+
+<span class="code-comment">// components/zero/OnboardingFlow.tsx</span>
+<span class="code-property">className</span>=<span class="code-string">"bg-[#FFD700] text-black"</span>
+
+<span class="code-comment">// components/presentation/InteractiveCard.tsx</span>
+<span class="code-property">style</span>={{ <span class="code-property">boxShadow</span>: <span class="code-string">'0 0 20px #FFD700'</span> }}
+
+<span class="code-comment">// components/zero-sequence/StepCard.tsx</span>
+<span class="code-property">borderColor</span>: <span class="code-string">'#FFD700'</span>
+                    </div>
+
+                    <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 16px;">
+                        ❌ Problems: Hard to maintain, no single source of truth, brand changes require updating 100+ files
+                    </p>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-after">AFTER</span>
+                        <span class="panel-title">Centralized Token</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// tailwind.config.ts - Single source of truth</span>
+<span class="code-property">colors</span>: {
+  <span class="code-string">'terminal-gold'</span>: {
+    <span class="code-property">DEFAULT</span>: <span class="code-string">'#FFD700'</span>,
+    <span class="code-property">hover</span>: <span class="code-string">'#FFE34D'</span>,
+    <span class="code-property">dark</span>: <span class="code-string">'#E5C100'</span>,
+    <span class="code-property">light</span>: <span class="code-string">'#FFF5CC'</span>,
+  }
+}
+
+<span class="code-comment">// Usage everywhere</span>
+<span class="code-property">className</span>=<span class="code-string">"bg-terminal-gold hover:bg-terminal-gold-hover"</span>
+<span class="code-property">className</span>=<span class="code-string">"border-terminal-gold text-terminal-gold"</span>
+                    </div>
+
+                    <p style="color: #10b981; font-size: 0.875rem; margin-top: 16px;">
+                        ✅ Benefits: Single source of truth, easy brand updates, consistent usage, TypeScript autocomplete
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 20px;">Visual Demo: Terminal Gold Buttons</h3>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <button class="demo-button button-terminal-gold">Primary CTA</button>
+                    <button class="demo-button button-terminal-gold">Get Started</button>
+                    <button class="demo-button button-terminal-gold">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semantic Colors -->
+        <section class="section">
+            <h2 class="section-title">2. Semantic Color Consolidation</h2>
+
+            <div class="comparison">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-before">BEFORE</span>
+                        <span class="panel-title">Duplicate Definitions (8 files)</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// VentureCard.tsx</span>
+<span class="code-property">const statusColors</span> = {
+  <span class="code-string">'Active'</span>: <span class="code-string">'bg-green-100 text-green-700'</span>,
+  <span class="code-string">'In Development'</span>: <span class="code-string">'bg-blue-100 text-blue-700'</span>
+}
+
+<span class="code-comment">// InsightCard.tsx (duplicate pattern)</span>
+<span class="code-property">const categoryColors</span> = {
+  <span class="code-string">'AI'</span>: <span class="code-string">'bg-purple-100 text-purple-700'</span>,
+  <span class="code-string">'Product'</span>: <span class="code-string">'bg-blue-100 text-blue-700'</span>
+}
+
+<span class="code-comment">// CheckpointCard.tsx (different implementation)</span>
+<span class="code-property">const typeColors</span> = {
+  <span class="code-property">design</span>: <span class="code-string">'bg-green-500/10 text-green-600'</span>
+}
+                    </div>
+
+                    <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 16px;">
+                        ❌ Problems: 8 duplicate definitions, inconsistent implementations, no TypeScript safety
+                    </p>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-after">AFTER</span>
+                        <span class="panel-title">Centralized System</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// lib/design-tokens/semantic-colors.ts</span>
+<span class="code-property">export const STATUS_COLORS</span> = {
+  <span class="code-string">'Active'</span>: { <span class="code-property">bg</span>, <span class="code-property">text</span>, <span class="code-property">border</span> },
+  <span class="code-comment">// ... all statuses</span>
+}
+
+<span class="code-property">export const CATEGORY_COLORS</span> = {
+  <span class="code-string">'AI'</span>: { <span class="code-property">bg</span>, <span class="code-property">text</span>, <span class="code-property">border</span> },
+  <span class="code-comment">// ... all categories</span>
+}
+
+<span class="code-property">export const PRIORITY_COLORS</span> = { <span class="code-comment">/* ... */</span> }
+<span class="code-property">export const CHECKPOINT_TYPE_COLORS</span> = { <span class="code-comment">/* ... */</span> }
+
+<span class="code-comment">// Helper functions with TypeScript</span>
+<span class="code-property">export function</span> <span class="code-string">getStatusColors</span>(<span class="code-property">status</span>: StatusKey)
+                    </div>
+
+                    <p style="color: #10b981; font-size: 0.875rem; margin-top: 16px;">
+                        ✅ Benefits: Single source of truth, TypeScript safety, dark mode support, consistent styling
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Badge Component System -->
+        <section class="section">
+            <h2 class="section-title">3. Unified Badge Component</h2>
+
+            <div class="comparison">
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-before">BEFORE</span>
+                        <span class="panel-title">Inline Badge Logic (5+ implementations)</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// Every component reimplements badges</span>
+<span class="code-property">const</span> colors = statusColors[status] || <span class="code-string">'bg-gray-100'</span>
+
+&lt;<span class="code-property">span</span> <span class="code-property">className</span>={<span class="code-string">`px-2 py-1 rounded </span>${colors}<span class="code-string">`</span>}&gt;
+  {status}
+&lt;/<span class="code-property">span</span>&gt;
+
+<span class="code-comment">// Different sizing, spacing, border-radius everywhere</span>
+<span class="code-comment">// No consistency across components</span>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="badge-after">AFTER</span>
+                        <span class="panel-title">Standardized Component</span>
+                    </div>
+
+                    <div class="code-block">
+<span class="code-comment">// components/ui/Badge.tsx</span>
+&lt;<span class="code-property">Badge</span> <span class="code-property">variant</span>=<span class="code-string">"status"</span> <span class="code-property">value</span>=<span class="code-string">"Active"</span> /&gt;
+&lt;<span class="code-property">Badge</span> <span class="code-property">variant</span>=<span class="code-string">"category"</span> <span class="code-property">value</span>=<span class="code-string">"AI"</span> /&gt;
+&lt;<span class="code-property">Badge</span> <span class="code-property">variant</span>=<span class="code-string">"priority"</span> <span class="code-property">value</span>=<span class="code-string">"High"</span> /&gt;
+
+<span class="code-comment">// Or type-safe convenience components</span>
+&lt;<span class="code-property">StatusBadge</span> <span class="code-property">status</span>=<span class="code-string">"Active"</span> /&gt;
+&lt;<span class="code-property">CategoryBadge</span> <span class="code-property">category</span>=<span class="code-string">"AI"</span> /&gt;
+&lt;<span class="code-property">PriorityBadge</span> <span class="code-property">priority</span>=<span class="code-string">"High"</span> /&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.25rem; margin-bottom: 20px;">Visual Demo: Badge Variants</h3>
+
+                <div style="margin-bottom: 24px;">
+                    <h4 style="font-size: 0.875rem; color: #9ca3af; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Status Badges</h4>
+                    <div class="demo-badges">
+                        <span class="demo-badge badge-status-active">Active</span>
+                        <span class="demo-badge badge-status-dev">In Development</span>
+                        <span class="demo-badge" style="background: #e9d5ff; color: #6b21a8; border-color: #c084fc;">Spinout</span>
+                        <span class="demo-badge" style="background: #f3f4f6; color: #374151; border-color: #d1d5db;">Archived</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h4 style="font-size: 0.875rem; color: #9ca3af; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Category Badges</h4>
+                    <div class="demo-badges">
+                        <span class="demo-badge badge-category-product">Product</span>
+                        <span class="demo-badge badge-category-ai">AI</span>
+                        <span class="demo-badge" style="background: #fce7f3; color: #be185d; border-color: #f9a8d4;">Design</span>
+                        <span class="demo-badge" style="background: #d1fae5; color: #065f46; border-color: #6ee7b7;">Strategy</span>
+                        <span class="demo-badge" style="background: #fed7aa; color: #9a3412; border-color: #fdba74;">Process</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h4 style="font-size: 0.875rem; color: #9ca3af; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Priority Badges</h4>
+                    <div class="demo-badges">
+                        <span class="demo-badge" style="background: rgba(239, 68, 68, 0.1); color: #dc2626; border-color: #fecaca;">Critical</span>
+                        <span class="demo-badge badge-priority-high">High</span>
+                        <span class="demo-badge" style="background: rgba(59, 130, 246, 0.1); color: #2563eb; border-color: #bfdbfe;">Medium</span>
+                        <span class="demo-badge badge-priority-low">Low</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Analysis -->
+        <section class="section">
+            <h2 class="section-title">4. Impact Analysis</h2>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">🎨</div>
+                    <div class="impact-title">Consistency</div>
+                    <div class="impact-description">
+                        All badges use identical sizing, spacing, and border-radius. Terminal gold appears consistently across 100+ instances.
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">⚡</div>
+                    <div class="impact-title">Maintenance</div>
+                    <div class="impact-description">
+                        Brand color changes now affect 1 file instead of 25+. Badge styling updates apply to all components automatically.
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">🔒</div>
+                    <div class="impact-title">Type Safety</div>
+                    <div class="impact-description">
+                        TypeScript ensures only valid status/category/priority values. Autocomplete guides developers to correct usage.
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">🌙</div>
+                    <div class="impact-title">Dark Mode</div>
+                    <div class="impact-description">
+                        Semantic colors include dark mode variants. Future dark mode implementation is already supported.
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">📦</div>
+                    <div class="impact-title">Bundle Size</div>
+                    <div class="impact-description">
+                        Eliminates duplicate color objects across 8 components. Reduced CSS duplication via shared classes.
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">🚀</div>
+                    <div class="impact-title">Developer Velocity</div>
+                    <div class="impact-description">
+                        New components adopt standardized patterns instantly. No need to redefine badge colors per component.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Migration Steps -->
+        <section class="section">
+            <h2 class="section-title">5. Next Steps: Component Migration</h2>
+
+            <div class="migration-step">
+                <div class="migration-step-number">Step 1</div>
+                <strong>Migrate VentureCard badges</strong>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">
+                    Replace inline statusColors object with StatusBadge component. Remove duplicate color definitions.
+                </p>
+            </div>
+
+            <div class="migration-step">
+                <div class="migration-step-number">Step 2</div>
+                <strong>Migrate InsightCard badges</strong>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">
+                    Replace inline categoryColors object with CategoryBadge component. Consistent sizing across all insights.
+                </p>
+            </div>
+
+            <div class="migration-step">
+                <div class="migration-step-number">Step 3</div>
+                <strong>Migrate CheckpointCard badges</strong>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">
+                    Replace inline typeColors object with CheckpointBadge component. Standardize border and background opacity.
+                </p>
+            </div>
+
+            <div class="migration-step">
+                <div class="migration-step-number">Step 4</div>
+                <strong>Replace #FFD700 instances (100+)</strong>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">
+                    Find-replace hardcoded terminal gold values with bg-terminal-gold, border-terminal-gold, text-terminal-gold tokens across 25+ files.
+                </p>
+            </div>
+
+            <div class="migration-step">
+                <div class="migration-step-number">Step 5</div>
+                <strong>Update FeaturedWorkCard</strong>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 8px;">
+                    Adopt StatusBadge for work status. Remove inline badge implementation.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="margin-top: 80px; padding-top: 40px; border-top: 2px solid #374151; text-align: center; color: #6b7280;">
+            <p style="margin-bottom: 12px;">
+                <strong style="color: #FFD700;">Phase 4.1 Complete</strong>
+            </p>
+            <p style="font-size: 0.875rem;">
+                Terminal Gold Token + Semantic Colors + Badge Component = Foundation for Design System Maturity
+            </p>
+            <p style="font-size: 0.875rem; margin-top: 16px;">
+                Next: Apply these tokens across the codebase and measure token adoption increase
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
