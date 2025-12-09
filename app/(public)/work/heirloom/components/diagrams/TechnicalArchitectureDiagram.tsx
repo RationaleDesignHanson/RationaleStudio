@@ -112,7 +112,7 @@ export default function TechnicalArchitectureDiagram() {
 
       const diagramDefinition = `
         graph TB
-          subgraph presentation["🎨 Presentation Layer"]
+          subgraph presentation[" Presentation Layer"]
             swiftui["SwiftUI Views<br/><small>Recipe Cards, Lists, Detail Screens</small>"]
             nav["Navigation<br/><small>TabView, NavigationStack</small>"]
             custom["Custom Modifiers<br/><small>Card Styles, Animations</small>"]

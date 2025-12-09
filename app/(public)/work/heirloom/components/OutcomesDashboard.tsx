@@ -88,7 +88,7 @@ export default function OutcomesDashboard() {
                   className="inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold text-white"
                   style={{ backgroundColor: getStatusColor(metric.status) }}
                 >
-                  {metric.status === 'achieved' ? '✓' : '◐'}
+                  {metric.status === 'achieved' ? '' : '◐'}
                 </span>
               </div>
 
@@ -100,7 +100,7 @@ export default function OutcomesDashboard() {
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-gray-600">Target: {metric.target}{metric.unit}</span>
                 {metric.value >= metric.target && (
-                  <span className="text-[#2A9D8F]">✓</span>
+                  <span className="text-[#2A9D8F]"></span>
                 )}
               </div>
 

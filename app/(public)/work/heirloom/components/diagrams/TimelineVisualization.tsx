@@ -56,7 +56,7 @@ export default function TimelineVisualization() {
 
   const statusBadge = (status: string) => {
     const badges = {
-      completed: { bg: '#E85D4D', text: 'Complete', icon: '✓' },
+      completed: { bg: '#E85D4D', text: 'Complete', icon: '' },
       'in-progress': { bg: '#2A9D8F', text: 'In Progress', icon: '◐' },
       upcoming: { bg: '#94A3B8', text: 'Upcoming', icon: '○' },
     }

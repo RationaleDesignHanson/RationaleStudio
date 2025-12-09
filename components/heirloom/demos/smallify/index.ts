@@ -1,0 +1,1 @@
+export { SmallifyDemo } from './SmallifyDemo'

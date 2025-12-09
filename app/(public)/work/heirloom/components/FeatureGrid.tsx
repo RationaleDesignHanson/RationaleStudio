@@ -4,19 +4,19 @@ import Image from 'next/image'
 
 const features = [
   {
-    icon: '📱',
+    icon: '',
     title: 'Smart Recipe Import',
     description: 'Web scraping for 500+ sites, OCR for cookbook scanning, and smart ingredient parsing.',
     image: '/images/work/heirloom/feature-import.png',
   },
   {
-    icon: '🛒',
+    icon: '',
     title: 'iOS Reminders Integration',
     description: 'Export shopping lists as Grocery type, auto-categorized by aisle, with cross-device sync.',
     image: '/images/work/heirloom/feature-shopping.png',
   },
   {
-    icon: '🎨',
+    icon: '',
     title: 'Card Personalization',
     description: '12 vintage backgrounds, 50+ hand-drawn stickers, and handwritten annotations.',
     image: '/images/work/heirloom/feature-personalization.png',
@@ -28,7 +28,7 @@ const features = [
     image: '/images/work/heirloom/feature-sharing.png',
   },
   {
-    icon: '🍽️',
+    icon: '',
     title: 'Dinner Party Mode',
     description: 'Multi-recipe meal planning with smart cooking timelines and auto-scaled ingredients.',
     image: '/images/work/heirloom/feature-dinnerparty.png',

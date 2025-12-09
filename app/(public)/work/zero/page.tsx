@@ -4,294 +4,169 @@
  * Full public page showcasing Zero as Rationale's product.
  * Focus on technical execution and development process.
  *
- * CORRECTED VERSION - Accurate claims, proper styling
+ * Restructured with Heirloom's clean layout pattern.
  */
 
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { OS8Window } from '@/components/visual-test';
-import { ASCIIUnifiedGrid } from '@/components/visual';
-import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import InteractiveDemo from '@/components/zero/InteractiveDemo';
-import GalaxyBackground from '@/components/zero/GalaxyBackground';
-import { ZeroSequenceDemo } from '@/components/zero-sequence';
-import type { Metadata } from 'next';
+import HeroSection from './components/HeroSection'
+import AtAGlance from './components/AtAGlance'
+import ChallengeSection from './components/ChallengeSection'
+import ApproachSection from './components/ApproachSection'
+import PrototypeEmbed from './components/PrototypeEmbed'
 
 export default function ZeroPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="max-w-5xl mx-auto">
-          <Link
-            href="/work"
-            className="text-sm text-gray-400 hover:text-[#FFD700] font-semibold transition-colors mb-6 inline-block"
-          >
-            ← Back to Work
-          </Link>
+    <main className="zero-case-study">
+      {/* Hero with gradient background and clean 2-column layout */}
+      <HeroSection />
 
-          <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-4">
-            RATIONALE PRODUCT // PRODUCTION-READY · PRE-LAUNCH
-          </p>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            Zero: AI Email Intelligence
-          </h1>
-
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mb-6">
-            Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards.
-          </p>
-
-          <div className="mb-8">
-            <Link
-              href="/contact"
-              className="inline-block px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-[#FFD700] hover:bg-[#FFE34D] text-black font-semibold transition-all"
-            >
-              Join Beta Waitlist
-            </Link>
-          </div>
-
-          {/* Enhanced Quick Stats */}
-          <EnhancedQuickStats />
-        </div>
-      </section>
-
-      {/* The Problem */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          {/* Section Header */}
-          <div className="mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              The Problem: Your Inbox Is Full of Hidden Work
-            </h2>
-          </div>
-
-          {/* Content - Direct Typography */}
-          <div className="space-y-6 text-base sm:text-lg text-gray-300 leading-relaxed">
-            <p>
-              You get <span className="font-bold text-white">47 emails today</span>. Somewhere in there: a bill that's due tomorrow, a package arriving in an hour, a form your kid needs signed, and an event you need to RSVP to. But to find them, you have to read everything.
-            </p>
-            <p>
-              Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. <span className="font-bold text-white">Your inbox is a todo list you have to manually decode.</span>
-            </p>
-
-            {/* Solution Statement - Yellow emphasis */}
-            <div className="mt-8 pt-6 border-t border-[#FFD700]/30">
-              <p className="text-lg sm:text-xl font-semibold text-[#FFD700]">
-                Zero's AI reads your emails and extracts the actions automatically. RSVP to events. Track packages. Pay bills. Sign forms. All in swipeable cards, sorted into Mail and Ads. No reading. Just acting.
-              </p>
-            </div>
+      {/* Executive summary - At a Glance insight box */}
+      <section className="bg-gray-900 py-12 md:py-16">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-5xl">
+            <AtAGlance />
           </div>
         </div>
       </section>
 
-      {/* Interactive Demo */}
-      <section id="demo" className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
-        {/* Galaxy Background with Fireflies */}
-        <div className="absolute inset-0">
-          <GalaxyBackground />
-        </div>
+      {/* The problem: inbox is full of hidden work */}
+      <ChallengeSection />
 
-        {/* Content on top of galaxy */}
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Try Zero: Interactive Demo
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Experience Zero's swipe-based email triage. Swipe right to complete actions, left to archive, down to snooze.
-            </p>
-          </div>
+      {/* Our approach: AI extracts actions automatically */}
+      <ApproachSection />
 
-          <div className="max-w-4xl mx-auto mb-8">
-            <InteractiveDemo />
-          </div>
+      {/* Feature Grid */}
+      <FeatureGrid />
 
-          {/* What the Production App Adds - Homepage Card Pattern */}
-          <div className="max-w-4xl mx-auto">
-            <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#FFD700]/30 rounded-lg">
-              <h3 className="text-2xl font-bold text-white mb-4">What the Production App Adds</h3>
-
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                The production app extends the prototype with real-world integrations, scalable architecture, and native iOS capabilities.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">Real Gmail integration (OAuth 2.0)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">AI classification (43 intent categories)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">Entity extraction (tracking #s, dates, amounts)</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">Native device actions (Calendar, Contacts, Wallet)</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">10-service backend architecture</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#FFD700] mt-2 flex-shrink-0" />
-                    <span className="text-sm text-gray-300">Summarization and smart replies</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="max-w-3xl mx-auto mt-6 text-center">
-            <p className="text-xs text-gray-500">
-              Curious about our process? We built a <a href="/zero/originalprototype" className="text-[#FFD700] hover:underline">weekend prototype</a> to validate the concept before investing in production architecture.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why We Built Zero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          {/* Section Header */}
-          <div className="mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Why We Built Zero
-            </h2>
-          </div>
-
-          {/* Content - OS8Window Grid */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <OS8Window title="Personal Need" variant="minimal">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                As busy professionals and parents, we all drown in email. Bills, packages, permission slips, RSVPs—they're all buried in your inbox, and you have to manually hunt for them every day. Email tools organize. They don't extract actions. That's the gap Zero fills.
-              </p>
-            </OS8Window>
-
-            <OS8Window title="Proof of Capability" variant="minimal">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Zero proves Rationale ships real products, not just client work. We built this to demonstrate our execution capability—same speed and technical depth we bring to client engagements.
-              </p>
-            </OS8Window>
-
-            <OS8Window title="Validation → Production" variant="minimal">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                We built a weekend prototype to test the core UX before investing in production infrastructure. Once validated, we designed clean-room production architecture with zero technical debt.
-              </p>
-            </OS8Window>
-
-            <OS8Window title="Technical Execution" variant="minimal">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                268 Swift files with protocol-driven architecture. 10 microservices on Google Cloud Run. Gmail OAuth integration. AI classification with 43 intent categories. Native iOS with device integrations (Calendar, Contacts, Wallet).
-              </p>
-            </OS8Window>
-          </div>
-
-          {/* Summary CTA */}
-          <div className="mt-8 pt-8 border-t border-[#FFD700]/30 text-center max-w-3xl mx-auto">
-            <p className="text-xl font-bold text-[#FFD700]">
-              This is how we build products: fast iteration meets technical excellence.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Development Journey */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Development Journey
-            </h2>
-            <p className="text-lg text-gray-300">
-              From weekend prototype to production-ready architecture
-            </p>
-          </div>
-
-          <DevelopmentTimeline />
-        </div>
-      </section>
+      {/* Interactive demos with toggle */}
+      <PrototypeEmbed />
 
       {/* Technical Architecture */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Technical Architecture
+      <section className="relative bg-black py-20 md:py-28 border-t border-gray-800">
+        <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+              How Zero Works
             </h2>
-            <p className="text-lg text-gray-300">
-              Production-ready systems designed for scale
+            <p className="mb-12 text-lg text-gray-300 text-center">
+              Scalable architecture built with proven technologies
             </p>
-          </div>
-
-          <SystemArchitecture />
-
-          <div className="mt-12">
-            <div className="max-w-6xl mx-auto">
-              <div className="mb-8 text-center">
-                <h3 className="text-3xl font-bold text-white mb-3">See How Zero Classifies Intent Live</h3>
-                <p className="text-base text-gray-300 max-w-3xl mx-auto">
-                  Test email classification with our golden corpus or your own examples. Watch Zero extract entities, identify intent, and generate response flows in real time—backend included as we refine the system.
-                </p>
-              </div>
-              <div className="relative w-full">
-                <ZeroSequenceDemo />
-              </div>
-            </div>
+            <SystemArchitecture />
           </div>
         </div>
       </section>
 
+      {/* Final CTA */}
+      <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 md:py-28 border-t border-[#FFD700]/30">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+              Want to Build Products Like This?
+            </h2>
+            <p className="mb-8 text-lg text-gray-300">
+              Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FFD700] px-8 py-4 font-semibold text-black transition-all hover:bg-[#FFE34D] hover:shadow-lg"
+            >
+              Start a Conversation
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'Zero: AI Email Intelligence',
+            description: 'AI-powered email intelligence that automatically extracts actions from your inbox and presents them as swipeable cards.',
+            applicationCategory: 'ProductivityApplication',
+            operatingSystem: 'iOS',
+            creator: {
+              '@type': 'Organization',
+              name: 'Rationale',
+              url: 'https://rationale.work',
+            },
+            url: 'https://rationale.work/work/zero',
+            datePublished: '2024-11-01',
+            keywords: 'AI, email, productivity, iOS app, SwiftUI, Claude AI',
+          }),
+        }}
+      />
     </main>
-  );
+  )
 }
 
 /**
- * Enhanced Quick Stats Component
+ * Feature Grid Component
  */
-function EnhancedQuickStats() {
-  const stats = [
+function FeatureGrid() {
+  const features = [
     {
-      label: "Swift Files",
-      value: "268",
-      description: "Protocol-driven iOS",
-      color: "#FFD700"
+      title: 'Gmail Integration',
+      description: 'OAuth 2.0 authentication with read-only access. Secure token management and automatic refresh.',
     },
     {
-      label: "Microservices",
-      value: "10",
-      description: "Cloud Run backend",
-      color: "#4ADE80"
+      title: 'AI Classification',
+      description: '43 intent categories powered by Claude 3.5. Identifies bills, packages, RSVPs, forms, and more.',
     },
     {
-      label: "Intent Categories",
-      value: "43",
-      description: "AI classification",
-      color: "#F59E0B"
-    }
-  ];
+      title: 'Entity Extraction',
+      description: 'Automatically extracts tracking numbers, due dates, amounts, event details, and actionable data.',
+    },
+    {
+      title: 'Native iOS',
+      description: 'SwiftUI app with device integrations. Add to Calendar, Save to Contacts, Add to Wallet.',
+    },
+    {
+      title: 'Cloud Backend',
+      description: '10 microservices on Google Cloud Run. FastAPI, PostgreSQL, async job queue, scalable architecture.',
+    },
+    {
+      title: 'Security First',
+      description: 'Encrypted OAuth tokens, read-only email access, no content storage. Privacy-focused design.',
+    },
+  ]
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl">
-      {stats.map((stat, i) => (
-        <div key={i} className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 hover:border-[#FFD700] transition-colors">
-          <div className="text-2xl font-bold text-white mb-1" style={{ color: stat.color }}>
-            {stat.value}
+    <section className="bg-gray-900 py-20 md:py-28 border-t border-gray-800">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+            Key Features
+          </h2>
+          <p className="mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">
+            Production-ready capabilities built for real-world email workflows
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border-2 border-gray-700 bg-gray-800/50 p-8 transition-all duration-300 hover:border-[#FFD700] hover:shadow-xl hover:-translate-y-1"
+              >
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="text-xs font-medium text-white mb-1">{stat.label}</div>
-          <div className="text-xs text-gray-400 leading-tight">{stat.description}</div>
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    </section>
+  )
 }
 
 /**
@@ -300,30 +175,30 @@ function EnhancedQuickStats() {
 function DevelopmentTimeline() {
   const phases = [
     {
-      phase: "Phase 1",
-      title: "Problem Discovery",
-      date: "Aug 2024",
-      description: "Identified inbox management as core workflow friction",
-      metrics: ["100+ user interviews", "Hidden work quantified"],
-      color: "#FFD700"
+      phase: 'Phase 1',
+      title: 'Problem Discovery',
+      date: 'Aug 2024',
+      description: 'Identified inbox management as core workflow friction',
+      metrics: ['100+ user interviews', 'Hidden work quantified'],
+      color: '#FFD700',
     },
     {
-      phase: "Phase 2",
-      title: "Technical Foundation",
-      date: "Sep-Oct 2024",
-      description: "Built classification system + working prototype",
-      metrics: ["43 intent categories", "Gmail OAuth integration"],
-      color: "#FFA500"
+      phase: 'Phase 2',
+      title: 'Technical Foundation',
+      date: 'Sep-Oct 2024',
+      description: 'Built classification system + working prototype',
+      metrics: ['43 intent categories', 'Gmail OAuth integration'],
+      color: '#FFA500',
     },
     {
-      phase: "Phase 3",
-      title: "Production MVP",
-      date: "Nov 2024",
-      description: "Validated accuracy, deployed beta infrastructure",
-      metrics: ["91.7% baseline accuracy", "Ready for beta users"],
-      color: "#FF8C00"
-    }
-  ];
+      phase: 'Phase 3',
+      title: 'Production MVP',
+      date: 'Nov 2024',
+      description: 'Validated accuracy, deployed beta infrastructure',
+      metrics: ['91.7% baseline accuracy', 'Ready for beta users'],
+      color: '#FF8C00',
+    },
+  ]
 
   return (
     <div className="py-8">
@@ -336,7 +211,7 @@ function DevelopmentTimeline() {
                 className="absolute left-6 top-2 w-5 h-5 rounded-full border-4 border-gray-900"
                 style={{ backgroundColor: item.color }}
               />
-              <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 hover:border-[#FFD700] transition-colors">
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 hover:border-[#FFD700] transition-colors">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="text-xs font-mono text-gray-400 mb-1">
@@ -350,7 +225,7 @@ function DevelopmentTimeline() {
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-100 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -386,7 +261,7 @@ function DevelopmentTimeline() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 /**
@@ -401,12 +276,12 @@ function SystemArchitecture() {
           Data flow through the system
         </div>
 
-        {/* Architecture Flow - Flexbox for linear coherent flow */}
+        {/* Architecture Flow */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-3">
           <ArchComponent
             title="Gmail"
             description="OAuth 2.0"
-            tags={["Real inbox", "Read-only"]}
+            tags={['Real inbox', 'Read-only']}
             color="border-gray-600/50"
           />
 
@@ -425,7 +300,7 @@ function SystemArchitecture() {
           <ArchComponent
             title="Backend"
             description="Python/FastAPI"
-            tags={["Queue mgmt", "Security"]}
+            tags={['Queue mgmt', 'Security']}
             color="border-gray-600/50"
           />
 
@@ -444,7 +319,7 @@ function SystemArchitecture() {
           <ArchComponent
             title="AI Layer"
             description="Claude 3.5"
-            tags={["43 intents", "Actions"]}
+            tags={['43 intents', 'Actions']}
             color="border-[#FFD700]/50"
           />
 
@@ -463,7 +338,7 @@ function SystemArchitecture() {
           <ArchComponent
             title="Supabase"
             description="PostgreSQL"
-            tags={["Results", "History"]}
+            tags={['Results', 'History']}
             color="border-gray-600/50"
           />
 
@@ -482,7 +357,7 @@ function SystemArchitecture() {
           <ArchComponent
             title="Frontend"
             description="Next.js/React"
-            tags={["Dashboard", "Insights"]}
+            tags={['Dashboard', 'Insights']}
             color="border-gray-600/50"
           />
         </div>
@@ -503,22 +378,24 @@ function SystemArchitecture() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function ArchComponent({
   title,
   description,
   tags,
-  color
+  color,
 }: {
-  title: string;
-  description: string;
-  tags: string[];
-  color: string;
+  title: string
+  description: string
+  tags: string[]
+  color: string
 }) {
   return (
-    <div className={`bg-gray-900/50 border-2 ${color} rounded-lg p-6 text-center hover:border-[#FFD700] transition-colors`}>
+    <div
+      className={`bg-gray-900/50 border-2 ${color} rounded-lg p-6 text-center hover:border-[#FFD700] transition-colors`}
+    >
       <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
       <div className="text-sm text-gray-400 mb-4">{description}</div>
       <div className="space-y-1">
@@ -529,20 +406,14 @@ function ArchComponent({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-function ArchKeyPoint({
-  title,
-  description
-}: {
-  title: string;
-  description: string;
-}) {
+function ArchKeyPoint({ title, description }: { title: string; description: string }) {
   return (
     <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 hover:border-[#FFD700] transition-colors">
       <h4 className="text-sm font-bold text-[#FFD700] mb-2">{title}</h4>
-      <p className="text-xs text-gray-100 leading-relaxed">{description}</p>
+      <p className="text-xs text-gray-300 leading-relaxed">{description}</p>
     </div>
-  );
+  )
 }

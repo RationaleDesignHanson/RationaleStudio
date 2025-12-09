@@ -125,6 +125,16 @@ dist
 # Firebase service account key (NEVER commit this!)
 serviceAccountKey.json
 
+# Additional security patterns - credentials and secrets
+**/credentials.json
+**/serviceAccount*.json
+secrets.*
+*secret*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
 # TernJS port file
 .tern-port
 

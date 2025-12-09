@@ -29,7 +29,7 @@ export default function UserJourneyMap() {
     },
     {
       stage: 'Customize',
-      icon: '🎨',
+      icon: '',
       color: '#2A9D8F',
       userAction: 'Personalizes card with colors, stickers, notes',
       emotion: 'Delighted',
@@ -143,7 +143,7 @@ export default function UserJourneyMap() {
               {journeyStages.map((stage, idx) => (
                 <div key={idx} className="rounded-lg border-2 border-red-200 bg-red-50 p-4">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="text-red-500">⚠️</span>
+                    <span className="text-red-500"></span>
                     <div className="text-xs font-semibold uppercase tracking-wide text-red-700">Pain Point</div>
                   </div>
                   <div className="text-sm text-gray-700">{stage.painPoint}</div>
@@ -156,7 +156,7 @@ export default function UserJourneyMap() {
               {journeyStages.map((stage, idx) => (
                 <div key={idx} className="rounded-lg border-2 p-4" style={{ borderColor: stage.color, backgroundColor: `${stage.color}15` }}>
                   <div className="mb-2 flex items-center gap-2">
-                    <span style={{ color: stage.color }}>✓</span>
+                    <span style={{ color: stage.color }}></span>
                     <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: stage.color }}>
                       Heirloom Solution
                     </div>
@@ -210,7 +210,7 @@ export default function UserJourneyMap() {
                 {/* Pain Point */}
                 <div className="mb-4 rounded-lg border-2 border-red-200 bg-red-50 p-4">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="text-red-500">⚠️</span>
+                    <span className="text-red-500"></span>
                     <div className="text-xs font-semibold uppercase tracking-wide text-red-700">Pain Point</div>
                   </div>
                   <div className="text-sm text-gray-700">{stage.painPoint}</div>
@@ -219,7 +219,7 @@ export default function UserJourneyMap() {
                 {/* Solution */}
                 <div className="rounded-lg border-2 p-4" style={{ borderColor: stage.color, backgroundColor: `${stage.color}15` }}>
                   <div className="mb-2 flex items-center gap-2">
-                    <span style={{ color: stage.color }}>✓</span>
+                    <span style={{ color: stage.color }}></span>
                     <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: stage.color }}>
                       Heirloom Solution
                     </div>

@@ -41,12 +41,12 @@ Successfully configured Firebase Admin SDK, set up secure authentication, and en
 **Environment Variables Configured:**
 ```env
 # Client-side Firebase config
-NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyAKRxuyFhxCb8O1lVQcR3r9RDiUswEnwGA
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=rationaledesigns-4d354.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=rationaledesigns-4d354
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=rationaledesigns-4d354.firebasestorage.app
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=844463328870
-NEXT_PUBLIC_FIREBASE_APP_ID=1:844463328870:web:7d2fe11212c986f9baa7a7
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key_here
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 # Server-side Firebase Admin SDK
 FIREBASE_SERVICE_ACCOUNT_PATH=./serviceAccountKey.json

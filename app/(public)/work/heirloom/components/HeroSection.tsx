@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
   return (
@@ -43,17 +44,14 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="https://heirloomapp.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#E85D4D] px-8 py-4 font-semibold text-white transition-all hover:bg-[#d54d3d] hover:shadow-lg"
+              <BetaSignupButton
+                appName="heirloom"
+                source="hero_cta"
+                size="lg"
+                className="rounded-full"
               >
-                Visit Heirloom.app
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </Link>
+                Join Beta on TestFlight
+              </BetaSignupButton>
 
               <button
                 onClick={() => {
@@ -75,29 +73,33 @@ export default function HeroSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B9F8D] opacity-75"></span>
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-[#8B9F8D]"></span>
               </span>
-              In Development
+              In TestFlight Beta
             </div>
           </div>
 
           {/* Right: Device Mockup */}
           <div className="relative">
             <div className="relative z-10">
-              <Image
-                src="/images/work/heirloom/hero-mockup.png"
-                alt="Heirloom iOS app on iPhone showing recipe grid"
-                width={600}
-                height={1200}
-                className="mx-auto drop-shadow-2xl"
-                priority
-              />
-            </div>
-
-            {/* Floating recipe cards (optional decorative elements) */}
-            <div className="absolute -right-8 top-12 z-0 hidden rotate-12 opacity-20 lg:block">
-              <div className="h-48 w-32 rounded-lg bg-white shadow-lg"></div>
-            </div>
-            <div className="absolute -left-8 bottom-24 z-0 hidden -rotate-6 opacity-20 lg:block">
-              <div className="h-48 w-32 rounded-lg bg-white shadow-lg"></div>
+              {/* Checkerboard placeholder for mockup */}
+              <div
+                className="aspect-[3/4] mx-auto max-w-md rounded-2xl border-4 border-[#E85D4D]/20 shadow-2xl overflow-hidden relative flex items-center justify-center"
+                style={{
+                  backgroundImage: `
+                    repeating-conic-gradient(
+                      #f3e8df 0% 25%,
+                      #e8ddd4 0% 50%
+                    )
+                  `,
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 20px 20px'
+                }}
+              >
+                <div className="text-center">
+                  <div className="text-6xl mb-4">📱</div>
+                  <p className="text-[#2D2D2D] font-semibold text-lg">App Mockup</p>
+                  <p className="text-gray-600 text-sm">Coming Soon</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

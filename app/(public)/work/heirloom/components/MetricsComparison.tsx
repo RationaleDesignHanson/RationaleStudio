@@ -12,13 +12,13 @@ export default function MetricsComparison() {
   ]
 
   const compatibilityData = [
-    { name: 'Heirloom', value: 500, color: '#E85D4D', label: '500+' },
+    { name: 'Heirloom', value: 500, color: '#E85D4D', label: '500+ sites' },
     { name: 'Competitors', value: 50, color: '#D1D5DB', label: '~50' },
   ]
 
   const pricingModelScore = [
-    { name: 'One-Time ($4.99)', value: 85, color: '#E85D4D', label: '85%' },
-    { name: 'Subscription ($3/mo)', value: 45, color: '#D1D5DB', label: '45%' },
+    { name: 'One-Time\n($4.99)', value: 85, color: '#E85D4D', label: '85%' },
+    { name: 'Subscription\n($3/mo)', value: 45, color: '#D1D5DB', label: '45%' },
   ]
 
   return (
@@ -34,18 +34,18 @@ export default function MetricsComparison() {
 
           <div className="grid gap-8 md:grid-cols-3">
             {/* Timeline Comparison */}
-            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer overflow-hidden">
               <h3 className="mb-6 text-xl font-bold text-[#2D2D2D]">Development Speed</h3>
 
-              <ResponsiveContainer width="100%" height={160}>
-                <BarChart data={timelineData} layout="horizontal" margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-                  <XAxis type="number" domain={[0, 16]} hide />
-                  <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 12, fill: '#6B7280' }} />
-                  <Bar dataKey="value" radius={[0, 8, 8, 0]}>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={timelineData} margin={{ top: 30, right: 20, bottom: 30, left: 40 }}>
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6B7280' }} angle={0} textAnchor="middle" />
+                  <YAxis domain={[0, 16]} hide />
+                  <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                     {timelineData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="right" style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -59,18 +59,18 @@ export default function MetricsComparison() {
             </div>
 
             {/* Compatibility Comparison */}
-            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer overflow-hidden">
               <h3 className="mb-6 text-xl font-bold text-[#2D2D2D]">Recipe Compatibility</h3>
 
-              <ResponsiveContainer width="100%" height={160}>
-                <BarChart data={compatibilityData} layout="horizontal" margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-                  <XAxis type="number" domain={[0, 550]} hide />
-                  <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 12, fill: '#6B7280' }} />
-                  <Bar dataKey="value" radius={[0, 8, 8, 0]}>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={compatibilityData} margin={{ top: 30, right: 20, bottom: 30, left: 40 }}>
+                  <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6B7280' }} angle={0} textAnchor="middle" />
+                  <YAxis domain={[0, 550]} hide />
+                  <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                     {compatibilityData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="right" style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -84,18 +84,18 @@ export default function MetricsComparison() {
             </div>
 
             {/* User Preference Comparison */}
-            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer">
+            <div className="rounded-2xl border-2 border-gray-200 bg-white p-8 transition-all duration-300 hover:border-[#E85D4D] hover:shadow-xl hover:-translate-y-1 cursor-pointer overflow-hidden">
               <h3 className="mb-6 text-xl font-bold text-[#2D2D2D]">Pricing Preference</h3>
 
-              <ResponsiveContainer width="100%" height={160}>
-                <BarChart data={pricingModelScore} layout="horizontal" margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
-                  <XAxis type="number" domain={[0, 100]} hide />
-                  <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 11, fill: '#6B7280' }} />
-                  <Bar dataKey="value" radius={[0, 8, 8, 0]}>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={pricingModelScore} margin={{ top: 30, right: 20, bottom: 40, left: 40 }}>
+                  <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#6B7280' }} angle={0} textAnchor="middle" height={50} />
+                  <YAxis domain={[0, 100]} hide />
+                  <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                     {pricingModelScore.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="right" style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>

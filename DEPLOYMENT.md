@@ -269,6 +269,114 @@ Target scores:
 - [ ] HTTPS enforced (Netlify handles this)
 - [ ] No sensitive data in console logs
 - [ ] CORS configured properly
+- [ ] Firebase Console domain restrictions enabled (see Security Best Practices below)
+- [ ] All API keys have appropriate scopes/permissions
+
+---
+
+## Security Best Practices
+
+### API Key Management
+
+**Firebase Client API Keys:**
+- Firebase client API keys (`NEXT_PUBLIC_FIREBASE_API_KEY`) are designed to be public
+- However, you MUST enable domain restrictions to prevent unauthorized use:
+  1. Go to [Google Cloud Console > APIs & Services > Credentials](https://console.cloud.google.com/apis/credentials)
+  2. Find your Firebase API key (Browser key)
+  3. Under "Application restrictions", select "HTTP referrers"
+  4. Add your production domain(s): `https://rationale.work/*` and `https://*.netlify.app/*`
+  5. Save changes
+
+**Service Account Keys:**
+- NEVER commit `serviceAccountKey.json` to git (✅ already in .gitignore)
+- Store in Netlify as environment variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY)
+- Rotate service account keys quarterly as a best practice
+
+**Third-Party API Keys:**
+The following keys should be rotated if you suspect any exposure:
+- GitHub Personal Access Token (`GITHUB_TOKEN`)
+- Figma Access Token (`FIGMA_ACCESS_TOKEN`)
+- Notion API Key (`NOTION_API_KEY`)
+- Linear API Key (`LINEAR_API_KEY`)
+- Resend API Key (`RESEND_API_KEY`)
+- Pitch Token Secret (`PITCH_TOKEN_SECRET`)
+
+### Key Rotation Schedule
+
+**Recommended rotation frequency:**
+- Critical keys (database, admin): Every 90 days
+- Service tokens (GitHub, Figma, etc.): Every 180 days
+- Pitch token secret: Every 90 days or after any suspected exposure
+
+**How to rotate Firebase service account:**
+1. Go to Firebase Console > Project Settings > Service Accounts
+2. Click "Generate new private key"
+3. Update Netlify environment variables with new credentials
+4. Redeploy the site
+5. Delete the old key from Firebase Console
+
+**How to rotate Pitch token secret:**
+```bash
+# Generate new secret
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# Update in Netlify
+netlify env:set PITCH_TOKEN_SECRET "new_secret_here"
+
+# Redeploy
+netlify deploy --prod
+```
+
+### Pre-Commit Security Checks
+
+To prevent accidentally committing secrets, consider installing git hooks:
+
+```bash
+# Install detect-secrets
+pip install detect-secrets
+
+# Scan repository
+detect-secrets scan > .secrets.baseline
+
+# Add pre-commit hook (optional)
+cat > .git/hooks/pre-commit << 'EOF'
+#!/bin/bash
+detect-secrets-hook --baseline .secrets.baseline $(git diff --cached --name-only)
+EOF
+chmod +x .git/hooks/pre-commit
+```
+
+### Firebase App Check (Recommended)
+
+For additional security, enable Firebase App Check:
+1. Go to Firebase Console > App Check
+2. Register your web app
+3. Select reCAPTCHA v3 or reCAPTCHA Enterprise
+4. Add the App Check SDK to your app
+5. This prevents unauthorized access to Firebase services even if API key is exposed
+
+### Environment File Safety
+
+**What's protected:**
+- ✅ `.env.local` - Contains all real credentials (in .gitignore)
+- ✅ `serviceAccountKey.json` - Firebase admin key (in .gitignore)
+- ✅ `public/prototypes/fubo/backend/.env` - Gemini API key (in .gitignore)
+
+**What's safe to commit:**
+- ✅ `.env.example` - Template with placeholder values only
+- ✅ `DEPLOYMENT.md` - Documentation with example patterns (no real keys)
+
+**Additional patterns now protected in .gitignore:**
+```
+**/credentials.json
+**/serviceAccount*.json
+secrets.*
+*secret*.json
+*.pem
+*.key
+*.p12
+*.pfx
+```
 
 ---
 

@@ -1514,3 +1514,8 @@ a, button, input, select, textarea, label {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+
+/* Handwriting font for Heirloom demos */
+.font-handwriting {
+  font-family: var(--font-caveat), cursive;
+}

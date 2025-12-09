@@ -13,17 +13,7 @@ export default function ProjectOverview() {
           {/* Description */}
           <div className="prose prose-lg mb-16 max-w-none text-gray-700">
             <p>
-              Heirloom reimagines recipe management for families who want to preserve their
-              culinary heritage. Unlike traditional recipe apps that treat recipes as
-              spreadsheet data, Heirloom enables users to personalize recipe cards with
-              vintage backgrounds, hand-drawn stickers, and handwritten notes—all of which
-              are preserved when shared.
-            </p>
-            <p>
-              The app was built from the ground up as a native iOS experience, leveraging
-              SwiftUI, SwiftData, and CloudKit for seamless sync and sharing. Key features
-              include smart shopping lists with iOS Reminders integration, OCR-powered
-              cookbook scanning, and dinner party mode with automatic cooking timelines.
+              Heirloom reimagines recipe management for families who want to preserve their culinary heritage. Unlike traditional recipe apps that treat recipes as spreadsheet data, Heirloom enables users to personalize recipe cards with vintage backgrounds, hand-drawn stickers, and handwritten notes—all preserved when shared. Built as a native iOS experience with SwiftUI, SwiftData, and CloudKit, it includes smart shopping lists with iOS Reminders integration, recipe import from 500+ sites, and dinner party mode with automatic cooking timelines.
             </p>
           </div>
 
