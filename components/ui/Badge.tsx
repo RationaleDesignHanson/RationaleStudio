@@ -21,17 +21,19 @@ import {
   CATEGORY_COLORS,
   PRIORITY_COLORS,
   CHECKPOINT_TYPE_COLORS,
+  PROJECT_STATUS_COLORS,
   type StatusKey,
   type CategoryKey,
   type PriorityKey,
   type CheckpointTypeKey,
+  type ProjectStatusKey,
 } from '@/lib/design-tokens/semantic-colors';
 
 export interface BadgeProps {
   /**
    * Badge variant determines the color mapping system
    */
-  variant: 'status' | 'category' | 'priority' | 'checkpoint';
+  variant: 'status' | 'category' | 'priority' | 'checkpoint' | 'project-status';
 
   /**
    * The badge value (determines specific color within variant)
@@ -73,6 +75,11 @@ function getBadgeColors(variant: BadgeProps['variant'], value: string): string {
       const checkpointColors = CHECKPOINT_TYPE_COLORS[value as CheckpointTypeKey];
       if (!checkpointColors) return CHECKPOINT_TYPE_COLORS['design'].bg + ' ' + CHECKPOINT_TYPE_COLORS['design'].text + ' ' + CHECKPOINT_TYPE_COLORS['design'].border;
       return `${checkpointColors.bg} ${checkpointColors.text} ${checkpointColors.border}`;
+
+    case 'project-status':
+      const projectColors = PROJECT_STATUS_COLORS[value as ProjectStatusKey];
+      if (!projectColors) return PROJECT_STATUS_COLORS['building'].bg + ' ' + PROJECT_STATUS_COLORS['building'].text + ' ' + PROJECT_STATUS_COLORS['building'].border;
+      return `${projectColors.bg} ${projectColors.text} ${projectColors.border}`;
 
     default:
       return 'bg-gray-100 text-gray-700 border-gray-200';
@@ -166,6 +173,21 @@ export function CheckpointBadge({
   className?: string;
 }) {
   return <Badge variant="checkpoint" value={type} size={size} className={className} />;
+}
+
+export function ProjectStatusBadge({
+  status,
+  size,
+  className,
+}: {
+  status: ProjectStatusKey;
+  size?: BadgeProps['size'];
+  className?: string;
+}) {
+  const label = PROJECT_STATUS_COLORS[status]?.label || status;
+  return <Badge variant="project-status" value={status} size={size} className={className}>
+    {label}
+  </Badge>;
 }
 
 export default Badge;

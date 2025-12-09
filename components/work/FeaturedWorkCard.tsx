@@ -3,12 +3,16 @@
  *
  * Individual project card for featured work section
  * Displays project info, metrics, tags, and status badge
+ *
+ * Phase 4.2: Migrated to use Badge component from design system
  */
 
 import Link from 'next/link';
 import { ProjectStatus } from '@/lib/types/work';
 import { Lock } from 'lucide-react';
 import { GlassCard } from '@/components/visual';
+import { ProjectStatusBadge } from '@/components/ui/Badge';
+import type { ProjectStatusKey } from '@/lib/design-tokens/semantic-colors';
 
 interface FeaturedWorkCardProps {
   title: string;
@@ -20,13 +24,6 @@ interface FeaturedWorkCardProps {
   isProtected?: boolean;
 }
 
-const statusConfig = {
-  live: { label: 'Live', color: 'bg-green-500/20 text-green-600 border-green-500/30' },
-  beta: { label: 'Beta', color: 'bg-blue-500/20 text-blue-600 border-blue-500/30' },
-  delivered: { label: 'Delivered', color: 'bg-accent/20 text-accent border-accent/30' },
-  building: { label: 'Building', color: 'bg-orange-500/20 text-orange-600 border-orange-500/30' }
-};
-
 export function FeaturedWorkCard({
   title,
   subtitle,
@@ -36,7 +33,6 @@ export function FeaturedWorkCard({
   status,
   isProtected = false
 }: FeaturedWorkCardProps) {
-  const statusStyle = statusConfig[status];
 
   return (
     <Link
@@ -46,9 +42,7 @@ export function FeaturedWorkCard({
       <GlassCard className="h-full p-6 hover:border-accent/50 transition-all duration-300" borderRadius="0.75rem">
         {/* Status Badge & Protected Icon */}
         <div className="flex items-center justify-between mb-4">
-          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${statusStyle.color}`}>
-            {statusStyle.label}
-          </span>
+          <ProjectStatusBadge status={status as ProjectStatusKey} size="sm" />
           {isProtected && (
             <Lock className="w-4 h-4 text-muted" />
           )}

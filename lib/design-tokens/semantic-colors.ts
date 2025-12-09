@@ -200,12 +200,47 @@ export const CHECKPOINT_TYPE_COLORS = {
 } as const;
 
 /**
+ * Project Work Status Colors
+ * Used for: Project work cards showing live/beta/delivered/building status
+ *
+ * Previously defined in:
+ * - components/work/FeaturedWorkCard.tsx
+ */
+export const PROJECT_STATUS_COLORS = {
+  'live': {
+    bg: 'bg-green-500/20',
+    text: 'text-green-600',
+    border: 'border-green-500/30',
+    label: 'Live',
+  },
+  'beta': {
+    bg: 'bg-blue-500/20',
+    text: 'text-blue-600',
+    border: 'border-blue-500/30',
+    label: 'Beta',
+  },
+  'delivered': {
+    bg: 'bg-accent/20',
+    text: 'text-accent',
+    border: 'border-accent/30',
+    label: 'Delivered',
+  },
+  'building': {
+    bg: 'bg-orange-500/20',
+    text: 'text-orange-600',
+    border: 'border-orange-500/30',
+    label: 'Building',
+  },
+} as const;
+
+/**
  * Helper Types
  */
 export type StatusKey = keyof typeof STATUS_COLORS;
 export type CategoryKey = keyof typeof CATEGORY_COLORS;
 export type PriorityKey = keyof typeof PRIORITY_COLORS;
 export type CheckpointTypeKey = keyof typeof CHECKPOINT_TYPE_COLORS;
+export type ProjectStatusKey = keyof typeof PROJECT_STATUS_COLORS;
 
 /**
  * Helper Functions
@@ -248,5 +283,15 @@ export function getPriorityColors(priority: PriorityKey): string {
 export function getCheckpointTypeColors(type: CheckpointTypeKey): string {
   const colors = CHECKPOINT_TYPE_COLORS[type];
   if (!colors) return CHECKPOINT_TYPE_COLORS['design'].bg + ' ' + CHECKPOINT_TYPE_COLORS['design'].text;
+  return `${colors.bg} ${colors.text} ${colors.border}`;
+}
+
+/**
+ * Get project status color classes
+ * Returns combined className string for project status badges
+ */
+export function getProjectStatusColors(status: ProjectStatusKey): string {
+  const colors = PROJECT_STATUS_COLORS[status];
+  if (!colors) return PROJECT_STATUS_COLORS['building'].bg + ' ' + PROJECT_STATUS_COLORS['building'].text;
   return `${colors.bg} ${colors.text} ${colors.border}`;
 }
