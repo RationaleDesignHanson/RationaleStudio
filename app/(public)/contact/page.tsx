@@ -282,87 +282,99 @@ export default function ContactPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-xs sm:text-sm font-mono text-[#FFD700] tracking-widest mb-2">
-              OPTIONAL: PRE-QUALIFY
+              THREE OPTIONS
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Which Engagement Fits Best?
             </h2>
             <p className="text-base text-gray-400 max-w-2xl mx-auto">
-              Use these pre-filled email templates to quickly reach out with the right context
+              Choose the timeline that matches where you are today
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          {/* Mobile: Stack vertically */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Clarity Kit */}
             <a
               href="mailto:hanson@rationale.work?subject=Clarity%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Clarity%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
-              className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
+              className="block p-6 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group h-full"
             >
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <p className="text-xs font-mono text-[#FFD700]">2 WEEKS</p>
-                    <p className="text-base font-semibold text-white">I have an idea I want to validate</p>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-3">
+              <div className="flex flex-col h-full">
+                <div className="mb-4">
+                  <p className="text-xs font-mono text-[#FFD700] mb-3">2 WEEKS</p>
+                  <h3 className="text-lg font-bold text-white mb-3">Clarity Kit</h3>
+                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">
                     Get technical plan, market positioning, and go/no-go recommendation
                   </p>
-                  <p className="text-xs text-gray-500">
+                </div>
+                <div className="mt-auto">
+                  <p className="text-xs text-gray-500 mb-3">
                     Investment: ~2-3 weeks of senior engineering time
                   </p>
+                  <div className="flex items-center gap-2 text-[#FFD700] group-hover:text-[#FFE34D] transition-colors">
+                    <span className="text-sm font-semibold">Learn More</span>
+                    <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
-                <span className="text-[#FFD700] text-xl group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
 
             {/* Prototype Kit */}
             <a
               href="mailto:hanson@rationale.work?subject=Prototype%20Kit%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Kit%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
-              className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
+              className="block p-6 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group h-full"
             >
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <p className="text-xs font-mono text-[#FFD700]">4-6 WEEKS</p>
-                    <p className="text-base font-semibold text-white">I need a working prototype to test</p>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-3">
+              <div className="flex flex-col h-full">
+                <div className="mb-4">
+                  <p className="text-xs font-mono text-[#FFD700] mb-3">4-6 WEEKS</p>
+                  <h3 className="text-lg font-bold text-white mb-3">Prototype Kit</h3>
+                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">
                     Get interactive software to validate with real users before full build
                   </p>
-                  <p className="text-xs text-gray-500">
+                </div>
+                <div className="mt-auto">
+                  <p className="text-xs text-gray-500 mb-3">
                     Investment: ~Mid-level full-stack dev for 2 months
                   </p>
+                  <div className="flex items-center gap-2 text-[#FFD700] group-hover:text-[#FFE34D] transition-colors">
+                    <span className="text-sm font-semibold">Learn More</span>
+                    <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
-                <span className="text-[#FFD700] text-xl group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
 
             {/* Build Ship Run */}
             <a
               href="mailto:hanson@rationale.work?subject=Build%20Ship%20Run%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Build%20Ship%20Run%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!"
-              className="block p-5 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group"
+              className="block p-6 bg-gray-800/30 border border-gray-700 hover:border-[#FFD700] rounded-lg transition-all group h-full"
             >
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <p className="text-xs font-mono text-[#FFD700]">6-18 MONTHS</p>
-                    <p className="text-base font-semibold text-white">I'm ready to build and ship a full product</p>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-3">
+              <div className="flex flex-col h-full">
+                <div className="mb-4">
+                  <p className="text-xs font-mono text-[#FFD700] mb-3">6-18 MONTHS</p>
+                  <h3 className="text-lg font-bold text-white mb-3">Build Ship Run</h3>
+                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">
                     Get full product development from concept to App Store/launch
                   </p>
-                  <p className="text-xs text-gray-500">
+                </div>
+                <div className="mt-auto">
+                  <p className="text-xs text-gray-500 mb-3">
                     Investment: ~Your first technical co-founder
                   </p>
+                  <div className="flex items-center gap-2 text-[#FFD700] group-hover:text-[#FFE34D] transition-colors">
+                    <span className="text-sm font-semibold">Learn More</span>
+                    <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
-                <span className="text-[#FFD700] text-xl group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
+          </div>
 
-            {/* Not Sure */}
+          {/* Not Sure - Full Width Below */}
+          <div className="mt-6 max-w-4xl mx-auto">
             <a
               href="mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
               className="block p-5 bg-gray-900/50 border border-gray-600 hover:border-[#FFD700] rounded-lg transition-all group"
@@ -372,14 +384,10 @@ export default function ContactPage() {
                   <p className="text-sm font-semibold text-white mb-1">Not sure which fits?</p>
                   <p className="text-xs text-gray-400">Let's talk — we'll help you figure out the right approach</p>
                 </div>
-                <span className="text-[#FFD700] text-xl group-hover:translate-x-1 transition-transform">→</span>
+                <span className="text-[#FFD700] text-lg group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
           </div>
-
-          <p className="text-center text-xs text-gray-500 mt-8">
-            Each option opens a pre-filled email template
-          </p>
         </div>
       </section>
     </main>
