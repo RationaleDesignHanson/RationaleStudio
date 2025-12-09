@@ -8,9 +8,26 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460] py-24 md:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left: Text Content */}
-          <div className="space-y-8">
+        <div className="grid items-center gap-6 lg:gap-8 lg:grid-cols-2">
+          {/* Left: Device Mockup */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative z-10">
+              {/* App Hero Image */}
+              <div className="aspect-square mx-auto max-w-md rounded-2xl overflow-hidden relative shadow-2xl">
+                <Image
+                  src="/heirloom/app-mockup-hero.png"
+                  alt="Heirloom App - Recipes Worth Passing Down"
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover rounded-2xl"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Text Content */}
+          <div className="space-y-8 order-1 lg:order-2">
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-2">
@@ -74,32 +91,6 @@ export default function HeroSection() {
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-[#8B9F8D]"></span>
               </span>
               In TestFlight Beta
-            </div>
-          </div>
-
-          {/* Right: Device Mockup */}
-          <div className="relative">
-            <div className="relative z-10">
-              {/* Checkerboard placeholder for mockup */}
-              <div
-                className="aspect-[3/4] mx-auto max-w-md rounded-2xl border-4 border-[#E85D4D]/20 shadow-2xl overflow-hidden relative flex items-center justify-center"
-                style={{
-                  backgroundImage: `
-                    repeating-conic-gradient(
-                      #f3e8df 0% 25%,
-                      #e8ddd4 0% 50%
-                    )
-                  `,
-                  backgroundSize: '40px 40px',
-                  backgroundPosition: '0 0, 20px 20px'
-                }}
-              >
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📱</div>
-                  <p className="text-[#2D2D2D] font-semibold text-lg">App Mockup</p>
-                  <p className="text-gray-600 text-sm">Coming Soon</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

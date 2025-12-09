@@ -10,9 +10,26 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-24 md:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left: Text Content */}
-          <div className="space-y-8">
+        <div className="grid items-center gap-6 lg:gap-8 lg:grid-cols-2">
+          {/* Left: Device Mockup or Visual */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative z-10">
+              {/* App Hero Image */}
+              <div className="aspect-square mx-auto max-w-md rounded-2xl overflow-hidden relative">
+                <Image
+                  src="/zero/app-mockup-hero.png"
+                  alt="Zero App - AI Email Intelligence"
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover rounded-2xl"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Text Content */}
+          <div className="space-y-8 order-1 lg:order-2">
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
               <div className="flex items-center gap-2">
@@ -72,23 +89,6 @@ export default function HeroSection() {
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-[#4ADE80]"></span>
               </span>
               In TestFlight Beta
-            </div>
-          </div>
-
-          {/* Right: Device Mockup or Visual */}
-          <div className="relative">
-            <div className="relative z-10">
-              {/* App Hero Image */}
-              <div className="aspect-square mx-auto max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
-                <Image
-                  src="/zero/app-mockup-hero.png"
-                  alt="Zero App - AI Email Intelligence"
-                  width={800}
-                  height={800}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
             </div>
           </div>
         </div>

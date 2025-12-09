@@ -93,14 +93,14 @@ export default function MethodologyOriginsPage() {
                     <div className="absolute left-[15%] -top-8">
                       <div className="flex flex-col items-center">
                         <div className="w-3 h-3 bg-red-500 rounded-full mb-1"></div>
-                        <p className="text-xs text-red-400 whitespace-nowrap">Vision videos</p>
+                        <p className="text-xs text-red-400 text-center max-w-[80px] break-words leading-tight">Vision videos</p>
                       </div>
                     </div>
                     {/* Target marker (right) */}
                     <div className="absolute right-[15%] -top-8">
                       <div className="flex flex-col items-center">
                         <div className="w-3 h-3 bg-[#00FF94] rounded-full mb-1"></div>
-                        <p className="text-xs text-[#00FF94] whitespace-nowrap">Where you want to be</p>
+                        <p className="text-xs text-[#00FF94] text-center max-w-[100px] break-words leading-tight">Where you want to be</p>
                       </div>
                     </div>
                   </div>
