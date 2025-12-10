@@ -152,7 +152,7 @@ export default function WorkPage() {
 
                     {/* Description */}
                     <p className="text-gray-300 leading-relaxed">
-                      Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence.
+                      Modern recipe box where grandma's handwritten chicken soup sits alongside that NYT cookie you bookmarked. Style each recipe as a personal artifact, share exactly as you created it, and build the collection worth passing down.
                     </p>
 
                     {/* Metrics Grid */}
