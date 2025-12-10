@@ -195,8 +195,8 @@ export default function SiteAdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-3 sm:p-6">
-      <div className="w-full max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-6 w-full">
+      <div className="w-full max-w-7xl mx-auto px-0">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Site Admin Dashboard</h1>
