@@ -34,8 +34,8 @@ export default function ProofDiversityInfographic() {
     {
       title: 'Case Study 020',
       subtitle: 'Complex Multi-Module System',
-      timeline: '40+ demos',
-      timelineLabel: 'Built and tested',
+      timeline: '4 major modules',
+      timelineLabel: 'Iterative validation',
       color: '#FFD700',
       highlights: [
         '4 integrated modules',

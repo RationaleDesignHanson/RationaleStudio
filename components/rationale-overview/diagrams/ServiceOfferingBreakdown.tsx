@@ -178,52 +178,12 @@ export default function ServiceOfferingBreakdown() {
         </div>
       </div>
 
-      {/* Value Comparison */}
+      {/* Value Proposition */}
       <div className="p-6 bg-gray-800/50 border-2 rounded-lg mb-6" style={{ borderColor: selectedTierData.color }}>
-        <div className="text-sm font-semibold text-white mb-6">Value: DIY vs Rationale</div>
-
-        <div className="space-y-6">
-          {/* DIY Approach */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-xs text-gray-400">DIY Approach (hiring team + trial & error)</div>
-              <div className="text-sm font-bold text-[#FF4444]">High Risk</div>
-            </div>
-            <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
-              <div className="h-full bg-[#FF4444]" style={{ width: '100%' }} />
-            </div>
-            <div className="mt-2 text-xs text-gray-500">
-              Includes: hiring delays, learning curve, architectural pivots, sunk cost waste
-            </div>
-          </div>
-
-          {/* Rationale Partnership */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-xs text-gray-400">Rationale Partnership</div>
-              <div className="text-sm font-bold" style={{ color: selectedTierData.color }}>Validated</div>
-            </div>
-            <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
-              <div
-                className="h-full transition-all duration-500"
-                style={{
-                  width: `${(selectedTierData.investment / selectedTierData.diyCost) * 100}%`,
-                  backgroundColor: selectedTierData.color
-                }}
-              />
-            </div>
-            <div className="mt-2 text-xs text-gray-500">
-              Includes: validation, development, strategy—no waste, no surprises
-            </div>
-          </div>
-        </div>
-
-        {/* Outcome */}
-        <div className="mt-6 pt-6 border-t border-gray-700">
-          <div>
-            <div className="text-xs text-gray-500 mb-2">What You Get</div>
-            <div className="text-base font-semibold text-white">{selectedTierData.outcome}</div>
-          </div>
+        <div className="text-sm font-semibold text-white mb-4">What You Get</div>
+        <div className="text-base text-gray-300 mb-4">{selectedTierData.outcome}</div>
+        <div className="text-xs text-gray-400">
+          Validated approach with clear deliverables—no waste, no surprises
         </div>
       </div>
 

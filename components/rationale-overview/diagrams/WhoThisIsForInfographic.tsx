@@ -58,7 +58,9 @@ export default function WhoThisIsForInfographic() {
                   className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${item.color}20`, borderColor: item.color, borderWidth: '2px' }}
                 >
-                  <Icon className="w-6 h-6" style={{ color: item.color }} />
+                  <span style={{ color: item.color }}>
+                    <Icon className="w-6 h-6" />
+                  </span>
                 </div>
 
                 {/* Content */}

@@ -82,7 +82,7 @@ export default function DecisionPressureDiagram() {
           <div className="text-xs font-mono text-gray-400 uppercase tracking-wide">Decision Point</div>
           <div className="text-xs text-gray-500">Click a week to explore</div>
         </div>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {decisionPoints.map((point) => {
             const isSelected = point.week === selectedWeek;
             const pressureColor =
