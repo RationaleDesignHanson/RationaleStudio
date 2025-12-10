@@ -383,7 +383,7 @@ export default function SiteAdminPage() {
                         type="checkbox"
                         checked={selectedPages.size === filteredPages.length && filteredPages.length > 0}
                         onChange={(e) => e.target.checked ? selectAll() : clearSelection()}
-                        className="rounded border-gray-300"
+                        className="rounded border-gray-300 w-3 h-3 sm:w-4 sm:h-4"
                       />
                     </th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Route</th>
@@ -404,7 +404,7 @@ export default function SiteAdminPage() {
                             type="checkbox"
                             checked={selectedPages.has(page.filePath)}
                             onChange={() => togglePage(page.filePath)}
-                            className="rounded border-gray-300"
+                            className="rounded border-gray-300 w-3 h-3 sm:w-4 sm:h-4"
                           />
                         </td>
                         <td className="px-3 sm:px-6 py-4">
