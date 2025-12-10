@@ -14,6 +14,7 @@ import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
 import { Lock, ArrowRight } from 'lucide-react';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
+import { ProjectStatusBadge } from '@/components/ui/Badge';
 
 export default function WorkPage() {
   const projects = getAllProjects();
@@ -80,9 +81,7 @@ export default function WorkPage() {
 
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
-                        ● LIVE
-                      </span>
+                      <ProjectStatusBadge status="live" size="md" className="font-bold" />
                       <span className="text-xs text-gray-400 font-mono">STATUS: PRODUCTION</span>
                     </div>
 
@@ -137,9 +136,7 @@ export default function WorkPage() {
 
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
-                        ● BUILDING
-                      </span>
+                      <ProjectStatusBadge status="building" size="md" className="font-bold" />
                       <span className="text-xs text-gray-400 font-mono">STATUS: WEEK 3/5</span>
                     </div>
 
@@ -210,13 +207,7 @@ export default function WorkPage() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
-                          project.status === 'live' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
-                          project.status === 'building' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' :
-                          'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                        }`}>
-                          {project.status.toUpperCase()}
-                        </span>
+                        <ProjectStatusBadge status={project.status as any} size="md" className="font-bold" />
                       </div>
 
                       <p className="text-gray-300 text-sm">{project.description}</p>
@@ -319,23 +310,13 @@ export default function WorkPage() {
                                 PASSWORD PROTECTED
                               </span>
                             </div>
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
-                              project.status === 'delivered' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
-                              'bg-gray-500/20 text-gray-400 border border-gray-500/30'
-                            }`}>
-                              {project.status.toUpperCase()}
-                            </span>
+                            <ProjectStatusBadge status={project.status as any} size="md" className="font-bold" />
                           </div>
                         )}
 
                         {!isConfidential && (
                           <div className="flex items-center justify-between">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
-                              project.status === 'delivered' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
-                              'bg-gray-500/20 text-gray-400 border border-gray-500/30'
-                            }`}>
-                              {project.status.toUpperCase()}
-                            </span>
+                            <ProjectStatusBadge status={project.status as any} size="md" className="font-bold" />
                           </div>
                         )}
 
