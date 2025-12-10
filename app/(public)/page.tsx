@@ -35,7 +35,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -206,7 +206,7 @@ export default function HomePage() {
         </section>
 
         {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -279,7 +279,7 @@ export default function HomePage() {
         </section>
 
         {/* 4. HOW WE SHIP FASTER - Kits Methodology */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -319,7 +319,7 @@ export default function HomePage() {
         </section>
 
         {/* 5. FIT FILTER */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
