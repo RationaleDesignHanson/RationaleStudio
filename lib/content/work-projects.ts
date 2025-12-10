@@ -76,6 +76,24 @@ export const workProjects: WorkProject[] = [
     password: '123456',
     featured: true,
     description: 'Sports and entertainment modernization platform with 4 integrated modules, wearables, and spatial computing.'
+  },
+  {
+    id: 'case-study-030',
+    title: 'Case Study 030',
+    subtitle: 'Live Sports Streaming Platform',
+    slug: 'case-study-030',
+    status: 'live',
+    category: 'consumer',
+    metrics: [
+      { label: 'Platform', value: 'Web & Mobile' },
+      { label: 'Status', value: 'Live' },
+      { label: 'Type', value: 'Partnership' }
+    ],
+    tags: ['Sports Tech', 'Streaming', 'Live'],
+    isProtected: true,
+    password: '123456',
+    featured: true,
+    description: 'Live sports streaming platform partnership delivering enhanced user experiences and real-time engagement features.'
   }
 ];
 

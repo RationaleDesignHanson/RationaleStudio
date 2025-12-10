@@ -45,7 +45,7 @@ export default function HeirloomCaseStudy() {
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-5xl">
             <h3 className="mb-8 text-center text-2xl font-bold text-[#2D2D2D]">Explore More</h3>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Link
                 href="/work/heirloom/design-system"
                 className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
@@ -90,6 +90,23 @@ export default function HeirloomCaseStudy() {
                   </h4>
                   <p className="text-sm text-gray-600 leading-snug">
                     Development process, user journey, metrics, and lessons learned
+                  </p>
+                </div>
+                <svg className="h-5 w-5 flex-shrink-0 ml-4 text-[#E85D4D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+
+              <Link
+                href="/work/heirloom/pitch"
+                className="group flex items-center justify-between rounded-lg border-2 border-[#F4A460] bg-gradient-to-br from-[#FBF8F3] to-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
+              >
+                <div>
+                  <h4 className="text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
+                    Investment Pitch
+                  </h4>
+                  <p className="text-sm text-gray-600 leading-snug">
+                    Interactive pitch deck with market analysis, technical diagrams, and financials
                   </p>
                 </div>
                 <svg className="h-5 w-5 flex-shrink-0 ml-4 text-[#E85D4D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
