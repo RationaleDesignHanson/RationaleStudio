@@ -76,18 +76,12 @@ export function PasswordGate({
 
   // Show password form
   return (
-    <div className={`min-h-[60vh] flex items-center justify-center ${className}`}>
-      <BaseCard
-        variant="default"
-        paddingSize="lg"
-        borderAccent="border-border"
-        className="max-w-md w-full shadow-lg"
-        ariaLabel="Password protected content"
-      >
+    <div className={`min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-gray-900 via-black to-gray-900 ${className}`}>
+      <div className="max-w-md w-full p-8 bg-gray-900/90 border border-gray-700 rounded-lg shadow-2xl">
         <div className="text-center mb-6 sm:mb-8">
-          <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
             <svg
-              className="w-8 h-8 text-accent"
+              className="w-8 h-8 text-purple-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -100,15 +94,15 @@ export function PasswordGate({
               />
             </svg>
           </div>
-          <ResponsiveText variant="h3" className="mb-2">
+          <h2 className="text-2xl font-bold text-white mb-2">
             {title}
-          </ResponsiveText>
-          <p className="text-sm sm:text-base text-muted">{description}</p>
+          </h2>
+          <p className="text-sm sm:text-base text-gray-400">{description}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
               Password
             </label>
             <input
@@ -116,34 +110,33 @@ export function PasswordGate({
               id="password"
               value={inputPassword}
               onChange={(e) => setInputPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               placeholder="Enter password"
               autoFocus
             />
             {error && (
-              <p className="mt-2 text-sm text-red-600">{error}</p>
+              <p className="mt-2 text-sm text-red-400">{error}</p>
             )}
           </div>
 
-          <ButtonPrimary
+          <button
             type="submit"
-            size="lg"
-            fullWidth
             disabled={!inputPassword}
+            className="w-full px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg"
           >
             Access Content
-          </ButtonPrimary>
+          </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-border text-center">
-          <p className="text-xs sm:text-sm text-muted">
+        <div className="mt-6 pt-6 border-t border-gray-700 text-center">
+          <p className="text-xs sm:text-sm text-gray-400">
             Need access?{' '}
-            <a href="/contact" className="text-accent hover:underline">
+            <a href="/contact" className="text-purple-400 hover:text-purple-300 hover:underline">
               Contact us
             </a>
           </p>
         </div>
-      </BaseCard>
+      </div>
     </div>
   );
 }
