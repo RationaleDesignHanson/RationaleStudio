@@ -16,7 +16,7 @@ import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 
 // Import Zero diagram components
-import AIIntelligenceSystemDiagram from '@/components/zero/diagrams/AIIntelligenceSystemDiagram';
+import AIIntelligenceSystemDiagram from '@/components/zero/diagrams/AIIntelligenceSystemDiagramResponsive';
 import InboxJourneyDiagram from '@/components/zero/diagrams/InboxJourneyDiagram';
 import MicroservicesArchitectureDiagram from '@/components/zero/diagrams/MicroservicesArchitectureDiagram';
 import SwipeTriageTreeDiagram from '@/components/zero/diagrams/SwipeTriageTreeDiagram';
