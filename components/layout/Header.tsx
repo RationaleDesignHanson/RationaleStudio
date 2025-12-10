@@ -228,7 +228,7 @@ export function Header() {
                     <button
                       onClick={() => !isDisabled && setExpandedMobileDropdown(isExpanded ? null : link.label)}
                       disabled={isDisabled}
-                      className={`w-full flex items-center justify-between px-4 py-3 text-lg font-medium transition-colors ${
+                      className={`w-full flex items-center justify-between px-4 py-4 text-lg font-medium transition-colors min-h-[48px] ${
                         isDisabled
                           ? 'text-gray-600 cursor-not-allowed'
                           : `hover:bg-terminal-gold/10 hover:text-terminal-gold ${isActive(link.href) ? 'text-terminal-gold bg-terminal-gold/10' : 'text-gray-400'}`
@@ -276,7 +276,7 @@ export function Header() {
                               setIsMobileMenuOpen(false);
                               setExpandedMobileDropdown(null);
                             }}
-                            className="block pl-8 pr-4 py-3 text-base text-gray-400 hover:bg-terminal-gold/10 hover:text-terminal-gold transition-colors"
+                            className="block pl-8 pr-4 py-4 text-base text-gray-400 hover:bg-terminal-gold/10 hover:text-terminal-gold transition-colors min-h-[48px] flex items-center"
                           >
                             {dropdownItem.label}
                           </Link>
@@ -292,7 +292,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-3 text-lg font-medium transition-colors hover:bg-terminal-gold/10 hover:text-terminal-gold ${
+                  className={`block px-4 py-4 text-lg font-medium transition-colors hover:bg-terminal-gold/10 hover:text-terminal-gold min-h-[48px] flex items-center ${
                     isActive(link.href) ? 'text-terminal-gold bg-terminal-gold/10' : 'text-gray-400'
                   }`}
                 >
