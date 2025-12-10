@@ -40,18 +40,20 @@ export const metadata: Metadata = {
     default: "Rationale — Product Studio Building AI-Powered Ventures",
     template: "%s — Rationale"
   },
-  description: "Product studio building AI-powered ventures: Zero (email AI), Atlas (CRE intelligence), Amplify (NIL platform). We build our own products and partner with companies for equity + cash.",
+  description: "Product studio building AI-powered ventures: Zero (AI email assistant), Heirloom (recipe management app). We build our own products and partner with companies for equity + cash.",
   keywords: [
     'product studio',
     'AI ventures',
     'email AI',
-    'Zero',
+    'Zero Inbox',
+    'Heirloom',
+    'recipe app',
     'product development',
     'startup studio',
     'venture studio',
     'AI products',
-    'Meta Reality Labs',
     'product expertise',
+    'iOS app development',
   ],
   authors: [{ name: 'Matt Hanson' }],
   creator: 'Rationale',
@@ -67,7 +69,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://rationale.work',
     title: "Rationale — Product Studio Building AI-Powered Ventures",
-    description: "Product studio building AI-powered ventures. We build our own products (Zero, Atlas, Amplify) and partner with companies for equity + cash.",
+    description: "Product studio building AI-powered ventures. We build our own products (Zero, Heirloom) and partner with companies for equity + cash.",
     siteName: 'Rationale',
     images: [
       {
@@ -81,7 +83,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Rationale — Product Studio Building AI-Powered Ventures",
-    description: "Product studio building AI-powered ventures. We build our own products and partner with companies.",
+    description: "Product studio building AI-powered ventures: Zero (AI email assistant), Heirloom (recipe management app).",
     images: ['https://rationale.work/og-image.png'],
   },
   robots: {
