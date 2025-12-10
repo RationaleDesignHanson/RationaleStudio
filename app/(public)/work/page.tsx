@@ -441,6 +441,7 @@ export default function WorkPage() {
             <ButtonSecondary
               href="/partnerships"
               size="lg"
+              className="bg-gray-800 border-gray-700 hover:bg-gray-700 hover:border-terminal-gold text-white"
             >
               View Partnership Models
             </ButtonSecondary>
