@@ -110,18 +110,12 @@ export default function InsightsPage() {
               We're looking for partners and investors to join us in building the next generation of AI-powered products
             </p>
             <div className="flex gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
-              >
+              <ButtonPrimary href="/contact" size="lg">
                 Get in Touch
-              </Link>
-              <Link
-                href="/work"
-                className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors"
-              >
+              </ButtonPrimary>
+              <ButtonPrimary href="/work" size="lg" className="bg-gray-800 hover:bg-gray-700">
                 View Our Work
-              </Link>
+              </ButtonPrimary>
             </div>
           </div>
         </div>

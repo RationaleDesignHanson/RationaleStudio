@@ -153,12 +153,9 @@ export default function PitchPage({ params }: { params: { company: string } }) {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
-                >
+                <ButtonPrimary type="submit" size="lg" fullWidth>
                   Access Pitch
-                </button>
+                </ButtonPrimary>
               </form>
             </div>
           </div>
@@ -193,13 +190,10 @@ export default function PitchPage({ params }: { params: { company: string } }) {
                     </ul>
                   </div>
 
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
-                  >
+                  <ButtonPrimary href="/contact" size="lg" className="inline-flex items-center gap-2">
                     <Mail className="w-5 h-5" />
                     Request New Access
-                  </Link>
+                  </ButtonPrimary>
                 </div>
               </div>
             </div>
@@ -310,13 +304,10 @@ function PitchContent({ companySlug }: { companySlug: string }) {
         <p className="text-gray-400 mb-6">
           Schedule a call to explore how we can work together
         </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
-        >
+        <ButtonPrimary href="/contact" size="lg" className="inline-flex items-center gap-2">
           <Mail className="w-5 h-5" />
           Schedule a Call
-        </Link>
+        </ButtonPrimary>
       </div>
     </div>
   );
