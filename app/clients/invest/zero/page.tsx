@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { OS8Window } from '@/components/visual-test';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function ZeroInvestmentPage() {
   return ( <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white"> {/* Hero */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
@@ -81,10 +82,9 @@ export default function ZeroInvestmentPage() {
             variant="cta"
             animateIn={false}
             className="max-w-3xl"
-          > <div className="space-y-6"> <p className="text-base text-terminal-gold leading-relaxed text-center"> $600K seed round. Live on App Store. Structured beta rollout. Product-market fit validation in progress. Access full seed deck with financials, competitive analysis, and detailed milestones. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4"> <a
-                  href="mailto:matt@rationale.studio?subject=Zero%20Investment%20Inquiry"
-                  className="px-6 py-3 bg-[#FFD700] text-black rounded-lg hover:bg-terminal-gold/90 transition-colors font-medium text-center"
-                > Schedule Discussion </a> <Link
+          > <div className="space-y-6"> <p className="text-base text-terminal-gold leading-relaxed text-center"> $600K seed round. Live on App Store. Structured beta rollout. Product-market fit validation in progress. Access full seed deck with financials, competitive analysis, and detailed milestones. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4"> <ButtonPrimary href="mailto:matt@rationale.studio?subject=Zero%20Investment%20Inquiry" className="hover:/90 text-center">
+              Schedule Discussion
+            </ButtonPrimary> <Link
                   href="/ventures/zero"
                   className="px-6 py-3 border-2 border-terminal-gold text-terminal-gold rounded-lg hover:bg-terminal-gold/10 transition-colors font-medium text-center"
                 > View Zero Product Page </Link> </div> </div> </OS8Window> </div> </section> </main> );

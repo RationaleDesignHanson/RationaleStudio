@@ -8,6 +8,7 @@
 
 import Link from 'next/link';
 import {
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
   Newspaper,
   Brain,
   TrendingUp,

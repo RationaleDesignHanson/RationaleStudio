@@ -13,6 +13,7 @@ import { OS8Window } from '@/components/visual-test';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function InvestPage() {
   const opportunities = [

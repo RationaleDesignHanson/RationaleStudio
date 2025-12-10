@@ -10,6 +10,7 @@
 import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { Lock, FileText, TrendingUp, Code, Shield } from 'lucide-react';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function StudioDataRoomPage() {
   const categories = [

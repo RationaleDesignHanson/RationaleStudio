@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { Container } from '@/components/layout';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function LogoutPage() {
   const router = useRouter();

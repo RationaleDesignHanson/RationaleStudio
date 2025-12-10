@@ -10,6 +10,7 @@ import { Container, Section } from '@/components/layout';
 import { OS8Window } from '@/components/visual-test';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import type { Metadata } from 'next';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export const metadata: Metadata = {
   title: 'Historical Work | Rationale',
@@ -150,14 +151,9 @@ export default function HistoricalWorkPage() {
 
                 {/* Prototype Link */}
                 <div className="pt-4">
-                  <a
-                    href="/prototypes/rumi/index.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-terminal-gold/90 transition-colors"
-                  >
-                    Launch Interactive Prototype →
-                  </a>
+                  <ButtonPrimary href="/prototypes/rumi/index.html" className="inline-block hover:/90">
+              Launch Interactive Prototype →
+            </ButtonPrimary>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">

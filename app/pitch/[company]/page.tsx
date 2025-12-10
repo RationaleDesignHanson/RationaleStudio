@@ -14,6 +14,7 @@ import { Lock, AlertCircle, CheckCircle, Clock, Eye, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { GannettPitch } from '@/components/pitches/GannettPitch';
 import { CreaitRoadmap } from '@/components/pitches/CreaitRoadmap';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 interface PitchValidation {
   valid: boolean;

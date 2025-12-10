@@ -12,6 +12,7 @@ import { CRESection, CRECard } from '@/components/creait/ui';
 import { H2, H3, BodyLG, BodyMD, LabelSM } from '@/components/creait/typography';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
 import InvestorPortalContent from './InvestorPortalContent';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 const INVESTOR_PASSWORD = '123456';
 

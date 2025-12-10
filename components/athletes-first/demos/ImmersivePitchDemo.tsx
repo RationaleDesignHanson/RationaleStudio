@@ -12,6 +12,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 type DemoView = 'nil-calculator' | 'career-pathways' | 'risk-analysis' | 'recruiting-videos';
 

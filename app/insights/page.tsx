@@ -10,6 +10,7 @@
 import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { BookOpen, TrendingUp, Lightbulb, ArrowRight } from 'lucide-react';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function InsightsPage() {
   const insights = [

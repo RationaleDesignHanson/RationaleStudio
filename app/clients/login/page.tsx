@@ -11,6 +11,7 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Container } from '@/components/layout/Container';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 // Client redirect mapping based on clientId custom claim
 const CLIENT_REDIRECTS: Record<string, string> = {

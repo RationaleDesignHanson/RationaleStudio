@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { OS8Window } from '@/components/visual-test';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 export default function StudioInvestmentPage() {
   return ( <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white"> {/* Hero */} <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden"> <div className="absolute inset-0 pointer-events-none"> <ASCIIUnifiedGrid
@@ -79,10 +80,9 @@ export default function StudioInvestmentPage() {
             variant="cta"
             animateIn={false}
             className="max-w-3xl"
-          > <div className="space-y-6"> <p className="text-base text-terminal-gold leading-relaxed text-center"> $500K SAFE removes partnership dependency. Build 2-3 ventures/year with proportional ownership across the entire portfolio. Commercialize through spin-outs, licensing, or built-in revenue engines. Conviction first, IP always. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4"> <a
-                  href="mailto:matt@rationale.studio?subject=Studio%20Investment%20Inquiry"
-                  className="px-6 py-3 bg-[#FFD700] text-black rounded-lg hover:bg-terminal-gold/90 transition-colors font-medium text-center"
-                > Schedule Discussion </a> <Link
+          > <div className="space-y-6"> <p className="text-base text-terminal-gold leading-relaxed text-center"> $500K SAFE removes partnership dependency. Build 2-3 ventures/year with proportional ownership across the entire portfolio. Commercialize through spin-outs, licensing, or built-in revenue engines. Conviction first, IP always. </p> <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4"> <ButtonPrimary href="mailto:matt@rationale.studio?subject=Studio%20Investment%20Inquiry" className="hover:/90 text-center">
+              Schedule Discussion
+            </ButtonPrimary> <Link
                   href="/invest"
                   className="px-6 py-3 border-2 border-terminal-gold text-terminal-gold rounded-lg hover:bg-terminal-gold/10 transition-colors font-medium text-center"
                 > Compare All Opportunities </Link> </div> </div> </OS8Window> </div> </section> {/* Legal Disclaimer */} <section className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"> <div className="relative z-10 max-w-4xl mx-auto"> <div className="p-6 rounded-lg border border-gray-700/50 bg-gray-900/20"> <p className="text-xs text-gray-400 text-center"> <span className="font-semibold text-gray-200">Legal Disclaimer:</span> {' '}This overview is for informational purposes only and does not constitute an offer to sell securities. Investments in Rationale Holdings LLC are speculative, illiquid, and involve substantial risk of loss. Past portfolio company performance does not guarantee future results. Holdings LLC ownership provides indirect economic interest in portfolio ventures subject to dilution. Prospective investors should review the Private Placement Memorandum and consult legal counsel. </p> </div> </div> </section> </main> );

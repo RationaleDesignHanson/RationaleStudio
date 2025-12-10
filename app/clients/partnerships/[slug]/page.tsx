@@ -14,6 +14,7 @@ import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { serviceKits, getKitBySlug } from '@/lib/content/kits';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
 import type { Metadata } from 'next';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 interface KitPageProps {
   params: Promise<{ slug: string }>;
