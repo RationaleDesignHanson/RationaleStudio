@@ -196,7 +196,7 @@ export default function SiteAdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-3 sm:p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Site Admin Dashboard</h1>
@@ -373,7 +373,7 @@ export default function SiteAdminPage() {
 
         {/* Pages Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="overflow-x-auto">
             <div className="inline-block min-w-full align-middle">
               <table className="min-w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
