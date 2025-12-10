@@ -101,8 +101,24 @@ type SlideType = 'problem' | 'solution' | 'demo' | 'impact' | 'custom';
 
 export default function AthletesFirstPitchDeck() {
   const sections = getAllSectionsV2();
-  const [activeSection, setActiveSection] = useState(0);
-  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Initialize state from localStorage if available
+  const [activeSection, setActiveSection] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('athletes-first-section');
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+
+  const [activeSlide, setActiveSlide] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('athletes-first-slide');
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+
   const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>('expanded-by-default');
   const [activeDemoTab, setActiveDemoTab] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -112,6 +128,14 @@ export default function AthletesFirstPitchDeck() {
   const currentSlide = currentSection.slides[activeSlide];
   const totalSlides = currentSection.slides.length;
   const currentColor = SECTION_COLORS[currentSection.id] || SECTION_COLORS['opening'];
+
+  // Save progress to localStorage whenever section or slide changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('athletes-first-section', activeSection.toString());
+      localStorage.setItem('athletes-first-slide', activeSlide.toString());
+    }
+  }, [activeSection, activeSlide]);
 
   // Keyboard navigation
   useEffect(() => {
