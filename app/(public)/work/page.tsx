@@ -3,7 +3,7 @@
  *
  * Reorganized: Our products first, then partnerships
  * Clear separation between ventures we own vs. client work
- * OS8 aesthetic treatment for visual brand consistency
+ * Simple card aesthetic matching home page style
  */
 
 'use client';
@@ -11,10 +11,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
-import { OS8Window } from '@/components/visual-test/OS8Window';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
 import { Rocket, Handshake, Lock, ExternalLink, ArrowRight } from 'lucide-react';
+import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 
 export default function WorkPage() {
   const projects = getAllProjects();
@@ -69,12 +69,16 @@ export default function WorkPage() {
             {/* Zero Inbox - Featured Hero */}
             {zero && (
               <Link href={`/work/${zero.slug}`} className="group block">
-                <OS8Window
-                  title={`${zero.title} — ${zero.subtitle}`}
-                  variant="featured"
-                  className="h-full hover:scale-[1.02] transition-transform duration-300"
-                >
+                <div className="h-full p-6 sm:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
                   <div className="space-y-6">
+                    {/* Title */}
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
+                        {zero.title}
+                      </h3>
+                      <p className="text-sm text-gray-400">{zero.subtitle}</p>
+                    </div>
+
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
@@ -121,19 +125,23 @@ export default function WorkPage() {
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
-                </OS8Window>
+                </div>
               </Link>
             )}
 
             {/* Heirloom - Featured Hero */}
             {heirloom && (
               <Link href={`/work/${heirloom.slug}`} className="group block">
-                <OS8Window
-                  title={`${heirloom.title} — ${heirloom.subtitle}`}
-                  variant="featured"
-                  className="h-full hover:scale-[1.02] transition-transform duration-300"
-                >
+                <div className="h-full p-6 sm:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
                   <div className="space-y-6">
+                    {/* Title */}
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00D9FF] transition-colors">
+                        {heirloom.title}
+                      </h3>
+                      <p className="text-sm text-gray-400">{heirloom.subtitle}</p>
+                    </div>
+
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
@@ -148,10 +156,10 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
+                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-[#00D9FF]/20">
                       {heirloom.metrics.map((metric, idx) => (
                         <div key={idx}>
-                          <div className="text-lg font-bold text-terminal-gold mb-1">{metric.value}</div>
+                          <div className="text-lg font-bold text-[#00D9FF] mb-1">{metric.value}</div>
                           <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
                         </div>
                       ))}
@@ -166,19 +174,19 @@ export default function WorkPage() {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
                       {heirloom.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded text-xs bg-terminal-gold/10 text-terminal-gold font-semibold border border-terminal-gold/20">
+                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#00D9FF]/10 text-[#00D9FF] font-semibold border border-[#00D9FF]/20">
                           {tag}
                         </span>
                       ))}
                     </div>
 
                     {/* View Project Link */}
-                    <div className="flex items-center gap-2 text-terminal-gold font-semibold group-hover:gap-4 transition-all">
+                    <div className="flex items-center gap-2 text-[#00D9FF] font-semibold group-hover:gap-4 transition-all">
                       <span>View Development Progress</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
-                </OS8Window>
+                </div>
               </Link>
             )}
           </div>
@@ -206,12 +214,14 @@ export default function WorkPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {ourProducts.slice(2).map((project) => (
                 <Link key={project.id} href={`/work/${project.slug}`} className="group block">
-                  <OS8Window
-                    title={`${project.title}`}
-                    variant="interactive"
-                    className="h-full"
-                  >
+                  <div className="h-full p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
                     <div className="space-y-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
+                          {project.title}
+                        </h3>
+                      </div>
+
                       <div className="flex items-center justify-between">
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${
                           project.status === 'live' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
@@ -232,7 +242,7 @@ export default function WorkPage() {
                         ))}
                       </div>
                     </div>
-                  </OS8Window>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -252,13 +262,14 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <OS8Window title="Why We Build Our Own Products" variant="subtle">
+          <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <h3 className="text-xl font-bold text-white mb-4">Why We Build Our Own Products</h3>
             <p className="text-sm text-gray-300 leading-relaxed">
               <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
               only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
               We only partner when we believe in the opportunity as much as our own ventures.
             </p>
-          </OS8Window>
+          </div>
         </div>
       </section>
 
@@ -291,12 +302,27 @@ export default function WorkPage() {
               return (
                 <div key={project.id} className="relative group">
                   <Link href={`/work/${project.slug}`} className="block">
-                    <OS8Window
-                      title={`${project.title} — ${isConfidential ? 'CLASSIFIED' : project.subtitle}`}
-                      variant={isConfidential ? 'body' : 'interactive'}
-                      className="h-full"
-                    >
+                    <div className={`h-full p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
+                      isConfidential
+                        ? 'border-amber-400/30 hover:border-amber-400/50'
+                        : 'border-gray-700 hover:border-terminal-gold/50'
+                    }`}>
                       <div className={`space-y-4 ${needsBlur ? 'relative' : ''}`}>
+                        {/* Title */}
+                        <div>
+                          <h3 className={`text-xl font-bold text-white mb-2 transition-colors ${
+                            isConfidential ? 'group-hover:text-amber-400' : 'group-hover:text-terminal-gold'
+                          }`}>
+                            {project.title}
+                          </h3>
+                          {!isConfidential && (
+                            <p className="text-sm text-gray-400">{project.subtitle}</p>
+                          )}
+                          {isConfidential && (
+                            <p className="text-sm text-amber-400">CLASSIFIED</p>
+                          )}
+                        </div>
+
                         {/* Confidential Badge */}
                         {isConfidential && (
                           <div className="flex items-center justify-between mb-2">
@@ -373,13 +399,13 @@ export default function WorkPage() {
                           </div>
                         )}
                       </div>
-                    </OS8Window>
+                    </div>
                   </Link>
 
                   {/* Auth-protected client presentation links */}
                   {(project.id === 'case-study-010' || project.id === 'case-study-020') && (
                     <div className="mt-4">
-                      <OS8Window title="Client Team Access" variant="subtle" className="text-xs">
+                      <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-xs">
                         <div className="flex items-center justify-between">
                           <span className="text-gray-500">
                             {project.id === 'case-study-010' ? 'CREaiT' : 'Athletes First'} Team
@@ -393,7 +419,7 @@ export default function WorkPage() {
                             <ExternalLink className="w-3 h-3" />
                           </Link>
                         </div>
-                      </OS8Window>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -403,13 +429,14 @@ export default function WorkPage() {
 
           {/* Partnership Philosophy */}
           <div className="mt-12">
-            <OS8Window title="Partnership Model" variant="subtle">
+            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-xl font-bold text-white mb-4">Partnership Model</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
                 strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
                 is confidential and password-protected—we respect our partners' need for discretion.
               </p>
-            </OS8Window>
+            </div>
           </div>
         </div>
       </section>
@@ -431,18 +458,19 @@ export default function WorkPage() {
             We take on select partnerships where we see strong alignment and opportunity to apply our product expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
+            <ButtonPrimary
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-[#FFE34D] rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
+              size="lg"
+              className="shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
             >
               Schedule Intro Call
-            </Link>
-            <Link
+            </ButtonPrimary>
+            <ButtonSecondary
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors rounded-lg"
+              size="lg"
             >
               View Partnership Models
-            </Link>
+            </ButtonSecondary>
           </div>
         </div>
       </section>
