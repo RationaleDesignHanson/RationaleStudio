@@ -10,6 +10,7 @@ export default function InteractivePitchInterfaceDiagramMobile() {
   const slides: DiagramSlide[] = [
     {
       id: 'contract-comparison',
+      title: 'Contract Comparison',
       content: (
         <div className="bg-gray-900/50 border-2 border-cyan-500/50 rounded-lg p-5 h-full">
           <div className="bg-cyan-500/20 rounded px-3 py-2 mb-4">
@@ -74,6 +75,7 @@ export default function InteractivePitchInterfaceDiagramMobile() {
     },
     {
       id: 'nil-calculator',
+      title: 'NIL Calculator',
       content: (
         <div className="bg-gray-900/50 border-2 border-purple-500/50 rounded-lg p-5 h-full">
           <div className="bg-purple-500/20 rounded px-3 py-2 mb-4">
@@ -146,6 +148,7 @@ export default function InteractivePitchInterfaceDiagramMobile() {
     },
     {
       id: 'career-pathway',
+      title: 'Career Pathway',
       content: (
         <div className="bg-gray-900/50 border-2 border-green-500/50 rounded-lg p-5 h-full">
           <div className="bg-green-500/20 rounded px-3 py-2 mb-4">

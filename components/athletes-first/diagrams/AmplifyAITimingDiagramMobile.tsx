@@ -10,6 +10,7 @@ export default function AmplifyAITimingDiagramMobile() {
   const slides: DiagramSlide[] = [
     {
       id: 'traditional-workflow',
+      title: 'Traditional Workflow',
       content: (
         <div className="bg-gray-900/50 border-2 border-red-500/50 rounded-lg p-5 h-full">
           <div className="bg-red-500/20 rounded px-3 py-2 mb-4">
@@ -100,6 +101,7 @@ export default function AmplifyAITimingDiagramMobile() {
     },
     {
       id: 'amplifyai-workflow',
+      title: 'AmplifyAI Workflow',
       content: (
         <div className="bg-gray-900/50 border-2 border-terminal-gold/50 rounded-lg p-5 h-full">
           <div className="bg-terminal-gold/20 rounded px-3 py-2 mb-4">

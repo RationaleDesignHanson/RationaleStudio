@@ -1,13 +1,13 @@
 'use client';
 
-import { AccordionDiagram, type AccordionSection } from '@/components/diagrams/AccordionDiagram';
+import { AccordionDiagram, type Section } from '@/components/diagrams/AccordionDiagram';
 
 /**
  * Mobile-optimized Three Bottlenecks Diagram
  * Shows the value extraction gap: operational constraints limiting performance
  */
 export default function ThreeBottlenecksDiagramMobile() {
-  const sections: AccordionSection[] = [
+  const sections: Section[] = [
     {
       id: 'content',
       title: '🎨 Content Velocity Bottleneck',

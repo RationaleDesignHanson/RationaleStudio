@@ -1,13 +1,13 @@
 'use client';
 
-import { AccordionDiagram, type AccordionSection } from '@/components/diagrams/AccordionDiagram';
+import { AccordionDiagram, type Section } from '@/components/diagrams/AccordionDiagram';
 
 /**
  * Mobile-optimized NIL Complexity Diagram
  * Shows the web of stakeholders and concerns in NIL deals
  */
 export default function NILComplexityDiagramMobile() {
-  const sections: AccordionSection[] = [
+  const sections: Section[] = [
     {
       id: 'overview',
       title: '🎯 At the Center: The Athlete',

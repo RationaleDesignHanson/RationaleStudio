@@ -264,7 +264,9 @@ export default function MicroservicesArchitectureDiagramMobile() {
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">
-                                <Icon className="w-5 h-5" style={{ color: service.color }} />
+                                <span style={{ color: service.color }}>
+                                  <Icon className="w-5 h-5" />
+                                </span>
                                 <div>
                                   <div className="text-xs font-bold text-white" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
                                     {service.name}

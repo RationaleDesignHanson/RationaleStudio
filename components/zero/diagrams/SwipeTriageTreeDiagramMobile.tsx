@@ -116,7 +116,9 @@ export default function SwipeTriageTreeDiagramMobile() {
                       className="w-12 h-12 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: `${action.color}30` }}
                     >
-                      <Icon className="w-6 h-6" style={{ color: action.color }} />
+                      <span style={{ color: action.color }}>
+                        <Icon className="w-6 h-6" />
+                      </span>
                     </div>
 
                     {/* Action Info */}

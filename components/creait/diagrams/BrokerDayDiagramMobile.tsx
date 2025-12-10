@@ -10,6 +10,7 @@ export default function BrokerDayDiagramMobile() {
   const slides: DiagramSlide[] = [
     {
       id: 'before-creait',
+      title: 'Before CREaiT',
       content: (
         <div className="bg-gray-900/50 border-2 border-red-500/50 rounded-lg p-5 h-full">
           <div className="bg-red-500/20 rounded px-3 py-2 mb-4">
@@ -85,6 +86,7 @@ export default function BrokerDayDiagramMobile() {
     },
     {
       id: 'after-creait',
+      title: 'After CREaiT',
       content: (
         <div className="bg-gray-900/50 border-2 border-green-500/50 rounded-lg p-5 h-full">
           <div className="bg-green-500/20 rounded px-3 py-2 mb-4">

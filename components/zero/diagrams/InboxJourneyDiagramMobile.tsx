@@ -166,7 +166,9 @@ export default function InboxJourneyDiagramMobile() {
               className="w-10 h-10 rounded-full flex items-center justify-center"
               style={{ backgroundColor: '#D4AF37' }}
             >
-              <Icon className="w-5 h-5" style={{ color: '#1A202C' }} />
+              <span style={{ color: '#1A202C' }}>
+                <Icon className="w-5 h-5" />
+              </span>
             </div>
             <div>
               <h4 className="text-sm font-bold text-white uppercase" style={{ fontFamily: 'JetBrains Mono, monospace' }}>

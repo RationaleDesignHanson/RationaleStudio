@@ -236,11 +236,11 @@ export default function AIIntelligenceSystemDiagramMobile() {
                 className="w-full text-left p-3 rounded transition-all"
                 style={{
                   backgroundColor: expandedItem === index ? '#1A202C' : 'transparent',
-                  borderLeft: `3px solid ${item.color || currentLayer.color}`
+                  borderLeft: `3px solid ${'color' in item ? item.color : currentLayer.color}`
                 }}
               >
                 <div className="flex items-start gap-2">
-                  {item.icon && (
+                  {'icon' in item && item.icon && (
                     <span className="text-lg flex-shrink-0">{item.icon}</span>
                   )}
                   <div className="flex-1 min-w-0">
@@ -252,9 +252,9 @@ export default function AIIntelligenceSystemDiagramMobile() {
                     </div>
 
                     {/* Expandable Examples (Classification Layer) */}
-                    {expandedItem === index && item.examples && (
+                    {expandedItem === index && 'examples' in item && item.examples && (
                       <div className="mt-2 space-y-1 pl-2 border-l-2 border-gray-700">
-                        {item.examples.map((example, exIdx) => (
+                        {item.examples.map((example: string, exIdx: number) => (
                           <div key={exIdx} className="text-xs text-gray-500" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
                             • {example}
                           </div>
