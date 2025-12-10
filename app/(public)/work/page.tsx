@@ -288,8 +288,8 @@ export default function WorkPage() {
               const overviewSlug = project.slug === 'case-study-010' ? 'creait' : 'athletes-first';
 
               return (
-                <div key={project.id} className="relative group">
-                  <Link href={`/work/${project.slug}`} className="block">
+                <div key={project.id} className="relative">
+                  <Link href={`/work/${project.slug}`} className="group block">
                     <div className={`h-full p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
                       isConfidential
                         ? 'border-amber-400/30 hover:border-amber-400/50'
@@ -382,7 +382,7 @@ export default function WorkPage() {
 
                   {/* Quick Overview Button (for projects that have overview pages) */}
                   {hasQuickOverview && (
-                    <div className="mt-3 px-6 pb-6">
+                    <div className="mt-3">
                       <Link
                         href={`/work/${overviewSlug}/overview`}
                         className="block w-full px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-sm font-bold text-white hover:text-terminal-gold transition-all"
