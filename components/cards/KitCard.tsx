@@ -3,11 +3,14 @@
  *
  * Displays service kit offerings with pricing, duration, and key details.
  * Used on /services page and individual kit pages.
+ *
+ * Phase 4.2: Migrated to BaseCard universal foundation
  */
 
 import Link from 'next/link';
 import { ServiceKit } from '@/lib/content/kits';
-import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
+import { ResponsiveText } from '@/lib/ui/responsive';
+import { BaseCard, BaseCardHeader, BaseCardContent, BaseCardFooter } from '@/components/ui/BaseCard';
 
 interface KitCardProps {
   kit: ServiceKit;
@@ -17,33 +20,31 @@ interface KitCardProps {
 
 export function KitCard({ kit, featured = false, className = '' }: KitCardProps) {
   return (
-    <Link href={`/services/${kit.slug}`}>
-      <ResponsiveBox
-        className={`
-          group relative overflow-hidden
-          rounded-lg border border-border
-          bg-background hover:bg-accent/5
-          transition-all duration-300
-          hover:border-accent hover:shadow-lg
-          ${featured ? 'ring-2 ring-accent' : ''}
-          ${className}
-        `}
-      >
-        {/* Featured Badge */}
-        {featured && (
-          <div className="absolute top-4 right-4 px-3 py-1 bg-accent text-white text-xs font-semibold uppercase tracking-wide rounded-full">
-            Popular
-          </div>
-        )}
-
-        {/* Header */}
-        <div className="mb-4 sm:mb-6">
-          <ResponsiveText variant="h3" className="mb-2 group-hover:text-accent transition-colors">
-            {kit.name}
-          </ResponsiveText>
-          <p className="text-muted text-sm sm:text-base">{kit.tagline}</p>
+    <BaseCard
+      href={`/services/${kit.slug}`}
+      variant={featured ? 'featured' : 'interactive'}
+      paddingSize="lg"
+      borderAccent="border-border"
+      interactive
+      className={`group ${featured ? 'ring-2 ring-accent' : ''} ${className}`}
+      ariaLabel={`Learn more about ${kit.name}`}
+    >
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute top-4 right-4 px-3 py-1 bg-accent text-white text-xs font-semibold uppercase tracking-wide rounded-full">
+          Popular
         </div>
+      )}
 
+      {/* Header */}
+      <BaseCardHeader>
+        <ResponsiveText variant="h3" className="mb-2 group-hover:text-accent transition-colors">
+          {kit.name}
+        </ResponsiveText>
+        <p className="text-muted text-sm sm:text-base">{kit.tagline}</p>
+      </BaseCardHeader>
+
+      <BaseCardContent>
         {/* Pricing & Duration */}
         <div className="flex items-baseline gap-4 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-border">
           <div>
@@ -92,20 +93,20 @@ export function KitCard({ kit, featured = false, className = '' }: KitCardProps)
             </div>
           </div>
         )}
+      </BaseCardContent>
 
-        {/* CTA */}
-        <div className="pt-4 sm:pt-6 border-t border-border">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-accent group-hover:underline">
-              Learn more
-            </span>
-            <span className="text-accent group-hover:translate-x-1 transition-transform">
-              →
-            </span>
-          </div>
+      {/* CTA */}
+      <BaseCardFooter>
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-medium text-accent group-hover:underline">
+            Learn more
+          </span>
+          <span className="text-accent group-hover:translate-x-1 transition-transform">
+            →
+          </span>
         </div>
-      </ResponsiveBox>
-    </Link>
+      </BaseCardFooter>
+    </BaseCard>
   );
 }
 
@@ -115,26 +116,24 @@ export function KitCard({ kit, featured = false, className = '' }: KitCardProps)
  */
 export function KitCardCompact({ kit, className = '' }: KitCardProps) {
   return (
-    <Link href={`/services/${kit.slug}`}>
-      <div
-        className={`
-          group p-4 sm:p-6
-          rounded-lg border border-border
-          bg-background hover:bg-accent/5
-          transition-all duration-300
-          hover:border-accent
-          ${className}
-        `}
-      >
-        <ResponsiveText variant="h4" className="mb-2 group-hover:text-accent transition-colors">
-          {kit.name}
-        </ResponsiveText>
-        <p className="text-sm text-muted mb-3">{kit.tagline}</p>
-        <div className="flex items-baseline justify-between">
-          <span className="text-lg font-bold text-foreground">{kit.pricing}</span>
-          <span className="text-xs text-muted">{kit.duration}</span>
-        </div>
+    <BaseCard
+      href={`/services/${kit.slug}`}
+      variant="interactive"
+      size="compact"
+      paddingSize="md"
+      borderAccent="border-border"
+      interactive
+      className={`group ${className}`}
+      ariaLabel={`View ${kit.name} service`}
+    >
+      <ResponsiveText variant="h4" className="mb-2 group-hover:text-accent transition-colors">
+        {kit.name}
+      </ResponsiveText>
+      <p className="text-sm text-muted mb-3">{kit.tagline}</p>
+      <div className="flex items-baseline justify-between">
+        <span className="text-lg font-bold text-foreground">{kit.pricing}</span>
+        <span className="text-xs text-muted">{kit.duration}</span>
       </div>
-    </Link>
+    </BaseCard>
   );
 }

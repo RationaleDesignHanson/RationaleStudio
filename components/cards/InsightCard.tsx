@@ -4,13 +4,14 @@
  * Displays blog/insight articles for /insights page.
  * Shows title, excerpt, category, read time, and publish date.
  *
- * Phase 4.2: Migrated to use Badge component from design system
+ * Phase 4.2: Migrated to BaseCard universal foundation
  */
 
 import Link from 'next/link';
 import { InsightArticle } from '@/lib/content/insights';
-import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
+import { ResponsiveText } from '@/lib/ui/responsive';
 import { CategoryBadge } from '@/components/ui/Badge';
+import { BaseCard, BaseCardHeader, BaseCardContent, BaseCardFooter } from '@/components/ui/BaseCard';
 import type { CategoryKey } from '@/lib/design-tokens/semantic-colors';
 
 interface InsightCardProps {
@@ -27,23 +28,21 @@ export function InsightCard({ article, featured = false, className = '' }: Insig
   });
 
   return (
-    <Link href={`/insights/${article.slug}`}>
-      <ResponsiveBox
-        className={`
-          group relative overflow-hidden
-          rounded-lg border border-border
-          bg-background hover:bg-accent/5
-          transition-all duration-300
-          hover:border-accent hover:shadow-lg
-          ${featured ? 'lg:col-span-2' : ''}
-          ${className}
-        `}
-      >
-        {/* Category Badge */}
-        <div className="mb-4">
-          <CategoryBadge category={article.category as CategoryKey} size="md" />
-        </div>
+    <BaseCard
+      href={`/insights/${article.slug}`}
+      variant="interactive"
+      paddingSize="lg"
+      borderAccent="border-border"
+      interactive
+      className={`group ${featured ? 'lg:col-span-2' : ''} ${className}`}
+      ariaLabel={`Read article: ${article.title}`}
+    >
+      {/* Category Badge */}
+      <BaseCardHeader>
+        <CategoryBadge category={article.category as CategoryKey} size="md" />
+      </BaseCardHeader>
 
+      <BaseCardContent>
         {/* Title & Subtitle */}
         <div className="mb-4">
           <ResponsiveText
@@ -84,8 +83,10 @@ export function InsightCard({ article, featured = false, className = '' }: Insig
           <span>•</span>
           <span>{article.readTime}</span>
         </div>
+      </BaseCardContent>
 
-        {/* CTA */}
+      {/* CTA */}
+      <BaseCardFooter>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-accent group-hover:underline">
             Read article
@@ -94,8 +95,8 @@ export function InsightCard({ article, featured = false, className = '' }: Insig
             →
           </span>
         </div>
-      </ResponsiveBox>
-    </Link>
+      </BaseCardFooter>
+    </BaseCard>
   );
 }
 
@@ -109,29 +110,30 @@ export function InsightCardList({ article, className = '' }: InsightCardProps) {
   });
 
   return (
-    <Link href={`/insights/${article.slug}`}>
-      <div
-        className={`
-          group py-4 border-b border-border last:border-b-0
-          hover:bg-accent/5 transition-colors
-          ${className}
-        `}
-      >
-        <div className="flex gap-3">
-          <div className="flex-shrink-0 text-xs text-muted font-medium w-12">
-            {formattedDate}
-          </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-semibold mb-1 group-hover:text-accent transition-colors line-clamp-2">
-              {article.title}
-            </h4>
-            <div className="flex items-center gap-2 text-xs text-muted">
-              <CategoryBadge category={article.category as CategoryKey} size="sm" />
-              <span>{article.readTime}</span>
-            </div>
+    <BaseCard
+      href={`/insights/${article.slug}`}
+      variant="subtle"
+      size="compact"
+      paddingSize="sm"
+      borderAccent="border-transparent"
+      interactive
+      className={`group border-b border-border last:border-b-0 rounded-none ${className}`}
+      ariaLabel={`Read: ${article.title}`}
+    >
+      <div className="flex gap-3">
+        <div className="flex-shrink-0 text-xs text-muted font-medium w-12">
+          {formattedDate}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h4 className="text-sm font-semibold mb-1 group-hover:text-accent transition-colors line-clamp-2">
+            {article.title}
+          </h4>
+          <div className="flex items-center gap-2 text-xs text-muted">
+            <CategoryBadge category={article.category as CategoryKey} size="sm" />
+            <span>{article.readTime}</span>
           </div>
         </div>
       </div>
-    </Link>
+    </BaseCard>
   );
 }

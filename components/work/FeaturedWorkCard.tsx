@@ -4,14 +4,14 @@
  * Individual project card for featured work section
  * Displays project info, metrics, tags, and status badge
  *
- * Phase 4.2: Migrated to use Badge component from design system
+ * Phase 4.2: Migrated to BaseCard universal foundation
  */
 
 import Link from 'next/link';
 import { ProjectStatus } from '@/lib/types/work';
 import { Lock } from 'lucide-react';
-import { GlassCard } from '@/components/visual';
 import { ProjectStatusBadge } from '@/components/ui/Badge';
+import { BaseCard, BaseCardHeader, BaseCardContent, BaseCardFooter } from '@/components/ui/BaseCard';
 import type { ProjectStatusKey } from '@/lib/design-tokens/semantic-colors';
 
 interface FeaturedWorkCardProps {
@@ -35,19 +35,26 @@ export function FeaturedWorkCard({
 }: FeaturedWorkCardProps) {
 
   return (
-    <Link
+    <BaseCard
       href={href}
-      className="group block relative"
+      variant="interactive"
+      paddingSize="md"
+      borderAccent="border-border"
+      interactive
+      className="group h-full"
+      ariaLabel={`View project: ${title}`}
     >
-      <GlassCard className="h-full p-6 hover:border-accent/50 transition-all duration-300" borderRadius="0.75rem">
-        {/* Status Badge & Protected Icon */}
-        <div className="flex items-center justify-between mb-4">
+      {/* Status Badge & Protected Icon */}
+      <BaseCardHeader>
+        <div className="flex items-center justify-between">
           <ProjectStatusBadge status={status as ProjectStatusKey} size="sm" />
           {isProtected && (
             <Lock className="w-4 h-4 text-muted" />
           )}
         </div>
+      </BaseCardHeader>
 
+      <BaseCardContent>
         {/* Title */}
         <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors line-clamp-2">
           {title}
@@ -63,9 +70,11 @@ export function FeaturedWorkCard({
             </div>
           ))}
         </div>
+      </BaseCardContent>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
+      {/* Tags */}
+      <BaseCardFooter>
+        <div className="flex flex-wrap gap-2">
           {tags.map((tag, index) => (
             <span
               key={index}
@@ -75,14 +84,14 @@ export function FeaturedWorkCard({
             </span>
           ))}
         </div>
+      </BaseCardFooter>
 
-        {/* Hover Arrow */}
-        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-          <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </GlassCard>
-    </Link>
+      {/* Hover Arrow */}
+      <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+        <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </BaseCard>
   );
 }
