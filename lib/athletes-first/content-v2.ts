@@ -97,7 +97,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Saturation Economics',
-              content: '800+ certified NFL agents compete for ~250 draft picks annually. College athlete market is even more crowded with NIL opportunities. Result: Price competition, service differentiation battles, and relationship intensity wars. Traditional competitive advantages (relationships, reputation) are table stakes—no longer differentiators.'
+              content: '800+ certified NFL agents compete for ~250 draft picks annually. College athlete market is even more crowded with NIL opportunities.\n\nResult: Price competition, service differentiation battles, and relationship intensity wars.\n\nTraditional competitive advantages (relationships, reputation) are table stakes—no longer differentiators.'
             },
             {
               title: 'The Scale Advantage',
@@ -105,7 +105,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'The Innovation Window',
-              content: 'AI adoption in sports representation is accelerating. Agencies deploying AI-powered tools TODAY gain 12-24 month competitive advantages before these capabilities become industry standard. Early movers are already using AI for content generation, compliance analysis, and interactive pitching. The window for differentiation is closing fast.'
+              content: 'AI adoption in sports representation is accelerating.\n\nAgencies deploying AI-powered tools TODAY gain 12-24 month competitive advantages before these capabilities become industry standard.\n\nEarly movers are already using AI for content generation, compliance analysis, and interactive pitching. The window for differentiation is closing fast.'
             }
           ]
         }
@@ -125,11 +125,11 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Bottleneck 1: Physical Availability',
-              content: 'Athletes train 6-8 hours daily. Brand shoots require 4-8 hour blocks. Regional brands want 10-15 localized campaigns, but athletes can only deliver 1-2 per year. Premium fan content market ($500-2K per personalized video) goes untapped. Revenue ceiling: Can\'t scale content without scaling athlete time.'
+              content: 'Athletes train 6-8 hours daily. Brand shoots require 4-8 hour blocks. Regional brands want 10-15 localized campaigns, but athletes can only deliver 1-2 per year. Premium fan content market ($500-2K per personalized video) goes untapped.\n\nRevenue ceiling: Can\'t scale content without scaling athlete time.'
             },
             {
               title: 'Bottleneck 2: NIL Compliance Complexity',
-              content: '50 state frameworks, NCAA policy, conference rules, and institutional requirements create legal landmines. Manual compliance review takes 1-2 weeks. Viral moments have 48-72 hour windows. Athletes choose agents who can move fast WITHOUT taking shortcuts. Trust deficit: Families fear one bad deal destroys eligibility.'
+              content: '50 state frameworks, NCAA policy, conference rules, and institutional requirements create legal landmines. Manual compliance review takes 1-2 weeks. Viral moments have 48-72 hour windows.\n\nAthletes choose agents who can move fast WITHOUT taking shortcuts.\n\nTrust deficit: Families fear one bad deal destroys eligibility.'
             },
             {
               title: 'Bottleneck 3: Static Pitch Materials',
@@ -153,11 +153,11 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Linear Growth Hits Walls',
-              content: 'Adding agents scales linearly: 10 agents can serve ~50 athletes at high quality. But systematic bottlenecks remain: content generation still requires athlete time, compliance still requires manual review, pitches still use static decks. Linear growth strategies hit quality walls at 50-100 athletes—exactly where CAA, Wasserman, and WME are deploying AI to break through.'
+              content: 'Adding agents scales linearly: 10 agents can serve ~50 athletes at high quality.\n\nBut systematic bottlenecks remain: content generation still requires athlete time, compliance still requires manual review, pitches still use static decks. Linear growth strategies hit quality walls at 50-100 athletes—exactly where CAA, Wasserman, and WME are deploying AI to break through.'
             },
             {
               title: 'The Competitive Clock is Ticking',
-              content: 'Large agencies are already piloting AI tools. Early adopters gain data advantages: more training examples, better models, faster iteration. In 12-24 months, AI-powered content, compliance, and pitching will be TABLE STAKES—not differentiators. Agencies that move now gain first-mover advantages. Agencies that wait play catch-up with worse data and fewer resources.'
+              content: 'Large agencies are already piloting AI tools.\n\nEarly adopters gain data advantages: more training examples, better models, faster iteration.\n\nIn 12-24 months, AI-powered content, compliance, and pitching will be TABLE STAKES—not differentiators.\n\nAgencies that move now gain first-mover advantages.\n\nAgencies that wait play catch-up with worse data and fewer resources.'
             },
             {
               title: 'The Cost of Inaction',
@@ -198,19 +198,19 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'NIL Guidance Platform',
-              content: 'AI-powered strategic oversight for deal analysis. High-level pattern recognition and red flag detection in seconds. Educational transparency builds trust with athletes and families. Positions you as the benevolent protector and trusted advisor. NOTE: Provides strategic guidance to inform your legal counsel—not legal advice.'
+              content: 'AI-powered strategic oversight for deal analysis. High-level pattern recognition and red flag detection in seconds. Educational transparency builds trust with athletes and families. Positions you as the benevolent protector and trusted advisor.\n\nNOTE: Provides strategic guidance to inform your legal counsel—not legal advice.'
             },
             {
               title: 'Interactive Pitch',
-              content: 'Real-time contract modeling and scenario exploration. Interactive visualizations answer family questions live. Athletes explore scenarios and see the math instantly. Measured close rate improvement tracked in pilot vs. traditional pitch materials with control groups.'
+              content: 'Real-time contract modeling and scenario exploration. Interactive visualizations answer family questions live.\n\nAthletes explore scenarios and see the math instantly. Measured close rate improvement tracked in pilot vs. traditional pitch materials with control groups.'
             },
             {
               title: 'Video & Digital Twins',
-              content: 'Scalable deployment from one capture session. One 4-hour session (varies by athlete) captures voice, likeness, and mannerisms. Generate hundreds of authorized content variations. Built-in rights verification ensures brand safety. Revenue opportunities: Regional brand campaigns typically pay $10K-$50K each (Source: OpenSponsorship 2024), and premium fan content commands $300-$2,000 per video on platforms like Cameo (Source: FinanceBuzz 2024).'
+              content: 'Scalable deployment from one capture session. One 4-hour session (varies by athlete) captures voice, likeness, and mannerisms. Generate hundreds of authorized content variations. Built-in rights verification ensures brand safety.\n\nRevenue opportunities: Regional brand campaigns typically pay $10K-$50K each (Source: OpenSponsorship 2024), and premium fan content commands $300-$2,000 per video on platforms like Cameo (Source: FinanceBuzz 2024).'
             },
             {
               title: 'AmplifyAI',
-              content: '48-72 hour brand-safe content for cultural moments. When cultural moments happen (game-winning plays, viral tweets), athletes need content FAST. AmplifyAI generates brand-safe campaigns in 48-72 hours vs 2-3 weeks. Capture trending moments before they pass. Result: 3-5x more brand deals per athlete without agent burnout.'
+              content: '48-72 hour brand-safe content for cultural moments.\n\nWhen cultural moments happen (game-winning plays, viral tweets), athletes need content FAST. AmplifyAI generates brand-safe campaigns in 48-72 hours vs 2-3 weeks. Capture trending moments before they pass.\n\nResult: 3-5x more brand deals per athlete without agent burnout.'
             }
           ]
         }
@@ -260,7 +260,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'The Premium Fan Market',
-              content: 'High-net-worth fans will pay $500-$2,000 for personalized video messages from their favorite athletes. Traditional model: Maybe 10-20 per year due to time constraints. Digital twins: 1,000+ personalized messages = $500K+ in new revenue.'
+              content: 'High-net-worth fans will pay $500-$2,000 for personalized video messages from their favorite athletes.\n\nTraditional model: Maybe 10-20 per year due to time constraints. Digital twins: 1,000+ personalized messages = $500K+ in new revenue.'
             }
           ]
         }
@@ -280,7 +280,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: '4-Step Digital Twin Process',
-              content: '(1) Capture - One 4-hour studio session captures voice, likeness, movement patterns, and expressions. (2) Train - AI models learn speech patterns, mannerisms, and authentic delivery style. (3) Generate - Produce unlimited variations of approved content with guaranteed brand safety. (4) Deploy - Instant distribution across channels with built-in rights verification.'
+              content: '(1) Capture - One 4-hour studio session captures voice, likeness, movement patterns, and expressions.\n\n(2) Train - AI models learn speech patterns, mannerisms, and authentic delivery style.\n\n(3) Generate - Produce unlimited variations of approved content with guaranteed brand safety.\n\n(4) Deploy - Instant distribution across channels with built-in rights verification.'
             },
             {
               title: 'Industry Precedent: Charles Barkley × FanDuel',
@@ -292,7 +292,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'Rights Infrastructure',
-              content: 'Every piece of generated content includes cryptographic proof of authorization. Brands can instantly verify usage rights. Unauthorized use is automatically detected and flagged. Athletes maintain complete control with real-time approval dashboards. Smart contracts enforce geographic restrictions, time limits, and content categories automatically.'
+              content: 'Every piece of generated content includes cryptographic proof of authorization. Brands can instantly verify usage rights. Unauthorized use is automatically detected and flagged.\n\nAthletes maintain complete control with real-time approval dashboards. Smart contracts enforce geographic restrictions, time limits, and content categories automatically.'
             }
           ]
         }
@@ -326,7 +326,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
         id: 'impact',
         type: 'impact',
         headline: 'Revenue Unlock: $150K-$500K+ Per Athlete',
-        content: '20 regional spots. 1,000 personalized messages. Instant post-game content. All from one 4-hour session. Athletes First is perfectly positioned to drive the revolution of digital twins and consent-based likeness management.',
+        content: '20 regional spots. 1,000 personalized messages. Instant post-game content. All from one 4-hour session.\n\nAthletes First is perfectly positioned to drive the revolution of digital twins and consent-based likeness management.',
         visual: {
           type: 'component',
           component: 'RevenueUnlockDiagram'
@@ -364,7 +364,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'The Advisory Gap',
-              content: 'Athletes need someone who explains the landscape, identifies red flags, and helps them understand trade-offs—BEFORE involving lawyers. Traditional model: Agent negotiates, then legal reviews (expensive, slow). Modern model: Agent provides strategic guidance UP FRONT, then legal confirms (faster, educational, trust-building). Families want transparency: "Show us WHY this is risky" not just "Trust us, it is."'
+              content: 'Athletes need someone who explains the landscape, identifies red flags, and helps them understand trade-offs—BEFORE involving lawyers.\n\nTraditional model: Agent negotiates, then legal reviews (expensive, slow). Modern model: Agent provides strategic guidance UP FRONT, then legal confirms (faster, educational, trust-building).\n\nFamilies want transparency: "Show us WHY this is risky" not just "Trust us, it is."'
             }
           ]
         }
@@ -429,11 +429,11 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'The Referral Flywheel',
-              content: 'Trust-based positioning creates compounding advantages:\n\nAthlete 1 signs → Feels protected and informed → Recommends you to 2-3 teammates\n\nThose athletes experience same transparency → Families talk to other families → "Athletes First uses AI to explain every deal—no other agent does that"\n\nResult: Recruiting becomes easier because your reputation precedes you. Families SEEK YOU OUT instead of you chasing them.'
+              content: 'Trust-based positioning creates compounding advantages:\n\nAthlete 1 signs → Feels protected and informed → Recommends you to 2-3 teammates\n\nThose athletes experience same transparency → Families talk to other families → "Athletes First uses AI to explain every deal—no other agent does that"\n\nResult: Recruiting becomes easier because your reputation precedes you.\n\nFamilies SEEK YOU OUT instead of you chasing them.'
             },
             {
               title: 'Competitive Positioning: The Benevolent Protector',
-              content: 'Most agents position as deal-closers: "I got this athlete $500K"\n\nYou position as protector: "I helped 50 athletes understand their deals and avoid 12 that would have cost them eligibility"\n\nWhich agent do parents trust? The one bragging about money or the one preventing disasters?\n\nBonus: When you DO close big deals, the trust foundation makes them easier. Athletes know you\'re optimizing for their protection, not your commission.'
+              content: 'Most agents position as deal-closers: "I got this athlete $500K"\n\nYou position as protector: "I helped 50 athletes understand their deals and avoid 12 that would have cost them eligibility"\n\nWhich agent do parents trust? The one bragging about money or the one preventing disasters?\n\nBonus: When you DO close big deals, the trust foundation makes them easier.\n\nAthletes know you\'re optimizing for their protection, not your commission.'
             },
             {
               title: 'Important Reminder: This is Strategic Guidance',
@@ -470,7 +470,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'The Clarity Deficit',
-              content: 'Athletes want to explore scenarios: guaranteed money vs performance upside, signing bonus timing, endorsement deal structures. Static presentations force them to imagine these scenarios. Interactive tools let them SEE the math in real-time. Clarity replaces uncertainty. Confidence replaces hesitation.'
+              content: 'Athletes want to explore scenarios: guaranteed money vs performance upside, signing bonus timing, endorsement deal structures. Static presentations force them to imagine these scenarios. Interactive tools let them SEE the math in real-time. Clarity replaces uncertainty.\n\nConfidence replaces hesitation.'
             }
           ]
         }
@@ -496,11 +496,11 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Core Capabilities',
-              content: 'Contract Modeling: Compare guaranteed money, total value, bonus structures, years, and escalators across 3-5 offers simultaneously. AI highlights key differences and flags unusual terms.\n\nNIL Calculator: Real-time projections for endorsements, social media, appearances, and content deals. Adjust follower count, engagement rate, or market tier—see updated projections instantly.\n\nCareer Pathways: Visualize different scenarios: "What if I take the bigger signing bonus?" "What if I wait a year?" "How does injury protection work?" Athletes explore safely.\n\nRisk Analysis: Automatically identifies red flags like offset language, guarantees tied to roster status, or unusual performance escalators. Explains implications in plain language.'
+              content: 'Contract Modeling: Compare guaranteed money, total value, bonus structures, years, and escalators across 3-5 offers simultaneously.\n\nAI highlights key differences and flags unusual terms.\n\nNIL Calculator: Real-time projections for endorsements, social media, appearances, and content deals. Adjust follower count, engagement rate, or market tier—see updated projections instantly.\n\nCareer Pathways: Visualize different scenarios: "What if I take the bigger signing bonus?" "What if I wait a year?" "How does injury protection work?" Athletes explore safely.\n\nRisk Analysis: Automatically identifies red flags like offset language, guarantees tied to roster status, or unusual performance escalators. Explains implications in plain language.'
             },
             {
               title: 'The Psychology: Why It Works',
-              content: 'Decision paralysis is common when families face complex, high-stakes choices with incomplete information. Static presentations force them to IMAGINE scenarios. Interactive tools let them SEE scenarios.\n\nWhen athletes can manipulate variables and watch numbers update in real-time, three things happen:\n\n1. Clarity replaces uncertainty—they understand the math\n2. Confidence replaces hesitation—they see the full picture\n3. Trust increases—you\'re showing, not telling\n\nResult: Families make decisions 30% faster and with 20-30 points higher close rates because they feel informed, not pressured.'
+              content: 'Decision paralysis is common when families face complex, high-stakes choices with incomplete information. Static presentations force them to IMAGINE scenarios. Interactive tools let them SEE scenarios.\n\nWhen athletes can manipulate variables and watch numbers update in real-time, three things happen:\n\n1. Clarity replaces uncertainty—they understand the math\n2.\n\nConfidence replaces hesitation—they see the full picture\n3.\n\nTrust increases—you\'re showing, not telling\n\nResult: Families make decisions 30% faster and with 20-30 points higher close rates because they feel informed, not pressured.'
             },
             {
               title: 'Technical Implementation',
@@ -568,15 +568,15 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'The Timing Window',
-              content: 'Game-winning touchdown on Monday night. Social media explodes. Brands want to capitalize. Traditional workflow: Creative brief (2 days), athlete scheduling (3-5 days), shoot coordination (1 week), editing and approval (3-5 days), distribution (2 days). Total: 2-3 weeks. Problem: The cultural moment peaked Tuesday morning. By Friday, it\'s old news.'
+              content: 'Game-winning touchdown on Monday night. Social media explodes. Brands want to capitalize.\n\nTraditional workflow: Creative brief (2 days), athlete scheduling (3-5 days), shoot coordination (1 week), editing and approval (3-5 days), distribution (2 days). Total: 2-3 weeks. Problem: The cultural moment peaked Tuesday morning. By Friday, it\'s old news.'
             },
             {
               title: 'Revenue Left on the Table',
-              content: 'Brands pay premium rates for real-time cultural activation. Quick-turnaround campaigns command 2-3x standard rates because of timing value. Athletes with fast execution capabilities secure 3-5x more brand deals than those limited to traditional workflows. Every missed moment is $10K-$50K in lost opportunity.'
+              content: 'Brands pay premium rates for real-time cultural activation. Quick-turnaround campaigns command 2-3x standard rates because of timing value.\n\nAthletes with fast execution capabilities secure 3-5x more brand deals than those limited to traditional workflows. Every missed moment is $10K-$50K in lost opportunity.'
             },
             {
               title: 'Competitive Disadvantage',
-              content: 'Athletes who can execute in 48-72 hours become brand favorites. They get recurring partnerships because brands know they can capitalize on moments. Agencies that enable this speed become preferred partners. Those that can\'t lose deals to faster competitors—even with less famous athletes.'
+              content: 'Athletes who can execute in 48-72 hours become brand favorites. They get recurring partnerships because brands know they can capitalize on moments.\n\nAgencies that enable this speed become preferred partners. Those that can\'t lose deals to faster competitors—even with less famous athletes.'
             }
           ]
         }
@@ -596,7 +596,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: '4-Step Rapid Execution',
-              content: '(1) Detect - AI monitors athlete performance, social trends, and cultural moments in real-time. (2) Generate - Create brand-aligned content in multiple formats (video, social posts, campaign concepts) using athlete digital twins and brand guidelines. (3) Review - Agent approval dashboard with one-click edits and brand safety checks. (4) Execute - Automated multi-platform distribution and brand outreach within hours of approval.'
+              content: '(1) Detect - AI monitors athlete performance, social trends, and cultural moments in real-time.\n\n(2) Generate - Create brand-aligned content in multiple formats (video, social posts, campaign concepts) using athlete digital twins and brand guidelines.\n\n(3) Review - Agent approval dashboard with one-click edits and brand safety checks.\n\n(4) Execute - Automated multi-platform distribution and brand outreach within hours of approval.'
             },
             {
               title: 'Brand Safety Built In',
@@ -749,7 +749,7 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'Option 4: Do Nothing (Status Quo)',
-              content: 'Timeline: N/A\nCost: $0\nPros: No risk, no cost, no change management\nCons: Fall behind AI-enabled competitors. Lose recruitment deals to agents with interactive tools. Miss 12-24 month first-mover advantage window. Watch as AI becomes table stakes and you play expensive catch-up.\n\nRationale Advantage: 90-day pilot de-risks experimentation. $100-250K validates approach before committing to full build. Early adopters gain data advantages and competitive positioning before AI becomes commoditized.'
+              content: 'Timeline: N/A\nCost: $0\nPros: No risk, no cost, no change management\nCons: Fall behind AI-enabled competitors. Lose recruitment deals to agents with interactive tools. Miss 12-24 month first-mover advantage window. Watch as AI becomes table stakes and you play expensive catch-up.\n\nRationale Advantage: 90-day pilot de-risks experimentation. $100-250K validates approach before committing to full build.\n\nEarly adopters gain data advantages and competitive positioning before AI becomes commoditized.'
             }
           ]
         }
