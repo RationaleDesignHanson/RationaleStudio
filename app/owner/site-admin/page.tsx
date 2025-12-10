@@ -195,101 +195,104 @@ export default function SiteAdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Site Admin Dashboard</h1>
-          <p className="text-gray-600">Manage all pages across the website</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Site Admin Dashboard</h1>
+          <p className="text-sm sm:text-base text-gray-600">Manage all pages across the website</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm text-gray-600 mb-1">Total Pages</div>
-            <div className="text-3xl font-bold text-gray-900">{stats.total}</div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-6">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-xs sm:text-sm text-gray-600 mb-1">Total Pages</div>
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.total}</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm text-gray-600 mb-1">Client Portals</div>
-            <div className="text-3xl font-bold text-purple-600">{stats.byCategory['client-portal'] || 0}</div>
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-xs sm:text-sm text-gray-600 mb-1">Client Portals</div>
+            <div className="text-2xl sm:text-3xl font-bold text-purple-600">{stats.byCategory['client-portal'] || 0}</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="text-sm text-gray-600 mb-1">Protected</div>
-            <div className="text-3xl font-bold text-green-600">{stats.protected}</div>
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-xs sm:text-sm text-gray-600 mb-1">Protected</div>
+            <div className="text-2xl sm:text-3xl font-bold text-green-600">{stats.protected}</div>
           </div>
           <div
-            className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition-shadow"
+            className="bg-white rounded-lg shadow p-4 sm:p-6 cursor-pointer hover:shadow-lg transition-shadow"
             onClick={() => setStatusFilter('duplicates')}
           >
-            <div className="text-sm text-gray-600 mb-1">Duplicates</div>
-            <div className="text-3xl font-bold text-red-600">{stats.duplicates}</div>
+            <div className="text-xs sm:text-sm text-gray-600 mb-1">Duplicates</div>
+            <div className="text-2xl sm:text-3xl font-bold text-red-600">{stats.duplicates}</div>
           </div>
           <div
-            className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition-shadow"
+            className="bg-white rounded-lg shadow p-4 sm:p-6 cursor-pointer hover:shadow-lg transition-shadow col-span-2 sm:col-span-1"
             onClick={() => setStatusFilter('deletion-candidates')}
           >
-            <div className="text-sm text-gray-600 mb-1">Deletion Candidates</div>
-            <div className="text-3xl font-bold text-orange-600">{stats.deletionCandidates}</div>
+            <div className="text-xs sm:text-sm text-gray-600 mb-1">Deletion Candidates</div>
+            <div className="text-2xl sm:text-3xl font-bold text-orange-600">{stats.deletionCandidates}</div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <div className="flex flex-col lg:flex-row gap-4">
+        <div className="bg-white rounded-lg shadow p-4 sm:p-6 mb-6">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {/* Search */}
-            <div className="flex-1 relative">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search by route, title, or file path..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
 
-            {/* Category Filter */}
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            {/* Filters Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {/* Category Filter */}
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                  className="w-full pl-10 pr-8 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="all">All Categories</option>
+                  <option value="public">Public</option>
+                  <option value="client-portal">Client Portal</option>
+                  <option value="investor">Investor</option>
+                  <option value="team">Team</option>
+                  <option value="partner">Partner</option>
+                  <option value="visual-test">Visual Test</option>
+                  <option value="admin">Admin</option>
+                  <option value="api">API</option>
+                </select>
+              </div>
+
+              {/* Status Filter */}
               <select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
               >
-                <option value="all">All Categories</option>
-                <option value="public">Public</option>
-                <option value="client-portal">Client Portal</option>
-                <option value="investor">Investor</option>
-                <option value="team">Team</option>
-                <option value="partner">Partner</option>
-                <option value="visual-test">Visual Test</option>
-                <option value="admin">Admin</option>
-                <option value="api">API</option>
+                <option value="all">All Status</option>
+                <option value="duplicates">Duplicates Only</option>
+                <option value="protected">Protected Only</option>
+                <option value="deletion-candidates">Deletion Candidates</option>
+              </select>
+
+              {/* Sort */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white sm:col-span-2 lg:col-span-2"
+              >
+                <option value="route">Sort by Route</option>
+                <option value="category">Sort by Category</option>
+                <option value="lastModified">Sort by Date</option>
               </select>
             </div>
-
-            {/* Status Filter */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-            >
-              <option value="all">All Status</option>
-              <option value="duplicates">Duplicates Only</option>
-              <option value="protected">Protected Only</option>
-              <option value="deletion-candidates">Deletion Candidates</option>
-            </select>
-
-            {/* Sort */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-            >
-              <option value="route">Sort by Route</option>
-              <option value="category">Sort by Category</option>
-              <option value="lastModified">Sort by Date</option>
-            </select>
           </div>
 
           {/* Active Filters */}
@@ -333,33 +336,35 @@ export default function SiteAdminPage() {
 
         {/* Bulk Actions Bar */}
         {selectedPages.size > 0 && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-4">
-                <span className="font-medium text-blue-900">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="font-medium text-blue-900 text-sm sm:text-base">
                   {selectedPages.size} pages selected
                 </span>
                 <button
                   onClick={clearSelection}
-                  className="text-blue-600 hover:text-blue-700 text-sm"
+                  className="text-blue-600 hover:text-blue-700 text-xs sm:text-sm"
                 >
-                  Clear selection
+                  Clear
                 </button>
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={exportSelection}
-                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-xs sm:text-sm"
                 >
-                  <Download className="w-4 h-4" />
-                  Export CSV
+                  <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Export CSV</span>
+                  <span className="sm:hidden">Export</span>
                 </button>
                 <button
                   onClick={() => setDeleteModalOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-xs sm:text-sm"
                 >
-                  <Trash2 className="w-4 h-4" />
-                  Delete Selected
+                  <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Delete Selected</span>
+                  <span className="sm:hidden">Delete</span>
                 </button>
               </div>
             </div>
@@ -368,89 +373,93 @@ export default function SiteAdminPage() {
 
         {/* Pages Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-3 text-left">
-                    <input
-                      type="checkbox"
-                      checked={selectedPages.size === filteredPages.length && filteredPages.length > 0}
-                      onChange={(e) => e.target.checked ? selectAll() : clearSelection()}
-                      className="rounded border-gray-300"
-                    />
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Route</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Modified</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Size</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredPages.map((page) => {
-                  const isCandidate = isDeletionCandidate(page);
-                  return (
-                    <tr key={page.filePath} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <input
-                          type="checkbox"
-                          checked={selectedPages.has(page.filePath)}
-                          onChange={() => togglePage(page.filePath)}
-                          className="rounded border-gray-300"
-                        />
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <code className="text-sm text-gray-900">{page.route}</code>
-                          {page.isDuplicate && (
-                            <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full">
-                              Duplicate
-                            </span>
-                          )}
-                          {page.isProtected && (
-                            <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">
-                              Protected
-                            </span>
-                          )}
-                          {isCandidate && !page.isDuplicate && (
-                            <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs rounded-full">
-                              Delete?
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                    <td className="px-6 py-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium border ${CATEGORY_COLORS[page.category]}`}>
-                        {page.category}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
-                      {page.title}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {page.lastModified ? new Date(page.lastModified).toLocaleDateString() : '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {page.fileSize || '-'}
-                    </td>
-                    <td className="px-6 py-4">
-                      <a
-                        href={page.route}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        View
-                      </a>
-                    </td>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <div className="inline-block min-w-full align-middle">
+              <table className="min-w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-3 sm:px-6 py-3 text-left sticky left-0 bg-gray-50 z-10">
+                      <input
+                        type="checkbox"
+                        checked={selectedPages.size === filteredPages.length && filteredPages.length > 0}
+                        onChange={(e) => e.target.checked ? selectAll() : clearSelection()}
+                        className="rounded border-gray-300"
+                      />
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Route</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Category</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden lg:table-cell">Title</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden md:table-cell">Last Modified</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden xl:table-cell">Size</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Actions</th>
                   </tr>
-                );
-                })}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200 bg-white">
+                  {filteredPages.map((page) => {
+                    const isCandidate = isDeletionCandidate(page);
+                    return (
+                      <tr key={page.filePath} className="hover:bg-gray-50">
+                        <td className="px-3 sm:px-6 py-4 sticky left-0 bg-white hover:bg-gray-50 z-10">
+                          <input
+                            type="checkbox"
+                            checked={selectedPages.has(page.filePath)}
+                            onChange={() => togglePage(page.filePath)}
+                            className="rounded border-gray-300"
+                          />
+                        </td>
+                        <td className="px-3 sm:px-6 py-4">
+                          <div className="flex flex-col gap-1">
+                            <code className="text-xs sm:text-sm text-gray-900 break-all">{page.route}</code>
+                            <div className="flex flex-wrap gap-1">
+                              {page.isDuplicate && (
+                                <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded-full whitespace-nowrap">
+                                  Duplicate
+                                </span>
+                              )}
+                              {page.isProtected && (
+                                <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full whitespace-nowrap">
+                                  Protected
+                                </span>
+                              )}
+                              {isCandidate && !page.isDuplicate && (
+                                <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs rounded-full whitespace-nowrap">
+                                  Delete?
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-3 sm:px-6 py-4">
+                          <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap ${CATEGORY_COLORS[page.category]}`}>
+                            {page.category}
+                          </span>
+                        </td>
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-900 max-w-xs truncate hidden lg:table-cell">
+                          {page.title}
+                        </td>
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-600 whitespace-nowrap hidden md:table-cell">
+                          {page.lastModified ? new Date(page.lastModified).toLocaleDateString() : '-'}
+                        </td>
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-600 whitespace-nowrap hidden xl:table-cell">
+                          {page.fileSize || '-'}
+                        </td>
+                        <td className="px-3 sm:px-6 py-4">
+                          <a
+                            href={page.route}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-xs sm:text-sm whitespace-nowrap"
+                          >
+                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="hidden sm:inline">View</span>
+                          </a>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
