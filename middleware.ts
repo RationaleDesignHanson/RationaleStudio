@@ -7,8 +7,9 @@
  * - /partners/* - Partner + Team + Owner
  * - /investors/* - Investor + Partner + Team + Owner
  *
- * Note: Middleware runs in Edge Runtime which doesn't support Firebase Admin SDK.
- * We only check for session cookie existence here. Full verification happens in pages.
+ * SECURITY: Uses Firebase Admin SDK to verify session cookies and enforce role-based access.
+ * Middleware runs in Edge Runtime, but we need Node.js runtime for Firebase Admin SDK verification.
+ * To support this, we use a custom API route for verification.
  */
 
 import { NextResponse } from 'next/server';
@@ -24,8 +25,22 @@ const protectedRoutes: Record<string, string[]> = {
   '/clients': ['client', 'team', 'owner'],
 };
 
+// Role hierarchy for access control
+const roleHierarchy: Record<string, number> = {
+  owner: 5,
+  team: 4,
+  partner: 3,
+  investor: 2,
+  client: 1,
+};
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Allow login pages to bypass auth checks (prevent redirect loops)
+  if (pathname === '/login' || pathname === '/clients/login') {
+    return NextResponse.next();
+  }
 
   // Check if route is protected
   const protectedRoute = Object.keys(protectedRoutes).find((route) =>
@@ -47,9 +62,54 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Session exists - allow access
-  // Role verification happens in page components via server-side verification
-  return NextResponse.next();
+  // Verify session cookie and check role via internal API
+  try {
+    const verifyResponse = await fetch(new URL('/api/auth/verify', request.url), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': `session=${sessionCookie}`,
+      },
+    });
+
+    if (!verifyResponse.ok) {
+      // Session invalid or expired, redirect to login
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    const { role } = await verifyResponse.json();
+
+    // Check if user has required role
+    const requiredRoles = protectedRoutes[protectedRoute];
+    const hasAccess = requiredRoles.some(
+      (requiredRole) => roleHierarchy[role] >= roleHierarchy[requiredRole]
+    );
+
+    if (!hasAccess) {
+      // User doesn't have required role, redirect to appropriate dashboard
+      const dashboards: Record<string, string> = {
+        owner: '/owner',
+        team: '/team',
+        partner: '/partners',
+        investor: '/investors',
+        client: '/clients',
+      };
+
+      const userDashboard = dashboards[role] || '/login';
+      return NextResponse.redirect(new URL(userDashboard, request.url));
+    }
+
+    // User has access, allow through
+    return NextResponse.next();
+  } catch (error) {
+    console.error('[Middleware] Session verification failed:', error);
+    // On error, redirect to login
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
 }
 
 // Configure which routes the middleware should run on
