@@ -11,6 +11,7 @@ import { OS8Window } from '@/components/visual-test';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import type { Metadata } from 'next';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
 
 export const metadata: Metadata = {
   title: 'Historical Work | Rationale',
@@ -127,24 +128,33 @@ export default function HistoricalWorkPage() {
                 {/* Case Study Images Grid */}
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
-                    <img
+                    <ResponsiveImage
                       src="/images/work/rumi/rumi-problem.png"
                       alt="Rumi problem statement: vision wasn't the problem, definition was"
-                      className="w-full h-full object-cover"
+                      width={800}
+                      height={600}
+                      className="w-full h-full"
+                      objectFit="cover"
                     />
                   </div>
                   <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
-                    <img
+                    <ResponsiveImage
                       src="/images/work/rumi/rumi-brand-system.png"
                       alt="Rumi brand system showing modular typography and color palette"
-                      className="w-full h-full object-cover"
+                      width={800}
+                      height={600}
+                      className="w-full h-full"
+                      objectFit="cover"
                     />
                   </div>
                   <div className="rounded-lg overflow-hidden border border-terminal-gold/20">
-                    <img
+                    <ResponsiveImage
                       src="/images/work/rumi/rumi-product-screens.png"
                       alt="Rumi product screens showing rewards system and auto mode"
-                      className="w-full h-full object-cover"
+                      width={800}
+                      height={600}
+                      className="w-full h-full"
+                      objectFit="cover"
                     />
                   </div>
                 </div>

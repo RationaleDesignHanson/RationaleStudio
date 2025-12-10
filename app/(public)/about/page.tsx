@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
 
 export default function AboutPage() {
   return (
@@ -268,10 +269,12 @@ export default function AboutPage() {
 
             {/* Timeline Image */}
             <div className="mb-6">
-              <img
+              <ResponsiveImage
                 src="/images/work/hanson/background-timeline.png"
                 alt="Career timeline from 2000-2024 showing progression from creative work through Meta Reality Labs to current Rationale projects"
-                className="w-full h-auto rounded-lg"
+                width={1200}
+                height={400}
+                className="w-full rounded-lg"
               />
             </div>
 
