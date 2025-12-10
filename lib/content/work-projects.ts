@@ -22,7 +22,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Consumer', 'AI Product', 'Live'],
     isProtected: false,
     featured: true,
-    description: 'AI-powered email management that extracts actions from your inbox. Built and shipped in 30 days.'
+    description: 'AI email assistant that achieves Inbox Zero autonomously. Learns your preferences, handles routine responses, and keeps you focused on what matters. Built and shipped in 30 days.'
   },
   {
     id: 'heirloom',
@@ -39,7 +39,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Consumer', 'iOS', 'SwiftUI', 'Product Design'],
     isProtected: false,
     featured: true,
-    description: 'Native app for preserving family recipes with smart shopping list integration, vintage aesthetic, and iOS Reminders sync. Built with SwiftUI and SwiftData.'
+    description: 'Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence. Native iOS app with vintage aesthetic and iCloud sync.'
   },
   {
     id: 'case-study-010',

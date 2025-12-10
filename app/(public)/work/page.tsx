@@ -87,7 +87,7 @@ export default function WorkPage() {
 
                     {/* Description */}
                     <p className="text-gray-300 leading-relaxed">
-                      AI email assistant that achieves Inbox Zero autonomously. Early beta used daily by our team to validate core workflows. Learn your preferences, handle routine responses, stay focused on what matters.
+                      AI email assistant that achieves Inbox Zero autonomously. Learns your preferences, handles routine responses, and keeps you focused on what matters. Built and shipped in 30 days.
                     </p>
 
                     {/* Metrics Grid */}
@@ -149,7 +149,7 @@ export default function WorkPage() {
 
                     {/* Description */}
                     <p className="text-gray-300 leading-relaxed">
-                      Modern recipe box where grandma's handwritten chicken soup sits alongside that NYT cookie you bookmarked. Style each recipe as a personal artifact, share exactly as you created it, and build the collection worth passing down.
+                      Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence. Native iOS app with vintage aesthetic and iCloud sync.
                     </p>
 
                     {/* Metrics Grid */}
