@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Container } from '@/components/layout/Container';
+import { useAuth } from '@/lib/auth/AuthContext';
+import { LogOut, LayoutDashboard, ArrowRight } from 'lucide-react';
 
 interface ClientPage {
   title: string;
@@ -277,21 +279,36 @@ const CLIENT_PROJECTS: ClientProject[] = [
 
 export default function ClientDashboard() {
   const router = useRouter();
+  const { user, loading: authLoading, signOut } = useAuth();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check authentication
-    const auth = sessionStorage.getItem('client-auth');
-    if (!auth) {
+    // Wait for auth to finish loading
+    if (authLoading) {
+      return;
+    }
+
+    // Check Firebase authentication
+    if (!user) {
       router.push('/clients/login');
     } else {
       setIsAuthenticated(true);
+      setIsLoading(false);
     }
-    setIsLoading(false);
-  }, [router]);
+  }, [user, authLoading, router]);
 
-  if (isLoading) {
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      router.push('/clients/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
+  // Show loading while auth is initializing or checking
+  if (authLoading || isLoading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-terminal-gold text-lg">Loading...</div>
@@ -299,6 +316,7 @@ export default function ClientDashboard() {
     );
   }
 
+  // If not authenticated, return null (redirect is handled in useEffect)
   if (!isAuthenticated) {
     return null;
   }
@@ -308,14 +326,48 @@ export default function ClientDashboard() {
       <Container>
         <div className="py-20">
           {/* Header */}
-          <div className="mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-terminal-gold">
-              Client Portal
-            </h1>
-            <p className="text-lg text-gray-400">
-              Select a project to view presentation materials
-            </p>
+          <div className="mb-8 flex items-start justify-between">
+            <div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-terminal-gold">
+                Client Portal
+              </h1>
+              <p className="text-lg text-gray-400">
+                Select a project to view presentation materials
+              </p>
+            </div>
+
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-700 hover:border-terminal-gold text-gray-400 hover:text-terminal-gold transition-colors rounded-lg"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
           </div>
+
+          {/* Site Admin Dashboard - Prominent Link */}
+          <Link
+            href="/owner/site-admin"
+            className="block mb-8 p-6 bg-gradient-to-r from-terminal-gold/10 to-terminal-gold/5 border-2 border-terminal-gold/30 hover:border-terminal-gold/60 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(255,215,0,0.15)] group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-terminal-gold/20 rounded-lg">
+                  <LayoutDashboard className="w-6 h-6 text-terminal-gold" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white mb-1 group-hover:text-terminal-gold transition-colors">
+                    Site Admin Dashboard
+                  </h2>
+                  <p className="text-sm text-gray-400">
+                    View, sort, and manage all site pages • Site map explorer • Delete unused routes
+                  </p>
+                </div>
+              </div>
+              <ArrowRight className="w-6 h-6 text-terminal-gold opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </div>
+          </Link>
 
           {/* Project List */}
           <div className="space-y-8">
@@ -394,12 +446,10 @@ export default function ClientDashboard() {
             </Link>
 
             <button
-              onClick={() => {
-                sessionStorage.removeItem('client-auth');
-                router.push('/clients/login');
-              }}
-              className="px-4 py-2 text-sm border border-gray-700 hover:border-terminal-gold text-gray-400 hover:text-terminal-gold transition-colors rounded"
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-700 hover:border-terminal-gold text-gray-400 hover:text-terminal-gold transition-colors rounded"
             >
+              <LogOut className="w-4 h-4" />
               Logout
             </button>
           </div>

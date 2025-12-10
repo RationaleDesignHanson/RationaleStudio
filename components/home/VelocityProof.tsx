@@ -45,7 +45,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
             <span className="text-xs text-accent font-bold">11 weeks</span>
           </div>
           <div className="h-8 bg-accent/20 border border-accent/30 rounded flex items-center px-3">
-            <span className="text-xs text-accent font-medium">7 Prototypes → Lock → Build</span>
+            <span className="text-xs text-accent font-medium">Prototypes → Lock → Build</span>
           </div>
           <div className="mt-1 text-xs text-gray-400">Feedback from day 1</div>
         </div>

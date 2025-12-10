@@ -34,8 +34,15 @@ const caveat = Caveat({
   display: "swap",
 });
 
+export const viewport = {
+  width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rationale.work'),
+metadataBase: new URL('https://rationale.work'),
   title: {
     default: "Rationale — Product Studio Building AI-Powered Ventures",
     template: "%s — Rationale"
@@ -58,12 +65,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Matt Hanson' }],
   creator: 'Rationale',
   publisher: 'Rationale',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

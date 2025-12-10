@@ -1,14 +1,16 @@
 /**
  * Client Auth Guard
  *
- * Protects client pages by checking for valid session authentication
- * Redirects to login if not authenticated
+ * Protects client pages by checking for valid Firebase authentication
+ * Owners and team members can access all client pages
+ * Client users can only access their specific client page
  */
 
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 interface ClientAuthGuardProps {
   children: React.ReactNode;
@@ -17,26 +19,47 @@ interface ClientAuthGuardProps {
 
 export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardProps) {
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+  const { user, profile, loading } = useAuth();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    // Check authentication from session storage
-    const clientAuth = sessionStorage.getItem('client-auth');
-
-    // Allow GLOBAL auth token to access all pages
-    if (!clientAuth || (clientAuth !== requiredClient && clientAuth !== 'GLOBAL')) {
-      // Not authenticated or wrong client - redirect to login
-      router.push('/clients/login');
-    } else {
-      setIsAuthenticated(true);
+    if (loading) {
+      return; // Wait for auth to load
     }
 
-    setIsLoading(false);
-  }, [requiredClient, router]);
+    // Not logged in - redirect to login with return URL
+    if (!user || !profile) {
+      const loginUrl = `/clients/login?redirect=${encodeURIComponent(pathname)}`;
+      router.push(loginUrl);
+      return;
+    }
 
-  // Show loading state
-  if (isLoading) {
+    // Check authorization
+    // Owner and team can access all clients
+    if (profile.role === 'owner' || profile.role === 'team') {
+      setIsAuthorized(true);
+      return;
+    }
+
+    // Client users can only access their specific client
+    if (profile.role === 'client' && profile.clientId) {
+      const clientMatch = profile.clientId.toUpperCase() === requiredClient.toUpperCase();
+      if (clientMatch) {
+        setIsAuthorized(true);
+      } else {
+        // Wrong client - redirect to their dashboard
+        router.push('/clients');
+      }
+      return;
+    }
+
+    // Other roles don't have client access
+    router.push('/login');
+  }, [user, profile, loading, requiredClient, router, pathname]);
+
+  // Show loading state while checking auth
+  if (loading || !isAuthorized) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-terminal-gold text-lg">Loading...</div>
@@ -44,10 +67,6 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
     );
   }
 
-  // Only render children if authenticated
-  if (!isAuthenticated) {
-    return null;
-  }
-
+  // Render protected content
   return <>{children}</>;
 }
