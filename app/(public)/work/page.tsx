@@ -152,7 +152,7 @@ export default function WorkPage() {
 
                     {/* Description */}
                     <p className="text-gray-300 leading-relaxed">
-                      Native iOS app for preserving family recipes with smart shopping lists, vintage aesthetic, and iOS Reminders sync. Built with SwiftUI and SwiftData.
+                      Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence.
                     </p>
 
                     {/* Metrics Grid */}
