@@ -17,7 +17,7 @@ import { ButtonPrimary, ButtonSecondary, ButtonTertiary } from '@/components/ui/
 
 // Import Zero diagram components
 import AIIntelligenceSystemDiagram from '@/components/zero/diagrams/AIIntelligenceSystemDiagramResponsive';
-import InboxJourneyDiagram from '@/components/zero/diagrams/InboxJourneyDiagram';
+import InboxJourneyDiagram from '@/components/zero/diagrams/InboxJourneyDiagramResponsive';
 import MicroservicesArchitectureDiagram from '@/components/zero/diagrams/MicroservicesArchitectureDiagram';
 import SwipeTriageTreeDiagram from '@/components/zero/diagrams/SwipeTriageTreeDiagram';
 import BetaRoadmapTimelineDiagram from '@/components/zero/diagrams/BetaRoadmapTimelineDiagramResponsive';
