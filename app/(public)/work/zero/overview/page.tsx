@@ -19,7 +19,7 @@ import { ButtonPrimary, ButtonSecondary, ButtonTertiary } from '@/components/ui/
 import AIIntelligenceSystemDiagram from '@/components/zero/diagrams/AIIntelligenceSystemDiagramResponsive';
 import InboxJourneyDiagram from '@/components/zero/diagrams/InboxJourneyDiagramResponsive';
 import MicroservicesArchitectureDiagram from '@/components/zero/diagrams/MicroservicesArchitectureDiagramResponsive';
-import SwipeTriageTreeDiagram from '@/components/zero/diagrams/SwipeTriageTreeDiagram';
+import SwipeTriageTreeDiagram from '@/components/zero/diagrams/SwipeTriageTreeDiagramResponsive';
 import BetaRoadmapTimelineDiagram from '@/components/zero/diagrams/BetaRoadmapTimelineDiagramResponsive';
 
 export default function ZeroOverviewPage() {
