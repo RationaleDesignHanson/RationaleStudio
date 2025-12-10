@@ -3,12 +3,16 @@
  *
  * Simple password protection for case studies and investor content.
  * Stores access in session storage for duration of session.
+ *
+ * Phase 4.2: Migrated to BaseCard universal foundation
  */
 
 'use client';
 
 import { useState, useEffect, ReactNode } from 'react';
-import { ResponsiveText, ResponsiveBox, ResponsiveButton } from '@/lib/ui/responsive';
+import { ResponsiveText } from '@/lib/ui/responsive';
+import { BaseCard } from '@/components/ui/BaseCard';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 
 interface PasswordGateProps {
   children: ReactNode;
@@ -73,7 +77,13 @@ export function PasswordGate({
   // Show password form
   return (
     <div className={`min-h-[60vh] flex items-center justify-center ${className}`}>
-      <ResponsiveBox className="max-w-md w-full rounded-lg border border-border bg-background shadow-lg">
+      <BaseCard
+        variant="default"
+        paddingSize="lg"
+        borderAccent="border-border"
+        className="max-w-md w-full shadow-lg"
+        ariaLabel="Password protected content"
+      >
         <div className="text-center mb-6 sm:mb-8">
           <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
             <svg
@@ -115,14 +125,14 @@ export function PasswordGate({
             )}
           </div>
 
-          <ResponsiveButton
+          <ButtonPrimary
             type="submit"
-            size="md"
-            className="w-full"
+            size="lg"
+            fullWidth
             disabled={!inputPassword}
           >
             Access Content
-          </ResponsiveButton>
+          </ButtonPrimary>
         </form>
 
         <div className="mt-6 pt-6 border-t border-border text-center">
@@ -133,7 +143,7 @@ export function PasswordGate({
             </a>
           </p>
         </div>
-      </ResponsiveBox>
+      </BaseCard>
     </div>
   );
 }

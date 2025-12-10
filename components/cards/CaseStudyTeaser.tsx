@@ -3,11 +3,14 @@
  *
  * Public-facing case study preview for /work page.
  * Shows challenge, solution highlights, and impact without revealing full details.
+ *
+ * Phase 4.2: Migrated to BaseCard universal foundation
  */
 
 import Link from 'next/link';
 import { CaseStudyTeaser as CaseStudyTeaserType } from '@/lib/content/case-studies';
-import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
+import { ResponsiveText } from '@/lib/ui/responsive';
+import { BaseCard, BaseCardHeader, BaseCardContent, BaseCardFooter } from '@/components/ui/BaseCard';
 
 interface CaseStudyTeaserProps {
   caseStudy: CaseStudyTeaserType;
@@ -16,17 +19,15 @@ interface CaseStudyTeaserProps {
 
 export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserProps) {
   return (
-    <Link href={`/cases/${caseStudy.slug}`}>
-      <ResponsiveBox
-        className={`
-          group relative overflow-hidden
-          rounded-lg border border-border
-          bg-background hover:bg-accent/5
-          transition-all duration-300
-          hover:border-accent hover:shadow-lg
-          ${className}
-        `}
-      >
+    <BaseCard
+      href={`/cases/${caseStudy.slug}`}
+      variant="interactive"
+      paddingSize="lg"
+      borderAccent="border-border"
+      interactive
+      className={`group ${className}`}
+      ariaLabel={`View case study: ${caseStudy.title}`}
+    >
         {/* Header */}
         <div className="mb-4 sm:mb-6">
           <div className="flex items-start justify-between mb-2">
@@ -110,8 +111,7 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
             </span>
           </div>
         </div>
-      </ResponsiveBox>
-    </Link>
+    </BaseCard>
   );
 }
 
@@ -120,36 +120,34 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
  */
 export function CaseStudyTeaserGrid({ caseStudy, className = '' }: CaseStudyTeaserProps) {
   return (
-    <Link href={`/cases/${caseStudy.slug}`}>
-      <div
-        className={`
-          group p-6
-          rounded-lg border border-border
-          bg-background hover:bg-accent/5
-          transition-all duration-300
-          hover:border-accent
-          ${className}
-        `}
-      >
-        <ResponsiveText variant="h4" className="mb-2 group-hover:text-accent transition-colors">
-          {caseStudy.title}
-        </ResponsiveText>
-        <p className="text-sm text-muted mb-4">{caseStudy.tagline}</p>
+    <BaseCard
+      href={`/cases/${caseStudy.slug}`}
+      variant="interactive"
+      size="compact"
+      paddingSize="md"
+      borderAccent="border-border"
+      interactive
+      className={`group ${className}`}
+      ariaLabel={`View case study: ${caseStudy.title}`}
+    >
+      <ResponsiveText variant="h4" className="mb-2 group-hover:text-accent transition-colors">
+        {caseStudy.title}
+      </ResponsiveText>
+      <p className="text-sm text-muted mb-4">{caseStudy.tagline}</p>
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {caseStudy.tags.slice(0, 3).map((tag, index) => (
-            <span key={index} className="text-xs px-2 py-1 bg-accent/10 text-accent rounded">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <p className="text-sm text-muted line-clamp-3 mb-4">{caseStudy.challenge}</p>
-
-        <div className="text-sm font-medium text-accent group-hover:underline">
-          View case study →
-        </div>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {caseStudy.tags.slice(0, 3).map((tag, index) => (
+          <span key={index} className="text-xs px-2 py-1 bg-accent/10 text-accent rounded">
+            {tag}
+          </span>
+        ))}
       </div>
-    </Link>
+
+      <p className="text-sm text-muted line-clamp-3 mb-4">{caseStudy.challenge}</p>
+
+      <div className="text-sm font-medium text-accent group-hover:underline">
+        View case study →
+      </div>
+    </BaseCard>
   );
 }
