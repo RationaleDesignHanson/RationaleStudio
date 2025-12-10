@@ -123,6 +123,7 @@ export default function AthletesFirstPitchDeck() {
   const [activeDemoTab, setActiveDemoTab] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionDirection, setTransitionDirection] = useState<'forward' | 'backward'>('forward');
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentSection = sections[activeSection];
   const currentSlide = currentSection.slides[activeSlide];
@@ -136,6 +137,29 @@ export default function AthletesFirstPitchDeck() {
       localStorage.setItem('athletes-first-slide', activeSlide.toString());
     }
   }, [activeSection, activeSlide]);
+
+  // Fullscreen change detection
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Toggle fullscreen mode
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.error('Fullscreen toggle failed:', err);
+    }
+  };
 
   // Keyboard navigation
   useEffect(() => {
@@ -152,6 +176,9 @@ export default function AthletesFirstPitchDeck() {
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         previousSection();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
       }
     };
 
@@ -404,6 +431,24 @@ export default function AthletesFirstPitchDeck() {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
+          </button>
+
+          {/* Fullscreen toggle button */}
+          <button
+            onClick={toggleFullscreen}
+            className="p-3 rounded hover:bg-white/10 transition-all min-w-[48px] min-h-[48px] flex items-center justify-center ml-auto"
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            title={isFullscreen ? "Exit fullscreen (Esc)" : "Enter fullscreen (F)"}
+          >
+            {isFullscreen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            )}
           </button>
         </div>
 
