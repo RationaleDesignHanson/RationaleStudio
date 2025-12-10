@@ -77,7 +77,7 @@ export default function WorkPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Zero Inbox - Featured Hero */}
             {zero && (
               <Link href={`/work/${zero.slug}`} className="group block">

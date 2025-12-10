@@ -98,7 +98,7 @@ export default function HomePage() {
             </div>
 
             {/* Row 1: Zero and Heirloom */}
-            <div className="grid md:grid-cols-2 gap-8 mb-8 px-4 sm:px-0">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
               <div className="p-6 sm:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
                 <div className="flex items-start justify-between mb-4">
@@ -226,7 +226,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {/* Invest */}
               <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
                 <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
