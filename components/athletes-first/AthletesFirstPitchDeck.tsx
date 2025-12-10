@@ -300,7 +300,7 @@ export default function AthletesFirstPitchDeck() {
           <button
             onClick={previousSlide}
             disabled={isFirstSlide}
-            className="p-1.5 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label="Previous slide"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -317,7 +317,7 @@ export default function AthletesFirstPitchDeck() {
           <button
             onClick={nextSlide}
             disabled={isLastSlide}
-            className="p-1.5 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label="Next slide"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -328,7 +328,7 @@ export default function AthletesFirstPitchDeck() {
 
         {/* Module breadcrumbs - only show when in a module section */}
         {currentModule && (
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {MODULES.map((module) => {
               const isActive = module.id === currentSection.id;
               // Map module IDs to section indices
@@ -348,8 +348,8 @@ export default function AthletesFirstPitchDeck() {
                       goToSection(sectionIndex);
                     }
                   }}
-                  className="px-4 py-2 rounded text-base font-semibold transition-all cursor-pointer
-                             hover:scale-105 hover:shadow-lg active:scale-95"
+                  className="px-4 py-3 rounded text-sm md:text-base font-semibold transition-all cursor-pointer
+                             hover:scale-105 hover:shadow-lg active:scale-95 min-h-[48px] flex items-center"
                   style={{
                     backgroundColor: isActive ? `${module.color}20` : 'transparent',
                     borderLeft: `4px solid ${isActive ? module.color : 'transparent'}`,
