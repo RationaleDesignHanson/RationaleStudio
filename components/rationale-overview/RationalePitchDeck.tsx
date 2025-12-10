@@ -37,7 +37,7 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   SpecVsPrototypeDiagram: dynamic(() => import('./diagrams/SpecVsPrototypeDiagram'), { loading: () => <LoadingComponent /> }),
   CostComparisonChart: dynamic(() => import('./diagrams/CostComparisonChart'), { loading: () => <LoadingComponent /> }),
   DecisionPressureDiagram: dynamic(() => import('./diagrams/DecisionPressureDiagram'), { loading: () => <LoadingComponent /> }),
-  ZeroArchitectureDiagram: dynamic(() => import('./diagrams/ZeroArchitectureDiagram'), { loading: () => <LoadingComponent /> }),
+  ZeroArchitectureDiagram: dynamic(() => import('./diagrams/ZeroArchitectureDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   EngagementModelsGrid: dynamic(() => import('./diagrams/EngagementModelsGrid'), { loading: () => <LoadingComponent /> }),
   ServiceOfferingBreakdown: dynamic(() => import('./diagrams/ServiceOfferingBreakdown'), { loading: () => <LoadingComponent /> }),
   DualEngineModel: dynamic(() => import('./diagrams/DualEngineModel'), { loading: () => <LoadingComponent /> }),
