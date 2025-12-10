@@ -9,11 +9,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
-import { Rocket, Handshake, Lock, ExternalLink, ArrowRight } from 'lucide-react';
+import { Lock, ArrowRight } from 'lucide-react';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 
 export default function WorkPage() {
@@ -104,12 +103,6 @@ export default function WorkPage() {
                       </div>
                     </div>
 
-                    {/* Demo Preview Placeholder */}
-                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-8 text-center">
-                      <div className="text-sm text-gray-400 mb-2 font-mono">[ INTERACTIVE DEMO ]</div>
-                      <p className="text-xs text-gray-500">Swipeable action cards • AI classification • Real-time processing</p>
-                    </div>
-
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2">
                       {zero.tags.map((tag) => (
@@ -163,12 +156,6 @@ export default function WorkPage() {
                           <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
                         </div>
                       ))}
-                    </div>
-
-                    {/* Demo Preview Placeholder */}
-                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-8 text-center">
-                      <div className="text-sm text-gray-400 mb-2 font-mono">[ DEVICE MOCKUP ]</div>
-                      <p className="text-xs text-gray-500">Recipe cards • Smart shopping • OCR scanning • iOS Reminders integration</p>
                     </div>
 
                     {/* Tags */}
@@ -401,27 +388,6 @@ export default function WorkPage() {
                       </div>
                     </div>
                   </Link>
-
-                  {/* Auth-protected client presentation links */}
-                  {(project.id === 'case-study-010' || project.id === 'case-study-020') && (
-                    <div className="mt-4">
-                      <div className="p-4 bg-gray-900/50 border border-gray-700 rounded-lg text-xs">
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-500">
-                            {project.id === 'case-study-010' ? 'CREaiT' : 'Athletes First'} Team
-                          </span>
-                          <Link
-                            href={project.id === 'case-study-010' ? '/clients/creait/pitch-deck' : '/clients/athletes-first/pitch-deck'}
-                            className="flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] transition-colors font-semibold"
-                          >
-                            <Lock className="w-3 h-3" />
-                            <span>View Presentation</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}
