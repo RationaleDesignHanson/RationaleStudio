@@ -48,8 +48,8 @@ const DEMO_COMPONENTS: Record<string, React.ComponentType<any>> = {
   PlatformWalkthroughDemo: dynamic(() => import('./demos/PlatformWalkthroughDemo'), { loading: () => <LoadingComponent /> }),
   AthleteDashboardDemo: dynamic(() => import('./demos/AthleteDashboardDemo'), { loading: () => <LoadingComponent /> }),
   SystemArchitectureDemo: dynamic(() => import('./demos/SystemArchitectureDemo'), { loading: () => <LoadingComponent /> }),
-  // Diagram Components
-  AgencyParadoxDiagram: dynamic(() => import('./diagrams/AgencyParadoxDiagram'), { loading: () => <LoadingComponent /> }),
+  // Diagram Components (Mobile-Responsive)
+  AgencyParadoxDiagram: dynamic(() => import('./diagrams/AgencyParadoxDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   ThreeBottlenecksDiagram: dynamic(() => import('./diagrams/ThreeBottlenecksDiagram'), { loading: () => <LoadingComponent /> }),
   StatusQuoCeilingDiagram: dynamic(() => import('./diagrams/StatusQuoCeilingDiagram'), { loading: () => <LoadingComponent /> }),
   NILComplexityDiagram: dynamic(() => import('./diagrams/NILComplexityDiagram'), { loading: () => <LoadingComponent /> }),
@@ -60,7 +60,7 @@ const DEMO_COMPONENTS: Record<string, React.ComponentType<any>> = {
   CloseRateImprovementDiagram: dynamic(() => import('./diagrams/CloseRateImprovementDiagram'), { loading: () => <LoadingComponent /> }),
   AIAdoptionCurveDiagram: dynamic(() => import('./diagrams/AIAdoptionCurveDiagram'), { loading: () => <LoadingComponent /> }),
   SuccessMetricsDiagram: dynamic(() => import('./diagrams/SuccessMetricsDiagram'), { loading: () => <LoadingComponent /> }),
-  FourModulesSystemDiagram: dynamic(() => import('./diagrams/FourModulesSystemDiagram'), { loading: () => <LoadingComponent /> }),
+  FourModulesSystemDiagram: dynamic(() => import('./diagrams/FourModulesSystemDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   // Phase 1: Critical visuals
   AmplifyAITimingDiagram: dynamic(() => import('./diagrams/AmplifyAITimingDiagram'), { loading: () => <LoadingComponent /> }),
   AmplifyAIProcessDiagram: dynamic(() => import('./diagrams/AmplifyAIProcessDiagram'), { loading: () => <LoadingComponent /> }),

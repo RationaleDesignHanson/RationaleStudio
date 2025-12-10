@@ -42,7 +42,7 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   CompetitiveLandscapeDiagram: dynamic(() => import('./diagrams/CompetitiveLandscapeDiagram'), { loading: () => <LoadingComponent /> }),
   UnitEconomicsFlowDiagram: dynamic(() => import('./diagrams/UnitEconomicsFlowDiagram'), { loading: () => <LoadingComponent /> }),
   RevenueRampDiagram: dynamic(() => import('./diagrams/RevenueRampDiagram'), { loading: () => <LoadingComponent /> }),
-  RoadmapGanttDiagram: dynamic(() => import('./diagrams/RoadmapGanttDiagram'), { loading: () => <LoadingComponent /> }),
+  RoadmapGanttDiagram: dynamic(() => import('./diagrams/RoadmapGanttDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   InvestmentMilestonesDiagram: dynamic(() => import('./diagrams/InvestmentMilestonesDiagram'), { loading: () => <LoadingComponent /> }),
   // Welcome slide
   CREWelcomeSlide: dynamic(() => import('./CREWelcomeSlide'), { loading: () => <LoadingComponent /> }),
