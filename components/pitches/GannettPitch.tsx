@@ -7,8 +7,8 @@
 'use client';
 
 import Link from 'next/link';
-import {
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import {
   Newspaper,
   Brain,
   TrendingUp,
