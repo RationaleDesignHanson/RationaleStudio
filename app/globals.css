@@ -39,6 +39,12 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
 
+  /* Terminal Gold Design Tokens (Phase 4.1) */
+  --color-terminal-gold: #FFD700;
+  --color-terminal-gold-hover: #FFE34D;
+  --color-terminal-gold-dark: #E5C100;
+  --color-terminal-gold-light: #FFF5CC;
+
   /* Neutral scale - Dark mode optimized */
   --color-neutral-50: #FAFAFA;
   --color-neutral-100: #F5F5F5;
