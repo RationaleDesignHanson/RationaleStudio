@@ -105,6 +105,8 @@ export default function AthletesFirstPitchDeck() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>('expanded-by-default');
   const [activeDemoTab, setActiveDemoTab] = useState<string | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState<'forward' | 'backward'>('forward');
 
   const currentSection = sections[activeSection];
   const currentSlide = currentSection.slides[activeSlide];
@@ -179,23 +181,33 @@ export default function AthletesFirstPitchDeck() {
   });
 
   const nextSlide = () => {
-    if (activeSlide < totalSlides - 1) {
-      setActiveSlide(activeSlide + 1);
-      setExpandedDeepDive('expanded-by-default');
-      setActiveDemoTab(null);
-    } else {
-      nextSection();
-    }
+    setIsTransitioning(true);
+    setTransitionDirection('forward');
+    setTimeout(() => {
+      if (activeSlide < totalSlides - 1) {
+        setActiveSlide(activeSlide + 1);
+        setExpandedDeepDive('expanded-by-default');
+        setActiveDemoTab(null);
+      } else {
+        nextSection();
+      }
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 200);
   };
 
   const previousSlide = () => {
-    if (activeSlide > 0) {
-      setActiveSlide(activeSlide - 1);
-      setExpandedDeepDive('expanded-by-default');
-      setActiveDemoTab(null);
-    } else {
-      previousSection();
-    }
+    setIsTransitioning(true);
+    setTransitionDirection('backward');
+    setTimeout(() => {
+      if (activeSlide > 0) {
+        setActiveSlide(activeSlide - 1);
+        setExpandedDeepDive('expanded-by-default');
+        setActiveDemoTab(null);
+      } else {
+        previousSection();
+      }
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 200);
   };
 
   const nextSection = () => {
@@ -709,7 +721,13 @@ export default function AthletesFirstPitchDeck() {
 
       {/* Main content area - full width, centered content with max-width */}
       <div className="relative pt-8 pb-16 z-10">
-        <div className="px-2 sm:px-8 max-w-6xl mx-auto">
+        <div
+          className={`px-2 sm:px-8 max-w-6xl mx-auto transition-all duration-300 ease-in-out ${
+            isTransitioning
+              ? `opacity-0 ${transitionDirection === 'forward' ? 'translate-x-8' : '-translate-x-8'}`
+              : 'opacity-100 translate-x-0'
+          }`}
+        >
           {renderSlideContent(currentSlide)}
         </div>
       </div>
