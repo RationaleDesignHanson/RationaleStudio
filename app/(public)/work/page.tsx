@@ -283,6 +283,10 @@ export default function WorkPage() {
               const isConfidential = project.isProtected;
               const needsBlur = isConfidential;
 
+              // Check if this project has a quick overview page
+              const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
+              const overviewSlug = project.slug === 'case-study-010' ? 'creait' : 'athletes-first';
+
               return (
                 <div key={project.id} className="relative group">
                   <Link href={`/work/${project.slug}`} className="block">
@@ -375,6 +379,19 @@ export default function WorkPage() {
                       </div>
                     </div>
                   </Link>
+
+                  {/* Quick Overview Button (for projects that have overview pages) */}
+                  {hasQuickOverview && (
+                    <div className="mt-3 px-6 pb-6">
+                      <Link
+                        href={`/work/${overviewSlug}/overview`}
+                        className="block w-full px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-sm font-bold text-white hover:text-terminal-gold transition-all"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Quick Overview
+                      </Link>
+                    </div>
+                  )}
                 </div>
               );
             })}
