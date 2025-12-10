@@ -104,6 +104,8 @@ export default function WorkPage() {
                     <div className="space-y-3">
                       <a
                         href="https://testflight.apple.com/join/zero-inbox"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="block w-full px-6 py-4 bg-terminal-gold hover:bg-terminal-gold-hover text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30"
                       >
                         🚀 Join Beta on TestFlight
@@ -166,6 +168,8 @@ export default function WorkPage() {
                     <div className="space-y-3">
                       <a
                         href="https://testflight.apple.com/join/heirloom"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="block w-full px-6 py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
                       >
                         🚀 Join Beta on TestFlight
