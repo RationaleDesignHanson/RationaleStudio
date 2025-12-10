@@ -370,8 +370,8 @@ export default function WorkPage() {
 
                         {/* Protected Case Study CTA */}
                         {isConfidential && (
-                          <div className="pt-4 border-t border-amber-400/20">
-                            <p className="text-xs text-amber-400/70 mb-3">
+                          <div className="pt-4 border-t border-gray-700">
+                            <p className="text-xs text-gray-400 mb-3">
                               Enter password to view case study or overview
                             </p>
                             <div className="grid grid-cols-2 gap-3">
@@ -385,10 +385,14 @@ export default function WorkPage() {
                                   <span>Quick Overview</span>
                                 </Link>
                               )}
-                              <div className={`flex items-center justify-center gap-2 text-amber-400 text-xs font-semibold ${hasQuickOverview ? '' : 'col-span-2'}`}>
+                              <Link
+                                href={`/work/${project.slug}`}
+                                className={`flex items-center justify-center gap-2 px-3 py-2 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded text-white hover:text-terminal-gold text-xs font-semibold transition-all ${hasQuickOverview ? '' : 'col-span-2'}`}
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <Lock className="w-3 h-3" />
                                 <span>Full Case Study</span>
-                              </div>
+                              </Link>
                             </div>
                           </div>
                         )}
