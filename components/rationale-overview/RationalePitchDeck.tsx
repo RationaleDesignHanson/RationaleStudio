@@ -30,7 +30,7 @@ const LoadingComponent = () => (
 
 // Dynamically import diagram components
 const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
-  TraditionalVsRationaleDiagram: dynamic(() => import('./diagrams/TraditionalVsRationaleDiagram'), { loading: () => <LoadingComponent /> }),
+  TraditionalVsRationaleDiagram: dynamic(() => import('./diagrams/TraditionalVsRationaleDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   SevenPrototypeFramework: dynamic(() => import('./diagrams/SevenPrototypeFramework'), { loading: () => <LoadingComponent /> }),
   ZeroMetricsDiagram: dynamic(() => import('./diagrams/ZeroMetricsDiagram'), { loading: () => <LoadingComponent /> }),
   CheckpointTimelineDiagram: dynamic(() => import('./diagrams/CheckpointTimelineDiagram'), { loading: () => <LoadingComponent /> }),
