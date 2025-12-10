@@ -60,9 +60,21 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
+          <div className="flex items-center gap-3 mb-8">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
             <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
+          </div>
+
+          {/* Why We Build Our Own Products */}
+          <div className="mb-12 max-w-6xl">
+            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-xl font-bold text-white mb-4">Why We Build Our Own Products</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
+                only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
+                We only partner when we believe in the opportunity as much as our own ventures.
+              </p>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
@@ -247,29 +259,6 @@ export default function WorkPage() {
           </div>
         </section>
       )}
-
-      {/* Why We Build Products - Philosophy */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-            <h3 className="text-xl font-bold text-white mb-4">Why We Build Our Own Products</h3>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
-              only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
-              We only partner when we believe in the opportunity as much as our own ventures.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Partnership Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
