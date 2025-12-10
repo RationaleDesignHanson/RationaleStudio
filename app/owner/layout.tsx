@@ -22,10 +22,10 @@ export default function OwnerLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 w-full overflow-x-hidden">
       {/* Owner Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 w-full">
+        <div className="sm:max-w-7xl sm:mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-terminal-gold rounded-full animate-pulse" />
@@ -67,7 +67,7 @@ export default function OwnerLayout({
       </header>
 
       {/* Main Content */}
-      <main>{children}</main>
+      <main className="w-full">{children}</main>
 
       {/* Owner Footer */}
       <footer className="border-t border-gray-800 mt-20">
