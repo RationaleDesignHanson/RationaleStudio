@@ -32,7 +32,7 @@ const LoadingComponent = () => (
 const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   TraditionalVsRationaleDiagram: dynamic(() => import('./diagrams/TraditionalVsRationaleDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   SevenPrototypeFramework: dynamic(() => import('./diagrams/SevenPrototypeFramework'), { loading: () => <LoadingComponent /> }),
-  ZeroMetricsDiagram: dynamic(() => import('./diagrams/ZeroMetricsDiagram'), { loading: () => <LoadingComponent /> }),
+  ZeroMetricsDiagram: dynamic(() => import('./diagrams/ZeroMetricsDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   CheckpointTimelineDiagram: dynamic(() => import('./diagrams/CheckpointTimelineDiagram'), { loading: () => <LoadingComponent /> }),
   SpecVsPrototypeDiagram: dynamic(() => import('./diagrams/SpecVsPrototypeDiagram'), { loading: () => <LoadingComponent /> }),
   CostComparisonChart: dynamic(() => import('./diagrams/CostComparisonChart'), { loading: () => <LoadingComponent /> }),
