@@ -103,7 +103,7 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
                       {zero.metrics.map((metric, idx) => (
                         <div key={idx}>
                           <div className="text-lg font-bold text-terminal-gold mb-1">{metric.value}</div>
@@ -167,7 +167,7 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-[#00D9FF]/20">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-[#00D9FF]/20">
                       {heirloom.metrics.map((metric, idx) => (
                         <div key={idx}>
                           <div className="text-lg font-bold text-[#00D9FF] mb-1">{metric.value}</div>
@@ -349,7 +349,7 @@ export default function WorkPage() {
                           </p>
 
                           {/* Metrics */}
-                          <div className="grid grid-cols-3 gap-3 py-4 border-y border-gray-700">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-4 border-y border-gray-700">
                             {project.metrics.map((metric, idx) => (
                               <div key={idx}>
                                 <div className="text-sm font-bold text-terminal-gold">{metric.value}</div>
