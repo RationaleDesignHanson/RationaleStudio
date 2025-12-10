@@ -15,9 +15,9 @@ export const workProjects: WorkProject[] = [
     status: 'live',
     category: 'consumer',
     metrics: [
+      { label: 'Platform', value: 'iOS' },
       { label: 'Timeline', value: '30 days' },
-      { label: 'Accuracy', value: '95%+ AI' },
-      { label: 'Status', value: 'Live on App Store' }
+      { label: 'Status', value: 'Live' }
     ],
     tags: ['Consumer', 'AI Product', 'Live'],
     isProtected: false,
@@ -29,12 +29,12 @@ export const workProjects: WorkProject[] = [
     title: 'Heirloom',
     subtitle: 'iOS Recipe App',
     slug: 'heirloom',
-    status: 'building',
+    status: 'live',
     category: 'consumer',
     metrics: [
-      { label: 'Platform', value: 'iOS 17+ Native' },
-      { label: 'Timeline', value: '5-week MVP' },
-      { label: 'Progress', value: 'Week 3 of 5' }
+      { label: 'Platform', value: 'iOS' },
+      { label: 'Timeline', value: '5 weeks' },
+      { label: 'Status', value: 'Live Beta' }
     ],
     tags: ['Consumer', 'iOS', 'SwiftUI', 'Product Design'],
     isProtected: false,

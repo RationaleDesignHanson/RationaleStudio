@@ -91,23 +91,12 @@ export default function WorkPage() {
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-terminal-gold/20">
-                      <div>
-                        <div className="text-2xl font-bold text-terminal-gold mb-1">30 days</div>
-                        <div className="text-xs text-gray-400 uppercase tracking-wider">Timeline</div>
-                      </div>
-                      <div>
-                        <div className="text-2xl font-bold text-terminal-gold mb-1">Live</div>
-                        <div className="text-xs text-gray-400 uppercase tracking-wider">Status</div>
-                      </div>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {zero.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded text-xs bg-terminal-gold/10 text-terminal-gold font-semibold border border-terminal-gold/20">
-                          {tag}
-                        </span>
+                    <div className="grid grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
+                      {zero.metrics.map((metric, idx) => (
+                        <div key={idx}>
+                          <div className="text-lg font-bold text-terminal-gold mb-1">{metric.value}</div>
+                          <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
+                        </div>
                       ))}
                     </div>
 
@@ -170,15 +159,6 @@ export default function WorkPage() {
                           <div className="text-lg font-bold text-[#00D9FF] mb-1">{metric.value}</div>
                           <div className="text-xs text-gray-400 uppercase tracking-wider">{metric.label}</div>
                         </div>
-                      ))}
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {heirloom.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded text-xs bg-[#00D9FF]/10 text-[#00D9FF] font-semibold border border-[#00D9FF]/20">
-                          {tag}
-                        </span>
                       ))}
                     </div>
 
@@ -302,9 +282,6 @@ export default function WorkPage() {
           <div className="flex items-center gap-3 mb-12">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
             <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
-            <div className="text-sm text-gray-400 ml-auto hidden sm:block">
-              Pre-Kickoff Engagements
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
