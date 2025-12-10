@@ -121,7 +121,7 @@ export function ProgressiveDisclosureDiagram({
       <div
         className={cn(
           'grid gap-4',
-          layout === 'grid' ? 'grid-cols-2' : 'grid-cols-1'
+          layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'
         )}
       >
         {elements.map((element) => (
