@@ -24,16 +24,16 @@ export default function WelcomeSlide() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      <h1 className="text-4xl md:text-5xl font-bold text-terminal-gold font-mono mb-8">
+      <h1 className="text-3xl md:text-5xl font-bold text-terminal-gold font-mono mb-6 md:mb-8">
         Athletes First × Rationale
       </h1>
 
-      <div className="max-w-2xl space-y-6">
-        <p className="text-xl md:text-2xl text-white/90 font-mono">
+      <div className="max-w-2xl space-y-4 md:space-y-6">
+        <p className="text-lg md:text-2xl text-white/90 font-mono leading-snug">
           Thanks for the opportunity. Excited to show you how AI can scale your agency systematically.
         </p>
 
-        <div className="pt-8 space-y-4 text-white/70 font-mono text-sm md:text-base">
+        <div className="pt-6 md:pt-8 space-y-3 md:space-y-4 text-white/70 font-mono text-sm md:text-base">
           {isMobile ? (
             <>
               <p>Tap &lt; &gt; buttons at top to navigate.</p>
