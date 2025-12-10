@@ -3,16 +3,24 @@
  *
  * Scrollable one-page summary of the CREaiT consulting engagement.
  * Complements the full interactive pitch deck.
+ * Password protected.
  */
 
 'use client';
 
 import Link from 'next/link';
 import { ArrowRight, Presentation, Rocket } from 'lucide-react';
+import { PasswordGate } from '@/components/sections/PasswordGate';
 
 export default function CREaiTOverviewPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <PasswordGate
+      password="123456"
+      storageKey="creait-overview-access"
+      title="CREaiT Overview - Protected Content"
+      description="This overview contains confidential project details. Please enter the password to continue."
+    >
+      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
@@ -282,5 +290,6 @@ export default function CREaiTOverviewPage() {
         </div>
       </section>
     </main>
+    </PasswordGate>
   );
 }

@@ -272,9 +272,21 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
+          <div className="flex items-center gap-3 mb-8">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
             <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
+          </div>
+
+          {/* Partnership Philosophy */}
+          <div className="mb-12">
+            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-xl font-bold text-white mb-4">Partnership Model</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
+                strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
+                is confidential and password-protected—we respect our partners' need for discretion.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -360,11 +372,23 @@ export default function WorkPage() {
                         {isConfidential && (
                           <div className="pt-4 border-t border-amber-400/20">
                             <p className="text-xs text-amber-400/70 mb-3">
-                              Enter password to view full case study details
+                              Enter password to view case study or overview
                             </p>
-                            <div className="flex items-center gap-2 text-amber-400 text-sm font-semibold">
-                              <Lock className="w-3 h-3" />
-                              <span>Unlock Case Study</span>
+                            <div className="grid grid-cols-2 gap-3">
+                              {hasQuickOverview && (
+                                <Link
+                                  href={`/work/${overviewSlug}/overview`}
+                                  className="flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <Lock className="w-3 h-3" />
+                                  <span>Quick Overview</span>
+                                </Link>
+                              )}
+                              <div className={`flex items-center justify-center gap-2 text-amber-400 text-xs font-semibold ${hasQuickOverview ? '' : 'col-span-2'}`}>
+                                <Lock className="w-3 h-3" />
+                                <span>Full Case Study</span>
+                              </div>
                             </div>
                           </div>
                         )}
@@ -379,34 +403,9 @@ export default function WorkPage() {
                       </div>
                     </div>
                   </Link>
-
-                  {/* Quick Overview Button (for projects that have overview pages) */}
-                  {hasQuickOverview && (
-                    <div className="mt-3">
-                      <Link
-                        href={`/work/${overviewSlug}/overview`}
-                        className="block w-full px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-sm font-bold text-white hover:text-terminal-gold transition-all"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Quick Overview
-                      </Link>
-                    </div>
-                  )}
                 </div>
               );
             })}
-          </div>
-
-          {/* Partnership Philosophy */}
-          <div className="mt-12">
-            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-bold text-white mb-4">Partnership Model</h3>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
-                strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
-                is confidential and password-protected—we respect our partners' need for discretion.
-              </p>
-            </div>
           </div>
         </div>
       </section>

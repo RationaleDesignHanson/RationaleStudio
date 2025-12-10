@@ -3,16 +3,24 @@
  *
  * Scrollable one-page summary of the Athletes First pilot program.
  * Complements the full interactive pitch deck.
+ * Password protected.
  */
 
 'use client';
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink, Presentation } from 'lucide-react';
+import { PasswordGate } from '@/components/sections/PasswordGate';
 
 export default function AthletesFirstOverviewPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <PasswordGate
+      password="123456"
+      storageKey="athletes-first-overview-access"
+      title="Athletes First Overview - Protected Content"
+      description="This overview contains confidential project details. Please enter the password to continue."
+    >
+      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
@@ -222,5 +230,6 @@ export default function AthletesFirstOverviewPage() {
         </div>
       </section>
     </main>
+    </PasswordGate>
   );
 }
