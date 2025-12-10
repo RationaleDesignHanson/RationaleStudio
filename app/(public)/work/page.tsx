@@ -94,7 +94,7 @@ export default function WorkPage() {
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
                       <ProjectStatusBadge status="live" size="md" className="font-bold" />
-                      <span className="text-xs text-gray-400 font-mono">STATUS: PRODUCTION</span>
+                      <span className="text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
                     </div>
 
                     {/* Description */}
@@ -158,7 +158,7 @@ export default function WorkPage() {
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
                       <ProjectStatusBadge status="live" size="md" className="font-bold" />
-                      <span className="text-xs text-gray-400 font-mono">STATUS: LIVE BETA</span>
+                      <span className="text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
                     </div>
 
                     {/* Description */}
