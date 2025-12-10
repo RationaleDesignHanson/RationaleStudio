@@ -111,10 +111,28 @@ export default function WorkPage() {
                       ))}
                     </div>
 
-                    {/* View Project Link */}
-                    <div className="flex items-center gap-2 text-terminal-gold font-semibold group-hover:gap-4 transition-all">
-                      <span>View Full Case Study</span>
-                      <ArrowRight className="w-4 h-4" />
+                    {/* Action Buttons */}
+                    <div className="space-y-3">
+                      <a
+                        href="https://testflight.apple.com/join/zero-inbox"
+                        className="block w-full px-6 py-4 bg-terminal-gold hover:bg-terminal-gold-hover text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30"
+                      >
+                        🚀 Join Beta on TestFlight
+                      </a>
+                      <div className="flex gap-3">
+                        <Link
+                          href="/work/zero/overview"
+                          className="flex-1 px-4 py-3 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded-lg text-center text-sm font-bold text-terminal-gold transition-all"
+                        >
+                          Product Overview
+                        </Link>
+                        <Link
+                          href={`/work/${zero.slug}`}
+                          className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-sm font-bold text-white hover:text-terminal-gold transition-all"
+                        >
+                          Case Study
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -136,8 +154,8 @@ export default function WorkPage() {
 
                     {/* Status Badge */}
                     <div className="flex items-center justify-between">
-                      <ProjectStatusBadge status="building" size="md" className="font-bold" />
-                      <span className="text-xs text-gray-400 font-mono">STATUS: WEEK 3/5</span>
+                      <ProjectStatusBadge status="live" size="md" className="font-bold" />
+                      <span className="text-xs text-gray-400 font-mono">STATUS: LIVE BETA</span>
                     </div>
 
                     {/* Description */}
@@ -164,10 +182,28 @@ export default function WorkPage() {
                       ))}
                     </div>
 
-                    {/* View Project Link */}
-                    <div className="flex items-center gap-2 text-[#00D9FF] font-semibold group-hover:gap-4 transition-all">
-                      <span>View Development Progress</span>
-                      <ArrowRight className="w-4 h-4" />
+                    {/* Action Buttons */}
+                    <div className="space-y-3">
+                      <a
+                        href="https://testflight.apple.com/join/heirloom"
+                        className="block w-full px-6 py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
+                      >
+                        🚀 Join Beta on TestFlight
+                      </a>
+                      <div className="flex gap-3">
+                        <Link
+                          href="/work/heirloom/pitch"
+                          className="flex-1 px-4 py-3 bg-[#00D9FF]/10 border border-[#00D9FF]/30 hover:border-[#00D9FF] hover:bg-[#00D9FF]/20 rounded-lg text-center text-sm font-bold text-[#00D9FF] transition-all"
+                        >
+                          Product Overview
+                        </Link>
+                        <Link
+                          href={`/work/${heirloom.slug}`}
+                          className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg text-center text-sm font-bold text-white hover:text-[#00D9FF] transition-all"
+                        >
+                          Case Study
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
