@@ -66,7 +66,7 @@ export default function WorkPage() {
           </div>
 
           {/* Why We Build Our Own Products */}
-          <div className="mb-12 max-w-6xl">
+          <div className="mb-12">
             <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
               <h3 className="text-xl font-bold text-white mb-4">Why We Build Our Own Products</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
