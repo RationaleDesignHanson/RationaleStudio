@@ -29,6 +29,7 @@ import {
   Users,
   TrendingUp
 } from 'lucide-react';
+import { ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 
 export default function HowWeWorkPage() {
   return (
@@ -133,13 +134,10 @@ export default function HowWeWorkPage() {
                 </div>
               </div>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
-              >
+              <ButtonTertiary href="/contact" className="gap-2">
                 Learn More
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </ButtonTertiary>
             </GlassCard>
 
             {/* Model 2: Equity */}
@@ -193,13 +191,10 @@ export default function HowWeWorkPage() {
                 </div>
               </div>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
-              >
+              <ButtonTertiary href="/contact" className="gap-2">
                 Learn More
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </ButtonTertiary>
             </GlassCard>
 
             {/* Model 3: Hybrid */}
@@ -253,13 +248,10 @@ export default function HowWeWorkPage() {
                 </div>
               </div>
 
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
-              >
+              <ButtonTertiary href="/contact" className="gap-2">
                 Learn More
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </ButtonTertiary>
             </GlassCard>
           </div>
         </div>
@@ -527,13 +519,10 @@ export default function HowWeWorkPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <Link
-              href="/overview"
-              className="inline-flex items-center gap-2 text-terminal-gold hover:text-[#FFE34D] font-medium transition-colors"
-            >
+            <ButtonTertiary href="/overview" className="gap-2">
               See the full methodology
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </ButtonTertiary>
           </div>
         </div>
       </section>

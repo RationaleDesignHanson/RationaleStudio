@@ -19,6 +19,7 @@ import { FitFilter } from '@/components/home/FitFilter';
 import { ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
+import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 
 export default function HomePage() {
 
@@ -67,13 +68,10 @@ export default function HomePage() {
 
             {/* CTA Button */}
             <div className="flex justify-center">
-              <a
-                href="/overview"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-black bg-terminal-gold hover:bg-terminal-gold-hover rounded-lg transition-all duration-200 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105"
-              >
+              <ButtonPrimary href="/overview" size="lg" className="gap-2 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105">
                 Studio Overview
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </ButtonPrimary>
             </div>
           </div>
         </section>
@@ -130,13 +128,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <Link
-                  href="/work/zero"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
-                >
+                <ButtonTertiary href="/work/zero" className="gap-2">
                   Learn about Zero
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
 
               {/* Heirloom - In Development */}
@@ -168,13 +163,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <Link
-                  href="/work/heirloom"
-                  className="inline-flex items-center gap-2 text-[#00D9FF] hover:text-[#00D9FF]/80 font-medium transition-colors"
-                >
+                <ButtonTertiary href="/work/heirloom" className="gap-2 text-[#00D9FF] hover:text-[#00D9FF]/80">
                   Learn about Heirloom
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
             </div>
 
@@ -204,13 +196,10 @@ export default function HomePage() {
                 <p className="text-sm text-gray-400 mb-3">
                   Interested in early access or investment opportunities?
                 </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
-                >
+                <ButtonTertiary href="/contact" className="gap-2">
                   Get in touch
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
             </div>
           </div>
@@ -248,13 +237,10 @@ export default function HomePage() {
                   Back our product portfolio. Get early access to Zero and our pipeline products.
                   We're looking for product-minded investors who can open doors.
                 </p>
-                <Link
-                  href="/contact?interest=invest"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
-                >
+                <ButtonTertiary href="/contact?interest=invest" className="gap-2 self-start">
                   Learn more
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
 
               {/* Partner */}
@@ -267,13 +253,10 @@ export default function HomePage() {
                   Launch products together. We take equity + cash for product development
                   and go-to-market. Best for founders with distribution and capital.
                 </p>
-                <Link
-                  href="/contact?interest=partner"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
-                >
+                <ButtonTertiary href="/contact?interest=partner" className="gap-2 self-start">
                   Explore partnership
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
 
               {/* Collaborate */}
@@ -286,13 +269,10 @@ export default function HomePage() {
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                   Get to working software in weeks, not quarters.
                 </p>
-                <Link
-                  href="/how-we-work"
-                  className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors self-start"
-                >
+                <ButtonTertiary href="/how-we-work" className="gap-2 self-start">
                   See how we work
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </ButtonTertiary>
               </div>
             </div>
           </div>
@@ -330,13 +310,10 @@ export default function HomePage() {
             </div>
 
             <div className="mt-12 text-center">
-              <Link
-                href="/how-we-work"
-                className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
-              >
+              <ButtonTertiary href="/how-we-work" className="gap-2">
                 See the full methodology
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </ButtonTertiary>
             </div>
           </div>
         </section>

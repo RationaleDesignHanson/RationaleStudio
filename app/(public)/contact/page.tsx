@@ -5,6 +5,7 @@ import { GlassCard } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ChevronDown, ChevronUp, Mail, MessageSquare, Calendar, CheckCircle2 } from 'lucide-react';
+import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 
 export default function ContactPage() {
   const [showWhatToInclude, setShowWhatToInclude] = useState(false);
@@ -84,27 +85,29 @@ export default function ContactPage() {
               </h2>
 
               {!emailRevealed ? (
-                <button
+                <ButtonPrimary
                   onClick={handleRevealEmail}
-                  className="inline-block px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 text-lg mb-6"
+                  size="lg"
+                  className="shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 mb-6"
                 >
                   Click to Reveal Email
-                </button>
+                </ButtonPrimary>
               ) : (
                 <div className="space-y-3 mb-6">
-                  <a
+                  <ButtonPrimary
                     href={`mailto:${getEmail()}`}
-                    className="inline-block px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 text-lg"
+                    size="lg"
+                    className="shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
                   >
                     {getEmail()}
-                  </a>
+                  </ButtonPrimary>
                   <div>
-                    <button
+                    <ButtonTertiary
                       onClick={handleCopyEmail}
-                      className="text-sm text-terminal-gold hover:text-[#FFE34D] transition-colors"
+                      size="sm"
                     >
                       {emailCopied ? '✓ Copied to clipboard!' : 'Copy to clipboard'}
-                    </button>
+                    </ButtonTertiary>
                   </div>
                 </div>
               )}
