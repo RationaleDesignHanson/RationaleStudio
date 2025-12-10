@@ -133,6 +133,51 @@ export default function AthletesFirstPitchDeck() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
+  // Touch/swipe gesture navigation
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const minSwipeDistance = 50; // Minimum distance for a swipe (pixels)
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Check if horizontal swipe is more significant than vertical
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+        if (deltaX > 0) {
+          // Swipe right → previous slide
+          previousSlide();
+        } else {
+          // Swipe left → next slide
+          nextSlide();
+        }
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  });
+
   const nextSlide = () => {
     if (activeSlide < totalSlides - 1) {
       setActiveSlide(activeSlide + 1);
