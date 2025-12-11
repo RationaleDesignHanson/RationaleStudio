@@ -84,7 +84,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="mb-12">
+            <div className="mb-12 px-4 sm:px-0">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Current Focus
               </h2>
