@@ -21,10 +21,15 @@ npm run test:visual:report
 
 ## Test Coverage
 
-### Pages Tested
+### Pages Tested (26 tests total)
 - Homepage (5 sections)
-- Work page (4 sections)
-- Badge wrapping (5 mobile widths)
+- Work page (1 full page)
+- About page (4 sections)
+- Contact page (1 full page)
+- How We Work page (1 full page)
+- Badge wrapping (6 tests: 5 mobile widths + pipeline card)
+- Mobile optimization (7 pages at iPhone 12 dimensions)
+- Responsive breakpoints (5 widths: 375-1280px)
 
 ### What We Test
 - **Layout consistency** across breakpoints
@@ -40,9 +45,13 @@ npm run test:visual:report
 
 ## Test Files
 
-- `homepage.spec.ts` - Homepage sections
-- `work-page.spec.ts` - Work page sections
-- `badge-wrapping.spec.ts` - Mobile badge positioning
+- `homepage.spec.ts` - Homepage sections (5 tests)
+- `work-page.spec.ts` - Work page full snapshot (1 test)
+- `about.spec.ts` - About page sections (4 tests)
+- `contact.spec.ts` - Contact page full snapshot (1 test)
+- `how-we-work.spec.ts` - How We Work page full snapshot (1 test)
+- `badge-wrapping.spec.ts` - Mobile badge positioning (6 tests)
+- `mobile-optimization.spec.ts` - Mobile layouts + responsive breakpoints (12 tests)
 
 ## CI/CD Integration
 
