@@ -718,8 +718,175 @@ npm run analyze
 
 ---
 
-**Document Version:** 2.0
+## Future Optimization Opportunities
+
+### Completed ✅
+- Lazy loading for demo components (19+ components, ~9,000 lines)
+- Bundle analyzer setup with webpack mode
+- Loading skeleton pattern standardized
+- Build optimization via next.config.mjs code splitting
+
+### Low Priority (Already Well-Optimized)
+
+**Automatic Code Splitting:**
+- ✅ Three.js chunks (already configured in next.config.mjs lines 143-147)
+- ✅ Framer Motion chunks (already configured in next.config.mjs lines 149-153)
+- ✅ Vendor bundle splitting (priority 10, lines 155-159)
+- ✅ Common code chunks (minChunks: 2, priority 5, lines 161-166)
+
+**Asset Optimization:**
+- ✅ Image optimization (Next.js Image with AVIF/WebP)
+- ✅ Font optimization (Next.js font optimization)
+- ✅ Compression enabled (gzip/brotli via next.config.mjs line 13)
+
+### Future Enhancements (When Time Permits)
+
+**1. Incremental Static Regeneration (Medium Priority)**
+- **Target:** Insight blog posts (`/insights/[slug]`)
+- **Current:** All blog posts fully static (generateStaticParams)
+- **Opportunity:** ISR for updated content without full rebuild
+- **Effort:** 2-3 hours
+- **Impact:** Faster deploys, fresher content
+
+**Implementation:**
+```typescript
+// app/insights/[slug]/page.tsx
+export const revalidate = 3600; // 1 hour
+
+export async function generateStaticParams() {
+  // Only generate top 10 posts at build time
+  const posts = await getAllInsights();
+  return posts.slice(0, 10).map(post => ({ slug: post.slug }));
+}
+```
+
+**2. Partial Prerendering (Low Priority - Experimental)**
+- **Target:** Dashboard pages with dynamic user data
+- **Current:** Full client-side rendering for authenticated pages
+- **Opportunity:** Hybrid static shell + dynamic content
+- **Effort:** 4-6 hours (when Next.js 16+ stabilizes)
+- **Impact:** Faster initial paint for dashboards
+
+**Requirements:**
+- Wait for Next.js 16 stable release
+- Test with Firebase auth integration
+- Validate with Supabase data fetching
+
+**3. React Server Components Migration (Medium Priority)**
+- **Target:** Static marketing pages (homepage, about, work)
+- **Current:** Mix of client and server components
+- **Opportunity:** More granular server/client split
+- **Effort:** 8-10 hours
+- **Impact:** Smaller client bundles, better SEO
+
+**Pages to Convert:**
+```
+app/(public)/page.tsx          ← Homepage (mostly static)
+app/(public)/about/page.tsx    ← About page (fully static)
+app/(public)/work/page.tsx     ← Work page (cards + links)
+app/(public)/contact/page.tsx  ← Contact form (hybrid)
+```
+
+**4. Edge Runtime for API Routes (Low Priority)**
+- **Target:** /api/auth/*, /api/zero/beta-signup
+- **Current:** Node.js runtime (default)
+- **Opportunity:** Faster cold starts, global distribution
+- **Effort:** 2-3 hours
+- **Impact:** 50-100ms faster API responses
+
+**Caveats:**
+- Firebase Admin SDK not compatible with Edge
+- Would require migration to Supabase Edge Functions
+- Only worth it if latency becomes an issue
+
+**5. Advanced Bundle Analysis (Low Priority)**
+- **Tool:** Webpack Bundle Analyzer + size-limit
+- **Current:** Manual analysis via npm run analyze
+- **Opportunity:** Automated bundle size budgets in CI
+- **Effort:** 3-4 hours
+- **Impact:** Prevent bundle size regressions
+
+**Setup:**
+```json
+// package.json
+{
+  "size-limit": [
+    {
+      "path": ".next/static/chunks/pages/index.js",
+      "limit": "100 KB"
+    },
+    {
+      "path": ".next/static/chunks/pages/_app.js",
+      "limit": "150 KB"
+    }
+  ]
+}
+```
+
+**6. Image Optimization Pipeline (Medium Priority)**
+- **Tool:** Sharp + automated conversion script
+- **Current:** Manual image optimization
+- **Opportunity:** Bulk convert all images to WebP/AVIF
+- **Effort:** 8-10 hours (includes script + testing)
+- **Impact:** 30-50% image size reduction
+
+**Target Directories:**
+```
+public/work/          ← Project screenshots
+public/insights/      ← Blog post images
+public/heirloom/      ← Heirloom marketing assets
+public/zero/          ← Zero marketing assets
+```
+
+**7. CSS Optimization (Low Priority)**
+- **Current:** Tailwind CSS v4 with design tokens
+- **Opportunity:** Remove unused Tailwind classes
+- **Effort:** 2-3 hours
+- **Impact:** 5-10KB CSS savings
+
+**Tools:**
+- PurgeCSS (already integrated via Tailwind)
+- CSS minification (already enabled in production)
+- Critical CSS extraction (manual, low ROI)
+
+### Not Recommended
+
+**❌ Code Minification:** Already handled by Next.js production build
+**❌ Tree Shaking:** Already handled by Next.js webpack config
+**❌ Route-Based Splitting:** Already automatic with Next.js App Router
+**❌ Component-Level Prefetching:** Already handled by Next.js Link component
+
+---
+
+## Performance Monitoring Strategy
+
+### Current Metrics (Post-Optimization)
+- **Bundle Size:** ~80-100KB reduction (lazy loading)
+- **Routes:** 169 optimized routes
+- **Build Time:** 5.2s (Turbopack), 28.8s (webpack analysis)
+- **Lazy Loaded:** 19+ components, ~9,000 lines
+
+### Recommended Monitoring
+
+**Weekly:**
+- Run `npm run analyze` after major component additions
+- Check for bundle size regressions (>10KB increase)
+- Review Lighthouse scores for homepage/work/about pages
+
+**Monthly:**
+- Run full Percy visual regression suite
+- Validate all lazy-loaded components load correctly
+- Check Core Web Vitals in production (if analytics enabled)
+
+**Quarterly:**
+- Review and update bundle optimization plan
+- Evaluate new Next.js features (PPR, Server Actions, etc.)
+- Consider image optimization pipeline if assets grow
+
+---
+
+**Document Version:** 3.0 (Final)
 **Last Updated:** December 11, 2025
-**Status:** 🚀 Phase 1-3 Complete, Phase 4-5 In Progress
-**Next Review:** After Phase 4 completion
+**Status:** ✅ Phase 1-4 Complete, Optimization Cycle Finished
+**Next Review:** Q1 2026 or when bundle size increases >20%
 
