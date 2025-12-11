@@ -43,20 +43,43 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
+    <section className="bg-gray-50 py-6 md:py-12 lg:py-16 md:py-20">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+        <div className="mx-auto mb-6 md:mb-12 max-w-3xl text-center">
+          <h2 className="mb-3 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             Key Features
           </h2>
-          <p className="text-xl text-gray-700">
+          <p className="text-base md:text-xl text-gray-700">
             Everything you need to preserve family recipes as beautiful, shareable artifacts.
           </p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid gap-4 md:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile: Horizontal scroll carousel */}
+        <div className="md:hidden flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-[85vw] snap-center rounded-xl bg-white p-4 shadow-sm border-2 border-[#E85D4D]/20"
+            >
+              {/* Icon */}
+              <div className="mb-2 text-2xl">{feature.icon}</div>
+
+              {/* Title */}
+              <h3 className="mb-2 text-base font-bold text-[#2D2D2D]">
+                {feature.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm leading-relaxed text-gray-700">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: Original grid layout */}
+        <div className="hidden md:grid gap-4 md:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <div
               key={index}

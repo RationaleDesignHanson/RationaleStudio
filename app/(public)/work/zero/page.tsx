@@ -138,21 +138,39 @@ function FeatureGrid() {
   ]
 
   return (
-    <section className="bg-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
+    <section className="bg-gray-900 py-6 md:py-12 lg:py-16 md:py-20 border-t border-gray-800">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-3 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl text-center">
             Key Features
           </h2>
-          <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">
+          <p className="mb-3 md:mb-6 text-base md:text-lg text-gray-300 text-center max-w-3xl mx-auto">
             Production-ready capabilities built for real-world email workflows
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-4 md:p-6 lg:p-8">
+          {/* Mobile: Horizontal scroll carousel */}
+          <div className="md:hidden flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border-2 border-gray-700 bg-gray-800/50 p-4 md:p-4 md:p-6 lg:p-8 transition-all duration-300 hover:border-terminal-gold hover:shadow-xl hover:-translate-y-1"
+                className="flex-shrink-0 w-[85vw] snap-center rounded-xl border-2 border-gray-700 bg-gray-800/50 p-4"
+              >
+                <h3 className="text-base font-bold text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Original grid layout */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-0 md:p-4 lg:p-6">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border-2 border-gray-700 bg-gray-800/50 p-4 md:p-6 lg:p-8 transition-all duration-300 hover:border-terminal-gold hover:shadow-xl hover:-translate-y-1"
               >
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                   {feature.title}
@@ -276,105 +294,153 @@ function SystemArchitecture() {
           Data flow through the system
         </div>
 
-        {/* Architecture Flow */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-3">
-          <ArchComponent
-            title="Gmail"
-            description="OAuth 2.0"
-            tags={['Real inbox', 'Read-only']}
-            color="border-gray-600/50"
-          />
+        {/* Mobile: Compact list view */}
+        <div className="lg:hidden">
+          <div className="bg-gray-900/50 border-2 border-gray-700 rounded-lg p-4">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-white">Gmail</div>
+                  <div className="text-xs text-gray-400">OAuth 2.0 • Read-only</div>
+                </div>
+                <svg className="w-4 h-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
 
-          <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-white">Backend</div>
+                  <div className="text-xs text-gray-400">Python/FastAPI • Queue mgmt</div>
+                </div>
+                <svg className="w-4 h-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-terminal-gold">AI Layer</div>
+                  <div className="text-xs text-gray-400">Claude 3.5 • 43 intents</div>
+                </div>
+                <svg className="w-4 h-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-white">Supabase</div>
+                  <div className="text-xs text-gray-400">PostgreSQL • History</div>
+                </div>
+                <svg className="w-4 h-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="text-sm font-bold text-white">Frontend</div>
+                  <div className="text-xs text-gray-400">Next.js/React • Dashboard</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+          {/* Mobile Key Points */}
+          <div className="mt-6 space-y-2">
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-3">
+              <h4 className="text-xs font-bold text-terminal-gold mb-1">Security First</h4>
+              <p className="text-xs text-gray-300">Encrypted OAuth, read-only access, no content stored</p>
+            </div>
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-3">
+              <h4 className="text-xs font-bold text-terminal-gold mb-1">Async Processing</h4>
+              <p className="text-xs text-gray-300">Background queue, no UI blocking</p>
+            </div>
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-3">
+              <h4 className="text-xs font-bold text-terminal-gold mb-1">Scalable Design</h4>
+              <p className="text-xs text-gray-300">Serverless architecture for 10k+ users</p>
+            </div>
           </div>
-
-          <ArchComponent
-            title="Backend"
-            description="Python/FastAPI"
-            tags={['Queue mgmt', 'Security']}
-            color="border-gray-600/50"
-          />
-
-          <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <ArchComponent
-            title="AI Layer"
-            description="Claude 3.5"
-            tags={['43 intents', 'Actions']}
-            color="border-[#FFD700]/50"
-          />
-
-          <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <ArchComponent
-            title="Supabase"
-            description="PostgreSQL"
-            tags={['Results', 'History']}
-            color="border-gray-600/50"
-          />
-
-          <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </div>
-
-          <ArchComponent
-            title="Frontend"
-            description="Next.js/React"
-            tags={['Dashboard', 'Insights']}
-            color="border-gray-600/50"
-          />
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-4">
-          <ArchKeyPoint
-            title="Security First"
-            description="OAuth tokens encrypted, read-only access, no email content stored"
-          />
-          <ArchKeyPoint
-            title="Async Processing"
-            description="Background job queue handles classification without blocking UI"
-          />
-          <ArchKeyPoint
-            title="Scalable Design"
-            description="Serverless architecture ready for 10k+ users"
-          />
+        {/* Desktop: Original horizontal flow */}
+        <div className="hidden lg:block">
+          <div className="flex flex-row items-center justify-center gap-3">
+            <ArchComponent
+              title="Gmail"
+              description="OAuth 2.0"
+              tags={['Real inbox', 'Read-only']}
+              color="border-gray-600/50"
+            />
+
+            <div className="flex-shrink-0">
+              <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+
+            <ArchComponent
+              title="Backend"
+              description="Python/FastAPI"
+              tags={['Queue mgmt', 'Security']}
+              color="border-gray-600/50"
+            />
+
+            <div className="flex-shrink-0">
+              <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+
+            <ArchComponent
+              title="AI Layer"
+              description="Claude 3.5"
+              tags={['43 intents', 'Actions']}
+              color="border-[#FFD700]/50"
+            />
+
+            <div className="flex-shrink-0">
+              <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+
+            <ArchComponent
+              title="Supabase"
+              description="PostgreSQL"
+              tags={['Results', 'History']}
+              color="border-gray-600/50"
+            />
+
+            <div className="flex-shrink-0">
+              <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+
+            <ArchComponent
+              title="Frontend"
+              description="Next.js/React"
+              tags={['Dashboard', 'Insights']}
+              color="border-gray-600/50"
+            />
+          </div>
+
+          <div className="mt-12 grid md:grid-cols-3 gap-4">
+            <ArchKeyPoint
+              title="Security First"
+              description="OAuth tokens encrypted, read-only access, no email content stored"
+            />
+            <ArchKeyPoint
+              title="Async Processing"
+              description="Background job queue handles classification without blocking UI"
+            />
+            <ArchKeyPoint
+              title="Scalable Design"
+              description="Serverless architecture ready for 10k+ users"
+            />
+          </div>
         </div>
       </div>
     </div>
