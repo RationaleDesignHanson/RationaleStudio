@@ -12,6 +12,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { VelocityProof } from '@/components/home/VelocityProof';
@@ -62,7 +63,7 @@ export default function HomePage() {
             {/* CTA - Yellow linked text */}
             <Link
               href="/overview"
-              className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal inline-flex items-center gap-1 transition-colors"
+              className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal flex items-center gap-1 transition-colors !p-0"
             >
               Studio Overview
               <ArrowRight className="w-3 h-3" />
@@ -87,7 +88,7 @@ export default function HomePage() {
                 Current Focus
               </h2>
               <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
-                We build software with AI to help make things easier, and develop strategic partnerships which transform strategy into shipped products with conviction.
+                We leverage AI to build products that make life easier, on our own or by developing strategic partnerships which transform strategy to products with conviction.
               </p>
             </div>
 
@@ -95,17 +96,38 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
               <Link href="/work/zero" className="block p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all cursor-pointer">
-                <div className="flex items-center justify-between mb-3 gap-2">
-                  <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Zero</h3>
-                  <span className="inline-block px-1.5 py-0.5 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
-                    Beta · Dogfooding
-                  </span>
+                <div className="flex flex-col">
+                  {/* Icon, Title, and Badge Row */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {/* Icon */}
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                        <Image
+                          src="/images/icons/zero-icon.png"
+                          alt="Zero app icon"
+                          width={56}
+                          height={56}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title and Badge */}
+                    <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
+                      <h3 className="text-lg md:text-xl font-bold text-white">Zero</h3>
+                      <span className="inline-block px-1.5 py-0.5 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
+                        Beta · Dogfooding
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description - Full Width Row */}
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
+                  </p>
                 </div>
 
-                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                  AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
-                </p>
-
+                {/* Additional Details */}
                 <div className="hidden md:block space-y-3 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
@@ -118,19 +140,40 @@ export default function HomePage() {
                 </div>
               </Link>
 
-              {/* Heirloom - In Development */}
+              {/* Heirloom - Beta/Dogfooding */}
               <Link href="/work/heirloom" className="block p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all cursor-pointer">
-                <div className="flex items-center justify-between mb-3 gap-2">
-                  <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Heirloom</h3>
-                  <span className="inline-block px-1.5 py-0.5 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
-                    In Development
-                  </span>
+                <div className="flex flex-col">
+                  {/* Icon, Title, and Badge Row */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {/* Icon */}
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                        <Image
+                          src="/images/icons/heirloom-icon.png"
+                          alt="Heirloom app icon"
+                          width={56}
+                          height={56}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title and Badge */}
+                    <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
+                      <h3 className="text-lg md:text-xl font-bold text-white">Heirloom</h3>
+                      <span className="inline-block px-1.5 py-0.5 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
+                        Beta · Dogfooding
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description - Full Width Row */}
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
+                  </p>
                 </div>
 
-                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
-                  Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
-                </p>
-
+                {/* Additional Details */}
                 <div className="hidden md:block space-y-3 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
@@ -146,16 +189,36 @@ export default function HomePage() {
 
             {/* Row 2: Pipeline (Full Width) */}
             <Link href="/contact" className="block p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0 hover:border-gray-600 transition-all cursor-pointer">
-              <div className="flex items-center justify-between mb-3 gap-2">
-                <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Pipeline</h3>
-                <span className="inline-block px-1.5 py-0.5 bg-gray-700/50 border border-gray-600 rounded-full text-[0.65rem] text-gray-300 font-medium whitespace-nowrap flex-shrink-0">
-                  Q1–Q2 2025
-                </span>
-              </div>
+              <div className="flex flex-col">
+                {/* Icon, Title, and Badge Row */}
+                <div className="flex items-center gap-3 mb-3">
+                  {/* Icon */}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                      <Image
+                        src="/images/icons/pipeline-icon.jpg"
+                        alt="Pipeline icon"
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
 
-              <p className="text-sm text-gray-300 leading-relaxed">
-                Multiple products in development across productivity, knowledge work, and enterprise automation.
-              </p>
+                  {/* Title and Badge */}
+                  <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
+                    <h3 className="text-lg md:text-xl font-bold text-white">Pipeline</h3>
+                    <span className="inline-block px-1.5 py-0.5 bg-gray-700/50 border border-gray-600 rounded-full text-[0.65rem] text-gray-300 font-medium whitespace-nowrap flex-shrink-0">
+                      Q1–Q2 2025
+                    </span>
+                  </div>
+                </div>
+
+                {/* Description - Full Width Row */}
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  Multiple products in development across productivity, knowledge work, and enterprise automation.
+                </p>
+              </div>
 
               <div className="hidden md:block space-y-2 text-sm text-gray-400 mt-4">
                 <div>Validation phase for 3 concepts</div>
@@ -191,15 +254,15 @@ export default function HomePage() {
               {/* Invest */}
               <Link
                 href="/contact?interest=invest"
-                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+                className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3 self-start">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Invest</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed self-start">
                   Back our product portfolio. Get early access to Zero and our pipeline products.
                 </p>
               </Link>
@@ -207,15 +270,15 @@ export default function HomePage() {
               {/* Partner */}
               <Link
                 href="/contact?interest=partner"
-                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+                className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3 self-start">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Users className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Partner</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed self-start">
                   Launch products together. We take equity + cash for product development
                   and go-to-market.
                 </p>
@@ -224,15 +287,15 @@ export default function HomePage() {
               {/* Collaborate */}
               <Link
                 href="/how-we-work"
-                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+                className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3 self-start">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Zap className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Collaborate</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed self-start">
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                 </p>
               </Link>

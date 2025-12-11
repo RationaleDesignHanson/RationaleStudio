@@ -18,7 +18,7 @@ interface TimelinePhase {
 }
 
 export default function TraditionalVsRationaleDiagramMobile() {
-  const [expandedApproach, setExpandedApproach] = useState<'traditional' | 'rationale' | null>('rationale');
+  const [expandedApproach, setExpandedApproach] = useState<'traditional' | 'rationale' | null>(null);
 
   const traditionalPhases: TimelinePhase[] = [
     { label: 'Specs', weeks: 4, color: '#FF4444', description: 'Requirements gathering, no validation' },
@@ -27,7 +27,7 @@ export default function TraditionalVsRationaleDiagramMobile() {
   ];
 
   const rationalePhases: TimelinePhase[] = [
-    { label: '7 Prototypes', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
+    { label: 'Rapid Prototyping', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
     { label: 'Lock', weeks: 1, color: '#FFD700', description: 'Architecture locked after validation' },
     { label: 'Production (validated)', weeks: 8, color: '#00D9FF', description: 'Build with confidence' },
   ];
@@ -51,34 +51,35 @@ export default function TraditionalVsRationaleDiagramMobile() {
       <div key={id}>
         <button
           onClick={() => setExpandedApproach(isExpanded ? null : id)}
-          className="w-full p-4 rounded-lg border-2 transition-all text-left"
+          className="w-full p-0 rounded-lg border-0 transition-all text-left"
           style={{
-            backgroundColor: isExpanded ? '#1F2937' : '#111827',
-            borderColor: isExpanded ? (isTraditional ? '#FF4444' : '#00FF94') : '#374151'
+            backgroundColor: isExpanded ? '#1F2937' : '#111827'
           }}
         >
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <div className="text-sm font-bold text-white mb-1">
+          <div className="flex items-start p-3 w-full">
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-bold text-white mb-1 whitespace-nowrap">
                 {title}
               </div>
-              <div className="text-xs text-gray-400">
+              <div className="text-xs text-gray-400 whitespace-nowrap">
                 {total} weeks total
               </div>
             </div>
-            {isExpanded ? (
-              <ChevronUp className="w-5 h-5 text-gray-400" />
-            ) : (
-              <ChevronDown className="w-5 h-5 text-gray-400" />
-            )}
+            <div className="flex-shrink-0 ml-2">
+              {isExpanded ? (
+                <ChevronUp className="w-5 h-5 text-gray-400" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-400" />
+              )}
+            </div>
           </div>
 
           {/* Risk bar (always visible) */}
-          <div className="mt-3">
+          <div className="mt-3 px-3">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-500">Risk level:</span>
+              <span className="text-xs text-gray-500">Risk:</span>
               <span className="text-xs font-medium" style={{ color: riskColor }}>
-                {riskLevel}
+                {riskLevel.replace(' risk', '')}
               </span>
             </div>
             <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
@@ -95,42 +96,29 @@ export default function TraditionalVsRationaleDiagramMobile() {
           </div>
         </button>
 
-        {/* Expanded phases */}
+        {/* Expanded phases - Elegant bullet list */}
         {isExpanded && (
-          <div className="mt-2 space-y-2 pl-4">
+          <div className="mt-3 pl-2">
             {phases.map((phase, idx) => (
               <div
                 key={idx}
-                className="p-3 rounded-lg border"
-                style={{
-                  backgroundColor: '#1F2937',
-                  borderColor: phase.color,
-                  borderLeftWidth: '4px'
-                }}
+                className="flex items-start gap-3 py-2 pl-2 mb-2"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm font-bold text-white">
-                    {phase.label}
+                <div className="flex-shrink-0 w-2 h-2 rounded-full mt-1.5" style={{ backgroundColor: phase.color }} />
+                <div className="flex-1">
+                  <div className="flex items-baseline justify-between gap-2 mb-0.5">
+                    <span className="text-sm font-semibold text-white">
+                      {phase.label}
+                    </span>
+                    <span className="text-xs font-medium text-gray-400">
+                      {phase.weeks}w
+                    </span>
                   </div>
-                  <div className="text-xs font-medium" style={{ color: phase.color }}>
-                    {phase.weeks} weeks
-                  </div>
-                </div>
-                {phase.description && (
-                  <div className="text-xs text-gray-400">
-                    {phase.description}
-                  </div>
-                )}
-
-                {/* Visual bar for phase duration */}
-                <div className="mt-2 h-1.5 bg-gray-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${(phase.weeks / total) * 100}%`,
-                      backgroundColor: phase.color
-                    }}
-                  />
+                  {phase.description && (
+                    <p className="text-xs text-gray-400 leading-relaxed">
+                      {phase.description}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
