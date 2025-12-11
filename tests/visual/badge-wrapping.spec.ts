@@ -21,7 +21,7 @@ test.describe('Badge Wrapping Tests', () => {
     await page.setViewportSize({ width: 375, height: 800 });
     await page.goto('/');
 
-    const pipeline = page.locator('text=Pipeline');
+    const pipeline = page.locator('text=Pipeline').first();
     await pipeline.scrollIntoViewIfNeeded();
     await percySnapshot(page, 'Badge Wrapping - Pipeline Card');
   });
