@@ -49,8 +49,8 @@ export default function HomePage() {
           <div className="relative z-10 max-w-5xl mx-auto text-center px-6 sm:px-8">
             {/* Main Headline - Large */}
             <div className="mb-4 md:mb-6">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight whitespace-nowrap">
-                Rationale: <span className="font-light whitespace-nowrap">Product Development Company</span>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
+                Rationale:&nbsp;<span className="font-light inline-block">Product Development Company</span>
               </h1>
             </div>
 
