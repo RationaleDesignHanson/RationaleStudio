@@ -22,7 +22,7 @@ const features = [
     image: '/images/work/heirloom/feature-personalization.png',
   },
   {
-    icon: '📤',
+    icon: '',
     title: 'CloudKit Sharing',
     description: 'Styled cards preserve customization with provenance tracking ("Shared by Mom").',
     image: '/images/work/heirloom/feature-sharing.png',
@@ -34,7 +34,7 @@ const features = [
     image: '/images/work/heirloom/feature-dinnerparty.png',
   },
   {
-    icon: '🔒',
+    icon: '',
     title: 'Privacy-First Design',
     description: 'On-device processing (80-90%), no data selling or ads, and optional iCloud sync.',
     image: '/images/work/heirloom/feature-privacy.png',
