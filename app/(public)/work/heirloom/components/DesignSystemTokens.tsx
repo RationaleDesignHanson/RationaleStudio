@@ -148,7 +148,7 @@ export default function DesignSystemTokens() {
         {/* Typography Examples */}
         <div className="mt-6 space-y-4 rounded-lg border-2 border-gray-200 bg-[#F5F1E8] p-6">
           <div>
-            <div className="text-5xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>
+            <div className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>
               Grandma's Apple Pie
             </div>
             <div className="mt-1 text-xs text-gray-600">Display Bold • 48pt</div>

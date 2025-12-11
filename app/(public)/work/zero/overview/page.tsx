@@ -40,7 +40,7 @@ export default function ZeroOverviewPage() {
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Main Headline */}
           <div className="mb-8">
-            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
               Zero Inbox: <span className="font-light">AI That Achieves Inbox Zero</span>
             </h1>
             <p className="text-xl sm:text-2xl text-white font-medium italic mb-6">
@@ -739,19 +739,19 @@ export default function ZeroOverviewPage() {
           {/* Market Stats */}
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12">
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg text-center">
-              <div className="text-5xl font-bold text-terminal-gold mb-2">$28B</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-terminal-gold mb-2">$28B</div>
               <div className="text-sm text-gray-300 uppercase tracking-wide mb-2">Total Addressable Market</div>
               <p className="text-xs text-gray-400">Global email management software market</p>
             </div>
 
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg text-center">
-              <div className="text-5xl font-bold text-terminal-gold mb-2">333M</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-terminal-gold mb-2">333M</div>
               <div className="text-sm text-gray-300 uppercase tracking-wide mb-2">Email Users Worldwide</div>
               <p className="text-xs text-gray-400">Growing 3% annually through 2026</p>
             </div>
 
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg text-center">
-              <div className="text-5xl font-bold text-terminal-gold mb-2">67%</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-terminal-gold mb-2">67%</div>
               <div className="text-sm text-gray-300 uppercase tracking-wide mb-2">Feel Email Overwhelm</div>
               <p className="text-xs text-gray-400">Spend 2+ hours daily on email management</p>
             </div>
@@ -798,7 +798,7 @@ export default function ZeroOverviewPage() {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Emotional Close */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6">
               Stop Managing Email. Start Living.
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">

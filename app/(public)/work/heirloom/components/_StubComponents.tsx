@@ -55,7 +55,7 @@ export function DesignSystem() {
             <h3 className="mb-6 text-2xl font-bold text-[#2D2D2D]">Typography</h3>
             <div className="space-y-6">
               <div className="p-6 bg-gray-50 rounded-lg">
-                <div className="text-5xl font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2" style={{ fontFamily: 'Georgia, serif' }}>
                   SF Pro Display
                 </div>
                 <div className="text-gray-600">Display • Bold • 48pt</div>

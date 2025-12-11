@@ -27,7 +27,7 @@ export default function HeirloomPitchPage() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Headline */}
             <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold leading-tight text-[#2D2D2D] mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#2D2D2D] mb-4">
                 Heirloom
               </h1>
               <p className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-medium text-[#E85D4D]">
@@ -83,7 +83,7 @@ export default function HeirloomPitchPage() {
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-4">
                 The Problem: Recipe Fragmentation
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -104,7 +104,7 @@ export default function HeirloomPitchPage() {
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-4">
                 The Solution: Three Core Capabilities
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -237,7 +237,7 @@ export default function HeirloomPitchPage() {
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-4">
                 Market: Large, Validated, Growing
               </h2>
             </div>
@@ -245,19 +245,19 @@ export default function HeirloomPitchPage() {
             {/* Market Stats */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               <div className="p-8 bg-gradient-to-br from-[#E85D4D]/10 to-[#F4A460]/10 rounded-2xl border-2 border-[#E85D4D]/30 text-center hover:shadow-lg transition-all">
-                <div className="text-5xl font-bold text-[#E85D4D] mb-2">$2.1B</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D] mb-2">$2.1B</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide font-semibold mb-2">Total Addressable Market</div>
                 <p className="text-xs text-gray-500">Global recipe app market, growing 8.3% annually</p>
               </div>
 
               <div className="p-8 bg-gradient-to-br from-[#E85D4D]/10 to-[#F4A460]/10 rounded-2xl border-2 border-[#E85D4D]/30 text-center hover:shadow-lg transition-all">
-                <div className="text-5xl font-bold text-[#E85D4D] mb-2">$450M</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D] mb-2">$450M</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide font-semibold mb-2">Serviceable Market</div>
                 <p className="text-xs text-gray-500">Premium iOS recipe apps (US + EU)</p>
               </div>
 
               <div className="p-8 bg-gradient-to-br from-[#E85D4D]/10 to-[#F4A460]/10 rounded-2xl border-2 border-[#E85D4D]/30 text-center hover:shadow-lg transition-all">
-                <div className="text-5xl font-bold text-[#E85D4D] mb-2">$15-45M</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D] mb-2">$15-45M</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide font-semibold mb-2">3-Year Capture</div>
                 <p className="text-xs text-gray-500">Realistic obtainable market with strong execution</p>
               </div>
@@ -349,7 +349,7 @@ export default function HeirloomPitchPage() {
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-4">
                 Business Model: Proven, Simple, Profitable
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -491,7 +491,7 @@ export default function HeirloomPitchPage() {
           <div className="max-w-5xl mx-auto">
             {/* Emotional Close */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] mb-6">
                 Every Family Has Recipes Worth Saving
               </h2>
               <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-4">

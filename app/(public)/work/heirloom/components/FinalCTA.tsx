@@ -8,7 +8,7 @@ export default function FinalCTA() {
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-4xl text-center text-white">
           {/* Headline */}
-          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold md:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold">
             Want to Build Your Own Product?
           </h2>
 

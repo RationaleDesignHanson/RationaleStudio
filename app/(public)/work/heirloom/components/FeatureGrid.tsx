@@ -63,7 +63,7 @@ export default function FeatureGrid() {
               className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm transition-all hover:shadow-xl"
             >
               {/* Icon */}
-              <div className="mb-4 text-5xl">{feature.icon}</div>
+              <div className="mb-4 text-3xl md:text-4xl lg:text-5xl">{feature.icon}</div>
 
               {/* Title */}
               <h3 className="mb-3 text-2xl font-bold text-[#2D2D2D]">

@@ -46,7 +46,7 @@ export default function HeroSection() {
 
             {/* Headline */}
             <div>
-              <h1 className="mb-4 text-5xl font-bold leading-tight text-[#2D2D2D] md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl">
+              <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#2D2D2D]">
                 Heirloom
               </h1>
               <p className="text-2xl font-medium text-[#2D2D2D] md:text-3xl">

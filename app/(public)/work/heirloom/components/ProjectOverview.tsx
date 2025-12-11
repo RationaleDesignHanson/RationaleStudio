@@ -20,19 +20,19 @@ export default function ProjectOverview() {
           {/* Key Metrics Grid */}
           <div className="grid gap-4 md:gap-6 lg:gap-8 md:grid-cols-3">
             <div className="group rounded-2xl border border-gray-200 p-8 transition-all hover:border-[#E85D4D] hover:shadow-lg">
-              <div className="mb-3 text-5xl font-bold text-[#E85D4D]">5</div>
+              <div className="mb-3 text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D]">5</div>
               <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">Weeks</div>
               <div className="mt-2 text-gray-700">MVP to TestFlight</div>
             </div>
 
             <div className="group rounded-2xl border border-gray-200 p-8 transition-all hover:border-[#E85D4D] hover:shadow-lg">
-              <div className="mb-3 text-5xl font-bold text-[#E85D4D]">500+</div>
+              <div className="mb-3 text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D]">500+</div>
               <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">Sites</div>
               <div className="mt-2 text-gray-700">Recipe import compatibility</div>
             </div>
 
             <div className="group rounded-2xl border border-gray-200 p-8 transition-all hover:border-[#E85D4D] hover:shadow-lg">
-              <div className="mb-3 text-5xl font-bold text-[#E85D4D]">$4.99</div>
+              <div className="mb-3 text-3xl md:text-4xl lg:text-5xl font-bold text-[#E85D4D]">$4.99</div>
               <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">One-Time</div>
               <div className="mt-2 text-gray-700">Premium unlock, no subscription</div>
             </div>
