@@ -177,7 +177,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap ${
+                  className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
                     isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                   }`}
                 >
