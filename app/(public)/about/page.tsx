@@ -20,24 +20,24 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-10 md:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
+          <p className="text-xs font-mono text-terminal-gold tracking-widest mb-3">
             CONVICTION-FIRST EXECUTION
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             About Rationale
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl">
+          <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl">
             Most innovation dies in slide decks. At Meta, we shipped AR platforms for 400+ people by building working software first, not debating specs. Now we do the same for our studio IP and partners who trade equity for velocity.
           </p>
         </div>
       </section>
 
       {/* Our Approach Introduction */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <StatementBlock
             title="Our Approach"
@@ -48,10 +48,10 @@ export default function AboutPage() {
       </section>
 
       {/* The Meta Reality Labs Context */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <GlassCard className="p-8" borderRadius="0.75rem">
-            <h2 className="text-2xl font-bold text-white mb-4">The Meta Reality Labs Context</h2>
+          <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">The Meta Reality Labs Context</h2>
             <div className="space-y-4">
               <p className="text-gray-300 leading-relaxed">
                 Led Product and Experience Design for Meta's AR platform—a 400+ person organization serving 2B+ users. Designed strategy for the horizontal platform and four verticals: Commerce, World AR, Avatars, and consumer experiences across Instagram/Facebook. Scaled mobile AR team from 2 to 22 people across product design, prototyping, technical art, and UX research.
@@ -65,13 +65,13 @@ export default function AboutPage() {
       </section>
 
       {/* Proof at Scale - 3 Card Grid */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Proof at Scale</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 text-center">Proof at Scale</h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {/* Card 1: Spark AR */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-xl font-bold text-white mb-2">Spark AR: Platform + Verticals</h3>
               <p className="text-sm text-gray-400 mb-4">400+ person XFN org, 2B+ users</p>
               <div className="space-y-3 text-sm text-gray-300">
