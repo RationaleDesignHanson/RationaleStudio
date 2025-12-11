@@ -39,7 +39,7 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
             Our Work
           </h1>
           <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-3xl mx-auto">
