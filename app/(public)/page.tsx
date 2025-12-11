@@ -66,22 +66,15 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* CTA - Subtle on mobile, full button on desktop */}
+            {/* CTA - Subtle linked text on all screen sizes */}
             <div className="flex justify-center">
-              {/* Mobile: Very subtle linked text */}
               <Link
                 href="/overview"
-                className="md:hidden text-gray-400 hover:text-terminal-gold text-sm font-normal inline-flex items-center gap-1 transition-colors"
+                className="text-gray-400 hover:text-terminal-gold text-sm font-normal inline-flex items-center gap-1 transition-colors"
               >
                 Studio Overview
                 <ArrowRight className="w-3 h-3" />
               </Link>
-
-              {/* Desktop: Full button */}
-              <ButtonPrimary href="/overview" size="lg" className="hidden md:inline-flex gap-2 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105">
-                Studio Overview
-                <ArrowRight className="w-5 h-5" />
-              </ButtonPrimary>
             </div>
           </div>
         </section>
