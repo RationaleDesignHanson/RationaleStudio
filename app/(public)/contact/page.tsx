@@ -97,7 +97,7 @@ export default function ContactPage() {
                   <ButtonPrimary
                     href={`mailto:${getEmail()}`}
                     size="lg"
-                    className="shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105"
+                    className="shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105"
                   >
                     {getEmail()}
                   </ButtonPrimary>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 onClick={() => setShowWhatToInclude(!showWhatToInclude)}
                 className="flex items-center justify-between w-full text-left group"
               >
-                <span className="text-base font-semibold text-terminal-gold group-hover:text-[#FFE34D] transition-colors">
+                <span className="text-base font-semibold text-terminal-gold group-hover:text-terminal-gold-hover transition-colors">
                   What to Include in Your Email
                 </span>
                 {showWhatToInclude ? (
@@ -317,7 +317,7 @@ export default function ContactPage() {
                   <p className="text-xs text-gray-500 mb-3">
                     Investment: ~2-3 weeks of senior engineering time
                   </p>
-                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-[#FFE34D] transition-colors">
+                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-terminal-gold-hover transition-colors">
                     <span className="text-sm font-semibold">Learn More</span>
                     <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
                   </div>
@@ -342,7 +342,7 @@ export default function ContactPage() {
                   <p className="text-xs text-gray-500 mb-3">
                     Investment: ~Mid-level full-stack dev for 2 months
                   </p>
-                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-[#FFE34D] transition-colors">
+                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-terminal-gold-hover transition-colors">
                     <span className="text-sm font-semibold">Learn More</span>
                     <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
                   </div>
@@ -367,7 +367,7 @@ export default function ContactPage() {
                   <p className="text-xs text-gray-500 mb-3">
                     Investment: ~Your first technical co-founder
                   </p>
-                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-[#FFE34D] transition-colors">
+                  <div className="flex items-center gap-2 text-terminal-gold group-hover:text-terminal-gold-hover transition-colors">
                     <span className="text-sm font-semibold">Learn More</span>
                     <span className="text-lg group-hover:translate-x-1 transition-transform">→</span>
                   </div>
@@ -381,7 +381,7 @@ export default function ContactPage() {
             <p className="text-sm text-gray-400">
               Not sure which fits? <a
                 href="mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!"
-                className="text-terminal-gold hover:text-[#FFE34D] transition-colors font-medium"
+                className="text-terminal-gold hover:text-terminal-gold-hover transition-colors font-medium"
               >Let's talk — we'll help you figure out the right approach →</a>
             </p>
           </div>
