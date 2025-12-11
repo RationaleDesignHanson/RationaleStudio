@@ -35,7 +35,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -48,27 +48,37 @@ export default function HomePage() {
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             {/* Main Headline - Large */}
-            <div className="mb-6">
+            <div className="mb-4 md:mb-6">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
                 Rationale: <span className="font-light">Product Development Company</span>
               </h1>
             </div>
 
             {/* Subheadline - One Line */}
-            <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl font-medium mb-8 tracking-tight">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-6 md:mb-8 tracking-tight">
               We ship products. <span className="text-gray-300">Yours and ours.</span>
             </p>
 
             {/* Body Copy */}
-            <div className="max-w-2xl mx-auto mb-10">
-              <p className="text-base sm:text-lg text-gray-400">
+            <div className="max-w-2xl mx-auto mb-6 md:mb-10">
+              <p className="text-sm sm:text-base md:text-lg text-gray-400">
                 Proven at Meta AI Reality Labs. Fee + equity engagements available.
               </p>
             </div>
 
-            {/* CTA Button */}
+            {/* CTA */}
             <div className="flex justify-center">
-              <ButtonPrimary href="/overview" size="lg" className="gap-2 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105">
+              {/* Mobile: Simple linked text */}
+              <Link
+                href="/overview"
+                className="md:hidden text-terminal-gold hover:text-terminal-gold-hover text-base font-medium inline-flex items-center gap-2 transition-colors"
+              >
+                Studio Overview
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              {/* Desktop: Full button */}
+              <ButtonPrimary href="/overview" size="lg" className="hidden md:inline-flex gap-2 shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105">
                 Studio Overview
                 <ArrowRight className="w-5 h-5" />
               </ButtonPrimary>
@@ -77,7 +87,7 @@ export default function HomePage() {
         </section>
 
         {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
-        <section id="current-focus" className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -98,26 +108,22 @@ export default function HomePage() {
             </div>
 
             {/* Row 1: Zero and Heirloom */}
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8 px-4 sm:px-0">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <div className="p-6 sm:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Zero</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
-                        Beta · Dogfooding
-                      </span>
-                    </div>
-                  </div>
+              <div className="p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
+                <div className="mb-3 md:mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Zero</h3>
+                  <span className="inline-block px-3 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
+                    Beta · Dogfooding
+                  </span>
                 </div>
 
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
                   AI email assistant that achieves Inbox Zero autonomously. Learns your preferences,
                   handles routine responses, and keeps you focused on what matters.
                 </p>
 
-                <div className="space-y-3 mb-6 text-sm">
+                <div className="hidden md:block space-y-3 mb-6 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Used daily by our team to validate core workflows</span>
@@ -128,31 +134,27 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <ButtonTertiary href="/work/zero" className="gap-2">
+                <ButtonTertiary href="/work/zero" className="gap-2 text-sm">
                   Learn about Zero
                   <ArrowRight className="w-4 h-4" />
                 </ButtonTertiary>
               </div>
 
               {/* Heirloom - In Development */}
-              <div className="p-6 sm:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Heirloom</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="px-3 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
-                        In Development
-                      </span>
-                    </div>
-                  </div>
+              <div className="p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
+                <div className="mb-3 md:mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Heirloom</h3>
+                  <span className="inline-block px-3 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
+                    In Development
+                  </span>
                 </div>
 
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
                   Where family recipes live—styled, shared, and passed down exactly as you made them.
                   Modern recipe box where grandma's handwritten cards sit alongside NYT bookmarks.
                 </p>
 
-                <div className="space-y-3 mb-6 text-sm">
+                <div className="hidden md:block space-y-3 mb-6 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Native iOS app built for TestFlight launch</span>
@@ -163,7 +165,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <ButtonTertiary href="/work/heirloom" className="gap-2 text-[#00D9FF] hover:text-[#00D9FF]/80">
+                <ButtonTertiary href="/work/heirloom" className="gap-2 text-sm text-[#00D9FF] hover:text-[#00D9FF]/80">
                   Learn about Heirloom
                   <ArrowRight className="w-4 h-4" />
                 </ButtonTertiary>
@@ -171,42 +173,35 @@ export default function HomePage() {
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Pipeline</h3>
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
-                    Q1–Q2 2025
-                  </span>
-                </div>
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
+              <div className="mb-3 md:mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Pipeline</h3>
+                <span className="inline-block px-3 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
+                  Q1–Q2 2025
+                </span>
               </div>
 
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
                 Multiple products in development across sectors. We're exploring opportunities
                 in productivity, knowledge work, and enterprise automation.
               </p>
 
-              <div className="space-y-3 text-sm text-gray-400">
+              <div className="hidden md:block space-y-2 text-sm text-gray-400 mb-6">
                 <div>Validation phase for 3 concepts</div>
                 <div>Prototype testing with select partners</div>
                 <div>Looking for product-minded investors</div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <p className="text-sm text-gray-400 mb-3">
-                  Interested in early access or investment opportunities?
-                </p>
-                <ButtonTertiary href="/contact" className="gap-2">
-                  Get in touch
-                  <ArrowRight className="w-4 h-4" />
-                </ButtonTertiary>
-              </div>
+              <ButtonTertiary href="/contact" className="gap-2 text-sm">
+                Get in touch
+                <ArrowRight className="w-4 h-4" />
+              </ButtonTertiary>
             </div>
           </div>
         </section>
 
         {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
-        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -226,50 +221,48 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-8">
               {/* Invest */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="w-6 h-6 text-terminal-gold" />
+              <div className="flex flex-col p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                  <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Invest</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Invest</h3>
+                <p className="text-xs md:text-sm text-gray-300 mb-4 md:mb-6 leading-relaxed flex-grow">
                   Back our product portfolio. Get early access to Zero and our pipeline products.
-                  We're looking for product-minded investors who can open doors.
                 </p>
-                <ButtonTertiary href="/contact?interest=invest" className="gap-2 self-start">
+                <ButtonTertiary href="/contact?interest=invest" className="gap-2 self-start text-xs md:text-sm">
                   Learn more
                   <ArrowRight className="w-4 h-4" />
                 </ButtonTertiary>
               </div>
 
               {/* Partner */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="w-6 h-6 text-terminal-gold" />
+              <div className="flex flex-col p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                  <Users className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Partner</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Partner</h3>
+                <p className="text-xs md:text-sm text-gray-300 mb-4 md:mb-6 leading-relaxed flex-grow">
                   Launch products together. We take equity + cash for product development
-                  and go-to-market. Best for founders with distribution and capital.
+                  and go-to-market.
                 </p>
-                <ButtonTertiary href="/contact?interest=partner" className="gap-2 self-start">
+                <ButtonTertiary href="/contact?interest=partner" className="gap-2 self-start text-xs md:text-sm">
                   Explore partnership
                   <ArrowRight className="w-4 h-4" />
                 </ButtonTertiary>
               </div>
 
               {/* Collaborate */}
-              <div className="flex flex-col p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-terminal-gold" />
+              <div className="flex flex-col p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                  <Zap className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Collaborate</h3>
-                <p className="text-sm text-gray-300 mb-6 leading-relaxed flex-grow">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">Collaborate</h3>
+                <p className="text-xs md:text-sm text-gray-300 mb-4 md:mb-6 leading-relaxed flex-grow">
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
-                  Get to working software in weeks, not quarters.
                 </p>
-                <ButtonTertiary href="/how-we-work" className="gap-2 self-start">
+                <ButtonTertiary href="/how-we-work" className="gap-2 self-start text-xs md:text-sm">
                   See how we work
                   <ArrowRight className="w-4 h-4" />
                 </ButtonTertiary>
@@ -279,7 +272,7 @@ export default function HomePage() {
         </section>
 
         {/* 4. HOW WE SHIP FASTER - Kits Methodology */}
-        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -290,11 +283,11 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">
                 How We Ship Faster
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
                 Proven methodology from Meta Reality Labs. Working software in weeks, not quarters.
               </p>
             </div>
@@ -309,8 +302,8 @@ export default function HomePage() {
               <VelocityProof simplified={false} />
             </div>
 
-            <div className="mt-12 text-center">
-              <ButtonTertiary href="/how-we-work" className="gap-2">
+            <div className="mt-8 md:mt-12 text-center">
+              <ButtonTertiary href="/how-we-work" className="gap-2 text-sm">
                 See the full methodology
                 <ArrowRight className="w-4 h-4" />
               </ButtonTertiary>
@@ -319,7 +312,7 @@ export default function HomePage() {
         </section>
 
         {/* 5. FIT FILTER */}
-        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
