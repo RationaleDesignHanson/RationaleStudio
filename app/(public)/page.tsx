@@ -46,7 +46,7 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <div className="relative z-10 max-w-5xl mx-auto text-center px-6 sm:px-8">
             {/* Main Headline - Large */}
             <div className="mb-4 md:mb-6">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight whitespace-nowrap">
@@ -55,13 +55,13 @@ export default function HomePage() {
             </div>
 
             {/* Subheadline - One Line */}
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-6 md:mb-8 tracking-tight">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium mb-6 md:mb-8 tracking-tight">
               We ship products. <span className="text-gray-300">Yours and ours.</span>
             </p>
 
             {/* Body Copy */}
             <div className="max-w-2xl mx-auto mb-6 md:mb-10">
-              <p className="text-sm sm:text-base md:text-lg text-gray-400">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400">
                 Proven at Meta AI Reality Labs. Fee + equity engagements available.
               </p>
             </div>
