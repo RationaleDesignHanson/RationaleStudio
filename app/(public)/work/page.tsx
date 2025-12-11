@@ -28,7 +28,7 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Header */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -39,17 +39,17 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
             Our Work
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-3xl mx-auto">
             Products we ship, systems we build, problems we solve. Everything here demonstrates our methodology under real market pressure.
           </p>
         </div>
       </section>
 
       {/* Featured Projects Hero - Zero & Heirloom */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -60,15 +60,15 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6 md:mb-8">
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Featured Projects</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white">Featured Projects</h2>
           </div>
 
           {/* Why We Build Our Own Products */}
-          <div className="mb-8 md:mb-12">
-            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Why We Build Our Own Products</h3>
+          <div className="mb-6 md:mb-8">
+            <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3">Why We Build Our Own Products</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
                 only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
@@ -77,12 +77,12 @@ export default function WorkPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6">
             {/* Zero Inbox - Featured Hero */}
             {zero && (
               <Link href={`/work/${zero.slug}`} className="group block">
-                <div className="h-full p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
-                  <div className="space-y-4 sm:space-y-6">
+                <div className="h-full p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
+                  <div className="space-y-3 md:space-y-4">
                     {/* Title */}
                     <div>
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
@@ -145,8 +145,8 @@ export default function WorkPage() {
             {/* Heirloom - Featured Hero */}
             {heirloom && (
               <Link href={`/work/${heirloom.slug}`} className="group block">
-                <div className="h-full p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
-                  <div className="space-y-4 sm:space-y-6">
+                <div className="h-full p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
+                  <div className="space-y-3 md:space-y-4">
                     {/* Title */}
                     <div>
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#00D9FF] transition-colors">
@@ -211,7 +211,7 @@ export default function WorkPage() {
 
       {/* Additional Ventures - If we add more consumer products */}
       {ourProducts.length > 2 && (
-        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -222,16 +222,16 @@ export default function WorkPage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="flex items-center gap-3 mb-8 md:mb-12">
+            <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">More Ventures</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white">More Ventures</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {ourProducts.slice(2).map((project) => (
                 <Link key={project.id} href={`/work/${project.slug}`} className="group block">
-                  <div className="h-full p-4 sm:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
-                    <div className="space-y-3 sm:space-y-4">
+                  <div className="h-full p-4 md:p-5 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
+                    <div className="space-y-3">
                       <div>
                         <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
                           {project.title}
@@ -261,7 +261,7 @@ export default function WorkPage() {
       )}
 
       {/* Partnership Work Section */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -272,15 +272,15 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-6 md:mb-8">
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Partnership Work</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white">Partnership Work</h2>
           </div>
 
           {/* Partnership Philosophy */}
-          <div className="mb-8 md:mb-12">
-            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Partnership Model</h3>
+          <div className="mb-6 md:mb-8">
+            <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3">Partnership Model</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
                 strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work

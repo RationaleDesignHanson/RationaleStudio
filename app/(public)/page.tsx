@@ -92,19 +92,18 @@ export default function HomePage() {
             </div>
 
             {/* Row 1: Zero and Heirloom */}
-            <div className="grid md:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8 px-4 sm:px-0">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <div className="p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
-                <div className="mb-3 md:mb-4">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Zero</h3>
-                  <span className="inline-block px-3 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
+              <div className="p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
+                <div className="mb-3">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Zero</h3>
+                  <span className="inline-block px-2 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
                     Beta · Dogfooding
                   </span>
                 </div>
 
-                <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                  AI email assistant that achieves Inbox Zero autonomously. Learns your preferences,
-                  handles routine responses, and keeps you focused on what matters.
+                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+                  AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
                 </p>
 
                 <div className="hidden md:block space-y-3 mb-6 text-sm">
@@ -125,17 +124,16 @@ export default function HomePage() {
               </div>
 
               {/* Heirloom - In Development */}
-              <div className="p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
-                <div className="mb-3 md:mb-4">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Heirloom</h3>
-                  <span className="inline-block px-3 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
+              <div className="p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
+                <div className="mb-3">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Heirloom</h3>
+                  <span className="inline-block px-2 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
                     In Development
                   </span>
                 </div>
 
-                <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                  Where family recipes live—styled, shared, and passed down exactly as you made them.
-                  Modern recipe box where grandma's handwritten cards sit alongside NYT bookmarks.
+                <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+                  Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
                 </p>
 
                 <div className="hidden md:block space-y-3 mb-6 text-sm">
@@ -157,17 +155,16 @@ export default function HomePage() {
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
-              <div className="mb-3 md:mb-4">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Pipeline</h3>
-                <span className="inline-block px-3 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
+            <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
+              <div className="mb-3">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2">Pipeline</h3>
+                <span className="inline-block px-2 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
                   Q1–Q2 2025
                 </span>
               </div>
 
-              <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                Multiple products in development across sectors. We're exploring opportunities
-                in productivity, knowledge work, and enterprise automation.
+              <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+                Multiple products in development across productivity, knowledge work, and enterprise automation.
               </p>
 
               <div className="hidden md:block space-y-2 text-sm text-gray-400 mb-6">
@@ -207,56 +204,53 @@ export default function HomePage() {
 
             <div className="grid md:grid-cols-3 gap-4 md:gap-6 px-4 sm:px-0">
               {/* Invest */}
-              <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+              <Link
+                href="/contact?interest=invest"
+                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Invest</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                   Back our product portfolio. Get early access to Zero and our pipeline products.
                 </p>
-                <ButtonTertiary href="/contact?interest=invest" className="gap-2 text-xs">
-                  Learn more
-                  <ArrowRight className="w-3 h-3" />
-                </ButtonTertiary>
-              </div>
+              </Link>
 
               {/* Partner */}
-              <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+              <Link
+                href="/contact?interest=partner"
+                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Users className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Partner</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                   Launch products together. We take equity + cash for product development
                   and go-to-market.
                 </p>
-                <ButtonTertiary href="/contact?interest=partner" className="gap-2 text-xs">
-                  Explore partnership
-                  <ArrowRight className="w-3 h-3" />
-                </ButtonTertiary>
-              </div>
+              </Link>
 
               {/* Collaborate */}
-              <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
+              <Link
+                href="/how-we-work"
+                className="flex flex-col items-start p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors cursor-pointer"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Zap className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-white">Collaborate</h3>
                 </div>
-                <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                 </p>
-                <ButtonTertiary href="/how-we-work" className="gap-2 text-xs">
-                  See how we work
-                  <ArrowRight className="w-3 h-3" />
-                </ButtonTertiary>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -272,12 +266,12 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">
+          <div className="relative z-10 max-w-4xl mx-auto px-4">
+            <div className="text-center mb-6 md:mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-4">
                 How We Ship Faster
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
+              <p className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto">
                 Proven methodology from Meta Reality Labs. Working software in weeks, not quarters.
               </p>
             </div>
