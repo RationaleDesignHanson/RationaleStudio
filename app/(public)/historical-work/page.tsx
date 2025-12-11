@@ -87,7 +87,7 @@ export default function HistoricalWorkPage() {
                 <div className="flex gap-4">
                   <Link
                     href="/work/spark-ar"
-                    className="inline-block px-6 py-3 bg-[#FFD700] text-black font-semibold rounded-lg hover:bg-terminal-gold/90 transition-colors"
+                    className="inline-block px-6 py-3 bg-terminal-gold text-black font-semibold rounded-lg hover:bg-terminal-gold/90 transition-colors"
                   >
                     Full Spark AR Case Study →
                   </Link>

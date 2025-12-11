@@ -132,7 +132,7 @@ export default async function KitDetailPage({ params }: KitPageProps) {
               animateIn={false}
             > <p className="text-base sm:text-lg text-gray-300 mb-6"> {kit.caseStudy.description} </p> <div className="p-6 rounded-lg bg-terminal-gold/5 border border-terminal-gold/20 mb-6"> <h4 className="text-sm font-semibold uppercase tracking-wide text-terminal-gold mb-2"> Outcome </h4> <p className="text-sm sm:text-base text-white leading-relaxed"> {kit.caseStudy.outcome} </p> </div> {kit.caseStudy.link && ( <Link
                   href={kit.caseStudy.link}
-                  className="inline-block px-8 py-3 text-base font-medium text-black bg-[#FFD700] rounded-lg hover:bg-terminal-gold/90 transition-colors text-center"
+                  className="inline-block px-8 py-3 text-base font-medium text-black bg-terminal-gold rounded-lg hover:bg-terminal-gold/90 transition-colors text-center"
                 > View full case study </Link> )} </OS8Window> </div> </section> )}
 
       {/* Related Kits */}

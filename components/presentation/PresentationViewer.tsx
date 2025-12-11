@@ -235,7 +235,7 @@ export function PresentationViewer({
                       onClick={() => goToSlide(index)}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? 'bg-[#FFD700] w-8'
+                          ? 'bg-terminal-gold w-8'
                           : index < currentSlide
                           ? 'bg-terminal-gold/50'
                           : 'bg-gray-600'

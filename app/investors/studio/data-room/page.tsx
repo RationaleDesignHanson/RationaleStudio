@@ -149,7 +149,7 @@ export default function StudioDataRoomPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-terminal-gold text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
             >
               Contact Investor Relations
             </Link>

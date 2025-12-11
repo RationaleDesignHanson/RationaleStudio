@@ -84,7 +84,7 @@ export function ArchitectureDiagram({
         <div
           className={`relative px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
             isActive
-              ? 'border-[#FFD700] bg-terminal-gold/10 scale-105 shadow-lg shadow-[#FFD700]/20'
+              ? 'border-terminal-gold bg-terminal-gold/10 scale-105 shadow-lg shadow-[#FFD700]/20'
               : 'border-gray-700 bg-gray-900/50 hover:border-terminal-gold/50'
           }`}
           style={{

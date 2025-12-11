@@ -127,7 +127,7 @@ function ClientLoginForm() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-terminal-gold text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
 {isLoading ? 'Signing in...' : 'Sign In'}
               </button>
@@ -139,7 +139,7 @@ function ClientLoginForm() {
                 Need access?{' '}
                 <a
                   href="/contact"
-                  className="text-[#FFD700] hover:text-terminal-gold/80 transition-colors"
+                  className="text-terminal-gold hover:text-terminal-gold/80 transition-colors"
                 >
                   Contact us
                 </a>

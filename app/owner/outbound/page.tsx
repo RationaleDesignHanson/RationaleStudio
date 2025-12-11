@@ -105,7 +105,7 @@ export default function OutboundDashboardPage() {
               </div>
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
+                className="flex items-center gap-2 px-6 py-3 bg-terminal-gold text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
               >
                 <Plus className="w-5 h-5" />
                 Create New Pitch
@@ -163,7 +163,7 @@ export default function OutboundDashboardPage() {
                 </p>
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-terminal-gold text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   <Plus className="w-5 h-5" />
                   Create Pitch
@@ -451,7 +451,7 @@ function CreatePitchModal({ onClose }: { onClose: () => void }) {
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
+              className="flex-1 px-6 py-3 bg-terminal-gold text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
             >
               Create Pitch
             </button>

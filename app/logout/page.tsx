@@ -59,7 +59,7 @@ export default function LogoutPage() {
                 </p>
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-6 py-3 bg-[#FFD700] text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
+                  className="px-6 py-3 bg-terminal-gold text-black font-medium rounded-lg hover:bg-terminal-gold/90 transition-colors"
                 >
                   Retry
                 </button>

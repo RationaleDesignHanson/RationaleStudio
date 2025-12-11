@@ -76,7 +76,7 @@ export default function ActionRouting({ data }: ActionRoutingProps) {
                 className={`
                   p-4
                   ${isPrimary ? 'bg-gray-800/30' : 'bg-gray-800/50'}
-                  border ${isPrimary ? 'border-[#FFD700]/30' : 'border-gray-700'}
+                  border ${isPrimary ? 'border-terminal-gold/30' : 'border-gray-700'}
                   rounded-lg
                   transition-all
                   hover:border-terminal-gold/50

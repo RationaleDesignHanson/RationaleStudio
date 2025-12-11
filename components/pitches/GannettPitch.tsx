@@ -325,7 +325,7 @@ export function GannettPitch() {
         <div className="flex gap-4 justify-center">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#FFD700] text-black font-bold rounded-lg hover:bg-terminal-gold/90 transition-colors text-lg"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-terminal-gold text-black font-bold rounded-lg hover:bg-terminal-gold/90 transition-colors text-lg"
           >
             <Calendar className="w-5 h-5" />
             Schedule Discovery Call

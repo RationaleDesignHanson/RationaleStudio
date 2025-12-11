@@ -486,7 +486,7 @@ export default function ImmersivePitchDemo() {
                       <h3 className="font-mono font-bold text-white mb-1">{video.title}</h3>
                       <p className="font-mono text-sm text-white/60">{video.description}</p>
                     </div>
-                    <div className="absolute inset-0 bg-[#FFD700]/0 group-hover:bg-terminal-gold/10 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="absolute inset-0 bg-terminal-gold/0 group-hover:bg-terminal-gold/10 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
                       <span className="px-4 py-2 bg-terminal-gold text-black font-mono font-bold rounded-lg">
                         PLAY VIDEO
                       </span>

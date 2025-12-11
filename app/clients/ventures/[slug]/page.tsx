@@ -317,7 +317,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
               {Object.values(venture.metrics).map((metric: any, index: number) => (
                 <div
                   key={index}
-                  className="rounded-lg border-2 border-[#FFD700]/30 bg-terminal-gold/5 p-6 text-center hover:border-terminal-gold transition-colors"
+                  className="rounded-lg border-2 border-terminal-gold/30 bg-terminal-gold/5 p-6 text-center hover:border-terminal-gold transition-colors"
                 >
                   <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">
                     {metric.value}

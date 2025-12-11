@@ -83,7 +83,7 @@ export default function WorkPage() {
               return (
                 <div
                   key={caseStudy.slug}
-                  className="rounded-lg border border-[#FFD700]/20 backdrop-blur-sm overflow-hidden transition-all hover:border-terminal-gold hover:shadow-lg"
+                  className="rounded-lg border border-terminal-gold/20 backdrop-blur-sm overflow-hidden transition-all hover:border-terminal-gold hover:shadow-lg"
                   style={{
                     background: `linear-gradient(135deg, ${colors[0]}20 0%, ${colors[1]}15 50%, ${colors[2]}10 100%)`
                   }}
