@@ -195,27 +195,29 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="mb-12 px-4 sm:px-0">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Three Ways to Work Together
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
                 Choose the path that fits your goals.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6 px-4 sm:px-0">
               {/* Invest */}
               <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-2 md:mb-3">
-                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-white">Invest</h3>
                 </div>
-                <h3 className="text-base md:text-lg font-bold text-white mb-2">Invest</h3>
                 <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
                   Back our product portfolio. Get early access to Zero and our pipeline products.
                 </p>
-                <ButtonTertiary href="/contact?interest=invest" className="gap-2 self-start text-xs">
+                <ButtonTertiary href="/contact?interest=invest" className="gap-2 text-xs">
                   Learn more
                   <ArrowRight className="w-3 h-3" />
                 </ButtonTertiary>
@@ -223,15 +225,17 @@ export default function HomePage() {
 
               {/* Partner */}
               <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-2 md:mb-3">
-                  <Users className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Users className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-white">Partner</h3>
                 </div>
-                <h3 className="text-base md:text-lg font-bold text-white mb-2">Partner</h3>
                 <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
                   Launch products together. We take equity + cash for product development
                   and go-to-market.
                 </p>
-                <ButtonTertiary href="/contact?interest=partner" className="gap-2 self-start text-xs">
+                <ButtonTertiary href="/contact?interest=partner" className="gap-2 text-xs">
                   Explore partnership
                   <ArrowRight className="w-3 h-3" />
                 </ButtonTertiary>
@@ -239,14 +243,16 @@ export default function HomePage() {
 
               {/* Collaborate */}
               <div className="flex flex-col p-4 sm:p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold transition-colors">
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center mb-2 md:mb-3">
-                  <Zap className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 md:w-10 md:h-10 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-white">Collaborate</h3>
                 </div>
-                <h3 className="text-base md:text-lg font-bold text-white mb-2">Collaborate</h3>
                 <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 leading-relaxed flex-grow">
                   Ship an MVP fast. Fixed-scope Kits for rapid prototyping and validation.
                 </p>
-                <ButtonTertiary href="/how-we-work" className="gap-2 self-start text-xs">
+                <ButtonTertiary href="/how-we-work" className="gap-2 text-xs">
                   See how we work
                   <ArrowRight className="w-3 h-3" />
                 </ButtonTertiary>
