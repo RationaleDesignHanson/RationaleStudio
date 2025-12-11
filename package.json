@@ -11,7 +11,10 @@
     "test:visual": "playwright test tests/visual",
     "test:visual:ui": "playwright test tests/visual --ui",
     "test:visual:percy": "percy exec -- playwright test tests/visual",
-    "test:visual:report": "playwright show-report"
+    "test:visual:report": "playwright show-report",
+    "analyze": "ANALYZE=true npm run build",
+    "analyze:server": "ANALYZE=true BUNDLE_ANALYZE=server npm run build",
+    "analyze:browser": "ANALYZE=true BUNDLE_ANALYZE=browser npm run build"
   },
   "repository": {
     "type": "git",
@@ -59,6 +62,7 @@
     "three": "^0.181.2"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.8",
     "@percy/cli": "^1.31.5",
     "@percy/playwright": "^1.0.10",
     "@playwright/test": "^1.57.0",
