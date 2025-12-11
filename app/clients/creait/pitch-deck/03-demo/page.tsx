@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { CRESection } from '@/components/creait/ui';
 import { CRECard } from '@/components/creait/ui';
 import {
@@ -11,9 +12,33 @@ import {
   LabelSM,
 } from '@/components/creait/typography';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
-import OpportunityDashboardDemo from '@/components/creait/demos/OpportunityDashboardDemo';
-import ScoreBreakdownDemo from '@/components/creait/demos/ScoreBreakdownDemo';
-import EmailDraftsDemo from '@/components/creait/demos/EmailDraftsDemo';
+
+// Lazy load demo components for code splitting
+const LoadingDemo = () => (
+  <div className="flex items-center justify-center py-12">
+    <div className="text-center">
+      <div className="animate-pulse mb-4">
+        <div className="w-12 h-12 border-4 border-terminal-gold/30 border-t-terminal-gold rounded-full animate-spin mx-auto" />
+      </div>
+      <p className="text-terminal-gold font-mono text-sm">Loading demo...</p>
+    </div>
+  </div>
+);
+
+const OpportunityDashboardDemo = dynamic(
+  () => import('@/components/creait/demos/OpportunityDashboardDemo'),
+  { loading: () => <LoadingDemo />, ssr: false }
+);
+
+const ScoreBreakdownDemo = dynamic(
+  () => import('@/components/creait/demos/ScoreBreakdownDemo'),
+  { loading: () => <LoadingDemo />, ssr: false }
+);
+
+const EmailDraftsDemo = dynamic(
+  () => import('@/components/creait/demos/EmailDraftsDemo'),
+  { loading: () => <LoadingDemo />, ssr: false }
+);
 
 type DemoTab = 'dashboard' | 'scoring' | 'emails';
 
