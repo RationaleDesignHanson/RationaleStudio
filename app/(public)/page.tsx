@@ -46,7 +46,7 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto text-center px-6 sm:px-8">
+          <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8">
             {/* Main Headline - Large */}
             <div className="mb-4 md:mb-6">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
@@ -60,7 +60,7 @@ export default function HomePage() {
             </p>
 
             {/* CTA - Yellow linked text */}
-            <div className="flex justify-center">
+            <div>
               <Link
                 href="/overview"
                 className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal inline-flex items-center gap-1 transition-colors"
@@ -84,11 +84,11 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Current Focus
               </h2>
-              <p className="text-sm sm:text-base text-gray-300 max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
                 We build software in areas we see value, and develop strategic partnerships which transform strategy into shipped products with conviction.
               </p>
             </div>
