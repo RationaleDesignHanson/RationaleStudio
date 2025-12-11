@@ -84,7 +84,7 @@ export function Header() {
 
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-black/90 backdrop-blur-md">
         <Container>
-          <div className={`flex h-12 sm:h-16 items-center ${pathname === '/' ? 'justify-start' : 'justify-between'}`}>
+          <div className="flex h-12 sm:h-16 items-center justify-between">
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
@@ -101,7 +101,7 @@ export function Header() {
           </Link>
 
           {/* Navigation - Hidden on mobile */}
-          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${pathname === '/' ? 'ml-8' : ''}`} ref={dropdownRef}>
+          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${pathname === '/' ? 'ml-auto' : ''}`} ref={dropdownRef}>
             {siteContent.navigation.primary.map((link) => {
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isDropdownOpen = openDropdown === link.label;
