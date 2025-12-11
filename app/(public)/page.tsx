@@ -89,7 +89,7 @@ export default function HomePage() {
                 Current Focus
               </h2>
               <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
-                We build software in areas we see value, and develop strategic partnerships which transform strategy into shipped products with conviction.
+                We build software with AI to help make things easier, and develop strategic partnerships which transform strategy into shipped products with conviction.
               </p>
             </div>
 
