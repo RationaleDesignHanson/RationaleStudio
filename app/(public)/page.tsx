@@ -95,8 +95,8 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
               <div className="p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
-                <div className="mb-3">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Zero</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <h3 className="text-lg md:text-xl font-bold text-white">Zero</h3>
                   <span className="inline-block px-2 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
                     Beta · Dogfooding
                   </span>
@@ -125,8 +125,8 @@ export default function HomePage() {
 
               {/* Heirloom - In Development */}
               <div className="p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
-                <div className="mb-3">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">Heirloom</h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <h3 className="text-lg md:text-xl font-bold text-white">Heirloom</h3>
                   <span className="inline-block px-2 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
                     In Development
                   </span>
@@ -156,8 +156,8 @@ export default function HomePage() {
 
             {/* Row 2: Pipeline (Full Width) */}
             <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
-              <div className="mb-3">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-2">Pipeline</h3>
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="text-lg md:text-xl font-bold text-white">Pipeline</h3>
                 <span className="inline-block px-2 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
                   Q1–Q2 2025
                 </span>
