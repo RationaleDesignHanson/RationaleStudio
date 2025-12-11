@@ -44,10 +44,9 @@ export default function PrototypeEmbed() {
                 onClick={() => setActiveDemo(demo.id)}
                 className={`
                   relative px-2.5 md:px-3 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold transition-all
-                  border-t-2 border-x-2
                   ${activeDemo === demo.id
-                    ? 'bg-white border-gray-200 text-[#E85D4D] z-10 translate-y-[4px] rounded-t-md'
-                    : 'bg-gray-100/50 border-transparent text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
+                    ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px]'
+                    : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
                   }
                 `}
                 style={{
