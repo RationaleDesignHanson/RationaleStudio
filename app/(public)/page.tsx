@@ -85,10 +85,10 @@ export default function HomePage() {
 
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Current Focus
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-300 max-w-3xl mx-auto">
                 We build software in areas we see value, and develop strategic partnerships which transform strategy into shipped products with conviction.
               </p>
             </div>
