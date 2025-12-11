@@ -28,7 +28,7 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Header */}
-      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -39,17 +39,17 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             Our Work
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
             Products we ship, systems we build, problems we solve. Everything here demonstrates our methodology under real market pressure.
           </p>
         </div>
       </section>
 
       {/* Featured Projects Hero - Zero & Heirloom */}
-      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -60,15 +60,15 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Featured Projects</h2>
           </div>
 
           {/* Why We Build Our Own Products */}
-          <div className="mb-12">
-            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-bold text-white mb-4">Why We Build Our Own Products</h3>
+          <div className="mb-8 md:mb-12">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Why We Build Our Own Products</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We build our own products to stay sharp.</span> Market feedback is the
                 only validation that matters. Every product here has been tested under real pressure—users, revenue, distribution.
@@ -81,29 +81,29 @@ export default function WorkPage() {
             {/* Zero Inbox - Featured Hero */}
             {zero && (
               <Link href={`/work/${zero.slug}`} className="group block">
-                <div className="h-full p-6 sm:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
-                  <div className="space-y-6">
+                <div className="h-full p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Title */}
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
                         {zero.title}
                       </h3>
-                      <p className="text-sm text-gray-400">{zero.subtitle}</p>
+                      <p className="text-xs md:text-sm text-gray-400">{zero.subtitle}</p>
                     </div>
 
-                    {/* Status Badge */}
+                    {/* Status Badge - Hide status text on mobile */}
                     <div className="flex items-center justify-between">
                       <ProjectStatusBadge status="live" size="md" className="font-bold" />
-                      <span className="text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
+                      <span className="hidden sm:inline-block text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-300 leading-relaxed">
+                    <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                       AI email assistant that achieves Inbox Zero autonomously. Learns your preferences, handles routine responses, and keeps you focused on what matters. Built and shipped in 30 days.
                     </p>
 
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
+                    {/* Metrics Grid - Hide on mobile */}
+                    <div className="hidden sm:grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-terminal-gold/20">
                       {zero.metrics.map((metric, idx) => (
                         <div key={idx}>
                           <div className="text-lg font-bold text-terminal-gold mb-1">{metric.value}</div>
@@ -113,25 +113,25 @@ export default function WorkPage() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <a
                         href="https://testflight.apple.com/join/zero-inbox"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full px-6 py-4 bg-terminal-gold hover:bg-terminal-gold-hover text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30"
+                        className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-terminal-gold hover:bg-terminal-gold-hover text-gray-900 rounded-lg text-center text-sm sm:text-base font-bold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30"
                       >
                         🚀 Join Beta on TestFlight
                       </a>
-                      <div className="flex gap-3">
+                      <div className="flex gap-2 sm:gap-3">
                         <Link
                           href="/work/zero/overview"
-                          className="flex-1 px-4 py-3 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded-lg text-center text-sm font-bold text-terminal-gold transition-all"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded-lg text-center text-xs sm:text-sm font-bold text-terminal-gold transition-all"
                         >
-                          Product Overview
+                          Overview
                         </Link>
                         <Link
                           href={`/work/${zero.slug}`}
-                          className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-sm font-bold text-white hover:text-terminal-gold transition-all"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-terminal-gold transition-all"
                         >
                           Case Study
                         </Link>
@@ -145,29 +145,29 @@ export default function WorkPage() {
             {/* Heirloom - Featured Hero */}
             {heirloom && (
               <Link href={`/work/${heirloom.slug}`} className="group block">
-                <div className="h-full p-6 sm:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
-                  <div className="space-y-6">
+                <div className="h-full p-4 sm:p-6 md:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Title */}
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00D9FF] transition-colors">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#00D9FF] transition-colors">
                         {heirloom.title}
                       </h3>
-                      <p className="text-sm text-gray-400">{heirloom.subtitle}</p>
+                      <p className="text-xs md:text-sm text-gray-400">{heirloom.subtitle}</p>
                     </div>
 
-                    {/* Status Badge */}
+                    {/* Status Badge - Hide status text on mobile */}
                     <div className="flex items-center justify-between">
                       <ProjectStatusBadge status="live" size="md" className="font-bold" />
-                      <span className="text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
+                      <span className="hidden sm:inline-block text-xs text-gray-400 font-mono">STATUS: IN PRODUCTION</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-300 leading-relaxed">
+                    <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                       Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence. Native iOS app with vintage aesthetic and iCloud sync.
                     </p>
 
-                    {/* Metrics Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-[#00D9FF]/20">
+                    {/* Metrics Grid - Hide on mobile */}
+                    <div className="hidden sm:grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-[#00D9FF]/20">
                       {heirloom.metrics.map((metric, idx) => (
                         <div key={idx}>
                           <div className="text-lg font-bold text-[#00D9FF] mb-1">{metric.value}</div>
@@ -177,25 +177,25 @@ export default function WorkPage() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <a
                         href="https://testflight.apple.com/join/heirloom"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full px-6 py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
+                        className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-sm sm:text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
                       >
                         🚀 Join Beta on TestFlight
                       </a>
-                      <div className="flex gap-3">
+                      <div className="flex gap-2 sm:gap-3">
                         <Link
                           href="/work/heirloom/pitch"
-                          className="flex-1 px-4 py-3 bg-[#00D9FF]/10 border border-[#00D9FF]/30 hover:border-[#00D9FF] hover:bg-[#00D9FF]/20 rounded-lg text-center text-sm font-bold text-[#00D9FF] transition-all"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-[#00D9FF]/10 border border-[#00D9FF]/30 hover:border-[#00D9FF] hover:bg-[#00D9FF]/20 rounded-lg text-center text-xs sm:text-sm font-bold text-[#00D9FF] transition-all"
                         >
-                          Product Overview
+                          Overview
                         </Link>
                         <Link
                           href={`/work/${heirloom.slug}`}
-                          className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg text-center text-sm font-bold text-white hover:text-[#00D9FF] transition-all"
+                          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-[#00D9FF] transition-all"
                         >
                           Case Study
                         </Link>
@@ -211,7 +211,7 @@ export default function WorkPage() {
 
       {/* Additional Ventures - If we add more consumer products */}
       {ourProducts.length > 2 && (
-        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -222,18 +222,18 @@ export default function WorkPage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="flex items-center gap-3 mb-12">
+            <div className="flex items-center gap-3 mb-8 md:mb-12">
               <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-              <h2 className="text-3xl font-bold text-white">More Ventures</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">More Ventures</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {ourProducts.slice(2).map((project) => (
                 <Link key={project.id} href={`/work/${project.slug}`} className="group block">
-                  <div className="h-full p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
-                    <div className="space-y-4">
+                  <div className="h-full p-4 sm:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
+                    <div className="space-y-3 sm:space-y-4">
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
                           {project.title}
                         </h3>
                       </div>
@@ -261,7 +261,7 @@ export default function WorkPage() {
       )}
 
       {/* Partnership Work Section */}
-      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -272,15 +272,15 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
             <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-3xl font-bold text-white">Partnership Work</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Partnership Work</h2>
           </div>
 
           {/* Partnership Philosophy */}
-          <div className="mb-12">
-            <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-bold text-white mb-4">Partnership Model</h3>
+          <div className="mb-8 md:mb-12">
+            <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+              <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">Partnership Model</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
                 strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
@@ -302,24 +302,24 @@ export default function WorkPage() {
               return (
                 <div key={project.id} className="relative">
                   <Link href={`/work/${project.slug}`} className="group block">
-                    <div className={`h-full p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
+                    <div className={`h-full p-4 sm:p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
                       isConfidential
                         ? 'border-amber-400/30 hover:border-amber-400/50'
                         : 'border-gray-700 hover:border-terminal-gold/50'
                     }`}>
-                      <div className={`space-y-4 ${needsBlur ? 'relative' : ''}`}>
+                      <div className={`space-y-3 sm:space-y-4 ${needsBlur ? 'relative' : ''}`}>
                         {/* Title */}
                         <div>
-                          <h3 className={`text-xl font-bold text-white mb-2 transition-colors ${
+                          <h3 className={`text-lg md:text-xl font-bold text-white mb-2 transition-colors ${
                             isConfidential ? 'group-hover:text-amber-400' : 'group-hover:text-terminal-gold'
                           }`}>
                             {project.title}
                           </h3>
                           {!isConfidential && (
-                            <p className="text-sm text-gray-400">{project.subtitle}</p>
+                            <p className="text-xs md:text-sm text-gray-400">{project.subtitle}</p>
                           )}
                           {isConfidential && (
-                            <p className="text-sm text-amber-400">CLASSIFIED</p>
+                            <p className="text-xs md:text-sm text-amber-400">CLASSIFIED</p>
                           )}
                         </div>
 
