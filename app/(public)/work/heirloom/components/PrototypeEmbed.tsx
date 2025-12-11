@@ -34,29 +34,39 @@ export default function PrototypeEmbed() {
           </p>
         </div>
 
-        {/* Demo Selector */}
-        <div className="mx-auto max-w-6xl mb-8">
-          <div className="flex justify-center gap-4 flex-wrap">
+        {/* Demo Container with Binder Tabs */}
+        <div className="mx-auto max-w-6xl">
+          {/* Binder Tabs - Positioned above the demo */}
+          <div className="flex justify-start gap-1 mb-[-2px] pl-8 md:pl-12">
             {demos.map(demo => (
               <button
                 key={demo.id}
                 onClick={() => setActiveDemo(demo.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2 ${
-                  activeDemo === demo.id
-                    ? 'bg-[#E85D4D] text-white shadow-lg scale-105'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
+                className={`
+                  relative px-3 md:px-4 py-2 text-xs md:text-sm font-semibold transition-all
+                  rounded-t-lg border-t-2 border-x-2
+                  ${activeDemo === demo.id
+                    ? 'bg-white border-gray-200 text-[#E85D4D] z-10 translate-y-[2px]'
+                    : 'bg-[#F5F1E8] border-gray-300 text-gray-600 hover:bg-[#F0ECE3] hover:text-[#E85D4D]'
+                  }
+                `}
+                style={{
+                  clipPath: activeDemo === demo.id
+                    ? 'polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)'
+                    : 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)'
+                }}
               >
-                <span className="text-xl">{demo.icon}</span>
                 <span>{demo.label}</span>
+                {/* Tab hole punch effect */}
+                {activeDemo === demo.id && (
+                  <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gray-300 ring-1 ring-gray-400"></div>
+                )}
               </button>
             ))}
           </div>
-        </div>
 
-        {/* Demo Container */}
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden">
+          {/* Demo Container */}
+          <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden relative z-0">
             {activeDemo === 'card' && <RecipeCardDemo />}
             {activeDemo === 'shopping' && <ShoppingListDemo dinnerPartyAdded={dinnerPartyAddedToList} />}
             {activeDemo === 'dinner' && <DinnerPartyDemo onAddToShoppingList={handleAddDinnerPartyToList} />}
