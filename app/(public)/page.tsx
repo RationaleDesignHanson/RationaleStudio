@@ -220,10 +220,16 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="hidden md:block space-y-2 text-sm text-gray-400 mt-4">
-                <div>Validation phase for 3 concepts</div>
-                <div>Prototype testing with select partners</div>
-                <div>Looking for product-minded investors</div>
+              {/* Additional Details */}
+              <div className="hidden md:block space-y-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <TrendingUp className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-400">Validation phase for 3 concepts</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-400">Prototype testing with select partners</span>
+                </div>
               </div>
             </Link>
           </div>

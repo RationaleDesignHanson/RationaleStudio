@@ -4,27 +4,27 @@ import Image from 'next/image'
 
 export default function ChallengeSection() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
+    <section className="bg-gray-50 py-6 md:py-12 lg:py-16 md:py-20">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+          <h2 className="mb-6 md:mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             The Challenge
           </h2>
 
-          <div className="mb-16 space-y-8">
+          <div className="mb-8 md:mb-16 space-y-6 md:space-y-8">
             <div>
-              <h3 className="mb-4 text-2xl font-bold text-[#E85D4D]">
+              <h3 className="mb-3 md:mb-4 text-lg md:text-2xl font-bold text-[#E85D4D]">
                 PROBLEM
               </h3>
-              <div className="prose prose-lg max-w-none text-gray-700">
-                <p className="mb-4">Recipe apps treat recipes like data:</p>
-                <ul className="list-disc space-y-2 pl-6">
+              <div className="prose prose-sm md:prose-lg max-w-none text-gray-700">
+                <p className="mb-3 md:mb-4 text-sm md:text-base">Recipe apps treat recipes like data:</p>
+                <ul className="list-disc space-y-1 md:space-y-2 pl-6 text-sm md:text-base">
                   <li>Plain text ingredients and instructions</li>
                   <li>No personality or context</li>
                   <li>Shared recipes lose all customization</li>
                   <li>No connection to family heritage</li>
                 </ul>
-                <p className="mt-6">
+                <p className="mt-4 md:mt-6 text-sm md:text-base">
                   Existing apps like Paprika and Mealboard focus on organization and efficiency,
                   but they strip away the warmth and stories that make recipes meaningful.
                 </p>
@@ -32,15 +32,15 @@ export default function ChallengeSection() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-2xl font-bold text-[#8B9F8D]">
+              <h3 className="mb-3 md:mb-4 text-lg md:text-2xl font-bold text-[#8B9F8D]">
                 OPPORTUNITY
               </h3>
-              <div className="prose prose-lg max-w-none text-gray-700">
-                <p>
+              <div className="prose prose-sm md:prose-lg max-w-none text-gray-700">
+                <p className="text-sm md:text-base">
                   Families want to preserve recipes as heirlooms—not just functional cooking
                   instructions, but artifacts that carry stories, notes, and memories.
                 </p>
-                <p className="mt-4">
+                <p className="mt-3 md:mt-4 text-sm md:text-base">
                   <strong>Our insight:</strong> The details matter. Coffee stains, handwritten notes, worn edges—
                   these aren't imperfections. They're part of the story.
                 </p>
