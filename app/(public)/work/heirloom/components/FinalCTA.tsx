@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 export default function FinalCTA() {
   return (
-    <section className="bg-gradient-to-br from-[#E85D4D] to-[#d54d3d] py-20 md:py-28">
+    <section className="bg-gradient-to-br from-[#E85D4D] to-[#d54d3d] py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-4xl text-center text-white">
           {/* Headline */}
-          <h2 className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold md:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl">
             Want to Build Your Own Product?
           </h2>
 

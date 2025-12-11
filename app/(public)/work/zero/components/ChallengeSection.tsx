@@ -2,10 +2,10 @@
 
 export default function ChallengeSection() {
   return (
-    <section className="bg-gray-900 py-20 md:py-28">
+    <section className="bg-gray-900 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl">
             The Challenge
           </h2>
           <p className="mb-6 text-lg text-gray-300 max-w-3xl">

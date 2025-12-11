@@ -11,7 +11,7 @@ export default function PrototypeEmbed() {
   const [activeDemo, setActiveDemo] = useState<'swipe' | 'classification'>('swipe')
 
   return (
-    <section id="demo" className="relative bg-black py-20 md:py-28 overflow-hidden">
+    <section id="demo" className="relative bg-black py-12 md:py-16 lg:py-20 md:py-28 overflow-hidden">
       {/* Galaxy Background */}
       <div className="absolute inset-0">
         <GalaxyBackground />
@@ -20,7 +20,7 @@ export default function PrototypeEmbed() {
       <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl">
             Try It Yourself
           </h2>
           <p className="text-xl text-gray-300">

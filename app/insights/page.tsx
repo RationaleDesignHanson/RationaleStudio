@@ -53,7 +53,7 @@ export default function InsightsPage() {
               <BookOpen className="w-4 h-4" />
               Insights & Case Studies
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Product Studio Insights
             </h1>
             <p className="text-xl text-gray-400">
@@ -62,7 +62,7 @@ export default function InsightsPage() {
           </div>
 
           {/* Insights Grid */}
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {insights.map((insight) => {
               const Icon = insight.icon;
               return (

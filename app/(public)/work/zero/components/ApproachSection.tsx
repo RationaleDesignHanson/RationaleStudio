@@ -2,20 +2,20 @@
 
 export default function ApproachSection() {
   return (
-    <section className="bg-black py-20 md:py-28">
+    <section className="bg-black py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl">
             Our Approach
           </h2>
           <p className="mb-12 text-lg text-gray-300 max-w-3xl">
             AI reads your emails and extracts actions automatically.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Principle 1 */}
             <div className="space-y-4">
-              <div className="text-4xl">🎯</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl">🎯</div>
               <h3 className="text-xl font-bold text-white">
                 Action-First
               </h3>
@@ -26,7 +26,7 @@ export default function ApproachSection() {
 
             {/* Principle 2 */}
             <div className="space-y-4">
-              <div className="text-4xl">🤖</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl">🤖</div>
               <h3 className="text-xl font-bold text-white">
                 AI Classification
               </h3>
@@ -37,7 +37,7 @@ export default function ApproachSection() {
 
             {/* Principle 3 */}
             <div className="space-y-4">
-              <div className="text-4xl">📱</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl">📱</div>
               <h3 className="text-xl font-bold text-white">
                 Native iOS
               </h3>

@@ -24,7 +24,7 @@ export default function CaseStudy010Page() {
     >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Header */}
-        <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -48,7 +48,7 @@ export default function CaseStudy010Page() {
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border bg-accent/20 text-accent border-accent/30 mb-4">
                   Delivered
                 </span>
-                <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4">
                   Case Study 010
                 </h1>
                 <p className="text-xl text-gray-300 mb-4">
@@ -66,7 +66,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* Overview */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -128,7 +128,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* The Challenge */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -157,7 +157,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* The Solution */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -170,7 +170,7 @@ export default function CaseStudy010Page() {
           <div className="relative z-10 max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-8">The Solution</h2>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
                 <h3 className="text-xl font-bold text-terminal-gold mb-3">
                   Core Platform Features
@@ -245,7 +245,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* Technology Stack */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -281,7 +281,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* Results & Impact */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -296,15 +296,15 @@ export default function CaseStudy010Page() {
 
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-terminal-gold mb-2">100%</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">100%</div>
                 <div className="text-sm text-gray-400">On-time delivery</div>
               </div>
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-terminal-gold mb-2">Multi-tenant</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">Multi-tenant</div>
                 <div className="text-sm text-gray-400">Enterprise-ready platform</div>
               </div>
               <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-4xl font-bold text-terminal-gold mb-2">AI-powered</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">AI-powered</div>
                 <div className="text-sm text-gray-400">GPT-4 intelligence layer</div>
               </div>
             </div>
@@ -338,7 +338,7 @@ export default function CaseStudy010Page() {
         </section>
 
         {/* CTA */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -356,13 +356,13 @@ export default function CaseStudy010Page() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+                className="px-4 sm:px-6 md:px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
               >
                 Book intro call
               </Link>
               <Link
                 href="/work"
-                className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+                className="px-4 sm:px-6 md:px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
               >
                 View more work
               </Link>

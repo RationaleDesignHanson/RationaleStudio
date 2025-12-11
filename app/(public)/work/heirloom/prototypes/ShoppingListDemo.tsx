@@ -136,7 +136,7 @@ export default function ShoppingListDemo() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
         {/* Recipe Selection */}
         <div>
           <div className="mb-4 text-sm font-semibold text-gray-500">STEP 1: SELECT RECIPES</div>
@@ -203,7 +203,7 @@ export default function ShoppingListDemo() {
           {!showList ? (
             <div className="flex h-full min-h-[300px] items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50">
               <div className="text-center text-gray-400">
-                <div className="mb-2 text-4xl">🛒</div>
+                <div className="mb-2 text-2xl md:text-3xl lg:text-4xl">🛒</div>
                 <div className="text-sm">Select recipes to generate list</div>
               </div>
             </div>

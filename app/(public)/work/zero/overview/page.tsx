@@ -27,7 +27,7 @@ export default function ZeroOverviewPage() {
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
       {/* SECTION 1: HERO */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -40,7 +40,7 @@ export default function ZeroOverviewPage() {
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Main Headline */}
           <div className="mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
               Zero Inbox: <span className="font-light">AI That Achieves Inbox Zero</span>
             </h1>
             <p className="text-xl sm:text-2xl text-white font-medium italic mb-6">
@@ -70,7 +70,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 2: THE JOURNEY - From Chaos to Zero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -82,7 +82,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               The Journey: From Overwhelm to Control
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto mb-6">
@@ -102,7 +102,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 3: THE SECRET WEAPON - Swipe Triage */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -114,7 +114,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Secret Weapon: Swipe Triage Intelligence
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -130,7 +130,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 4: COMPOUND ACTIONS - The Power of AI */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -142,7 +142,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Compound Actions: One Swipe, Multiple Results
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -151,7 +151,7 @@ export default function ZeroOverviewPage() {
           </div>
 
           {/* Compound Action Examples */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
             {/* Example 1: Meeting Invitation */}
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
               <div className="flex items-start gap-4 mb-6">
@@ -325,7 +325,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 5: AI INTELLIGENCE SYSTEM */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -337,7 +337,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               How It Works: AI Intelligence Under the Hood
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -353,7 +353,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 5: TECHNICAL ARCHITECTURE */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -365,7 +365,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Clean Microservices Architecture
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -381,7 +381,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 6: KEY FEATURES */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -393,13 +393,13 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Core Capabilities
             </h2>
           </div>
 
           {/* Feature Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12">
             {/* AI Classification */}
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
               <div className="flex justify-center mb-4">
@@ -482,7 +482,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 7: BETA ROADMAP & TIMELINE */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -494,7 +494,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Beta to Launch: Execution Roadmap
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -510,7 +510,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 8: WEARABLES - THE FUTURE */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -522,7 +522,7 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Next: Invisible Email Management via Wearables
             </h2>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -533,7 +533,7 @@ export default function ZeroOverviewPage() {
           {/* Vision Statement */}
           <div className="p-8 bg-gradient-to-br from-cyan-500/20 to-transparent border-2 border-cyan-500/50 rounded-lg mb-12">
             <div className="flex items-start gap-4 mb-6">
-              <div className="text-4xl">⌚</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl">⌚</div>
               <div>
                 <h3 className="text-2xl font-bold text-white mb-3">Zero on Your Wrist: Email Without Looking</h3>
                 <p className="text-base text-gray-300 leading-relaxed mb-4">
@@ -547,7 +547,7 @@ export default function ZeroOverviewPage() {
           </div>
 
           {/* Wearable Platforms Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12">
             {/* Apple Watch */}
             <div className="p-8 bg-gray-900/70 border border-cyan-500/30 rounded-lg">
               <div className="flex justify-center mb-4">
@@ -643,7 +643,7 @@ export default function ZeroOverviewPage() {
           </div>
 
           {/* Why Wearables Are the Endgame */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
             <div className="p-8 bg-gray-900/70 border border-cyan-500/30 rounded-lg">
               <h4 className="text-lg font-bold text-white mb-4">The Problem with Phones</h4>
               <ul className="space-y-3 text-sm text-gray-300">
@@ -700,7 +700,7 @@ export default function ZeroOverviewPage() {
           {/* The Vision */}
           <div className="mt-12 p-8 bg-gradient-to-br from-terminal-gold/20 to-cyan-500/10 border-2 border-terminal-gold rounded-lg">
             <div className="flex items-start gap-4">
-              <div className="text-4xl">✨</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl">✨</div>
               <div>
                 <h3 className="text-2xl font-bold text-white mb-3">The Goal: Email You Never Think About</h3>
                 <p className="text-base text-gray-300 leading-relaxed mb-4">
@@ -719,7 +719,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 9: MARKET OPPORTUNITY */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -731,13 +731,13 @@ export default function ZeroOverviewPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
               Market: Large, Growing, Underserved
             </h2>
           </div>
 
           {/* Market Stats */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12">
             <div className="p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg text-center">
               <div className="text-5xl font-bold text-terminal-gold mb-2">$28B</div>
               <div className="text-sm text-gray-300 uppercase tracking-wide mb-2">Total Addressable Market</div>
@@ -785,7 +785,7 @@ export default function ZeroOverviewPage() {
       </section>
 
       {/* SECTION 10: THE ASK & CALL TO ACTION */}
-      <section id="beta" className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section id="beta" className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -798,7 +798,7 @@ export default function ZeroOverviewPage() {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Emotional Close */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-6">
               Stop Managing Email. Start Living.
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">

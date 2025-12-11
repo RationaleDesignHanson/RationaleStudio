@@ -27,7 +27,7 @@ export default function VenturesPage() {
         <ASCIIUnifiedGrid animated={true} colorTheme={theme} opacity={0.25} />
         <Container className="relative z-20">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style={{ color: theme.foreground }}>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ color: theme.foreground }}>
               Our Ventures
             </h1>
             <p className="text-xl mb-4" style={{ color: theme.accent }}>
@@ -39,7 +39,7 @@ export default function VenturesPage() {
           </div>
 
           {/* Venture Grid */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {ventures.map((venture) => (
               <Link key={venture.slug} href={`/ventures/${venture.slug}`}>
                 <GlassCard

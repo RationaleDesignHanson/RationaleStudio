@@ -185,7 +185,7 @@ export default function ContactPage() {
 
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Hero */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.08}
@@ -200,7 +200,7 @@ export default function ContactPage() {
               {contactContent.hero.subtitle}
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
               {contactContent.hero.title}
             </h1>
 
@@ -211,7 +211,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}

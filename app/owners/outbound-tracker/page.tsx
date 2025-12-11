@@ -118,12 +118,12 @@ export default function OutboundTrackerPage() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight">
                 Outbound Tracker
               </h1>
               <p className="text-gray-400">

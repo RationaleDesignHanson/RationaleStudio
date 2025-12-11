@@ -20,9 +20,9 @@ export default function PartnersDashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Welcome Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             {dashboard.welcome.title}
           </h1>
           <p className="text-xl text-[#00FF94] mb-4">{dashboard.welcome.subtitle}</p>
@@ -31,7 +31,7 @@ export default function PartnersDashboardPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Quick Stats</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -51,7 +51,7 @@ export default function PartnersDashboardPage() {
       </section>
 
       {/* Active Collaboration Opportunities */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-white">Active Collaboration Opportunities</h2>
@@ -95,7 +95,7 @@ export default function PartnersDashboardPage() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-white flex items-center gap-3">
@@ -145,7 +145,7 @@ export default function PartnersDashboardPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">Quick Links</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

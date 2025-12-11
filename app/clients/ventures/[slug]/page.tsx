@@ -52,7 +52,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -69,7 +69,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
             </Link>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             {venture.title}
           </h1>
           <p className="text-xl sm:text-2xl text-terminal-gold font-medium mb-4">
@@ -82,7 +82,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* Meta Information */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid sm:grid-cols-3 gap-6">
             <div>
@@ -121,7 +121,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* Problem */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -132,7 +132,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
             {venture.problem.title}
           </h2>
           <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed">
@@ -161,7 +161,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* Solution */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -172,7 +172,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
             {venture.solution.title}
           </h2>
           <div className="p-6 rounded-lg border-2 border-terminal-gold/30 bg-terminal-gold/10 mb-8">
@@ -207,7 +207,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* What We're Building */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -218,7 +218,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
             {venture.building.title}
           </h2>
 
@@ -240,7 +240,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* Technology */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -251,7 +251,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
             {venture.tech.title}
           </h2>
 
@@ -298,7 +298,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
 
       {/* Metrics - Only for ventures with metrics */}
       {'metrics' in venture && venture.metrics && (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -309,7 +309,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
               By the Numbers
             </h2>
 
@@ -319,7 +319,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
                   key={index}
                   className="rounded-lg border-2 border-terminal-gold/30 bg-terminal-gold/5 p-6 text-center hover:border-terminal-gold transition-colors"
                 >
-                  <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">
+                  <div className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">
                     {metric.value}
                   </div>
                   <h4 className="text-sm font-semibold text-white mb-2">
@@ -336,7 +336,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       )}
 
       {/* Vision */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.12}
@@ -347,7 +347,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
             {venture.vision.title}
           </h2>
           <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
@@ -371,7 +371,7 @@ export default async function VenturePage({ params }: VenturePageProps) {
       </section>
 
       {/* CTA */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.12}

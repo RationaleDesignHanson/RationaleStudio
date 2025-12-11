@@ -19,9 +19,9 @@ export default function GovernancePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-4">
             {governance.hero.title}
           </h1>
           <p className="text-xl text-[#00FF94] mb-4">{governance.hero.subtitle}</p>
@@ -30,7 +30,7 @@ export default function GovernancePage() {
       </section>
 
       {/* Quarterly Process */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">
             {governance.quarterlyProcess.title}
@@ -81,7 +81,7 @@ export default function GovernancePage() {
       </section>
 
       {/* Partner Rights */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -168,7 +168,7 @@ export default function GovernancePage() {
       </section>
 
       {/* Voting Mechanics */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -235,7 +235,7 @@ export default function GovernancePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <Calendar className="w-12 h-12 text-[#00FF94] mx-auto mb-4" />
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -244,7 +244,7 @@ export default function GovernancePage() {
           <p className="text-base text-gray-300 mb-8">
             Review opens January 1-7. Partner feedback period: January 8-31. Decisions announced February 1-7.
           </p>
-          <button className="px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors">
+          <button className="px-4 sm:px-6 md:px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors">
             Add Q1 Review to Calendar
           </button>
         </div>

@@ -30,7 +30,7 @@ export default function HistoricalWorkPage() {
             <Link href="/" className="text-terminal-gold hover:underline text-sm mb-3 md:mb-6 block">
               ← Back to Home
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-terminal-gold mb-4">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-terminal-gold mb-4">
               Historical Work
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">

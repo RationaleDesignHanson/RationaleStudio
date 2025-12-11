@@ -43,11 +43,11 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="mb-6 text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             Key Features
           </h2>
           <p className="text-xl text-gray-700">
@@ -56,7 +56,7 @@ export default function FeatureGrid() {
         </div>
 
         {/* Feature Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <div
               key={index}

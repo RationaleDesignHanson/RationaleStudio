@@ -28,7 +28,7 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Header */}
-      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -39,7 +39,7 @@ export default function WorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
             Our Work
           </h1>
           <p className="text-sm md:text-base text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -49,7 +49,7 @@ export default function WorkPage() {
       </section>
 
       {/* Featured Projects Hero - Zero & Heirloom */}
-      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -211,7 +211,7 @@ export default function WorkPage() {
 
       {/* Additional Ventures - If we add more consumer products */}
       {ourProducts.length > 2 && (
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -261,7 +261,7 @@ export default function WorkPage() {
       )}
 
       {/* Partnership Work Section */}
-      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -415,7 +415,7 @@ export default function WorkPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}

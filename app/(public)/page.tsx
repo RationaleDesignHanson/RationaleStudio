@@ -35,7 +35,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -49,7 +49,7 @@ export default function HomePage() {
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-0">
             {/* Main Headline - Large */}
             <div className="mb-4 md:mb-6">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl xl:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
                 Rationale:&nbsp;<span className="font-light inline-block">Product Development Company</span>
               </h1>
             </div>
@@ -71,7 +71,7 @@ export default function HomePage() {
         </section>
 
         {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
-        <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -167,7 +167,7 @@ export default function HomePage() {
         </section>
 
         {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
-        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -241,7 +241,7 @@ export default function HomePage() {
         </section>
 
         {/* 4. HOW WE SHIP FASTER - Kits Methodology */}
-        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -281,7 +281,7 @@ export default function HomePage() {
         </section>
 
         {/* 5. FIT FILTER */}
-        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}

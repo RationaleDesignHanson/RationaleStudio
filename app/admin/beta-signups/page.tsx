@@ -81,7 +81,7 @@ export default function BetaSignupsAdmin() {
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Beta Signups</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Beta Signups</h1>
           <p className="text-gray-600">Phase 1 Internal Testing - Manual Invites</p>
         </div>
 

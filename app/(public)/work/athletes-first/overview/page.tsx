@@ -22,10 +22,10 @@ export default function AthletesFirstOverviewPage() {
     >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
-      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-3 md:mb-6 md:mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
               Athletes First <span className="text-cyan-400">Amplify</span>
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 mb-4 md:mb-8">
@@ -40,14 +40,14 @@ export default function AthletesFirstOverviewPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/clients/athletes-first/pitch-deck"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-cyan-400/20"
+              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-cyan-400/20"
             >
               <Presentation className="w-4 h-4 md:w-5 md:h-5" />
               View Full Pitch Deck
             </Link>
             <Link
               href="/work"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
+              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
             >
               Back to Work
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -57,7 +57,7 @@ export default function AthletesFirstOverviewPage() {
       </section>
 
       {/* THE PROBLEM */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">The Agency Paradox</h2>
           <div className="grid md:grid-cols-2 gap-4 md:p-4 md:p-6 lg:p-8">
@@ -86,7 +86,7 @@ export default function AthletesFirstOverviewPage() {
       </section>
 
       {/* THE SOLUTION */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">Four Integrated Modules</h2>
           <div className="grid md:grid-cols-2 gap-4 md:p-6">
@@ -142,7 +142,7 @@ export default function AthletesFirstOverviewPage() {
       </section>
 
       {/* PILOT TIMELINE */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">16-Week Pilot Program</h2>
           <div className="space-y-6">
@@ -190,22 +190,22 @@ export default function AthletesFirstOverviewPage() {
       </section>
 
       {/* SUCCESS METRICS */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">Success Metrics</h2>
           <div className="grid md:grid-cols-3 gap-4 md:p-6">
             <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-              <div className="text-4xl font-bold text-green-400 mb-2">35%+</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-green-400 mb-2">35%+</div>
               <div className="text-gray-400">Close Rate</div>
               <div className="text-xs text-gray-500 mt-2">Target vs. 12% baseline</div>
             </div>
             <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-              <div className="text-4xl font-bold text-cyan-400 mb-2">10 deals</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-cyan-400 mb-2">10 deals</div>
               <div className="text-gray-400">Pilot Conversions</div>
               <div className="text-xs text-gray-500 mt-2">From 3 pilot brands</div>
             </div>
             <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-              <div className="text-4xl font-bold text-purple-400 mb-2">$2M+</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-purple-400 mb-2">$2M+</div>
               <div className="text-gray-400">Athlete Revenue</div>
               <div className="text-xs text-gray-500 mt-2">16-week pilot period</div>
             </div>
@@ -214,7 +214,7 @@ export default function AthletesFirstOverviewPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to See the Full System?</h2>
           <p className="text-gray-400 mb-4 md:mb-8 max-w-2xl mx-auto">
@@ -222,7 +222,7 @@ export default function AthletesFirstOverviewPage() {
           </p>
           <Link
             href="/clients/athletes-first/pitch-deck"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-cyan-400/20"
+            className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-cyan-400/20"
           >
             <Presentation className="w-4 h-4 md:w-5 md:h-5" />
             View Full Interactive Pitch Deck

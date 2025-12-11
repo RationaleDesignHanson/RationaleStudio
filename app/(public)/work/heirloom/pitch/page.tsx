@@ -27,10 +27,10 @@ export default function HeirloomPitchPage() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Headline */}
             <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#2D2D2D] mb-4">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold leading-tight text-[#2D2D2D] mb-4">
                 Heirloom
               </h1>
-              <p className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#E85D4D]">
+              <p className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-medium text-[#E85D4D]">
                 Product Overview
               </p>
             </div>
@@ -56,14 +56,14 @@ export default function HeirloomPitchPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
                 href="https://testflight.apple.com/join/heirloom"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E85D4D] px-8 py-4 font-semibold text-white transition-all hover:bg-[#D14D3D] hover:shadow-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E85D4D] px-4 sm:px-6 md:px-8 py-4 font-semibold text-white transition-all hover:bg-[#D14D3D] hover:shadow-lg"
               >
                 <Rocket className="w-5 h-5" />
                 Join Beta on TestFlight
               </a>
               <Link
                 href="/work/heirloom"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#E85D4D] px-8 py-4 font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#E85D4D] px-4 sm:px-6 md:px-8 py-4 font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
               >
                 View Case Study
                 <ExternalLink className="w-5 h-5" />
@@ -79,11 +79,11 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 2: THE PROBLEM */}
-      <section className="py-16 md:py-20 bg-white border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-white border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
                 The Problem: Recipe Fragmentation
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -100,11 +100,11 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 3: THE SOLUTION */}
-      <section className="py-16 md:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
                 The Solution: Three Core Capabilities
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -197,7 +197,7 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 4: SECRET WEAPON - iOS Reminders */}
-      <section className="py-16 md:py-20 bg-white border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-white border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <IOSFlowDiagram />
@@ -206,7 +206,7 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 5: USER JOURNEY */}
-      <section className="py-16 md:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <UserJourneyDiagram />
@@ -215,7 +215,7 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 6: TECHNICAL ARCHITECTURE */}
-      <section className="py-16 md:py-20 bg-white border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-white border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <TechnicalArchitectureDiagram />
@@ -224,7 +224,7 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 7: TIMELINE & VELOCITY */}
-      <section className="py-16 md:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <TimelineVisualization />
@@ -233,11 +233,11 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 8: MARKET & COMPETITION */}
-      <section className="py-16 md:py-20 bg-white border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-white border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
                 Market: Large, Validated, Growing
               </h2>
             </div>
@@ -345,11 +345,11 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 9: BUSINESS MODEL */}
-      <section className="py-16 md:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
+      <section className="py-16 md:py-12 md:py-16 lg:py-20 bg-[#FBF8F3] border-b-2 border-[#E85D4D]/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
                 Business Model: Proven, Simple, Profitable
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -358,7 +358,7 @@ export default function HeirloomPitchPage() {
             </div>
 
             {/* Pricing Tiers */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
               {/* Free Tier */}
               <div className="p-8 bg-white rounded-2xl border-2 border-gray-300 hover:border-[#E85D4D]/50 transition-all">
                 <h3 className="text-2xl font-bold text-[#2D2D2D] mb-4">Free Tier</h3>
@@ -431,7 +431,7 @@ export default function HeirloomPitchPage() {
             </div>
 
             {/* Unit Economics */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
               <div className="p-6 bg-white rounded-2xl border-2 border-[#E85D4D]/20">
                 <h4 className="text-lg font-bold text-[#2D2D2D] mb-4">Unit Economics</h4>
                 <div className="space-y-3 text-sm">
@@ -486,12 +486,12 @@ export default function HeirloomPitchPage() {
       </section>
 
       {/* SECTION 10: THE ASK & CALL TO ACTION */}
-      <section id="ask" className="py-20 md:py-32 bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460]">
+      <section id="ask" className="py-12 md:py-16 lg:py-20 md:py-32 bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460]">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-5xl mx-auto">
             {/* Emotional Close */}
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-6">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-6">
                 Every Family Has Recipes Worth Saving
               </h2>
               <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-4">
@@ -504,7 +504,7 @@ export default function HeirloomPitchPage() {
             </div>
 
             {/* The Ask - Two Options */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
               {/* Bootstrap Option */}
               <div className="p-8 bg-white rounded-2xl border-2 border-gray-300 hover:border-[#E85D4D]/50 transition-all hover:shadow-lg">
                 <h3 className="text-xl font-bold text-[#2D2D2D] mb-4">Option A: Bootstrap</h3>

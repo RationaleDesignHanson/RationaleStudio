@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         {/* ASCII Grid Background - Terminal Republic Hero */}
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -33,7 +33,7 @@ export default function HomePage() {
             CONVICTION-FIRST VENTURE STUDIO
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up delay-100">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up delay-100">
             {homeContent.hero.title}
           </h1>
 
@@ -44,13 +44,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
             <Link
               href="/partnerships"
-              className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-4 sm:px-6 md:px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               View Rationale Kits →
             </Link>
             <Link
               href="/ventures"
-              className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              className="px-4 sm:px-6 md:px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               See Portfolio IP
             </Link>
@@ -59,7 +59,7 @@ export default function HomePage() {
       </section>
 
       {/* Dual-Engine Model */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -71,7 +71,7 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-4">
               How Rationale Grows
             </h2>
             <p className="text-base sm:text-lg text-gray-400 font-mono tracking-wide">
@@ -80,7 +80,7 @@ export default function HomePage() {
           </div>
 
           {/* Desktop: Side-by-Side Windows */}
-          <div className="hidden md:grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+          <div className="hidden md:grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-8">
             <OS8Window
               title="Engine 1 — Rationale Kits"
               variant="featured"
@@ -163,7 +163,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Work Preview */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -174,7 +174,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-center mb-12">
             Portfolio IP
           </h2>
 
@@ -241,7 +241,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.12}

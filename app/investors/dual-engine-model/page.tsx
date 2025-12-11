@@ -26,7 +26,7 @@ export default function DualEngineModelPage() {
       </div>
 
       {/* Back Link */}
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 pt-8">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/investors"
@@ -39,7 +39,7 @@ export default function DualEngineModelPage() {
       </div>
 
       {/* Article Header */}
-      <article className="relative py-12 px-4 sm:px-6 lg:px-8">
+      <article className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-3xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -49,7 +49,7 @@ export default function DualEngineModelPage() {
               <span className="text-xs text-gray-500">•</span>
               <span className="text-xs text-gray-400">9 min read</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-6">
               The Dual Engine Model
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">

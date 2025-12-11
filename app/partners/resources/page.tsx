@@ -20,9 +20,9 @@ export default function ResourcesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-4">
             {resources.hero.title}
           </h1>
           <p className="text-xl text-[#00FF94] mb-4">{resources.hero.subtitle}</p>
@@ -31,7 +31,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Templates */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <FileText className="w-6 h-6 text-[#00FF94]" />
@@ -62,7 +62,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* 2025 Calendar */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <CalendarIcon className="w-6 h-6 text-[#00FF94]" />
@@ -101,7 +101,7 @@ export default function ResourcesPage() {
           </div>
 
           <div className="mt-8">
-            <button className="px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors flex items-center gap-2 mx-auto">
+            <button className="px-4 sm:px-6 md:px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors flex items-center gap-2 mx-auto">
               <Download className="w-5 h-5" />
               Download 2025 Calendar (iCal)
             </button>
@@ -110,7 +110,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <Mail className="w-6 h-6 text-[#00FF94]" />
@@ -191,7 +191,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6">

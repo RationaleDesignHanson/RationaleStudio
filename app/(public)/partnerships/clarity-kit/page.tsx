@@ -27,7 +27,7 @@ export default function ClarityKitPage() {
       </div>
 
       {/* Back Link */}
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 pt-8">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/partnerships"
@@ -40,12 +40,12 @@ export default function ClarityKitPage() {
       </div>
 
       {/* Header */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="inline-block px-3 py-1 bg-gray-900/50 border border-gray-700 rounded text-xs font-mono text-gray-400 mb-4">
             KIT 1
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4">
             Clarity Kit
           </h1>
           <p className="text-xl text-gray-300 mb-8">
@@ -75,7 +75,7 @@ export default function ClarityKitPage() {
       </section>
 
       {/* Content */}
-      <article className="relative py-12 px-4 sm:px-6 lg:px-8">
+      <article className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-4xl mx-auto space-y-12">
           {/* What You Get */}
           <GlassCard className="p-8" borderRadius="0.75rem">
@@ -208,7 +208,7 @@ export default function ClarityKitPage() {
           <GlassCard className="p-8" borderRadius="0.75rem">
             <h2 className="text-2xl font-bold text-white mb-4">Investment</h2>
             <div className="flex items-baseline gap-2 mb-4">
-              <span className="text-4xl font-bold text-white">$15-25K</span>
+              <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">$15-25K</span>
               <span className="text-gray-400">for 2 weeks</span>
             </div>
             <p className="text-gray-400 mb-6">
@@ -227,7 +227,7 @@ export default function ClarityKitPage() {
       </article>
 
       {/* CTA */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to validate your concept?</h2>
           <p className="text-gray-300 mb-8">
@@ -236,13 +236,13 @@ export default function ClarityKitPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-4 sm:px-6 md:px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Book intro call
             </Link>
             <Link
               href="/partnerships"
-              className="px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              className="px-4 sm:px-6 md:px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               Compare all services
             </Link>

@@ -51,7 +51,7 @@ export default function ProblemSlidePage() {
       subtitle="Commercial real estate brokers are flying blind"
       variant="problem"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
         {/* Left: Big Stat */}
         <CRECard variant="critical" size="large" className="flex flex-col justify-center items-center text-center">
           <LabelMD color={CRE_COLORS.text.muted}>TIME WASTED DAILY</LabelMD>

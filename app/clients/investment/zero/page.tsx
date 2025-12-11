@@ -36,12 +36,12 @@ export default function ZeroInvestmentPage() {
         <Container className="relative z-20">
           <div className="max-w-5xl mx-auto">
             <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center">
                 <div>
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 mb-4">
                     OPEN FOR INVESTMENT
                   </span>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                  <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                     Zero Seed Round
                   </h1>
                   <p className="text-2xl text-accent mb-4">$600K for 10% Equity</p>
@@ -212,21 +212,21 @@ export default function ZeroInvestmentPage() {
 
               <div className="grid sm:grid-cols-3 gap-6 mb-8">
                 <div className="text-center p-6 rounded-lg border border-border bg-background/50">
-                  <div className="text-4xl font-bold text-accent mb-2">37,000</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-2">37,000</div>
                   <div className="text-sm font-semibold text-foreground mb-1">Active Users</div>
                   <div className="text-xs text-green-400">+40% monthly growth</div>
                   <div className="text-xs text-muted mt-2">Organic acquisition</div>
                 </div>
 
                 <div className="text-center p-6 rounded-lg border border-border bg-background/50">
-                  <div className="text-4xl font-bold text-accent mb-2">$4,000</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-2">$4,000</div>
                   <div className="text-sm font-semibold text-foreground mb-1">Monthly Revenue</div>
                   <div className="text-xs text-green-400">$48K ARR</div>
                   <div className="text-xs text-muted mt-2">Pre-marketing</div>
                 </div>
 
                 <div className="text-center p-6 rounded-lg border border-border bg-background/50">
-                  <div className="text-4xl font-bold text-accent mb-2">10</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-2">10</div>
                   <div className="text-sm font-semibold text-foreground mb-1">Microservices</div>
                   <div className="text-xs text-accent">Production-ready</div>
                   <div className="text-xs text-muted mt-2">Meta-grade architecture</div>
@@ -401,7 +401,7 @@ export default function ZeroInvestmentPage() {
         <Container className="relative z-20 pt-16 sm:pt-20">
           <div className="max-w-5xl mx-auto">
             <GlassCard theme={riskTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                 <div>
                   <h2 className="text-2xl font-bold text-foreground mb-6">Exit Strategy</h2>
                   <div className="space-y-4">
@@ -459,7 +459,7 @@ export default function ZeroInvestmentPage() {
       <Section spacing="large" background="accent" colorTheme={getSectionTheme('cta')}>
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Invest in Zero
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted mb-8">

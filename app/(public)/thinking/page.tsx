@@ -70,9 +70,9 @@ export default function ThinkingPage() {
       </div>
 
       {/* Header */}
-      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
             Thinking
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -82,7 +82,7 @@ export default function ThinkingPage() {
       </section>
 
       {/* Essays Grid */}
-      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="space-y-6">
             {essays.map((essay) => (
@@ -127,7 +127,7 @@ export default function ThinkingPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Ready to apply this methodology?</h2>
           <p className="text-gray-300 mb-4 md:mb-8">
@@ -136,13 +136,13 @@ export default function ThinkingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Book intro call
             </Link>
             <Link
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View partnerships
             </Link>

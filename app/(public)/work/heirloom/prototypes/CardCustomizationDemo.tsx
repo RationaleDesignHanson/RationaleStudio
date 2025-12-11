@@ -61,7 +61,7 @@ export default function CardCustomizationDemo() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <div className="grid gap-8 lg:grid-cols-[2fr,1fr]">
+      <div className="grid gap-4 md:gap-6 lg:gap-8 lg:grid-cols-[2fr,1fr]">
         {/* Recipe Card Preview */}
         <div className="relative">
           <div className="text-sm font-semibold text-gray-500 mb-3">RECIPE CARD PREVIEW</div>
@@ -169,7 +169,7 @@ export default function CardCustomizationDemo() {
                 <button
                   key={sticker.id}
                   onClick={() => addSticker(sticker)}
-                  className="aspect-square flex items-center justify-center text-4xl rounded-lg border-2 border-gray-200 bg-white transition-all hover:border-[#E85D4D] hover:scale-105 active:scale-95"
+                  className="aspect-square flex items-center justify-center text-2xl md:text-3xl lg:text-4xl rounded-lg border-2 border-gray-200 bg-white transition-all hover:border-[#E85D4D] hover:scale-105 active:scale-95"
                   title={`Add ${sticker.name}`}
                 >
                   {sticker.emoji}

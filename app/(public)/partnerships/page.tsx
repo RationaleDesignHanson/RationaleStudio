@@ -90,12 +90,12 @@ export default function PartnershipsPage() {
       </div>
 
       {/* Header */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <div className="inline-block px-4 py-2 bg-terminal-gold/10 border border-terminal-gold/30 rounded-full text-sm text-terminal-gold mb-6">
             Strategic Partnerships
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Partner with a Product Studio
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Studio Context */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gray-900/30 border-b border-gray-800">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 bg-gray-900/30 border-b border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="flex items-start gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <div className="p-3 bg-terminal-gold/10 rounded-lg flex-shrink-0">
@@ -122,7 +122,7 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Partnership Models */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="relative z-10 max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4 text-center">
             Three Partnership Models
@@ -131,7 +131,7 @@ export default function PartnershipsPage() {
             Start with discovery, move to prototypes, scale to production—or stop at any checkpoint.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-6 md:gap-4 md:gap-6 lg:gap-8">
             {partnershipModels.map((model, index) => {
               const Icon = model.icon;
               return (
@@ -228,28 +228,28 @@ export default function PartnershipsPage() {
       </section>
 
       {/* How Partnerships Work */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             How Partnerships Work
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-accent mb-3">1</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-3">1</div>
               <h3 className="text-base md:text-lg font-bold text-white mb-2">Start with Discovery</h3>
               <p className="text-xs md:text-sm text-gray-400">
                 2-week sprint to validate your opportunity. No long-term contracts—decide to continue or stop after every checkpoint.
               </p>
             </GlassCard>
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-accent mb-3">2</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-3">2</div>
               <h3 className="text-base md:text-lg font-bold text-white mb-2">Bi-Weekly Reviews</h3>
               <p className="text-xs md:text-sm text-gray-400">
                 Regular checkpoints to review progress, validate direction, and decide to continue, pivot, or conclude.
               </p>
             </GlassCard>
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <div className="text-4xl font-bold text-accent mb-3">3</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-3">3</div>
               <h3 className="text-base md:text-lg font-bold text-white mb-2">Scale with Confidence</h3>
               <p className="text-xs md:text-sm text-gray-400">
                 Move to production only after validating core assumptions with working prototypes and user testing.
@@ -260,7 +260,7 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Our Focus Areas */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900/30">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800 bg-gray-900/30">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             What We Partner On
@@ -310,7 +310,7 @@ export default function PartnershipsPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Ready to explore a partnership?</h2>
           <p className="text-gray-300 mb-4 md:mb-8">
@@ -319,13 +319,13 @@ export default function PartnershipsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Schedule Intro Call
             </Link>
             <Link
               href="/work"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View Our Work
             </Link>

@@ -35,7 +35,7 @@ export default function AppStoreGuidePage() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
           <Link
@@ -44,7 +44,7 @@ export default function AppStoreGuidePage() {
           >
             ← Back to Dashboard
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             App Store Optimization Guide
           </h1>
           <p className="text-gray-400">

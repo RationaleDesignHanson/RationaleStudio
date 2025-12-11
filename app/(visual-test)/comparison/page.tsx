@@ -68,7 +68,7 @@ export default function ComparisonPage() {
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Header */}
       <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold">Visual Exploration</h1>
@@ -87,7 +87,7 @@ export default function ComparisonPage() {
       </header>
 
       {/* Introduction */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
           <YellowGlow intensity="medium" pulse={true}>
             <div className="inline-block mb-8">
@@ -114,7 +114,7 @@ export default function ComparisonPage() {
             </div>
           </YellowGlow>
 
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
             Three Approaches to <span className="text-terminal-gold">Systematic Execution</span>
           </h2>
           <p className="text-lg text-gray-400">
@@ -124,9 +124,9 @@ export default function ComparisonPage() {
       </section>
 
       {/* Comparison Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {variations.map((variation, index) => (
               <Link
                 key={variation.id}
@@ -201,7 +201,7 @@ export default function ComparisonPage() {
                   </div>
 
                   {/* Footer - Subtle CTA */}
-                  <div className="px-8 py-6 border-t border-gray-800 bg-gray-950/50">
+                  <div className="px-4 sm:px-6 md:px-8 py-6 border-t border-gray-800 bg-gray-950/50">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-400 group-hover:text-terminal-gold transition-colors">
                         View full variation
@@ -219,7 +219,7 @@ export default function ComparisonPage() {
       </section>
 
       {/* Design Spectrum - Refined */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold mb-12 text-center">
             Comparative Analysis
@@ -293,7 +293,7 @@ export default function ComparisonPage() {
       </section>
 
       {/* Recommendation */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-3xl mx-auto">
           <div className="bg-black border border-terminal-gold p-12">
             <p className="text-xs font-mono text-gray-500 mb-4 tracking-wider">RECOMMENDATION</p>
@@ -322,7 +322,7 @@ export default function ComparisonPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-8 px-4 sm:px-6 lg:px-8">
+      <footer className="border-t border-gray-800 py-8 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto text-center text-sm text-gray-500 font-mono">
           <p>Rationale Visual Exploration // 2025</p>
           <p className="mt-2">TDR × OS 8 × Terminal Aesthetic</p>

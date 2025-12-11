@@ -214,7 +214,7 @@ export default function StrategicRoadmapPage() {
             <div className="inline-block px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
               {currentSlide.id.replace(/-/g, ' ')}
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-3">
               {currentSlide.title}
             </h2>
             {currentSlide.subtitle && (

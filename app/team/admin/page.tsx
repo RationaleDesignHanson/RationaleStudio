@@ -20,11 +20,11 @@ export default function TeamAdminPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <Settings className="w-8 h-8 text-purple-400" />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white">
               {admin.hero.title}
             </h1>
           </div>
@@ -34,7 +34,7 @@ export default function TeamAdminPage() {
       </section>
 
       {/* User Management */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -150,7 +150,7 @@ export default function TeamAdminPage() {
       </section>
 
       {/* System Settings */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-8">{admin.systemSettings.title}</h2>
 
@@ -201,7 +201,7 @@ export default function TeamAdminPage() {
       </section>
 
       {/* System Analytics */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <TrendingUp className="w-6 h-6 text-purple-400" />
@@ -230,7 +230,7 @@ export default function TeamAdminPage() {
       </section>
 
       {/* Firebase Admin SDK Alert */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="p-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg flex items-start gap-4">
             <AlertCircle className="w-6 h-6 text-yellow-400 flex-shrink-0" />

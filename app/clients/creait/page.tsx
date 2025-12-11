@@ -15,7 +15,7 @@ export default function CREaiTPortalPage() {
       {/* Header */}
       <div className="border-b border-gray-800 bg-slate-950/50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-8">
-          <h1 className="text-4xl font-bold mb-2">CREaiT Materials</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">CREaiT Materials</h1>
           <p className="text-gray-400">Comprehensive analysis and strategic guidance</p>
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function FounderPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -33,7 +33,7 @@ export default function FounderPage() {
             MEET THE FOUNDER
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
             {founderProfile.name}
           </h1>
 
@@ -75,7 +75,7 @@ export default function FounderPage() {
       </section>
 
       {/* Origin Story */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -111,7 +111,7 @@ export default function FounderPage() {
       </section>
 
       {/* Track Record */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -122,7 +122,7 @@ export default function FounderPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
             Track Record
           </h2>
 
@@ -172,7 +172,7 @@ export default function FounderPage() {
       </section>
 
       {/* Philosophy */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -183,7 +183,7 @@ export default function FounderPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
             Philosophy & Approach
           </h2>
 
@@ -218,7 +218,7 @@ export default function FounderPage() {
       </section>
 
       {/* Why Invest */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -229,7 +229,7 @@ export default function FounderPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
             Why This Founder?
           </h2>
 
@@ -298,7 +298,7 @@ export default function FounderPage() {
       </section>
 
       {/* Patent & IP */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -309,7 +309,7 @@ export default function FounderPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
             Intellectual Property
           </h2>
 
@@ -340,7 +340,7 @@ export default function FounderPage() {
 
       {/* Advisors */}
       {founderProfile.advisors && founderProfile.advisors.length > 0 && (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -351,7 +351,7 @@ export default function FounderPage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-center">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-center">
               Advisory Board
             </h2>
             <p className="text-center text-gray-300 mb-8">
@@ -387,7 +387,7 @@ export default function FounderPage() {
       )}
 
       {/* CTA */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.12}

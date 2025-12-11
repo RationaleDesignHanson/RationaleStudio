@@ -11,7 +11,7 @@ export default function DesignSystemPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-4">Rationale Design System</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Rationale Design System</h1>
           <p className="text-lg text-gray-300 max-w-3xl">
             Unified component library with BaseCard, Badge, and Button systems. All components use centralized design tokens for consistency.
           </p>
@@ -155,7 +155,7 @@ export default function DesignSystemPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8">Badge System</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
             {/* Status Badges */}
             <BaseCard variant="default" paddingSize="md">
               <BaseCardHeader>

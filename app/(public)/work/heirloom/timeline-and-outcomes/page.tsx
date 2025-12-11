@@ -48,7 +48,7 @@ export default function HeirloomTimelineAndOutcomesPage() {
       </section>
 
       {/* User Journey Map */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <UserJourneyMap />
         </div>

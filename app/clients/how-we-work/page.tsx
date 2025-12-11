@@ -17,7 +17,7 @@ export default function HowWeWorkPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -28,7 +28,7 @@ export default function HowWeWorkPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl lg:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             How We Work
           </h1>
           <p className="text-xl sm:text-2xl text-terminal-gold font-medium mb-4">
@@ -41,7 +41,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* Three Engagement Models */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -53,7 +53,7 @@ export default function HowWeWorkPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Three Ways to Work Together
             </h2>
             <p className="text-base sm:text-lg text-gray-300">
@@ -169,7 +169,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* Our Process */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -181,7 +181,7 @@ export default function HowWeWorkPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Our Process
             </h2>
             <p className="text-base sm:text-lg text-gray-300">
@@ -217,7 +217,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* Why Equity Matters */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.06}
@@ -262,7 +262,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.12}

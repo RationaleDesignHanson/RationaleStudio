@@ -278,7 +278,7 @@ function PitchContent({ companySlug }: { companySlug: string }) {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4">
           Rationale Studio Partnership Opportunity
         </h1>
         <p className="text-xl text-gray-400">

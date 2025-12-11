@@ -22,10 +22,10 @@ export default function CREaiTOverviewPage() {
     >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
-      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-3 md:mb-6 md:mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
               <span className="text-amber-400">CREaiT</span> Product Roadmap
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 mb-4 md:mb-8">
@@ -40,14 +40,14 @@ export default function CREaiTOverviewPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/clients/creait/pitch-deck"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
+              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
             >
               <Presentation className="w-4 h-4 md:w-5 md:h-5" />
               View Full Pitch Deck
             </Link>
             <Link
               href="/work"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
+              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
             >
               Back to Work
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -57,7 +57,7 @@ export default function CREaiTOverviewPage() {
       </section>
 
       {/* WHERE WE ARE */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">Where We Are Today</h2>
           <div className="grid md:grid-cols-2 gap-4 md:p-4 md:p-6 lg:p-8">
@@ -86,7 +86,7 @@ export default function CREaiTOverviewPage() {
       </section>
 
       {/* THE ENGAGEMENT */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">12-Week Engagement</h2>
           <div className="space-y-6">
@@ -198,7 +198,7 @@ export default function CREaiTOverviewPage() {
       </section>
 
       {/* WHAT YOU GET */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">What You Get</h2>
           <div className="grid md:grid-cols-3 gap-4 md:p-6">
@@ -236,7 +236,7 @@ export default function CREaiTOverviewPage() {
       </section>
 
       {/* INVESTMENT */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-8 text-center">Engagement Terms</h2>
           <div className="max-w-3xl mx-auto">
@@ -274,7 +274,7 @@ export default function CREaiTOverviewPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Dive Deeper?</h2>
           <p className="text-gray-400 mb-4 md:mb-8 max-w-2xl mx-auto">
@@ -282,7 +282,7 @@ export default function CREaiTOverviewPage() {
           </p>
           <Link
             href="/clients/creait/pitch-deck"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
+            className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
           >
             <Presentation className="w-4 h-4 md:w-5 md:h-5" />
             View Full Consulting Proposal

@@ -38,7 +38,7 @@ export default function StudioInvestmentPage() {
                   {studioTier?.status}
                 </span>
                 <SectionMarker symbol="⬢" className="justify-center mb-4" color={heroTheme.primary}>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+                  <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground">
                     {studioTier?.title}
                   </h1>
                 </SectionMarker>
@@ -283,7 +283,7 @@ export default function StudioInvestmentPage() {
       <Section spacing="large" background="accent" colorTheme={getSectionTheme('cta')}>
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Become a Studio Partner
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted mb-8">

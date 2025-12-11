@@ -26,7 +26,7 @@ export default function MethodologyOriginsPage() {
       </div>
 
       {/* Back Link */}
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 pt-8">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/thinking"
@@ -39,7 +39,7 @@ export default function MethodologyOriginsPage() {
       </div>
 
       {/* Article Header */}
-      <article className="relative py-12 px-4 sm:px-6 lg:px-8">
+      <article className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-3xl mx-auto">
           <header className="mb-12">
             <div className="flex items-center gap-3 mb-4">
@@ -49,7 +49,7 @@ export default function MethodologyOriginsPage() {
               <span className="text-xs text-gray-500">•</span>
               <span className="text-xs text-gray-400">5 min read</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-6 leading-tight">
               The Whiteboard Moment
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
@@ -80,7 +80,7 @@ export default function MethodologyOriginsPage() {
                 <div className="flex items-center justify-between max-w-2xl mx-auto">
                   {/* Lightbulb */}
                   <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-4xl">
+                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl">
                       💡
                     </div>
                     <p className="text-xs text-gray-400 text-center">AN IDEA</p>
@@ -107,7 +107,7 @@ export default function MethodologyOriginsPage() {
 
                   {/* Ship */}
                   <div className="flex flex-col items-center">
-                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-4xl">
+                    <div className="w-16 h-16 mb-3 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl">
                       🚢
                     </div>
                     <p className="text-xs text-gray-400 text-center">SHIPPING<br/>PRODUCT</p>

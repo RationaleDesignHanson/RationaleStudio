@@ -10,7 +10,7 @@ export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-24 md:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid items-center gap-6 lg:gap-8 lg:grid-cols-2">
+        <div className="grid items-center gap-6 lg:gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
           {/* Left: Device Mockup or Visual */}
           <div className="relative order-2 lg:order-1">
             <div className="relative z-10">
@@ -44,7 +44,7 @@ export default function HeroSection() {
 
             {/* Headline */}
             <div>
-              <h1 className="mb-4 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+              <h1 className="mb-4 text-5xl font-bold leading-tight text-white md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl">
                 Zero
               </h1>
               <p className="text-2xl font-medium text-white md:text-3xl">
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 onClick={() => {
                   document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-terminal-gold px-8 py-4 font-semibold text-terminal-gold transition-all hover:bg-terminal-gold hover:text-black"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-terminal-gold px-4 sm:px-6 md:px-8 py-4 font-semibold text-terminal-gold transition-all hover:bg-terminal-gold hover:text-black"
               >
                 Try Interactive Demo
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

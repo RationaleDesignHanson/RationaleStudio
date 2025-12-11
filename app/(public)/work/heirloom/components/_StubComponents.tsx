@@ -11,9 +11,9 @@ import DesignSystemTokens from './DesignSystemTokens'
 
 export function DesignSystem() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">Design System</h2>
+        <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">Design System</h2>
 
         <div className="space-y-16">
           {/* Color Palette */}
@@ -144,9 +144,9 @@ export function DesignSystem() {
 
 export function TechnicalStack() {
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">Technical Stack</h2>
+        <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">Technical Stack</h2>
 
         <div className="space-y-16">
           {/* Core Technologies */}
@@ -292,9 +292,9 @@ export function TechnicalStack() {
 
 export function Timeline() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">Development Timeline</h2>
+        <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">Development Timeline</h2>
 
         <TimelineVisualization />
 
@@ -497,9 +497,9 @@ export function Timeline() {
 
 export function Outcomes() {
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">Outcomes & Metrics</h2>
+        <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">Outcomes & Metrics</h2>
         <OutcomesDashboard />
       </div>
     </section>
@@ -508,9 +508,9 @@ export function Outcomes() {
 
 export function LessonsLearned() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">What We Learned</h2>
+        <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">What We Learned</h2>
         {/* Add 3-column lessons learned */}
       </div>
     </section>

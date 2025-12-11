@@ -15,13 +15,13 @@ export default function InstitutionalGridPage() {
       <GridShader variant="lines" intensity="subtle" animate={false} className="opacity-30" />
 
       {/* Hero Section - Clean Typography */}
-      <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 py-20">
+      <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 sm:px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20">
         <div className="max-w-5xl mx-auto space-y-8">
           <p className="text-xs font-mono text-gray-500 tracking-widest mb-4 animate-fade-in-up">
             HEAD OF DESIGN × META EXECUTION
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in-up delay-100">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in-up delay-100">
             Don't Spend 6 Months
             <br />
             <span className="relative inline-block">
@@ -35,7 +35,7 @@ export default function InstitutionalGridPage() {
           </p>
 
           <div className="pt-8 animate-fade-in-up delay-300">
-            <button className="px-8 py-4 bg-black text-white font-semibold hover:bg-gray-900 transition-all duration-300 border-2 border-transparent hover:border-terminal-gold group">
+            <button className="px-4 sm:px-6 md:px-8 py-4 bg-black text-white font-semibold hover:bg-gray-900 transition-all duration-300 border-2 border-transparent hover:border-terminal-gold group">
               Start Feeling What Works in 2 Weeks
               <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
             </button>
@@ -44,9 +44,9 @@ export default function InstitutionalGridPage() {
       </section>
 
       {/* Grid Layout - Contained Windows, No Overlap */}
-      <section className="relative py-20 px-6 sm:px-8 lg:px-12 bg-gray-50">
+      <section className="relative py-12 md:py-16 lg:py-20 px-6 sm:px-4 sm:px-6 md:px-8 lg:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Products Window */}
             <div className="animate-fade-in-up delay-100">
               <OS8Window
@@ -206,9 +206,9 @@ export default function InstitutionalGridPage() {
       </section>
 
       {/* Credentials Section - Subtle Treatment */}
-      <section className="relative py-20 px-6 sm:px-8 lg:px-12">
+      <section className="relative py-12 md:py-16 lg:py-20 px-6 sm:px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-16 text-center animate-fade-in-up">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-16 text-center animate-fade-in-up">
             Why We Ship Fast:
             <br />
             <span className="relative inline-block mt-2">
@@ -260,11 +260,11 @@ export default function InstitutionalGridPage() {
       </section>
 
       {/* Final CTA - Minimal */}
-      <section className="relative py-32 px-6 sm:px-8 lg:px-12 bg-black text-white">
+      <section className="relative py-32 px-6 sm:px-4 sm:px-6 md:px-8 lg:px-12 bg-black text-white">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <p className="text-sm font-mono text-gray-400 tracking-widest">VELOCITY TO CONVICTION</p>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold leading-tight">
             Stop Guessing.
             <br />
             <span className="relative inline-block mt-2">

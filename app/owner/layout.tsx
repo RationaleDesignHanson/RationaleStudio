@@ -25,7 +25,7 @@ export default function OwnerLayout({
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 w-full overflow-x-hidden">
       {/* Owner Header */}
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 w-full">
-        <div className="sm:max-w-7xl sm:mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="sm:max-w-7xl sm:mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-terminal-gold rounded-full animate-pulse" />
@@ -71,7 +71,7 @@ export default function OwnerLayout({
 
       {/* Owner Footer */}
       <footer className="border-t border-gray-800 mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-6">
           <p className="text-xs text-gray-500 text-center">
             Owner Dashboard · Rationale Studio · {new Date().getFullYear()}
           </p>

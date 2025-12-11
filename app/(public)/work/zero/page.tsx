@@ -46,7 +46,7 @@ export default function ZeroPage() {
       <section className="relative bg-black py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
         <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-7xl">
-            <h2 className="mb-3 md:mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+            <h2 className="mb-3 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl text-center">
               How Zero Works
             </h2>
             <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center">
@@ -61,7 +61,7 @@ export default function ZeroPage() {
       <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-terminal-gold/30">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-3 md:mb-6 text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mb-3 md:mb-6 text-3xl font-bold text-white md:text-2xl md:text-3xl lg:text-4xl">
               Want to Build Products Like This?
             </h2>
             <p className="mb-4 md:mb-8 text-lg text-gray-300">
@@ -69,7 +69,7 @@ export default function ZeroPage() {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-terminal-gold px-8 py-4 font-semibold text-black transition-all hover:bg-[#FFE34D] hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-full bg-terminal-gold px-4 sm:px-6 md:px-8 py-4 font-semibold text-black transition-all hover:bg-[#FFE34D] hover:shadow-lg"
             >
               Start a Conversation
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -141,7 +141,7 @@ function FeatureGrid() {
     <section className="bg-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-3 md:mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+          <h2 className="mb-3 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl text-center">
             Key Features
           </h2>
           <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">

@@ -36,7 +36,7 @@ export default function HowWeWorkPage() {
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
       {/* 1. HERO SECTION */}
-      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -51,7 +51,7 @@ export default function HowWeWorkPage() {
             PROVEN VELOCITY // ALIGNED INCENTIVES
           </p>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
             How We Work
           </h1>
 
@@ -62,7 +62,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 2. THREE ENGAGEMENT MODELS */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -258,7 +258,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 4. OUR PROCESS - Visual Timeline */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -339,7 +339,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 5. WHAT CHANGES WITH EQUITY */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -359,7 +359,7 @@ export default function HowWeWorkPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 md:gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-4 md:gap-6 lg:gap-8">
             {/* What Changes */}
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-[0.65rem] md:text-xs font-bold uppercase tracking-wide text-terminal-gold mb-3 md:mb-4">
@@ -414,7 +414,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 6. FIT FILTER */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -430,7 +430,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 7. QUICK PRICING CONTEXT */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -497,7 +497,7 @@ export default function HowWeWorkPage() {
       </section>
 
       {/* 8. HOW WE SHIP FASTER - VelocityProof */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}

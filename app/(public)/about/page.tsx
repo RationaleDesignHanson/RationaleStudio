@@ -20,13 +20,13 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-10 md:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-10 md:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs font-mono text-terminal-gold tracking-widest mb-3">
             CONVICTION-FIRST EXECUTION
           </p>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-4">
             About Rationale
           </h1>
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Approach Introduction */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <StatementBlock
             title="Our Approach"
@@ -48,7 +48,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Meta Reality Labs Context */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">The Meta Reality Labs Context</h2>
@@ -65,7 +65,7 @@ export default function AboutPage() {
       </section>
 
       {/* Proof at Scale - 3 Card Grid */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 text-center">Proof at Scale</h2>
 
@@ -136,7 +136,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Learned - Colored Insight Cards */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4 text-center">What We Learned</h2>
           <p className="text-center text-gray-300 mb-8">The pattern repeated across every product:</p>
@@ -180,7 +180,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why This Matters for Rationale */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <GlassCard className="p-8" borderRadius="0.75rem">
             <h2 className="text-2xl font-bold text-white mb-4">Why This Matters for Rationale</h2>
@@ -216,7 +216,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Transfer from Meta to Startups */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <GlassCard className="p-8" borderRadius="0.75rem">
             <h2 className="text-2xl font-bold text-white mb-4">The Transfer from Meta to Startups</h2>
@@ -236,9 +236,9 @@ export default function AboutPage() {
       </section>
 
       {/* Background & Approach */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center">
             Background & Approach
           </h2>
 
@@ -288,9 +288,9 @@ export default function AboutPage() {
       </section>
 
       {/* How We Work */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center">
             How We Work
           </h2>
 
@@ -355,7 +355,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to build with conviction?</h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -364,13 +364,13 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
             >
               Book intro call
             </Link>
             <Link
               href="/partnerships"
-              className="px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View partnerships
             </Link>

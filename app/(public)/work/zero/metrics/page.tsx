@@ -13,7 +13,7 @@ import { OS8Window } from '@/components/visual-test';
 export default function MetricsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Navigation */}
           <div className="mb-8">
@@ -30,7 +30,7 @@ export default function MetricsPage() {
             <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
               INFOGRAPHIC TEST // PERFORMANCE METRICS
             </p>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4">
               Zero Baseline Performance
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto">
@@ -116,7 +116,7 @@ function PerformanceMetrics() {
         <h3 className="text-lg font-bold text-white mb-6 text-center">
           Overall Baseline Accuracy
         </h3>
-        <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-2xl mx-auto">
           {overallMetrics.map((metric, i) => (
             <CircularMetric key={i} {...metric} />
           ))}
@@ -195,7 +195,7 @@ function CircularMetric({
         </svg>
         {/* Center Text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-4xl font-bold text-white">
+          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
             {value}%
           </div>
           <div className="text-xs text-gray-400">

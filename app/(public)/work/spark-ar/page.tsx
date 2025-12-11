@@ -7,7 +7,7 @@ export default function SparkARPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/#portfolio"
@@ -20,7 +20,7 @@ export default function SparkARPage() {
             META 2018-2022 // AR PLATFORM LEADERSHIP
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold mb-6">
             Spark AR Platform
           </h1>
 
@@ -46,7 +46,7 @@ export default function SparkARPage() {
       </section>
 
       {/* Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Project Overview"
@@ -70,10 +70,10 @@ export default function SparkARPage() {
       </section>
 
       {/* Key Achievements */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-4">
               What We Delivered
             </h2>
           </div>
@@ -134,7 +134,7 @@ export default function SparkARPage() {
       </section>
 
       {/* Outcomes & Impact */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Outcomes & Impact"
@@ -178,7 +178,7 @@ export default function SparkARPage() {
       </section>
 
       {/* What This Proves */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="What This Proves About Rationale"
@@ -202,7 +202,7 @@ export default function SparkARPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8">
+      <section className="py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto flex justify-center">
           <OS8Window
             title="Building an AR/VR Platform?"

@@ -52,7 +52,7 @@ export default function ZeroPage() {
               </ButtonPrimary>
               <BetaSignupButton
                 appStoreUrl={zeroHero.appStoreUrl}
-                className="px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-accent bg-white border-2 border-accent rounded-md hover:bg-accent/10 transition-colors text-center inline-block"
+                className="px-4 sm:px-6 md:px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-accent bg-white border-2 border-accent rounded-md hover:bg-accent/10 transition-colors text-center inline-block"
               >
                 Sign up for beta
               </BetaSignupButton>
@@ -97,7 +97,7 @@ export default function ZeroPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4 md:gap-6 lg:gap-8">
               {zeroFeatures.map((feature, index) => (
                 <div
                   key={index}
@@ -130,13 +130,13 @@ export default function ZeroPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={zeroHero.portalUrl}
-                className="px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-accent bg-white rounded-md hover:bg-white/90 transition-colors text-center inline-block"
+                className="px-4 sm:px-6 md:px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-accent bg-white rounded-md hover:bg-white/90 transition-colors text-center inline-block"
               >
                 Show me how it works
               </Link>
               <BetaSignupButton
                 appStoreUrl={zeroHero.appStoreUrl}
-                className="px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-white bg-transparent border-2 border-white rounded-md hover:bg-white/10 transition-colors text-center inline-block"
+                className="px-4 sm:px-6 md:px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-white bg-transparent border-2 border-white rounded-md hover:bg-white/10 transition-colors text-center inline-block"
               >
                 Sign up for beta
               </BetaSignupButton>

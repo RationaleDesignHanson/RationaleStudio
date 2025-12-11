@@ -36,7 +36,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* 1. HERO SECTION */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -51,7 +51,7 @@ export default function ContactPage() {
             START A CONVERSATION
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold mb-6">
             Let's Figure Out the Right Fit
           </h1>
 
@@ -63,7 +63,7 @@ export default function ContactPage() {
       </section>
 
       {/* 2. PRIMARY EMAIL CTA */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -166,7 +166,7 @@ export default function ContactPage() {
       </section>
 
       {/* 3. WHAT HAPPENS NEXT */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -275,7 +275,7 @@ export default function ContactPage() {
       </section>
 
       {/* 4. ENGAGEMENT SELECTOR (OPTIONAL) */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -290,7 +290,7 @@ export default function ContactPage() {
             <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-2">
               THREE OPTIONS
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Which Engagement Fits Best?
             </h2>
             <p className="text-base text-gray-400 max-w-2xl mx-auto">

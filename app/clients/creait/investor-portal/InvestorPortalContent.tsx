@@ -25,7 +25,7 @@ export default function InvestorPortalContent() {
     <div className="min-h-screen bg-black">
       {/* Header */}
       <div className="bg-gradient-to-b from-gray-900 to-black border-b border-gray-800 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
               <DisplayLG color={CRE_COLORS.score.critical}>CREaiT Internal Portal</DisplayLG>
@@ -74,7 +74,7 @@ export default function InvestorPortalContent() {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12">
         {activeSection === 'overview' && <OverviewSection />}
         {activeSection === 'product' && <ProductSection />}
         {activeSection === 'technical' && <TechnicalSection />}

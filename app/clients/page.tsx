@@ -324,11 +324,11 @@ export default function ClientDashboard() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Container>
-        <div className="py-20">
+        <div className="py-12 md:py-16 lg:py-20">
           {/* Header */}
           <div className="mb-8 flex items-start justify-between">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-terminal-gold">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4 text-terminal-gold">
                 Client Portal
               </h1>
               <p className="text-lg text-gray-400">

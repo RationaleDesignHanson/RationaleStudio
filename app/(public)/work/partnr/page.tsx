@@ -7,7 +7,7 @@ export default function PartnrPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <Link
             href="/#portfolio"
@@ -20,7 +20,7 @@ export default function PartnrPage() {
             META FAIR // EMBODIED AI RESEARCH
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold mb-6">
             PARTNR
           </h1>
 
@@ -46,7 +46,7 @@ export default function PartnrPage() {
       </section>
 
       {/* Overview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Project Overview"
@@ -70,10 +70,10 @@ export default function PartnrPage() {
       </section>
 
       {/* Key Capabilities */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-4">
               Platform Capabilities
             </h2>
           </div>
@@ -134,7 +134,7 @@ export default function PartnrPage() {
       </section>
 
       {/* Technical Foundation */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Technical Architecture"
@@ -170,7 +170,7 @@ export default function PartnrPage() {
       </section>
 
       {/* What This Proves */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="What This Proves About Rationale"
@@ -194,7 +194,7 @@ export default function PartnrPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8">
+      <section className="py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto flex justify-center">
           <OS8Window
             title="Building Embodied AI?"

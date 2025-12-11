@@ -20,9 +20,9 @@ export default function EngagementModelsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-4">
             {engagementModels.hero.title}
           </h1>
           <p className="text-xl text-[#00FF94] mb-4">{engagementModels.hero.subtitle}</p>
@@ -31,7 +31,7 @@ export default function EngagementModelsPage() {
       </section>
 
       {/* Six Kits */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Rationale Kits</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -76,7 +76,7 @@ export default function EngagementModelsPage() {
       </section>
 
       {/* Payment Models */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Payment Flexibility</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -113,7 +113,7 @@ export default function EngagementModelsPage() {
       </section>
 
       {/* How Partners Add Value */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             {engagementModels.partnerValue.title}
@@ -143,7 +143,7 @@ export default function EngagementModelsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Ready to Introduce a Client?
@@ -154,13 +154,13 @@ export default function EngagementModelsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/partners/resources"
-              className="px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors"
+              className="px-4 sm:px-6 md:px-8 py-4 bg-[#00FF94] hover:bg-[#00FF94]/90 text-black font-semibold rounded-lg transition-colors"
             >
               Get Introduction Template
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors border border-gray-700"
+              className="px-4 sm:px-6 md:px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors border border-gray-700"
             >
               Discuss Partnership
             </Link>

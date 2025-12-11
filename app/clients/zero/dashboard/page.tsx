@@ -26,7 +26,7 @@ export default function ZeroDashboardPage() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
           <Link
@@ -35,7 +35,7 @@ export default function ZeroDashboardPage() {
           >
             ← Back to Zero
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             Zero Beta Dashboard
           </h1>
           <p className="text-gray-400">
@@ -43,7 +43,7 @@ export default function ZeroDashboardPage() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {/* Left Column - Onboarding & Stats */}
           <div className="lg:col-span-2 space-y-8">
             {/* Onboarding Progress */}

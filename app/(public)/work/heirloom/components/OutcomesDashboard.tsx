@@ -93,7 +93,7 @@ export default function OutcomesDashboard() {
               </div>
 
               <div className="mb-2">
-                <span className="text-4xl font-bold text-[#E85D4D]">{metric.value}</span>
+                <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#E85D4D]">{metric.value}</span>
                 <span className="ml-1 text-lg text-gray-500">{metric.unit}</span>
               </div>
 

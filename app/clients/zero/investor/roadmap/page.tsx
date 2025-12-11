@@ -121,13 +121,13 @@ export default function ZeroInvestorRoadmapPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:invest@rationale.work?subject=Zero Investment Inquiry"
-                className="px-8 py-4 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity font-medium"
+                className="px-4 sm:px-6 md:px-8 py-4 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity font-medium"
               >
                 Schedule Conversation
               </a>
               <Link
                 href="/contact"
-                className="px-8 py-4 border border-foreground text-foreground rounded-lg hover:bg-foreground/10 transition-colors font-medium"
+                className="px-4 sm:px-6 md:px-8 py-4 border border-foreground text-foreground rounded-lg hover:bg-foreground/10 transition-colors font-medium"
               >
                 General Inquiries
               </Link>

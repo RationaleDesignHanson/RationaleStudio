@@ -29,7 +29,7 @@ export default function ServicesPage() {
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Hero */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.08}
@@ -44,7 +44,7 @@ export default function ServicesPage() {
               ENGINE 1 // CLIENT ENGAGEMENTS
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
               Rationale Kits
             </h1>
 
@@ -55,7 +55,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Dual-Engine Context */}
-        <section className="relative py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.04}
@@ -95,7 +95,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Payment Flexibility */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -107,7 +107,7 @@ export default function ServicesPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {paymentFlexibility.title}
               </h2>
               <p className="text-lg text-terminal-gold font-medium mb-3">
@@ -127,7 +127,7 @@ export default function ServicesPage() {
                   animateIn={false}
                 >
                   <div className="text-center space-y-3">
-                    <div className="text-4xl font-bold text-terminal-gold mb-4">
+                    <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-4">
                       {model.icon}
                     </div>
                     <p className="text-sm font-medium text-terminal-gold">{model.label}</p>
@@ -165,7 +165,7 @@ export default function ServicesPage() {
         </section>
 
         {/* All Service Kits */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -176,7 +176,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
               Our Kits
             </h2>
 
@@ -215,7 +215,7 @@ export default function ServicesPage() {
         </section>
 
         {/* How to Choose */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -227,7 +227,7 @@ export default function ServicesPage() {
 
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 Which kit is right for you?
               </h2>
               <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
@@ -272,7 +272,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Expertise Areas */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -284,7 +284,7 @@ export default function ServicesPage() {
 
           <div className="relative z-10 max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 Our Expertise
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
@@ -308,7 +308,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Comparison */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -320,7 +320,7 @@ export default function ServicesPage() {
 
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 {servicesContent.comparison.title}
               </h2>
               <p className="text-lg text-terminal-gold font-medium">
@@ -399,7 +399,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.12}

@@ -4,10 +4,10 @@ import Image from 'next/image'
 
 export default function ChallengeSection() {
   return (
-    <section className="bg-gray-50 py-20 md:py-28">
+    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-12 text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+          <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             The Challenge
           </h2>
 

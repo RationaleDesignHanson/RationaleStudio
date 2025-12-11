@@ -96,7 +96,7 @@ export default function OutboundDashboardPage() {
             </Link>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
                   Outbound Pitches
                 </h1>
                 <p className="text-lg text-gray-400">

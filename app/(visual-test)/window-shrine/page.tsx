@@ -16,7 +16,7 @@ export default function WindowShrinePage() {
       <ScanlineEffect intensity="subtle" speed="slow" />
 
       {/* Hero Section - Mixed Typography + Window Dialog */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12 md:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto text-center space-y-12">
           {/* Poster Typography */}
           <div className="space-y-6 animate-fade-in-up">
@@ -24,7 +24,7 @@ export default function WindowShrinePage() {
               PROVEN VELOCITY // 7 PROTOTYPES BEFORE PRODUCTION
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold leading-tight">
               Don't Spend 6 Months
               <br />
               Building the
@@ -69,11 +69,11 @@ export default function WindowShrinePage() {
       </section>
 
       {/* Window Zoning Section - Products, Ventures, Methods */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-4">
               <span className="relative inline-block">
                 How Rationale Works
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-terminal-gold" />
@@ -209,7 +209,7 @@ export default function WindowShrinePage() {
           </div>
 
           {/* Desktop: Side-by-Side Grid */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-8">
+          <div className="hidden lg:grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             <div className="animate-signal-lock delay-100">
               <OS8Window
                 title="Products & IP"
@@ -337,17 +337,17 @@ export default function WindowShrinePage() {
       </section>
 
       {/* Credentials Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold mb-4">
               Design Leadership at Publicly Traded Scale,
               <br />
               <span className="text-terminal-gold">Studio Execution Speed</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
             <div className="animate-fade-in-up delay-100">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 border-l-2 border-terminal-gold">
                 <p className="text-xs font-mono text-gray-400 mb-3">WHAT SCALE TAUGHT US</p>
@@ -394,11 +394,11 @@ export default function WindowShrinePage() {
       </section>
 
       {/* Final CTA - Window Dialog Style */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fade-in-up">
             <p className="text-xs font-mono text-gray-400 mb-4 tracking-wider">VELOCITY TO CONVICTION</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold">
               Stop Guessing.
               <br />
               <span className="text-terminal-gold">Start Feeling What Works.</span>

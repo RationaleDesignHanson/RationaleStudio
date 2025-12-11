@@ -14,7 +14,7 @@ import { FileText, Folder, Share2 } from 'lucide-react';
 
 export default function ContentLibraryPage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12">
       <div className="mb-8">
         <Link
           href="/owner"

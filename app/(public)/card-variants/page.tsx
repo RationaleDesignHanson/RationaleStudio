@@ -7,7 +7,7 @@ export default function CardVariantsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Header */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <Link
             href="/"
@@ -20,7 +20,7 @@ export default function CardVariantsPage() {
             DESIGN SYSTEM PREVIEW
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Card Variant Gallery
           </h1>
 
@@ -31,7 +31,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Featured Variant */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Featured Variant</h2>
@@ -67,7 +67,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Body Variant */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Body Variant</h2>
@@ -116,7 +116,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Subtle Variant */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Subtle Variant</h2>
@@ -152,7 +152,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* CTA Variant */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">CTA Variant</h2>
@@ -178,7 +178,7 @@ export default function CardVariantsPage() {
                 The highest-impact variant with black background and strong yellow glow. Demands immediate attention and action. Use sparingly for conversion points like contact CTAs, booking prompts, or critical next steps.
               </p>
               <div className="pt-4">
-                <button className="px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-colors">
+                <button className="px-4 sm:px-6 md:px-8 py-4 bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-colors">
                   Start a Conversation →
                 </button>
               </div>
@@ -188,7 +188,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Interactive Variant */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Interactive Variant</h2>
@@ -237,7 +237,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold mb-4">Visual Hierarchy in Action</h2>
@@ -313,7 +313,7 @@ export default function CardVariantsPage() {
       </section>
 
       {/* Recommendations */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto">
           <OS8Window
             title="Implementation Recommendations"

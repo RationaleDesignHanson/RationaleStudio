@@ -557,13 +557,13 @@ export default function InvestorDeckPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-foreground bg-white rounded-md hover:bg-white/90 transition-colors text-center"
+                className="px-4 sm:px-6 md:px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-foreground bg-white rounded-md hover:bg-white/90 transition-colors text-center"
               >
                 Schedule a call
               </Link>
               <Link
                 href="/investors"
-                className="px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-white bg-transparent border border-white/40 rounded-md hover:bg-white/10 transition-colors text-center"
+                className="px-4 sm:px-6 md:px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium text-white bg-transparent border border-white/40 rounded-md hover:bg-white/10 transition-colors text-center"
               >
                 Back to overview
               </Link>

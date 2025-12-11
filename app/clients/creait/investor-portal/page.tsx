@@ -51,7 +51,7 @@ export default function InvestorPortalPage() {
     return <InvestorPortalContent />;
   }
 
-  return ( <div className="min-h-screen bg-black flex items-center justify-center p-4"> <div className="max-w-md w-full"> <CRECard variant="primary"> {/* Header */} <div className="text-center mb-6"> <div className="text-4xl mb-4"></div> <H2 className="mb-2">Internal Portal</H2> <BodyMD color={CRE_COLORS.text.secondary}> Access detailed product documentation, technical specifications, and development roadmap </BodyMD> </div> {/* Password Form */} <form onSubmit={handleSubmit} className="space-y-4"> {error && ( <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm"> {error} </div> )} <div> <label htmlFor="internal-password" className="block text-sm font-medium text-gray-300 mb-2"> Access Password </label> <input
+  return ( <div className="min-h-screen bg-black flex items-center justify-center p-4"> <div className="max-w-md w-full"> <CRECard variant="primary"> {/* Header */} <div className="text-center mb-6"> <div className="text-2xl md:text-3xl lg:text-4xl mb-4"></div> <H2 className="mb-2">Internal Portal</H2> <BodyMD color={CRE_COLORS.text.secondary}> Access detailed product documentation, technical specifications, and development roadmap </BodyMD> </div> {/* Password Form */} <form onSubmit={handleSubmit} className="space-y-4"> {error && ( <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm"> {error} </div> )} <div> <label htmlFor="internal-password" className="block text-sm font-medium text-gray-300 mb-2"> Access Password </label> <input
                 id="internal-password"
                 type="password"
                 value={password}

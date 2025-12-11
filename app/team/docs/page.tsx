@@ -20,9 +20,9 @@ export default function TeamDocsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-4">
             {documentation.hero.title}
           </h1>
           <p className="text-xl text-purple-400 mb-4">{documentation.hero.subtitle}</p>
@@ -31,7 +31,7 @@ export default function TeamDocsPage() {
       </section>
 
       {/* Search/Filter Section */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="py-8 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <div className="flex-1 w-full">
@@ -53,7 +53,7 @@ export default function TeamDocsPage() {
       </section>
 
       {/* Documentation Categories */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-12">
           {documentation.categories.map((category, idx) => (
             <div
@@ -62,7 +62,7 @@ export default function TeamDocsPage() {
             >
               {/* Category Header */}
               <div className="flex items-start gap-4 mb-6 pb-6 border-b border-gray-800">
-                <div className="text-4xl">{category.icon}</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl">{category.icon}</div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-white mb-2">{category.name}</h2>
                   <p className="text-sm text-gray-400">{category.description}</p>
@@ -99,7 +99,7 @@ export default function TeamDocsPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-xl font-bold text-white mb-6">Documentation Stats</h2>
           <div className="grid md:grid-cols-4 gap-6">
@@ -132,7 +132,7 @@ export default function TeamDocsPage() {
       </section>
 
       {/* Request New Doc */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="p-8 bg-purple-500/10 border border-purple-500/30 rounded-lg text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Need a New Document?</h2>

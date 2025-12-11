@@ -16,7 +16,7 @@ export default function TerminalRepublicPage() {
       <ScanlineEffect intensity="subtle" speed="slow" />
 
       {/* Hero Section - Terminal Command */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-12 md:py-16 lg:py-20">
         <YellowGlow intensity="strong" pulse={true} className="mb-8">
           <div className="text-center mb-12">
             <p className="text-xs sm:text-sm font-mono text-terminal-gold mb-4 tracking-widest">
@@ -26,13 +26,13 @@ export default function TerminalRepublicPage() {
               command="run rationale()"
               delay={500}
               typingSpeed={80}
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+              className="text-3xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl lg:text-7xl font-bold"
             />
           </div>
         </YellowGlow>
 
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+          <h2 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-bold">
             <span className="inline-block border-b-4 border-terminal-gold pb-2">
               Don't Spend 6 Months Building the Wrong Thing
             </span>
@@ -44,7 +44,7 @@ export default function TerminalRepublicPage() {
           </p>
 
           <YellowGlow intensity="medium" hoverOnly={true}>
-            <button className="mt-8 px-8 py-4 bg-terminal-gold text-black font-bold text-lg hover:bg-[#FFE34D] transition-all duration-300 animate-button-press border-2 border-terminal-gold hover:scale-105">
+            <button className="mt-8 px-4 sm:px-6 md:px-8 py-4 bg-terminal-gold text-black font-bold text-lg hover:bg-[#FFE34D] transition-all duration-300 animate-button-press border-2 border-terminal-gold hover:scale-105">
               START FEELING WHAT WORKS IN 2 WEEKS →
             </button>
           </YellowGlow>
@@ -144,7 +144,7 @@ export default function TerminalRepublicPage() {
           </div>
 
           {/* Desktop: Overlapping constellation layout */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-8 px-8">
+          <div className="hidden lg:grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-4 sm:px-6 md:px-8">
             {/* Left column - Products */}
             <div className="relative z-10">
               <OS8Window
@@ -263,15 +263,15 @@ export default function TerminalRepublicPage() {
       </section>
 
       {/* Credentials Section - Yellow Band */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-t-8 border-b-8 border-terminal-gold bg-terminal-gold/5">
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t-8 border-b-8 border-terminal-gold bg-terminal-gold/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12">
+          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-center mb-12">
             <span className="inline-block bg-terminal-gold text-black px-6 py-3 font-mono">
               OPERATOR_SYSTEMS_FROM_META
             </span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
             <YellowGlow intensity="medium" className="hover:scale-105 transition-transform duration-300">
               <div className="bg-black border-4 border-terminal-gold p-6">
                 <p className="text-terminal-gold font-mono text-sm mb-3">WHAT_META_TAUGHT_US:</p>
@@ -318,7 +318,7 @@ export default function TerminalRepublicPage() {
       </section>
 
       {/* Final CTA - Terminal Style */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <YellowGlow intensity="strong" pulse={true}>
             <div className="mb-8">
@@ -326,7 +326,7 @@ export default function TerminalRepublicPage() {
                 command="execute velocity_to_conviction()"
                 delay={200}
                 typingSpeed={60}
-                className="text-2xl sm:text-3xl md:text-4xl font-bold"
+                className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl font-bold"
               />
             </div>
           </YellowGlow>

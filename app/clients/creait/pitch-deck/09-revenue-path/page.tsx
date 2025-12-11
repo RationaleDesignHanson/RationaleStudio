@@ -117,7 +117,7 @@ export default function RevenuePathSlidePage() {
     >
       {/* Hero Metric */}
       <CRECard variant="critical" size="large" className="mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 text-center">
           <div>
             <LabelSM color={CRE_COLORS.text.muted}>MONTH 12 TARGET</LabelSM>
             <DataXL className="my-4" color={CRE_COLORS.score.critical}>

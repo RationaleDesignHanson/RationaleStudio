@@ -13,7 +13,7 @@ import { OS8Window } from '@/components/visual-test';
 export default function ArchitecturePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Navigation */}
           <div className="mb-8">
@@ -30,7 +30,7 @@ export default function ArchitecturePage() {
             <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
               INFOGRAPHIC TEST // SYSTEM ARCHITECTURE
             </p>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl font-bold mb-4">
               Zero System Architecture
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto">

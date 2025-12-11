@@ -66,7 +66,7 @@ export default function StudioDataRoomPage() {
             </Link>
             <div className="flex items-center gap-3 mb-4">
               <Lock className="w-8 h-8 text-terminal-gold" />
-              <h1 className="text-3xl sm:text-4xl font-bold text-white">
+              <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
                 Studio Data Room
               </h1>
             </div>

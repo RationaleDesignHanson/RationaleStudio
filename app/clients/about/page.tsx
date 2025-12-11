@@ -23,7 +23,7 @@ export default function AboutPage() {
     <>
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Hero */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.08}
@@ -38,7 +38,7 @@ export default function AboutPage() {
               CONVICTION-FIRST VENTURE STUDIO
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl sm:text-5xl md:text-2xl md:text-3xl lg:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center animate-fade-in-up delay-100">
               About Rationale
             </h1>
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </section>
 
         {/* Dual-Engine Operating Model */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </section>
 
         {/* The Whiteboard Moment - Origin Story */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -191,7 +191,7 @@ export default function AboutPage() {
         </section>
 
         {/* Philosophy - Mental Models */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -203,7 +203,7 @@ export default function AboutPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="mb-12 text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 How We Think
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
@@ -263,7 +263,7 @@ export default function AboutPage() {
         </section>
 
         {/* Frameworks in Practice */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -275,7 +275,7 @@ export default function AboutPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="mb-12 text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 Frameworks in Practice
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
@@ -380,7 +380,7 @@ export default function AboutPage() {
         </section>
 
         {/* Portfolio IP - Proof of Execution */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -405,15 +405,15 @@ export default function AboutPage() {
               <div className="mb-8 p-6 rounded-lg border border-terminal-gold/20 bg-terminal-gold/5">
                 <div className="grid sm:grid-cols-3 gap-6 mb-6">
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">3</div>
+                    <div className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">3</div>
                     <div className="text-sm text-gray-300">Active Ventures</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">1 mo</div>
+                    <div className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">1 mo</div>
                     <div className="text-sm text-gray-300">Concept to Plan</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl sm:text-4xl font-bold text-terminal-gold mb-2">350KB+</div>
+                    <div className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">350KB+</div>
                     <div className="text-sm text-gray-300">Documentation</div>
                   </div>
                 </div>
@@ -470,7 +470,7 @@ export default function AboutPage() {
         </section>
 
         {/* Founder */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
@@ -481,7 +481,7 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
               Meet the Founder
             </h2>
 
@@ -612,7 +612,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section className="relative py-32 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.12}

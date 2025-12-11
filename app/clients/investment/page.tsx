@@ -35,7 +35,7 @@ export default function InvestmentPage() {
             <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem">
               <div className="text-center">
                 <SectionMarker symbol="$" className="justify-center mb-4" color={heroTheme.primary}>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+                  <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground">
                     {overview.hero.title}
                   </h1>
                 </SectionMarker>
@@ -69,7 +69,7 @@ export default function InvestmentPage() {
                     key={idx}
                     className="rounded-lg border border-border p-6 text-center bg-background/50"
                   >
-                    <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">
+                    <div className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-2">
                       {metric.value}
                     </div>
                     <div className="text-sm font-semibold text-foreground mb-1">
@@ -144,7 +144,7 @@ export default function InvestmentPage() {
 
               {/* Arrow */}
               <div className="text-center mb-8">
-                <div className="text-4xl text-accent">↓</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl text-accent">↓</div>
                 <p className="text-xs text-muted mt-2">Owns majority stakes in:</p>
               </div>
 
@@ -207,7 +207,7 @@ export default function InvestmentPage() {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
               {tiers.map((tier, idx) => (
                 <GlassCard
                   key={tier.id}
@@ -322,7 +322,7 @@ export default function InvestmentPage() {
       <Section spacing="large" background="accent" colorTheme={getSectionTheme('cta')}>
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Ready to Participate?
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-muted mb-8">

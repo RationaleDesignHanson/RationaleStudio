@@ -16,11 +16,11 @@ export default function PrototypeEmbed() {
   const [activeDemo, setActiveDemo] = useState('customization')
 
   return (
-    <section id="prototype" className="bg-white py-20 md:py-28">
+    <section id="prototype" className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-6 text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             Try It Yourself
           </h2>
           <p className="text-xl text-gray-700">
