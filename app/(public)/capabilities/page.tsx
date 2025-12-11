@@ -223,9 +223,9 @@ export default function CapabilitiesPage() {
       </div>
 
       {/* Header */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
             Technical Capabilities
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -236,32 +236,32 @@ export default function CapabilitiesPage() {
       </section>
 
       {/* Capabilities Grid */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-4 md:p-6 lg:p-8">
             {capabilities.map((capability) => {
               const Icon = capability.icon;
               return (
                 <GlassCard
                   key={capability.id}
-                  className="p-6"
+                  className="p-4 md:p-6"
                   borderRadius="0.75rem"
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="p-3 bg-terminal-gold/10 rounded-lg flex-shrink-0">
-                      <Icon className="w-6 h-6 text-terminal-gold" />
+                      <Icon className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" />
                     </div>
                     <div>
                       <div className="text-xs text-terminal-gold font-medium mb-1 uppercase tracking-wide">
                         {capability.category}
                       </div>
-                      <h3 className="text-lg font-bold text-white">
+                      <h3 className="text-base md:text-lg font-bold text-white">
                         {capability.title}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-400 mb-4">
+                  <p className="text-xs md:text-sm text-gray-400 mb-4">
                     {capability.description}
                   </p>
 
@@ -302,57 +302,57 @@ export default function CapabilitiesPage() {
       </section>
 
       {/* Experience Stats */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900/30">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900/30">
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             Proven Experience
           </h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+          <div className="grid md:grid-cols-4 gap-4 md:p-6">
+            <div className="text-center p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="text-4xl font-bold text-terminal-gold mb-2">7+</div>
-              <div className="text-sm text-gray-400">Years AR/AI</div>
+              <div className="text-xs md:text-sm text-gray-400">Years AR/AI</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <div className="text-center p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="text-4xl font-bold text-terminal-gold mb-2">15+</div>
-              <div className="text-sm text-gray-400">Patents Filed</div>
+              <div className="text-xs md:text-sm text-gray-400">Patents Filed</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <div className="text-center p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="text-4xl font-bold text-terminal-gold mb-2">3</div>
-              <div className="text-sm text-gray-400">Products Shipped (2024)</div>
+              <div className="text-xs md:text-sm text-gray-400">Products Shipped (2024)</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+            <div className="text-center p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               <div className="text-4xl font-bold text-terminal-gold mb-2">Meta</div>
-              <div className="text-sm text-gray-400">Background</div>
+              <div className="text-xs md:text-sm text-gray-400">Background</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Process */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             How We Apply These Capabilities
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <GlassCard className="p-6 text-center" borderRadius="0.75rem">
+          <div className="grid md:grid-cols-3 gap-4 md:p-4 md:p-6 lg:p-8">
+            <GlassCard className="p-4 md:p-6 text-center" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-terminal-gold mb-3">1</div>
-              <h3 className="text-lg font-bold text-white mb-2">Understand</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Understand</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 Deep dive into your problem space, users, and technical constraints
               </p>
             </GlassCard>
-            <GlassCard className="p-6 text-center" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6 text-center" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-terminal-gold mb-3">2</div>
-              <h3 className="text-lg font-bold text-white mb-2">Prototype</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Prototype</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 Rapid prototypes to validate assumptions before committing to production
               </p>
             </GlassCard>
-            <GlassCard className="p-6 text-center" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6 text-center" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-terminal-gold mb-3">3</div>
-              <h3 className="text-lg font-bold text-white mb-2">Ship</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Ship</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 Production-ready code with testing, monitoring, and documentation
               </p>
             </GlassCard>
@@ -361,10 +361,10 @@ export default function CapabilitiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Need these capabilities for your project?</h2>
-          <p className="text-gray-300 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Need these capabilities for your project?</h2>
+          <p className="text-gray-300 mb-4 md:mb-8">
             We take on select partnerships where our technical expertise can create outsized impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

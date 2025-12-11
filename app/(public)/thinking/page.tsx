@@ -70,9 +70,9 @@ export default function ThinkingPage() {
       </div>
 
       {/* Header */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
             Thinking
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -82,7 +82,7 @@ export default function ThinkingPage() {
       </section>
 
       {/* Essays Grid */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="space-y-6">
             {essays.map((essay) => (
@@ -91,7 +91,7 @@ export default function ThinkingPage() {
                 href={`/thinking/${essay.slug}`}
                 className="block group"
               >
-                <GlassCard className="p-6 hover:border-accent/50 transition-all duration-300" borderRadius="0.75rem">
+                <GlassCard className="p-4 md:p-6 hover:border-accent/50 transition-all duration-300" borderRadius="0.75rem">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -101,7 +101,7 @@ export default function ThinkingPage() {
                         <span className="text-xs text-gray-500">•</span>
                         <span className="text-xs text-gray-400">{essay.readTime} read</span>
                       </div>
-                      <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                      <h2 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                         {essay.title}
                       </h2>
                       <p className="text-gray-400 leading-relaxed">
@@ -110,7 +110,7 @@ export default function ThinkingPage() {
                     </div>
                     <div className="flex-shrink-0 pt-2">
                       <svg
-                        className="w-5 h-5 text-gray-400 group-hover:text-accent group-hover:translate-x-1 transition-all"
+                        className="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-accent group-hover:translate-x-1 transition-all"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -127,10 +127,10 @@ export default function ThinkingPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to apply this methodology?</h2>
-          <p className="text-gray-300 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Ready to apply this methodology?</h2>
+          <p className="text-gray-300 mb-4 md:mb-8">
             We use this systematic approach on every engagement—whether it's a 3-week sprint or 12-week pilot.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

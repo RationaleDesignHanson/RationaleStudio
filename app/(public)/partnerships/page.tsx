@@ -107,13 +107,13 @@ export default function PartnershipsPage() {
       {/* Studio Context */}
       <section className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gray-900/30 border-b border-gray-800">
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="flex items-start gap-4 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
+          <div className="flex items-start gap-4 p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
             <div className="p-3 bg-terminal-gold/10 rounded-lg flex-shrink-0">
-              <Sparkles className="w-6 h-6 text-terminal-gold" />
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white mb-2">Why Partner with Us?</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Why Partner with Us?</h3>
+              <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
                 Most studios only do client work. We're different—we build our own products (Zero, Atlas, Amplify) using the same process we'd use for partners. You get battle-tested methodology and AI expertise from a team that's actually shipping products.
               </p>
             </div>
@@ -127,11 +127,11 @@ export default function PartnershipsPage() {
           <h2 className="text-3xl font-bold text-white mb-4 text-center">
             Three Partnership Models
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-center mb-6 md:mb-12 max-w-2xl mx-auto">
             Start with discovery, move to prototypes, scale to production—or stop at any checkpoint.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-6 md:gap-8">
             {partnershipModels.map((model, index) => {
               const Icon = model.icon;
               return (
@@ -144,7 +144,7 @@ export default function PartnershipsPage() {
                     {/* Icon & Number */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="p-3 bg-terminal-gold/10 rounded-lg">
-                        <Icon className="w-6 h-6 text-terminal-gold" />
+                        <Icon className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" />
                       </div>
                       <div className="px-3 py-1 bg-gray-900/50 border border-gray-700 rounded text-xs font-mono text-gray-400">
                         0{index + 1}
@@ -152,21 +152,21 @@ export default function PartnershipsPage() {
                     </div>
 
                     {/* Name & Tagline */}
-                    <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                    <h2 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                       {model.name}
                     </h2>
-                    <p className="text-sm text-gray-400 mb-6">{model.tagline}</p>
+                    <p className="text-xs md:text-sm text-gray-400 mb-6">{model.tagline}</p>
 
                     {/* Timeline & Price */}
                     <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-800">
                       <div>
                         <div className="text-xs text-gray-500 mb-1">Duration</div>
-                        <div className="text-lg font-bold text-white">{model.timeline}</div>
+                        <div className="text-base md:text-lg font-bold text-white">{model.timeline}</div>
                       </div>
                       <div className="w-px h-10 bg-gray-800"></div>
                       <div>
                         <div className="text-xs text-gray-500 mb-1">Investment</div>
-                        <div className="text-lg font-bold text-white">{model.priceRange}</div>
+                        <div className="text-base md:text-lg font-bold text-white">{model.priceRange}</div>
                       </div>
                     </div>
 
@@ -198,7 +198,7 @@ export default function PartnershipsPage() {
                       <span className="text-sm font-medium text-gray-400 group-hover:text-accent transition-colors">
                         Learn more
                       </span>
-                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-accent group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-accent group-hover:translate-x-1 transition-all" />
                     </div>
                   </GlassCard>
                 </Link>
@@ -209,7 +209,7 @@ export default function PartnershipsPage() {
           {/* Flexible Terms Section */}
           <div className="mt-16 pt-12 border-t border-gray-800">
             <GlassCard className="p-8 text-center" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-3">
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">
                 Flexible Partnership Terms
               </h2>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
@@ -228,30 +228,30 @@ export default function PartnershipsPage() {
       </section>
 
       {/* How Partnerships Work */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             How Partnerships Work
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-accent mb-3">1</div>
-              <h3 className="text-lg font-bold text-white mb-2">Start with Discovery</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Start with Discovery</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 2-week sprint to validate your opportunity. No long-term contracts—decide to continue or stop after every checkpoint.
               </p>
             </GlassCard>
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-accent mb-3">2</div>
-              <h3 className="text-lg font-bold text-white mb-2">Bi-Weekly Reviews</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Bi-Weekly Reviews</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 Regular checkpoints to review progress, validate direction, and decide to continue, pivot, or conclude.
               </p>
             </GlassCard>
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <div className="text-4xl font-bold text-accent mb-3">3</div>
-              <h3 className="text-lg font-bold text-white mb-2">Scale with Confidence</h3>
-              <p className="text-sm text-gray-400">
+              <h3 className="text-base md:text-lg font-bold text-white mb-2">Scale with Confidence</h3>
+              <p className="text-xs md:text-sm text-gray-400">
                 Move to production only after validating core assumptions with working prototypes and user testing.
               </p>
             </GlassCard>
@@ -260,15 +260,15 @@ export default function PartnershipsPage() {
       </section>
 
       {/* Our Focus Areas */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900/30">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900/30">
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4 md:mb-8 text-center">
             What We Partner On
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <GlassCard className="p-6" borderRadius="0.75rem">
+          <div className="grid md:grid-cols-2 gap-4 md:p-6">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-xl font-bold text-white mb-3">AI Product Development</h3>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-xs md:text-sm text-gray-400 mb-4">
                 Custom AI-powered products leveraging LLMs, RAG systems, intelligent automation, and predictive analytics.
               </p>
               <p className="text-xs text-gray-500">
@@ -276,9 +276,9 @@ export default function PartnershipsPage() {
               </p>
             </GlassCard>
 
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-xl font-bold text-white mb-3">Platform & SaaS</h3>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-xs md:text-sm text-gray-400 mb-4">
                 Modern web platforms, SaaS products, and internal tools with focus on speed, scalability, and user experience.
               </p>
               <p className="text-xs text-gray-500">
@@ -286,9 +286,9 @@ export default function PartnershipsPage() {
               </p>
             </GlassCard>
 
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-xl font-bold text-white mb-3">Strategic Prototyping</h3>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-xs md:text-sm text-gray-400 mb-4">
                 Rapid prototypes to test ideas with users before committing to full development. Multiple concepts, fast iteration.
               </p>
               <p className="text-xs text-gray-500">
@@ -296,9 +296,9 @@ export default function PartnershipsPage() {
               </p>
             </GlassCard>
 
-            <GlassCard className="p-6" borderRadius="0.75rem">
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-xl font-bold text-white mb-3">Innovation Labs</h3>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-xs md:text-sm text-gray-400 mb-4">
                 Embedded product teams for enterprises exploring new product opportunities or modernizing existing systems.
               </p>
               <p className="text-xs text-gray-500">
@@ -310,10 +310,10 @@ export default function PartnershipsPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to explore a partnership?</h2>
-          <p className="text-gray-300 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Ready to explore a partnership?</h2>
+          <p className="text-gray-300 mb-4 md:mb-8">
             Schedule a 30-minute intro call to discuss your opportunity and determine if we're a good fit.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

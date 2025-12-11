@@ -26,8 +26,8 @@ export default function HistoricalWorkPage() {
       {/* Hero */}
       <Section spacing="large" background="default" colorTheme={theme}>
         <Container>
-          <div className="max-w-4xl mx-auto mb-12">
-            <Link href="/" className="text-terminal-gold hover:underline text-sm mb-6 block">
+          <div className="max-w-4xl mx-auto mb-3 md:mb-6 md:mb-12">
+            <Link href="/" className="text-terminal-gold hover:underline text-sm mb-3 md:mb-6 block">
               ← Back to Home
             </Link>
             <h1 className="text-4xl md:text-5xl font-bold text-terminal-gold mb-4">
@@ -39,7 +39,7 @@ export default function HistoricalWorkPage() {
           </div>
 
           {/* META REALITY LABS: Core Experience */}
-          <div className="mb-12 max-w-6xl mx-auto">
+          <div className="mb-3 md:mb-6 md:mb-12 max-w-6xl mx-auto">
             <OS8Window
               title="Meta Reality Labs · AR Platform Leadership"
               variant="featured"
@@ -56,13 +56,13 @@ export default function HistoricalWorkPage() {
                   Building AR Platforms at Meta Scale
                 </h3>
 
-                <p className="text-sm text-gray-100 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-100 leading-relaxed">
                   Led Spark AR platform development from inception at Meta Reality Labs, scaling from 2 to 22 team members and defining the product vision for augmented reality experiences across Facebook, Instagram, and Messenger. Shipped AR tools and features to millions of creators worldwide, with 15+ patents in AR/AI domains.
                 </p>
 
-                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-6">
-                  <h4 className="text-lg font-bold text-terminal-gold mb-4">Key Contributions</h4>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-4 md:p-6">
+                  <h4 className="text-base md:text-lg font-bold text-terminal-gold mb-4">Key Contributions</h4>
+                  <div className="grid md:grid-cols-2 gap-4 text-xs md:text-sm text-gray-300">
                     <div>
                       <p className="font-semibold text-white mb-2">Platform Development</p>
                       <ul className="space-y-1 text-xs">
@@ -104,7 +104,7 @@ export default function HistoricalWorkPage() {
           </div>
 
           {/* RUMI: Independent Venture */}
-          <div className="mb-12 max-w-6xl mx-auto">
+          <div className="mb-3 md:mb-6 md:mb-12 max-w-6xl mx-auto">
             <OS8Window
               title="Rumi · Context-Aware AI Companion"
               variant="interactive"
@@ -121,7 +121,7 @@ export default function HistoricalWorkPage() {
                   End-to-End Product Development: Brand to Prototype
                 </h3>
 
-                <p className="text-sm text-gray-100 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-100 leading-relaxed">
                   Co-founded Rumi as Head of Design with founding equity. Context-aware AI companion that transforms passive media into interactive experiences. Built complete brand identity, modular type system, product UI/UX, and functional HTML/CSS/JS prototype. Demonstrates capability to take products from concept to working software.
                 </p>
 
@@ -176,7 +176,7 @@ export default function HistoricalWorkPage() {
           </div>
 
           {/* VIACOM: Client Work */}
-          <div className="mb-12 max-w-6xl mx-auto">
+          <div className="mb-3 md:mb-6 md:mb-12 max-w-6xl mx-auto">
             <OS8Window
               title="Viacom History Installation · Mixed Reality Experience"
               variant="interactive"
@@ -189,17 +189,17 @@ export default function HistoricalWorkPage() {
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-terminal-gold">
+                <h3 className="text-xl md:text-2xl font-bold text-terminal-gold">
                   Building Large-Scale Mixed Reality Installations
                 </h3>
 
-                <p className="text-sm text-gray-100 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-100 leading-relaxed">
                   Led technical development for Viacom's "Composition VI" mixed reality installation at their Times Square headquarters. Interactive experience combining physical space, projection mapping, and real-time motion capture.
                 </p>
 
-                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-6">
-                  <h4 className="text-lg font-bold text-terminal-gold mb-4">What Was Built</h4>
-                  <ul className="space-y-2 text-sm text-gray-300">
+                <div className="bg-gray-900/50 border border-terminal-gold/20 rounded-lg p-4 md:p-6">
+                  <h4 className="text-base md:text-lg font-bold text-terminal-gold mb-4">What Was Built</h4>
+                  <ul className="space-y-2 text-xs md:text-sm text-gray-300">
                     <li>• Real-time motion tracking system for multi-user interactions</li>
                     <li>• Custom projection mapping software synchronized across multiple displays</li>
                     <li>• Interactive content management system for dynamic experiences</li>

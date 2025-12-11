@@ -20,7 +20,7 @@ export default function HeirloomCaseStudy() {
       <HeroSection />
 
       {/* Executive summary - At a Glance insight box */}
-      <section className="bg-gray-50 py-12 md:py-16">
+      <section className="bg-gray-50 py-12 md:py-8 md:py-12 lg:py-16">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-5xl">
             <AtAGlance />
@@ -41,20 +41,20 @@ export default function HeirloomCaseStudy() {
       <MetricsComparison />
 
       {/* CTA Links Section */}
-      <section className="bg-gray-50 py-12 md:py-16">
+      <section className="bg-gray-50 py-12 md:py-8 md:py-12 lg:py-16">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-5xl">
-            <h3 className="mb-8 text-center text-2xl font-bold text-[#2D2D2D]">Explore More</h3>
+            <h3 className="mb-4 md:mb-8 text-center text-xl md:text-2xl font-bold text-[#2D2D2D]">Explore More</h3>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Link
                 href="/work/heirloom/design-system"
-                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 md:p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
               >
                 <div>
-                  <h4 className="text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
+                  <h4 className="text-base md:text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
                     Design System
                   </h4>
-                  <p className="text-sm text-gray-600 leading-snug">
+                  <p className="text-xs md:text-sm text-gray-600 leading-snug">
                     Vintage-inspired colors, typography, and accessibility tokens
                   </p>
                 </div>
@@ -65,13 +65,13 @@ export default function HeirloomCaseStudy() {
 
               <Link
                 href="/work/heirloom/technical-architecture"
-                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 md:p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
               >
                 <div>
-                  <h4 className="text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
+                  <h4 className="text-base md:text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
                     Technical Architecture
                   </h4>
-                  <p className="text-sm text-gray-600 leading-snug">
+                  <p className="text-xs md:text-sm text-gray-600 leading-snug">
                     Native iOS stack, SwiftUI implementation, and engineering decisions
                   </p>
                 </div>
@@ -82,13 +82,13 @@ export default function HeirloomCaseStudy() {
 
               <Link
                 href="/work/heirloom/timeline-and-outcomes"
-                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-200 bg-white p-4 md:p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
               >
                 <div>
-                  <h4 className="text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
+                  <h4 className="text-base md:text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
                     Timeline & Outcomes
                   </h4>
-                  <p className="text-sm text-gray-600 leading-snug">
+                  <p className="text-xs md:text-sm text-gray-600 leading-snug">
                     Development process, user journey, metrics, and lessons learned
                   </p>
                 </div>
@@ -99,13 +99,13 @@ export default function HeirloomCaseStudy() {
 
               <Link
                 href="/work/heirloom/pitch"
-                className="group flex items-center justify-between rounded-lg border-2 border-[#F4A460] bg-gradient-to-br from-[#FBF8F3] to-white p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
+                className="group flex items-center justify-between rounded-lg border-2 border-[#F4A460] bg-gradient-to-br from-[#FBF8F3] to-white p-4 md:p-6 transition-all hover:border-[#E85D4D] hover:shadow-lg"
               >
                 <div>
-                  <h4 className="text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
+                  <h4 className="text-base md:text-lg font-bold text-[#2D2D2D] group-hover:text-[#E85D4D]">
                     Investment Pitch
                   </h4>
-                  <p className="text-sm text-gray-600 leading-snug">
+                  <p className="text-xs md:text-sm text-gray-600 leading-snug">
                     Interactive pitch deck with market analysis, technical diagrams, and financials
                   </p>
                 </div>

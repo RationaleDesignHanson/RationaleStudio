@@ -22,7 +22,7 @@ export default function ZeroPage() {
       <HeroSection />
 
       {/* Executive summary - At a Glance insight box */}
-      <section className="bg-gray-900 py-12 md:py-16">
+      <section className="bg-gray-900 py-12 md:py-8 md:py-12 lg:py-16">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-5xl">
             <AtAGlance />
@@ -43,13 +43,13 @@ export default function ZeroPage() {
       <PrototypeEmbed />
 
       {/* Technical Architecture */}
-      <section className="relative bg-black py-20 md:py-28 border-t border-gray-800">
+      <section className="relative bg-black py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
         <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-7xl">
-            <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+            <h2 className="mb-3 md:mb-6 text-4xl font-bold text-white md:text-5xl text-center">
               How Zero Works
             </h2>
-            <p className="mb-12 text-lg text-gray-300 text-center">
+            <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center">
               Scalable architecture built with proven technologies
             </p>
             <SystemArchitecture />
@@ -58,13 +58,13 @@ export default function ZeroPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 md:py-28 border-t border-terminal-gold/30">
+      <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-terminal-gold/30">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+            <h2 className="mb-3 md:mb-6 text-3xl font-bold text-white md:text-4xl">
               Want to Build Products Like This?
             </h2>
-            <p className="mb-8 text-lg text-gray-300">
+            <p className="mb-4 md:mb-8 text-lg text-gray-300">
               Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next.
             </p>
             <a
@@ -138,26 +138,26 @@ function FeatureGrid() {
   ]
 
   return (
-    <section className="bg-gray-900 py-20 md:py-28 border-t border-gray-800">
+    <section className="bg-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl text-center">
+          <h2 className="mb-3 md:mb-6 text-4xl font-bold text-white md:text-5xl text-center">
             Key Features
           </h2>
-          <p className="mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">
+          <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">
             Production-ready capabilities built for real-world email workflows
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-4 md:p-6 lg:p-8">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border-2 border-gray-700 bg-gray-800/50 p-8 transition-all duration-300 hover:border-terminal-gold hover:shadow-xl hover:-translate-y-1"
+                className="rounded-2xl border-2 border-gray-700 bg-gray-800/50 p-4 md:p-4 md:p-6 lg:p-8 transition-all duration-300 hover:border-terminal-gold hover:shadow-xl hover:-translate-y-1"
               >
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -208,16 +208,16 @@ function DevelopmentTimeline() {
           {phases.map((item, index) => (
             <div key={index} className="relative pl-20">
               <div
-                className="absolute left-6 top-2 w-5 h-5 rounded-full border-4 border-gray-900"
+                className="absolute left-6 top-2 w-4 h-4 md:w-5 md:h-5 rounded-full border-4 border-gray-900"
                 style={{ backgroundColor: item.color }}
               />
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 hover:border-terminal-gold transition-colors">
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 md:p-6 hover:border-terminal-gold transition-colors">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="text-xs font-mono text-gray-400 mb-1">
                       {item.phase}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1">
                       {item.title}
                     </h3>
                     <div className="text-sm text-terminal-gold font-medium">
@@ -243,8 +243,8 @@ function DevelopmentTimeline() {
           ))}
         </div>
         <div className="relative pl-20 mt-8">
-          <div className="absolute left-6 top-2 w-5 h-5">
-            <svg viewBox="0 0 20 20" className="w-5 h-5">
+          <div className="absolute left-6 top-2 w-4 h-4 md:w-5 md:h-5">
+            <svg viewBox="0 0 20 20" className="w-4 h-4 md:w-5 md:h-5">
               <path
                 d="M10 0 L10 15 M5 10 L10 15 L15 10"
                 stroke="#4B5563"
@@ -272,7 +272,7 @@ function SystemArchitecture() {
     <div className="py-8">
       <div className="relative">
         {/* Flow Caption */}
-        <div className="text-sm text-gray-400 mb-6 text-center">
+        <div className="text-xs md:text-sm text-gray-400 mb-3 md:mb-6 text-center">
           Data flow through the system
         </div>
 
@@ -286,13 +286,13 @@ function SystemArchitecture() {
           />
 
           <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
 
           <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-6 h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -305,13 +305,13 @@ function SystemArchitecture() {
           />
 
           <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
 
           <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-6 h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -324,13 +324,13 @@ function SystemArchitecture() {
           />
 
           <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
 
           <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-6 h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -343,13 +343,13 @@ function SystemArchitecture() {
           />
 
           <div className="hidden lg:block flex-shrink-0">
-            <svg className="w-8 h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 md:w-8 md:h-8 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
 
           <div className="lg:hidden flex-shrink-0 rotate-90">
-            <svg className="w-6 h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 md:w-5 md:h-5 md:w-6 md:h-6 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
@@ -394,10 +394,10 @@ function ArchComponent({
 }) {
   return (
     <div
-      className={`bg-gray-900/50 border-2 ${color} rounded-lg p-6 text-center hover:border-terminal-gold transition-colors`}
+      className={`bg-gray-900/50 border-2 ${color} rounded-lg p-4 md:p-6 text-center hover:border-terminal-gold transition-colors`}
     >
-      <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
-      <div className="text-sm text-gray-400 mb-4">{description}</div>
+      <h3 className="text-base md:text-lg font-bold text-white mb-1">{title}</h3>
+      <div className="text-xs md:text-sm text-gray-400 mb-4">{description}</div>
       <div className="space-y-1">
         {tags.map((tag, i) => (
           <div key={i} className="text-xs text-gray-300 bg-gray-900/50 rounded px-2 py-1">
@@ -411,7 +411,7 @@ function ArchComponent({
 
 function ArchKeyPoint({ title, description }: { title: string; description: string }) {
   return (
-    <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 hover:border-terminal-gold transition-colors">
+    <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4 md:p-6 hover:border-terminal-gold transition-colors">
       <h4 className="text-sm font-bold text-terminal-gold mb-2">{title}</h4>
       <p className="text-xs text-gray-300 leading-relaxed">{description}</p>
     </div>

@@ -94,10 +94,10 @@ export default function HomePage() {
             {/* Row 1: Zero and Heirloom */}
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <div className="p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
-                <div className="flex items-center gap-3 mb-3">
-                  <h3 className="text-lg md:text-xl font-bold text-white">Zero</h3>
-                  <span className="inline-block px-2 py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-xs text-terminal-gold font-medium">
+              <Link href="/work/zero" className="block p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all cursor-pointer">
+                <div className="flex items-center justify-between mb-3 gap-2">
+                  <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Zero</h3>
+                  <span className="inline-block px-1.5 py-0.5 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
                     Beta · Dogfooding
                   </span>
                 </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
                   AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
                 </p>
 
-                <div className="hidden md:block space-y-3 mb-6 text-sm">
+                <div className="hidden md:block space-y-3 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Used daily by our team to validate core workflows</span>
@@ -116,18 +116,13 @@ export default function HomePage() {
                     <span className="text-gray-400">Investor preview available for qualified partners</span>
                   </div>
                 </div>
-
-                <ButtonTertiary href="/work/zero" className="gap-2 text-sm">
-                  Learn about Zero
-                  <ArrowRight className="w-4 h-4" />
-                </ButtonTertiary>
-              </div>
+              </Link>
 
               {/* Heirloom - In Development */}
-              <div className="p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
-                <div className="flex items-center gap-3 mb-3">
-                  <h3 className="text-lg md:text-xl font-bold text-white">Heirloom</h3>
-                  <span className="inline-block px-2 py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-xs text-[#00D9FF] font-medium">
+              <Link href="/work/heirloom" className="block p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all cursor-pointer">
+                <div className="flex items-center justify-between mb-3 gap-2">
+                  <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Heirloom</h3>
+                  <span className="inline-block px-1.5 py-0.5 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
                     In Development
                   </span>
                 </div>
@@ -136,7 +131,7 @@ export default function HomePage() {
                   Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
                 </p>
 
-                <div className="hidden md:block space-y-3 mb-6 text-sm">
+                <div className="hidden md:block space-y-3 text-sm">
                   <div className="flex items-start gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
                     <span className="text-gray-400">Native iOS app built for TestFlight launch</span>
@@ -146,38 +141,28 @@ export default function HomePage() {
                     <span className="text-gray-400">Recipe capture, styling, and sharing workflows complete</span>
                   </div>
                 </div>
-
-                <ButtonTertiary href="/work/heirloom" className="gap-2 text-sm text-[#00D9FF] hover:text-[#00D9FF]/80">
-                  Learn about Heirloom
-                  <ArrowRight className="w-4 h-4" />
-                </ButtonTertiary>
-              </div>
+              </Link>
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <div className="p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0">
-              <div className="flex items-center gap-3 mb-3">
-                <h3 className="text-lg md:text-xl font-bold text-white">Pipeline</h3>
-                <span className="inline-block px-2 py-1 bg-gray-700/50 border border-gray-600 rounded-full text-xs text-gray-300 font-medium">
+            <Link href="/contact" className="block p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0 hover:border-gray-600 transition-all cursor-pointer">
+              <div className="flex items-center justify-between mb-3 gap-2">
+                <h3 className="text-lg md:text-xl font-bold text-white min-w-0">Pipeline</h3>
+                <span className="inline-block px-1.5 py-0.5 bg-gray-700/50 border border-gray-600 rounded-full text-[0.65rem] text-gray-300 font-medium whitespace-nowrap flex-shrink-0">
                   Q1–Q2 2025
                 </span>
               </div>
 
-              <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Multiple products in development across productivity, knowledge work, and enterprise automation.
               </p>
 
-              <div className="hidden md:block space-y-2 text-sm text-gray-400 mb-6">
+              <div className="hidden md:block space-y-2 text-sm text-gray-400 mt-4">
                 <div>Validation phase for 3 concepts</div>
                 <div>Prototype testing with select partners</div>
                 <div>Looking for product-minded investors</div>
               </div>
-
-              <ButtonTertiary href="/contact" className="gap-2 text-sm">
-                Get in touch
-                <ArrowRight className="w-4 h-4" />
-              </ButtonTertiary>
-            </div>
+            </Link>
           </div>
         </section>
 

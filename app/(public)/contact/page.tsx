@@ -88,12 +88,12 @@ export default function ContactPage() {
                 <ButtonPrimary
                   onClick={handleRevealEmail}
                   size="lg"
-                  className="shadow-lg shadow-[#FFD700]/20 hover:shadow-[#FFD700]/40 hover:scale-105 mb-6"
+                  className="shadow-lg shadow-terminal-gold/20 hover:shadow-terminal-gold/40 hover:scale-105 mb-6"
                 >
                   Click to Reveal Email
                 </ButtonPrimary>
               ) : (
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mb-4 md:mb-6">
                   <ButtonPrimary
                     href={`mailto:${getEmail()}`}
                     size="lg"
@@ -134,7 +134,7 @@ export default function ContactPage() {
               </button>
 
               {showWhatToInclude && (
-                <div className="mt-4 space-y-2 text-sm text-gray-300 animate-fade-in">
+                <div className="mt-4 space-y-2 text-xs md:text-sm text-gray-300 animate-fade-in">
                   <div className="flex items-start gap-2">
                     <span className="text-terminal-gold mt-1">•</span>
                     <span>What you're building and the problem you're solving</span>
@@ -155,8 +155,8 @@ export default function ContactPage() {
               )}
             </div>
 
-            <div className="mt-6 p-4 bg-terminal-gold/5 border border-terminal-gold/20 rounded text-center">
-              <p className="text-sm text-gray-300">
+            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-terminal-gold/5 border border-terminal-gold/20 rounded text-center">
+              <p className="text-xs md:text-sm text-gray-300">
                 <span className="font-bold text-terminal-gold">Not the right fit?</span> We'll tell you
                 honestly and recommend alternatives. No hard feelings.
               </p>
@@ -166,7 +166,7 @@ export default function ContactPage() {
       </section>
 
       {/* 3. WHAT HAPPENS NEXT */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -177,30 +177,30 @@ export default function ContactPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-2">
+          <div className="text-center mb-6 md:mb-12">
+            <p className="text-[0.65rem] sm:text-xs font-mono text-terminal-gold tracking-widest mb-2">
               OUR PROCESS
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
               What Happens Next
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Step 1 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-terminal-gold" />
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-mono text-terminal-gold">STEP 1</span>
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[0.65rem] md:text-xs font-mono text-terminal-gold">STEP 1</span>
                     <span className="text-xs text-gray-500">•</span>
                     <span className="text-xs text-gray-400">24 hours</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Initial Review</h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">
+                  <h3 className="text-base md:text-lg font-bold text-white mb-1.5 md:mb-2">Initial Review</h3>
+                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                     We review your email and respond with initial thoughts on fit, approach, and
                     feasibility. If we're not the right partner, we'll recommend alternatives.
                   </p>
@@ -209,19 +209,19 @@ export default function ContactPage() {
             </GlassCard>
 
             {/* Step 2 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MessageSquare className="w-6 h-6 text-terminal-gold" />
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-mono text-terminal-gold">STEP 2</span>
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[0.65rem] md:text-xs font-mono text-terminal-gold">STEP 2</span>
                     <span className="text-xs text-gray-500">•</span>
                     <span className="text-xs text-gray-400">2-3 days</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Discovery Call</h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">
+                  <h3 className="text-base md:text-lg font-bold text-white mb-1.5 md:mb-2">Discovery Call</h3>
+                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                     30-minute conversation to dig deeper into your goals, constraints, and success
                     criteria. We'll discuss which engagement model (cash, equity, hybrid) makes sense.
                   </p>
@@ -230,19 +230,19 @@ export default function ContactPage() {
             </GlassCard>
 
             {/* Step 3 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-6 h-6 text-terminal-gold" />
+            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-5 h-5 md:w-6 md:h-6 text-terminal-gold" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-mono text-terminal-gold">STEP 3</span>
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[0.65rem] md:text-xs font-mono text-terminal-gold">STEP 3</span>
                     <span className="text-xs text-gray-500">•</span>
                     <span className="text-xs text-gray-400">1 week</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Proposal & Terms</h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">
+                  <h3 className="text-base md:text-lg font-bold text-white mb-2">Proposal & Terms</h3>
+                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                     We send a detailed proposal with scope, timeline, deliverables, and commercial
                     terms. You review, we adjust if needed, and finalize the agreement.
                   </p>
