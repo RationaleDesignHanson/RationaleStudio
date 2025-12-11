@@ -35,7 +35,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
         {/* 1. HERO SECTION - Product Studio Identity */}
-        <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
+        <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800 overflow-hidden">
           {/* ASCII Grid Background */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -59,18 +59,11 @@ export default function HomePage() {
               We ship products. <span className="text-gray-300">Yours and ours.</span>
             </p>
 
-            {/* Body Copy */}
-            <div className="max-w-2xl mx-auto mb-6 md:mb-10">
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400">
-                Proven at Meta AI Reality Labs. Fee + equity engagements available.
-              </p>
-            </div>
-
-            {/* CTA - Subtle linked text on all screen sizes */}
+            {/* CTA - Yellow linked text */}
             <div className="flex justify-center">
               <Link
                 href="/overview"
-                className="text-gray-400 hover:text-terminal-gold text-sm font-normal inline-flex items-center gap-1 transition-colors"
+                className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal inline-flex items-center gap-1 transition-colors"
               >
                 Studio Overview
                 <ArrowRight className="w-3 h-3" />
