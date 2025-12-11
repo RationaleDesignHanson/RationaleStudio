@@ -43,7 +43,7 @@ export default function PrototypeEmbed() {
                 key={demo.id}
                 onClick={() => setActiveDemo(demo.id)}
                 className={`
-                  relative px-2.5 md:px-3 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold transition-all
+                  relative px-2.5 md:px-3 py-1 md:py-1.5 text-xs md:text-sm font-bold transition-all
                   ${activeDemo === demo.id
                     ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px]'
                     : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
