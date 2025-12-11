@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { ResponsiveText } from '@/lib/ui/responsive';
 import { zeroHero, zeroFeatures, zeroMarketing } from '@/lib/content/zero';
-import InteractiveDemo from '@/components/zero/InteractiveDemo';
+import InteractiveDemoWrapper from './InteractiveDemoWrapper';
 import StarfieldBackground from '@/components/zero/FloatingOrbs';
 import BetaSignupButton from '@/components/zero/BetaSignupButton';
 import { ASCIIUnifiedGrid } from '@/components/visual';
@@ -77,7 +77,7 @@ export default function ZeroPage() {
                   Swipe right to take action, left to dismiss
                 </p>
               </div>
-              <InteractiveDemo />
+              <InteractiveDemoWrapper />
             </div>
           </Container>
         </div>
