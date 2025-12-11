@@ -37,29 +37,29 @@ export default function PrototypeEmbed() {
         {/* Demo Container with Binder Tabs */}
         <div className="mx-auto max-w-6xl">
           {/* Binder Tabs - Positioned above the demo */}
-          <div className="flex justify-start gap-1 mb-[-2px] pl-8 md:pl-12">
+          <div className="flex justify-start gap-0.5 mb-[-4px] pl-8 md:pl-12">
             {demos.map(demo => (
               <button
                 key={demo.id}
                 onClick={() => setActiveDemo(demo.id)}
                 className={`
-                  relative px-3 md:px-4 py-2 text-xs md:text-sm font-semibold transition-all
-                  rounded-t-lg border-t-2 border-x-2
+                  relative px-2.5 md:px-3 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold transition-all
+                  border-t-2 border-x-2
                   ${activeDemo === demo.id
-                    ? 'bg-white border-gray-200 text-[#E85D4D] z-10 translate-y-[2px]'
-                    : 'bg-[#F5F1E8] border-gray-300 text-gray-600 hover:bg-[#F0ECE3] hover:text-[#E85D4D]'
+                    ? 'bg-white border-gray-200 text-[#E85D4D] z-10 translate-y-[4px] rounded-t-md'
+                    : 'bg-gray-100/50 border-transparent text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
                   }
                 `}
                 style={{
                   clipPath: activeDemo === demo.id
-                    ? 'polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)'
-                    : 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)'
+                    ? 'polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)'
+                    : 'none'
                 }}
               >
                 <span>{demo.label}</span>
                 {/* Tab hole punch effect */}
                 {activeDemo === demo.id && (
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gray-300 ring-1 ring-gray-400"></div>
+                  <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-0.5 h-0.5 rounded-full bg-gray-400"></div>
                 )}
               </button>
             ))}
