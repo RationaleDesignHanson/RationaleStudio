@@ -55,20 +55,18 @@ export default function HomePage() {
             </div>
 
             {/* Subheadline - One Line */}
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium mb-6 md:mb-8 tracking-tight">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium mb-3 md:mb-4 tracking-tight">
               We ship products. <span className="text-gray-300">Yours and ours.</span>
             </p>
 
             {/* CTA - Yellow linked text */}
-            <div>
-              <Link
-                href="/overview"
-                className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal inline-flex items-center gap-1 transition-colors"
-              >
-                Studio Overview
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
+            <Link
+              href="/overview"
+              className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal inline-flex items-center gap-1 transition-colors"
+            >
+              Studio Overview
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </section>
 
