@@ -28,6 +28,8 @@ interface FlywheelConnection {
 export default function DualEngineModel() {
   const [hoveredEngine, setHoveredEngine] = useState<string | null>(null);
   const [hoveredConnection, setHoveredConnection] = useState<string | null>(null);
+  const [expandedActivities, setExpandedActivities] = useState<Record<string, boolean>>({});
+  const [expandedOutputs, setExpandedOutputs] = useState<Record<string, boolean>>({});
 
   const engines: Engine[] = [
     {
@@ -36,8 +38,8 @@ export default function DualEngineModel() {
       color: '#9D4EDD',
       icon: '🚀',
       activities: [
-        'Build products (Zero, Rationale Site, Agent System)',
-        'Apply 7-prototype methodology to our own products',
+        'Build internal products to test methodologies',
+        'Apply prototype framework to our own products',
         'Discover new patterns and failure modes',
         'Validate technical architecture decisions at scale'
       ],
@@ -73,7 +75,7 @@ export default function DualEngineModel() {
       from: 'products',
       to: 'clients',
       value: 'Proven Methodologies',
-      description: 'Zero validated 7-prototype framework. Clients get de-risked process, not experimental consulting.'
+      description: 'Internal products validate prototype framework in production. Clients get de-risked process, not experimental consulting.'
     },
     {
       from: 'clients',
@@ -117,24 +119,40 @@ export default function DualEngineModel() {
             <div className="mb-4">
               <div className="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wide">Activities</div>
               <div className="space-y-1.5">
-                {engines[0].activities.map((activity, idx) => (
+                {engines[0].activities.slice(0, expandedActivities['products'] ? 4 : 2).map((activity, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <div className="text-xs" style={{ color: engines[0].color }}>•</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{activity}</div>
                   </div>
                 ))}
+                {!expandedActivities['products'] && engines[0].activities.length > 2 && (
+                  <button
+                    onClick={() => setExpandedActivities({ ...expandedActivities, 'products': true })}
+                    className="md:hidden text-xs text-gray-400 hover:text-terminal-gold transition-colors mt-2"
+                  >
+                    Show {engines[0].activities.length - 2} more
+                  </button>
+                )}
               </div>
             </div>
 
             <div className="pt-4 border-t border-gray-700">
               <div className="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wide">Outputs</div>
               <div className="space-y-1.5">
-                {engines[0].outputs.map((output, idx) => (
+                {engines[0].outputs.slice(0, expandedOutputs['products'] ? 4 : 2).map((output, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <div className="text-xs" style={{ color: engines[0].color }}>→</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{output}</div>
                   </div>
                 ))}
+                {!expandedOutputs['products'] && engines[0].outputs.length > 2 && (
+                  <button
+                    onClick={() => setExpandedOutputs({ ...expandedOutputs, 'products': true })}
+                    className="md:hidden text-xs text-gray-400 hover:text-terminal-gold transition-colors mt-2"
+                  >
+                    Show {engines[0].outputs.length - 2} more
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -161,24 +179,40 @@ export default function DualEngineModel() {
             <div className="mb-4">
               <div className="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wide">Activities</div>
               <div className="space-y-1.5">
-                {engines[1].activities.map((activity, idx) => (
+                {engines[1].activities.slice(0, expandedActivities['clients'] ? 4 : 2).map((activity, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <div className="text-xs" style={{ color: engines[1].color }}>•</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{activity}</div>
                   </div>
                 ))}
+                {!expandedActivities['clients'] && engines[1].activities.length > 2 && (
+                  <button
+                    onClick={() => setExpandedActivities({ ...expandedActivities, 'clients': true })}
+                    className="md:hidden text-xs text-gray-400 hover:text-terminal-gold transition-colors mt-2"
+                  >
+                    Show {engines[1].activities.length - 2} more
+                  </button>
+                )}
               </div>
             </div>
 
             <div className="pt-4 border-t border-gray-700">
               <div className="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wide">Outputs</div>
               <div className="space-y-1.5">
-                {engines[1].outputs.map((output, idx) => (
+                {engines[1].outputs.slice(0, expandedOutputs['clients'] ? 4 : 2).map((output, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <div className="text-xs" style={{ color: engines[1].color }}>→</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{output}</div>
                   </div>
                 ))}
+                {!expandedOutputs['clients'] && engines[1].outputs.length > 2 && (
+                  <button
+                    onClick={() => setExpandedOutputs({ ...expandedOutputs, 'clients': true })}
+                    className="md:hidden text-xs text-gray-400 hover:text-terminal-gold transition-colors mt-2"
+                  >
+                    Show {engines[1].outputs.length - 2} more
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -227,18 +261,6 @@ export default function DualEngineModel() {
             </div>
           </div>
         </div>
-
-        {/* Mobile Connection Labels */}
-        <div className="md:hidden mt-6 space-y-3">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-1 rounded" style={{ backgroundColor: engines[0].color }} />
-            <div className="text-xs text-gray-400">Products → Clients</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-1 rounded" style={{ backgroundColor: engines[1].color }} />
-            <div className="text-xs text-gray-400">Clients → Products</div>
-          </div>
-        </div>
       </div>
 
       {/* Flywheel Connections Detail */}
@@ -278,34 +300,12 @@ export default function DualEngineModel() {
                 <span className="font-semibold text-white">Traditional agencies:</span> Sell time, accumulate no assets. Every project starts from scratch. Methodologies are theoretical until tested with client money. Risk is fully on the client.
               </div>
               <div>
-                <span className="font-semibold text-white">Rationale's advantage:</span> Zero is a substantial production asset built with our methodology. Every pattern, every microservice, every UX decision was validated in production. Clients get proven systems, not consulting PowerPoints. We de-risk with our own capital first.
+                <span className="font-semibold text-white">Rationale's advantage:</span> Internal products are substantial production assets built with our methodology. Every pattern, every microservice, every UX decision was validated in production. Clients get proven systems, not consulting PowerPoints. We de-risk with our own capital first.
               </div>
               <div>
                 <span className="font-semibold text-white">The compounding effect:</span> Each client engagement refines Rationale Kits. Each internal product validates new patterns. The flywheel accelerates—agencies stay linear.
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Examples */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-4 bg-gray-800/30 border border-gray-700 rounded">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="text-xl">{engines[0].icon}</div>
-            <div className="text-sm font-semibold text-white">Product → Client Example</div>
-          </div>
-          <div className="text-xs text-gray-300 leading-relaxed">
-            Zero validated 7-prototype framework in production. Athletes First got that proven system on Day 1—no experimentation with their budget. Result: validated direction in 3 weeks, not 3 months.
-          </div>
-        </div>
-        <div className="p-4 bg-gray-800/30 border border-gray-700 rounded">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="text-xl">{engines[1].icon}</div>
-            <div className="text-sm font-semibold text-white">Client → Product Example</div>
-          </div>
-          <div className="text-xs text-gray-300 leading-relaxed">
-            Client work revealed need for better agent orchestration. Built that into Rationale Agent System. Now both internal products and future clients benefit from improved AI workflow patterns.
           </div>
         </div>
       </div>

@@ -36,57 +36,56 @@ export default function ReadyToBuildInfographic() {
   ];
 
   return (
-    <div className="p-8 sm:p-10 lg:p-12 bg-gray-900/50 border border-gray-700 rounded-lg">
-      <div className="mb-12 lg:mb-16 text-center">
-        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Ready to Build?</h3>
-        <p className="text-base text-gray-400 leading-relaxed max-w-2xl mx-auto">
+    <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
+      <div className="mb-8 text-center">
+        <h3 className="text-xl font-bold text-white mb-2">Ready to Build?</h3>
+        <p className="text-sm text-gray-400">
           Three paths forward. Choose what makes sense for your timeline.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 lg:gap-10">
+      <div className="grid md:grid-cols-3 gap-6">
         {paths.map((path, idx) => {
           const Icon = path.icon;
           return (
             <a
               key={path.title}
               href={path.href}
-              className="group p-6 sm:p-8 lg:p-10 bg-gray-800/50 border-2 border-gray-700 rounded-lg hover:bg-gray-800/70 hover:border-opacity-100 transition-all"
-              style={{ borderColor: `${path.color}40` }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = path.color;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = `${path.color}40`;
-              }}
+              className="p-6 bg-gray-800/50 border border-gray-700 rounded-lg hover:bg-gray-800/70 transition-all"
             >
-              {/* Icon + Number */}
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-start gap-4">
+                {/* Icon */}
                 <div
-                  className="w-16 h-16 lg:w-20 lg:h-20 rounded-lg flex items-center justify-center"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${path.color}20`, borderColor: path.color, borderWidth: '2px' }}
                 >
-                  <Icon className="w-8 h-8 lg:w-10 lg:h-10" style={{ color: path.color }} />
+                  <span style={{ color: path.color }}>
+                    <Icon className="w-6 h-6" />
+                  </span>
                 </div>
-                <div
-                  className="w-11 h-11 lg:w-12 lg:h-12 rounded-full flex items-center justify-center font-bold text-black text-base lg:text-lg"
-                  style={{ backgroundColor: path.color }}
-                >
-                  {idx + 1}
+
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-black"
+                      style={{ backgroundColor: path.color }}
+                    >
+                      {idx + 1}
+                    </div>
+                    <h4 className="text-base font-bold text-white">{path.title}</h4>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-3">{path.description}</p>
+
+                  {/* CTA */}
+                  <div
+                    className="flex items-center gap-2 text-sm font-semibold"
+                    style={{ color: path.color }}
+                  >
+                    <span>{path.cta}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
-              </div>
-
-              {/* Content */}
-              <h4 className="text-xl sm:text-2xl font-bold text-white mb-4 leading-snug">{path.title}</h4>
-              <p className="text-base text-gray-400 leading-relaxed mb-10">{path.description}</p>
-
-              {/* CTA */}
-              <div
-                className="flex items-center gap-2 text-base font-semibold group-hover:gap-3 transition-all"
-                style={{ color: path.color }}
-              >
-                <span>{path.cta}</span>
-                <ArrowRight className="w-5 h-5" />
               </div>
             </a>
           );
@@ -94,8 +93,8 @@ export default function ReadyToBuildInfographic() {
       </div>
 
       {/* Alternative CTA */}
-      <div className="mt-12 lg:mt-16 pt-8 border-t border-gray-700 text-center">
-        <p className="text-base text-gray-400">
+      <div className="mt-8 pt-6 border-t border-gray-700 text-center">
+        <p className="text-sm text-gray-400">
           Or <a href="/contact" className="text-terminal-gold hover:text-[#FFE34D] transition-colors font-semibold">get in touch via our contact page</a>
         </p>
       </div>

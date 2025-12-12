@@ -8,11 +8,11 @@
 
 import { useState } from 'react';
 
-interface CostScenario {
+interface TimeScenario {
   id: string;
   label: string;
   discoveryTime: string;
-  cost: number;
+  timeWasted: number; // in weeks
   color: string;
   breakdown: string[];
   outcome: string;
@@ -21,12 +21,12 @@ interface CostScenario {
 export default function CostComparisonChart() {
   const [hoveredScenario, setHoveredScenario] = useState<string | null>(null);
 
-  const scenarios: CostScenario[] = [
+  const scenarios: TimeScenario[] = [
     {
       id: 'late-discovery',
       label: 'Late Discovery (Traditional)',
       discoveryTime: 'Week 16',
-      cost: 80000,
+      timeWasted: 18, // weeks
       color: '#FF4444',
       breakdown: [
         '12 weeks production engineering wasted',
@@ -34,13 +34,13 @@ export default function CostComparisonChart() {
         '2 weeks rework to pivot architecture',
         'Political fallout from "failed" project'
       ],
-      outcome: 'Sunk cost forces shipping subpar UX'
+      outcome: 'Sunk time forces shipping subpar UX'
     },
     {
       id: 'early-discovery',
       label: 'Early Discovery (Rationale)',
       discoveryTime: 'Day 3',
-      cost: 10000,
+      timeWasted: 0.5, // weeks (2.5 days)
       color: '#00FF94',
       breakdown: [
         '2 days building Prototype 3',
@@ -52,21 +52,21 @@ export default function CostComparisonChart() {
     }
   ];
 
-  const maxCost = Math.max(...scenarios.map(s => s.cost));
+  const maxTime = Math.max(...scenarios.map(s => s.timeWasted));
 
   return (
     <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
       <div className="mb-8">
-        <h3 className="text-xl font-bold text-white mb-2">The Cost of Discovery Timing</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Time Wasted on Discovery Timing</h3>
         <p className="text-sm text-gray-400">
-          Finding UX problems late means throwing away production code. Finding them early means pivoting prototypes.
+          Finding UX problems late means throwing away weeks of work. Finding them early means pivoting in days.
         </p>
       </div>
 
       {/* Chart */}
       <div className="space-y-6">
         {scenarios.map((scenario) => {
-          const widthPercent = (scenario.cost / maxCost) * 100;
+          const widthPercent = (scenario.timeWasted / maxTime) * 100;
           const isHovered = hoveredScenario === scenario.id;
 
           return (
@@ -87,7 +87,10 @@ export default function CostComparisonChart() {
                   </div>
                 </div>
                 <div className="text-lg font-bold" style={{ color: scenario.color }}>
-                  ${(scenario.cost / 1000).toFixed(0)}K
+                  {scenario.timeWasted < 1
+                    ? `${(scenario.timeWasted * 5).toFixed(1)} days`
+                    : `${scenario.timeWasted.toFixed(0)} weeks`
+                  }
                 </div>
               </div>
 
@@ -103,7 +106,7 @@ export default function CostComparisonChart() {
                 >
                   {widthPercent > 30 && (
                     <span className="text-xs font-mono text-white font-bold">
-                      {(scenario.cost / scenarios[1].cost).toFixed(1)}x
+                      {(scenario.timeWasted / scenarios[1].timeWasted).toFixed(0)}x
                     </span>
                   )}
                 </div>
@@ -130,7 +133,7 @@ export default function CostComparisonChart() {
       {hoveredScenario && (
         <div className="mt-8 p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
           <div className="text-xs font-medium text-gray-400 mb-3 uppercase tracking-wide">
-            Cost Breakdown: {scenarios.find(s => s.id === hoveredScenario)?.label}
+            Time Breakdown: {scenarios.find(s => s.id === hoveredScenario)?.label}
           </div>
           <div className="space-y-2">
             {scenarios.find(s => s.id === hoveredScenario)?.breakdown.map((item, idx) => (
@@ -155,9 +158,9 @@ export default function CostComparisonChart() {
             </div>
           </div>
           <div>
-            <div className="text-sm font-semibold text-white mb-1">Why Early Discovery Is 8x Cheaper</div>
+            <div className="text-sm font-semibold text-white mb-1">Why Early Discovery Saves 36x Time</div>
             <div className="text-xs text-gray-400 leading-relaxed">
-              Prototypes are low-fidelity, high-speed. Production is high-fidelity, low-speed. Finding problems in the low-speed phase means throwing away expensive work. Finding problems in the high-speed phase means pivoting cheap prototypes. Zero's 7-prototype framework caught every major UX issue before writing production code—resulting in 0 architectural pivots.
+              Prototypes are low-fidelity, high-speed. Production is high-fidelity, low-speed. Finding problems in the low-speed phase means throwing away weeks. Finding problems in the high-speed phase means pivoting in days. Zero's prototype framework caught every major UX issue before writing production code—resulting in 0 architectural pivots.
             </div>
           </div>
         </div>

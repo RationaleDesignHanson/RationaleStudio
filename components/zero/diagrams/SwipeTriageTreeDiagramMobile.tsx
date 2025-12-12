@@ -71,7 +71,7 @@ const swipeActions: SwipeAction[] = [
 ];
 
 export default function SwipeTriageTreeDiagramMobile() {
-  const [expandedDirection, setExpandedDirection] = useState<string | null>('left');
+  const [expandedDirection, setExpandedDirection] = useState<string | null>(null);
 
   const toggleDirection = (direction: string) => {
     setExpandedDirection(expandedDirection === direction ? null : direction);

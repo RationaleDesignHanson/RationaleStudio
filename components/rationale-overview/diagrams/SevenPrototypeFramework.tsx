@@ -21,6 +21,35 @@ export default function SevenPrototypeFramework() {
   const [hoveredPhase, setHoveredPhase] = useState<string | null>(null);
   const [selectedPhase, setSelectedPhase] = useState<string | null>(null);
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Swipe detection
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentPhaseIndex < phases.length - 1) {
+      setCurrentPhaseIndex(currentPhaseIndex + 1);
+    }
+    if (isRightSwipe && currentPhaseIndex > 0) {
+      setCurrentPhaseIndex(currentPhaseIndex - 1);
+    }
+  };
 
   const phases: PrototypePhase[] = [
     {
@@ -201,6 +230,9 @@ export default function SevenPrototypeFramework() {
                 borderColor: phases[currentPhaseIndex].color,
                 background: `${phases[currentPhaseIndex].color}22`,
               }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
             >
               <div className="text-center mb-4">
                 <div className="text-sm font-bold mb-1" style={{ color: phases[currentPhaseIndex].color }}>
@@ -224,26 +256,27 @@ export default function SevenPrototypeFramework() {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mb-4">
+          {/* Navigation - centered */}
+          <div className="flex items-center justify-center gap-3 mb-4">
             <button
               onClick={() => setCurrentPhaseIndex(Math.max(0, currentPhaseIndex - 1))}
               disabled={currentPhaseIndex === 0}
-              className="px-4 py-2 bg-gray-800 border border-gray-700 rounded text-sm text-white disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-8 h-8 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+              aria-label="Previous"
             >
-              ← Previous
+              &lt;
             </button>
 
             {/* Pagination dots */}
-            <div className="flex gap-2">
+            <div className="flex gap-1 items-center">
               {phases.map((_, idx) => (
-                <button
+                <div
                   key={idx}
-                  onClick={() => setCurrentPhaseIndex(idx)}
-                  className="w-2 h-2 rounded-full transition-all"
+                  className="rounded-full transition-all"
                   style={{
                     backgroundColor: idx === currentPhaseIndex ? phases[idx].color : '#4B5563',
-                    width: idx === currentPhaseIndex ? '24px' : '8px',
+                    width: idx === currentPhaseIndex ? '8px' : '4px',
+                    height: '4px',
                   }}
                 />
               ))}
@@ -252,9 +285,10 @@ export default function SevenPrototypeFramework() {
             <button
               onClick={() => setCurrentPhaseIndex(Math.min(phases.length - 1, currentPhaseIndex + 1))}
               disabled={currentPhaseIndex === phases.length - 1}
-              className="px-4 py-2 bg-gray-800 border border-gray-700 rounded text-sm text-white disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-8 h-8 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+              aria-label="Next"
             >
-              Next →
+              &gt;
             </button>
           </div>
 

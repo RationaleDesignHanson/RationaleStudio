@@ -15,7 +15,6 @@ interface Pillar {
   title: string;
   metric: string;
   color: string;
-  icon: string;
   layers: {
     title: string;
     items: string[];
@@ -24,7 +23,7 @@ interface Pillar {
 }
 
 export default function ZeroArchitectureDiagramMobile() {
-  const [expandedPillar, setExpandedPillar] = useState<string | null>('technical');
+  const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
 
   const pillars: Pillar[] = [
     {
@@ -32,7 +31,6 @@ export default function ZeroArchitectureDiagramMobile() {
       title: 'Technical Execution',
       metric: '10 Microservices',
       color: '#00D9FF',
-      icon: '⚙️',
       layers: [
         {
           title: 'Backend Services (Node.js)',
@@ -71,7 +69,6 @@ export default function ZeroArchitectureDiagramMobile() {
       title: 'Systematic Velocity',
       metric: '0 Pivots',
       color: '#00FF94',
-      icon: '⚡',
       layers: [
         {
           title: 'Week 1-2: Prototyping Phase',
@@ -109,7 +106,6 @@ export default function ZeroArchitectureDiagramMobile() {
       title: 'Product Thinking',
       metric: 'Complete Strategy',
       color: '#FFD700',
-      icon: '🎯',
       layers: [
         {
           title: 'Go-To-Market Strategy',
@@ -166,49 +162,47 @@ export default function ZeroArchitectureDiagramMobile() {
             <div key={pillar.id}>
               <button
                 onClick={() => togglePillar(pillar.id)}
-                className="w-full p-4 rounded-lg border-2 transition-all text-left"
+                className="w-full p-0 rounded-lg border-2 transition-all text-left"
                 style={{
                   backgroundColor: isExpanded ? '#1F2937' : '#111827',
                   borderColor: isExpanded ? pillar.color : '#374151'
                 }}
               >
-                <div className="flex items-center justify-between">
+                {/* Title section */}
+                <div className="p-3 w-full">
+                  <div className="text-sm font-bold text-white mb-1">
+                    {pillar.title}
+                  </div>
+                  <div className="text-xs" style={{ color: pillar.color }}>
+                    {pillar.metric}
+                  </div>
+                </div>
+
+                {/* Metric bar with chevron (always visible) */}
+                <div className="mt-0 px-3 pb-3 flex justify-end">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{pillar.icon}</span>
-                    <div>
-                      <div className="text-sm font-bold text-white mb-0.5">
-                        {pillar.title}
-                      </div>
-                      <div className="text-xs" style={{ color: pillar.color }}>
-                        {pillar.metric}
-                      </div>
+                    <div className="flex-shrink-0">
+                      {isExpanded ? (
+                        <ChevronUp className="w-5 h-5 text-gray-400" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-400" />
+                      )}
                     </div>
                   </div>
-                  {isExpanded ? (
-                    <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  )}
                 </div>
               </button>
 
               {/* Expanded Layers */}
               {isExpanded && (
-                <div className="mt-2 space-y-3 pl-4">
+                <div className="mt-3 pl-2">
                   {pillar.layers.map((layer, layerIdx) => (
                     <div
                       key={layerIdx}
-                      className="p-3 rounded-lg border"
-                      style={{
-                        backgroundColor: '#1F2937',
-                        borderColor: '#374151',
-                        borderLeftWidth: '3px',
-                        borderLeftColor: pillar.color
-                      }}
+                      className="py-2 pl-2 mb-2"
                     >
                       <div className="flex items-start gap-2 mb-2">
                         <div
-                          className="w-1 h-4 rounded-full mt-0.5 flex-shrink-0"
+                          className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0"
                           style={{ backgroundColor: pillar.color }}
                         />
                         <div className="text-xs font-semibold text-white">
@@ -216,13 +210,13 @@ export default function ZeroArchitectureDiagramMobile() {
                         </div>
                       </div>
 
-                      <div className="space-y-1.5 pl-3">
+                      <div className="space-y-1.5 pl-4">
                         {layer.items.map((item, itemIdx) => (
                           <div key={itemIdx} className="flex items-start gap-2">
                             <span className="text-xs mt-0.5" style={{ color: pillar.color }}>
                               •
                             </span>
-                            <span className="text-xs text-gray-400 leading-relaxed">
+                            <span className="text-xs text-gray-300 leading-relaxed">
                               {item}
                             </span>
                           </div>
@@ -240,7 +234,7 @@ export default function ZeroArchitectureDiagramMobile() {
                     }}
                   >
                     <div className="text-xs font-medium" style={{ color: pillar.color }}>
-                      💡 {pillar.proofPoint}
+                      {pillar.proofPoint}
                     </div>
                   </div>
                 </div>

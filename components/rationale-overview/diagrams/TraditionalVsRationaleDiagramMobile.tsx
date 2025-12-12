@@ -56,42 +56,45 @@ export default function TraditionalVsRationaleDiagramMobile() {
             backgroundColor: isExpanded ? '#1F2937' : '#111827'
           }}
         >
-          <div className="flex items-start p-3 w-full">
-            <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-white mb-1 whitespace-nowrap">
-                {title}
-              </div>
-              <div className="text-xs text-gray-400 whitespace-nowrap">
-                {total} weeks total
-              </div>
+          {/* Title section */}
+          <div className="p-3 w-full">
+            <div className="text-sm font-bold text-white mb-1 whitespace-nowrap">
+              {title}
             </div>
-            <div className="flex-shrink-0 ml-2">
-              {isExpanded ? (
-                <ChevronUp className="w-5 h-5 text-gray-400" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-gray-400" />
-              )}
+            <div className="text-xs text-gray-400 whitespace-nowrap">
+              {total} weeks total
             </div>
           </div>
 
-          {/* Risk bar (always visible) */}
-          <div className="mt-3 px-3">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-500">Risk:</span>
-              <span className="text-xs font-medium" style={{ color: riskColor }}>
-                {riskLevel.replace(' risk', '')}
-              </span>
+          {/* Risk bar with chevron (always visible) */}
+          <div className="mt-3 px-3 pb-3 flex justify-end">
+            <div className="w-[180px]">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs text-gray-500">Risk:</span>
+                <span className="text-xs font-medium" style={{ color: riskColor }}>
+                  {riskLevel.replace(' risk', '')}
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full transition-all duration-500"
+                  style={{
+                    width: `${riskPercent}%`,
+                    background: isTraditional
+                      ? 'linear-gradient(90deg, #FF4444, #990000)'
+                      : 'linear-gradient(90deg, #00FF94, #00D9FF)',
+                  }}
+                />
+              </div>
+              <div className="flex-shrink-0">
+                {isExpanded ? (
+                  <ChevronUp className="w-5 h-5 text-gray-400" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-400" />
+                )}
+              </div>
             </div>
-            <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-              <div
-                className="h-full transition-all duration-500"
-                style={{
-                  width: `${riskPercent}%`,
-                  background: isTraditional
-                    ? 'linear-gradient(90deg, #FF4444, #990000)'
-                    : 'linear-gradient(90deg, #00FF94, #00D9FF)',
-                }}
-              />
             </div>
           </div>
         </button>

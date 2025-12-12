@@ -10,7 +10,6 @@ import { useState } from 'react';
 
 interface DecisionPoint {
   week: number;
-  investment: number;
   pressureLevel: number; // 0-100
   decision: string;
   consequences: {
@@ -25,7 +24,6 @@ export default function DecisionPressureDiagram() {
   const decisionPoints: DecisionPoint[] = [
     {
       week: 4,
-      investment: 40000,
       pressureLevel: 25,
       decision: 'UX issue discovered in early testing',
       consequences: {
@@ -35,7 +33,6 @@ export default function DecisionPressureDiagram() {
     },
     {
       week: 8,
-      investment: 80000,
       pressureLevel: 50,
       decision: 'Core interaction pattern doesn\'t test well',
       consequences: {
@@ -45,7 +42,6 @@ export default function DecisionPressureDiagram() {
     },
     {
       week: 12,
-      investment: 120000,
       pressureLevel: 75,
       decision: 'User feedback confirms UX is wrong',
       consequences: {
@@ -55,7 +51,6 @@ export default function DecisionPressureDiagram() {
     },
     {
       week: 16,
-      investment: 200000,
       pressureLevel: 100,
       decision: 'Production launch with known UX problems',
       consequences: {
@@ -94,27 +89,14 @@ export default function DecisionPressureDiagram() {
               <button
                 key={point.week}
                 onClick={() => setSelectedWeek(point.week)}
-                className={`p-3 rounded-lg border-2 transition-all ${
+                className={`p-4 rounded-lg border-2 transition-all ${
                   isSelected
                     ? 'bg-gray-800/70 border-terminal-gold'
                     : 'bg-gray-800/30 border-gray-700 hover:border-gray-600'
                 }`}
               >
-                <div className="text-xs text-gray-500 mb-1">Week {point.week}</div>
-                <div className="text-sm font-bold text-white mb-2">
-                  ${(point.investment / 1000).toFixed(0)}K
-                </div>
-                {/* Pressure Bar */}
-                <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
-                  <div
-                    className="h-full transition-all duration-300"
-                    style={{
-                      width: `${point.pressureLevel}%`,
-                      backgroundColor: pressureColor
-                    }}
-                  />
-                </div>
-                <div className="text-[9px] text-gray-500 mt-1">
+                <div className="text-base font-bold text-white">Week {point.week}</div>
+                <div className="text-xs mt-1.5" style={{ color: pressureColor }}>
                   {point.pressureLevel}% pressure
                 </div>
               </button>
@@ -127,8 +109,7 @@ export default function DecisionPressureDiagram() {
       <div className="mb-8 p-6 bg-gray-800/50 border-2 border-terminal-gold rounded-lg">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <div className="text-xs font-mono text-terminal-gold mb-1">WEEK {selectedPoint.week}</div>
-            <div className="text-lg font-bold text-white mb-2">${(selectedPoint.investment / 1000).toFixed(0)}K Invested</div>
+            <div className="text-lg font-bold text-white mb-2">Week {selectedPoint.week}</div>
           </div>
           <div className="text-right">
             <div className="text-xs text-gray-500 mb-1">Pressure to Ship</div>
@@ -188,10 +169,10 @@ export default function DecisionPressureDiagram() {
           <div>
             <div className="text-sm font-bold text-[#FF4444] mb-2">Why Teams Double Down</div>
             <div className="text-xs text-gray-300 leading-relaxed space-y-1">
-              <div>• <span className="font-semibold">Week 4:</span> Easy to pivot—minimal sunk cost</div>
-              <div>• <span className="font-semibold">Week 8:</span> Starting to hurt—but still rational to pivot</div>
-              <div>• <span className="font-semibold">Week 12:</span> Political pressure emerges—"we've invested so much"</div>
-              <div>• <span className="font-semibold">Week 16:</span> Pivoting means admitting failure—teams ship bad UX instead</div>
+              <div>• <span className="font-semibold">Week 4:</span> Easy to pivot—only 4 weeks of work at risk</div>
+              <div>• <span className="font-semibold">Week 8:</span> Starting to hurt—8 weeks invested, but still rational to pivot</div>
+              <div>• <span className="font-semibold">Week 12:</span> Political pressure emerges—"we're 12 weeks in, we can't start over"</div>
+              <div>• <span className="font-semibold">Week 16:</span> Pivoting means months of wasted work—teams ship bad UX instead</div>
             </div>
           </div>
         </div>
@@ -205,10 +186,10 @@ export default function DecisionPressureDiagram() {
             <div className="text-sm font-bold text-[#00FF94] mb-2">How Rationale Eliminates This Trap</div>
             <div className="text-xs text-gray-300 leading-relaxed space-y-2">
               <div>
-                <span className="font-semibold text-white">7 prototypes before production:</span> Validate every UX decision while sunk cost is near zero. Pivoting Prototype 3 costs 2 days. Pivoting Week 12 production costs months of rework.
+                <span className="font-semibold text-white">Prototype framework before production:</span> Validate every UX decision while time invested is minimal. Pivoting a prototype costs 2 days. Pivoting Week 12 production costs months.
               </div>
               <div>
-                <span className="font-semibold text-white">Zero's proof:</span> 7 prototypes, 0 production pivots. Every major UX question answered before heavy investment. No sunk cost trap because validation happened early.
+                <span className="font-semibold text-white">Zero's proof:</span> Multiple prototypes, 0 production pivots. Every major UX question answered before committing weeks of engineering. No sunk cost trap because validation happened early.
               </div>
             </div>
           </div>
@@ -222,12 +203,12 @@ export default function DecisionPressureDiagram() {
             <div className="text-xs text-gray-500 mb-2">Traditional Approach</div>
             <div className="text-2xl font-bold text-[#FF4444] mb-1">20 weeks</div>
             <div className="text-xs text-gray-400">at risk before validation</div>
-            <div className="text-xs text-gray-500 mt-1">Sunk cost forces bad decisions</div>
+            <div className="text-xs text-gray-500 mt-1">Time pressure forces bad decisions</div>
           </div>
           <div>
             <div className="text-xs text-gray-500 mb-2">Rationale Approach</div>
             <div className="text-2xl font-bold text-[#00FF94] mb-1">2 weeks</div>
-            <div className="text-xs text-gray-400">to validate with 7 prototypes</div>
+            <div className="text-xs text-gray-400">to validate with prototypes</div>
             <div className="text-xs text-gray-500 mt-1">Pivot freely before commitment</div>
           </div>
         </div>
