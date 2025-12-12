@@ -60,11 +60,27 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
       process.env.FIREBASE_CLIENT_EMAIL &&
       process.env.FIREBASE_PRIVATE_KEY
     ) {
+      // Decode private key (supports both base64 and escaped newline formats)
+      let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+      // Check if it's base64 encoded (doesn't start with -----)
+      if (!privateKey.startsWith('-----BEGIN')) {
+        try {
+          privateKey = Buffer.from(privateKey, 'base64').toString('utf-8');
+          console.log('[Firebase Admin] Decoded base64-encoded private key');
+        } catch (error) {
+          console.error('[Firebase Admin] Failed to decode base64 private key:', error);
+        }
+      } else {
+        // Handle escaped newlines
+        privateKey = privateKey.replace(/\\n/g, '\n');
+      }
+
       adminApp = initializeApp({
         credential: cert({
           projectId: process.env.FIREBASE_PROJECT_ID,
           clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-          privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+          privateKey,
         }),
       });
     }
