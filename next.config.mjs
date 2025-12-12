@@ -15,6 +15,12 @@ const nextConfig = {
   // Disable X-Powered-By header for security
   poweredByHeader: false,
 
+  // Explicitly pass Firebase credentials to serverless functions
+  // This ensures the env var is available at runtime in Netlify functions
+  env: {
+    FIREBASE_SERVICE_ACCOUNT_BASE64: process.env.FIREBASE_SERVICE_ACCOUNT_BASE64,
+  },
+
   // Optimize images
   images: {
     remotePatterns: [
