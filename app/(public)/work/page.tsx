@@ -298,6 +298,11 @@ export default function WorkPage() {
               // Check if this project has a quick overview page
               const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
               const overviewSlug = project.slug === 'case-study-010' ? 'creait' : 'athletes-first';
+              const pitchDeckPath = project.slug === 'case-study-010'
+                ? '/clients/creait/pitch-deck'
+                : project.slug === 'case-study-020'
+                ? '/clients/athletes-first/pitch-deck'
+                : `/work/${project.slug}`;
 
               return (
                 <div key={project.id} className="relative">
@@ -386,7 +391,7 @@ export default function WorkPage() {
                                 </Link>
                               )}
                               <Link
-                                href={`/work/${project.slug}`}
+                                href={pitchDeckPath}
                                 className={`flex items-center justify-center gap-2 px-3 py-2 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded text-white hover:text-terminal-gold text-xs font-semibold transition-all ${hasQuickOverview ? '' : 'col-span-2'}`}
                                 onClick={(e) => e.stopPropagation()}
                               >
