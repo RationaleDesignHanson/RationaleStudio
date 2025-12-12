@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Hero } from '@/components/sections/Hero';
 import { GlassCard } from '@/components/visual';
-import { PasswordGate } from '@/components/sections/PasswordGate';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import type { Metadata } from 'next';
 
@@ -307,14 +306,5 @@ function CanvasContent() {
 }
 
 export default function CanvasPage() {
-  return (
-    <PasswordGate
-      password="canvas2025"
-      storageKey="canvas-project-access"
-      title="Project Canvas"
-      description="This case study is password protected. Hint: project name + year"
-    >
-      <CanvasContent />
-    </PasswordGate>
-  );
+  return <CanvasContent />;
 }

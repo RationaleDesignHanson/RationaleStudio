@@ -10,7 +10,6 @@
 import Link from 'next/link';
 import { Container, Section } from '@/components/layout';
 import { Hero } from '@/components/sections/Hero';
-import { PasswordGate } from '@/components/sections/PasswordGate';
 import { ResponsiveText, ResponsiveBox } from '@/lib/ui/responsive';
 import {
   investorOverview,
@@ -26,16 +25,9 @@ import {
   roadmap
 } from '@/lib/content/investors';
 
-const INVESTOR_DECK_PASSWORD = 'rationale2024';
-
 export default function InvestorDeckPage() {
   return (
-    <PasswordGate
-      password={INVESTOR_DECK_PASSWORD}
-      storageKey="investors-access"
-      title="Protected Investor Deck"
-      description="This deck is password-protected. Contact us if you need access."
-    >
+    <>
       {/* Hero */}
       <Section spacing="large" background="default">
         <Hero
@@ -571,6 +563,6 @@ export default function InvestorDeckPage() {
           </div>
         </Container>
       </Section>
-    </PasswordGate>
+    </>
   );
 }
