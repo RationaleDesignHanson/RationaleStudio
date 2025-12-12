@@ -21,7 +21,7 @@ export default function AthletesFirstOverviewPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-3 md:mb-6 md:mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
-              Athletes First <span className="text-cyan-400">Amplify</span>
+              Athletes First <span className="text-cyan-400">Code Name: Amplify</span>
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 mb-4 md:mb-8">
               AI-Powered NIL Platform for College Athletics
@@ -32,20 +32,13 @@ export default function AthletesFirstOverviewPage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/clients/athletes-first/pitch-deck"
               className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-cyan-400/20"
             >
               <Presentation className="w-4 h-4 md:w-5 md:h-5" />
               View Full Pitch Deck
-            </Link>
-            <Link
-              href="/work"
-              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
-            >
-              Back to Work
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
           </div>
         </div>
