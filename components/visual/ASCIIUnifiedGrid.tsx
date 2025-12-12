@@ -106,9 +106,29 @@ export function ASCIIUnifiedGrid({
   const transitionStartRef = useRef<number | null>(null);
   const transitionDuration = 2; // 2 second crossfade
   const [currentOpacityMultiplier, setCurrentOpacityMultiplier] = useState(1.0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer to detect when component is visible
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Trigger when 10% visible
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
-    if (!animated) return;
+    if (!animated || !isVisible) return;
 
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -276,7 +296,7 @@ export function ASCIIUnifiedGrid({
       clearInterval(fnInterval);
       window.removeEventListener('resize', updateCanvasSize);
     };
-  }, [animated, colorTheme, charSet]);
+  }, [animated, isVisible, colorTheme, charSet]);
 
   // Scale opacity for better visibility (0.08 becomes 0.32, 0.12 becomes 0.48)
   // Apply pattern-specific opacity multiplier (cellular pattern is reduced)

@@ -11,15 +11,18 @@
 
 'use client';
 
+import { lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { VelocityProof } from '@/components/home/VelocityProof';
-import { FitFilter } from '@/components/home/FitFilter';
-import { ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Zap, Users, TrendingUp } from '@/lib/icons';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
+
+// Lazy load below-fold components for better initial page load
+const VelocityProof = lazy(() => import('@/components/home/VelocityProof').then(m => ({ default: m.VelocityProof })));
+const FitFilter = lazy(() => import('@/components/home/FitFilter').then(m => ({ default: m.FitFilter })));
 
 export default function HomePage() {
 
@@ -333,12 +336,16 @@ export default function HomePage() {
 
             {/* Mobile: simplified version */}
             <div className="block md:hidden">
-              <VelocityProof simplified={true} />
+              <Suspense fallback={<div className="h-64 animate-pulse bg-gray-800/20 rounded-lg" />}>
+                <VelocityProof simplified={true} />
+              </Suspense>
             </div>
 
             {/* Desktop: full version */}
             <div className="hidden md:block">
-              <VelocityProof simplified={false} />
+              <Suspense fallback={<div className="h-96 animate-pulse bg-gray-800/20 rounded-lg" />}>
+                <VelocityProof simplified={false} />
+              </Suspense>
             </div>
 
             <div className="mt-8 md:mt-12 text-center">
@@ -362,7 +369,9 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <FitFilter />
+            <Suspense fallback={<div className="h-96 animate-pulse bg-gray-800/20 rounded-lg" />}>
+              <FitFilter />
+            </Suspense>
           </div>
         </section>
       </main>
