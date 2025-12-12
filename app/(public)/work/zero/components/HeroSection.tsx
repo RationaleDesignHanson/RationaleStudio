@@ -8,20 +8,87 @@ import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid items-center gap-6 lg:gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
-          {/* Left: Device Mockup or Visual */}
-          <div className="relative order-2 lg:order-1">
-            <div className="relative z-10">
-              {/* App Hero Image */}
-              <div className="aspect-square mx-auto max-w-md rounded-2xl overflow-hidden relative">
+        {/* Mobile & Tablet: Horizontal compact layout (image left, text right) */}
+        <div className="flex items-start gap-4 lg:hidden">
+          {/* Left: Small Image (always on left) */}
+          <div className="flex-shrink-0">
+            <div className="w-20 h-20 rounded-xl overflow-hidden relative">
+              <Image
+                src="/zero/app-mockup-hero.png"
+                alt="Zero App - AI Email Intelligence"
+                width={160}
+                height={160}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right: Compact Text (always on right) */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 text-xs text-gray-400 mb-2">
+              <div className="flex items-center gap-1">
+                <span className="font-semibold text-terminal-gold">Role:</span>
+                <span>Product Strategy, AI Engineering</span>
+              </div>
+            </div>
+
+            <h1 className="text-2xl font-bold text-white mb-1">
+              Zero
+            </h1>
+            <p className="text-lg font-medium text-white mb-3">
+              AI Email Intelligence
+            </p>
+
+            <p className="text-sm leading-relaxed text-gray-300 mb-4">
+              Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <BetaSignupButton
+                appName="zero"
+                source="hero_cta"
+                size="lg"
+                className="rounded-full text-sm"
+              >
+                Join Beta
+              </BetaSignupButton>
+
+              <button
+                onClick={() => {
+                  document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-terminal-gold px-4 py-2 text-sm font-semibold text-terminal-gold transition-all hover:bg-terminal-gold hover:text-black"
+              >
+                Try Demo
+              </button>
+            </div>
+
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#4ADE80]/10 px-3 py-1.5 text-xs font-medium text-[#4ADE80] mt-3">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4ADE80] opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ADE80]"></span>
+              </span>
+              In TestFlight Beta
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: 2-column layout with image on left */}
+        <div className="hidden lg:grid items-start gap-6 md:gap-6 lg:gap-8 lg:grid-cols-2">
+          {/* Left: Device Mockup (scaled to fit content height) */}
+          <div className="relative flex items-start">
+            <div className="relative z-10 w-full">
+              {/* App Hero Image - scaled to match text content height */}
+              <div className="rounded-2xl overflow-hidden relative max-w-sm">
                 <Image
                   src="/zero/app-mockup-hero.png"
                   alt="Zero App - AI Email Intelligence"
                   width={800}
                   height={800}
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="w-full h-auto object-contain rounded-2xl"
                   priority
                 />
               </div>
@@ -29,7 +96,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right: Text Content */}
-          <div className="space-y-8 order-1 lg:order-2">
+          <div className="space-y-4 md:space-y-6 lg:space-y-8">
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
               <div className="flex items-center gap-2">

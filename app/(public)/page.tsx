@@ -12,7 +12,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { VelocityProof } from '@/components/home/VelocityProof';
@@ -102,12 +101,9 @@ export default function HomePage() {
                     {/* Icon */}
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <Image
+                        <img
                           src="/images/icons/zero-icon.png"
                           alt="Zero app icon"
-                          width={80}
-                          height={80}
-                          unoptimized
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -151,12 +147,9 @@ export default function HomePage() {
                     {/* Icon */}
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <Image
+                        <img
                           src="/images/icons/heirloom-icon.png"
                           alt="Heirloom app icon"
-                          width={80}
-                          height={80}
-                          unoptimized
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -202,12 +195,9 @@ export default function HomePage() {
                   {/* Icon */}
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                      <Image
+                      <img
                         src="/images/icons/pipeline-icon.jpg"
                         alt="Pipeline icon"
-                        width={80}
-                        height={80}
-                        unoptimized
                         className="w-full h-full object-cover"
                       />
                     </div>

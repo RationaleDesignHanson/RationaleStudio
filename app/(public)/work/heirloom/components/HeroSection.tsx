@@ -6,20 +6,91 @@ import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460] py-24 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460] py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid items-center gap-6 lg:gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
-          {/* Left: Device Mockup */}
-          <div className="relative order-2 lg:order-1">
-            <div className="relative z-10">
-              {/* App Hero Image */}
-              <div className="aspect-square mx-auto max-w-md rounded-2xl overflow-hidden relative shadow-2xl">
+        {/* Mobile & Tablet: Horizontal compact layout (image left, text right) */}
+        <div className="flex items-start gap-4 lg:hidden">
+          {/* Left: Small Image (always on left) */}
+          <div className="flex-shrink-0">
+            <div className="w-20 h-20 rounded-xl overflow-hidden relative shadow-lg">
+              <Image
+                src="/heirloom/app-mockup-hero.png"
+                alt="Heirloom App - Recipes Worth Passing Down"
+                width={160}
+                height={160}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right: Compact Text (always on right) */}
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap gap-3 text-xs text-gray-600 mb-2">
+              <div className="flex items-center gap-1">
+                <span className="font-semibold text-[#E85D4D]">Role:</span>
+                <span>Product Strategy, UX Design</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="font-semibold text-[#E85D4D]">Timeline:</span>
+                <span>5 weeks</span>
+              </div>
+            </div>
+
+            <h1 className="text-2xl font-bold text-[#2D2D2D] mb-1">
+              Heirloom
+            </h1>
+            <p className="text-lg font-medium text-[#2D2D2D] mb-3">
+              Recipes Worth Passing Down
+            </p>
+
+            <p className="text-sm leading-relaxed text-gray-700 mb-4">
+              A native iOS app that preserves family recipes as beautiful, shareable artifacts—not just data.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <BetaSignupButton
+                appName="heirloom"
+                source="hero_cta"
+                size="lg"
+                className="rounded-full text-sm"
+              >
+                Join Beta
+              </BetaSignupButton>
+
+              <button
+                onClick={() => {
+                  document.getElementById('prototype')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[#E85D4D] px-4 py-2 text-sm font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
+              >
+                Try Demo
+              </button>
+            </div>
+
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#8B9F8D]/10 px-3 py-1.5 text-xs font-medium text-[#8B9F8D] mt-3">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B9F8D] opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8B9F8D]"></span>
+              </span>
+              In TestFlight Beta
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: 2-column layout with image on left */}
+        <div className="hidden lg:grid items-start gap-6 md:gap-6 lg:gap-8 lg:grid-cols-2">
+          {/* Left: Device Mockup (scaled to fit content height) */}
+          <div className="relative flex items-start">
+            <div className="relative z-10 w-full">
+              {/* App Hero Image - scaled to match text content height */}
+              <div className="rounded-2xl overflow-hidden relative shadow-2xl max-w-sm">
                 <Image
                   src="/heirloom/app-mockup-hero.png"
                   alt="Heirloom App - Recipes Worth Passing Down"
                   width={800}
                   height={800}
-                  className="w-full h-full object-cover rounded-2xl"
+                  className="w-full h-auto object-contain rounded-2xl"
                   priority
                 />
               </div>
@@ -27,7 +98,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right: Text Content */}
-          <div className="space-y-8 order-1 lg:order-2">
+          <div className="space-y-4 md:space-y-6 lg:space-y-8">
             {/* Meta Information */}
             <div className="flex flex-wrap gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-2">
