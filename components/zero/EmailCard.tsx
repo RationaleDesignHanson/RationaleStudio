@@ -16,12 +16,10 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
     return text.substring(0, maxLength) + '...';
   };
 
-  // Truncate content for ads cards to match mail card heights
-  const truncatedActions = isAdsCard
-    ? truncateText(email.aiSummary?.actions, 35)
-    : email.aiSummary?.actions;
-  const truncatedWhy = isAdsCard ? truncateText(email.aiSummary?.why, 50) : email.aiSummary?.why;
-  const truncatedContext = isAdsCard ? '' : email.aiSummary?.context;
+  // Truncate content for mobile to prevent scrolling
+  const truncatedActions = truncateText(email.aiSummary?.actions, isAdsCard ? 60 : 80);
+  const truncatedWhy = truncateText(email.aiSummary?.why, isAdsCard ? 70 : 90);
+  const truncatedContext = isAdsCard ? '' : truncateText(email.aiSummary?.context, 80);
 
   const primaryAction = email.actions.find(a => a.isPrimary) || email.actions[0];
   const intentColor = getIntentColor(email.intent);
@@ -29,7 +27,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
   return (
     <div className="relative w-full h-full flex flex-col">
       {/* Card Header */}
-      <div className="flex items-start gap-3 mb-3">
+      <div className="flex items-start gap-3 mb-2">
         {/* Square View Button */}
         <button
           onClick={(e) => {
@@ -102,7 +100,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
 
       {/* Urgency Bar */}
       {email.metadata.urgent && email.metadata.expiresIn && (
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/20 rounded-lg mb-3">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/20 rounded-lg mb-2">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
             <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14.4A6.4 6.4 0 1114.4 8 6.407 6.407 0 018 14.4z" />
             <path d="M8.8 4H7.2v5.6l4 2.4.8-1.2-3.2-1.92V4z" />
@@ -114,7 +112,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
       )}
 
       {/* Email Title with Thread Badge */}
-      <div className="text-[19px] font-bold text-white mb-3 leading-tight flex items-center gap-2 flex-wrap">
+      <div className="text-[17px] font-bold text-white mb-2 leading-tight flex items-center gap-2 flex-wrap">
         <span style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}>{email.subject}</span>
         {email.threadCount && email.threadCount > 1 && (
           <span className="inline-flex items-center gap-1 bg-blue-500/25 border border-blue-500/40 rounded-xl px-2.5 py-1 text-[11px] font-bold text-blue-300 backdrop-blur-sm">
@@ -137,11 +135,11 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
       )}
 
       {/* Email Preview */}
-      <div className="text-[15px] text-white/85 leading-relaxed mb-3">{email.preview}</div>
+      <div className="text-[14px] text-white/85 leading-snug mb-2 line-clamp-2">{email.preview}</div>
 
       {/* AI Analysis Section */}
       {email.aiSummary && (
-        <div className="relative my-3 p-3 bg-gradient-to-br from-purple-500/20 to-purple-400/15 border-[1.5px] border-purple-500/40 rounded-xl overflow-hidden">
+        <div className="relative my-2 p-2.5 bg-gradient-to-br from-purple-500/20 to-purple-400/15 border-[1.5px] border-purple-500/40 rounded-xl overflow-hidden">
           {/* Shimmer animation */}
           <div
             className="absolute top-0 left-0 w-full h-full pointer-events-none"
@@ -153,7 +151,7 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
           />
 
           {/* AI Header with Progress Bar */}
-          <div className="relative z-10 flex flex-col gap-1.5 mb-3">
+          <div className="relative z-10 flex flex-col gap-1 mb-2">
             <div className="flex items-center gap-2">
               <svg
                 width="12"
@@ -181,17 +179,17 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
           </div>
 
           {/* AI Content */}
-          <div className="relative z-10 space-y-2.5">
+          <div className="relative z-10 space-y-1.5">
             {truncatedActions && (
-              <div className="text-[15px] text-white leading-relaxed whitespace-pre-line">
+              <div className="text-[14px] text-white leading-snug line-clamp-3">
                 {truncatedActions}
               </div>
             )}
             {truncatedWhy && (
-              <div className="text-sm text-white/80 italic">{truncatedWhy}</div>
+              <div className="text-[13px] text-white/80 italic line-clamp-2">{truncatedWhy}</div>
             )}
             {truncatedContext && (
-              <div className="text-[13px] text-white/70 whitespace-pre-line leading-relaxed">
+              <div className="text-[12px] text-white/70 leading-snug line-clamp-2">
                 {truncatedContext}
               </div>
             )}
@@ -201,17 +199,17 @@ export default function EmailCard({ email, onViewClick, isAdsCard = false }: Ema
 
       {/* Pricing Section - For shopping/ads cards */}
       {email.metadata.salePrice && (
-        <div className="flex items-center gap-3 my-4">
-          <span className="text-[34px] font-bold text-white">
+        <div className="flex items-center gap-2 my-2">
+          <span className="text-[28px] font-bold text-white">
             ${email.metadata.salePrice.toFixed(0)}
           </span>
           {email.metadata.originalPrice && (
-            <span className="text-xl text-white/50 line-through">
+            <span className="text-lg text-white/50 line-through">
               ${email.metadata.originalPrice.toFixed(0)}
             </span>
           )}
           {email.metadata.discount && (
-            <span className="text-[11px] font-bold text-white px-3 py-1.5 bg-green-500/90 rounded-lg uppercase">
+            <span className="text-[10px] font-bold text-white px-2 py-1 bg-green-500/90 rounded-md uppercase">
               {email.metadata.discount}% OFF
             </span>
           )}

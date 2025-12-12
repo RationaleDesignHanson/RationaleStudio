@@ -330,13 +330,13 @@ export default function InteractiveDemo() {
             onDragEnd={handleDragEnd}
             animate={controls}
             initial={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
-            className="absolute top-6 left-6 right-6 bottom-[3.25rem] z-20 cursor-grab active:cursor-grabbing"
+            className="absolute top-6 left-6 right-6 bottom-[2.5rem] z-20 cursor-grab active:cursor-grabbing"
             style={{
               filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.3)) drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))'
             }}
           >
             <div
-              className="w-full h-full rounded-3xl p-4 flex flex-col backdrop-blur-2xl border border-white/30 overflow-y-auto relative"
+              className="w-full h-full rounded-3xl p-3 flex flex-col backdrop-blur-2xl border border-white/30 overflow-y-auto relative"
               style={{
                 background: `linear-gradient(135deg, ${getIntentColor(currentEmail.intent)}25 0%, ${getIntentColor(currentEmail.intent)}10 50%, rgba(0, 0, 0, 0.15) 100%)`,
                 boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.2), inset 0 0 60px rgba(255, 255, 255, 0.03), 0 0 60px rgba(139, 92, 246, 0.3)'
@@ -385,11 +385,11 @@ export default function InteractiveDemo() {
         )}
 
         {/* Bottom Navigation */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-black/20 backdrop-blur-xl border-t border-white/10 flex items-center justify-around px-4 z-10">
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-black/20 backdrop-blur-xl border-t border-white/10 flex items-center justify-around px-4 z-10 overflow-visible">
           <div className="flex gap-2">
             <button
               onClick={() => switchArchetype('mail')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all relative ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all relative overflow-visible ${
                 archetype === 'mail'
                   ? 'bg-blue-500 text-white'
                   : 'bg-white/10 text-white/60'
@@ -402,7 +402,7 @@ export default function InteractiveDemo() {
             </button>
             <button
               onClick={() => switchArchetype('ads')}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all relative ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all relative overflow-visible ${
                 archetype === 'ads'
                   ? 'bg-purple-500 text-white'
                   : 'bg-white/10 text-white/60'
@@ -424,7 +424,7 @@ export default function InteractiveDemo() {
             >
               ↻
             </button>
-            <button className="text-xl relative">
+            <button className="text-xl relative overflow-visible">
               🛒
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center">
                 0
