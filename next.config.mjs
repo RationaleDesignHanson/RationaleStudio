@@ -26,14 +26,6 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
-  // Tree-shake lucide-react icons
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-      skipDefaultConversion: true,
-    },
-  },
-
   // Security headers
   async headers() {
     return [
