@@ -164,53 +164,10 @@ export default function RationalePitchDeck() {
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Navigation Bar */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-black/90 backdrop-blur-md border-b border-gray-800">
           <div className="px-4 sm:px-8 py-4">
-            {/* Section Navigation */}
+            {/* Slide Controls - moved to top */}
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                {sections.map((section, index) => (
-                  <button
-                    key={section.id}
-                    onClick={() => goToSection(index)}
-                    className={`px-3 py-1 text-xs font-mono rounded transition-all ${
-                      activeSection === index
-                        ? 'bg-white/10 text-white'
-                        : 'text-white/40 hover:text-white/70'
-                    }`}
-                    style={{
-                      borderLeft: activeSection === index ? `3px solid ${SECTION_COLORS[section.id]}` : 'none'
-                    }}
-                  >
-                    {section.navLabel}
-                  </button>
-                ))}
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="text-xs text-white/40 font-mono hidden sm:block">
-                  Click anywhere or use arrow keys
-                </div>
-                <a
-                  href="/"
-                  className="flex items-center gap-2 px-3 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-colors"
-                  aria-label="Exit overview"
-                  title="Exit and return to homepage"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <span className="text-sm hidden md:inline">Exit</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Slide Content */}
-        <div className="flex-1 pt-24 pb-12 cursor-pointer" onClick={nextSlide}>
-          <div className="px-4 sm:px-8 max-w-6xl mx-auto">
-            {/* Slide Controls */}
-            <div className="flex items-center justify-between gap-3 mb-8" onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center gap-2">
                 <button
                   disabled={activeSlide === 0 && activeSection === 0}
@@ -229,7 +186,6 @@ export default function RationalePitchDeck() {
                   className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 text-white/60 hover:text-white transition-all"
                   aria-label="Exit overview"
                   title="Exit and return to homepage"
-                  onClick={(e) => e.stopPropagation()}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -238,16 +194,8 @@ export default function RationalePitchDeck() {
                 </a>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-white/40">{currentSection.title}</span>
-                <span className="text-white/40">·</span>
-                <span className="text-white/60">
-                  {activeSlide + 1} of {totalSlides}
-                </span>
-              </div>
-
               <button
-                disabled={activeSlide === totalSlides - 1 && activeSection === sections.length - 1}
+                disabled={activeSlide === sections[activeSection].slides.length - 1 && activeSection === sections.length - 1}
                 onClick={nextSlide}
                 className="flex items-center gap-2 px-4 py-2 rounded border border-gray-700 hover:border-terminal-gold bg-gray-900/50 hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-700 disabled:hover:bg-gray-900/50 transition-all"
                 aria-label="Next slide"
@@ -259,10 +207,44 @@ export default function RationalePitchDeck() {
               </button>
             </div>
 
+            {/* Section Navigation - moved below */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3 sm:gap-2 overflow-x-auto">
+                {sections.map((section, index) => (
+                  <button
+                    key={section.id}
+                    onClick={() => goToSection(index)}
+                    className={`text-[9px] font-mono transition-all whitespace-nowrap
+                      sm:px-3 sm:py-1 sm:text-xs sm:rounded
+                      ${
+                        activeSection === index
+                          ? 'text-white pb-1 border-b-2 sm:pb-0 sm:border-b-0 sm:bg-white/10'
+                          : 'text-white/40 hover:text-white/70 pb-1 border-b-2 border-transparent sm:pb-0 sm:border-b-0'
+                      }`}
+                    style={{
+                      borderBottomColor: activeSection === index ? SECTION_COLORS[section.id] : 'transparent',
+                      borderLeft: activeSection === index ? `3px solid ${SECTION_COLORS[section.id]}` : 'none'
+                    }}
+                  >
+                    {section.navLabel}
+                  </button>
+                ))}
+              </div>
+              <div className="text-xs text-white/40 font-mono hidden sm:block">
+                Click anywhere or use arrow keys
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Slide Content */}
+        <div className="flex-1 pt-40 pb-12 px-4 sm:px-8 cursor-pointer" onClick={nextSlide}>
+          <div className="max-w-6xl mx-auto h-full flex flex-col justify-center">
+
             {/* Slide Render */}
             {currentSlide.type === 'section-header' ? (
               // Section Header Slide
-              <div className="flex flex-col items-center justify-center min-h-[calc(70vh-4rem)]">
+              <div className="flex flex-col items-center justify-center">
                 <div
                   className="mb-6 px-4 py-2 border-2 font-mono text-sm backdrop-blur-sm bg-black/20"
                   style={{ borderColor: currentColor, color: currentColor }}
@@ -270,7 +252,7 @@ export default function RationalePitchDeck() {
                   SECTION {currentSlide.sectionNumber}
                 </div>
                 <h2
-                  className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 text-center px-4"
+                  className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-center px-4 leading-tight"
                   style={{ color: currentColor }}
                 >
                   {currentSlide.headline}
@@ -284,9 +266,9 @@ export default function RationalePitchDeck() {
               <div className="space-y-8">
                 {/* Headline */}
                 <div className="text-center">
-                  <h2 className="text-4xl sm:text-5xl font-bold mb-4">{currentSlide.headline}</h2>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight">{currentSlide.headline}</h2>
                   {currentSlide.content && (
-                    <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-sm sm:text-base text-white/70 max-w-3xl mx-auto leading-snug">
                       {currentSlide.content}
                     </p>
                   )}
@@ -317,7 +299,7 @@ export default function RationalePitchDeck() {
                       className="text-sm font-mono uppercase tracking-wide cursor-pointer hover:text-[#FFE34D] transition-colors"
                       style={{ color: currentColor }}
                     >
-                      Deep Dive: {currentSlide.deepDive.title} →
+                      Deep Dive: {currentSlide.deepDive.title}
                     </summary>
                     <div className="mt-6 space-y-5">
                       {currentSlide.deepDive.sections.map((section, idx) => (

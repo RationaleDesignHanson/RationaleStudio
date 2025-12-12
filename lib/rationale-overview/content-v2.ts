@@ -83,7 +83,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'build-first-trap',
         type: 'problem',
         headline: 'The Build-First Trap',
-        content: 'Most teams commit to production architecture before validating core assumptions. By the time users see it, you\'re 3-6 months in. Pivoting means throwing away weeks of work. Killing means political fallout.',
+        content: 'Teams commit to production before validating how it will be used and what good looks like.',
         visual: {
           type: 'component',
           component: 'TraditionalVsRationaleDiagram' // Dual-track Gantt timeline
@@ -94,7 +94,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Why Specs Fail',
-              content: 'Users don\'t know what they want until they feel it. A 20-page spec describes an interaction. A prototype lets users experience it. Experience reveals problems specs can\'t predict. Example: Zero\'s spec said "swipe left to archive." Prototype testing: 73% of users expected swipe right. We pivoted in Day 3, not Month 4.'
+              content: 'Users don\'t know what they want until they feel it. A 20-page spec describes an interaction. A prototype lets users experience it. Experience reveals problems specs can\'t predict. Example: Zero\'s prototype had cards users could swipe. Reality: Users tapped instead of swiping. We added tap affordances in Day 3, not Month 4.'
             },
             {
               title: 'The Sunk Cost Problem',
@@ -107,7 +107,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'cost-of-waiting',
         type: 'problem',
         headline: 'The Cost of Waiting',
-        content: 'Traditional approach: 4w specs + 16w build + 4w testing = 24 weeks at risk before first user feedback. When you finally discover the UX doesn\'t work, you\'re too deep to pivot.',
+        content: 'Specs + build + testing = ~24 weeks at risk before user feedback. By the time you discover the UX doesn\'t work, you\'re too deep to pivot.',
         visual: {
           type: 'component',
           component: 'CostComparisonChart'
@@ -144,7 +144,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Prototypes as Decision Tools',
-              content: 'Traditional: Write 20-page spec, debate for weeks, build, discover issues in production. Rationale: Build Prototype 1 in 2 days, put in user hands, get answer. Example: Zero Prototype 3 tested swipe direction. 73% of users expected opposite of our hypothesis. We pivoted immediately—before writing any production code. Cost: 2 days. Savings: 2 weeks of rework.'
+              content: 'Each prototype answers a binary question. Not "does this look good?" but "can users complete the core task?" Prototype 1: Can users understand the value proposition in 5 seconds? Pass → Build Prototype 2. Fail → Pivot concept or kill. Example: Zero tested tap vs. swipe interaction. Users tapped instead of swiping. We added tap affordances in Day 3, not Month 4.'
             },
             {
               title: 'Adaptive, Flexible Frameworks',
@@ -152,7 +152,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
             },
             {
               title: 'Why This Saves Time',
-              content: 'Counterintuitive: "7 prototypes sounds slow." Reality: Prototype 1 takes 2 days. Finding the same issue in production takes 2 weeks to fix. Prototypes are low-fidelity, high-speed. Production is high-fidelity, low-speed. We de-risk the high-speed phase so production is single-pass, not iterative guessing. Zero had 0 architectural pivots during production because we validated with 7 prototypes first.'
+              content: 'Not linear. We don\'t always start at Prototype 1. Some projects begin at information architecture (3-4). Some skip edge cases (5-6) if the interaction model is proven. The framework adapts to your starting point and risk profile. What\'s consistent: Each prototype answers one question before moving to production. Zero had 0 architectural pivots during production because we validated assumptions in the high-speed phase, not the low-speed phase.'
             }
           ]
         }
@@ -161,7 +161,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'framework-stages',
         type: 'solution',
         headline: 'Spec vs Prototype',
-        content: 'Specs describe interactions. Prototypes reveal behavior. Example: Zero\'s spec said "swipe left to archive." Prototype 3 showed 73% of users expected swipe right. We pivoted in 2 days instead of discovering this in Week 16 of production.',
+        content: 'Specs describe what something should do. Prototypes show how it feels and what it needs to do. Example: A spec says "users can filter by category." A prototype reveals the interaction feels clunky and needs inline filtering, not a modal. We catch this in Day 2, not Week 16 of production.',
         visual: {
           type: 'component',
           component: 'SpecVsPrototypeDiagram'
@@ -181,7 +181,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'dual-engine-model',
         type: 'solution',
         headline: 'Why We Build Our Own Products',
-        content: 'Internal products (Zero, Rationale Site) test methodologies in production. Client partnerships apply proven patterns. Revenue from clients funds internal R&D. Each engine feeds the other—creating systematic competitive advantage.',
+        content: 'Internal products test methodologies in production. Client partnerships apply proven patterns. Revenue from clients funds internal R&D. Each engine feeds the other—creating systematic competitive advantage.',
         visual: {
           type: 'component',
           component: 'DualEngineModel'
@@ -229,15 +229,15 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
           sections: [
             {
               title: 'Architecture Proof',
-              content: '10 microservices: Gateway (routing), Email (IMAP/SMTP), Classifier (AI categorization), Summarization (AI summaries), Shopping Agent (deal detection), Steel Agent (action execution), Scheduled Purchase (recurring orders), Smart Replies (AI suggestions), Actions (workflow), Analytics (telemetry). 182 Swift files organized with MVVM pattern, SwiftUI views, Combine publishers, async/await concurrency. A+ architecture reviewed by senior iOS engineers.'
+              content: 'Zero isn\'t a demo. It\'s a real production system with 10 backend services handling everything from email sync to AI processing to purchase automation. The iOS app has 182 Swift files using modern patterns that senior engineers reviewed and rated A+. This is the kind of architecture you build when you know exactly what you need—because we validated it all in prototypes first.'
             },
             {
               title: 'Velocity Proof',
-              content: 'Week 1-2: 7 prototypes built and tested. Prototype 3 pivot on swipe direction. Week 3-4: Production development with 0 architectural changes (prototypes validated everything). Week 5: App Store submission and approval. Total: Concept to live product in 30 days.'
+              content: 'Weeks 1-2: Built prototypes to test the core interactions. Discovered users preferred tapping over swiping—pivoted in days, not months. Weeks 3-4: Built production with zero architectural surprises because prototypes caught everything. Week 5: Shipped to App Store. That\'s 30 days from idea to live product, with no "we should have tested this" moments.'
             },
             {
               title: 'Product Thinking Proof',
-              content: 'Not just engineering. Complete product strategy: 4-cohort beta rollout (friends → power users → general → scale), progressive quality scaling from 85% to 95%+ AI accuracy through structured user feedback, 8-week go/no-go checkpoint with clear metrics, 24-week roadmap with bootstrap and funded scenarios, complete financial model with TAM/SAM/SOM analysis. This is what working software with validated execution plans looks like.'
+              content: 'This isn\'t just engineering. Zero shipped with a complete go-to-market plan: phased rollout strategy, 8-week checkpoints to evaluate if we continue or pivot, a 24-week roadmap with both bootstrapped and funded scenarios. We mapped out how to scale AI accuracy through structured feedback loops before we had users. That\'s what it looks like when you build the strategy alongside the product, not after launch.'
             }
           ]
         }
@@ -272,7 +272,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'engagement-models',
         type: 'custom',
         headline: 'Two Ways to Engage',
-        content: '3-Week Sprint validates your hypothesis with prototypes before you commit to production. 12-Week Pilot delivers a complete product from concept to users. Both include clear checkpoints and exit options.',
+        content: '4-Week Sprint validates your hypothesis with prototypes before you commit to production. 12+ Week Pilot delivers a complete product from concept to users. Both include clear checkpoints and exit options.',
         visual: {
           type: 'component',
           component: 'EngagementModelsGrid'
@@ -292,20 +292,10 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'checkpoint-details',
         type: 'custom',
         headline: 'Service Offerings',
-        content: '3-Week Sprint: 7 prototypes + architecture, 10-15x ROI through avoided waste. 12-Week Pilot: Sprint + full production build, 15-20x ROI with 6 months time saved.',
+        content: '4-Week Sprint: Prototypes + architecture, 10-15x ROI through avoided waste. 12+ Week Pilot: Sprint + full production build, 15-20x ROI with 6 months time saved.',
         visual: {
           type: 'component',
           component: 'ServiceOfferingBreakdown'
-        }
-      },
-      {
-        id: 'proof-diversity',
-        type: 'custom',
-        headline: 'Proof Diversity',
-        content: 'Three proof points demonstrate systematic velocity across domains. Consumer product (Zero), enterprise B2B platform (Case Study 010), complex multi-module system (Case Study 020). Same methodology, different contexts.',
-        visual: {
-          type: 'component',
-          component: 'ProofDiversityInfographic'
         }
       },
       {
@@ -316,16 +306,6 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         visual: {
           type: 'component',
           component: 'WhoThisIsForInfographic'
-        }
-      },
-      {
-        id: 'dual-engine-advantage',
-        type: 'custom',
-        headline: 'The Dual Engine Advantage',
-        content: 'Internal products (Zero, Rationale Site) test methodologies in production. Client partnerships apply proven patterns. Revenue from clients funds internal R&D. Each engine feeds the other—creating systematic competitive advantage.',
-        visual: {
-          type: 'component',
-          component: 'DualEngineModel'
         }
       },
       {

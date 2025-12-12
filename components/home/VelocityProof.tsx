@@ -150,7 +150,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
         {/* Timeline bar */}
         <div className="relative h-16 bg-gray-800/50 rounded-lg overflow-hidden border border-accent/30">
           <div className="absolute inset-0 flex">
-            {/* 7 Prototypes phase */}
+            {/* Rapidly Prototype phase */}
             <div
               className="flex items-center justify-center px-4 border-r border-gray-700/50"
               style={{
@@ -159,7 +159,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
               }}
             >
               <span className="text-xs font-medium text-gray-900 text-center">
-                7 Prototypes
+                Rapidly Prototype
               </span>
             </div>
 
