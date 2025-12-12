@@ -136,7 +136,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-start gap-2">
                         <Users className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-400">Investor preview available for qualified partners</span>
+                        <span className="text-gray-400">Reclaim hours each week from email overload</span>
                       </div>
                     </div>
                   </div>
