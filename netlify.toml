@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/write-firebase-credentials.cjs && npm run build"
+  command = "npm run build"
   # No publish directory - @netlify/plugin-nextjs handles deployment automatically
 
 [build.environment]
@@ -8,11 +8,6 @@
   # Firebase Client SDK environment variables are set in Netlify Dashboard
   # Bypass secrets scanner for Firebase public API keys (they're meant for client-side)
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
-  # Firebase Admin SDK environment variables - values set in Netlify Dashboard
-  # These declarations make the variables available during build without overriding Dashboard values
-  FIREBASE_PROJECT_ID = "${FIREBASE_PROJECT_ID}"
-  FIREBASE_CLIENT_EMAIL = "${FIREBASE_CLIENT_EMAIL}"
-  FIREBASE_PRIVATE_KEY = "${FIREBASE_PRIVATE_KEY}"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -22,6 +17,10 @@
 
 [[functions."*"]]
   timeout = 26
+
+# Make Firebase Admin credentials available to serverless functions
+[functions.environment]
+  FIREBASE_SERVICE_ACCOUNT_BASE64 = "${FIREBASE_SERVICE_ACCOUNT_BASE64}"
 
 # Cache optimization for static assets
 [[headers]]
