@@ -13,6 +13,7 @@
 
 import { lazy, Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ArrowRight, Zap, Users, TrendingUp } from '@/lib/icons';
@@ -103,11 +104,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <img
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                        <Image
                           src="/images/icons/zero-icon.png"
                           alt="Zero app icon"
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                          className="object-cover"
+                          priority
                         />
                       </div>
                     </div>
@@ -149,11 +153,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <img
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                        <Image
                           src="/images/icons/heirloom-icon.png"
                           alt="Heirloom app icon"
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                          className="object-cover"
+                          priority
                         />
                       </div>
                     </div>
@@ -197,11 +204,13 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-3">
                   {/* Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                      <img
+                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                      <Image
                         src="/images/icons/pipeline-icon.jpg"
                         alt="Pipeline icon"
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                        className="object-cover"
                       />
                     </div>
                   </div>
