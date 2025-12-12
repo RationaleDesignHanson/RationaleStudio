@@ -1,6 +1,7 @@
 // components/HeroSection.tsx
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
@@ -14,10 +15,12 @@ export default function HeroSection() {
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0">
               <div className="w-20 h-20 rounded-xl overflow-hidden relative shadow-lg">
-                <img
+                <Image
                   src="/heirloom/app-mockup-hero.png"
                   alt="Heirloom App - Recipes Worth Passing Down"
-                  className="w-full h-full object-contain"
+                  fill
+                  sizes="80px"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -64,10 +67,12 @@ export default function HeroSection() {
         {/* Desktop: Flex layout with image on left */}
         <div className="hidden xl:flex items-start gap-6">
           {/* Left: Device Mockup */}
-          <div className="flex-shrink-0 max-h-[200px] max-w-[200px]">
-            <img
+          <div className="flex-shrink-0 max-h-[200px] max-w-[200px] relative">
+            <Image
               src="/heirloom/app-mockup-hero.png"
               alt="Heirloom App - Recipes Worth Passing Down"
+              width={200}
+              height={200}
               className="w-full h-full object-contain rounded-2xl"
             />
           </div>
