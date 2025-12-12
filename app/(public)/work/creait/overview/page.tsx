@@ -67,13 +67,13 @@ export default function CREaiTOverviewPage() {
               </ul>
             </div>
             <div className="p-4 md:p-6 bg-gray-900/50 border border-red-500/30 rounded-lg">
-              <h3 className="text-lg md:text-xl font-bold text-red-400 mb-4">What's Missing</h3>
+              <h3 className="text-lg md:text-xl font-bold text-red-400 mb-4">The Critical Gap</h3>
               <ul className="space-y-3 text-gray-300">
-                <li>• No investor-ready pitch deck</li>
-                <li>• Technical architecture needs scaling strategy</li>
-                <li>• UI/UX requires professional design system</li>
-                <li>• Missing key features for enterprise buyers</li>
-                <li>• No go-to-market positioning</li>
+                <li>• Scoring engine completely missing (0 implementations)</li>
+                <li>• Opportunity intelligence API not built</li>
+                <li>• Scoring dashboard UI doesn't exist</li>
+                <li>• Frontend bypasses backend (39 direct DB calls)</li>
+                <li>• Data pipeline automation not implemented</li>
               </ul>
             </div>
           </div>
