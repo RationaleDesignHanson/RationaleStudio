@@ -93,20 +93,20 @@ export default function HomePage() {
             </div>
 
             {/* Row 1: Zero and Heirloom */}
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 px-4 sm:px-0">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-10 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <Link href="/work/zero" className="block p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all cursor-pointer">
-                <div className="flex flex-col">
+              <Link href="/work/zero" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-terminal-gold/30 md:border-terminal-gold/40 rounded-lg hover:border-terminal-gold/50 md:hover:border-terminal-gold/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col md:space-y-6">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                         <Image
                           src="/images/icons/zero-icon.png"
                           alt="Zero app icon"
-                          width={56}
-                          height={56}
+                          width={80}
+                          height={80}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -114,45 +114,47 @@ export default function HomePage() {
 
                     {/* Title and Badge */}
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
-                      <h3 className="text-lg md:text-xl font-bold text-white">Zero</h3>
-                      <span className="inline-block px-1.5 py-0.5 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
+                      <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Zero</h3>
+                      <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] md:text-xs text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
                         Beta · Dogfooding
                       </span>
                     </div>
                   </div>
 
                   {/* Description - Full Width Row */}
-                  <p className="text-sm text-gray-300 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                     AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
                   </p>
-                </div>
 
-                {/* Additional Details */}
-                <div className="hidden md:block space-y-3 text-sm">
-                  <div className="flex items-start gap-2">
-                    <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Used daily by our team to validate core workflows</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Investor preview available for qualified partners</span>
+                  {/* Additional Details */}
+                  <div className="hidden md:block md:pt-6 md:border-t md:border-gray-800">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-2">
+                        <TrendingUp className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-400">Used daily by our team to validate core workflows</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Users className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-400">Investor preview available for qualified partners</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>
 
               {/* Heirloom - Beta/Dogfooding */}
-              <Link href="/work/heirloom" className="block p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all cursor-pointer">
-                <div className="flex flex-col">
+              <Link href="/work/heirloom" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
+                <div className="flex flex-col md:space-y-6">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                         <Image
                           src="/images/icons/heirloom-icon.png"
                           alt="Heirloom app icon"
-                          width={56}
-                          height={56}
+                          width={80}
+                          height={80}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -160,46 +162,48 @@ export default function HomePage() {
 
                     {/* Title and Badge */}
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
-                      <h3 className="text-lg md:text-xl font-bold text-white">Heirloom</h3>
-                      <span className="inline-block px-1.5 py-0.5 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
+                      <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Heirloom</h3>
+                      <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] md:text-xs text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
                         Beta · Dogfooding
                       </span>
                     </div>
                   </div>
 
                   {/* Description - Full Width Row */}
-                  <p className="text-sm text-gray-300 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                     Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
                   </p>
-                </div>
 
-                {/* Additional Details */}
-                <div className="hidden md:block space-y-3 text-sm">
-                  <div className="flex items-start gap-2">
-                    <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Native iOS app built for TestFlight launch</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-400">Recipe capture, styling, and sharing workflows complete</span>
+                  {/* Additional Details */}
+                  <div className="hidden md:block md:pt-6 md:border-t md:border-gray-800">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-2">
+                        <TrendingUp className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-400">Native iOS app built for TestFlight launch</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <Users className="w-4 h-4 text-[#00D9FF] mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-400">Recipe capture, styling, and sharing workflows complete</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <Link href="/contact" className="block p-4 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0 hover:border-gray-600 transition-all cursor-pointer">
-              <div className="flex flex-col">
+            <Link href="/contact" className="block p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0 hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <div className="flex flex-col md:space-y-6">
                 {/* Icon, Title, and Badge Row */}
                 <div className="flex items-center gap-3 mb-3">
                   {/* Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden">
+                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                       <Image
                         src="/images/icons/pipeline-icon.jpg"
                         alt="Pipeline icon"
-                        width={56}
-                        height={56}
+                        width={80}
+                        height={80}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -207,28 +211,30 @@ export default function HomePage() {
 
                   {/* Title and Badge */}
                   <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
-                    <h3 className="text-lg md:text-xl font-bold text-white">Pipeline</h3>
-                    <span className="inline-block px-1.5 py-0.5 bg-gray-700/50 border border-gray-600 rounded-full text-[0.65rem] text-gray-300 font-medium whitespace-nowrap flex-shrink-0">
+                    <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Pipeline</h3>
+                    <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-gray-700/50 border border-gray-600 rounded-full text-[0.65rem] md:text-xs text-gray-300 font-medium whitespace-nowrap flex-shrink-0">
                       Q1–Q2 2025
                     </span>
                   </div>
                 </div>
 
                 {/* Description - Full Width Row */}
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                   Multiple products in development across productivity, knowledge work, and enterprise automation.
                 </p>
-              </div>
 
-              {/* Additional Details */}
-              <div className="hidden md:block space-y-3 text-sm">
-                <div className="flex items-start gap-2">
-                  <TrendingUp className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-400">Validation phase for 3 concepts</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-400">Prototype testing with select partners</span>
+                {/* Additional Details */}
+                <div className="hidden md:block md:pt-6 md:border-t md:border-gray-800">
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-start gap-2">
+                      <TrendingUp className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-400">Validation phase for 3 concepts</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-400">Prototype testing with select partners</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Link>
