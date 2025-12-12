@@ -39,7 +39,18 @@ export async function POST(request: NextRequest) {
     // Get user profile from Firestore using Admin SDK (bypasses security rules)
     const userProfile = await getAdminUserProfile(uid);
 
+    console.log('[Session API] User profile lookup:', {
+      uid,
+      profileFound: !!userProfile,
+      profile: userProfile,
+    });
+
     if (!userProfile || !userProfile.role) {
+      console.error('[Session API] Profile validation failed:', {
+        hasProfile: !!userProfile,
+        hasRole: userProfile ? !!userProfile.role : false,
+        role: userProfile?.role || null,
+      });
       return NextResponse.json(
         { error: 'User profile not found or missing role' },
         { status: 403 }
