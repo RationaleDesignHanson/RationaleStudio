@@ -20,7 +20,7 @@ export default function AtAGlance() {
           </div>
           <div className="flex justify-between items-center py-2.5">
             <dt className="text-xs font-semibold uppercase tracking-wide text-gray-400">AI Power</dt>
-            <dd className="text-sm font-bold text-terminal-gold">43 Intents</dd>
+            <dd className="text-sm font-bold text-terminal-gold">43 Intents / 168 Actions<span className="block text-xs font-normal text-gray-400 mt-0.5">159 actions + 9 compound</span></dd>
           </div>
           <div className="flex justify-between items-center py-2.5">
             <dt className="text-xs font-semibold uppercase tracking-wide text-gray-400">Status</dt>
@@ -53,27 +53,21 @@ export default function AtAGlance() {
             <h4 className="text-xs font-bold text-white mb-2">Key Capabilities</h4>
             <ul className="space-y-1.5 text-xs text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">Swipe Interface:</strong> Card-based triage for instant actions</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">AI Classification:</strong> 43 intent categories auto-identify bills, packages, RSVPs</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">Entity Extraction:</strong> Tracking numbers, due dates, amounts surfaced instantly</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">Gmail Integration:</strong> OAuth 2.0 secure authentication, read-only access</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">Native iOS Actions:</strong> Add to Calendar, Contacts, Wallet—works offline</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#4ADE80] flex-shrink-0">✓</span>
                 <span><strong className="text-white">Cloud Architecture:</strong> 10 microservices on Google Cloud Run, async job queue</span>
               </li>
             </ul>
@@ -95,21 +89,22 @@ export default function AtAGlance() {
             <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Platform</div>
             <div className="text-3xl font-bold text-terminal-gold">iOS 17+</div>
             <div className="mt-1 text-sm text-gray-300">Native SwiftUI</div>
-            <div className="mt-2 text-xs text-[#4ADE80]">✓ Cloud backend integration</div>
+            <div className="mt-2 text-xs text-[#4ADE80]">Cloud backend integration</div>
           </div>
 
           <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-4">
             <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">AI Power</div>
-            <div className="text-3xl font-bold text-terminal-gold">43</div>
-            <div className="mt-1 text-sm text-gray-300">Intent categories</div>
-            <div className="mt-2 text-xs text-[#4ADE80]">✓ Claude 3.5 Sonnet</div>
+            <div className="text-3xl font-bold text-terminal-gold">43 / 168</div>
+            <div className="mt-1 text-sm text-gray-300">Intents / Actions</div>
+            <div className="mt-2 text-xs text-gray-400">159 actions + 9 compound</div>
+            <div className="mt-1 text-xs text-[#4ADE80]">Claude 3.5 Sonnet</div>
           </div>
 
           <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-4">
             <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Status</div>
             <div className="text-3xl font-bold text-terminal-gold">Beta</div>
             <div className="mt-1 text-sm text-gray-300">Available now</div>
-            <div className="mt-2 text-xs text-[#4ADE80]">✓ Gmail OAuth ready</div>
+            <div className="mt-2 text-xs text-[#4ADE80]">Gmail OAuth ready</div>
           </div>
         </div>
 
@@ -140,37 +135,31 @@ export default function AtAGlance() {
           <h4 className="mb-4 text-base font-bold text-white">Key Capabilities</h4>
           <div className="grid gap-3 text-sm md:grid-cols-2">
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">Swipe Interface:</strong> Card-based triage makes email actions immediate—swipe right to pay bills, RSVP to events, track packages
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">AI Classification:</strong> 43 intent categories automatically identify bills, packages, RSVPs, forms, subscriptions, and more
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">Entity Extraction:</strong> Pulls tracking numbers, due dates, amounts, event details—surfaced instantly without opening emails
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">Gmail Integration:</strong> OAuth 2.0 secure authentication with read-only permissions. No email content stored.
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">Native iOS Actions:</strong> Add to Calendar, Save to Contacts, Add to Wallet—device integrations that work offline
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-[#4ADE80]">✓</span>
               <span className="text-gray-300">
                 <strong className="text-white">Cloud Architecture:</strong> 10 microservices on Google Cloud Run with async job queue handle classification at scale
               </span>
