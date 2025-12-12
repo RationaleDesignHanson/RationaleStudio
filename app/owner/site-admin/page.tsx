@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Trash2, Archive, ExternalLink, Filter, Download } from 'lucide-react';
+import { Search, Trash2, Archive, ExternalLink, Filter, Download, Tag, X, Plus } from 'lucide-react';
 
 interface PageEntry {
   route: string;
@@ -12,6 +12,7 @@ interface PageEntry {
   fileSize?: string;
   isProtected: boolean;
   isDuplicate?: boolean;
+  tags?: string[];
 }
 
 const CATEGORY_COLORS = {
@@ -31,10 +32,13 @@ export default function SiteAdminPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [tagFilter, setTagFilter] = useState<string>('all');
   const [selectedPages, setSelectedPages] = useState<Set<string>>(new Set());
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [confirmText, setConfirmText] = useState('');
   const [sortBy, setSortBy] = useState<'route' | 'lastModified' | 'category'>('route');
+  const [editingTags, setEditingTags] = useState<string | null>(null);
+  const [newTag, setNewTag] = useState('');
 
   // Fetch pages on mount
   useEffect(() => {
@@ -46,12 +50,69 @@ export default function SiteAdminPage() {
     try {
       const response = await fetch('/api/admin/pages');
       const data = await response.json();
-      setPages(data.pages || []);
+
+      // Load tags from localStorage
+      const savedTags = localStorage.getItem('page-tags');
+      const tagsMap = savedTags ? JSON.parse(savedTags) : {};
+
+      // Merge tags with pages
+      const pagesWithTags = (data.pages || []).map((page: PageEntry) => ({
+        ...page,
+        tags: tagsMap[page.filePath] || []
+      }));
+
+      setPages(pagesWithTags);
     } catch (error) {
       console.error('Failed to fetch pages:', error);
     } finally {
       setLoading(false);
     }
+  }
+
+  // Save tags to localStorage
+  function saveTags(filePath: string, tags: string[]) {
+    const savedTags = localStorage.getItem('page-tags');
+    const tagsMap = savedTags ? JSON.parse(savedTags) : {};
+    tagsMap[filePath] = tags;
+    localStorage.setItem('page-tags', JSON.stringify(tagsMap));
+
+    // Update pages state
+    setPages(pages.map(p =>
+      p.filePath === filePath ? { ...p, tags } : p
+    ));
+  }
+
+  // Add tag to page
+  function addTag(filePath: string, tag: string) {
+    const page = pages.find(p => p.filePath === filePath);
+    if (!page) return;
+
+    const normalizedTag = tag.trim().toLowerCase();
+    if (!normalizedTag) return;
+
+    const currentTags = page.tags || [];
+    if (currentTags.includes(normalizedTag)) return;
+
+    const newTags = [...currentTags, normalizedTag];
+    saveTags(filePath, newTags);
+  }
+
+  // Remove tag from page
+  function removeTag(filePath: string, tag: string) {
+    const page = pages.find(p => p.filePath === filePath);
+    if (!page) return;
+
+    const newTags = (page.tags || []).filter(t => t !== tag);
+    saveTags(filePath, newTags);
+  }
+
+  // Get all unique tags
+  function getAllTags(): string[] {
+    const tagSet = new Set<string>();
+    pages.forEach(page => {
+      (page.tags || []).forEach(tag => tagSet.add(tag));
+    });
+    return Array.from(tagSet).sort();
   }
 
   // Determine if a page is a deletion candidate
@@ -75,12 +136,16 @@ export default function SiteAdminPage() {
       if (statusFilter === 'protected' && !page.isProtected) return false;
       if (statusFilter === 'deletion-candidates' && !isDeletionCandidate(page)) return false;
 
+      // Tag filter
+      if (tagFilter !== 'all' && !(page.tags || []).includes(tagFilter)) return false;
+
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         return (
           page.route.toLowerCase().includes(query) ||
           page.title.toLowerCase().includes(query) ||
-          page.filePath.toLowerCase().includes(query)
+          page.filePath.toLowerCase().includes(query) ||
+          (page.tags || []).some(tag => tag.includes(query))
         );
       }
       return true;
@@ -282,11 +347,26 @@ export default function SiteAdminPage() {
                 <option value="deletion-candidates">Deletion Candidates</option>
               </select>
 
+              {/* Tag Filter */}
+              <div className="relative">
+                <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                <select
+                  value={tagFilter}
+                  onChange={(e) => setTagFilter(e.target.value)}
+                  className="w-full pl-10 pr-8 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="all">All Tags</option>
+                  {getAllTags().map(tag => (
+                    <option key={tag} value={tag}>{tag}</option>
+                  ))}
+                </select>
+              </div>
+
               {/* Sort */}
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white sm:col-span-2 lg:col-span-2"
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
               >
                 <option value="route">Sort by Route</option>
                 <option value="category">Sort by Category</option>
@@ -300,10 +380,10 @@ export default function SiteAdminPage() {
             <span className="text-sm text-gray-600">
               Showing {filteredPages.length} of {stats.total} pages
             </span>
-            {(categoryFilter !== 'all' || statusFilter !== 'all') && (
+            {(categoryFilter !== 'all' || statusFilter !== 'all' || tagFilter !== 'all') && (
               <>
                 <span className="text-sm text-gray-400">•</span>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   {categoryFilter !== 'all' && (
                     <button
                       onClick={() => setCategoryFilter('all')}
@@ -326,6 +406,15 @@ export default function SiteAdminPage() {
                       {statusFilter === 'protected' && 'Protected'}
                       {statusFilter === 'deletion-candidates' && 'Deletion Candidates'}
                       <span>×</span>
+                    </button>
+                  )}
+                  {tagFilter !== 'all' && (
+                    <button
+                      onClick={() => setTagFilter('all')}
+                      className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm flex items-center gap-1 hover:bg-indigo-200 transition-colors"
+                    >
+                      Tag: {tagFilter}
+                      <span className="text-indigo-900">×</span>
                     </button>
                   )}
                 </div>
@@ -388,6 +477,7 @@ export default function SiteAdminPage() {
                     </th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Route</th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Category</th>
+                    <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap">Tags</th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden lg:table-cell">Title</th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden md:table-cell">Last Modified</th>
                     <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase whitespace-nowrap hidden xl:table-cell">Size</th>
@@ -433,6 +523,53 @@ export default function SiteAdminPage() {
                           <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap ${CATEGORY_COLORS[page.category]}`}>
                             {page.category}
                           </span>
+                        </td>
+                        <td className="px-3 sm:px-6 py-4">
+                          <div className="flex flex-wrap gap-1 items-center min-w-[120px]">
+                            {(page.tags || []).map(tag => (
+                              <span
+                                key={tag}
+                                className="inline-flex items-center gap-1 px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs rounded-full whitespace-nowrap"
+                              >
+                                {tag}
+                                <button
+                                  onClick={() => removeTag(page.filePath, tag)}
+                                  className="hover:text-indigo-900"
+                                >
+                                  <X className="w-3 h-3" />
+                                </button>
+                              </span>
+                            ))}
+                            {editingTags === page.filePath ? (
+                              <div className="flex items-center gap-1">
+                                <input
+                                  type="text"
+                                  value={newTag}
+                                  onChange={(e) => setNewTag(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      addTag(page.filePath, newTag);
+                                      setNewTag('');
+                                      setEditingTags(null);
+                                    } else if (e.key === 'Escape') {
+                                      setNewTag('');
+                                      setEditingTags(null);
+                                    }
+                                  }}
+                                  placeholder="tag name"
+                                  className="w-24 px-2 py-0.5 text-xs border border-gray-300 rounded"
+                                  autoFocus
+                                />
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => setEditingTags(page.filePath)}
+                                className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs rounded-full"
+                              >
+                                <Plus className="w-3 h-3" />
+                              </button>
+                            )}
+                          </div>
                         </td>
                         <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-900 max-w-xs truncate hidden lg:table-cell">
                           {page.title}
