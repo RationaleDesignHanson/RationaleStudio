@@ -2,6 +2,140 @@
 
 /* Custom CSS for the v2.0 modern dashboard interface */
 
+/* ========== RATIONALE DESIGN SYSTEM ========== */
+
+/* Glass Card Treatment */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Glow Effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.glow-gold-hover:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 108, 0, 0.3);
+}
+
+.glow-orange-hover:hover {
+  box-shadow: 0 0 30px rgba(255, 108, 0, 0.5);
+}
+
+/* Scanline Effect for Terminal Aesthetic */
+.scanline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.02) 50%
+  );
+  background-size: 100% 3px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.2;
+}
+
+/* Enhanced Modal Styling */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background: rgba(38, 38, 38, 0.95);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 2px solid var(--terminal-gold, #FFD700);
+    box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Window Boot Animation */
+@keyframes window-boot {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-window-boot {
+  animation: window-boot 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Yellow Pulse Animation */
+@keyframes yellow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.animate-yellow-pulse {
+  animation: yellow-pulse 2s ease-in-out infinite;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced Focus States (WCAG AAA) */
+*:focus-visible {
+  outline: 3px solid var(--terminal-gold, #FFD700);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--terminal-gold, #FFD700);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.1);
+}
+
+/* Touch Target Optimization */
+@media (pointer: coarse) {
+  button,
+  a,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ========== END RATIONALE DESIGN SYSTEM ========== */
+
 /* Image Preview Modal Styles */
 #imagePreviewModal {
     backdrop-filter: blur(4px);

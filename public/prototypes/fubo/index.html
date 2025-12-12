@@ -5,28 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUBO Thumbnail Generator v6.0</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Terminal Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="styles_v2.css?v=8">
-    <link rel="stylesheet" href="styles_fubo.css?v=7">
+    <link rel="stylesheet" href="styles_v2.css?v=10">
+    <link rel="stylesheet" href="styles_fubo.css?v=10">
 </head>
 <body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
     <!-- Slim Top Bar -->
-    <div class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between flex-shrink-0">
+    <div class="glass-card border-b border-gray-700 px-6 py-3 flex items-center justify-between flex-shrink-0" style="border-radius: 0;">
         <div class="flex items-center gap-3">
-            <h1 class="text-2xl font-bold" style="color: #FF6C00;">FUBO Thumbnail Generator</h1>
-            <span class="text-xs text-gray-500 px-2 py-1 bg-gray-100 rounded">v6.0</span>
+            <h1 class="text-2xl font-bold font-terminal" style="color: #FF6C00;">FUBO Thumbnail Generator</h1>
+            <span class="text-xs text-terminal-gold px-2 py-1 bg-terminal-gold/10 border border-terminal-gold/30 rounded">v6.0</span>
         </div>
         <div class="flex gap-2">
-            <button id="imageInputsBtn" onclick="openImageInputsModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+            <button id="imageInputsBtn" onclick="openImageInputsModal()" class="btn-tertiary flex items-center gap-2 px-3 py-2">
                 <i data-feather="sliders" class="w-5 h-5"></i>
                 <span class="text-sm">Image Inputs</span>
             </button>
-            <button id="compositingBtn" onclick="openCompositingModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+            <button id="compositingBtn" onclick="openCompositingModal()" class="btn-tertiary flex items-center gap-2 px-3 py-2">
                 <i data-feather="layers" class="w-5 h-5"></i>
                 <span class="text-sm">Compositing</span>
             </button>
-            <button id="importBtn" onclick="openImportModal()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-md transition-colors">
+            <button id="importBtn" onclick="openImportModal()" class="btn-tertiary flex items-center gap-2 px-3 py-2">
                 <i data-feather="upload" class="w-5 h-5"></i>
                 <span class="text-sm">Import</span>
             </button>
@@ -41,9 +45,9 @@
             <div class="p-4 space-y-4">
                 
                 <!-- Style Selection Section -->
-                <div class="border border-gray-200 rounded-lg p-4">
-                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
-                        <i data-feather="image" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                <div class="glass-card border border-gray-700 rounded-lg p-4">
+                    <h3 class="font-semibold font-terminal text-white mb-3 flex items-center">
+                        <i data-feather="image" class="w-5 h-5 mr-2" style="color: #FFD700;"></i>
                         Styles & Subjects
                     </h3>
                     
@@ -97,9 +101,9 @@
                 </div>
 
                 <!-- Teams Section -->
-                <div class="border border-gray-200 rounded-lg p-4">
-                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
-                        <i data-feather="users" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
+                <div class="glass-card border border-gray-700 rounded-lg p-4">
+                    <h3 class="font-semibold font-terminal text-white mb-3 flex items-center">
+                        <i data-feather="users" class="w-5 h-5 mr-2" style="color: #FFD700;"></i>
                         Teams
                     </h3>
                     <div class="space-y-2">
@@ -129,7 +133,7 @@
                 </div>
 
                 <!-- Generate Button -->
-                <button id="v6GenerateBtn" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all shadow-md">
+                <button id="v6GenerateBtn" class="btn-primary w-full animate-yellow-pulse">
                     <i data-feather="zap" class="w-5 h-5 inline mr-2"></i>
                     Generate Images
                 </button>
@@ -145,10 +149,10 @@
                 </div>
                 
                 <!-- Generation Progress -->
-                <div id="v6Progress" class="border border-gray-200 rounded-lg p-3 hidden">
+                <div id="v6Progress" class="glass-card border border-gray-700 rounded-lg p-3 hidden">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm font-medium text-gray-700">Generating...</span>
-                        <span id="v6ProgressCount" class="text-xs text-gray-500">0 / 0</span>
+                        <span class="text-sm font-medium text-white">Generating...</span>
+                        <span id="v6ProgressCount" class="text-xs text-gray-400">0 / 0</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-2">
                         <div id="v6ProgressBar" class="bg-orange-500 h-2 rounded-full transition-all" style="width: 0%"></div>
@@ -157,11 +161,11 @@
                 </div>
 
                 <!-- Results Filter Section -->
-                <div id="v6ResultsSection" class="border border-gray-200 rounded-lg p-4 hidden">
-                    <h3 class="font-semibold text-gray-800 mb-3 flex items-center justify-between">
+                <div id="v6ResultsSection" class="glass-card border border-gray-700 rounded-lg p-4 hidden">
+                    <h3 class="font-semibold font-terminal text-white mb-3 flex items-center justify-between">
                         <span class="flex items-center">
-                            <i data-feather="grid" class="w-5 h-5 mr-2" style="color: #FF6C00;"></i>
-                            Results <span id="v6ResultCount" class="ml-2 text-sm text-gray-500">(0)</span>
+                            <i data-feather="grid" class="w-5 h-5 mr-2" style="color: #FFD700;"></i>
+                            Results <span id="v6ResultCount" class="ml-2 text-sm text-gray-400">(0)</span>
                         </span>
                     </h3>
                     <div class="space-y-2">
@@ -184,12 +188,12 @@
                 </div>
 
                 <!-- Export Section -->
-                <div id="v6ExportSection" class="bg-orange-50 border border-orange-200 rounded-lg p-4 hidden">
-                    <h3 class="font-semibold text-orange-800 mb-3 flex items-center">
+                <div id="v6ExportSection" class="glass-card border border-terminal-gold rounded-lg p-4 hidden glow-gold">
+                    <h3 class="font-semibold font-terminal text-terminal-gold mb-3 flex items-center">
                         <i data-feather="download" class="w-5 h-5 mr-2"></i>
                         Export All Results
                     </h3>
-                    <button id="v6ExportAllBtn" class="w-full bg-orange-600 text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-orange-700 transition-colors">
+                    <button id="v6ExportAllBtn" class="btn-primary w-full">
                         <i data-feather="download" class="w-4 h-4 inline mr-2"></i>
                         Export All Images
                     </button>
@@ -523,6 +527,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="ascii-grid.js"></script>
     <script src="app_v6.js?v=47"></script>
     <script>
         feather.replace();
