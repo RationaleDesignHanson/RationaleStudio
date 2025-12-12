@@ -3,7 +3,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
@@ -15,13 +14,10 @@ export default function HeroSection() {
           {/* Left: Small Image (always on left) */}
           <div className="flex-shrink-0">
             <div className="w-20 h-20 rounded-xl overflow-hidden relative">
-              <Image
+              <img
                 src="/zero/app-mockup-hero.png"
                 alt="Zero App - AI Email Intelligence"
-                width={160}
-                height={160}
                 className="w-full h-full object-cover"
-                priority
               />
             </div>
           </div>
@@ -83,13 +79,10 @@ export default function HeroSection() {
             <div className="relative z-10 w-full">
               {/* App Hero Image - scaled to match text content height */}
               <div className="rounded-2xl overflow-hidden relative max-w-sm">
-                <Image
+                <img
                   src="/zero/app-mockup-hero.png"
                   alt="Zero App - AI Email Intelligence"
-                  width={800}
-                  height={800}
                   className="w-full h-auto object-contain rounded-2xl"
-                  priority
                 />
               </div>
             </div>

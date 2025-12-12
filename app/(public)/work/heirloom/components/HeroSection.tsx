@@ -1,6 +1,5 @@
 // components/HeroSection.tsx
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
@@ -13,13 +12,10 @@ export default function HeroSection() {
           {/* Left: Small Image (always on left) */}
           <div className="flex-shrink-0">
             <div className="w-20 h-20 rounded-xl overflow-hidden relative shadow-lg">
-              <Image
+              <img
                 src="/heirloom/app-mockup-hero.png"
                 alt="Heirloom App - Recipes Worth Passing Down"
-                width={160}
-                height={160}
                 className="w-full h-full object-cover"
-                priority
               />
             </div>
           </div>
@@ -85,13 +81,10 @@ export default function HeroSection() {
             <div className="relative z-10 w-full">
               {/* App Hero Image - scaled to match text content height */}
               <div className="rounded-2xl overflow-hidden relative shadow-2xl max-w-sm">
-                <Image
+                <img
                   src="/heirloom/app-mockup-hero.png"
                   alt="Heirloom App - Recipes Worth Passing Down"
-                  width={800}
-                  height={800}
                   className="w-full h-auto object-contain rounded-2xl"
-                  priority
                 />
               </div>
             </div>
