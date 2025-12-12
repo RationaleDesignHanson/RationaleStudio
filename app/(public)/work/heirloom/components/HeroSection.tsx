@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="mx-auto max-w-5xl">
         {/* Mobile & Tablet: Stacked layout */}
-        <div className="flex flex-col gap-4 lg:hidden">
+        <div className="flex flex-col gap-4 xl:hidden">
           {/* Top: Logo + App Name */}
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0">
@@ -62,7 +62,7 @@ export default function HeroSection() {
         </div>
 
         {/* Desktop: Flex layout with image on left */}
-        <div className="hidden lg:flex items-start gap-6">
+        <div className="hidden xl:flex items-start gap-6">
           {/* Left: Device Mockup */}
           <div className="flex-shrink-0 max-h-[200px] max-w-[200px]">
             <img
