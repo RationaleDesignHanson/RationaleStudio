@@ -3,23 +3,18 @@
  *
  * Scrollable one-page summary of the CREaiT consulting engagement.
  * Complements the full interactive pitch deck.
- * Password protected.
+ * Protected by Firebase authentication - requires CREaiT login or admin access.
  */
 
 'use client';
 
 import Link from 'next/link';
 import { ArrowRight, Presentation, Rocket } from 'lucide-react';
-import { PasswordGate } from '@/components/sections/PasswordGate';
+import { ClientAuthGuard } from '@/components/auth/ClientAuthGuard';
 
 export default function CREaiTOverviewPage() {
   return (
-    <PasswordGate
-      password="123456"
-      storageKey="creait-overview-access"
-      title="CREaiT Overview - Protected Content"
-      description="This overview contains confidential project details. Please enter the password to continue."
-    >
+    <ClientAuthGuard requiredClient="creait">
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
       <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
@@ -290,6 +285,6 @@ export default function CREaiTOverviewPage() {
         </div>
       </section>
     </main>
-    </PasswordGate>
+    </ClientAuthGuard>
   );
 }

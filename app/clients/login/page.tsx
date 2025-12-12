@@ -16,7 +16,7 @@ import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 // Client redirect mapping based on clientId custom claim
 const CLIENT_REDIRECTS: Record<string, string> = {
   'athletes-first': '/work/athletes-first/overview',
-  'creait': '/clients/creait/pitch-deck',
+  'creait': '/work/creait/overview',
   'zero': '/clients/zero/investor',
   'global': '/clients', // For owner/team with global access
 };
