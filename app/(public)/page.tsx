@@ -194,7 +194,8 @@ export default function HomePage() {
             </div>
 
             {/* Row 2: Pipeline (Full Width) */}
-            <Link href="/contact" className="block p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg mx-4 sm:mx-0 hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
+            <div className="px-4 sm:px-0">
+              <Link href="/contact" className="block p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
               <div className="flex flex-col md:space-y-6">
                 {/* Icon, Title, and Badge Row */}
                 <div className="flex items-center gap-3 mb-3">
@@ -240,7 +241,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </Link>
+              </Link>
+            </div>
           </div>
         </section>
 
