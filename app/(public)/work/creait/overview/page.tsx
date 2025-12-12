@@ -34,11 +34,11 @@ export default function CREaiTOverviewPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/clients/creait/pitch-deck"
+              href="/clients/creait/strategic-roadmap"
               className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
             >
               <Presentation className="w-4 h-4 md:w-5 md:h-5" />
-              View Full Pitch Deck
+              View Full Strategic Roadmap
             </Link>
             <Link
               href="/work"
@@ -273,14 +273,14 @@ export default function CREaiTOverviewPage() {
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Dive Deeper?</h2>
           <p className="text-gray-400 mb-4 md:mb-8 max-w-2xl mx-auto">
-            Explore detailed technical specs, week-by-week breakdown, and complete deliverables list in the full consulting proposal.
+            Explore detailed technical specs, week-by-week breakdown, and complete deliverables list in the full strategic roadmap.
           </p>
           <Link
-            href="/clients/creait/pitch-deck"
+            href="/clients/creait/strategic-roadmap"
             className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
           >
             <Presentation className="w-4 h-4 md:w-5 md:h-5" />
-            View Full Consulting Proposal
+            View Full Strategic Roadmap
           </Link>
         </div>
       </section>

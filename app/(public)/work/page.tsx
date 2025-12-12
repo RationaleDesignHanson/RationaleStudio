@@ -299,7 +299,7 @@ export default function WorkPage() {
               const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
               const overviewSlug = project.slug === 'case-study-010' ? 'creait' : 'athletes-first';
               const pitchDeckPath = project.slug === 'case-study-010'
-                ? '/clients/creait/pitch-deck'
+                ? '/clients/creait/strategic-roadmap'
                 : project.slug === 'case-study-020'
                 ? '/clients/athletes-first/pitch-deck'
                 : `/work/${project.slug}`;
