@@ -74,7 +74,7 @@ metadataBase: new URL('https://rationale.work'),
     siteName: 'Rationale',
     images: [
       {
-        url: 'https://rationale.work/og-image.png',
+        url: 'https://rationale.work/api/og',
         width: 1200,
         height: 630,
         alt: 'Rationale Product Studio',
@@ -85,7 +85,7 @@ metadataBase: new URL('https://rationale.work'),
     card: 'summary_large_image',
     title: "Rationale — Product Studio Building AI-Powered Ventures",
     description: "Product studio building AI-powered ventures: Zero (AI email assistant), Heirloom (recipe management app).",
-    images: ['https://rationale.work/og-image.png'],
+    images: ['https://rationale.work/api/og'],
   },
   robots: {
     index: true,

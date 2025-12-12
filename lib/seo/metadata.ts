@@ -24,7 +24,7 @@ const SITE_CONFIG = {
   title: 'Rationale — Product Studio Building AI-Powered Ventures',
   description: 'Product studio building AI-powered ventures: Zero (email AI), Atlas (CRE intelligence), Amplify (NIL platform). We build our own products and partner with companies for equity + cash.',
   url: 'https://rationale.work',
-  ogImage: '/og-image.png',
+  ogImage: '/api/og',
   twitter: '@RationaleStudio',
 };
 
