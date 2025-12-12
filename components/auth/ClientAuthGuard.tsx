@@ -44,11 +44,19 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
 
     // Client users can only access their specific client
     if (profile.role === 'client' && profile.clientId) {
+      console.log('[ClientAuthGuard] Client authorization check:', {
+        profileClientId: profile.clientId,
+        requiredClient: requiredClient,
+        profileClientIdUpper: profile.clientId.toUpperCase(),
+        requiredClientUpper: requiredClient.toUpperCase(),
+        match: profile.clientId.toUpperCase() === requiredClient.toUpperCase(),
+      });
       const clientMatch = profile.clientId.toUpperCase() === requiredClient.toUpperCase();
       if (clientMatch) {
         setIsAuthorized(true);
       } else {
         // Wrong client - redirect to their dashboard
+        console.log('[ClientAuthGuard] Client mismatch - redirecting to /clients');
         router.push('/clients');
       }
       return;
