@@ -174,8 +174,8 @@ export default function StrategicRoadmapPage() {
                 Slide {currentSlideIndex + 1} of {totalSlides}
               </div>
               <Link
-                href="/clients/creait"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors text-sm"
+                href="/work/creait/overview"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors text-sm text-gray-300 hover:text-white"
               >
                 <Home className="w-4 h-4" />
                 <span>Back</span>

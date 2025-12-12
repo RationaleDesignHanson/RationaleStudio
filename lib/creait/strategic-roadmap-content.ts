@@ -48,7 +48,7 @@ export const strategicRoadmap: StrategicRoadmap = {
     {
       id: "what-youve-built",
       title: "What You've Built",
-      subtitle: "80% Complete Backend • $94K in Built Value",
+      subtitle: "80% Complete Backend • Significant Built Value",
       content: "You've made significant progress. The backend infrastructure is production-ready, with a comprehensive email campaign system, robust authentication, and deployment infrastructure. This is not starting from zero—this is building on a strong foundation.",
       evidence: [
         {
@@ -66,7 +66,7 @@ export const strategicRoadmap: StrategicRoadmap = {
         {
           type: 'metric',
           label: 'Built Value',
-          value: '$94,000 (6-8 weeks saved)',
+          value: '6-8 weeks of development work complete',
           status: 'exists'
         },
         {
@@ -234,23 +234,23 @@ export const strategicRoadmap: StrategicRoadmap = {
       id: "decision-framework",
       title: "Your Decision Framework",
       subtitle: "Three Paths Forward",
-      content: "You have three options. Each has different timelines, costs, and risks. There's no perfect answer—only the right answer for your situation.",
+      content: "You have three options. Each has different timelines, investment requirements, and risks. There's no perfect answer—only the right answer for your situation.",
       bullets: [
         "**Option A: Build It Yourself**",
         "• Timeline: 3-4 months (one engineer)",
-        "• Cost: $30-40K (salary + benefits)",
+        "• Investment: Engineer salary + benefits",
         "• Risk: First-mover window closing",
         "• Best if: You have time, want full control, have right engineer",
         "",
         "**Option B: Get Help (Rationale or Other Partner)**",
         "• Timeline: 12-14 weeks (two engineers)",
-        "• Cost: $24-30K (consulting fee or equity)",
+        "• Investment: Consulting fee or equity arrangement",
         "• Risk: Finding the right partner",
         "• Best if: Speed to market critical, want proven process",
         "",
         "**Option C: Pivot to Campaign Manager**",
         "• Timeline: 2-4 weeks (polish existing)",
-        "• Cost: $10-15K (minor development)",
+        "• Investment: Minor development work",
         "• Risk: Low execution risk (already built)",
         "• Best if: Want to launch quickly, different market positioning acceptable"
       ],
