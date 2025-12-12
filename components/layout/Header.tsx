@@ -95,7 +95,7 @@ export function Header() {
             ) : (
               <>
                 <span className="font-semibold">Rationale: </span>
-                <span className="font-light">A Product Development Company</span>
+                <span className="font-light">Your Product Design Company</span>
               </>
             )}
           </Link>
