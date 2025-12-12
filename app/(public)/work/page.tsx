@@ -179,7 +179,7 @@ export default function WorkPage() {
                     {/* Action Buttons */}
                     <div className="space-y-2 sm:space-y-3">
                       <a
-                        href="https://testflight.apple.com/join/heirloom"
+                        href="https://testflight.apple.com/join/gs6EU81Z"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-sm sm:text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"

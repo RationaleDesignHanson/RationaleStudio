@@ -55,7 +55,7 @@ export default function HeirloomPitchPage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://testflight.apple.com/join/heirloom"
+                href="https://testflight.apple.com/join/gs6EU81Z"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E85D4D] px-4 sm:px-6 md:px-8 py-4 font-semibold text-white transition-all hover:bg-[#D14D3D] hover:shadow-lg"
               >
                 <Rocket className="w-5 h-5" />

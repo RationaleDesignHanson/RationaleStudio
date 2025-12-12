@@ -5,117 +5,81 @@ import { BetaSignupButton } from '@/components/beta/BetaSignupButton'
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460] py-12 md:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460] py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        {/* Mobile & Tablet: Horizontal compact layout (image left, text right) */}
-        <div className="flex items-start gap-4 lg:hidden">
-          {/* Left: Small Image (always on left) */}
-          <div className="flex-shrink-0">
-            <div className="w-20 h-20 rounded-xl overflow-hidden relative shadow-lg">
-              <img
-                src="/heirloom/app-mockup-hero.png"
-                alt="Heirloom App - Recipes Worth Passing Down"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Right: Compact Text (always on right) */}
-          <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap gap-3 text-xs text-gray-600 mb-2">
-              <div className="flex items-center gap-1">
-                <span className="font-semibold text-[#E85D4D]">Role:</span>
-                <span>Product Strategy, UX Design</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="font-semibold text-[#E85D4D]">Timeline:</span>
-                <span>5 weeks</span>
-              </div>
-            </div>
-
-            <h1 className="text-2xl font-bold text-[#2D2D2D] mb-1">
-              Heirloom
-            </h1>
-            <p className="text-lg font-medium text-[#2D2D2D] mb-3">
-              Recipes Worth Passing Down
-            </p>
-
-            <p className="text-sm leading-relaxed text-gray-700 mb-4">
-              A native iOS app that preserves family recipes as beautiful, shareable artifacts—not just data.
-            </p>
-
-            <div className="flex flex-wrap gap-3">
-              <BetaSignupButton
-                appName="heirloom"
-                source="hero_cta"
-                size="lg"
-                className="rounded-full text-sm"
-              >
-                Join Beta
-              </BetaSignupButton>
-
-              <button
-                onClick={() => {
-                  document.getElementById('prototype')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#E85D4D] px-4 py-2 text-sm font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
-              >
-                Try Demo
-              </button>
-            </div>
-
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#8B9F8D]/10 px-3 py-1.5 text-xs font-medium text-[#8B9F8D] mt-3">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B9F8D] opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8B9F8D]"></span>
-              </span>
-              In TestFlight Beta
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop: 2-column layout with image on left */}
-        <div className="hidden lg:grid items-start gap-6 md:gap-6 lg:gap-8 lg:grid-cols-2">
-          {/* Left: Device Mockup (scaled to fit content height) */}
-          <div className="relative flex items-start">
-            <div className="relative z-10 w-full">
-              {/* App Hero Image - scaled to match text content height */}
-              <div className="rounded-2xl overflow-hidden relative shadow-2xl max-w-sm">
+        <div className="mx-auto max-w-5xl">
+        {/* Mobile & Tablet: Stacked layout */}
+        <div className="flex flex-col gap-4 lg:hidden">
+          {/* Top: Logo + App Name */}
+          <div className="flex items-center gap-4">
+            <div className="flex-shrink-0">
+              <div className="w-20 h-20 rounded-xl overflow-hidden relative shadow-lg">
                 <img
                   src="/heirloom/app-mockup-hero.png"
                   alt="Heirloom App - Recipes Worth Passing Down"
-                  className="w-full h-auto object-contain rounded-2xl"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
+            <h1 className="text-2xl font-bold text-[#2D2D2D]">
+              Heirloom: <span className="font-light">Recipes Worth Passing Down</span>
+            </h1>
+          </div>
+
+          <div className="flex flex-col gap-4">
+          {/* Description */}
+          <p className="text-sm leading-snug text-gray-700">
+            A native iOS app that preserves family recipes as beautiful, shareable artifacts—not just data.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="https://testflight.apple.com/join/gs6EU81Z"
+              className="text-[#E85D4D] hover:text-[#D84D3D] text-sm font-normal flex items-center gap-1 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join Beta
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+
+            <button
+              onClick={() => {
+                document.getElementById('prototype')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="text-[#E85D4D] hover:text-[#D84D3D] text-sm font-normal flex items-center gap-1 transition-colors"
+            >
+              Try Demo
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          </div>
+        </div>
+
+        {/* Desktop: Flex layout with image on left */}
+        <div className="hidden lg:flex items-start gap-6">
+          {/* Left: Device Mockup */}
+          <div className="flex-shrink-0 max-h-[200px] max-w-[200px]">
+            <img
+              src="/heirloom/app-mockup-hero.png"
+              alt="Heirloom App - Recipes Worth Passing Down"
+              className="w-full h-full object-contain rounded-2xl"
+            />
           </div>
 
           {/* Right: Text Content */}
-          <div className="space-y-4 md:space-y-6 lg:space-y-8">
-            {/* Meta Information */}
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#E85D4D]">Role:</span>
-                <span>Product Strategy, UX Design, iOS Development</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#E85D4D]">Timeline:</span>
-                <span>5 weeks</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#E85D4D]">Platform:</span>
-                <span>iOS 17+</span>
-              </div>
-            </div>
+          <div className="flex flex-col space-y-2 md:space-y-3 lg:space-y-4 flex-1 max-w-2xl">
 
             {/* Headline */}
             <div>
-              <h1 className="mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#2D2D2D]">
-                Heirloom
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-[#2D2D2D]">
+                Heirloom: <span className="font-light">Recipes Worth Passing Down</span>
               </h1>
-              <p className="text-2xl font-medium text-[#2D2D2D] md:text-3xl">
-                Recipes Worth Passing Down
-              </p>
             </div>
 
             {/* Description */}
@@ -124,39 +88,33 @@ export default function HeroSection() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <BetaSignupButton
-                appName="heirloom"
-                source="hero_cta"
-                size="lg"
-                className="rounded-full"
+            <div className="flex flex-wrap gap-6">
+              <Link
+                href="https://testflight.apple.com/join/gs6EU81Z"
+                className="text-[#E85D4D] hover:text-[#D84D3D] text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Join Beta on TestFlight
-              </BetaSignupButton>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
 
               <button
                 onClick={() => {
                   document.getElementById('prototype')?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#E85D4D] px-4 sm:px-6 md:px-8 py-4 font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
+                className="text-[#E85D4D] hover:text-[#D84D3D] text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
               >
                 Try Interactive Demo
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
-
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#8B9F8D]/10 px-4 py-2 text-sm font-medium text-[#8B9F8D]">
-              <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8B9F8D] opacity-75"></span>
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-[#8B9F8D]"></span>
-              </span>
-              In TestFlight Beta
-            </div>
           </div>
+        </div>
         </div>
       </div>
 

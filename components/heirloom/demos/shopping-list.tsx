@@ -10,7 +10,7 @@
  * - Multi-recipe meal planning
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { isConvertibleVolume, convertVolume, selectBestVolumeUnit, formatQuantity } from '../shared/ingredientParser'
 
 interface Ingredient {
@@ -58,6 +58,15 @@ export function ShoppingListDemo({ dinnerPartyAdded = false }: ShoppingListDemoP
   const [ingredients, setIngredients] = useState<Ingredient[]>(
     dinnerPartyAdded ? [...baseIngredients, ...dinnerPartyIngredients] : baseIngredients
   )
+
+  // Update ingredients when dinnerPartyAdded prop changes
+  useEffect(() => {
+    if (dinnerPartyAdded) {
+      setIngredients([...baseIngredients, ...dinnerPartyIngredients])
+    } else {
+      setIngredients(baseIngredients)
+    }
+  }, [dinnerPartyAdded])
 
   const toggleIngredient = (id: string) => {
     setIngredients(prev =>
