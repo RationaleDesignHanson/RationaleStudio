@@ -14,7 +14,8 @@ import {
 } from '@/components/creait/typography';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
 import { CRE_SPACING } from '@/lib/creait/design-tokens/spacing';
-import { BrokerDayDiagram, TimingWindowDiagram } from '@/components/creait/diagrams';
+import { BrokerDayDiagram } from '@/components/creait/diagrams';
+import TimingWindowDiagram from '@/components/creait/diagrams/TimingWindowDiagramResponsive';
 
 /**
  * Slide 1.1: Problem - Brokers Waste 40% of Their Day

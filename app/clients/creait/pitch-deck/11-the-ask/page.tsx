@@ -13,7 +13,7 @@ import {
   DataLG,
 } from '@/components/creait/typography';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
-import { InvestmentMilestonesDiagram } from '@/components/creait/diagrams';
+import InvestmentMilestonesDiagram from '@/components/creait/diagrams/InvestmentMilestonesDiagramResponsive';
 
 /**
  * Slide 7.1: The Ask - Investment Terms

@@ -36,14 +36,14 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   // Existing CREaiT diagrams (Responsive versions for mobile support)
   BrokerDayDiagram: dynamic(() => import('./diagrams/BrokerDayDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   AIScoreFlowDiagram: dynamic(() => import('./diagrams/AIScoreFlowDiagramResponsive'), { loading: () => <LoadingComponent /> }),
-  TimingWindowDiagram: dynamic(() => import('./diagrams/TimingWindowDiagram'), { loading: () => <LoadingComponent /> }),
+  TimingWindowDiagram: dynamic(() => import('./diagrams/TimingWindowDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   ValidationMapDiagram: dynamic(() => import('./diagrams/ValidationMapDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   TAMFunnelDiagram: dynamic(() => import('./diagrams/TAMFunnelDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   CompetitiveLandscapeDiagram: dynamic(() => import('./diagrams/CompetitiveLandscapeDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   UnitEconomicsFlowDiagram: dynamic(() => import('./diagrams/UnitEconomicsFlowDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   RevenueRampDiagram: dynamic(() => import('./diagrams/RevenueRampDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   RoadmapGanttDiagram: dynamic(() => import('./diagrams/RoadmapGanttDiagramResponsive'), { loading: () => <LoadingComponent /> }),
-  InvestmentMilestonesDiagram: dynamic(() => import('./diagrams/InvestmentMilestonesDiagram'), { loading: () => <LoadingComponent /> }),
+  InvestmentMilestonesDiagram: dynamic(() => import('./diagrams/InvestmentMilestonesDiagramResponsive'), { loading: () => <LoadingComponent /> }),
   // Welcome slide
   CREWelcomeSlide: dynamic(() => import('./CREWelcomeSlide'), { loading: () => <LoadingComponent /> }),
 };
