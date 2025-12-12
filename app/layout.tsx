@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Mono, JetBrains_Mono, Caveat } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { LayoutContent } from "@/components/layout";
 import { AuthProvider } from "@/lib/auth/AuthContext";
 import "./globals.css";
@@ -8,33 +8,14 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap", // Ensures text is visible while font loads
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
+  preload: false,
 });
 
 export const viewport = {
@@ -114,7 +95,7 @@ export default function RootLayout({
   // Note: We can't use usePathname in server components, so we handle archive page layout removal in the client
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} ${caveat.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
           <LayoutContent>{children}</LayoutContent>
         </AuthProvider>

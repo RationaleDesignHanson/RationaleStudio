@@ -39,10 +39,10 @@ export default function HomePage() {
 
         {/* 1. HERO SECTION - Product Studio Identity */}
         <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
-          {/* ASCII Grid Background */}
-          <div className="absolute inset-0 pointer-events-none">
+          {/* ASCII Grid Background - animation disabled on mobile for performance */}
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
-              opacity={0.08}
+              opacity={0.06}
               animated={true}
               colorTheme={watercolorThemes.terminalGold}
               charSet="default"
@@ -75,9 +75,9 @@ export default function HomePage() {
 
         {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
         <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
-              opacity={0.04}
+              opacity={0.03}
               animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
@@ -241,9 +241,9 @@ export default function HomePage() {
 
         {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
         <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
-              opacity={0.04}
+              opacity={0.03}
               animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
@@ -315,9 +315,9 @@ export default function HomePage() {
 
         {/* 4. HOW WE SHIP FASTER - Kits Methodology */}
         <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
-              opacity={0.04}
+              opacity={0.03}
               animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
@@ -359,9 +359,9 @@ export default function HomePage() {
 
         {/* 5. FIT FILTER */}
         <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
-              opacity={0.04}
+              opacity={0.03}
               animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
