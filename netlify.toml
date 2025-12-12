@@ -1,5 +1,5 @@
 [build]
-  command = "node scripts/write-firebase-credentials.js && npm run build"
+  command = "node scripts/write-firebase-credentials.cjs && npm run build"
   # No publish directory - @netlify/plugin-nextjs handles deployment automatically
 
 [build.environment]
