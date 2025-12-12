@@ -19,6 +19,12 @@
 [[functions."*"]]
   timeout = 26
 
+# Make Firebase Admin credentials available to serverless functions
+[functions.environment]
+  FIREBASE_PROJECT_ID = "${FIREBASE_PROJECT_ID}"
+  FIREBASE_CLIENT_EMAIL = "${FIREBASE_CLIENT_EMAIL}"
+  FIREBASE_PRIVATE_KEY = "${FIREBASE_PRIVATE_KEY}"
+
 # Cache optimization for static assets
 [[headers]]
   for = "/_next/static/*"
