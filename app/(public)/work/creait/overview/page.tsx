@@ -32,20 +32,13 @@ export default function CREaiTOverviewPage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/clients/creait/strategic-roadmap"
               className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-amber-400 hover:bg-amber-300 text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-amber-400/20"
             >
               <Presentation className="w-4 h-4 md:w-5 md:h-5" />
               View Full Strategic Roadmap
-            </Link>
-            <Link
-              href="/work"
-              className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg font-bold transition-all"
-            >
-              Back to Work
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
           </div>
         </div>
