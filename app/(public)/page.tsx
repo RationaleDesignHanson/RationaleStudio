@@ -9,17 +9,36 @@
  * - Fit Filter: What makes a great fit
  */
 
-'use client';
-
 import Link from 'next/link';
-import { ASCIIUnifiedGrid } from '@/components/visual';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { VelocityProof } from '@/components/home/VelocityProof';
-import { FitFilter } from '@/components/home/FitFilter';
 import { ArrowRight, Zap, Users, TrendingUp } from 'lucide-react';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
+
+// Lazy load heavy visual components (client-side only)
+const ASCIIUnifiedGrid = dynamic(
+  () => import('@/components/visual').then(mod => ({ default: mod.ASCIIUnifiedGrid })),
+  {
+    ssr: false,
+    loading: () => null
+  }
+);
+
+const VelocityProof = dynamic(
+  () => import('@/components/home/VelocityProof').then(mod => ({ default: mod.VelocityProof })),
+  {
+    ssr: false,
+    loading: () => null
+  }
+);
+
+const FitFilter = dynamic(
+  () => import('@/components/home/FitFilter').then(mod => ({ default: mod.FitFilter })),
+  { ssr: true }
+);
 
 export default function HomePage() {
 
@@ -100,11 +119,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <img
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                        <Image
                           src="/images/icons/zero-icon.png"
                           alt="Zero app icon"
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                          className="object-cover"
+                          priority
                         />
                       </div>
                     </div>
@@ -146,11 +168,14 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                        <img
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                        <Image
                           src="/images/icons/heirloom-icon.png"
                           alt="Heirloom app icon"
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                          className="object-cover"
+                          priority
                         />
                       </div>
                     </div>
@@ -194,11 +219,14 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-3">
                   {/* Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
-                      <img
+                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                      <Image
                         src="/images/icons/pipeline-icon.jpg"
                         alt="Pipeline icon"
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
+                        className="object-cover"
+                        priority
                       />
                     </div>
                   </div>
