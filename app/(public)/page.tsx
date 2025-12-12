@@ -88,10 +88,10 @@ export default function HomePage() {
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="mb-12 px-4 sm:px-0">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                Current Focus
+                What We've Shipped
               </h2>
               <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
-                We leverage AI to build products that make life easier, on our own or by developing strategic partnerships which transform strategy to products with conviction.
+                This site, Zero, and Heirloom—plus partner explorations under NDA—designed and shipped in 8 weeks with AI assistance. No mockups. No proposals. Click to see working architecture, prototypes, and live demos.
               </p>
             </div>
 
@@ -120,7 +120,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
                       <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Zero</h3>
                       <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] md:text-xs text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
-                        Beta · Dogfooding
+                        Beta · 8-week build
                       </span>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
                       <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Heirloom</h3>
                       <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] md:text-xs text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
-                        Beta · Dogfooding
+                        TestFlight · 8-week build
                       </span>
                     </div>
                   </div>
