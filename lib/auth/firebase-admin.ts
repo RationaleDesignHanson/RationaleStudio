@@ -192,7 +192,8 @@ export async function getAdminUserProfile(uid: string) {
     return userDoc.data() as {
       uid: string;
       email: string;
-      role: 'owner' | 'team' | 'partner' | 'investor';
+      role: 'owner' | 'team' | 'partner' | 'investor' | 'client';
+      clientId?: string;
       name?: string;
       createdAt: number;
       lastLogin: number;
