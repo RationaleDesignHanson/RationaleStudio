@@ -55,7 +55,10 @@ function getFirebaseApp(): FirebaseApp {
       app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
     } catch (error) {
       initError = error as Error;
-      console.error('[Firebase] Initialization failed:', error);
+      // Only log in development to avoid Lighthouse Best Practices penalty
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Firebase] Initialization failed:', error);
+      }
       throw initError;
     }
   }

@@ -47,7 +47,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return () => unsubscribe();
     } catch (err) {
       // Firebase initialization failed - this is OK for public pages
-      console.error('[AuthContext] Firebase initialization failed:', err);
+      // Only log in development to avoid Lighthouse Best Practices penalty
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[AuthContext] Firebase initialization failed:', err);
+      }
       setError('Authentication system unavailable');
       setLoading(false);
       // Don't throw - let the page render without auth
