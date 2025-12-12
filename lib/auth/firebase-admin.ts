@@ -50,47 +50,8 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
       throw new Error('Firebase Admin not available during build');
     }
 
-    // Option 1: Use credentials file in API directory (written by build plugin)
-    const apiCredentialsPath = path.join(process.cwd(), 'app', 'api', '.firebase-credentials.json');
-    if (fs.existsSync(apiCredentialsPath)) {
-      try {
-        const credentials = JSON.parse(fs.readFileSync(apiCredentialsPath, 'utf-8'));
-        adminApp = initializeApp({
-          credential: cert(credentials),
-        });
-        console.log('[Firebase Admin] Initialized with API directory credentials file');
-      } catch (error) {
-        console.error('[Firebase Admin] Failed to read API credentials file:', error);
-        throw error;
-      }
-    }
-    // Option 2: Use base64-encoded service account JSON (recommended for Netlify)
-    else if (process.env.FIREBASE_SERVICE_ACCOUNT_BASE64) {
-      try {
-        const serviceAccountJson = Buffer.from(
-          process.env.FIREBASE_SERVICE_ACCOUNT_BASE64,
-          'base64'
-        ).toString('utf-8');
-        const serviceAccount = JSON.parse(serviceAccountJson);
-
-        adminApp = initializeApp({
-          credential: cert(serviceAccount),
-        });
-
-        console.log('[Firebase Admin] Initialized with base64-encoded service account');
-      } catch (error) {
-        console.error('[Firebase Admin] Failed to parse base64 service account:', error);
-        throw error;
-      }
-    }
-    // Option 2: Use service account JSON file path
-    else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
-      adminApp = initializeApp({
-        credential: cert(process.env.FIREBASE_SERVICE_ACCOUNT_PATH),
-      });
-    }
-    // Option 3: Use individual environment variables
-    else if (
+    // Option 1: Use individual environment variables (recommended for Netlify)
+    if (
       process.env.FIREBASE_PROJECT_ID &&
       process.env.FIREBASE_CLIENT_EMAIL &&
       process.env.FIREBASE_PRIVATE_KEY
@@ -118,11 +79,19 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
           privateKey,
         }),
       });
+      console.log('[Firebase Admin] Initialized with individual environment variables');
+    }
+    // Option 2: Use service account JSON file path (local development)
+    else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
+      adminApp = initializeApp({
+        credential: cert(process.env.FIREBASE_SERVICE_ACCOUNT_PATH),
+      });
+      console.log('[Firebase Admin] Initialized with service account file path');
     }
     // No credentials provided
     else {
       throw new Error(
-        'Firebase Admin SDK credentials not found. Please set one of: FIREBASE_SERVICE_ACCOUNT_BASE64 (recommended), FIREBASE_SERVICE_ACCOUNT_PATH, or individual variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY)'
+        'Firebase Admin SDK credentials not found. Please set individual variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY) or FIREBASE_SERVICE_ACCOUNT_PATH'
       );
     }
 

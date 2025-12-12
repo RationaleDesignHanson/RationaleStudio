@@ -13,19 +13,11 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Custom build plugin to inject Firebase credentials
-[[plugins]]
-  package = "./netlify/plugins/firebase-credentials"
-
 [functions]
   node_bundler = "esbuild"
 
 [[functions."*"]]
   timeout = 26
-
-# Make Firebase Admin credentials available to serverless functions
-[functions.environment]
-  FIREBASE_SERVICE_ACCOUNT_BASE64 = "${FIREBASE_SERVICE_ACCOUNT_BASE64}"
 
 # Cache optimization for static assets
 [[headers]]

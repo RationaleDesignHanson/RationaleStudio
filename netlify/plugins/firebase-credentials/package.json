@@ -1,6 +1,0 @@
-{
-  "name": "netlify-plugin-firebase-credentials",
-  "version": "1.0.0",
-  "description": "Netlify build plugin to inject Firebase Admin credentials",
-  "main": "index.cjs"
-}
