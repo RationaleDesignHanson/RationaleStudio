@@ -20,27 +20,30 @@ export default function ChallengeSection() {
               Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. <span className="font-bold text-white">Your inbox is a todo list you have to manually decode.</span>
             </p>
 
-            {/* Key Pain Points */}
-            <div className="mt-8 grid md:grid-cols-3 gap-4">
-              <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-terminal-gold mb-2">Hidden Actions</h4>
-                <p className="text-sm text-gray-400">
-                  Bills, RSVPs, tracking numbers buried in prose
-                </p>
-              </div>
-              <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-terminal-gold mb-2">Context Switching</h4>
-                <p className="text-sm text-gray-400">
-                  Jump between inbox and external sites to complete tasks
-                </p>
-              </div>
-              <div className="rounded-lg bg-gray-800/50 border border-gray-700 p-6">
-                <h4 className="text-sm font-bold text-terminal-gold mb-2">Manual Triage</h4>
-                <p className="text-sm text-gray-400">
-                  Read every email to identify what needs action
-                </p>
-              </div>
-            </div>
+            {/* Key Pain Points - Bullet List */}
+            <ul className="mt-8 space-y-4 list-none">
+              <li className="flex items-start gap-3">
+                <span className="text-terminal-gold text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-white">Hidden Actions:</span>
+                  <span className="text-gray-300"> Bills, RSVPs, tracking numbers buried in prose</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-terminal-gold text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-white">Context Switching:</span>
+                  <span className="text-gray-300"> Jump between inbox and external sites to complete tasks</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-terminal-gold text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-white">Manual Triage:</span>
+                  <span className="text-gray-300"> Read every email to identify what needs action</span>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

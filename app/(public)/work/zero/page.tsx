@@ -33,14 +33,14 @@ export default function ZeroPage() {
       {/* The problem: inbox is full of hidden work */}
       <ChallengeSection />
 
+      {/* Interactive demos with toggle */}
+      <PrototypeEmbed />
+
       {/* Our approach: AI extracts actions automatically */}
       <ApproachSection />
 
       {/* Feature Grid */}
       <FeatureGrid />
-
-      {/* Interactive demos with toggle */}
-      <PrototypeEmbed />
 
       {/* Technical Architecture */}
       <section className="relative bg-black py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">

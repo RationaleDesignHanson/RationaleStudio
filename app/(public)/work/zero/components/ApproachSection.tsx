@@ -15,7 +15,6 @@ export default function ApproachSection() {
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Principle 1 */}
             <div className="space-y-4">
-              <div className="text-2xl md:text-3xl lg:text-4xl">🎯</div>
               <h3 className="text-xl font-bold text-white">
                 Action-First
               </h3>
@@ -26,7 +25,6 @@ export default function ApproachSection() {
 
             {/* Principle 2 */}
             <div className="space-y-4">
-              <div className="text-2xl md:text-3xl lg:text-4xl">🤖</div>
               <h3 className="text-xl font-bold text-white">
                 AI Classification
               </h3>
@@ -37,7 +35,6 @@ export default function ApproachSection() {
 
             {/* Principle 3 */}
             <div className="space-y-4">
-              <div className="text-2xl md:text-3xl lg:text-4xl">📱</div>
               <h3 className="text-xl font-bold text-white">
                 Native iOS
               </h3>
