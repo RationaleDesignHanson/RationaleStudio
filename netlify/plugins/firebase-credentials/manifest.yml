@@ -1,2 +1,3 @@
 name: firebase-credentials
 inputs: []
+main: index.cjs
