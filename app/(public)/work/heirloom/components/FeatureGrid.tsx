@@ -6,7 +6,7 @@ const features = [
   {
     icon: '',
     title: 'Smart Recipe Import',
-    description: 'Web scraping for 500+ sites, OCR for cookbook scanning, and smart ingredient parsing.',
+    description: 'Bulk URL import for 500+ sites, AI-powered cookbook scanner with OCR + Claude structuring, and intelligent ingredient parsing. Snap a photo, get a perfect recipe—no typing required.',
     image: '/images/work/heirloom/feature-import.png',
   },
   {

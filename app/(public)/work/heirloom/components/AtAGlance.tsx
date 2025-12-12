@@ -68,7 +68,11 @@ export default function AtAGlance() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Universal Import:</strong> 500+ site compatibility with 94% parse accuracy</span>
+                <span><strong className="text-[#2D2D2D]">Universal Import:</strong> 500+ sites + bulk URL import + AI cookbook scanning</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
+                <span><strong className="text-[#2D2D2D]">AI-Powered Digitization:</strong> Claude-powered ingredient parsing + vision-based cookbook scanner for effortless recipe capture. No manual typing required.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
@@ -172,8 +176,13 @@ export default function AtAGlance() {
             <div className="flex items-start gap-2">
               <span className="text-[#2A9D8F]">✓</span>
               <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Universal Import:</strong> 500+ site compatibility (10x competitors) with 94%
-                parse accuracy reduces activation drop-off
+                <strong className="text-[#2D2D2D]">Universal Import:</strong> 500+ sites + bulk URL import + AI cookbook scanning for effortless recipe capture
+              </span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-[#2A9D8F]">✓</span>
+              <span className="text-gray-700">
+                <strong className="text-[#2D2D2D]">AI-Powered Digitization:</strong> Claude-powered ingredient parsing and vision-based cookbook scanner. No manual typing required.
               </span>
             </div>
             <div className="flex items-start gap-2">

@@ -29,7 +29,7 @@ export default function HeroSection() {
           <div className="flex flex-col gap-4">
           {/* Description */}
           <p className="text-sm leading-snug text-gray-700">
-            A native iOS app that preserves family recipes as beautiful, shareable artifacts—not just data.
+            Where family recipes live—captured with AI, styled beautifully, and passed down. A native iOS app that preserves recipes as beautiful, shareable artifacts—not just data.
           </p>
 
           {/* CTAs */}
@@ -84,7 +84,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="text-lg leading-relaxed text-gray-700 md:text-xl">
-              A native iOS app that preserves family recipes as beautiful, shareable artifacts—not just data.
+              Where family recipes live—captured with AI, styled beautifully, and passed down. A native iOS app that preserves recipes as beautiful, shareable artifacts—not just data.
             </p>
 
             {/* CTAs */}

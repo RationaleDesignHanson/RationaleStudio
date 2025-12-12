@@ -176,7 +176,7 @@ export default function HomePage() {
 
                   {/* Description - Full Width Row */}
                   <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-                    Where family recipes live—styled, shared, and passed down. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
+                    Recipe management with AI-powered cookbook scanning. Capture, style, and share family recipes effortlessly. Modern recipe box where grandma's cards sit alongside NYT bookmarks.
                   </p>
 
                   {/* Additional Details */}

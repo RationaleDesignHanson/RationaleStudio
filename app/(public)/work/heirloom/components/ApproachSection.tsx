@@ -12,7 +12,7 @@ export default function ApproachSection() {
             Preserve recipes as heirlooms, not data points
           </p>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {/* Principle 1 */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-[#2D2D2D]">
@@ -26,6 +26,16 @@ export default function ApproachSection() {
             {/* Principle 2 */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-[#2D2D2D]">
+                AI That Helps, Doesn't Replace
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Claude-powered OCR correction and ingredient parsing. Handles messy text, fractions, ranges. Falls back gracefully. Your recipes stay private—not used for AI training.
+              </p>
+            </div>
+
+            {/* Principle 3 */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#2D2D2D]">
                 Native iOS Power
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
@@ -33,7 +43,7 @@ export default function ApproachSection() {
               </p>
             </div>
 
-            {/* Principle 3 */}
+            {/* Principle 4 */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-[#2D2D2D]">
                 One-Time Purchase

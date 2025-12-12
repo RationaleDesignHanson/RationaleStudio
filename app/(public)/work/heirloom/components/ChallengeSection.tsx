@@ -32,6 +32,13 @@ export default function ChallengeSection() {
               <li className="flex items-start gap-3">
                 <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
                 <div>
+                  <span className="font-bold text-[#2D2D2D]">Manual Digitization:</span>
+                  <span className="text-gray-700"> Typing recipes from cookbooks is tedious. OCR apps get fractions wrong. Existing tools require heavy editing.</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
+                <div>
                   <span className="font-bold text-[#2D2D2D]">Feature Overload:</span>
                   <span className="text-gray-700"> Meal planners prioritize algorithms and nutritional data over the warmth of family connection</span>
                 </div>
