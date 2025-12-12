@@ -1,74 +1,49 @@
 // components/ChallengeSection.tsx
 
-import Image from 'next/image'
-
 export default function ChallengeSection() {
   return (
-    <section className="bg-gray-50 py-6 md:py-12 lg:py-16 md:py-20">
+    <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 md:mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             The Challenge
           </h2>
+          <p className="mb-6 text-lg text-gray-700 max-w-3xl">
+            Recipe apps treat your family's culinary heritage like generic data.
+          </p>
 
-          <div className="mb-8 md:mb-16 space-y-6 md:space-y-8">
-            <div>
-              <h3 className="mb-3 md:mb-4 text-lg md:text-2xl font-bold text-[#E85D4D]">
-                PROBLEM
-              </h3>
-              <div className="prose prose-sm md:prose-lg max-w-none text-gray-700">
-                <p className="mb-3 md:mb-4 text-sm md:text-base">Recipe apps treat recipes like data:</p>
-                <ul className="list-disc space-y-1 md:space-y-2 pl-6 text-sm md:text-base">
-                  <li>Plain text ingredients and instructions</li>
-                  <li>No personality or context</li>
-                  <li>Shared recipes lose all customization</li>
-                  <li>No connection to family heritage</li>
-                </ul>
-                <p className="mt-4 md:mt-6 text-sm md:text-base">
-                  Existing apps like Paprika and Mealboard focus on organization and efficiency,
-                  but they strip away the warmth and stories that make recipes meaningful.
-                </p>
-              </div>
-            </div>
+          <div className="space-y-6 text-base text-gray-700 leading-relaxed">
+            <p>
+              Your grandmother's handwritten chicken soup recipe is <span className="font-bold text-[#2D2D2D]">fading in a kitchen drawer</span>. Your mom's famous chocolate chip cookies exist only in her memory. That casserole your dad makes every Thanksgiving? Scattered across three different text messages from 2019.
+            </p>
+            <p>
+              You could put them in a notes app—but then they're just text. You could use a meal planner—but those are built for diet optimization, not family traditions. You could subscribe to a recipe service—but <span className="font-bold text-[#2D2D2D]">why pay monthly to access recipes you already own?</span>
+            </p>
 
-            <div>
-              <h3 className="mb-3 md:mb-4 text-lg md:text-2xl font-bold text-[#8B9F8D]">
-                OPPORTUNITY
-              </h3>
-              <div className="prose prose-sm md:prose-lg max-w-none text-gray-700">
-                <p className="text-sm md:text-base">
-                  Families want to preserve recipes as heirlooms—not just functional cooking
-                  instructions, but artifacts that carry stories, notes, and memories.
-                </p>
-                <p className="mt-3 md:mt-4 text-sm md:text-base">
-                  <strong>Our insight:</strong> The details matter. Coffee stains, handwritten notes, worn edges—
-                  these aren't imperfections. They're part of the story.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Visual Comparison (optional - if you have images) */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border-2 border-gray-300 p-6">
-              <div className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                Other Apps
-              </div>
-              <div className="flex h-64 items-center justify-center bg-gray-200 text-gray-500">
-                [Screenshot: Generic recipe app UI]
-              </div>
-              <p className="mt-4 text-sm text-gray-600">Sterile lists. No personality. Data only.</p>
-            </div>
-
-            <div className="rounded-xl border-2 border-[#E85D4D] p-6">
-              <div className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#E85D4D]">
-                Heirloom
-              </div>
-              <div className="flex h-64 items-center justify-center bg-[#FBF8F3] text-gray-500">
-                [Screenshot: Heirloom personalized card]
-              </div>
-              <p className="mt-4 text-sm text-gray-600">Warm, styled, personal. The full experience.</p>
-            </div>
+            {/* Key Pain Points - Bullet List */}
+            <ul className="mt-8 space-y-4 list-none">
+              <li className="flex items-start gap-3">
+                <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-[#2D2D2D]">Lost Heritage:</span>
+                  <span className="text-gray-700"> Paper recipes fade, handwriting becomes illegible, family stories disappear with each generation</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-[#2D2D2D]">Feature Overload:</span>
+                  <span className="text-gray-700"> Meal planners prioritize algorithms and nutritional data over the warmth of family connection</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-[#2D2D2D]">Subscription Fatigue:</span>
+                  <span className="text-gray-700"> Pay $5-15/month forever to access recipes that belong to you and your family</span>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

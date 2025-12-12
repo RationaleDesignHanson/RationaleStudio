@@ -2,58 +2,53 @@
 
 export default function ApproachSection() {
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
+    <section className="bg-[#FBF8F3] py-12 md:py-16 lg:py-20 md:py-28 border-t border-[#F4A460]/30">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
             Our Approach
           </h2>
+          <p className="mb-12 text-lg text-gray-700 max-w-3xl">
+            Preserve recipes as heirlooms, not data points
+          </p>
 
-          <div className="prose prose-lg mb-16 max-w-none text-gray-700">
-            <p className="text-xl font-medium text-[#2D2D2D]">
-              We built Heirloom around three core principles:
-            </p>
-          </div>
-
-          <div className="space-y-12">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Principle 1 */}
-            <div className="border-l-4 border-[#E85D4D] pl-8">
-              <h3 className="mb-4 text-2xl font-bold text-[#2D2D2D]">
-                1. PRESERVE THE ARTIFACT
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#2D2D2D]">
+                Heritage-First Design
               </h3>
-              <p className="leading-relaxed text-gray-700">
-                Recipe cards aren't just data containers—they're personal objects. We designed
-                a card personalization system with vintage backgrounds, hand-drawn stickers,
-                and authentic handwriting. When you share a styled card, the recipient sees
-                everything you added.
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Vintage backgrounds, handwritten notes, stickers, and card personalization. Every recipe becomes a beautiful artifact worth sharing across generations.
               </p>
             </div>
 
             {/* Principle 2 */}
-            <div className="border-l-4 border-[#F4A460] pl-8">
-              <h3 className="mb-4 text-2xl font-bold text-[#2D2D2D]">
-                2. SMART UTILITY WITHOUT STERILITY
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#2D2D2D]">
+                Native iOS Power
               </h3>
-              <p className="leading-relaxed text-gray-700">
-                Great design doesn't mean sacrificing function. Heirloom's shopping list
-                aggregation automatically combines ingredients from multiple recipes and exports
-                directly to iOS Reminders with grocery categorization—a feature no competitor offers.
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Built with SwiftUI and SwiftData. iCloud sync keeps recipes across devices. Smart shopping lists, 500+ site import, offline-first. Works like a native iOS app should.
               </p>
             </div>
 
             {/* Principle 3 */}
-            <div className="border-l-4 border-[#8B9F8D] pl-8">
-              <h3 className="mb-4 text-2xl font-bold text-[#2D2D2D]">
-                3. NATIVE-FIRST QUALITY
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-[#2D2D2D]">
+                One-Time Purchase
               </h3>
-              <p className="leading-relaxed text-gray-700">
-                We committed to a fully native iOS experience using SwiftUI and SwiftData.
-                This meant: instant responsiveness, seamless iCloud sync, and iOS 17 feature
-                integration (Reminders grocery type, VisionKit OCR, CloudKit sharing).
-                <br /><br />
-                <strong>No web wrappers. No React Native compromises. Just native.</strong>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                $4.99 unlocks premium features forever. No subscriptions, no recurring charges. Your recipes, your data, your lifetime access.
               </p>
             </div>
+          </div>
+
+          {/* Solution Statement */}
+          <div className="mt-12 pt-8 border-t border-[#E85D4D]/30">
+            <p className="text-xl font-semibold text-[#E85D4D] text-center">
+              Heirloom treats your recipes like family treasures—beautifully preserved, easily shared, yours forever.
+            </p>
           </div>
         </div>
       </div>
