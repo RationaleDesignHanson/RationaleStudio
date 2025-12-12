@@ -277,10 +277,20 @@ input[type="checkbox"] {
 }
 
 .progress-bar-fill {
-    background-color: var(--fubo-orange);
+    background: linear-gradient(90deg, var(--fubo-orange), var(--terminal-gold));
     height: 100%;
     transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(255, 108, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: progress-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
 }
 
 /* QA Badges */
@@ -667,5 +677,79 @@ input[type="checkbox"] {
     background-color: var(--fubo-orange);
     color: white;
     box-shadow: var(--shadow-sm);
+}
+
+/* ========== PHASE 2: ENHANCED HOVER EFFECTS ========== */
+
+/* Segmented Toggle Enhanced Hover */
+.segmented-toggle {
+    transition: all 0.2s ease;
+}
+
+.segmented-toggle:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.segmented-toggle .toggle-btn:hover:not(.active) {
+    background-color: rgba(255, 215, 0, 0.05);
+    color: var(--terminal-gold);
+}
+
+/* Select Dropdowns Enhanced Hover */
+select:hover:not(:focus) {
+    border-color: rgba(255, 215, 0, 0.4);
+    background-color: rgba(255, 215, 0, 0.02);
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+/* Stop Button Enhanced Hover */
+#v6StopBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.5);
+}
+
+#v6StopBtn:active {
+    transform: translateY(0);
+}
+
+/* Radio & Checkbox Enhanced Hover */
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+/* Glass Card Enhanced Hover on Sidebar Sections */
+.glass-card.border.border-gray-700:hover {
+    border-color: rgba(255, 215, 0, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* Export Section Enhanced Hover */
+#v6ExportSection:hover {
+    border-color: var(--terminal-gold-hover);
+    box-shadow: var(--shadow-gold-strong);
+}
+
+/* Icon Hover Effects */
+[data-feather]:hover {
+    filter: brightness(1.2);
+}
+
+/* Top Bar Button Enhanced Hover */
+#imageInputsBtn:hover,
+#compositingBtn:hover,
+#importBtn:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* QA Filter & League Filter Enhanced Hover */
+#v6QAFilter:hover,
+#v6LeagueFilter:hover {
+    border-color: rgba(255, 215, 0, 0.4);
 }
 

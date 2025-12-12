@@ -134,6 +134,17 @@ textarea:focus-visible {
   }
 }
 
+/* Result Card Glow Effects */
+.result-card {
+  transition: all 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--terminal-gold, #FFD700);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
 /* ========== END RATIONALE DESIGN SYSTEM ========== */
 
 /* Image Preview Modal Styles */
