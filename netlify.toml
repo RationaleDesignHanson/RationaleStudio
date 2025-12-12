@@ -8,8 +8,7 @@
   # Firebase Client SDK environment variables are set in Netlify Dashboard
   # Bypass secrets scanner for Firebase public API keys (they're meant for client-side)
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
-  # Firebase Admin credentials - needed for build plugin
-  FIREBASE_SERVICE_ACCOUNT_BASE64 = "${FIREBASE_SERVICE_ACCOUNT_BASE64}"
+  # Firebase Admin credentials - env var set in Netlify Dashboard, accessed directly by build plugin
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
