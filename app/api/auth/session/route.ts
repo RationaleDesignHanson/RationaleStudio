@@ -23,6 +23,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Log environment variable status for debugging
+    console.log('[Session API] Environment check:', {
+      hasProjectId: !!process.env.FIREBASE_PROJECT_ID,
+      hasClientEmail: !!process.env.FIREBASE_CLIENT_EMAIL,
+      hasPrivateKey: !!process.env.FIREBASE_PRIVATE_KEY,
+      privateKeyPrefix: process.env.FIREBASE_PRIVATE_KEY?.substring(0, 30),
+    });
+
     // Verify the Firebase ID token using Firebase Admin SDK
     const adminAuth = getAdminAuth();
     const decodedToken = await adminAuth.verifyIdToken(idToken);
