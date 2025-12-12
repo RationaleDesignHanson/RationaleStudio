@@ -63,56 +63,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Verify session cookie and check role via internal API
-  try {
-    const verifyResponse = await fetch(new URL('/api/auth/verify', request.url), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cookie': `session=${sessionCookie}`,
-      },
-    });
-
-    if (!verifyResponse.ok) {
-      // Session invalid or expired, redirect to appropriate login page
-      const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
-      const loginUrl = new URL(loginPath, request.url);
-      loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    const { role } = await verifyResponse.json();
-
-    // Check if user has required role
-    const requiredRoles = protectedRoutes[protectedRoute];
-    const hasAccess = requiredRoles.some(
-      (requiredRole) => roleHierarchy[role] >= roleHierarchy[requiredRole]
-    );
-
-    if (!hasAccess) {
-      // User doesn't have required role, redirect to appropriate dashboard
-      const dashboards: Record<string, string> = {
-        owner: '/owner',
-        team: '/team',
-        partner: '/partners',
-        investor: '/investors',
-        client: '/clients',
-      };
-
-      const userDashboard = dashboards[role] || '/login';
-      return NextResponse.redirect(new URL(userDashboard, request.url));
-    }
-
-    // User has access, allow through
-    return NextResponse.next();
-  } catch (error) {
-    console.error('[Middleware] Session verification failed:', error);
-    // On error, redirect to appropriate login page
-    const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
-    const loginUrl = new URL(loginPath, request.url);
-    loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
+  // Session cookie exists, allow through
+  // Pages/API routes will verify the actual session validity and role using Firebase Admin SDK
+  // Middleware only checks for presence of session cookie (authentication, not authorization)
+  return NextResponse.next();
 }
 
 // Configure which routes the middleware should run on
