@@ -101,13 +101,13 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                         <Image
                           src="/images/icons/zero-icon.png"
                           alt="Zero app icon"
-                          fill
-                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
-                          className="object-cover"
+                          width={160}
+                          height={160}
+                          className="w-full h-full object-cover"
                           priority
                         />
                       </div>
@@ -150,13 +150,13 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                      <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                         <Image
                           src="/images/icons/heirloom-icon.png"
                           alt="Heirloom app icon"
-                          fill
-                          sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
-                          className="object-cover"
+                          width={160}
+                          height={160}
+                          className="w-full h-full object-cover"
                           priority
                         />
                       </div>
@@ -201,13 +201,13 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-3">
                   {/* Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
+                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden">
                       <Image
                         src="/images/icons/pipeline-icon.jpg"
                         alt="Pipeline icon"
-                        fill
-                        sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
-                        className="object-cover"
+                        width={160}
+                        height={160}
+                        className="w-full h-full object-cover"
                         priority
                       />
                     </div>
