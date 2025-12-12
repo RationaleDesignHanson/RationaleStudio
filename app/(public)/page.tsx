@@ -91,7 +91,7 @@ export default function HomePage() {
                 What We've Shipped
               </h2>
               <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
-                This site, Zero, and Heirloom—plus partner explorations under NDA—designed and shipped in 8 weeks with AI assistance. No mockups. No proposals. Click to see working architecture, prototypes, and live demos.
+                This site, Zero, and Heirloom—plus partner explorations—designed and shipped in weeks to months, not quarters. No mockups. No proposals. Click to see working architecture, prototypes, and live demos.
               </p>
             </div>
 
