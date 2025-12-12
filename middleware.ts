@@ -56,8 +56,9 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = request.cookies.get('session')?.value;
 
   if (!sessionCookie) {
-    // No session, redirect to login
-    const loginUrl = new URL('/login', request.url);
+    // No session, redirect to appropriate login page
+    const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
+    const loginUrl = new URL(loginPath, request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
@@ -73,8 +74,9 @@ export async function middleware(request: NextRequest) {
     });
 
     if (!verifyResponse.ok) {
-      // Session invalid or expired, redirect to login
-      const loginUrl = new URL('/login', request.url);
+      // Session invalid or expired, redirect to appropriate login page
+      const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
+      const loginUrl = new URL(loginPath, request.url);
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -105,8 +107,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   } catch (error) {
     console.error('[Middleware] Session verification failed:', error);
-    // On error, redirect to login
-    const loginUrl = new URL('/login', request.url);
+    // On error, redirect to appropriate login page
+    const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
+    const loginUrl = new URL(loginPath, request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }

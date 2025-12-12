@@ -58,15 +58,18 @@ function ClientLoginForm() {
     try {
       const profile = await signIn(email, password);
 
-      // Determine redirect based on role and clientId custom claim
+      // Determine redirect based on redirect parameter or role
       let destination = '/clients';
 
-      if (profile.role === 'client' && profile.clientId) {
+      // First priority: use redirect parameter if provided (from middleware)
+      if (redirect) {
+        destination = redirect;
+      } else if (profile.role === 'client' && profile.clientId) {
         // Client user - redirect to their specific portal
         destination = CLIENT_REDIRECTS[profile.clientId] || '/clients';
       } else if (['owner', 'team'].includes(profile.role)) {
         // Owner/team can access all clients
-        destination = redirect || '/clients';
+        destination = '/clients';
       } else {
         // Other roles don't have client access
         setError('You do not have access to the client portal');
@@ -74,7 +77,8 @@ function ClientLoginForm() {
         return;
       }
 
-      router.push(destination);
+      // Use full page reload to ensure cookie is set before middleware runs
+      window.location.href = destination;
     } catch (err: any) {
       const errorMessage = err.message || 'Authentication failed';
       setError(errorMessage);
