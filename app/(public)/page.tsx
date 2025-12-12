@@ -143,7 +143,7 @@ export default function HomePage() {
               </Link>
 
               {/* Heirloom - Beta/Dogfooding */}
-              <Link href="/work/heirloom" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <Link href="https://testflight.apple.com/join/gs6EU81Z" target="_blank" rel="noopener noreferrer" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col md:space-y-6">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
