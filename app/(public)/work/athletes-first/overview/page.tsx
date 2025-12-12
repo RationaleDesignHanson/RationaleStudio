@@ -10,17 +10,10 @@
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink, Presentation } from 'lucide-react';
-import { PasswordGate } from '@/components/sections/PasswordGate';
 
 export default function AthletesFirstOverviewPage() {
   return (
-    <PasswordGate
-      password="123456"
-      storageKey="athletes-first-overview-access"
-      title="Athletes First Overview - Protected Content"
-      description="This overview contains confidential project details. Please enter the password to continue."
-    >
-      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
       <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
@@ -230,6 +223,5 @@ export default function AthletesFirstOverviewPage() {
         </div>
       </section>
     </main>
-    </PasswordGate>
   );
 }
