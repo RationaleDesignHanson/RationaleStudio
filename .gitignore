@@ -158,3 +158,4 @@ public/optimized/
 .netlify/
 # Trigger redeploy with updated FIREBASE_PRIVATE_KEY env var
 .firebase-credentials.json
+app/api/.firebase-credentials.json

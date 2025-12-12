@@ -50,8 +50,22 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
       throw new Error('Firebase Admin not available during build');
     }
 
-    // Option 1: Use base64-encoded service account JSON (recommended for Netlify)
-    if (process.env.FIREBASE_SERVICE_ACCOUNT_BASE64) {
+    // Option 1: Use credentials file in API directory (written by build plugin)
+    const apiCredentialsPath = path.join(process.cwd(), 'app', 'api', '.firebase-credentials.json');
+    if (fs.existsSync(apiCredentialsPath)) {
+      try {
+        const credentials = JSON.parse(fs.readFileSync(apiCredentialsPath, 'utf-8'));
+        adminApp = initializeApp({
+          credential: cert(credentials),
+        });
+        console.log('[Firebase Admin] Initialized with API directory credentials file');
+      } catch (error) {
+        console.error('[Firebase Admin] Failed to read API credentials file:', error);
+        throw error;
+      }
+    }
+    // Option 2: Use base64-encoded service account JSON (recommended for Netlify)
+    else if (process.env.FIREBASE_SERVICE_ACCOUNT_BASE64) {
       try {
         const serviceAccountJson = Buffer.from(
           process.env.FIREBASE_SERVICE_ACCOUNT_BASE64,
