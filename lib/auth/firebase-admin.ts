@@ -48,13 +48,32 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
       throw new Error('Firebase Admin not available during build');
     }
 
-    // Option 1: Use service account JSON file path
-    if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
+    // Option 1: Use base64-encoded service account JSON (recommended for Netlify)
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_BASE64) {
+      try {
+        const serviceAccountJson = Buffer.from(
+          process.env.FIREBASE_SERVICE_ACCOUNT_BASE64,
+          'base64'
+        ).toString('utf-8');
+        const serviceAccount = JSON.parse(serviceAccountJson);
+
+        adminApp = initializeApp({
+          credential: cert(serviceAccount),
+        });
+
+        console.log('[Firebase Admin] Initialized with base64-encoded service account');
+      } catch (error) {
+        console.error('[Firebase Admin] Failed to parse base64 service account:', error);
+        throw error;
+      }
+    }
+    // Option 2: Use service account JSON file path
+    else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
       adminApp = initializeApp({
         credential: cert(process.env.FIREBASE_SERVICE_ACCOUNT_PATH),
       });
     }
-    // Option 2: Use individual environment variables
+    // Option 3: Use individual environment variables
     else if (
       process.env.FIREBASE_PROJECT_ID &&
       process.env.FIREBASE_CLIENT_EMAIL &&
@@ -87,7 +106,7 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
     // No credentials provided
     else {
       throw new Error(
-        'Firebase Admin SDK credentials not found. Please set FIREBASE_SERVICE_ACCOUNT_PATH or individual environment variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY)'
+        'Firebase Admin SDK credentials not found. Please set one of: FIREBASE_SERVICE_ACCOUNT_BASE64 (recommended), FIREBASE_SERVICE_ACCOUNT_PATH, or individual variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY)'
       );
     }
 
