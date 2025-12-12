@@ -43,6 +43,13 @@ export default function ChallengeSection() {
                   <span className="text-gray-300"> Read every email to identify what needs action</span>
                 </div>
               </li>
+              <li className="flex items-start gap-3">
+                <span className="text-terminal-gold text-xl leading-none mt-1">•</span>
+                <div>
+                  <span className="font-bold text-white">Notification Blindness:</span>
+                  <span className="text-gray-300"> Your watch buzzes 47 times a day, but which notification is the urgent bill vs. another promo email?</span>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

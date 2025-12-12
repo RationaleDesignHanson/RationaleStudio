@@ -14,6 +14,7 @@ import AtAGlance from './components/AtAGlance'
 import ChallengeSection from './components/ChallengeSection'
 import ApproachSection from './components/ApproachSection'
 import PrototypeEmbed from './components/PrototypeEmbed'
+import WearablesRoadmap from './components/WearablesRoadmap'
 
 export default function ZeroPage() {
   return (
@@ -56,6 +57,9 @@ export default function ZeroPage() {
           </div>
         </div>
       </section>
+
+      {/* Wearables Roadmap */}
+      <WearablesRoadmap />
 
       {/* Final CTA */}
       <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-terminal-gold/30">
