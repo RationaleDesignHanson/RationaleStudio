@@ -40,8 +40,8 @@ export default function HomePage() {
 
         {/* 1. HERO SECTION - Product Studio Identity */}
         <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
-          {/* ASCII Grid Background - animation disabled on mobile for performance */}
-          <div className="absolute inset-0 pointer-events-none hidden md:block">
+          {/* ASCII Grid Background - static on mobile, animated on desktop */}
+          <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
               animated={true}
@@ -76,7 +76,7 @@ export default function HomePage() {
 
         {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
         <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none hidden md:block">
+          <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.03}
               animated={true}
