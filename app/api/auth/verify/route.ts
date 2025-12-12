@@ -14,9 +14,30 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Get session cookie from request
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('session')?.value;
+    // Try to get session cookie from multiple sources
+    // 1. From Cookie header (sent by middleware)
+    const cookieHeader = request.headers.get('cookie');
+    let sessionCookie: string | undefined;
+
+    if (cookieHeader) {
+      const cookies = cookieHeader.split(';').map(c => c.trim());
+      const sessionCookiePair = cookies.find(c => c.startsWith('session='));
+      if (sessionCookiePair) {
+        sessionCookie = sessionCookiePair.split('=')[1];
+      }
+    }
+
+    // 2. Fallback to Next.js cookies() (for direct API calls)
+    if (!sessionCookie) {
+      const cookieStore = await cookies();
+      sessionCookie = cookieStore.get('session')?.value;
+    }
+
+    console.log('[Verify API] Cookie check:', {
+      hasCookieHeader: !!cookieHeader,
+      hasSessionCookie: !!sessionCookie,
+      cookieLength: sessionCookie?.length,
+    });
 
     if (!sessionCookie) {
       return NextResponse.json(
