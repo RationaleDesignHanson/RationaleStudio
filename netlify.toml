@@ -29,8 +29,5 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Next.js image optimization
-[[redirects]]
-  from = "/_next/image"
-  to = "/.netlify/images?url=:url&w=:width&q=:quality"
-  status = 200
+# Next.js image optimization is handled by @netlify/plugin-nextjs
+# Removed redirect that was breaking image optimization
