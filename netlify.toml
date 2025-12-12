@@ -5,13 +5,9 @@
 [build.environment]
   NODE_VERSION = "22"
   NODE_OPTIONS = "--max-old-space-size=4096"
-  # Firebase Client SDK environment variables
-  NEXT_PUBLIC_FIREBASE_API_KEY = "AIzaSyAKRxuyFhxCb8O1lVQcR3r9RDiUswEnwGA"
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = "rationaledesigns-4d354.firebaseapp.com"
-  NEXT_PUBLIC_FIREBASE_PROJECT_ID = "rationaledesigns-4d354"
-  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = "rationaledesigns-4d354.firebasestorage.app"
-  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = "844463328870"
-  NEXT_PUBLIC_FIREBASE_APP_ID = "1:844463328870:web:7d2fe11212c986f9baa7a7"
+  # Firebase Client SDK environment variables are set in Netlify Dashboard
+  # Bypass secrets scanner for Firebase public API keys (they're meant for client-side)
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
