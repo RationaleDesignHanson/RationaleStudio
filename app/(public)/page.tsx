@@ -120,7 +120,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
                       <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Zero</h3>
                       <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-terminal-gold/20 border border-terminal-gold/40 rounded-full text-[0.65rem] md:text-xs text-terminal-gold font-medium whitespace-nowrap flex-shrink-0">
-                        Beta · 8-week build
+                        Beta
                       </span>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between flex-1 min-w-0 gap-2">
                       <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-white">Heirloom</h3>
                       <span className="inline-block px-1.5 py-0.5 md:px-2 md:py-1 bg-[#00D9FF]/20 border border-[#00D9FF]/40 rounded-full text-[0.65rem] md:text-xs text-[#00D9FF] font-medium whitespace-nowrap flex-shrink-0">
-                        TestFlight · 8-week build
+                        TestFlight
                       </span>
                     </div>
                   </div>
