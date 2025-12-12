@@ -27,7 +27,7 @@ export default function TraditionalVsRationaleDiagram() {
 
   // Rationale approach: 11 weeks total
   const rationalePhases: TimelinePhase[] = [
-    { label: '7 Prototypes', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
+    { label: 'Rapidly Prototype', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
     { label: 'Lock', weeks: 1, color: '#FFD700', description: 'Architecture locked after validation' },
     { label: 'Production (validated)', weeks: 8, color: '#00D9FF', description: 'Build with confidence' },
   ];

@@ -31,10 +31,10 @@ export default function EngagementModelsGrid() {
   const models: EngagementModel[] = [
     {
       id: 'sprint',
-      name: '3-Week Validation Sprint',
+      name: '4-Week Validation Sprint',
       tagline: 'Answer core hypothesis with prototypes',
-      duration: '3 weeks',
-      investment: '3 weeks',
+      duration: '4 weeks',
+      investment: '4 weeks',
       color: '#00FF94',
       bestFor: 'Testing a single product hypothesis or UX direction before heavy investment',
       deliverables: [
@@ -58,10 +58,10 @@ export default function EngagementModelsGrid() {
     },
     {
       id: 'pilot',
-      name: '12-Week Build Pilot',
+      name: '12+ Week Build Pilot',
       tagline: 'Ship validated product to real users',
-      duration: '12 weeks',
-      investment: '12 weeks',
+      duration: '12+ weeks',
+      investment: '12+ weeks',
       color: '#FFD700',
       bestFor: 'Building production-ready product after validation, or entire 0→1 journey',
       deliverables: [
@@ -224,18 +224,18 @@ export default function EngagementModelsGrid() {
             <tbody className="divide-y divide-gray-800">
               <tr>
                 <td className="py-3 px-3 text-gray-400">Duration</td>
-                <td className="py-3 px-3 text-center text-white">3 weeks</td>
-                <td className="py-3 px-3 text-center text-white">12 weeks</td>
+                <td className="py-3 px-3 text-center text-white">4 weeks</td>
+                <td className="py-3 px-3 text-center text-white">12+ weeks</td>
               </tr>
               <tr>
                 <td className="py-3 px-3 text-gray-400">Time Investment</td>
-                <td className="py-3 px-3 text-center text-white">3 weeks</td>
-                <td className="py-3 px-3 text-center text-white">12 weeks</td>
+                <td className="py-3 px-3 text-center text-white">4 weeks</td>
+                <td className="py-3 px-3 text-center text-white">12+ weeks</td>
               </tr>
               <tr>
                 <td className="py-3 px-3 text-gray-400">Prototypes</td>
-                <td className="py-3 px-3 text-center text-white">7 prototypes</td>
-                <td className="py-3 px-3 text-center text-white">7 prototypes + production</td>
+                <td className="py-3 px-3 text-center text-white">Rapid prototyping</td>
+                <td className="py-3 px-3 text-center text-white">Rapid prototyping + production</td>
               </tr>
               <tr>
                 <td className="py-3 px-3 text-gray-400">End Result</td>
@@ -266,7 +266,7 @@ export default function EngagementModelsGrid() {
           <div>
             <div className="text-sm font-semibold text-white mb-1">Why This De-Risks Your Investment</div>
             <div className="text-xs text-gray-400 leading-relaxed">
-              Traditional agencies ask for 6-month commitments before validation. Rationale works in clear checkpoints with exit ramps. Start with 3-week Sprint to test hypothesis. If validated, extend to 12-week Pilot. If not, exit after Week 2 with minimal investment instead of sinking months of work.
+              Traditional agencies ask for 6-month commitments before validation. Rationale works in clear checkpoints with exit ramps. Start with 4-week Sprint to test hypothesis. If validated, extend to 12+ week Pilot. If not, exit after Week 2 with minimal investment instead of sinking months of work.
             </div>
           </div>
         </div>
