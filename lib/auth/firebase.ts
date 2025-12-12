@@ -48,7 +48,16 @@ function getFirebaseApp(): FirebaseApp {
   if (!app) {
     try {
       // Validate that we have the required config
-      if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'undefined') {
+      if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'undefined' || firebaseConfig.apiKey.length < 10) {
+        // Development logging for debugging
+        if (process.env.NODE_ENV === 'development') {
+          console.error('[Firebase] Configuration error:', {
+            hasApiKey: !!firebaseConfig.apiKey,
+            apiKeyValue: firebaseConfig.apiKey,
+            apiKeyType: typeof firebaseConfig.apiKey,
+            allConfigKeys: Object.keys(firebaseConfig),
+          });
+        }
         throw new Error('Firebase API key is missing or invalid. Please check environment variables.');
       }
 
