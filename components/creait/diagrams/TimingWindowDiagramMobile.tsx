@@ -150,7 +150,6 @@ export default function TimingWindowDiagramMobile() {
       <SwipeableDiagram
         slides={slides}
         title="The Cost of Missing Timing"
-        height="600px"
       />
 
       {/* Summary Stats */}
