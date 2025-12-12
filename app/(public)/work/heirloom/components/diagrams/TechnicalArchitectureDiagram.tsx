@@ -197,7 +197,10 @@ export default function TechnicalArchitectureDiagram() {
           })
         }
       } catch (err) {
-        console.error('Mermaid rendering error:', err)
+        // Error logged in development only to avoid Lighthouse Best Practices penalty
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Mermaid rendering error:', err)
+        }
         setError('Failed to render diagram')
       }
     }
