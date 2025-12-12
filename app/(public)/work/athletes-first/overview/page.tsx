@@ -3,17 +3,19 @@
  *
  * Scrollable one-page summary of the Athletes First pilot program.
  * Complements the full interactive pitch deck.
- * Password protected.
+ * Protected by Firebase authentication - requires Athletes First login or admin access.
  */
 
 'use client';
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink, Presentation } from 'lucide-react';
+import { ClientAuthGuard } from '@/components/auth/ClientAuthGuard';
 
 export default function AthletesFirstOverviewPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <ClientAuthGuard requiredClient="athletes-first">
+      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* HERO */}
       <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
@@ -223,5 +225,6 @@ export default function AthletesFirstOverviewPage() {
         </div>
       </section>
     </main>
+    </ClientAuthGuard>
   );
 }
