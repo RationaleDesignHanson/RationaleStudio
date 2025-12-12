@@ -753,3 +753,382 @@ input[type="checkbox"]:hover {
     border-color: rgba(255, 215, 0, 0.4);
 }
 
+/* ========== PHASE 3: ACCESSIBILITY & ADVANCED POLISH ========== */
+
+/* Enhanced Focus Indicators (WCAG AAA) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.toggle-btn:focus-visible {
+    outline: 3px solid var(--terminal-gold) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* Focus styles for custom elements */
+.result-card:focus-within {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.15);
+}
+
+.glass-card:focus-within {
+    border-color: var(--terminal-gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Skip Link for Keyboard Navigation */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--terminal-gold);
+    color: var(--bg-primary);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    z-index: 100;
+    border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Keyboard Navigation Hints */
+[tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+}
+
+/* Enhanced Focus for Modal Close Buttons */
+.modal-content button[onclick*="close"]:focus-visible {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+    background-color: rgba(255, 215, 0, 0.2);
+}
+
+/* Focus trap visualization */
+.modal-overlay:focus-within {
+    outline: none;
+}
+
+/* Keyboard-only focus (hide focus for mouse users) */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Advanced Micro-Interactions */
+
+/* Button Press Animation */
+button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+.btn-primary:active {
+    transform: scale(0.98) translateY(0);
+}
+
+/* Select Dropdown Open Animation */
+select:focus {
+    animation: select-open 0.2s ease;
+}
+
+@keyframes select-open {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Toggle Button Ripple Effect */
+.toggle-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.toggle-btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Card Entrance Animation with Stagger */
+@keyframes card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.result-card {
+    animation: card-entrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stagger delay classes (applied via JavaScript) */
+.result-card:nth-child(1) { animation-delay: 0ms; }
+.result-card:nth-child(2) { animation-delay: 50ms; }
+.result-card:nth-child(3) { animation-delay: 100ms; }
+.result-card:nth-child(4) { animation-delay: 150ms; }
+.result-card:nth-child(5) { animation-delay: 200ms; }
+.result-card:nth-child(6) { animation-delay: 250ms; }
+.result-card:nth-child(7) { animation-delay: 300ms; }
+.result-card:nth-child(8) { animation-delay: 350ms; }
+.result-card:nth-child(n+9) { animation-delay: 400ms; }
+
+/* Glass Card Entrance */
+@keyframes glass-card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+        backdrop-filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        backdrop-filter: blur(12px);
+    }
+}
+
+.glass-card {
+    animation: glass-card-entrance 0.5s ease forwards;
+}
+
+/* Progress Bar Fill Animation */
+#v6ProgressBar {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Generate Button Pulse Enhancement */
+@keyframes button-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 6px -1px rgba(255, 108, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px -1px rgba(255, 108, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+}
+
+#v6GenerateBtn.animate-yellow-pulse {
+    animation: button-pulse 2s ease-in-out infinite;
+}
+
+/* Icon Rotation on Hover */
+button:hover [data-feather] {
+    animation: icon-wiggle 0.5s ease;
+}
+
+@keyframes icon-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+/* Loading State Animations */
+.loading-pulse {
+    animation: loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Typography & Spacing Refinements */
+
+/* Screen Reader Only Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Consistent Spacing System */
+.space-section {
+    margin-bottom: 2rem;
+}
+
+.space-group {
+    margin-bottom: 1rem;
+}
+
+/* Enhanced Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+/* Improved Readability */
+p, li, span {
+    line-height: 1.5;
+}
+
+/* Consistent Border Radius */
+.glass-card,
+button,
+select,
+input,
+textarea {
+    border-radius: 0.5rem;
+}
+
+/* Enhanced Text Contrast for Accessibility */
+.text-low-contrast {
+    color: var(--text-secondary);
+}
+
+.text-high-contrast {
+    color: var(--text-primary);
+}
+
+/* Refined Shadow System */
+.shadow-subtle {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow-card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-elevated {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-glow-gold {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3),
+                0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Refined Spacing for Glass Cards */
+.glass-card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Consistent Gap System */
+.gap-xs { gap: 0.5rem; }
+.gap-sm { gap: 0.75rem; }
+.gap-md { gap: 1rem; }
+.gap-lg { gap: 1.5rem; }
+.gap-xl { gap: 2rem; }
+
+/* Button Spacing Consistency */
+button {
+    padding: 0.625rem 1.25rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.125rem;
+}
+
+/* Form Element Consistency */
+input,
+select,
+textarea {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.875rem;
+}
+
+/* Icon Alignment */
+[data-feather] {
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+/* Improved Modal Spacing */
+.modal-content {
+    padding: 1.5rem;
+}
+
+.modal-content h2,
+.modal-content h3 {
+    margin-bottom: 1rem;
+}
+
+/* Result Card Refinements */
+.result-card {
+    padding: 0.5rem;
+}
+
+.result-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Enhanced Visual Hierarchy with Color */
+.text-terminal-gold {
+    color: var(--terminal-gold);
+    font-weight: 600;
+}
+
+.text-fubo-orange {
+    color: var(--fubo-orange);
+    font-weight: 600;
+}
+
+/* Refined Z-Index System */
+.z-base { z-index: 0; }
+.z-dropdown { z-index: 10; }
+.z-sticky { z-index: 20; }
+.z-modal-backdrop { z-index: 40; }
+.z-modal { z-index: 50; }
+.z-tooltip { z-index: 60; }
+
