@@ -34,7 +34,7 @@ const AthletesFirstPitchDeck = dynamic(
 
 export default function AthletesFirstPitchDeckPage() {
   return (
-    <ClientAuthGuard requiredClient="A1">
+    <ClientAuthGuard requiredClient="athletes-first">
       <AthletesFirstPitchDeck />
     </ClientAuthGuard>
   );
