@@ -1,6 +1,6 @@
 'use client';
 
-import SwipeableDiagram from '@/components/diagrams/SwipeableDiagram';
+import { SwipeableDiagram } from '@/components/diagrams/SwipeableDiagram';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
 import { CheckCircle2, XCircle, Calendar, TrendingDown } from 'lucide-react';
 

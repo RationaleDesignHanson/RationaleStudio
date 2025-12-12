@@ -1,6 +1,6 @@
 'use client';
 
-import StepByStepDiagram from '@/components/diagrams/StepByStepDiagram';
+import { StepByStepDiagram } from '@/components/diagrams/StepByStepDiagram';
 import { CRE_COLORS } from '@/lib/creait/design-tokens/colors';
 import { DollarSign, Target, TrendingUp, CheckCircle2, Calendar } from 'lucide-react';
 
