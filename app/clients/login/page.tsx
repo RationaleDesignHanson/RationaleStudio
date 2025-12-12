@@ -30,8 +30,25 @@ function ClientLoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showClearCache, setShowClearCache] = useState(false);
 
   const redirect = searchParams.get('redirect');
+
+  const clearFirebaseCache = () => {
+    // Clear all Firebase-related localStorage
+    const keysToRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && (key.includes('firebase') || key.includes('Firebase'))) {
+        keysToRemove.push(key);
+      }
+    }
+
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+    setError('');
+    setShowClearCache(false);
+    alert(`Cleared ${keysToRemove.length} cached authentication items. Please try logging in again.`);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,8 +76,14 @@ function ClientLoginForm() {
 
       router.push(destination);
     } catch (err: any) {
-      setError(err.message || 'Authentication failed');
+      const errorMessage = err.message || 'Authentication failed';
+      setError(errorMessage);
       setIsLoading(false);
+
+      // If it's an invalid credential error, suggest clearing cache
+      if (errorMessage.includes('invalid-credential') || errorMessage.includes('auth/')) {
+        setShowClearCache(true);
+      }
     }
   };
 
@@ -82,8 +105,17 @@ function ClientLoginForm() {
             {/* Login Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm">
-                  {error}
+                <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm space-y-2">
+                  <div>{error}</div>
+                  {showClearCache && (
+                    <button
+                      type="button"
+                      onClick={clearFirebaseCache}
+                      className="mt-2 text-xs bg-red-600 hover:bg-red-700 px-3 py-1 rounded transition-colors"
+                    >
+                      Clear Cache & Try Again
+                    </button>
+                  )}
                 </div>
               )}
 
@@ -134,7 +166,7 @@ function ClientLoginForm() {
             </form>
 
             {/* Help Text */}
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-center space-y-2">
               <p className="text-sm text-gray-500">
                 Need access?{' '}
                 <a
@@ -142,6 +174,14 @@ function ClientLoginForm() {
                   className="text-terminal-gold hover:text-terminal-gold/80 transition-colors"
                 >
                   Contact us
+                </a>
+              </p>
+              <p className="text-xs text-gray-600">
+                <a
+                  href="/clients/login-debug"
+                  className="hover:text-gray-400 transition-colors"
+                >
+                  Diagnostics
                 </a>
               </p>
             </div>
