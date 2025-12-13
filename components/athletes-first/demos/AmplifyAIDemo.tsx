@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { useDigitalTwin } from '../context/DigitalTwinContext';
 
 // Mock data
 const OBJECTIVES = ['Product Launch', 'Brand Awareness', 'Event Promotion', 'Community Engagement', 'NIL Campaign'];
@@ -10,6 +11,35 @@ const TONES = ['Professional', 'Casual', 'Inspirational', 'Energetic', 'Authenti
 const DELIVERABLES = ['Instagram Reel', 'TikTok Video', 'YouTube Short', 'Static Post', 'Story Series'];
 
 type ContentTab = 'script' | 'captions' | 'visuals' | 'languages';
+
+// Rights validation function
+function validateRights(campaignType: string, deliverables: string[]): string[] {
+  const violations: string[] = [];
+
+  switch (campaignType) {
+    case 'Regional Endorsement':
+    case 'National Campaign':
+      // All deliverables allowed
+      break;
+
+    case 'Social Media Only':
+      // YouTube Short not allowed
+      if (deliverables.includes('YouTube Short')) {
+        violations.push('YouTube Short not permitted under Social Media Only consent');
+      }
+      break;
+
+    case 'Event Appearance':
+      // Only Static Post allowed
+      const restrictedDeliverables = deliverables.filter(d => d !== 'Static Post');
+      restrictedDeliverables.forEach(d => {
+        violations.push(`${d} not permitted under Event Appearance consent (only Static Post allowed)`);
+      });
+      break;
+  }
+
+  return violations;
+}
 
 const MOCK_GENERATED_CONTENT = {
   script: `Hey everyone! I'm excited to partner with [Brand] for this incredible opportunity.
@@ -43,9 +73,25 @@ Whether you're training hard or just starting your journey, [Brand] has the tool
 type Step = 1 | 2 | 3 | 4 | 5;
 
 export default function AmplifyAIDemo() {
+  // Digital Twin context - optional, fallback to default if not in provider
+  let consentScope = {
+    campaignType: 'Regional Endorsement',
+    territories: ['United States'],
+    startDate: '2025-01',
+    endDate: '2025-12',
+    transformations: ['Voice Generation', 'Image Compositing']
+  };
+
+  try {
+    const context = useDigitalTwin();
+    consentScope = context.consentScope;
+  } catch (error) {
+    // Not wrapped in provider, use default values
+  }
+
   // State
   const [currentStep, setCurrentStep] = useState<Step>(1);
-  const [brandName, setBrandName] = useState('');
+  const [brandName, setBrandName] = useState('Nike');
   const [objective, setObjective] = useState(OBJECTIVES[0]);
   const [audience, setAudience] = useState(AUDIENCES[0]);
   const [tone, setTone] = useState(TONES[0]);
@@ -59,6 +105,8 @@ export default function AmplifyAIDemo() {
   const [contentTab, setContentTab] = useState<ContentTab>('script');
   const [captionIndex, setCaptionIndex] = useState(0);
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
+  const [rightsViolations, setRightsViolations] = useState<string[]>([]);
+  const [showViolations, setShowViolations] = useState(false);
 
   const loadingMessages = [
     'Analyzing brief...',
@@ -67,6 +115,13 @@ export default function AmplifyAIDemo() {
     'Creating visuals...',
     'Checking rights...'
   ];
+
+  // Validate rights whenever deliverables change
+  useEffect(() => {
+    const violations = validateRights(consentScope.campaignType, selectedDeliverables);
+    setRightsViolations(violations);
+    setShowViolations(violations.length > 0);
+  }, [selectedDeliverables, consentScope.campaignType]);
 
   const handleToggleDeliverable = (deliverable: string) => {
     if (selectedDeliverables.includes(deliverable)) {
@@ -154,6 +209,21 @@ export default function AmplifyAIDemo() {
             <p className="text-white/70 text-sm">Provide campaign details to generate personalized content</p>
           </div>
 
+          {/* Rights Validation Indicator */}
+          {rightsViolations.length === 0 ? (
+            <div className="flex items-center justify-center gap-2 p-2 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-lg">
+              <CheckCircle2 className="w-4 h-4 text-[#00FF94]" />
+              <span className="text-[#00FF94] font-terminal text-xs font-bold">✓ RIGHTS VALIDATED</span>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-2 p-2 bg-[#FF6B00]/10 border border-[#FF6B00]/30 rounded-lg">
+              <AlertTriangle className="w-4 h-4 text-[#FF6B00]" />
+              <span className="text-[#FF6B00] font-terminal text-xs font-bold">
+                ⚠ RIGHTS ISSUE DETECTED ({rightsViolations.length} {rightsViolations.length === 1 ? 'VIOLATION' : 'VIOLATIONS'})
+              </span>
+            </div>
+          )}
+
           <div className="space-y-2">
             <div>
               <label className="block text-white/70 font-terminal text-sm mb-1">Brand Name *</label>
@@ -226,6 +296,43 @@ export default function AmplifyAIDemo() {
                 ))}
               </div>
             </div>
+
+            {/* Rights Violation Alert Panel */}
+            {showViolations && rightsViolations.length > 0 && (
+              <div className="p-4 bg-[#FF6B00]/10 border-2 border-[#FF6B00]/30 rounded-lg space-y-3 animate-fade-in">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-[#FF6B00] font-terminal text-sm font-bold mb-2">
+                      Digital Twin Rights Conflict
+                    </div>
+                    <div className="text-white/80 font-terminal text-xs mb-3">
+                      The following deliverables conflict with your current consent settings:
+                    </div>
+                    <div className="space-y-2 mb-3">
+                      {rightsViolations.map((violation, index) => (
+                        <div key={index} className="flex items-start gap-2 text-xs">
+                          <span className="text-[#FF6B00] mt-0.5">•</span>
+                          <span className="text-white/70 font-terminal">{violation}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-white/60 font-terminal text-xs mb-3">
+                      <span className="text-white font-bold">Current Consent:</span> {consentScope.campaignType}
+                    </div>
+                    <button
+                      onClick={() => {
+                        // This will be implemented when we update UnifiedVideoDigitalTwinsDemo
+                        alert('Navigate to Digital Twin consent configuration - implementation pending');
+                      }}
+                      className="w-full py-2 bg-[#06b6d4] hover:bg-[#06b6d4]/80 text-white font-terminal text-xs rounded-lg transition-all"
+                    >
+                      UPDATE DIGITAL TWIN CONSENT →
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <button
               onClick={handleGenerateContent}
@@ -439,12 +546,15 @@ export default function AmplifyAIDemo() {
                 {/* Video Preview */}
                 <div>
                   <div className="text-white/50 font-terminal text-xs mb-2 tracking-wider">VIDEO PREVIEW</div>
-                  <div className="bg-white/5 border-2 border-cyan-500/30 rounded-lg aspect-video flex items-center justify-center">
-                    <div className="text-center space-y-2">
-                      <div className="text-4xl">▶</div>
-                      <div className="text-white/70 font-terminal text-sm">Mock Video Player</div>
-                      <div className="text-white/50 font-terminal text-xs">0:30 duration</div>
-                    </div>
+                  <div className="bg-black border-2 border-cyan-500/30 rounded-lg aspect-video overflow-hidden">
+                    <video
+                      className="w-full h-full object-cover"
+                      src="/videos/athletes-first/generated/roster/jordan-matthews-qb.mp4"
+                      poster="/videos/athletes-first/generated/roster/jordan-matthews-qb.mp4#t=0.1"
+                      controls
+                      preload="metadata"
+                      playsInline
+                    />
                   </div>
                 </div>
               </div>
@@ -536,12 +646,15 @@ export default function AmplifyAIDemo() {
             {/* Video Preview */}
             <div>
               <div className="text-white/50 font-terminal text-xs mb-2 tracking-wider">VIDEO PREVIEW</div>
-              <div className="bg-white/5 border-2 border-cyan-500/30 rounded-lg aspect-video flex items-center justify-center relative">
-                <div className="text-center space-y-3">
-                  <div className="text-5xl">▶</div>
-                  <div className="text-white/70 font-terminal text-sm">Mock Video Player</div>
-                  <div className="text-white/50 font-terminal text-xs">0:30 duration</div>
-                </div>
+              <div className="bg-black border-2 border-cyan-500/30 rounded-lg aspect-video overflow-hidden">
+                <video
+                  className="w-full h-full object-cover"
+                  src="/videos/athletes-first/generated/roster/jordan-matthews-qb.mp4"
+                  poster="/videos/athletes-first/generated/roster/jordan-matthews-qb.mp4#t=0.1"
+                  controls
+                  preload="metadata"
+                  playsInline
+                />
               </div>
             </div>
 

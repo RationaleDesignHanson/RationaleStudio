@@ -173,7 +173,8 @@ export default function StatusQuoCeilingDiagram() {
       ctx.fillText('(REMAIN UNCHANGED)', leftCenterX, gapY + 14);
 
       gaps.forEach((gap, i) => {
-        const y = gapY + 40 + i * 30;
+        const rowSpacing = h2Size + microSize + 10; // percentage height + label height + gap
+        const y = gapY + 40 + i * rowSpacing;
 
         ctx.fillStyle = red;
       ctx.font = `bold ${h2Size}px monospace`;
@@ -181,7 +182,7 @@ export default function StatusQuoCeilingDiagram() {
 
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
-        ctx.fillText(gap.label + ' Lost', leftCenterX, y + 14);
+        ctx.fillText(gap.label + ' Lost', leftCenterX, y + h2Size + 6);
       });
 
       // ===== RIGHT SIDE: AI SCALING =====
@@ -283,7 +284,8 @@ export default function StatusQuoCeilingDiagram() {
       ];
 
       aiGaps.forEach((gap, i) => {
-        const y = gapY + 40 + i * 30;
+        const rowSpacing = h2Size + microSize + 10; // percentage height + label height + gap
+        const y = gapY + 40 + i * rowSpacing;
 
         ctx.fillStyle = green;
       ctx.font = `bold ${h2Size}px monospace`;
@@ -291,7 +293,7 @@ export default function StatusQuoCeilingDiagram() {
 
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
-        ctx.fillText(gap.label + ' Lost', rightCenterX, y + 14);
+        ctx.fillText(gap.label + ' Lost', rightCenterX, y + h2Size + 6);
       });
 
       // Divider line

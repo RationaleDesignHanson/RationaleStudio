@@ -29,17 +29,20 @@ const MOCK_OUTPUTS = {
     {
       market: 'Dallas, TX',
       script: "Hey Dallas! Nothing beats Texas BBQ after a big win. That's why I'm partnering with Smokey's BBQ to bring you championship flavor. Use code TOUCHDOWN for 20% off your next order.",
-      visual: '🎬 30-sec spot with Dallas skyline backdrop'
+      visual: '🎬 30-sec spot with Dallas skyline backdrop',
+      videoUrl: '/videos/athletes-first/generated/regional/dallas-market.mp4'
     },
     {
       market: 'Houston, TX',
       script: "Houston, you know I love this city. That's why I'm teaming up with Smokey's BBQ to celebrate our wins together. Use code TOUCHDOWN for 20% off.",
-      visual: '🎬 30-sec spot with Houston landmarks'
+      visual: '🎬 30-sec spot with Houston landmarks',
+      videoUrl: '/videos/athletes-first/generated/regional/houston-market.mp4'
     },
     {
       market: 'Austin, TX',
       script: "Austin! Keep it weird, keep it winning. Smokey's BBQ and I are bringing you the best BBQ in town. Use code TOUCHDOWN for 20% off your order.",
-      visual: '🎬 30-sec spot with Austin cultural elements'
+      visual: '🎬 30-sec spot with Austin cultural elements',
+      videoUrl: '/videos/athletes-first/generated/regional/austin-market.mp4'
     }
   ],
   personalized: [
@@ -105,7 +108,7 @@ export default function BrandCampaignDemo() {
       {/* Campaign Type Selection */}
       <div className="space-y-2">
         <div className="text-white/70 font-terminal text-sm mb-2">SELECT CAMPAIGN TYPE</div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-3">
           {CAMPAIGN_TYPES.map((campaign) => (
             <button
               key={campaign.id}
@@ -113,7 +116,7 @@ export default function BrandCampaignDemo() {
                 setSelectedCampaign(campaign.id);
                 setShowResults(false);
               }}
-              className={`p-3 rounded-lg border-2 transition-all text-left ${
+              className={`flex-1 p-3 rounded-lg border-2 transition-all text-left ${
                 selectedCampaign === campaign.id
                   ? 'bg-orange-500/10 border-orange-500/50'
                   : 'bg-white/5 border-white/10 hover:border-white/20'
@@ -280,11 +283,22 @@ export default function BrandCampaignDemo() {
               <div key={idx} className="bg-black/40 border border-white/10 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-orange-400 font-bold text-sm">{output.market}</div>
-                  <button className="flex items-center gap-2 px-3 py-1 bg-orange-500/20 text-orange-400 rounded text-xs font-terminal hover:bg-orange-500/30 transition-colors">
-                    <Play className="w-3 h-3" />
-                    PREVIEW
-                  </button>
                 </div>
+
+                {/* Video Player */}
+                {output.videoUrl && (
+                  <div className="mb-3">
+                    <video
+                      className="w-full aspect-video rounded-lg bg-black"
+                      src={output.videoUrl}
+                      poster={`${output.videoUrl}#t=0.1`}
+                      controls
+                      preload="metadata"
+                      playsInline
+                    />
+                  </div>
+                )}
+
                 <div className="text-white/80 text-sm leading-snug mb-3 font-terminal">
                   "{output.script}"
                 </div>

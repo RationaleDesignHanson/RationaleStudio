@@ -178,18 +178,18 @@ export default function ThreeBottlenecksDiagram() {
           ctx.fillStyle = gray;
           ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 15);
 
-          // Lost value percentage (large)
+          // Lost value percentage - tightened
           ctx.fillStyle = red;
-          ctx.font = `bold ${heroSize}px monospace`;
+          ctx.font = 'bold 32px monospace';
           ctx.textAlign = 'center';
-          ctx.fillText(bottleneck.lostValue, centerX, barY + barHeight + 50);
+          ctx.fillText(bottleneck.lostValue, centerX, barY + barHeight + 42);
 
-          // Subtitle
+          // Subtitle - tighter spacing
           ctx.font = `${microSize}px monospace`;
           ctx.fillStyle = gray;
           const subtitleLines = bottleneck.subtitle.split('\n');
           subtitleLines.forEach((line, lineIndex) => {
-            ctx.fillText(line, centerX, barY + barHeight + 66 + lineIndex * 12);
+            ctx.fillText(line, centerX, barY + barHeight + 65 + lineIndex * (microSize + 2));
           });
         });
 
@@ -295,30 +295,27 @@ export default function ThreeBottlenecksDiagram() {
         ctx.fillStyle = gray;
         ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 25);
 
-        // Unit label
+        // Unit label - single line
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
         ctx.textAlign = 'center';
-        const unitLines = bottleneck.unit.split('/');
-        unitLines.forEach((line, idx) => {
-          ctx.fillText(line, centerX, barBaseY + 45 + idx * 12);
-        });
+        ctx.fillText(bottleneck.unit, centerX, barBaseY + 40);
 
-        // Gap visualization
-        const gapY = barAreaY + maxBarHeight + 80;
+        // Gap visualization - increased spacing
+        const gapY = barBaseY + 85;
 
         // Lost value percentage (hero number)
         ctx.fillStyle = red;
-      ctx.font = `bold ${heroSize}px monospace`;
+        ctx.font = 'bold 36px monospace';
         ctx.textAlign = 'center';
         ctx.fillText(bottleneck.lostValue, centerX, gapY);
 
-        // Subtitle (what's being lost)
+        // Subtitle (what's being lost) - tighter spacing
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
         const subtitleLines = bottleneck.subtitle.split('\n');
         subtitleLines.forEach((line, lineIndex) => {
-          ctx.fillText(line, centerX, gapY + 30 + lineIndex * 14);
+          ctx.fillText(line, centerX, gapY + 25 + lineIndex * (microSize + 2));
         });
 
         // Column divider
@@ -338,7 +335,7 @@ export default function ThreeBottlenecksDiagram() {
         ctx.fillStyle = gold;
         ctx.font = `bold ${bodySize}px monospace`;
         ctx.textAlign = 'center';
-        ctx.fillText('NOT A PORTFOLIO SIZE PROBLEM—A PORTFOLIO EFFICIENCY PROBLEM', width / 2, height - 30);
+        ctx.fillText('NOT A PORTFOLIO SIZE PROBLEM—A PORTFOLIO EFFICIENCY PROBLEM', width / 2, height - 20);
       }
 
       frameRef.current += 1;
@@ -368,7 +365,7 @@ export default function ThreeBottlenecksDiagram() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[500px] md:min-h-[650px] bg-black rounded-lg border border-yellow-400/20 overflow-hidden">
+    <div className="relative w-full h-full min-h-[500px] md:min-h-[580px] bg-black rounded-lg border border-yellow-400/20 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"

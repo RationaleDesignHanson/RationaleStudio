@@ -44,6 +44,24 @@ export const strategicRoadmap: StrategicRoadmap = {
   version: "1.0",
 
   slides: [
+    // SLIDE 0: Hero / Opening
+    {
+      id: "hero",
+      title: "CREaiT Strategic Roadmap",
+      subtitle: "Your Critical Path to Launch",
+      content: "You've built a strong backend foundation. Now you're at a decision point: build the remaining 20% yourself, or accelerate launch with proven AI architecture.\n\nThis roadmap maps your current progress, identifies the critical gap, and presents three strategic options—with transparent guidance on what works for you.",
+      bullets: [
+        "**What We'll Cover**",
+        "Where you are now (80% backend complete)",
+        "What's blocking launch (frontend + AI architecture)",
+        "Three strategic options for your next move",
+        "Transparent assessment of build-it-yourself vs. Rationale",
+        "",
+        "**Our Role**",
+        "We're here as strategic partners, not vendors. This roadmap is designed to help you make the right decision for CREaiT—with or without us."
+      ]
+    },
+
     // SLIDE 1: What You've Built
     {
       id: "what-youve-built",
@@ -435,6 +453,51 @@ export const strategicRoadmap: StrategicRoadmap = {
         }
       ],
       note: 'We mean it: we\'re rooting for you. CREaiT solves a real problem. You have a strong foundation. Now execute on the critical path.'
+    },
+
+    // SLIDE 9: Next Steps & CTAs
+    {
+      id: "next-steps",
+      title: "Next Steps",
+      subtitle: "Three Ways to Move Forward",
+      content: "You have three clear paths. Each is viable—the right choice depends on your timeline, resources, and risk tolerance.\n\nWe've laid out the roadmap. The decision is yours.",
+      bullets: [
+        "**Option 1: Build It Yourself**",
+        "Use our analysis docs as your implementation guide",
+        "Timeline: 8-12 weeks with 2 full-time engineers",
+        "Best for: Teams with existing AI/ML expertise and 3+ month runway",
+        "",
+        "**Option 2: Sprint with Rationale (2 weeks)**",
+        "Build scoring dashboard prototype, validate with 3-5 pilot users",
+        "Timeline: 2 weeks, $15k fixed scope",
+        "Best for: Fast validation with minimal commitment",
+        "",
+        "**Option 3: Full Implementation (6-8 weeks)**",
+        "Production-ready scoring engine + dashboard + data pipeline",
+        "Timeline: 6-8 weeks, equity partnership or fixed fee",
+        "Best for: Launch within 60 days with proven AI architecture"
+      ],
+      evidence: [
+        {
+          type: 'metric',
+          label: 'Sprint Duration',
+          value: '2 weeks to validated prototype',
+          status: 'exists'
+        },
+        {
+          type: 'metric',
+          label: 'Full Implementation',
+          value: '6-8 weeks to production launch',
+          status: 'exists'
+        },
+        {
+          type: 'quote',
+          label: 'Contact',
+          value: 'matt@rationale.design • Schedule 30-min call',
+          status: 'exists'
+        }
+      ],
+      note: 'Ready to discuss? Book time at calendly.com/rationale-matt or email matt@rationale.design. No sales pressure—just honest conversation about what makes sense for CREaiT.'
     }
   ]
 };
@@ -460,6 +523,7 @@ export function getEvidenceBySlide(slideId: string): Evidence[] {
 // Export individual slides for easier access
 export const {
   slides: [
+    slideHero,
     slideWhatYouveBuilt,
     slideCriticalGap,
     slideCriticalPath,
@@ -467,6 +531,7 @@ export const {
     slideDecisionFramework,
     slideBuildYourself,
     slideResources,
-    slideRecommendation
+    slideRecommendation,
+    slideNextSteps
   ]
 } = strategicRoadmap;

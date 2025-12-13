@@ -5,10 +5,10 @@ import { ChevronLeft, ChevronRight, Upload, Wand2, CheckCircle2, Send, Play } fr
 
 // Mock roster data
 const ROSTER_ATHLETES = [
-  { id: 1, name: 'Jordan Matthews', position: 'QB', team: 'Ohio State', imgColor: 'bg-red-500' },
-  { id: 2, name: 'Marcus Johnson', position: 'WR', team: 'Alabama', imgColor: 'bg-crimson-600' },
-  { id: 3, name: 'Isabella Rodriguez', position: 'RB', team: 'USC', imgColor: 'bg-yellow-500' },
-  { id: 4, name: 'DeAndre Jackson', position: 'OL', team: 'Georgia', imgColor: 'bg-red-600' },
+  { id: 1, name: 'Jordan Matthews', position: 'QB', team: 'Ohio State', imgColor: 'bg-red-500', videoUrl: '/videos/athletes-first/generated/roster/jordan-matthews-qb.mp4' },
+  { id: 2, name: 'Marcus Johnson', position: 'WR', team: 'Alabama', imgColor: 'bg-crimson-600', videoUrl: '/videos/athletes-first/generated/roster/marcus-johnson-wr.mp4' },
+  { id: 3, name: 'Isabella Rodriguez', position: 'RB', team: 'USC', imgColor: 'bg-yellow-500', videoUrl: '/videos/athletes-first/generated/roster/isabella-rodriguez-rb.mp4' },
+  { id: 4, name: 'DeAndre Jackson', position: 'OL', team: 'Georgia', imgColor: 'bg-red-600', videoUrl: '/videos/athletes-first/generated/roster/deandre-jackson-ol.mp4' },
   { id: 5, name: 'Tyler Chen', position: 'DB', team: 'Michigan', imgColor: 'bg-blue-600' },
   { id: 6, name: 'Sarah Williams', position: 'WR', team: 'LSU', imgColor: 'bg-purple-600' },
   { id: 7, name: 'Andre Thompson', position: 'QB', team: 'Texas', imgColor: 'bg-orange-500' },
@@ -19,7 +19,7 @@ type Step = 1 | 2 | 3 | 4;
 
 export default function RosterCampaignDemo() {
   const [currentStep, setCurrentStep] = useState<Step>(1);
-  const [brandName, setBrandName] = useState('');
+  const [brandName, setBrandName] = useState('Nike');
   const [viralMoment, setViralMoment] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedAthletes, setSelectedAthletes] = useState<number[]>([]);
@@ -168,9 +168,26 @@ export default function RosterCampaignDemo() {
                         : 'border-white/20 hover:border-white/40'
                     }`}
                   >
-                    <div className={`${athlete.imgColor} aspect-video rounded-t-lg relative`}>
-                      <Play className="absolute inset-0 m-auto w-8 h-8 text-white/80" />
-                    </div>
+                    {athlete.videoUrl ? (
+                      <div className="aspect-video rounded-t-lg relative bg-black overflow-hidden">
+                        <video
+                          className="w-full h-full object-cover"
+                          src={athlete.videoUrl}
+                          poster={`${athlete.videoUrl}#t=0.1`}
+                          preload="metadata"
+                          playsInline
+                          muted
+                          loop
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                          <Play className="w-8 h-8 text-white/80" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={`${athlete.imgColor} aspect-video rounded-t-lg relative`}>
+                        <Play className="absolute inset-0 m-auto w-8 h-8 text-white/80" />
+                      </div>
+                    )}
                     <div className="p-2">
                       <div className="text-xs font-semibold text-white truncate">{athlete.name}</div>
                       <div className="text-xs text-white/50">{athlete.position} · {athlete.team}</div>
@@ -184,6 +201,22 @@ export default function RosterCampaignDemo() {
                 );
               })}
             </div>
+          </div>
+
+          {/* Featured Brand Activation Video */}
+          <div className="bg-black/30 border border-white/20 rounded-lg p-3">
+            <div className="text-xs text-white/60 mb-2">BRAND ACTIVATION PREVIEW</div>
+            <div className="bg-black rounded-lg overflow-hidden">
+              <video
+                className="w-full aspect-video object-cover"
+                src="/videos/athletes-first/generated/featured/hero-deliverable.mp4"
+                poster="/videos/athletes-first/generated/featured/hero-deliverable.mp4#t=0.1"
+                controls
+                preload="metadata"
+                playsInline
+              />
+            </div>
+            <div className="text-xs text-white/50 mt-2">Example of roster-wide campaign output</div>
           </div>
 
           <button

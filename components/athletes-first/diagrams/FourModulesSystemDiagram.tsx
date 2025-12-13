@@ -97,7 +97,7 @@ export default function FourModulesSystemDiagram() {
       const captionSize = getResponsiveFontSize('caption', isMobile);
       ctx.font = `${captionSize}px monospace`;
       ctx.fillStyle = gray;
-      ctx.fillText('From amateur compliance to professional viral distribution', width / 2, 48);
+      ctx.fillText('From amateur compliance to professional viral distribution', width / 2, 54);
 
       // Calculate card layout with responsive values
       const cardGap = getResponsiveSpacing(28, isMobile);
@@ -108,7 +108,7 @@ export default function FourModulesSystemDiagram() {
       const cardHeight = isMobile ? cardWidth * 1.3 : 240;
       const totalCardsWidth = (cardWidth * cardsPerRow) + (cardGap * (cardsPerRow - 1));
       const startX = (width - totalCardsWidth) / 2;
-      const cardY = isMobile ? 85 : 85;
+      const cardY = isMobile ? 85 : 118; // Desktop: 50px below subtitle
 
       // Draw connecting arrows between cards
       modules.forEach((module, i) => {

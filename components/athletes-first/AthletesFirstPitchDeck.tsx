@@ -36,9 +36,12 @@ const DEMO_COMPONENTS: Record<string, React.ComponentType<any>> = {
   DigitalTwinsDemo: dynamic(() => import('./demos/DigitalTwinsDemo'), { loading: () => <LoadingComponent /> }),
   BrandCampaignDemo: dynamic(() => import('./demos/BrandCampaignDemo'), { loading: () => <LoadingComponent /> }),
   RosterCampaignDemo: dynamic(() => import('./demos/RosterCampaignDemo'), { loading: () => <LoadingComponent /> }),
+  UnifiedVideoDigitalTwinsDemo: dynamic(() => import('./demos/UnifiedVideoDigitalTwinsDemo'), { loading: () => <LoadingComponent /> }),
   NILAnalyzerDemo: dynamic(() => import('./demos/NILAnalyzerDemo'), { loading: () => <LoadingComponent /> }),
   ImmersivePitchDemo: dynamic(() => import('./demos/ImmersivePitchDemo'), { loading: () => <LoadingComponent /> }),
   ContractModelingCanvas: dynamic(() => import('./demos/ContractModelingCanvas'), { loading: () => <LoadingComponent /> }),
+  ContractModelingMobile: dynamic(() => import('./demos/ContractModelingMobile'), { loading: () => <LoadingComponent /> }),
+  UnifiedPitchExperience: dynamic(() => import('./demos/UnifiedPitchExperience'), { loading: () => <LoadingComponent /> }),
   VisionProSpatialDemo: dynamic(() => import('./demos/VisionProSpatialDemo'), { loading: () => <LoadingComponent /> }),
   RecruitAIDemo: dynamic(() => import('./demos/RecruitAIDemo'), { loading: () => <LoadingComponent /> }),
   AgentToolkitDemo: dynamic(() => import('./demos/AgentToolkitDemo'), { loading: () => <LoadingComponent /> }),
@@ -330,17 +333,36 @@ export default function AthletesFirstPitchDeck() {
         )}
 
         {/* Interactive Demo Badge - prominent indicator */}
-        <div className="flex items-center justify-between mb-4 p-3 rounded-lg border-2 bg-black/60 backdrop-blur-sm"
+        <div className="flex items-center justify-between mb-4 p-3 rounded-lg border-2 backdrop-blur-sm relative overflow-hidden"
              style={{
-               borderColor: `${currentColor}40`,
-               backgroundColor: `${currentColor}08`
+               borderColor: `${currentColor}60`,
+               backgroundColor: `${currentColor}20`
              }}>
-          <div className="flex items-center gap-3">
+          {/* Holographic shine effect */}
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: `linear-gradient(90deg, transparent 0%, ${currentColor}60 50%, transparent 100%)`,
+              animation: 'shine 3s ease-in-out infinite',
+              transform: 'translateX(-100%)'
+            }}
+          />
+          <style jsx>{`
+            @keyframes shine {
+              0% {
+                transform: translateX(-100%);
+              }
+              100% {
+                transform: translateX(100%);
+              }
+            }
+          `}</style>
+          <div className="flex items-center gap-3 relative z-10">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-md border-2 font-mono text-xs font-bold uppercase tracking-wider"
                  style={{
                    borderColor: currentColor,
                    backgroundColor: `${currentColor}15`,
-                   color: currentColor,
+                   color: 'white',
                    boxShadow: `0 0 10px ${currentColor}30`
                  }}>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -353,10 +375,6 @@ export default function AthletesFirstPitchDeck() {
               Click and explore • Not a live system
             </span>
           </div>
-          <div className="hidden sm:flex items-center gap-2 text-xs text-white/40 font-mono">
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: currentColor }} />
-            Prototype Experience
-          </div>
         </div>
 
         {/* Demo content - Terminal Republic featured variant */}
@@ -367,7 +385,17 @@ export default function AthletesFirstPitchDeck() {
                boxShadow: `0 0 20px ${currentColor}20, 0 10px 40px rgba(0,0,0,0.3)`
              }}>
           {DemoComponent ? (
-            <DemoComponent />
+            <DemoComponent
+              {...(activeDemo.component === 'ContractModelingCanvas' && {
+                onContractClick: (contract: any) => {
+                  setSelectedContract(contract);
+                  setActiveDemoTab('immersive-pitch');
+                }
+              })}
+              {...(activeDemo.component === 'ImmersivePitchDemo' && {
+                selectedContract
+              })}
+            />
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-center py-12">
               <h3 className="text-2xl font-bold mb-2" style={{ color: currentColor }}>

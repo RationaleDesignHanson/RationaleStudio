@@ -303,22 +303,10 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
         headline: 'Video & Digital Twins Demos',
         demos: [
           {
-            id: 'digital-twins',
-            label: 'Digital Twins & Rights',
-            description: 'Infinite Deployment',
-            component: 'DigitalTwinsDemo'
-          },
-          {
-            id: 'brand-campaign',
-            label: '1:1 Fan Content',
-            description: 'Regional, Personalized & Seasonal',
-            component: 'BrandCampaignDemo'
-          },
-          {
-            id: 'roster-campaign',
-            label: 'Roster-Wide Activations',
-            description: 'One Brief → Entire Roster',
-            component: 'RosterCampaignDemo'
+            id: 'unified-video-digital-twins',
+            label: 'End-to-End Workflows',
+            description: 'Setup → Campaigns → Deployment',
+            component: 'UnifiedVideoDigitalTwinsDemo'
           }
         ]
       },
@@ -515,22 +503,10 @@ export const AF_SECTIONS_V2: Record<string, Section> = {
         headline: 'Interactive Pitch Demo',
         demos: [
           {
-            id: 'contract-modeling',
-            label: 'Contract Modeling',
-            description: 'Real-Time Comparison',
-            component: 'ContractModelingCanvas'
-          },
-          {
-            id: 'immersive-pitch',
-            label: 'Full Experience',
-            description: 'Interactive Visualizations',
-            component: 'ImmersivePitchDemo'
-          },
-          {
-            id: 'vision-pro-spatial',
-            label: 'Spatial Computing',
-            description: 'Apple Vision Pro',
-            component: 'VisionProSpatialDemo'
+            id: 'unified-pitch-experience',
+            label: 'Interactive Pitch',
+            description: 'Real-Time Contract Modeling & Visualizations',
+            component: 'UnifiedPitchExperience'
           }
         ]
       },

@@ -13,8 +13,11 @@
 
 import { useState } from 'react';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import dynamic from 'next/dynamic';
 
-type DemoView = 'nil-calculator' | 'career-pathways' | 'risk-analysis' | 'recruiting-videos';
+const VisionProSpatialDemo = dynamic(() => import('./VisionProSpatialDemo'), { ssr: false });
+
+type DemoView = 'nil-calculator' | 'career-pathways' | 'risk-analysis' | 'recruiting-videos' | 'spatial-computing';
 
 const RECRUITING_VIDEOS = [
   {
@@ -54,8 +57,12 @@ const RECRUITING_VIDEOS = [
   }
 ];
 
-export default function ImmersivePitchDemo() {
-  const [activeView, setActiveView] = useState<DemoView>('nil-calculator');
+interface ImmersivePitchDemoProps {
+  selectedContract?: any;
+}
+
+export default function ImmersivePitchDemo({ selectedContract }: ImmersivePitchDemoProps = {}) {
+  const [activeView, setActiveView] = useState<DemoView>(selectedContract ? 'career-pathways' : 'nil-calculator');
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   // NIL Calculator State
@@ -125,7 +132,8 @@ export default function ImmersivePitchDemo() {
           { key: 'nil-calculator' as DemoView, label: 'NIL Calculator', icon: '$' },
           { key: 'career-pathways' as DemoView, label: 'Career Pathways', icon: '🗺️' },
           { key: 'risk-analysis' as DemoView, label: 'Risk Analysis', icon: '⚠️' },
-          { key: 'recruiting-videos' as DemoView, label: 'Recruiting Videos', icon: '🎬' }
+          { key: 'recruiting-videos' as DemoView, label: 'Recruiting Videos', icon: '🎬' },
+          { key: 'spatial-computing' as DemoView, label: 'Spatial Computing', icon: '🥽' }
         ].map((view) => (
           <button
             key={view.key}
@@ -268,6 +276,19 @@ export default function ImmersivePitchDemo() {
             <div className="text-center">
               <h2 className="text-3xl font-bold text-terminal-gold font-mono mb-2">CAREER PATHWAY EXPLORER</h2>
               <p className="text-white/60 font-mono">Compare different career decisions side-by-side</p>
+
+              {selectedContract && (
+                <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 font-mono text-sm"
+                     style={{
+                       borderColor: selectedContract.color,
+                       backgroundColor: `${selectedContract.color}10`,
+                       color: selectedContract.color
+                     }}>
+                  <span>Exploring {selectedContract.team}</span>
+                  <span className="text-white/60">•</span>
+                  <span className="text-white">${(selectedContract.guaranteed / 1000000).toFixed(1)}M Guaranteed</span>
+                </div>
+              )}
             </div>
 
             {/* Scenario Selector */}
@@ -512,6 +533,13 @@ export default function ImmersivePitchDemo() {
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Spatial Computing View */}
+        {activeView === 'spatial-computing' && (
+          <div className="space-y-8">
+            <VisionProSpatialDemo />
           </div>
         )}
       </div>

@@ -225,27 +225,31 @@ export default function NILPlatformFlowDiagram() {
 
         // Handle multi-line labels
         const labelWords = step.label.split(' ');
+        let labelEndY = y + 75;
         if (labelWords.length > 1) {
           labelWords.forEach((word, wordIndex) => {
-            ctx.fillText(word, x + boxWidth / 2, y + 85 + (wordIndex * 18));
+            ctx.fillText(word, x + boxWidth / 2, y + 75 + (wordIndex * 16));
           });
+          labelEndY = y + 75 + ((labelWords.length - 1) * 16);
         } else {
-          ctx.fillText(step.label, x + boxWidth / 2, y + 85);
+          ctx.fillText(step.label, x + boxWidth / 2, y + 75);
         }
 
-        // Sublabel
+        // Sublabel - positioned below label with proper spacing
       ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
         ctx.textAlign = 'center';
+
+        const sublabelStartY = labelEndY + 18; // Tighter spacing
 
         // Handle multi-line sublabels
         const sublabelParts = step.sublabel.split(' / ');
         if (sublabelParts.length > 1) {
           sublabelParts.forEach((part, partIndex) => {
-            ctx.fillText(part, x + boxWidth / 2, y + 110 + (partIndex * 13));
+            ctx.fillText(part, x + boxWidth / 2, sublabelStartY + (partIndex * 12));
           });
         } else {
-          ctx.fillText(step.sublabel, x + boxWidth / 2, y + 110);
+          ctx.fillText(step.sublabel, x + boxWidth / 2, sublabelStartY);
         }
       });
 

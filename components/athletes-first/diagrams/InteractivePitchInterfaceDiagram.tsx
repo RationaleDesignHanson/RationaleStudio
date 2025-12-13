@@ -72,9 +72,6 @@ export default function InteractivePitchInterfaceDiagram() {
 
       ctx.fillStyle = '#0a0a0a';
       ctx.fillRect(panel1X, topPanelY, panel1Width, topPanelHeight);
-      ctx.strokeStyle = `${cyan}60`;
-      ctx.lineWidth = 2;
-      ctx.strokeRect(panel1X, topPanelY, panel1Width, topPanelHeight);
 
       // Panel 1 header
       ctx.fillStyle = `${cyan}20`;
@@ -209,9 +206,6 @@ export default function InteractivePitchInterfaceDiagram() {
 
       ctx.fillStyle = '#0a0a0a';
       ctx.fillRect(panel2X, bottomPanelY, panel2Width, bottomPanelHeight);
-      ctx.strokeStyle = `${purple}60`;
-      ctx.lineWidth = 2;
-      ctx.strokeRect(panel2X, bottomPanelY, panel2Width, bottomPanelHeight);
 
       // Panel 2 header
       ctx.fillStyle = `${purple}20`;
@@ -258,9 +252,6 @@ export default function InteractivePitchInterfaceDiagram() {
 
       ctx.fillStyle = '#0a0a0a';
       ctx.fillRect(panel3X, bottomPanelY, panel3Width, bottomPanelHeight);
-      ctx.strokeStyle = `${gold}60`;
-      ctx.lineWidth = 2;
-      ctx.strokeRect(panel3X, bottomPanelY, panel3Width, bottomPanelHeight);
 
       // Panel 3 header
       ctx.fillStyle = `${gold}20`;
@@ -328,6 +319,39 @@ export default function InteractivePitchInterfaceDiagram() {
       ctx.fillStyle = purple;
       ctx.fillRect(panel3X + 120, legendY, 12, 12);
       ctx.fillText('NIL', panel3X + 138, legendY + 10);
+
+      // Draw all panel borders last (on top of content)
+      // Account for stroke width (strokes are centered, so we inset by half the lineWidth)
+      const borderWidth = 2;
+      const borderInset = borderWidth / 2;
+      ctx.lineWidth = borderWidth;
+
+      // Panel 1 border (cyan)
+      ctx.strokeStyle = `${cyan}60`;
+      ctx.strokeRect(
+        panel1X + borderInset,
+        topPanelY + borderInset,
+        panel1Width - borderWidth,
+        topPanelHeight - borderWidth
+      );
+
+      // Panel 2 border (purple)
+      ctx.strokeStyle = `${purple}60`;
+      ctx.strokeRect(
+        panel2X + borderInset,
+        bottomPanelY + borderInset,
+        panel2Width - borderWidth,
+        bottomPanelHeight - borderWidth
+      );
+
+      // Panel 3 border (gold)
+      ctx.strokeStyle = `${gold}60`;
+      ctx.strokeRect(
+        panel3X + borderInset,
+        bottomPanelY + borderInset,
+        panel3Width - borderWidth,
+        bottomPanelHeight - borderWidth
+      );
 
       // Bottom insight
       ctx.fillStyle = gold;

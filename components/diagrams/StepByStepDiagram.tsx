@@ -45,34 +45,11 @@ export function StepByStepDiagram({
   return (
     <div className="flex flex-col h-full min-h-[600px]">
       {/* Progress indicator */}
-      <div className="sticky top-0 bg-black/90 backdrop-blur-md border-b border-gray-800 p-4 z-10">
-        <h2 className="text-lg font-semibold text-center mb-3">{title}</h2>
-
-        {/* Step dots */}
-        <div className="flex justify-center gap-2">
-          {steps.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToStep(i)}
-              disabled={!allowNonLinear && i !== currentStep}
-              className={cn(
-                'h-2 rounded-full transition-all',
-                i === currentStep ? 'w-8 bg-terminal-gold' : 'w-2 bg-gray-700',
-                allowNonLinear &&
-                  i !== currentStep &&
-                  'cursor-pointer hover:bg-gray-500',
-                !allowNonLinear && i !== currentStep && 'cursor-not-allowed'
-              )}
-              aria-label={`Go to step ${i + 1}: ${steps[i].title}`}
-              aria-current={i === currentStep ? 'step' : undefined}
-            />
-          ))}
+      {title && (
+        <div className="sticky top-0 bg-black/90 backdrop-blur-md border-b border-gray-800 p-4 z-10">
+          <h2 className="text-lg font-semibold text-center">{title}</h2>
         </div>
-
-        <div className="text-xs text-gray-400 text-center mt-2">
-          Step {currentStep + 1} of {steps.length}
-        </div>
-      </div>
+      )}
 
       {/* Step content */}
       <div className="flex-1 overflow-y-auto p-6 space-y-6">
@@ -117,6 +94,19 @@ export function StepByStepDiagram({
           >
             ← Previous
           </button>
+
+          {/* Pagination dots */}
+          <div className="flex justify-center gap-1.5">
+            {steps.map((_, i) => (
+              <div
+                key={i}
+                className={cn(
+                  'h-1.5 rounded-full transition-all',
+                  i === currentStep ? 'w-4 bg-terminal-gold' : 'w-1.5 bg-gray-700'
+                )}
+              />
+            ))}
+          </div>
 
           {currentStep === steps.length - 1 ? (
             <button

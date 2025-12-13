@@ -70,7 +70,11 @@ const DEFAULT_OFFERS: ContractOffer[] = [
   }
 ];
 
-export default function ContractModelingCanvas() {
+interface ContractModelingCanvasProps {
+  onContractClick?: (contract: ContractOffer) => void;
+}
+
+export default function ContractModelingCanvas({ onContractClick }: ContractModelingCanvasProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef(0);
   const [offers] = useState<ContractOffer[]>(DEFAULT_OFFERS);
@@ -138,7 +142,7 @@ export default function ContractModelingCanvas() {
       offers.forEach((offer, i) => {
         const x = startX + (i * (offerWidth + offerGap));
         const y = startY;
-        const cardHeight = 520;
+        const cardHeight = 540;
         const isHovered = hoveredOffer === i;
 
         // Card background
@@ -233,11 +237,8 @@ export default function ContractModelingCanvas() {
           ctx.textAlign = 'right';
           ctx.fillText(bonus.value, x + offerWidth - 20, bonusLineY);
 
-          // Progress bar
-          const maxBonus = 20000000;
-          const barWidth = (parseInt(bonus.value.replace(/[^0-9]/g, '')) / (maxBonus / 1000000)) * (offerWidth - 160);
-          ctx.fillStyle = `${offer.color}40`;
-          ctx.fillRect(x + 20, bonusLineY + 4, barWidth, 4);
+          // Progress bar - removed as they were creating visual noise
+          // and not adding informative value
         });
 
         // Red flags section
@@ -331,40 +332,41 @@ export default function ContractModelingCanvas() {
       setHoveredOffer(hovered);
     };
 
+    const handleClick = (e: MouseEvent) => {
+      if (!onContractClick) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+
+      const offerWidth = 300;
+      const offerGap = 50;
+      const totalWidth = (offerWidth * 3) + (offerGap * 2);
+      const startX = (width - totalWidth) / 2;
+
+      for (let i = 0; i < 3; i++) {
+        const offerX = startX + (i * (offerWidth + offerGap));
+        if (x >= offerX && x <= offerX + offerWidth) {
+          onContractClick(offers[i]);
+          break;
+        }
+      }
+    };
+
     canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('click', handleClick);
+    canvas.style.cursor = 'pointer';
 
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
       canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('click', handleClick);
     };
-  }, [hoveredOffer, selectedMetric, offers]);
+  }, [hoveredOffer, selectedMetric, offers, onContractClick]);
 
   return (
     <div className="space-y-4">
-      {/* Metric selector controls */}
-      <div className="flex items-center justify-center gap-3">
-        <span className="text-white/60 text-sm font-mono">COMPARE BY:</span>
-        {[
-          { key: 'guaranteed' as const, label: 'Guaranteed Money' },
-          { key: 'total' as const, label: 'Total Value' },
-          { key: 'avgPerYear' as const, label: 'Avg Per Year' }
-        ].map((metric) => (
-          <button
-            key={metric.key}
-            onClick={() => setSelectedMetric(metric.key)}
-            className={`px-4 py-2 rounded font-mono text-sm transition-all ${
-              selectedMetric === metric.key
-                ? 'bg-terminal-gold/20 text-terminal-gold border-2 border-terminal-gold'
-                : 'bg-white/5 text-white/60 border-2 border-white/20 hover:border-white/40'
-            }`}
-          >
-            {metric.label}
-          </button>
-        ))}
-      </div>
-
       {/* Canvas */}
-      <div className="relative w-full min-h-[700px] bg-black rounded-lg border border-terminal-gold/20 overflow-hidden">
+      <div className="relative w-full min-h-[720px] bg-black rounded-lg border border-terminal-gold/20 overflow-hidden">
         <canvas
           ref={canvasRef}
           className="w-full h-full"

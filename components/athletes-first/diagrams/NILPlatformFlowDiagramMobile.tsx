@@ -198,17 +198,14 @@ export default function NILPlatformFlowDiagramMobile() {
   return (
     <div className="py-6">
       <div className="text-center mb-6">
-        <p className="text-sm text-gray-400 uppercase tracking-wide">
-          Trust-Building Workflow
-        </p>
-        <p className="text-xs text-gray-500 mt-1">
-          Multi-checkpoint process ensures athlete and family confidence
-        </p>
+        <h2 className="text-xl font-bold text-terminal-gold">
+          5-Step NIL Compliance Process
+        </h2>
       </div>
 
       <StepByStepDiagram
         steps={steps}
-        title="5-Step NIL Compliance Process"
+        title=""
         allowNonLinear={true}
       />
 
