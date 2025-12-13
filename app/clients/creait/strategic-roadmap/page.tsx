@@ -312,6 +312,25 @@ export default function StrategicRoadmapPage() {
               </Link>
             </div>
           </div>
+
+          {/* Section Navigation - Below Header */}
+          <div className="mt-4 pt-4 border-t border-gray-800">
+            <div className="flex flex-wrap items-center gap-2 justify-center">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  onClick={() => goToSlide(index)}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ${
+                    index === currentSlideIndex
+                      ? 'bg-[#FFD700] text-black'
+                      : 'bg-gray-800/40 text-gray-300 hover:bg-gray-700/40 border border-gray-700'
+                  }`}
+                >
+                  {index + 1}. {slide.title}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -390,25 +409,6 @@ export default function StrategicRoadmapPage() {
               </div>
             </div>
           )}
-          </div>
-        </div>
-
-        {/* Slide Navigation (Footer) - Horizontal Section List */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="flex flex-wrap items-center gap-3 justify-center">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => goToSlide(index)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
-                  index === currentSlideIndex
-                    ? 'bg-[#FFD700] text-black'
-                    : 'bg-gray-800/40 text-gray-300 hover:bg-gray-700/40 border border-gray-700'
-                }`}
-              >
-                {index + 1}. {slide.title}
-              </button>
-            ))}
           </div>
         </div>
 
