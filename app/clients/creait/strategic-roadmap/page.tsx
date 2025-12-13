@@ -12,7 +12,7 @@
 import React, { useState } from 'react';
 import { strategicRoadmap, type Slide } from '@/lib/creait/strategic-roadmap-content';
 import dynamic from 'next/dynamic';
-import { ChevronLeft, ChevronRight, Download, Home } from 'lucide-react';
+import { Home } from 'lucide-react';
 import Link from 'next/link';
 
 // Dynamic import for ASCII grid background
@@ -317,39 +317,47 @@ export default function StrategicRoadmapPage() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Slide Progress Bar */}
-        <div className="mb-8">
-          <div className="flex gap-1">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`flex-1 h-1 rounded-full transition-all duration-300 ${
-                  index === currentSlideIndex
-                    ? 'bg-[#FFD700]'
-                    : index < currentSlideIndex
-                    ? 'bg-[#FFD700]/50'
-                    : 'bg-gray-700'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+        {/* Navigation Bar - Athletes First Style */}
+        <div className="mb-8 flex items-center justify-between text-white/80 text-sm">
+          <button
+            onClick={previousSlide}
+            disabled={currentSlideIndex === 0}
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Previous slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div className="flex items-center gap-3 font-mono">
+            <span className="text-[#FFD700] font-semibold">{currentSlideIndex + 1}</span>
+            <span className="text-white/40">·</span>
+            <span className="text-white/60">{currentSlideIndex + 1} of {totalSlides}</span>
           </div>
+
+          <button
+            onClick={nextSlide}
+            disabled={currentSlideIndex === totalSlides - 1}
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Next slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
 
         {/* Slide Content */}
         <div className="bg-slate-900/40 backdrop-blur-sm rounded-xl border border-gray-800 p-8 md:p-12 min-h-[600px]">
           <div key={currentSlideIndex} className="animate-fade-in">
-          {/* Title */}
+          {/* Title - Athletes First Style */}
           <div className="mb-8">
-            <div className="inline-block px-3 py-1 rounded-md bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold uppercase tracking-wider mb-4 font-mono">
-              {currentSlide.id.replace(/-/g, ' ')}
-            </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#FFD700' }}>
               {currentSlide.title}
             </h2>
             {currentSlide.subtitle && (
-              <p className="text-xl text-gray-400">
+              <p className="text-lg text-white/70 mt-3">
                 {currentSlide.subtitle}
               </p>
             )}
@@ -385,31 +393,6 @@ export default function StrategicRoadmapPage() {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="mt-8 flex items-center justify-between">
-          <button
-            onClick={previousSlide}
-            disabled={currentSlideIndex === 0}
-            className="flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-gray-700 hover:border-gray-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 font-semibold"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            <span>Previous</span>
-          </button>
-
-          <div className="text-sm text-gray-500">
-            Use arrow keys to navigate
-          </div>
-
-          <button
-            onClick={nextSlide}
-            disabled={currentSlideIndex === totalSlides - 1}
-            className="flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-blue-500 hover:border-blue-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 font-semibold text-blue-400"
-          >
-            <span>Next</span>
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
         {/* Slide Navigation (Footer) */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
@@ -422,7 +405,7 @@ export default function StrategicRoadmapPage() {
                 onClick={() => goToSlide(index)}
                 className={`p-3 rounded-lg border text-left transition-all duration-300 ${
                   index === currentSlideIndex
-                    ? 'border-2 border-blue-500 bg-blue-500/10'
+                    ? 'border-2 border-[#FFD700] bg-[#FFD700]/10'
                     : 'border-gray-800 hover:border-gray-700 bg-slate-900/40'
                 }`}
               >
