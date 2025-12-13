@@ -15,12 +15,21 @@ import dynamic from 'next/dynamic';
 import { ChevronLeft, ChevronRight, Download, Home } from 'lucide-react';
 import Link from 'next/link';
 
+// Dynamic import for ASCII grid background
+const ASCIIUnifiedGrid = dynamic(
+  () => import('@/components/visual/ASCIIUnifiedGrid').then(mod => mod.ASCIIUnifiedGrid),
+  { ssr: false, loading: () => null }
+);
+
 // Dynamically import diagram components
 const WhatYouveBuiltDiagram = dynamic(() => import('./diagrams/WhatYouveBuiltDiagram'), { ssr: false });
 const CriticalGapDiagram = dynamic(() => import('./diagrams/CriticalGapDiagram'), { ssr: false });
 const CriticalPathDiagram = dynamic(() => import('./diagrams/CriticalPathDiagram'), { ssr: false });
 const DecisionFrameworkDiagram = dynamic(() => import('./diagrams/DecisionFrameworkDiagram'), { ssr: false });
 const BuildItYourselfDiagram = dynamic(() => import('./diagrams/BuildItYourselfDiagram'), { ssr: false });
+
+// Import CollapsibleSection component
+const CollapsibleSection = dynamic(() => import('@/components/presentation/CollapsibleSection'), { ssr: false });
 
 const DIAGRAM_COMPONENTS: Record<string, React.ComponentType> = {
   WhatYouveBuiltDiagram,
@@ -61,6 +70,44 @@ export default function StrategicRoadmapPage() {
   React.useEffect(() => {
     window.addEventListener('keydown', handleKeyDown as any);
     return () => window.removeEventListener('keydown', handleKeyDown as any);
+  }, [currentSlideIndex]);
+
+  // Touch/swipe navigation
+  React.useEffect(() => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const swipeDistance = touchStartX - touchEndX;
+
+      if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+      if (swipeDistance > 0) {
+        // Swiped left (next slide)
+        nextSlide();
+      } else {
+        // Swiped right (previous slide)
+        previousSlide();
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [currentSlideIndex]);
 
   const renderDiagram = (diagramName?: string) => {
@@ -115,9 +162,77 @@ export default function StrategicRoadmapPage() {
     );
   };
 
-  const renderBullets = (bullets?: string[]) => {
+  const renderBullets = (bullets?: string[], slideId?: string) => {
     if (!bullets || bullets.length === 0) return null;
 
+    // For "build-yourself" slide, group bullets into collapsible sections
+    if (slideId === 'build-yourself') {
+      const sections: { title: string; bullets: string[] }[] = [];
+      let currentSection: { title: string; bullets: string[] } | null = null;
+
+      bullets.forEach((bullet) => {
+        // Check if this is a section header (starts with ** and contains "Weeks")
+        if (bullet.startsWith('**') && bullet.includes('Weeks')) {
+          // Save previous section if exists
+          if (currentSection) {
+            sections.push(currentSection);
+          }
+          // Start new section
+          currentSection = {
+            title: bullet.replace(/\*\*/g, ''),
+            bullets: []
+          };
+        } else if (currentSection) {
+          // Add bullet to current section (skip empty strings)
+          if (bullet.trim() !== '') {
+            currentSection.bullets.push(bullet);
+          }
+        }
+      });
+
+      // Add the last section
+      if (currentSection) {
+        sections.push(currentSection);
+      }
+
+      return (
+        <div className="mt-6 space-y-4">
+          {sections.map((section, sectionIndex) => (
+            <CollapsibleSection
+              key={sectionIndex}
+              title={section.title}
+              defaultExpanded={sectionIndex === 0}
+              accentColor="#FFD700"
+            >
+              <div className="space-y-3">
+                {section.bullets.map((bullet, bulletIndex) => {
+                  const parts = bullet.split(/(\*\*.*?\*\*)/g);
+                  return (
+                    <div key={bulletIndex} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 text-[#FFD700] mt-1.5">•</div>
+                      <div className="text-sm text-gray-300 leading-relaxed">
+                        {parts.map((part, i) => {
+                          if (part.startsWith('**') && part.endsWith('**')) {
+                            return (
+                              <span key={i} className="font-semibold text-white">
+                                {part.replace(/\*\*/g, '')}
+                              </span>
+                            );
+                          }
+                          return <span key={i}>{part}</span>;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CollapsibleSection>
+          ))}
+        </div>
+      );
+    }
+
+    // Default rendering for other slides
     return (
       <div className="mt-6 space-y-3">
         {bullets.map((bullet, index) => {
@@ -139,7 +254,7 @@ export default function StrategicRoadmapPage() {
           const parts = bullet.split(/(\*\*.*?\*\*)/g);
           return (
             <div key={index} className="flex items-start gap-3">
-              <div className="flex-shrink-0 text-blue-400 mt-1.5">•</div>
+              <div className="flex-shrink-0 text-[#FFD700] mt-1.5">•</div>
               <div className="text-sm text-gray-300 leading-relaxed">
                 {parts.map((part, i) => {
                   if (part.startsWith('**') && part.endsWith('**')) {
@@ -160,7 +275,22 @@ export default function StrategicRoadmapPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 text-white relative">
+      {/* ASCII Grid Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <ASCIIUnifiedGrid
+          opacity={0.04}
+          animated={true}
+          theme={{
+            colors: ['#FFD700', '#FFA500', '#FF8C00'], // Terminal Gold gradient
+            name: 'terminal-gold',
+            primary: '#FFD700',
+            description: 'Terminal Republic gold theme'
+          }}
+          charSet="depth"
+        />
+      </div>
+
       {/* Header */}
       <div className="border-b border-gray-800 bg-slate-950/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -196,9 +326,9 @@ export default function StrategicRoadmapPage() {
                 onClick={() => goToSlide(index)}
                 className={`flex-1 h-1 rounded-full transition-all duration-300 ${
                   index === currentSlideIndex
-                    ? 'bg-blue-500'
+                    ? 'bg-[#FFD700]'
                     : index < currentSlideIndex
-                    ? 'bg-blue-500/50'
+                    ? 'bg-[#FFD700]/50'
                     : 'bg-gray-700'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -209,9 +339,10 @@ export default function StrategicRoadmapPage() {
 
         {/* Slide Content */}
         <div className="bg-slate-900/40 backdrop-blur-sm rounded-xl border border-gray-800 p-8 md:p-12 min-h-[600px]">
+          <div key={currentSlideIndex} className="animate-fade-in">
           {/* Title */}
           <div className="mb-8">
-            <div className="inline-block px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+            <div className="inline-block px-3 py-1 rounded-md bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700] text-xs font-semibold uppercase tracking-wider mb-4 font-mono">
               {currentSlide.id.replace(/-/g, ' ')}
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl md:text-5xl font-bold text-white mb-3">
@@ -232,7 +363,7 @@ export default function StrategicRoadmapPage() {
           )}
 
           {/* Bullets */}
-          {renderBullets(currentSlide.bullets)}
+          {renderBullets(currentSlide.bullets, currentSlide.id)}
 
           {/* Diagram */}
           {renderDiagram(currentSlide.diagram)}
@@ -242,15 +373,16 @@ export default function StrategicRoadmapPage() {
 
           {/* Note */}
           {currentSlide.note && (
-            <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+            <div className="mt-8 p-4 bg-[#FFD700]/10 border border-[#FFD700]/30 rounded-lg">
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 text-blue-400 mt-0.5"></div>
+                <div className="flex-shrink-0 text-[#FFD700] mt-0.5">💡</div>
                 <div className="text-sm text-gray-300 italic">
                   {currentSlide.note}
                 </div>
               </div>
             </div>
           )}
+          </div>
         </div>
 
         {/* Navigation */}

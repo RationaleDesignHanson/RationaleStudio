@@ -60,11 +60,11 @@ const WhatYouveBuiltDiagram: React.FC<WhatYouveBuiltDiagramProps> = ({ className
   ];
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-8 ${className}`}>
+    <div className={`bg-gray-900/40 backdrop-blur-sm rounded-lg border border-gray-700 p-8 ${className}`}>
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">What You've Built</h2>
-        <p className="text-lg text-gray-600">Production-ready foundation worth $94K of development value</p>
+        <h2 className="text-3xl font-bold text-white mb-2">What You've Built</h2>
+        <p className="text-lg text-gray-400">Production-ready foundation worth $94K of development value</p>
       </div>
 
       {/* Architecture Tree */}
@@ -78,8 +78,8 @@ const WhatYouveBuiltDiagram: React.FC<WhatYouveBuiltDiagramProps> = ({ className
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">{component.name}</h3>
-              <span className="ml-3 px-3 py-1 bg-emerald-100 text-emerald-700 text-sm font-semibold rounded-full">
+              <h3 className="text-xl font-bold text-white">{component.name}</h3>
+              <span className="ml-3 px-3 py-1 bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-sm font-semibold rounded-full">
                 Complete
               </span>
             </div>
@@ -88,9 +88,9 @@ const WhatYouveBuiltDiagram: React.FC<WhatYouveBuiltDiagramProps> = ({ className
             <div className="ml-9 space-y-2">
               {component.items.map((item, itemIdx) => (
                 <div key={itemIdx} className="flex items-start">
-                  <div className="w-2 h-2 bg-emerald-300 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                   <div className="flex-1">
-                    <span className="font-mono text-sm text-gray-700">{item.label}</span>
+                    <span className="font-mono text-sm text-gray-300">{item.label}</span>
                     {item.detail && (
                       <span className="ml-2 text-sm text-gray-500">({item.detail})</span>
                     )}
@@ -103,23 +103,23 @@ const WhatYouveBuiltDiagram: React.FC<WhatYouveBuiltDiagramProps> = ({ className
       </div>
 
       {/* Summary Footer */}
-      <div className="mt-8 pt-6 border-t-2 border-gray-200">
+      <div className="mt-8 pt-6 border-t-2 border-gray-700">
         <div className="grid grid-cols-3 gap-6">
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">$94K</div>
-            <div className="text-sm text-gray-600 mt-1">Built Value</div>
+            <div className="text-3xl font-bold text-emerald-400">$94K</div>
+            <div className="text-sm text-gray-400 mt-1">Built Value</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">10,071</div>
-            <div className="text-sm text-gray-600 mt-1">Lines of Python</div>
+            <div className="text-3xl font-bold text-emerald-400">10,071</div>
+            <div className="text-sm text-gray-400 mt-1">Lines of Python</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">80%</div>
-            <div className="text-sm text-gray-600 mt-1">Backend Complete</div>
+            <div className="text-3xl font-bold text-emerald-400">80%</div>
+            <div className="text-sm text-gray-400 mt-1">Backend Complete</div>
           </div>
         </div>
-        <div className="mt-6 p-4 bg-emerald-50 rounded-lg">
-          <p className="text-center text-emerald-900 font-semibold">
+        <div className="mt-6 p-4 bg-emerald-500/10 border border-emerald-500/50 rounded-lg">
+          <p className="text-center text-emerald-300 font-semibold">
             Strong Foundation: Production-grade infrastructure, API, and email system ready to scale
           </p>
         </div>

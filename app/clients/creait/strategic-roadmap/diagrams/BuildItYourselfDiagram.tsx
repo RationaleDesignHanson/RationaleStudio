@@ -141,36 +141,36 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
 
   const colorMap = {
     indigo: {
-      bg: 'bg-indigo-50',
-      border: 'border-indigo-500',
-      text: 'text-indigo-900',
-      badge: 'bg-indigo-600',
-      hover: 'hover:bg-indigo-100',
-      icon: 'text-indigo-500'
+      bg: 'bg-indigo-500/10',
+      border: 'border-indigo-500/50',
+      text: 'text-indigo-400',
+      badge: 'bg-indigo-500',
+      hover: 'hover:bg-indigo-500/20',
+      icon: 'text-indigo-400'
     },
     blue: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-500',
-      text: 'text-blue-900',
-      badge: 'bg-blue-600',
-      hover: 'hover:bg-blue-100',
-      icon: 'text-blue-500'
+      bg: 'bg-blue-500/10',
+      border: 'border-blue-500/50',
+      text: 'text-blue-400',
+      badge: 'bg-blue-500',
+      hover: 'hover:bg-blue-500/20',
+      icon: 'text-blue-400'
     },
     purple: {
-      bg: 'bg-purple-50',
-      border: 'border-purple-500',
-      text: 'text-purple-900',
-      badge: 'bg-purple-600',
-      hover: 'hover:bg-purple-100',
-      icon: 'text-purple-500'
+      bg: 'bg-purple-500/10',
+      border: 'border-purple-500/50',
+      text: 'text-purple-400',
+      badge: 'bg-purple-500',
+      hover: 'hover:bg-purple-500/20',
+      icon: 'text-purple-400'
     },
     emerald: {
-      bg: 'bg-emerald-50',
-      border: 'border-emerald-500',
-      text: 'text-emerald-900',
-      badge: 'bg-emerald-600',
-      hover: 'hover:bg-emerald-100',
-      icon: 'text-emerald-500'
+      bg: 'bg-emerald-500/10',
+      border: 'border-emerald-500/50',
+      text: 'text-emerald-400',
+      badge: 'bg-emerald-500',
+      hover: 'hover:bg-emerald-500/20',
+      icon: 'text-emerald-400'
     }
   };
 
@@ -223,11 +223,11 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
   };
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-8 ${className}`}>
+    <div className={`bg-gray-900/40 backdrop-blur-sm rounded-lg border border-gray-700 p-8 ${className}`}>
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Build It Yourself Roadmap</h2>
-        <p className="text-lg text-gray-600">Complete DIY implementation plan (12-14 weeks)</p>
+        <h2 className="text-3xl font-bold text-white mb-2">Build It Yourself Roadmap</h2>
+        <p className="text-lg text-gray-400">Complete DIY implementation plan (12-14 weeks)</p>
       </div>
 
       {/* Phase Accordion */}
@@ -249,7 +249,7 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
                   </div>
                   <div>
                     <h3 className={`text-lg font-bold ${colors.text}`}>{phase.title}</h3>
-                    <p className="text-sm text-gray-600 font-semibold mt-1">{phase.weeks}</p>
+                    <p className="text-sm text-gray-400 font-semibold mt-1">{phase.weeks}</p>
                   </div>
                 </div>
                 <svg
@@ -264,7 +264,7 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
 
               {/* Phase Content (Expandable) */}
               {isExpanded && (
-                <div className="p-6 bg-white border-t-2 border-gray-200">
+                <div className="p-6 bg-gray-900/60 border-t-2 border-gray-700">
                   <div className="space-y-6">
                     {phase.sections.map((section, sectionIdx) => (
                       <div key={sectionIdx}>
@@ -272,16 +272,16 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
                           <div className={colors.icon}>
                             {typeIcons[section.type as keyof typeof typeIcons]}
                           </div>
-                          <h4 className="ml-2 font-semibold text-gray-900">{section.heading}</h4>
+                          <h4 className="ml-2 font-semibold text-white">{section.heading}</h4>
                         </div>
-                        <div className={`${colors.bg} rounded p-4 space-y-2`}>
+                        <div className={`${colors.bg} rounded p-4 space-y-2 border ${colors.border}`}>
                           {section.items.map((item, itemIdx) => (
                             <div key={itemIdx} className="flex items-start">
                               <input
                                 type="checkbox"
-                                className="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                                className="mt-1 mr-3 h-4 w-4 text-[#FFD700] rounded focus:ring-[#FFD700] bg-gray-800 border-gray-600"
                               />
-                              <span className="text-sm text-gray-700 font-mono flex-1">{item}</span>
+                              <span className="text-sm text-gray-300 font-mono flex-1">{item}</span>
                             </div>
                           ))}
                         </div>
@@ -296,16 +296,16 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
       </div>
 
       {/* Launch Ready Banner */}
-      <div className="mt-8 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-lg p-6 text-white">
+      <div className="mt-8 bg-gradient-to-r from-emerald-500/20 to-blue-600/20 border border-emerald-500/50 rounded-lg p-6">
         <div className="flex items-center">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 text-emerald-400">
             <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div className="ml-4">
-            <h3 className="text-2xl font-bold mb-1">LAUNCH READY</h3>
-            <p className="text-blue-100">
+            <h3 className="text-2xl font-bold mb-1 text-white">LAUNCH READY</h3>
+            <p className="text-gray-300">
               After completing all phases, you'll have a production-ready intelligence platform
               capable of identifying and prioritizing opportunities for commercial real estate brokers.
             </p>
@@ -315,43 +315,43 @@ const BuildItYourselfDiagram: React.FC<BuildItYourselfDiagramProps> = ({ classNa
 
       {/* Implementation Tips */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-          <h4 className="font-semibold text-blue-900 mb-2">Pro Tip: Sequential Build</h4>
-          <p className="text-sm text-blue-800">
+        <div className="bg-blue-500/10 border-l-4 border-blue-500 p-4 rounded">
+          <h4 className="font-semibold text-blue-400 mb-2">Pro Tip: Sequential Build</h4>
+          <p className="text-sm text-gray-300">
             Complete backend (Weeks 1-4) before starting frontend. This ensures you have working APIs to integrate with.
           </p>
         </div>
-        <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
-          <h4 className="font-semibold text-purple-900 mb-2">Pro Tip: Test Early</h4>
-          <p className="text-sm text-purple-800">
+        <div className="bg-purple-500/10 border-l-4 border-purple-500 p-4 rounded">
+          <h4 className="font-semibold text-purple-400 mb-2">Pro Tip: Test Early</h4>
+          <p className="text-sm text-gray-300">
             Get user feedback during Week 8. Real broker input will shape the final polish phase (Weeks 13-14).
           </p>
         </div>
       </div>
 
       {/* Resources Section */}
-      <div className="mt-8 pt-6 border-t-2 border-gray-200">
-        <h3 className="font-bold text-gray-900 mb-4">Recommended Resources</h3>
+      <div className="mt-8 pt-6 border-t-2 border-gray-700">
+        <h3 className="font-bold text-white mb-4">Recommended Resources</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="bg-gray-50 p-4 rounded">
-            <h4 className="font-semibold text-gray-900 mb-2">Backend Stack</h4>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-gray-800/40 p-4 rounded border border-gray-700">
+            <h4 className="font-semibold text-white mb-2">Backend Stack</h4>
+            <ul className="space-y-1 text-gray-300">
               <li>• Flask (already in use)</li>
               <li>• Celery + Redis (already set up)</li>
               <li>• PostgreSQL (Supabase)</li>
             </ul>
           </div>
-          <div className="bg-gray-50 p-4 rounded">
-            <h4 className="font-semibold text-gray-900 mb-2">Frontend Stack</h4>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-gray-800/40 p-4 rounded border border-gray-700">
+            <h4 className="font-semibold text-white mb-2">Frontend Stack</h4>
+            <ul className="space-y-1 text-gray-300">
               <li>• React + TypeScript</li>
               <li>• React Query (state mgmt)</li>
               <li>• Recharts (score viz)</li>
             </ul>
           </div>
-          <div className="bg-gray-50 p-4 rounded">
-            <h4 className="font-semibold text-gray-900 mb-2">Data Sources</h4>
-            <ul className="space-y-1 text-gray-700">
+          <div className="bg-gray-800/40 p-4 rounded border border-gray-700">
+            <h4 className="font-semibold text-white mb-2">Data Sources</h4>
+            <ul className="space-y-1 text-gray-300">
               <li>• Public records (free)</li>
               <li>• Web scraping (free)</li>
               <li>• MLS data (optional, $500-2K/mo)</li>

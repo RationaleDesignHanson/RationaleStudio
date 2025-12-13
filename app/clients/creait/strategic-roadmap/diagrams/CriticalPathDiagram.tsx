@@ -83,43 +83,43 @@ const CriticalPathDiagram: React.FC<CriticalPathDiagramProps> = ({ className = '
 
   const colorMap = {
     indigo: {
-      bg: 'bg-indigo-50',
-      border: 'border-indigo-500',
-      text: 'text-indigo-900',
-      badge: 'bg-indigo-600',
-      light: 'bg-indigo-100',
-      deliverable: 'bg-indigo-500'
+      bg: 'bg-indigo-500/10',
+      border: 'border-indigo-500/50',
+      text: 'text-indigo-400',
+      badge: 'bg-indigo-500',
+      light: 'bg-indigo-500/20',
+      deliverable: 'bg-indigo-500/30'
     },
     blue: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-500',
-      text: 'text-blue-900',
-      badge: 'bg-blue-600',
-      light: 'bg-blue-100',
-      deliverable: 'bg-blue-500'
+      bg: 'bg-blue-500/10',
+      border: 'border-blue-500/50',
+      text: 'text-blue-400',
+      badge: 'bg-blue-500',
+      light: 'bg-blue-500/20',
+      deliverable: 'bg-blue-500/30'
     },
     purple: {
-      bg: 'bg-purple-50',
-      border: 'border-purple-500',
-      text: 'text-purple-900',
-      badge: 'bg-purple-600',
-      light: 'bg-purple-100',
-      deliverable: 'bg-purple-500'
+      bg: 'bg-purple-500/10',
+      border: 'border-purple-500/50',
+      text: 'text-purple-400',
+      badge: 'bg-purple-500',
+      light: 'bg-purple-500/20',
+      deliverable: 'bg-purple-500/30'
     }
   };
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-8 ${className}`}>
+    <div className={`bg-gray-900/40 backdrop-blur-sm rounded-lg border border-gray-700 p-8 ${className}`}>
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">The Critical Path</h2>
-        <p className="text-lg text-gray-600">20% of work that delivers 80% of value</p>
+        <h2 className="text-3xl font-bold text-white mb-2">The Critical Path</h2>
+        <p className="text-lg text-gray-400">20% of work that delivers 80% of value</p>
       </div>
 
       {/* Timeline */}
       <div className="relative">
         {/* Progress Bar Background */}
-        <div className="absolute left-12 top-0 bottom-0 w-1 bg-gray-200"></div>
+        <div className="absolute left-12 top-0 bottom-0 w-1 bg-gray-700"></div>
 
         {/* Phases */}
         <div className="space-y-8">
@@ -140,7 +140,7 @@ const CriticalPathDiagram: React.FC<CriticalPathDiagramProps> = ({ className = '
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h3 className={`text-xl font-bold ${colors.text}`}>{phase.title}</h3>
-                      <p className="text-sm text-gray-600 mt-1">{phase.weeks}</p>
+                      <p className="text-sm text-gray-400 mt-1">{phase.weeks}</p>
                     </div>
                     <div className="flex space-x-1">
                       {[...Array(4)].map((_, i) => (
@@ -153,14 +153,14 @@ const CriticalPathDiagram: React.FC<CriticalPathDiagramProps> = ({ className = '
                   <div className="space-y-4">
                     {phase.sections.map((section, sectionIdx) => (
                       <div key={sectionIdx}>
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                        <h4 className="text-sm font-semibold text-white mb-2">
                           {section.subtitle}
                         </h4>
-                        <div className={`${colors.light} rounded p-3 space-y-1`}>
+                        <div className={`${colors.light} border ${colors.border} rounded p-3 space-y-1`}>
                           {section.items.map((item, itemIdx) => (
                             <div key={itemIdx} className="flex items-start text-sm">
-                              <span className="text-gray-400 mr-2">•</span>
-                              <span className="font-mono text-gray-700">{item}</span>
+                              <span className="text-[#FFD700] mr-2">•</span>
+                              <span className="font-mono text-gray-300">{item}</span>
                             </div>
                           ))}
                         </div>
@@ -169,7 +169,7 @@ const CriticalPathDiagram: React.FC<CriticalPathDiagramProps> = ({ className = '
                   </div>
 
                   {/* Deliverable */}
-                  <div className={`mt-4 p-3 ${colors.deliverable} rounded-lg`}>
+                  <div className={`mt-4 p-3 ${colors.deliverable} border ${colors.border} rounded-lg`}>
                     <div className="flex items-center text-white">
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -185,25 +185,25 @@ const CriticalPathDiagram: React.FC<CriticalPathDiagramProps> = ({ className = '
 
         {/* Launch Ready Section */}
         <div className="relative pl-24 mt-8">
-          <div className="absolute left-8 w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold z-10">
+          <div className="absolute left-8 w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold z-10">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <div className="rounded-lg border-2 border-emerald-500 bg-emerald-50 p-6">
-            <h3 className="text-xl font-bold text-emerald-900 mb-2">LAUNCH READY</h3>
-            <p className="text-emerald-800">Week 13-14: Polish + Pilot Program</p>
+          <div className="rounded-lg border-2 border-emerald-500/50 bg-emerald-500/10 p-6">
+            <h3 className="text-xl font-bold text-emerald-400 mb-2">LAUNCH READY</h3>
+            <p className="text-gray-300">Week 13-14: Polish + Pilot Program</p>
           </div>
         </div>
       </div>
 
       {/* Footer Note */}
-      <div className="mt-8 pt-6 border-t-2 border-gray-200">
-        <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
-          <p className="text-gray-700 font-semibold">
+      <div className="mt-8 pt-6 border-t-2 border-gray-700">
+        <div className="p-4 bg-gray-800/40 rounded-lg border-l-4 border-[#FFD700]">
+          <p className="text-white font-semibold">
             Everything else (CRM integration, advanced features) = Month 4+
           </p>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-gray-400 mt-1">
             Focus on core intelligence platform first, then expand feature set
           </p>
         </div>
