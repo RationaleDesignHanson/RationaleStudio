@@ -281,7 +281,7 @@ export default function StrategicRoadmapPage() {
         <ASCIIUnifiedGrid
           opacity={0.04}
           animated={true}
-          theme={{
+          colorTheme={{
             colors: ['#FFD700', '#FFA500', '#FF8C00'], // Terminal Gold gradient
             name: 'terminal-gold',
             primary: '#FFD700',
