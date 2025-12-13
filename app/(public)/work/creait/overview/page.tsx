@@ -21,6 +21,13 @@ export default function CREaiTOverviewPage() {
       {/* HERO */}
       <section className="relative py-12 md:py-16 lg:py-20 px-6 md:px-12 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
+          <Link
+            href="/#portfolio"
+            className="text-sm text-gray-400 hover:text-amber-400 font-semibold transition-colors mb-6 inline-block"
+          >
+            ← Back to Portfolio
+          </Link>
+
           <div className="text-center mb-8 md:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="text-amber-400">CREaiT</span> Product Roadmap
