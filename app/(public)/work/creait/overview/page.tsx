@@ -35,7 +35,7 @@ export default function CREaiTOverviewPage() {
             <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-6 md:mb-8 leading-relaxed">
               AI-Powered Commercial Real Estate Intelligence Platform
             </p>
-            <p className="text-base md:text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto leading-relaxed">
               From working prototype to market-ready product in 12 weeks.
               Strategic roadmap + technical execution + investor positioning.
             </p>
@@ -65,7 +65,7 @@ export default function CREaiTOverviewPage() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-green-400">What's Working</h3>
               </div>
-              <ul className="space-y-4 text-base text-gray-300">
+              <ul className="space-y-4 text-sm text-gray-300">
                 <li className="flex items-start gap-3 leading-relaxed">
                   <span className="text-green-400 flex-shrink-0 mt-1">→</span>
                   <span>Working MVP with AI-powered property analysis</span>
@@ -95,7 +95,7 @@ export default function CREaiTOverviewPage() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-red-400">The Critical Gap</h3>
               </div>
-              <ul className="space-y-4 text-base text-gray-300">
+              <ul className="space-y-4 text-sm text-gray-300">
                 <li className="flex items-start gap-3 leading-relaxed">
                   <span className="text-red-400 flex-shrink-0 mt-1">→</span>
                   <span>Scoring engine completely missing (0 implementations)</span>
@@ -370,7 +370,7 @@ export default function CREaiTOverviewPage() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-white">Investor-Ready Materials</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Professional pitch deck, financial model, competitive analysis, and product roadmap ready for fundraising.
               </p>
             </BaseCard>
@@ -386,7 +386,7 @@ export default function CREaiTOverviewPage() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-white">Scalable Technical Foundation</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Refactored architecture, optimized data pipeline, and documented codebase that can handle 10x growth.
               </p>
             </BaseCard>
@@ -402,7 +402,7 @@ export default function CREaiTOverviewPage() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-white">Go-to-Market Strategy</h3>
               </div>
-              <p className="text-base text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Clear positioning, pricing model, customer acquisition plan, and first 6 months execution roadmap.
               </p>
             </BaseCard>
@@ -433,7 +433,7 @@ export default function CREaiTOverviewPage() {
 
                   <div>
                     <div className="text-xs text-amber-400 mb-3 font-semibold uppercase tracking-wider">Structure</div>
-                    <div className="text-base text-gray-300 space-y-2">
+                    <div className="text-sm text-gray-300 space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-amber-400 flex-shrink-0 mt-1">→</span>
                         <span>Weekly sprint planning</span>
@@ -453,7 +453,7 @@ export default function CREaiTOverviewPage() {
                 <div className="space-y-6">
                   <div>
                     <div className="text-xs text-amber-400 mb-3 font-semibold uppercase tracking-wider">Team</div>
-                    <div className="text-base text-gray-300 space-y-2 mb-6">
+                    <div className="text-sm text-gray-300 space-y-2 mb-6">
                       <div className="flex items-start gap-2">
                         <span className="text-amber-400 flex-shrink-0 mt-1">→</span>
                         <span>1 Product Lead (strategy)</span>
@@ -471,7 +471,7 @@ export default function CREaiTOverviewPage() {
 
                   <div>
                     <div className="text-xs text-amber-400 mb-2 font-semibold uppercase tracking-wider">Pricing</div>
-                    <div className="text-base text-gray-300">
+                    <div className="text-sm text-gray-300">
                       Contact for custom quote based on scope
                     </div>
                   </div>
@@ -486,7 +486,7 @@ export default function CREaiTOverviewPage() {
       <section className="py-12 md:py-16 lg:py-20 px-6 md:px-12">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">Ready to Dive Deeper?</h2>
-          <p className="text-base md:text-lg text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
             Explore detailed technical specs, week-by-week breakdown, and complete deliverables list in the full strategic roadmap.
           </p>
           <Link
