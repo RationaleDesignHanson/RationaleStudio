@@ -317,40 +317,40 @@ export default function StrategicRoadmapPage() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Navigation Bar - Athletes First Style */}
-        <div className="mb-8 flex items-center justify-between text-white/80 text-sm">
-          <button
-            onClick={previousSlide}
-            disabled={currentSlideIndex === 0}
-            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
-            aria-label="Previous slide"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <div className="flex items-center gap-3 font-mono">
-            <span className="text-[#FFD700] font-semibold">{currentSlideIndex + 1}</span>
-            <span className="text-white/40">·</span>
-            <span className="text-white/60">{currentSlideIndex + 1} of {totalSlides}</span>
-          </div>
-
-          <button
-            onClick={nextSlide}
-            disabled={currentSlideIndex === totalSlides - 1}
-            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
-            aria-label="Next slide"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
         {/* Slide Content */}
         <div className="bg-slate-900/40 backdrop-blur-sm rounded-xl border border-gray-800 p-8 md:p-12 min-h-[600px]">
           <div key={currentSlideIndex} className="animate-fade-in">
+          {/* Navigation Bar - Inside Content Area (Athletes First Style) */}
+          <div className="mb-8 flex items-center gap-3 text-white/80 text-sm">
+            <button
+              onClick={previousSlide}
+              disabled={currentSlideIndex === 0}
+              className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+              aria-label="Previous slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-white/40">{currentSlide.id.replace(/-/g, ' ')}</span>
+              <span className="text-white/40">·</span>
+              <span className="text-white/60">{currentSlideIndex + 1} of {totalSlides}</span>
+            </div>
+
+            <button
+              onClick={nextSlide}
+              disabled={currentSlideIndex === totalSlides - 1}
+              className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+              aria-label="Next slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
           {/* Title - Athletes First Style */}
           <div className="mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#FFD700' }}>
