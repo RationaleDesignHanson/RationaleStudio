@@ -127,6 +127,7 @@ export default function AthletesFirstPitchDeck() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionDirection, setTransitionDirection] = useState<'forward' | 'backward'>('forward');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [selectedContract, setSelectedContract] = useState<any>(null);
 
   const currentSection = sections[activeSection];
   const currentSlide = currentSection.slides[activeSlide];
