@@ -9,14 +9,18 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
 import { Lock, ArrowRight } from 'lucide-react';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 import { ProjectStatusBadge } from '@/components/ui/Badge';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 export default function WorkPage() {
+  const { profile } = useAuth();
+  const router = useRouter();
   const projects = getAllProjects();
   const zero = getProjectBySlug('zero');
   const heirloom = getProjectBySlug('heirloom');
@@ -293,7 +297,10 @@ export default function WorkPage() {
             {partnerships.map((project) => {
               // Special treatment for protected/confidential work
               const isConfidential = project.isProtected;
-              const needsBlur = isConfidential;
+              // Check authentication - investor and partner roles have access
+              const isAuthenticated = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
+              // Apply blur if confidential AND user is not authenticated
+              const needsBlur = isConfidential && !isAuthenticated;
 
               // Check if this project has a quick overview page
               const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
@@ -304,9 +311,21 @@ export default function WorkPage() {
                 ? '/clients/athletes-first/pitch-deck'
                 : `/work/${project.slug}`;
 
+              // Handle click for locked cards
+              const handleCardClick = (e: React.MouseEvent) => {
+                if (needsBlur) {
+                  e.preventDefault();
+                  router.push(`/clients/login?redirect=/work/${project.slug}`);
+                }
+              };
+
               return (
                 <div key={project.id} className="relative">
-                  <Link href={`/work/${project.slug}`} className="group block">
+                  <Link
+                    href={`/work/${project.slug}`}
+                    className={`group block ${needsBlur ? 'cursor-pointer' : ''}`}
+                    onClick={handleCardClick}
+                  >
                     <div className={`h-full p-4 sm:p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
                       isConfidential
                         ? 'border-amber-400/30 hover:border-amber-400/50'
@@ -347,8 +366,8 @@ export default function WorkPage() {
                           </div>
                         )}
 
-                        {/* Blur effect for confidential content */}
-                        <div className={needsBlur ? 'filter blur-sm group-hover:blur-0 transition-all duration-300' : ''}>
+                        {/* Blur effect for confidential content - only blur if NOT authenticated */}
+                        <div className={needsBlur ? 'filter blur-md transition-all duration-300' : ''}>
                           <p className="text-gray-300 text-sm leading-relaxed">
                             {project.description}
                           </p>
@@ -374,7 +393,27 @@ export default function WorkPage() {
                         </div>
 
                         {/* Protected Case Study CTA */}
-                        {isConfidential && (
+                        {isConfidential && !isAuthenticated && (
+                          <div className="pt-4 border-t border-gray-700">
+                            <p className="text-xs text-amber-400 mb-3 font-semibold">
+                              Sign in to view this case study
+                            </p>
+                            <button
+                              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                router.push(`/clients/login?redirect=/work/${project.slug}`);
+                              }}
+                            >
+                              <Lock className="w-3 h-3" />
+                              <span>Sign In to Access</span>
+                            </button>
+                          </div>
+                        )}
+
+                        {/* Protected Case Study CTA - Authenticated */}
+                        {isConfidential && isAuthenticated && (
                           <div className="pt-4 border-t border-gray-700">
                             <p className="text-xs text-gray-400 mb-3">
                               Enter password to view case study or overview

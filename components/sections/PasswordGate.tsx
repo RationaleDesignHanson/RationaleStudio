@@ -3,6 +3,7 @@
  *
  * Simple password protection for case studies and investor content.
  * Stores access in session storage for duration of session.
+ * Integrates with authentication: authenticated users (investor/partner) only need to enter password once.
  *
  * Phase 4.2: Migrated to BaseCard universal foundation
  */
@@ -13,6 +14,7 @@ import { useState, useEffect, ReactNode } from 'react';
 import { ResponsiveText } from '@/lib/ui/responsive';
 import { BaseCard } from '@/components/ui/BaseCard';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 interface PasswordGateProps {
   children: ReactNode;
@@ -31,21 +33,40 @@ export function PasswordGate({
   description = 'This content is password protected. Please enter the password to continue.',
   className = ''
 }: PasswordGateProps) {
+  const { profile } = useAuth();
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [inputPassword, setInputPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if already unlocked in this session
+  // Check authentication and existing password entry
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const unlocked = sessionStorage.getItem(storageKey);
-      if (unlocked === 'true') {
-        setIsUnlocked(true);
+      // Check if user is authenticated with appropriate role
+      const isAuthenticated = profile && (
+        profile.role === 'investor' ||
+        profile.role === 'partner' ||
+        profile.role === 'team' ||
+        profile.role === 'owner'
+      );
+
+      if (isAuthenticated && profile) {
+        // For authenticated users, check if they've entered the password before (per user)
+        const userStorageKey = `${storageKey}_${profile.uid}`;
+        const unlocked = sessionStorage.getItem(userStorageKey);
+        if (unlocked === 'true') {
+          setIsUnlocked(true);
+        }
+      } else {
+        // For non-authenticated users, use the regular storage key
+        const unlocked = sessionStorage.getItem(storageKey);
+        if (unlocked === 'true') {
+          setIsUnlocked(true);
+        }
       }
       setIsLoading(false);
     }
-  }, [storageKey]);
+  }, [storageKey, profile]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +74,21 @@ export function PasswordGate({
 
     if (inputPassword === password) {
       setIsUnlocked(true);
-      sessionStorage.setItem(storageKey, 'true');
+
+      // Store password entry - use per-user key for authenticated users
+      const isAuthenticated = profile && (
+        profile.role === 'investor' ||
+        profile.role === 'partner' ||
+        profile.role === 'team' ||
+        profile.role === 'owner'
+      );
+
+      if (isAuthenticated && profile) {
+        const userStorageKey = `${storageKey}_${profile.uid}`;
+        sessionStorage.setItem(userStorageKey, 'true');
+      } else {
+        sessionStorage.setItem(storageKey, 'true');
+      }
     } else {
       setError('Incorrect password. Please try again.');
       setInputPassword('');
@@ -75,6 +110,13 @@ export function PasswordGate({
   }
 
   // Show password form
+  const isAuthenticated = profile && (
+    profile.role === 'investor' ||
+    profile.role === 'partner' ||
+    profile.role === 'team' ||
+    profile.role === 'owner'
+  );
+
   return (
     <div className={`min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-gray-900 via-black to-gray-900 ${className}`}>
       <div className="max-w-md w-full p-8 bg-gray-900/90 border border-gray-700 rounded-lg shadow-2xl">
@@ -97,7 +139,11 @@ export function PasswordGate({
           <h2 className="text-2xl font-bold text-white mb-2">
             {title}
           </h2>
-          <p className="text-sm sm:text-base text-gray-400">{description}</p>
+          <p className="text-sm sm:text-base text-gray-400">
+            {isAuthenticated
+              ? 'Enter the password once to access this content. You won\'t be asked again this session.'
+              : description}
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">

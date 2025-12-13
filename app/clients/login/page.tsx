@@ -61,9 +61,15 @@ function ClientLoginForm() {
       // Determine redirect based on redirect parameter or role
       let destination = '/clients';
 
-      // First priority: use redirect parameter if provided (from middleware)
+      // First priority: use redirect parameter if provided (from middleware or locked content)
       if (redirect) {
         destination = redirect;
+      } else if (profile.role === 'investor') {
+        // Investor role - redirect to investors page
+        destination = '/investors';
+      } else if (profile.role === 'partner') {
+        // Partner role - redirect to home page with unlocked content
+        destination = '/';
       } else if (profile.role === 'client' && profile.clientId) {
         // Client user - redirect to their specific portal
         destination = CLIENT_REDIRECTS[profile.clientId] || '/clients';
