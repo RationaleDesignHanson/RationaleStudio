@@ -204,13 +204,13 @@ export default function StrategicRoadmapPage() {
               defaultExpanded={sectionIndex === 0}
               accentColor="#FFD700"
             >
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {section.bullets.map((bullet, bulletIndex) => {
                   const parts = bullet.split(/(\*\*.*?\*\*)/g);
                   return (
                     <div key={bulletIndex} className="flex items-start gap-3">
                       <div className="flex-shrink-0 text-[#FFD700] mt-1.5">•</div>
-                      <div className="text-sm text-gray-300 leading-relaxed">
+                      <div className="text-base md:text-lg text-gray-100 leading-relaxed">
                         {parts.map((part, i) => {
                           if (part.startsWith('**') && part.endsWith('**')) {
                             return (
@@ -234,12 +234,12 @@ export default function StrategicRoadmapPage() {
 
     // Default rendering for other slides
     return (
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 space-y-4">
         {bullets.map((bullet, index) => {
           // Check if bullet is a header (starts with **)
           if (bullet.startsWith('**') && bullet.endsWith('**')) {
             return (
-              <div key={index} className="text-base font-semibold text-white mt-6 first:mt-0">
+              <div key={index} className="text-base md:text-lg font-semibold text-white mt-6 first:mt-0">
                 {bullet.replace(/\*\*/g, '')}
               </div>
             );
@@ -255,7 +255,7 @@ export default function StrategicRoadmapPage() {
           return (
             <div key={index} className="flex items-start gap-3">
               <div className="flex-shrink-0 text-[#FFD700] mt-1.5">•</div>
-              <div className="text-sm text-gray-300 leading-relaxed">
+              <div className="text-base md:text-lg text-gray-100 leading-relaxed">
                 {parts.map((part, i) => {
                   if (part.startsWith('**') && part.endsWith('**')) {
                     return (
