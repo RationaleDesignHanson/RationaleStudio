@@ -44,14 +44,48 @@ export default function InvestorPortalPage() {
   };
 
   if (isLoading) {
-    return ( <div className="min-h-screen bg-black flex items-center justify-center"> <div className="text-gray-400">Loading...</div> </div> );
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse mb-4">
+            <div className="w-16 h-16 border-4 border-[#FFD700]/30 border-t-[#FFD700] rounded-full animate-spin mx-auto" />
+          </div>
+          <p className="text-[#FFD700] font-mono text-sm">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   if (isAuthenticated) {
     return <InvestorPortalContent />;
   }
 
-  return ( <div className="min-h-screen bg-black flex items-center justify-center p-4"> <div className="max-w-md w-full"> <CRECard variant="primary"> {/* Header */} <div className="text-center mb-6"> <div className="text-2xl md:text-3xl lg:text-4xl mb-4"></div> <H2 className="mb-2">Internal Portal</H2> <BodyMD color={CRE_COLORS.text.secondary}> Access detailed product documentation, technical specifications, and development roadmap </BodyMD> </div> {/* Password Form */} <form onSubmit={handleSubmit} className="space-y-4"> {error && ( <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm"> {error} </div> )} <div> <label htmlFor="internal-password" className="block text-sm font-medium text-gray-300 mb-2"> Access Password </label> <input
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center p-4">
+      <div className="max-w-md w-full">
+        <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl border border-gray-700 p-8">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <div className="text-4xl mb-4">🔒</div>
+            <h2 className="text-2xl font-bold text-white mb-2">Internal Portal</h2>
+            <p className="text-gray-400 text-sm">
+              Access detailed product documentation, technical specifications, and development roadmap
+            </p>
+          </div>
+
+          {/* Password Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-md text-sm">
+                {error}
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="internal-password" className="block text-sm font-medium text-gray-300 mb-2">
+                Access Password
+              </label>
+              <input
                 id="internal-password"
                 type="password"
                 value={password}
@@ -60,11 +94,28 @@ export default function InvestorPortalPage() {
                 autoFocus
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-transparent transition-colors"
                 placeholder="Enter access password"
-              /> </div> <button
+              />
+            </div>
+
+            <button
               type="submit"
-              className="w-full bg-terminal-gold text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
-            > Access Portal </button> </form> {/* Back Link */} <div className="mt-6 text-center"> <a
-              href="/clients/creait/pitch-deck/12-why-we-win"
-              className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
-            > ← Back to Pitch Deck </a> </div> </CRECard> </div> </div> );
+              className="w-full bg-[#FFD700] text-black font-medium py-3 px-4 rounded-md hover:bg-[#FFD700]/90 focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors"
+            >
+              Access Portal
+            </button>
+          </form>
+
+          {/* Back Link */}
+          <div className="mt-6 text-center">
+            <a
+              href="/clients/creait"
+              className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
+            >
+              ← Back to CREaiT Materials
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -22,23 +22,23 @@ export default function InvestorPortalContent() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
       {/* Header */}
-      <div className="bg-gradient-to-b from-gray-900 to-black border-b border-gray-800 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 py-6">
+      <div className="bg-gray-900/40 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <DisplayLG color={CRE_COLORS.score.critical}>CREaiT Internal Portal</DisplayLG>
-              <BodyMD color={CRE_COLORS.text.secondary} className="mt-1">
+              <h1 className="text-3xl font-bold text-[#FFD700]">CREaiT Internal Portal</h1>
+              <p className="text-gray-400 mt-1">
                 Comprehensive product documentation and development roadmap
-              </BodyMD>
+              </p>
             </div>
             <div className="flex items-center gap-4">
               <a
-                href="/clients/creait/pitch-deck/12-why-we-win"
-                className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
+                href="/clients/creait"
+                className="text-sm text-gray-400 hover:text-[#FFD700] transition-colors"
               >
-                ← Back to Deck
+                ← Back to Materials
               </a>
               <button
                 onClick={handleLogout}
@@ -62,8 +62,8 @@ export default function InvestorPortalContent() {
                 onClick={() => setActiveSection(section.key as any)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeSection === section.key
-                    ? 'bg-terminal-gold text-black'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    ? 'bg-[#FFD700] text-black'
+                    : 'bg-gray-800/40 text-gray-300 hover:bg-gray-700/40 border border-gray-700'
                 }`}
               >
                 {section.label}
