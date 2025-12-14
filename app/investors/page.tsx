@@ -12,6 +12,7 @@ import { investmentContent } from '@/lib/content';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
 import DualEngineModel from '@/components/rationale-overview/diagrams/DualEngineModel';
+import { MaterialCard } from '@/components/investors/MaterialCard';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function InvestorsPage() {
   const tiersTheme = getSectionTheme('featuredWork');
   const comparisonTheme = getSectionTheme('services');
   const faqTheme = getSectionTheme('founder');
+  const materialsTheme = getSectionTheme('cta');
 
   const getBadgeClasses = (color: string) => {
     const colorMap: { [key: string]: string } = {
@@ -129,7 +131,143 @@ export default function InvestorsPage() {
                         backgroundColor: tiersTheme.accent,
                         color: tiersTheme.background
                       }}
-                    > Review Opportunity → </button> </Link> </GlassCard> ))} </div> </div> </Container> </Section> {/* Comparison Table */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-6xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center" style={{ color: comparisonTheme.foreground }}> {comparison.title} </h2> {comparison.description && ( <p className="text-center mb-8" style={{ color: comparisonTheme.muted }}>{comparison.description}</p> )} <div className="overflow-x-auto"> <table className="w-full text-sm"> <thead> <tr style={{ borderBottom: `1px solid ${comparisonTheme.border}` }}> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Path</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Investment</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Risk Profile</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Return</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Timeline</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Best For</th> </tr> </thead> <tbody> {comparison.options.map((option, idx) => ( <tr key={idx} style={{ borderBottom: `1px solid ${comparisonTheme.border}80` }}> <td className="py-4 px-4 font-medium" style={{ color: comparisonTheme.accent }}>{option.name}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.investment}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.risk}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.return}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.timeline}</td> <td className="py-4 px-4 text-xs" style={{ color: comparisonTheme.muted }}>{option.best}</td> </tr> ))} </tbody> </table> </div> </GlassCard> </div> </Container> </Section> {/* Outbound Strategy */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-6xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <div className="text-center mb-8"> <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: comparisonTheme.foreground }}> Outbound Proactive Model </h2> <p className="text-lg mb-4" style={{ color: comparisonTheme.accent }}> Not waiting for inbound - actively pursuing high-value partnerships </p> <p className="text-sm" style={{ color: comparisonTheme.muted }}> Most studios wait for clients to come to them. We identify companies where our AI and product expertise creates outsized value, then proactively pitch custom solutions. </p> </div> <div className="grid md:grid-cols-3 gap-6"> <div
+                    > Review Opportunity → </button> </Link> </GlassCard> ))} </div> </div> </Container> </Section>
+
+      {/* Investor Materials Library */}
+      <Section spacing="large" background="transparent" colorTheme={materialsTheme} noPaddingTop={true}>
+        <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={materialsTheme} />
+        <ASCIIUnifiedGrid animated={true} colorTheme={materialsTheme} opacity={0.25} />
+        <Container className="relative z-20 pt-16 sm:pt-20">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <GlassCard theme={materialsTheme} className="p-6 sm:p-8 mb-12" borderRadius="1.5rem">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-center" style={{ color: materialsTheme.foreground }}>
+                Investor Materials Library
+              </h2>
+              <p className="text-base text-center" style={{ color: materialsTheme.muted }}>
+                Complete documentation for due diligence, technical review, and investment analysis
+              </p>
+            </GlassCard>
+
+            {/* Investment Documents */}
+            <div className="mb-12">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: materialsTheme.foreground }}>
+                Investment Documents
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <MaterialCard
+                  icon="📊"
+                  title="Pitch Deck"
+                  description="45-page comprehensive overview with financials, team, and roadmap"
+                  href="/investors/deck"
+                  badge="NDA Required"
+                  badgeColor="yellow"
+                  metadata="45 pages · 12.8 MB"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="📖"
+                  title="Dual-Engine Model"
+                  description="Essay explaining our systematic venture creation approach"
+                  href="/investors/dual-engine-model"
+                  badge="Public"
+                  badgeColor="green"
+                  metadata="9 min read"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="🔐"
+                  title="Studio Data Room"
+                  description="Secure access to financials, legal docs, and technical architecture"
+                  href="/investors/studio/data-room"
+                  badge="Investor Access"
+                  badgeColor="purple"
+                  metadata="12 documents"
+                  theme={materialsTheme}
+                />
+              </div>
+            </div>
+
+            {/* Venture Deep Dives */}
+            <div className="mb-12">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: materialsTheme.foreground }}>
+                Venture Deep Dives
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <MaterialCard
+                  icon="📧"
+                  title="Zero Investor Portal"
+                  description="Complete technical, business, and roadmap analysis for our AI email platform"
+                  href="/clients/zero/investor"
+                  badge="Password Protected"
+                  badgeColor="yellow"
+                  metadata="4 pages · Production ready"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="🏢"
+                  title="Atlas Opportunity"
+                  description="CRE intelligence platform with 103KB technical roadmap and partnership structure"
+                  href="/investors/atlas"
+                  badge="Pre-Build"
+                  badgeColor="blue"
+                  metadata="$165K budget"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="⚽"
+                  title="Amplify Opportunity"
+                  description="NIL platform with 129KB blueprint and tiered investment options"
+                  href="/investors/amplify"
+                  badge="Pre-Build"
+                  badgeColor="blue"
+                  metadata="$60-250K range"
+                  theme={materialsTheme}
+                />
+              </div>
+            </div>
+
+            {/* Portfolio & Operations */}
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: materialsTheme.foreground }}>
+                Portfolio & Operations
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <MaterialCard
+                  icon="🚀"
+                  title="Ventures Portfolio"
+                  description="Overview of all three ventures with status, timelines, and investment links"
+                  href="/ventures"
+                  badge="Public"
+                  badgeColor="green"
+                  metadata="3 ventures"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="🤝"
+                  title="Partners Dashboard"
+                  description="Strategic partner hub with opportunities, governance, and engagement models"
+                  href="/partners"
+                  badge="Partners"
+                  badgeColor="blue"
+                  theme={materialsTheme}
+                />
+                <MaterialCard
+                  icon="💼"
+                  title="Case Studies"
+                  description="Client work examples demonstrating execution capability and product methodology"
+                  href="/work"
+                  badge="Public"
+                  badgeColor="green"
+                  theme={materialsTheme}
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Comparison Table */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-6xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center" style={{ color: comparisonTheme.foreground }}> {comparison.title} </h2> {comparison.description && ( <p className="text-center mb-8" style={{ color: comparisonTheme.muted }}>{comparison.description}</p> )} <div className="overflow-x-auto"> <table className="w-full text-sm"> <thead> <tr style={{ borderBottom: `1px solid ${comparisonTheme.border}` }}> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Path</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Investment</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Risk Profile</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Return</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Timeline</th> <th className="text-left py-3 px-4 font-semibold" style={{ color: comparisonTheme.foreground }}>Best For</th> </tr> </thead> <tbody> {comparison.options.map((option, idx) => ( <tr key={idx} style={{ borderBottom: `1px solid ${comparisonTheme.border}80` }}> <td className="py-4 px-4 font-medium" style={{ color: comparisonTheme.accent }}>{option.name}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.investment}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.risk}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.return}</td> <td className="py-4 px-4" style={{ color: comparisonTheme.muted }}>{option.timeline}</td> <td className="py-4 px-4 text-xs" style={{ color: comparisonTheme.muted }}>{option.best}</td> </tr> ))} </tbody> </table> </div> </GlassCard> </div> </Container> </Section> {/* Outbound Strategy */} <Section spacing="large" background="transparent" colorTheme={comparisonTheme} noPaddingTop={true}> <ASCIIUnifiedGrid opacity={0.3} className="absolute top-0 left-0 right-0 z-10" colorTheme={comparisonTheme} /> <ASCIIUnifiedGrid animated={true} colorTheme={comparisonTheme} opacity={0.25} /> <Container className="relative z-20 pt-16 sm:pt-20"> <div className="max-w-6xl mx-auto"> <GlassCard theme={comparisonTheme} className="p-6 sm:p-8 lg:p-12" borderRadius="1.5rem"> <div className="text-center mb-8"> <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: comparisonTheme.foreground }}> Outbound Proactive Model </h2> <p className="text-lg mb-4" style={{ color: comparisonTheme.accent }}> Not waiting for inbound - actively pursuing high-value partnerships </p> <p className="text-sm" style={{ color: comparisonTheme.muted }}> Most studios wait for clients to come to them. We identify companies where our AI and product expertise creates outsized value, then proactively pitch custom solutions. </p> </div> <div className="grid md:grid-cols-3 gap-6"> <div
                   className="p-6 rounded-lg"
                   style={{
                     border: `1px solid ${comparisonTheme.border}`,

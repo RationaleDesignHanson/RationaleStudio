@@ -12,13 +12,37 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container } from './Container';
 import { siteContent } from '@/lib/content';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 export function Header() {
   const pathname = usePathname();
+  const { profile, loading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [expandedMobileDropdown, setExpandedMobileDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Generate role-based navigation links
+  const getRoleBasedLinks = () => {
+    if (loading || !profile) return [];
+
+    const links = [];
+
+    if (profile.role === 'owner') {
+      links.push(
+        { label: 'Admin', href: '/admin' },
+        { label: 'Investor', href: '/investors' }
+      );
+    } else if (profile.role === 'investor') {
+      links.push(
+        { label: 'Investor', href: '/investors' }
+      );
+    }
+
+    return links;
+  };
+
+  const roleBasedLinks = getRoleBasedLinks();
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -102,14 +126,30 @@ export function Header() {
 
           {/* Navigation - Hidden on mobile */}
           <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${pathname === '/' ? 'ml-auto' : ''}`} ref={dropdownRef}>
-            {siteContent.navigation.primary.map((link) => {
+            {/* Standard navigation links with role-based links injected */}
+            {siteContent.navigation.primary.map((link, index) => {
+              // Inject role-based links before "Clients" link
+              const shouldInjectRoleLinks = link.label === 'Clients' && roleBasedLinks.length > 0;
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isDropdownOpen = openDropdown === link.label;
               const isDisabled = Boolean('disabled' in link && link.disabled);
 
               if (hasDropdown) {
                 return (
-                  <div key={link.label} className="relative">
+                  <>
+                    {/* Inject role-based links before this item if needed */}
+                    {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
+                      <Link
+                        key={roleLink.href}
+                        href={roleLink.href}
+                        className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                          isActive(roleLink.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
+                        }`}
+                      >
+                        {roleLink.label}
+                      </Link>
+                    ))}
+                    <div key={link.label} className="relative">
                     <button
                       onClick={() => !isDisabled && setOpenDropdown(isDropdownOpen ? null : link.label)}
                       onKeyDown={(e) => !isDisabled && handleKeyDown(e, link.label)}
@@ -170,19 +210,34 @@ export function Header() {
                       </div>
                     )}
                   </div>
+                  </>
                 );
               }
 
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
-                    isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                <>
+                  {/* Inject role-based links before this item if needed */}
+                  {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
+                    <Link
+                      key={roleLink.href}
+                      href={roleLink.href}
+                      className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                        isActive(roleLink.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
+                      }`}
+                    >
+                      {roleLink.label}
+                    </Link>
+                  ))}
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                      isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </>
               );
             })}
           </nav>
@@ -218,13 +273,29 @@ export function Header() {
         >
           <nav className="py-4 border-t border-gray-800 bg-gray-900">
             {siteContent.navigation.primary.map((link) => {
+              // Inject role-based links before "Clients" link in mobile too
+              const shouldInjectRoleLinks = link.label === 'Clients' && roleBasedLinks.length > 0;
               const hasDropdown = 'dropdown' in link && link.dropdown && Array.isArray(link.dropdown) && link.dropdown.length > 0;
               const isExpanded = expandedMobileDropdown === link.label;
               const isDisabled = Boolean('disabled' in link && link.disabled);
 
               if (hasDropdown) {
                 return (
-                  <div key={link.label}>
+                  <>
+                    {/* Inject role-based links before this item if needed */}
+                    {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
+                      <Link
+                        key={roleLink.href}
+                        href={roleLink.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block px-4 py-4 text-sm font-medium transition-colors hover:text-terminal-gold min-h-[48px] flex items-center ${
+                          isActive(roleLink.href) ? 'text-terminal-gold border-b border-terminal-gold' : 'text-gray-400'
+                        }`}
+                      >
+                        {roleLink.label}
+                      </Link>
+                    ))}
+                    <div key={link.label}>
                     <button
                       onClick={() => !isDisabled && setExpandedMobileDropdown(isExpanded ? null : link.label)}
                       disabled={isDisabled}
@@ -284,20 +355,36 @@ export function Header() {
                       })}
                     </div>
                   </div>
+                  </>
                 );
               }
 
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-4 text-sm font-medium transition-colors hover:text-terminal-gold min-h-[48px] flex items-center ${
-                    isActive(link.href) ? 'text-terminal-gold border-b border-terminal-gold' : 'text-gray-400'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                <>
+                  {/* Inject role-based links before this item if needed */}
+                  {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
+                    <Link
+                      key={roleLink.href}
+                      href={roleLink.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block px-4 py-4 text-sm font-medium transition-colors hover:text-terminal-gold min-h-[48px] flex items-center ${
+                        isActive(roleLink.href) ? 'text-terminal-gold border-b border-terminal-gold' : 'text-gray-400'
+                      }`}
+                    >
+                      {roleLink.label}
+                    </Link>
+                  ))}
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-4 py-4 text-sm font-medium transition-colors hover:text-terminal-gold min-h-[48px] flex items-center ${
+                      isActive(link.href) ? 'text-terminal-gold border-b border-terminal-gold' : 'text-gray-400'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </>
               );
             })}
           </nav>
