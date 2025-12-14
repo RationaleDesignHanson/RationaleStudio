@@ -18,6 +18,13 @@ import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy'
 import { ProjectStatusBadge } from '@/components/ui/Badge';
 import { useAuth } from '@/lib/auth/AuthContext';
 
+// Map clientId to project slug for client-specific access
+const CLIENT_PROJECT_MAPPING: Record<string, string> = {
+  'creait': 'case-study-010',
+  'athletes-first': 'case-study-020',
+  // Add more mappings as clients are added
+};
+
 export default function WorkPage() {
   const { profile } = useAuth();
   const router = useRouter();
@@ -297,10 +304,18 @@ export default function WorkPage() {
             {partnerships.map((project) => {
               // Special treatment for protected/confidential work
               const isConfidential = project.isProtected;
-              // Check authentication - investor and partner roles have access
-              const isAuthenticated = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
-              // Apply blur if confidential AND user is not authenticated
-              const needsBlur = isConfidential && !isAuthenticated;
+
+              // Determine access level
+              const isInvestorOrPartner = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
+              const isClient = profile && profile.role === 'client';
+              const clientProjectSlug = isClient && profile.clientId ? CLIENT_PROJECT_MAPPING[profile.clientId] : null;
+              const isClientProject = isClient && clientProjectSlug === project.slug;
+
+              // Apply blur logic:
+              // - Investor/partner: see all unblurred
+              // - Client: only their project unblurred, others blurred
+              // - Unauthenticated: all blurred
+              const needsBlur = isConfidential && !isInvestorOrPartner && !isClientProject;
 
               // Check if this project has a quick overview page
               const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
@@ -332,12 +347,12 @@ export default function WorkPage() {
                         : 'border-gray-700 hover:border-terminal-gold/50'
                     }`}>
                       <div className={`space-y-3 sm:space-y-4 ${needsBlur ? 'relative' : ''}`}>
-                        {/* Title */}
+                        {/* Title - Show just number for partnership work */}
                         <div>
                           <h3 className={`text-lg md:text-xl font-bold text-white mb-2 transition-colors ${
                             isConfidential ? 'group-hover:text-amber-400' : 'group-hover:text-terminal-gold'
                           }`}>
-                            {project.title}
+                            {project.id.replace('case-study-', '')}
                           </h3>
                           {!isConfidential && (
                             <p className="text-xs md:text-sm text-gray-400">{project.subtitle}</p>
