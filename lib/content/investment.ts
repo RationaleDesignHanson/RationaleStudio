@@ -278,7 +278,7 @@ export const investmentContent = {
       href: '/investors/studio',
       badge: 'Lowest Risk',
       badgeColor: 'green',
-      icon: '🏢',
+      icon: '→',
     },
     {
       id: "zero",
@@ -294,7 +294,7 @@ export const investmentContent = {
       href: '/investors/zero',
       badge: 'Beta',
       badgeColor: 'blue',
-      icon: '📧',
+      icon: '→',
     },
     {
       id: "atlas",
@@ -310,7 +310,7 @@ export const investmentContent = {
       href: '/investors/atlas',
       badge: 'Pipeline',
       badgeColor: 'yellow',
-      icon: '🏢',
+      icon: '→',
     },
     {
       id: "amplify",
@@ -326,7 +326,7 @@ export const investmentContent = {
       href: '/investors/amplify',
       badge: 'Pipeline',
       badgeColor: 'yellow',
-      icon: '🏈',
+      icon: '→',
     },
   ],
 
