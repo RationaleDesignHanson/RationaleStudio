@@ -304,6 +304,7 @@ export default function WorkPage() {
             {partnerships.map((project) => {
               // Special treatment for protected/confidential work
               const isConfidential = project.isProtected;
+              const isAuthenticated = !!profile;
 
               // Determine access level
               const isInvestorOrPartner = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
