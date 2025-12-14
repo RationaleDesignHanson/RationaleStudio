@@ -156,7 +156,7 @@ export default function InvestorsPage() {
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <MaterialCard
-                  icon="📊"
+                  icon="→"
                   title="Pitch Deck"
                   description="45-page comprehensive overview with financials, team, and roadmap"
                   href="/investors/deck"
@@ -166,7 +166,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="📖"
+                  icon="→"
                   title="Dual-Engine Model"
                   description="Essay explaining our systematic venture creation approach"
                   href="/investors/dual-engine-model"
@@ -176,7 +176,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="🔐"
+                  icon="→"
                   title="Studio Data Room"
                   description="Secure access to financials, legal docs, and technical architecture"
                   href="/investors/studio/data-room"
@@ -195,7 +195,7 @@ export default function InvestorsPage() {
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <MaterialCard
-                  icon="📧"
+                  icon="→"
                   title="Zero Investor Portal"
                   description="Complete technical, business, and roadmap analysis for our AI email platform"
                   href="/clients/zero/investor"
@@ -205,7 +205,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="🏢"
+                  icon="→"
                   title="Atlas Opportunity"
                   description="CRE intelligence platform with 103KB technical roadmap and partnership structure"
                   href="/investors/atlas"
@@ -215,7 +215,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="⚽"
+                  icon="→"
                   title="Amplify Opportunity"
                   description="NIL platform with 129KB blueprint and tiered investment options"
                   href="/investors/amplify"
@@ -234,7 +234,7 @@ export default function InvestorsPage() {
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <MaterialCard
-                  icon="🚀"
+                  icon="→"
                   title="Ventures Portfolio"
                   description="Overview of all three ventures with status, timelines, and investment links"
                   href="/ventures"
@@ -244,7 +244,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="🤝"
+                  icon="→"
                   title="Partners Dashboard"
                   description="Strategic partner hub with opportunities, governance, and engagement models"
                   href="/partners"
@@ -253,7 +253,7 @@ export default function InvestorsPage() {
                   theme={materialsTheme}
                 />
                 <MaterialCard
-                  icon="💼"
+                  icon="→"
                   title="Case Studies"
                   description="Client work examples demonstrating execution capability and product methodology"
                   href="/work"
