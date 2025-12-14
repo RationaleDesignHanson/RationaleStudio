@@ -36,7 +36,7 @@ export default function DualEngineModel() {
       id: 'products',
       name: 'Internal Products',
       color: '#9D4EDD',
-      icon: '🚀',
+      icon: '',
       activities: [
         'Build internal products to test methodologies',
         'Apply prototype framework to our own products',
@@ -54,7 +54,7 @@ export default function DualEngineModel() {
       id: 'clients',
       name: 'Client Partnerships',
       color: '#00D9FF',
-      icon: '🤝',
+      icon: '',
       activities: [
         'Apply proven methodologies to client products',
         'Leverage Rationale Kits for systematic velocity',
@@ -141,7 +141,7 @@ export default function DualEngineModel() {
               <div className="space-y-1.5">
                 {engines[0].outputs.slice(0, expandedOutputs['products'] ? 4 : 2).map((output, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <div className="text-xs" style={{ color: engines[0].color }}>→</div>
+                    <div className="text-xs" style={{ color: engines[0].color }}>•</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{output}</div>
                   </div>
                 ))}
@@ -201,7 +201,7 @@ export default function DualEngineModel() {
               <div className="space-y-1.5">
                 {engines[1].outputs.slice(0, expandedOutputs['clients'] ? 4 : 2).map((output, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <div className="text-xs" style={{ color: engines[1].color }}>→</div>
+                    <div className="text-xs" style={{ color: engines[1].color }}>•</div>
                     <div className="text-xs text-gray-300 leading-relaxed">{output}</div>
                   </div>
                 ))}
@@ -255,7 +255,6 @@ export default function DualEngineModel() {
               {/* Center icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-8 h-8 rounded-full bg-terminal-gold flex items-center justify-center text-lg animate-pulse">
-                  ⚡
                 </div>
               </div>
             </div>
@@ -277,9 +276,6 @@ export default function DualEngineModel() {
             onMouseLeave={() => setHoveredConnection(null)}
           >
             <div className="flex items-center gap-2 mb-2">
-              <div className="text-xs font-mono" style={{ color: connection.from === 'products' ? engines[0].color : engines[1].color }}>
-                {connection.from === 'products' ? engines[0].icon : engines[1].icon} → {connection.from === 'products' ? engines[1].icon : engines[0].icon}
-              </div>
               <div className="text-sm font-semibold text-white">{connection.value}</div>
             </div>
             <div className="text-xs text-gray-300 leading-relaxed">{connection.description}</div>
@@ -289,10 +285,7 @@ export default function DualEngineModel() {
 
       {/* Why This Is Unfair */}
       <div className="p-5 bg-terminal-gold/10 border border-terminal-gold/30 rounded-lg mb-6">
-        <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-terminal-gold/20 flex items-center justify-center">
-            <span className="text-terminal-gold text-sm">⚡</span>
-          </div>
+        <div>
           <div>
             <div className="text-sm font-semibold text-white mb-2">Why Agencies Can't Compete</div>
             <div className="text-xs text-gray-300 leading-relaxed space-y-2">
