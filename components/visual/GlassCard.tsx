@@ -41,11 +41,11 @@ export function GlassCard({
         // Only apply inline padding if paddingSize is not provided (legacy support)
         ...(padding && !paddingSize && { padding }),
         borderRadius,
-        background: 'rgba(255, 255, 255, 0.05)',
-        backdropFilter: 'blur(12px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1)',
+        background: 'rgba(255, 255, 255, 0.12)',
+        backdropFilter: 'blur(16px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(150%)',
+        border: '1px solid rgba(255, 255, 255, 0.18)',
+        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
       }}
     >
       {children}

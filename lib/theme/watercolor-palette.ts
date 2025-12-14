@@ -181,11 +181,21 @@ export function getWatercolorTheme(name: WatercolorThemeName): WatercolorTheme {
 }
 
 /**
- * Get theme for a specific section
+ * Get theme for a specific section with computed color properties
  */
 export function getSectionTheme(section: keyof typeof sectionThemeMap): WatercolorTheme {
   const themeName = sectionThemeMap[section] || sectionThemeMap.default;
-  return watercolorThemes[themeName as WatercolorThemeName];
+  const baseTheme = watercolorThemes[themeName as WatercolorThemeName];
+
+  // Add computed color properties for text and backgrounds
+  return {
+    ...baseTheme,
+    accent: baseTheme.primary,           // Use primary color for accent text
+    foreground: '#f1f5f9',               // slate-100 for main text (light on dark)
+    background: baseTheme.colors[0],     // Darkest color from palette
+    border: `${baseTheme.primary}40`,    // Primary color at 25% opacity
+    muted: '#64748b',                    // slate-500 for secondary text
+  };
 }
 
 /**
