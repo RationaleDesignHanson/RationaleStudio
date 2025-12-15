@@ -64,6 +64,50 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* What We Learned - Colored Insight Cards */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-4 text-center">What We Learned</h2>
+          <p className="text-center text-gray-300 mb-8">The pattern repeated across every product:</p>
+
+          <div className="space-y-6 mb-8">
+            {/* Insight 1 */}
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00D9FF' }}>
+              <h3 className="text-xl font-bold text-white mb-2">Specs Failed in Predictable Ways</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can't spec your way to understanding those.
+              </p>
+            </div>
+
+            {/* Insight 2 */}
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00FF94' }}>
+              <h3 className="text-xl font-bold text-white mb-2">Prototypes Revealed Truth</h3>
+              <p className="text-gray-300 leading-relaxed">
+                Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.
+              </p>
+            </div>
+
+            {/* Insight 3 */}
+            <div className="border-l-4 border-terminal-gold pl-6 py-4">
+              <h3 className="text-xl font-bold text-white mb-2">Scale Amplified Mistakes</h3>
+              <p className="text-gray-300 leading-relaxed">
+                When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.
+          </p>
+
+          <div className="mt-8 text-center">
+            <Link href="/thinking" className="text-accent hover:underline font-medium">
+              read about our approach →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Proof at Scale - 3 Card Grid */}
       <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
@@ -131,50 +175,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </GlassCard>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Learned - Colored Insight Cards */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-4 text-center">What We Learned</h2>
-          <p className="text-center text-gray-300 mb-8">The pattern repeated across every product:</p>
-
-          <div className="space-y-6 mb-8">
-            {/* Insight 1 */}
-            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00D9FF' }}>
-              <h3 className="text-xl font-bold text-white mb-2">Specs Failed in Predictable Ways</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can't spec your way to understanding those.
-              </p>
-            </div>
-
-            {/* Insight 2 */}
-            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00FF94' }}>
-              <h3 className="text-xl font-bold text-white mb-2">Prototypes Revealed Truth</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.
-              </p>
-            </div>
-
-            {/* Insight 3 */}
-            <div className="border-l-4 border-terminal-gold pl-6 py-4">
-              <h3 className="text-xl font-bold text-white mb-2">Scale Amplified Mistakes</h3>
-              <p className="text-gray-300 leading-relaxed">
-                When you ship to billions, small UX issues become massive problems. A confusing gesture that affects 0.1% of users is still millions of people. We learned to validate everything before production because the cost of mistakes was measured in millions.
-              </p>
-            </div>
-          </div>
-
-          <p className="text-center text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            This is where the build-to-think methodology came from. Not theory. Not academic research. Production necessity at scale.
-          </p>
-
-          <div className="mt-8 text-center">
-            <Link href="/thinking" className="text-accent hover:underline font-medium">
-              read about our approach →
-            </Link>
           </div>
         </div>
       </section>
