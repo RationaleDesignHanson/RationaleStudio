@@ -1,6 +1,7 @@
 /**
  * Retail Beta Timeline Diagram
  * Milestone-based product development roadmap
+ * Mobile-responsive with adaptive layouts
  */
 
 'use client';
@@ -46,31 +47,31 @@ export default function RetailBetaTimelineDiagram() {
   ];
 
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 sm:p-8">
-      <h3 className="text-2xl font-bold text-center mb-8">Product Development Roadmap</h3>
+    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 lg:p-8">
+      <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">Product Development Roadmap</h3>
 
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {phases.map((phase, index) => (
-          <div key={index} className={`bg-gray-800/50 border-2 ${phase.color} rounded-lg p-6`}>
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+          <div key={index} className={`bg-gray-800/50 border-2 ${phase.color} rounded-lg p-4 sm:p-6`}>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div>
-                <h4 className="font-bold text-white text-lg mb-1">{phase.name}</h4>
-                <p className="text-sm text-gray-400">{phase.timeline}</p>
+                <h4 className="font-bold text-white text-base sm:text-lg mb-1">{phase.name}</h4>
+                <p className="text-xs sm:text-sm text-gray-400">{phase.timeline}</p>
               </div>
-              <div className="text-right">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-900/50 border border-gray-700">
-                  <span className="text-sm font-medium text-white">{phase.milestone}</span>
+              <div className="text-left md:text-right">
+                <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-gray-900/50 border border-gray-700">
+                  <span className="text-xs sm:text-sm font-medium text-white">{phase.milestone}</span>
                 </div>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
               {phase.deliverables.map((deliverable, idx) => (
                 <div key={idx} className="flex items-start gap-2">
-                  <svg className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-sm text-gray-300">{deliverable}</span>
+                  <span className="text-xs sm:text-sm text-gray-300">{deliverable}</span>
                 </div>
               ))}
             </div>
@@ -78,18 +79,18 @@ export default function RetailBetaTimelineDiagram() {
         ))}
       </div>
 
-      <div className="mt-6 pt-6 border-t border-gray-800">
-        <div className="flex flex-wrap gap-4 justify-center text-sm text-gray-400">
+      <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800">
+        <div className="flex flex-wrap gap-3 sm:gap-4 justify-center text-xs sm:text-sm text-gray-400">
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-blue-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-blue-500"></div>
             <span>Validation</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-purple-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-purple-500"></div>
             <span>Beta Testing</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-green-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-green-500"></div>
             <span>Scale</span>
           </div>
         </div>
