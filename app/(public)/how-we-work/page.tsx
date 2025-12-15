@@ -33,7 +33,8 @@ import { ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 import { useAuth } from '@/lib/auth/AuthContext';
 
 export default function HowWeWorkPage() {
-  const { isAuthenticated } = useAuth();
+  const { user, profile } = useAuth();
+  const isAuthenticated = !!(user && profile);
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
