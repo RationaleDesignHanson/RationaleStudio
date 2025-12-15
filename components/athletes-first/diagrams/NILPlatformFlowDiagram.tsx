@@ -116,12 +116,12 @@ export default function NILPlatformFlowDiagram() {
       ctx.fillText('Multi-checkpoint process ensures athlete and family confidence', width / 2, 62);
 
       // Calculate horizontal flow layout
-      const boxWidth = 200; // Increased from 180 to fit text better
-      const boxHeight = 120; // Reduced from 140 for more compact layout
-      const boxGap = getResponsiveSpacing(25, isMobile); // Reduced from 30
+      const boxWidth = 180; // Reduced to create more gap space
+      const boxHeight = 110; // More compact for better proportion
+      const boxGap = getResponsiveSpacing(45, isMobile); // Increased gap for checkpoint labels
       const totalWidth = (boxWidth * 5) + (boxGap * 4);
       const startX = (width - totalWidth) / 2;
-      const centerY = height / 2 + 10; // Shifted up from +20
+      const centerY = height / 2 + 15; // Adjusted for new proportions
 
       // Draw steps and connections
       steps.forEach((step, i) => {
@@ -161,28 +161,28 @@ export default function NILPlatformFlowDiagram() {
           // Checkpoint indicator (if exists)
           if (step.checkpoint) {
             const checkX = fromX + (toX - fromX) / 2;
-            const checkY = arrowY - 55; // Moved higher from -35
+            const checkY = arrowY - 45; // Adjusted for better positioning
 
             // Checkpoint badge
             ctx.fillStyle = step.color;
             ctx.shadowColor = step.color;
             ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.arc(checkX, checkY, 12, 0, Math.PI * 2);
+            ctx.arc(checkX, checkY, 14, 0, Math.PI * 2);
             ctx.fill();
             ctx.shadowBlur = 0;
 
             ctx.fillStyle = '#000';
-      ctx.font = `bold ${captionSize}px monospace`;
+            ctx.font = `bold ${captionSize}px monospace`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('✓', checkX, checkY);
 
-            // Checkpoint label
-      ctx.font = `${microSize}px monospace`;
+            // Checkpoint label - with better spacing
+            ctx.font = `${microSize}px monospace`;
             ctx.fillStyle = step.color;
             ctx.textAlign = 'center';
-            ctx.fillText(step.checkpoint.toUpperCase(), checkX, checkY + 25);
+            ctx.fillText(step.checkpoint.toUpperCase(), checkX, checkY + 28);
           }
         }
 
@@ -212,35 +212,35 @@ export default function NILPlatformFlowDiagram() {
 
         // Icon
         ctx.fillStyle = step.color;
-      ctx.font = `bold ${h1Size}px monospace`;
+        ctx.font = `bold ${h1Size}px monospace`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
-        ctx.fillText(step.icon, x + boxWidth / 2, y + 45);
+        ctx.fillText(step.icon, x + boxWidth / 2, y + 38);
 
         // Step label
         ctx.fillStyle = step.color;
-      ctx.font = `bold ${bodySize}px monospace`;
+        ctx.font = `bold ${bodySize}px monospace`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
 
         // Handle multi-line labels
         const labelWords = step.label.split(' ');
-        let labelEndY = y + 75;
+        let labelEndY = y + 66;
         if (labelWords.length > 1) {
           labelWords.forEach((word, wordIndex) => {
-            ctx.fillText(word, x + boxWidth / 2, y + 75 + (wordIndex * 16));
+            ctx.fillText(word, x + boxWidth / 2, y + 66 + (wordIndex * 14));
           });
-          labelEndY = y + 75 + ((labelWords.length - 1) * 16);
+          labelEndY = y + 66 + ((labelWords.length - 1) * 14);
         } else {
-          ctx.fillText(step.label, x + boxWidth / 2, y + 75);
+          ctx.fillText(step.label, x + boxWidth / 2, y + 66);
         }
 
         // Sublabel - positioned below label with proper spacing
-      ctx.font = `${microSize}px monospace`;
+        ctx.font = `${microSize}px monospace`;
         ctx.fillStyle = gray;
         ctx.textAlign = 'center';
 
-        const sublabelStartY = labelEndY + 18; // Tighter spacing
+        const sublabelStartY = labelEndY + 16; // Tighter spacing
 
         // Handle multi-line sublabels
         const sublabelParts = step.sublabel.split(' / ');
@@ -275,11 +275,11 @@ export default function NILPlatformFlowDiagram() {
       ctx.fillStyle = gray;
       ctx.fillText('95%+ accuracy  •  Plain language  •  Family-friendly', width / 2, trustY + 40);
 
-      // Bottom insight
+      // Bottom insight - emphasis on strategic guidance
       ctx.fillStyle = gold;
       ctx.font = `bold ${bodySize}px monospace`;
       ctx.textAlign = 'center';
-      ctx.fillText('YOU BECOME THE TRUSTED ADVISOR', width / 2, height - 20);
+      ctx.fillText('STRATEGIC OVERSIGHT, NOT LEGAL ADVICE', width / 2, height - 20);
 
       frameRef.current += 1;
       animationId = requestAnimationFrame(draw);
