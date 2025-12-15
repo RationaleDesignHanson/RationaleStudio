@@ -112,20 +112,20 @@ export function Header() {
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
-            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-terminal-gold"
+            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-terminal-gold flex-shrink-0"
           >
             {pathname === '/' ? (
               <span className="font-semibold text-2xl sm:text-3xl lg:text-4xl">®</span>
             ) : (
               <>
-                <span className="font-semibold">Rationale: </span>
-                <span className="font-light">Your Product Design Company</span>
+                <span className="font-semibold whitespace-nowrap">Rationale: </span>
+                <span className="font-light hidden xl:inline">Your Product Design Company</span>
               </>
             )}
           </Link>
 
           {/* Navigation - Hidden on mobile */}
-          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 ${pathname === '/' ? 'ml-auto' : ''}`} ref={dropdownRef}>
+          <nav className={`hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 flex-shrink-0 ${pathname === '/' ? 'ml-auto' : ''}`} ref={dropdownRef}>
             {/* Standard navigation links with role-based links injected */}
             {siteContent.navigation.primary.map((link, index) => {
               // Inject role-based links before "Clients" link
@@ -142,7 +142,7 @@ export function Header() {
                       <Link
                         key={roleLink.href}
                         href={roleLink.href}
-                        className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                        className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-1 inline-flex items-center ${
                           isActive(roleLink.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                         }`}
                       >
@@ -221,7 +221,7 @@ export function Header() {
                     <Link
                       key={roleLink.href}
                       href={roleLink.href}
-                      className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                      className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-1 inline-flex items-center ${
                         isActive(roleLink.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                       }`}
                     >
@@ -231,7 +231,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-2 inline-flex items-center ${
+                    className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-1 inline-flex items-center ${
                       isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
                     }`}
                   >
