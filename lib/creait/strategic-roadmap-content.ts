@@ -268,19 +268,12 @@ export const strategicRoadmap: StrategicRoadmap = {
       ],
       evidence: [
         {
-          type: 'quote',
-          label: 'Our Recommendation',
-          value: 'Option A or B (Intelligence Platform) - Speed to market matters',
-          status: 'exists'
-        },
-        {
           type: 'metric',
           label: 'First-Mover Window',
           value: '12-18 months until competitors catch up',
           status: 'exists'
         }
       ],
-      diagram: 'DecisionFrameworkDiagram',
       note: 'We\'re not pushing you toward Rationale. Option A (build yourself) is completely viable if you have the right engineer.'
     },
 
