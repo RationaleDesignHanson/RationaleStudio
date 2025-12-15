@@ -143,17 +143,17 @@ export default function ThreeBottlenecksDiagram() {
           const barBaseY = barY + barHeight;
 
           // Potential bar (green)
-          ctx.fillStyle = bottleneck.id === 'speed' ? green : 'rgba(0, 255, 148, 0.3)';
+          ctx.fillStyle = 'rgba(0, 255, 148, 0.3)';
           ctx.fillRect(potentialBarX, barBaseY - potentialBarHeight, barWidth, potentialBarHeight);
           ctx.strokeStyle = green;
           ctx.lineWidth = 2;
           ctx.strokeRect(potentialBarX, barBaseY - potentialBarHeight, barWidth, potentialBarHeight);
 
-          // Potential value
+          // Potential value - centered in bar
           ctx.fillStyle = green;
           ctx.font = `bold ${h2Size}px monospace`;
           ctx.textAlign = 'center';
-          ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight - 8);
+          ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight / 2 + h2Size / 3);
 
           // Potential label
           ctx.font = `${microSize}px monospace`;
@@ -167,11 +167,11 @@ export default function ThreeBottlenecksDiagram() {
           ctx.lineWidth = 2;
           ctx.strokeRect(actualBarX, barBaseY - actualBarHeight, barWidth, actualBarHeight);
 
-          // Actual value
+          // Actual value - centered in bar
           ctx.fillStyle = red;
           ctx.font = `bold ${h2Size}px monospace`;
           ctx.textAlign = 'center';
-          ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight - 8);
+          ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight / 2 + h2Size / 3);
 
           // Actual label
           ctx.font = `${microSize}px monospace`;
@@ -258,22 +258,22 @@ export default function ThreeBottlenecksDiagram() {
         const barBaseY = barAreaY + maxBarHeight;
 
         // Potential bar (green - the goal)
-        ctx.fillStyle = bottleneck.id === 'speed' ? green : 'rgba(0, 255, 148, 0.3)';
+        ctx.fillStyle = 'rgba(0, 255, 148, 0.3)';
         ctx.fillRect(potentialBarX, barBaseY - potentialBarHeight, barWidth, potentialBarHeight);
 
         ctx.strokeStyle = green;
         ctx.lineWidth = 2;
         ctx.strokeRect(potentialBarX, barBaseY - potentialBarHeight, barWidth, potentialBarHeight);
 
-        // Potential value label
+        // Potential value label - centered in bar
         ctx.fillStyle = green;
         ctx.font = 'bold 24px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight - 30);
+        ctx.fillText(String(potentialValue), potentialBarX + barWidth / 2, barBaseY - potentialBarHeight / 2 + 8);
 
         // Potential label
-      ctx.font = `${microSize}px monospace`;
-        ctx.fillStyle = gray;
+      ctx.font = `bold ${microSize}px monospace`;
+        ctx.fillStyle = 'rgba(156, 163, 175, 0.9)';
         ctx.fillText(bottleneck.id === 'speed' ? 'WINDOW' : 'POTENTIAL', potentialBarX + barWidth / 2, barBaseY + 25);
 
         // Actual bar (red - current reality)
@@ -284,20 +284,20 @@ export default function ThreeBottlenecksDiagram() {
         ctx.lineWidth = 2;
         ctx.strokeRect(actualBarX, barBaseY - actualBarHeight, barWidth, actualBarHeight);
 
-        // Actual value label
+        // Actual value label - centered in bar
         ctx.fillStyle = red;
         ctx.font = 'bold 24px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight - 30);
+        ctx.fillText(String(actualValue), actualBarX + barWidth / 2, barBaseY - actualBarHeight / 2 + 8);
 
         // Actual label
-      ctx.font = `${microSize}px monospace`;
-        ctx.fillStyle = gray;
+      ctx.font = `bold ${microSize}px monospace`;
+        ctx.fillStyle = 'rgba(156, 163, 175, 0.9)';
         ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 25);
 
         // Unit label - single line
-      ctx.font = `${microSize}px monospace`;
-        ctx.fillStyle = gray;
+      ctx.font = `bold ${microSize}px monospace`;
+        ctx.fillStyle = 'rgba(156, 163, 175, 0.9)';
         ctx.textAlign = 'center';
         ctx.fillText(bottleneck.unit, centerX, barBaseY + 40);
 
@@ -311,8 +311,8 @@ export default function ThreeBottlenecksDiagram() {
         ctx.fillText(bottleneck.lostValue, centerX, gapY);
 
         // Subtitle (what's being lost) - tighter spacing
-      ctx.font = `${microSize}px monospace`;
-        ctx.fillStyle = gray;
+      ctx.font = `bold ${microSize}px monospace`;
+        ctx.fillStyle = 'rgba(156, 163, 175, 0.9)';
         const subtitleLines = bottleneck.subtitle.split('\n');
         subtitleLines.forEach((line, lineIndex) => {
           ctx.fillText(line, centerX, gapY + 25 + lineIndex * (microSize + 2));
