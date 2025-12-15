@@ -387,25 +387,23 @@ export const CREAIT_SECTIONS: Record<string, Section> = {
       {
         id: 'cost',
         type: 'custom',
-        headline: 'Rationale\'s Fee: $24K or Equity Equivalent',
-        subheadline: '12 weeks, 3 deliverables, fixed price',
+        headline: 'Rationale\'s Fee: $40K',
+        subheadline: '4-6 weeks, fixed price',
         contentBullets: [
           '',
-          'Pricing Options:',
-          '  • Option A: $24K cash (50% upfront, 50% at Week 6)',
-          '  • Option B: Equity equivalent (1.5-2.5% based on valuation)',
-          '  • Option C: Hybrid ($12K cash + 1% equity)',
+          'Pricing:',
+          '  • $40K fixed fee (50% upfront, 50% at completion)',
           '',
           'What\'s Included:',
-          '  • 2 engineers (1 senior, 1 mid-level) for 12 weeks',
+          '  • 2 engineers (1 senior, 1 mid-level) for 4-6 weeks',
           '  • 1 product lead (10 hrs/week for planning + pilots)',
           '  • Unlimited revisions within agreed scope',
           '  • Weekly standups + Slack support'
         ],
         assessment: {
-          working: '$24K is efficient vs hiring engineers or delaying MVP',
-          focus: 'Equity option assumes $1-2M pre-money valuation (discuss)',
-          recommendation: 'We\'re flexible on structure. Goal: Get you to MVP launch.'
+          working: '$40K delivers MVP in 4-6 weeks vs months of hiring delay',
+          focus: 'Fixed scope, fixed timeline, fixed price',
+          recommendation: 'Accelerated timeline to get you to market faster.'
         }
       },
       {
