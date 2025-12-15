@@ -178,11 +178,11 @@ export default function ThreeBottlenecksDiagram() {
           ctx.fillStyle = gray;
           ctx.fillText(bottleneck.id === 'speed' ? 'EXECUTION' : 'ACTUAL', actualBarX + barWidth / 2, barBaseY + 15);
 
-          // Lost value percentage - inside green bar
+          // Lost value percentage - above bars
           ctx.fillStyle = red;
           ctx.font = 'bold 32px monospace';
           ctx.textAlign = 'center';
-          ctx.fillText(bottleneck.lostValue, centerX, barBaseY - potentialBarHeight + 35);
+          ctx.fillText(bottleneck.lostValue, centerX, barY + barHeight + 42);
 
           // Subtitle - tighter spacing
           ctx.font = `${microSize}px monospace`;
@@ -304,11 +304,11 @@ export default function ThreeBottlenecksDiagram() {
         // Gap visualization - increased spacing
         const gapY = barBaseY + 85;
 
-        // Lost value percentage (hero number) - inside green bar
+        // Lost value percentage (hero number) - above bars
         ctx.fillStyle = red;
         ctx.font = 'bold 36px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(bottleneck.lostValue, centerX, barBaseY - potentialBarHeight + 35);
+        ctx.fillText(bottleneck.lostValue, centerX, gapY);
 
         // Subtitle (what's being lost) - tighter spacing
       ctx.font = `${microSize}px monospace`;
