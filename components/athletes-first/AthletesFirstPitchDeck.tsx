@@ -142,6 +142,21 @@ export default function AthletesFirstPitchDeck() {
     }
   }, [activeSection, activeSlide]);
 
+  // Check for URL parameter to reset to start
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('start') === '0') {
+        setActiveSection(0);
+        setActiveSlide(0);
+        localStorage.setItem('athletes-first-section', '0');
+        localStorage.setItem('athletes-first-slide', '0');
+        // Clean up URL parameter
+        window.history.replaceState({}, '', window.location.pathname);
+      }
+    }
+  }, []);
+
   // Fullscreen change detection
   useEffect(() => {
     const handleFullscreenChange = () => {

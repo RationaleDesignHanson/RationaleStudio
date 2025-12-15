@@ -85,7 +85,7 @@ export default function CaseStudy020Page() {
                   Sports & Entertainment Modernization
                 </p>
                 <Link
-                  href="/clients/athletes-first/pitch-deck"
+                  href="/clients/athletes-first/pitch-deck?start=0"
                   className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline"
                 >
                   View Presentation Deck →
