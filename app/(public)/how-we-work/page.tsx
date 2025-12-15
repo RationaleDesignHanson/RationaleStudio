@@ -283,7 +283,7 @@ export default function HowWeWorkPage() {
               Our Process
             </h2>
             <p className="text-sm md:text-base text-gray-300">
-              Every engagement starts with understanding your riskiest assumptions.
+              We meet you where you are. Some engagements start with validation, others jump straight to building from proven assumptions.
             </p>
           </div>
 
@@ -296,9 +296,9 @@ export default function HowWeWorkPage() {
                 </div>
                 <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
               </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Week 1: Align</h3>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Align</h3>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Map your product thesis and biggest unknowns. What proves this is worth building?
+                Map your product thesis and biggest unknowns. Skip if you already know what needs to be built.
               </p>
             </GlassCard>
 
@@ -310,9 +310,9 @@ export default function HowWeWorkPage() {
                 </div>
                 <Rocket className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
               </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Weeks 2-4: Prototype</h3>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Prototype</h3>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Build functional software that tests core assumptions. Working demos, not mockups.
+                Build functional software that tests core assumptions. Sometimes this is week 1, sometimes week 6.
               </p>
             </GlassCard>
 
@@ -324,9 +324,9 @@ export default function HowWeWorkPage() {
                 </div>
                 <Target className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
               </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Weeks 4-6: Validate</h3>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Validate</h3>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Run real usage scenarios. User testing, technical validation. Evidence, not opinions.
+                Run real usage scenarios. User testing, technical validation. Skip if you have proven demand.
               </p>
             </GlassCard>
 
@@ -338,9 +338,9 @@ export default function HowWeWorkPage() {
                 </div>
                 <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
               </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Week 6+: Build</h3>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Build</h3>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Pivot, persevere, or scale. If it's working, we help you build it.
+                Scale what's working. Many engagements start here when the product direction is clear.
               </p>
             </GlassCard>
           </div>
