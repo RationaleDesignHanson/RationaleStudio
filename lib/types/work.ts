@@ -4,7 +4,7 @@
  * Type definitions for portfolio projects, case studies, and featured work
  */
 
-export type ProjectStatus = 'live' | 'delivered' | 'building' | 'beta';
+export type ProjectStatus = 'live' | 'delivered' | 'building' | 'beta' | 'beta-invite' | 'pre-kickoff' | 'shipped';
 export type ProjectCategory = 'consumer' | 'b2b' | 'complex-systems';
 
 export interface ProjectMetric {
