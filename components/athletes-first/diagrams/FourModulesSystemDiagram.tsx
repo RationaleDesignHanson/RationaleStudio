@@ -359,6 +359,20 @@ export default function FourModulesSystemDiagram() {
         }
       });
 
+      // Draw boundary around all content (tightened)
+      const lastRow = Math.floor((modules.length - 1) / cardsPerRow);
+      const boundaryPadding = isMobile ? 15 : 20;
+      const boundaryX = startX - boundaryPadding;
+      const boundaryY = cardY - 40; // Account for stage badges extending above cards
+      const boundaryWidth = totalCardsWidth + (boundaryPadding * 2);
+      const boundaryHeight = ((lastRow + 1) * cardHeight) + (lastRow * cardGap) + (boundaryPadding * 2);
+
+      ctx.strokeStyle = `${gold}33`; // 20% opacity gold
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 4]);
+      ctx.strokeRect(boundaryX, boundaryY, boundaryWidth, boundaryHeight);
+      ctx.setLineDash([]);
+
       frameRef.current += 1;
       animationId = requestAnimationFrame(draw);
     };
