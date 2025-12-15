@@ -47,11 +47,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The Meta Reality Labs Context */}
+      {/* Why Rationale? */}
       <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">The Meta Reality Labs Context</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Why Rationale?</h2>
             <div className="space-y-4">
               <p className="text-gray-300 leading-relaxed">
                 Led Product and Experience Design for Meta's AR platform—a 400+ person organization serving 2B+ users. Designed strategy for the horizontal platform and four verticals: Commerce, World AR, Avatars, and consumer experiences across Instagram/Facebook. Scaled mobile AR team from 2 to 22 people across product design, prototyping, technical art, and UX research.
