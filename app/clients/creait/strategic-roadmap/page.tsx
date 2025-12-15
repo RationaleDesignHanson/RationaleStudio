@@ -334,7 +334,9 @@ export default function StrategicRoadmapPage() {
             </button>
 
             <div className="flex items-center gap-2 text-sm">
-              <span className="text-white/40">{currentSlide.id.replace(/-/g, ' ')}</span>
+              <span className="text-white/40">
+                {currentSlide.id === 'hero' ? 'intro' : currentSlide.id.replace(/-/g, ' ')}
+              </span>
               <span className="text-white/40">·</span>
               <span className="text-white/60">{currentSlideIndex + 1} of {totalSlides}</span>
             </div>
