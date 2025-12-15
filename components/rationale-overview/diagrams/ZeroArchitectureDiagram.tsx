@@ -146,9 +146,9 @@ export default function ZeroArchitectureDiagram() {
   return (
     <div className="p-6 sm:p-8 bg-gray-900/50 border border-gray-700 rounded-lg">
       <div className="mb-8">
-        <h3 className="text-xl font-bold text-white mb-2">Zero: Production-Grade Reference</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Studio-Built Product Architecture</h3>
         <p className="text-sm text-gray-400">
-          Not a demo. A production iOS app with 10 microservices, complete strategy, and 0 architectural pivots.
+          Zero Inbox as one example. Production iOS app with 10 microservices, complete strategy, and 0 architectural pivots.
         </p>
       </div>
 
@@ -242,32 +242,32 @@ export default function ZeroArchitectureDiagram() {
 
       {/* What This Proves */}
       <div className="p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
-        <div className="text-xs font-mono text-terminal-gold mb-3 uppercase tracking-wide">What This Proves About Rationale</div>
+        <div className="text-xs font-mono text-terminal-gold mb-3 uppercase tracking-wide">What This Architecture Demonstrates</div>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 text-[#00D9FF] text-lg">⚙️</div>
             <div>
-              <div className="text-sm font-semibold text-white mb-1">We Can Execute</div>
+              <div className="text-sm font-semibold text-white mb-1">Production-Grade Execution</div>
               <div className="text-xs text-gray-400 leading-relaxed">
-                Not just advisors. We shipped production-grade architecture with 10 microservices, reviewed by senior engineers as A+ quality.
+                Studio-built products ship with the same rigor we bring to client work. Real microservices, real users, real complexity.
               </div>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 text-[#00FF94] text-lg">⚡</div>
             <div>
-              <div className="text-sm font-semibold text-white mb-1">We Can Move Fast</div>
+              <div className="text-sm font-semibold text-white mb-1">Systematic Velocity</div>
               <div className="text-xs text-gray-400 leading-relaxed">
-                30 days concept to App Store. 0 pivots during production. Same systematic velocity available for client partnerships via Rationale Kits.
+                Shipped in weeks, not quarters. Zero architectural pivots because prototypes validated everything first.
               </div>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 text-terminal-gold text-lg">📊</div>
             <div>
-              <div className="text-sm font-semibold text-white mb-1">We Think Like Operators</div>
+              <div className="text-sm font-semibold text-white mb-1">Strategic Product Thinking</div>
               <div className="text-xs text-gray-400 leading-relaxed">
-                Complete go-to-market strategy, financial model, 24-week roadmap. Not just "ship and see"—validated execution plan with clear metrics.
+                Not just code—complete go-to-market strategy, financial models, roadmaps. We build like operators.
               </div>
             </div>
           </div>

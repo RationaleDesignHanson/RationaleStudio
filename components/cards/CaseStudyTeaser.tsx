@@ -18,9 +18,14 @@ interface CaseStudyTeaserProps {
 }
 
 export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserProps) {
+  // Special routing for sanitary-waste-system
+  const href = caseStudy.slug === 'sanitary-waste-system'
+    ? '/clients/work/sanitary-waste-system/quick-overview'
+    : `/clients/work/${caseStudy.slug}`;
+
   return (
     <BaseCard
-      href={`/cases/${caseStudy.slug}`}
+      href={href}
       variant="interactive"
       paddingSize="lg"
       borderAccent="border-border"
@@ -39,18 +44,6 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
             </span>
           </div>
           <p className="text-muted text-sm sm:text-base">{caseStudy.tagline}</p>
-        </div>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-          {caseStudy.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="text-xs px-2 py-1 bg-neutral-100 text-neutral-700 rounded"
-            >
-              {tag}
-            </span>
-          ))}
         </div>
 
         {/* Challenge */}

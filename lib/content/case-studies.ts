@@ -456,6 +456,17 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     highlights: ['Product positioning', 'Intelligence system design', '6-week sprint', 'Investor-ready prototype'],
     impact: ['Clear product positioning', 'Unified CRE data', 'Actionable workflows', 'Broker intelligence layer'],
     tech: 'Data aggregation, AI intelligence, B2B platform'
+  },
+  {
+    slug: 'sanitary-waste-system',
+    title: '040',
+    tagline: 'Prototyping',
+    tags: ['Physical Product', 'IP Development', 'Pre-Seed'],
+    challenge: 'Physical product in prototyping',
+    solution: ['Absorbent-lined containment system', 'Interfolded flat-pack format', 'Proprietary dispenser ecosystem'],
+    highlights: ['Pre-seed fundraising', 'IP development', 'Manufacturing strategy', 'Retail beta plan'],
+    impact: ['$435M+ market opportunity', 'Razor-blade business model', 'Format + dispenser lock-in'],
+    tech: 'Airlaid non-woven, PBAT/LDPE film, Interfold technology'
   }
 ];
 

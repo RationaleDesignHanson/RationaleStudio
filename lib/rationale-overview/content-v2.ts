@@ -217,27 +217,27 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
       {
         id: 'what-zero-proves',
         type: 'impact',
-        headline: 'What Zero Proves About Rationale',
-        content: 'Technical execution: 10 microservices in production. Systematic velocity: 0 architectural pivots during production. Product thinking: Live on App Store with 4-cohort beta rollout strategy, complete financial model, 24-week roadmap.',
+        headline: 'This Is the Proof',
+        content: 'This site. Zero. Heirloom. The case studies. The methodology docs. All of it was designed, built, and shipped by this studio—within a couple of months. We don\'t show decks about what we could build, we work in demos.',
         visual: {
           type: 'component',
           component: 'ZeroArchitectureDiagram'
         },
         deepDive: {
-          title: 'Zero\'s Complete Technical Breakdown',
-          description: 'Architecture, velocity, and product strategy proof',
+          title: 'This Site IS the Pitch',
+          description: 'How studio-built products prove the methodology in production',
           sections: [
             {
-              title: 'Architecture Proof',
-              content: 'Zero isn\'t a demo. It\'s a real production system with 10 backend services handling everything from email sync to AI processing to purchase automation. The iOS app has 182 Swift files using modern patterns that senior engineers reviewed and rated A+. This is the kind of architecture you build when you know exactly what you need—because we validated it all in prototypes first.'
+              title: 'A Studio That Builds Its Own Products',
+              content: 'Zero shipped in weeks with 10 microservices, 182 Swift files, and AI-powered email intelligence. Heirloom launched with AI recipe scanning, iCloud sync, and a vintage-inspired design system. Both are live products with real users. This isn\'t R&D theater. It\'s systematic product conviction.'
             },
             {
-              title: 'Velocity Proof',
-              content: 'Weeks 1-2: Built prototypes to test the core interactions. Discovered users preferred tapping over swiping—pivoted in days, not months. Weeks 3-4: Built production with zero architectural surprises because prototypes caught everything. Week 5: Shipped to App Store. That\'s 30 days from idea to live product, with no "we should have tested this" moments.'
+              title: 'The Artifact of a Methodology',
+              content: 'Every product we ship is proof of build-to-think in action. Zero validated multiple prototypes before writing production code—no architectural pivots during development. Heirloom tested interaction models early, shipped with zero UX surprises. The methodology isn\'t abstract. It\'s the reason these products shipped fast, worked on launch, and didn\'t require post-release redesigns. The artifacts prove the framework.'
             },
             {
-              title: 'Product Thinking Proof',
-              content: 'This isn\'t just engineering. Zero shipped with a complete go-to-market plan: phased rollout strategy, 8-week checkpoints to evaluate if we continue or pivot, a 24-week roadmap with both bootstrapped and funded scenarios. We mapped out how to scale AI accuracy through structured feedback loops before we had users. That\'s what it looks like when you build the strategy alongside the product, not after launch.'
+              title: 'Proof of What Happens When You Work With Us',
+              content: 'Athletes First: bottlenecks diagnosed, dozens of interactive prototypes built to bring internal teams and partners along. CREaiT: strategic roadmap with embedded system diagrams showing exactly what gets built and why. We don\'t just prototype for ourselves—we prototype to create alignment, test assumptions, and de-risk decisions before capital gets deployed. The same methodology that shipped Zero and Heirloom is what you get when we work on your product.'
             }
           ]
         }

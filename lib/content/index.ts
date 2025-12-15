@@ -13,3 +13,5 @@ export * from './philosophy';
 export * from './founder';
 export * from './investors';
 export * from './ventures';
+export * from './work-projects';
+export * from './sanitary-waste-system';
