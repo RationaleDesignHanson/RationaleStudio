@@ -201,7 +201,7 @@ export default function StrategicRoadmapPage() {
             <CollapsibleSection
               key={sectionIndex}
               title={section.title}
-              defaultExpanded={sectionIndex === 0}
+              defaultExpanded={false}
               accentColor="#FFD700"
             >
               <div className="space-y-4">
