@@ -217,13 +217,31 @@ export const PROJECT_STATUS_COLORS = {
     bg: 'bg-blue-500/20',
     text: 'text-blue-600',
     border: 'border-blue-500/30',
-    label: 'Beta',
+    label: 'In Beta',
+  },
+  'beta-invite': {
+    bg: 'bg-blue-500/20',
+    text: 'text-blue-600',
+    border: 'border-blue-500/30',
+    label: 'In Beta (By Invite)',
   },
   'delivered': {
     bg: 'bg-accent/20',
     text: 'text-accent',
     border: 'border-accent/30',
     label: 'Delivered',
+  },
+  'pre-kickoff': {
+    bg: 'bg-purple-500/20',
+    text: 'text-purple-600',
+    border: 'border-purple-500/30',
+    label: 'Pre-Kickoff',
+  },
+  'shipped': {
+    bg: 'bg-green-500/20',
+    text: 'text-green-600',
+    border: 'border-green-500/30',
+    label: 'Shipped',
   },
   'building': {
     bg: 'bg-orange-500/20',

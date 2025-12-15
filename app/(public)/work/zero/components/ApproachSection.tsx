@@ -47,7 +47,7 @@ export default function ApproachSection() {
           {/* Solution Statement */}
           <div className="mt-12 pt-8 border-t border-terminal-gold/30">
             <p className="text-xl font-semibold text-terminal-gold text-center">
-              Zero's AI reads your emails and extracts the actions automatically. No reading. Just acting.
+              AI-powered email intelligence that automatically extracts actions and presents them as swipeable cards. Swipe right to complete, left to archive, down to snooze. No reading. Just actioning.
             </p>
           </div>
         </div>

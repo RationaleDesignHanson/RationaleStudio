@@ -12,7 +12,7 @@ export const workProjects: WorkProject[] = [
     title: 'Zero Inbox',
     subtitle: 'AI Email Management',
     slug: 'zero',
-    status: 'live',
+    status: 'beta-invite',
     category: 'consumer',
     metrics: [
       { label: 'Platform', value: 'iOS' },
@@ -29,7 +29,7 @@ export const workProjects: WorkProject[] = [
     title: 'Heirloom',
     subtitle: 'iOS Recipe App',
     slug: 'heirloom',
-    status: 'live',
+    status: 'beta',
     category: 'consumer',
     metrics: [
       { label: 'Platform', value: 'iOS' },
@@ -46,7 +46,7 @@ export const workProjects: WorkProject[] = [
     title: 'Case Study 010',
     subtitle: 'CRM to Worker Optimization',
     slug: 'case-study-010',
-    status: 'delivered',
+    status: 'pre-kickoff',
     category: 'b2b',
     metrics: [
       { label: 'Timeline', value: '16-week MVP' },
@@ -63,7 +63,7 @@ export const workProjects: WorkProject[] = [
     title: 'Case Study 020',
     subtitle: 'Sports & Entertainment Modernization',
     slug: 'case-study-020',
-    status: 'delivered',
+    status: 'pre-kickoff',
     category: 'complex-systems',
     metrics: [
       { label: 'Scope', value: '4 modules' },
@@ -80,7 +80,7 @@ export const workProjects: WorkProject[] = [
     title: 'Case Study 030',
     subtitle: 'Live Sports Streaming Platform',
     slug: 'case-study-030',
-    status: 'live',
+    status: 'shipped',
     category: 'consumer',
     metrics: [
       { label: 'Platform', value: 'Web & Mobile' },

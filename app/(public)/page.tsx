@@ -127,7 +127,7 @@ export default function HomePage() {
 
                   {/* Description - Full Width Row */}
                   <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-                    AI email assistant that achieves Inbox Zero autonomously. Learns your preferences and keeps you focused on what matters.
+                    AI-powered email intelligence that automatically extracts actions and presents them as swipeable cards. Swipe right to complete, left to archive, down to snooze. No reading. Just actioning.
                   </p>
 
                   {/* Additional Details */}
