@@ -306,8 +306,16 @@ export const useZeroSequenceStore = create<ZeroSequenceStore>((set, get) => ({
       set({ loading: false });
     } catch (error) {
       console.error('Zero Sequence error:', error);
+      const errorMessage = error instanceof Error
+        ? error.message.includes('timeout')
+          ? 'Request timed out. Please try again.'
+          : error.message.includes('fetch') || error.message.includes('Failed to fetch')
+            ? 'Unable to connect to the AI service. Please check your connection and try again.'
+            : error.message
+        : 'An unexpected error occurred. Please try again.';
+
       set({
-        error: error instanceof Error ? error.message : 'An unknown error occurred',
+        error: errorMessage,
         loading: false,
       });
     }

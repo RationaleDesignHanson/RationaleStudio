@@ -73,6 +73,9 @@ async function fetchWithTimeout(
     if (error instanceof Error && error.name === 'AbortError') {
       throw new Error(`Request timeout after ${timeoutMs}ms`);
     }
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      throw new Error('Network error: Unable to reach the AI service. Please check your internet connection.');
+    }
     throw error;
   }
 }
