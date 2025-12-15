@@ -85,7 +85,7 @@ export default function CaseStudy010Page() {
                   CRM to Worker Optimization
                 </p>
                 <Link
-                  href="/clients/creait/pitch?start=0"
+                  href="/clients/creait/strategic-roadmap"
                   className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline"
                 >
                   View Presentation Deck →
