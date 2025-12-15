@@ -7,7 +7,7 @@
  * Usage: node scripts/create-user.mjs <email> <password> <role>
  *
  * Example:
- *   node scripts/create-user.mjs investor@rationale.design password123 investor
+ *   node scripts/create-user.mjs investor@rationale.work password123 investor
  *   node scripts/create-user.mjs mypeoples@rationale.work password123 partner
  */
 
@@ -123,7 +123,7 @@ if (args.length !== 3) {
   console.error('Valid roles: owner, team, partner, investor, client');
   console.error('');
   console.error('Examples:');
-  console.error('  node scripts/create-user.mjs investor@rationale.design mypassword investor');
+  console.error('  node scripts/create-user.mjs investor@rationale.work mypassword investor');
   console.error('  node scripts/create-user.mjs mypeoples@rationale.work mypassword partner');
   process.exit(1);
 }
