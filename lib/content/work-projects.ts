@@ -55,7 +55,6 @@ export const workProjects: WorkProject[] = [
     ],
     tags: ['B2B', 'Data Platform', 'Pilot'],
     isProtected: true,
-    password: '123456',
     featured: true,
     description: 'Enterprise platform connecting CRM data to workforce optimization with AI-powered automation.'
   },
@@ -73,7 +72,6 @@ export const workProjects: WorkProject[] = [
     ],
     tags: ['Sports Tech', 'Complex Systems', 'Pilot'],
     isProtected: true,
-    password: '123456',
     featured: true,
     description: 'Sports and entertainment modernization platform with 4 integrated modules, wearables, and spatial computing.'
   },
@@ -91,7 +89,6 @@ export const workProjects: WorkProject[] = [
     ],
     tags: ['Sports Tech', 'Streaming', 'Live'],
     isProtected: true,
-    password: '123456',
     featured: true,
     description: 'Live sports streaming platform partnership delivering enhanced user experiences and real-time engagement features.'
   }

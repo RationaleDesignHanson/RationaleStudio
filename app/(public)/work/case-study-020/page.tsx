@@ -1,27 +1,57 @@
 /**
  * Case Study 020: Multi-Module Platform for Athlete Agency
  *
- * Password-protected case study for complex multi-module system
- * Password: 123456
+ * Authentication-protected case study for complex multi-module system
+ * Access: Owner, Investor, Partner, Team roles + Athletes-First client
  * Robots: noindex
  */
 
 'use client';
 
-import { PasswordGate } from '@/components/sections/PasswordGate';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth/AuthContext';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
+// Client access mapping for this case study
+const ALLOWED_CLIENT_IDS = ['athletes-first'];
+
 export default function CaseStudy020Page() {
+  const router = useRouter();
+  const { profile, loading } = useAuth();
+
+  // Authentication guard
+  useEffect(() => {
+    if (!loading) {
+      if (!profile) {
+        // Not authenticated - redirect to login
+        router.push('/clients/login?redirect=/work/case-study-020');
+      } else {
+        // Check role-based access
+        const isOwnerOrTeam = profile.role === 'owner' || profile.role === 'team' || profile.role === 'investor' || profile.role === 'partner';
+        const isAuthorizedClient = profile.role === 'client' && profile.clientId && ALLOWED_CLIENT_IDS.includes(profile.clientId);
+
+        if (!isOwnerOrTeam && !isAuthorizedClient) {
+          // Authenticated but not authorized - redirect home
+          router.push('/');
+        }
+      }
+    }
+  }, [profile, loading, router]);
+
+  // Show loading state while checking auth
+  if (loading || !profile) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+        <div className="text-gray-400">Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <PasswordGate
-      password="123456"
-      storageKey="case-study-020-access"
-      title="Case Study 020"
-      description="This case study is password protected. Hint: Six ones, but actually sixes."
-    >
       <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Header */}
         <section className="relative py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
@@ -430,6 +460,5 @@ export default function CaseStudy020Page() {
           </div>
         </section>
       </main>
-    </PasswordGate>
   );
 }

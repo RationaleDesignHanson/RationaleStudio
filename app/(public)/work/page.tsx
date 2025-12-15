@@ -18,10 +18,11 @@ import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy'
 import { ProjectStatusBadge } from '@/components/ui/Badge';
 import { useAuth } from '@/lib/auth/AuthContext';
 
-// Map clientId to project slug for client-specific access
-const CLIENT_PROJECT_MAPPING: Record<string, string> = {
-  'creait': 'case-study-010',
-  'athletes-first': 'case-study-020',
+// Map clientId to project slugs for client-specific access
+// Each client can access multiple case studies
+const CLIENT_PROJECT_MAPPING: Record<string, string[]> = {
+  'creait': ['case-study-010', 'case-study-030'],
+  'athletes-first': ['case-study-020', 'case-study-030'],
   // Add more mappings as clients are added
 };
 
@@ -309,8 +310,8 @@ export default function WorkPage() {
               // Determine access level
               const isInvestorOrPartner = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
               const isClient = profile && profile.role === 'client';
-              const clientProjectSlug = isClient && profile.clientId ? CLIENT_PROJECT_MAPPING[profile.clientId] : null;
-              const isClientProject = isClient && clientProjectSlug === project.slug;
+              const clientProjectSlugs = isClient && profile.clientId ? CLIENT_PROJECT_MAPPING[profile.clientId] : null;
+              const isClientProject = isClient && clientProjectSlugs && clientProjectSlugs.includes(project.slug);
 
               // Apply blur logic:
               // - Investor/partner: see all unblurred
