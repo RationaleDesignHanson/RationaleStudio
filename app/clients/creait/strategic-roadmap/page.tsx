@@ -5,6 +5,7 @@
  * Purpose: Help them understand where to focus, with or without Rationale
  * Tone: Strategic partner (collaborative, generous, vendor-neutral)
  * Date: December 2025
+ * Updated: December 2025
  */
 
 'use client';
