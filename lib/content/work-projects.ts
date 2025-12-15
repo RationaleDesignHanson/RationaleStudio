@@ -43,7 +43,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: 'case-study-010',
-    title: 'Case Study 010',
+    title: 'CREaiT',
     subtitle: 'CRM to Worker Optimization',
     slug: 'case-study-010',
     status: 'pre-kickoff',
@@ -60,7 +60,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: 'case-study-020',
-    title: 'Case Study 020',
+    title: 'Athletes-First',
     subtitle: 'Sports & Entertainment Modernization',
     slug: 'case-study-020',
     status: 'pre-kickoff',
@@ -77,7 +77,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: 'case-study-030',
-    title: 'Case Study 030',
+    title: 'Rumi',
     subtitle: 'Live Sports Streaming Platform',
     slug: 'case-study-030',
     status: 'shipped',
