@@ -259,7 +259,7 @@ export default function AboutPage() {
               <div>
                 <h4 className="text-sm font-mono text-terminal-gold uppercase tracking-wide mb-3">Proving It On Our Own</h4>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  Zero Inbox went from concept to App Store in 30 days using the same build-to-think methodology. No architectural pivots. Zero exists to prove the approach works on our own products, with our own capital, before we ask clients to trust it.
+                  This site itself is a living case study. The work showcased here—Zero, Heirloom, and client presentations—demonstrates our methodology in practice. Each project page, interactive diagram, and pitch deck proves the approach works on our own products, with our own capital, before we ask clients to trust it. The site is the portfolio, and the portfolio is the proof.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
                   Now we apply those patterns to client partnerships using a fee + equity model that aligns long-term incentives. Client work funds R&D. Internal products test methodologies in production. Each engine validates the other.
