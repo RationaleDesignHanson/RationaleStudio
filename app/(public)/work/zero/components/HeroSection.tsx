@@ -41,17 +41,15 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4">
-            <Link
-              href="https://testflight.apple.com/join/your-link"
-              className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal flex items-center gap-1 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
+            <BetaSignupButton
+              appName="zero"
+              source="work_hero_mobile"
+              variant="outline"
+              size="sm"
+              className="text-sm font-normal"
             >
               Join Beta
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            </BetaSignupButton>
 
             <button
               onClick={() => {
@@ -95,17 +93,15 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-6">
-              <Link
-                href="https://testflight.apple.com/join/your-link"
-                className="text-terminal-gold hover:text-terminal-gold-hover text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
+              <BetaSignupButton
+                appName="zero"
+                source="work_hero_desktop"
+                variant="outline"
+                size="md"
+                className="text-base md:text-lg font-normal"
               >
-                Join Beta on TestFlight
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+                Join Beta
+              </BetaSignupButton>
 
               <button
                 onClick={() => {

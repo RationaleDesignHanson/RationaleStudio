@@ -14,6 +14,7 @@ import { ArrowRight, ExternalLink, Mail, Rocket, Zap, TrendingUp } from 'lucide-
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
+import { BetaSignupButton } from '@/components/beta/BetaSignupButton';
 
 // Import Zero diagram components
 import AIIntelligenceSystemDiagram from '@/components/zero/diagrams/AIIntelligenceSystemDiagramResponsive';
@@ -53,14 +54,16 @@ export default function ZeroOverviewPage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <ButtonPrimary
-              href="https://testflight.apple.com/join/zero-inbox"
+            <BetaSignupButton
+              appName="zero"
+              source="overview_hero"
+              variant="primary"
               size="lg"
-              className="gap-2"
+              className="gap-2 inline-flex items-center"
             >
               <Rocket className="w-5 h-5" />
-              Join Beta on TestFlight
-            </ButtonPrimary>
+              Join Beta
+            </BetaSignupButton>
             <ButtonSecondary href="/work/zero" size="lg" className="gap-2">
               View Case Study
               <ExternalLink className="w-5 h-5" />
