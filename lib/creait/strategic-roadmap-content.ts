@@ -66,7 +66,7 @@ export const strategicRoadmap: StrategicRoadmap = {
     {
       id: "what-youve-built",
       title: "What You've Built",
-      subtitle: "80% Complete Backend • Significant Built Value",
+      subtitle: "80% Complete Backend",
       content: "You've made significant progress. The backend infrastructure is production-ready, with a comprehensive email campaign system, robust authentication, and deployment infrastructure. This is not starting from zero—this is building on a strong foundation.",
       evidence: [
         {
