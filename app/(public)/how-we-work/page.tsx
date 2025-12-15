@@ -30,8 +30,10 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { ButtonTertiary } from '@/components/ui/ButtonHierarchy';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 export default function HowWeWorkPage() {
+  const { isAuthenticated } = useAuth();
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
@@ -115,23 +117,25 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                <div>
-                  <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
-                  <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>Fixed deliverables</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>2-12 week timeline</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>IP transfers at completion</span>
-                    </li>
-                  </ul>
-                </div>
+                {isAuthenticated && (
+                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                    <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
+                    <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>Fixed deliverables</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>2-12 week timeline</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>IP transfers at completion</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
@@ -172,23 +176,25 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                <div>
-                  <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
-                  <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>0.5-3% equity typical</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>Vesting over engagement</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>Long-term aligned incentives</span>
-                    </li>
-                  </ul>
-                </div>
+                {isAuthenticated && (
+                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                    <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
+                    <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>0.5-3% equity typical</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>Vesting over engagement</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>Long-term aligned incentives</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
@@ -229,23 +235,25 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                <div>
-                  <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
-                  <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>50-70% cash discount</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>0.5-2% equity typical</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-terminal-gold text-xs md:text-sm">→</span>
-                      <span>Milestone-based payments</span>
-                    </li>
-                  </ul>
-                </div>
+                {isAuthenticated && (
+                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                    <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
+                    <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>50-70% cash discount</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>0.5-2% equity typical</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-terminal-gold text-xs md:text-sm">→</span>
+                        <span>Milestone-based payments</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
