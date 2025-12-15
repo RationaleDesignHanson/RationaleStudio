@@ -82,12 +82,6 @@ export const strategicRoadmap: StrategicRoadmap = {
           status: 'exists'
         },
         {
-          type: 'metric',
-          label: 'Built Value',
-          value: '6-8 weeks of development work complete',
-          status: 'exists'
-        },
-        {
           type: 'file',
           label: 'API Layer',
           value: '/app/api/campaigns.py (22KB, 200+ lines)',
