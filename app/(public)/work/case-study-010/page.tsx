@@ -85,7 +85,7 @@ export default function CaseStudy010Page() {
                   CRM to Worker Optimization
                 </p>
                 <Link
-                  href="/clients/creait/pitch-deck"
+                  href="/clients/creait/pitch-deck?start=0"
                   className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline"
                 >
                   View Presentation Deck →
@@ -306,63 +306,6 @@ export default function CaseStudy010Page() {
                   </ul>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Results & Impact */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8">Results & Impact</h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">100%</div>
-                <div className="text-sm text-gray-400">On-time delivery</div>
-              </div>
-              <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">Multi-tenant</div>
-                <div className="text-sm text-gray-400">Enterprise-ready platform</div>
-              </div>
-              <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-terminal-gold mb-2">AI-powered</div>
-                <div className="text-sm text-gray-400">GPT-4 intelligence layer</div>
-              </div>
-            </div>
-
-            <div className="mt-12 p-6 bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">What We Delivered</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex gap-3">
-                  <span className="text-terminal-gold">→</span>
-                  <span>Production-ready MVP deployed to AWS with full CI/CD pipeline</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-terminal-gold">→</span>
-                  <span>Multi-tenant architecture with row-level security and RBAC</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-terminal-gold">→</span>
-                  <span>AI-powered opportunity scoring and draft generation using GPT-4</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-terminal-gold">→</span>
-                  <span>Real-time data synchronization with time-series analytics</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-terminal-gold">→</span>
-                  <span>Comprehensive documentation and knowledge transfer</span>
-                </li>
-              </ul>
             </div>
           </div>
         </section>
