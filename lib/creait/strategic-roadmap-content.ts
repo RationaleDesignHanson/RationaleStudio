@@ -345,64 +345,7 @@ export const strategicRoadmap: StrategicRoadmap = {
       note: 'These aren\'t estimates—these are specifications. We\'ve done the research, you do the implementation.'
     },
 
-    // SLIDE 7: Resources We're Leaving You
-    {
-      id: "resources",
-      title: "Resources We're Leaving You",
-      subtitle: "Everything You Need to Execute",
-      content: "Whether you work with Rationale or not, you have comprehensive documentation. We've analyzed your codebase, mapped every gap, specified every component, and created detailed implementation plans. You're not flying blind.",
-      bullets: [
-        "**Analysis Documents** (12 files, 14,782 lines):",
-        "• `START_HERE.md` - Navigation guide for all materials",
-        "• `EXECUTIVE_SUMMARY.md` - 10-minute overview",
-        "• `FINAL_SYNTHESIS_AND_RECOMMENDATIONS.md` - Multi-agent review synthesis",
-        "• `ARCHITECTURE_REVIEW.md` - Detailed technical architecture (104KB)",
-        "• `UX_REVIEW.md` - User experience and product review (103KB)",
-        "• `UPDATED_12_WEEK_PLAN.md` - Sprint-by-sprint roadmap (49KB)",
-        "• `IMMEDIATE_ACTIONS.md` - Day-by-day Week 0 plan",
-        "",
-        "**Code Evidence** (from Dec 8, 2025 analysis):",
-        "• Complete file inventory (what exists, what's missing)",
-        "• Specific grep results (0 implementations of scoring)",
-        "• Line counts and metrics (10,071 lines Python, 17 tables)",
-        "• Gap analysis (39 direct Supabase calls, missing components)",
-        "",
-        "**Component Specifications:**",
-        "• TypeScript interfaces for all components",
-        "• Database schemas (SQL)",
-        "• API endpoint definitions (OpenAPI)",
-        "• Function signatures with parameters",
-        "",
-        "**Strategic Guidance:**",
-        "• Decision framework (build vs. partner vs. pivot)",
-        "• Risk assessment and mitigation strategies",
-        "• Success metrics and KPIs",
-        "• Timeline and resource estimates"
-      ],
-      evidence: [
-        {
-          type: 'metric',
-          label: 'Documentation',
-          value: '14,782 lines across 12 files',
-          status: 'exists'
-        },
-        {
-          type: 'file',
-          label: 'Location',
-          value: '/Users/matthanson/creait-project/',
-          status: 'exists'
-        },
-        {
-          type: 'metric',
-          label: 'Analysis Date',
-          value: 'December 3, 2024 + December 8, 2025 validation',
-          status: 'exists'
-        }
-      ],
-      note: 'This is not a sales pitch. These are the actual analysis documents we created. They exist, they\'re comprehensive, and they\'re yours.'
-    },
-
-    // SLIDE 8: Our Recommendation
+    // SLIDE 7: Our Recommendation
     {
       id: "recommendation",
       title: "Our Recommendation",
@@ -530,7 +473,6 @@ export const {
     slideTechnicalEvidence,
     slideDecisionFramework,
     slideBuildYourself,
-    slideResources,
     slideRecommendation,
     slideNextSteps
   ]
