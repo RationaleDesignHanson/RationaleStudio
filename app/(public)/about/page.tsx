@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { ResponsiveImage } from '@/components/ui/ResponsiveImage';
 
 export default function AboutPage() {
   return (
@@ -269,12 +269,13 @@ export default function AboutPage() {
 
             {/* Timeline Image */}
             <div className="mb-6">
-              <ResponsiveImage
+              <Image
                 src="/images/work/hanson/background-timeline.png"
                 alt="Career timeline from 2000-2024 showing progression from creative work through Meta Reality Labs to current Rationale projects"
                 width={1200}
                 height={400}
                 className="w-full rounded-lg"
+                style={{ width: '100%', height: 'auto' }}
               />
             </div>
 
