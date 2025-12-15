@@ -93,11 +93,11 @@ export const workProjects: WorkProject[] = [
     description: 'AI-powered thumbnail generation system for live sports streaming. Built in 2-week sprint with Google Gemini 2.5 Flash, generating brand-consistent thumbnails across 200+ teams, 8 leagues, and 24 visual styles.'
   },
   {
-    id: 'sanitary-waste-system',
-    title: 'Sanitary Waste System',
+    id: 'case-study-040',
+    title: '040',
     subtitle: 'IP Development',
     slug: 'sanitary-waste-system',
-    status: 'pre-kickoff',
+    status: 'building',
     category: 'complex-systems',
     metrics: [
       { label: 'Market', value: '$435M+' },

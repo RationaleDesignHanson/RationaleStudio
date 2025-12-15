@@ -18,10 +18,9 @@ interface CaseStudyTeaserProps {
 }
 
 export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserProps) {
-  // Special routing for sanitary-waste-system
-  const href = caseStudy.slug === 'sanitary-waste-system'
-    ? '/clients/work/sanitary-waste-system/quick-overview'
-    : `/clients/work/${caseStudy.slug}`;
+  // Special handling for sanitary-waste-system - no clickable card, show links in footer
+  const isSanitarySystem = caseStudy.slug === 'sanitary-waste-system';
+  const href = !isSanitarySystem ? `/clients/work/${caseStudy.slug}` : undefined;
 
   return (
     <BaseCard
@@ -29,9 +28,9 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
       variant="interactive"
       paddingSize="lg"
       borderAccent="border-border"
-      interactive
+      interactive={!isSanitarySystem}
       className={`group ${className}`}
-      ariaLabel={`View case study: ${caseStudy.title}`}
+      ariaLabel={isSanitarySystem ? undefined : `View case study: ${caseStudy.title}`}
     >
         {/* Header */}
         <div className="mb-4 sm:mb-6">
@@ -84,26 +83,54 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
           </div>
         </div>
 
-        {/* Tech Stack */}
-        {caseStudy.tech && (
-          <div className="mb-4">
-            <p className="text-xs text-muted">
-              <span className="font-semibold">Tech:</span> {caseStudy.tech}
-            </p>
-          </div>
-        )}
-
-        {/* CTA */}
-        <div className="pt-4 border-t border-border">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-accent group-hover:underline">
-              View full case study
-            </span>
-            <span className="text-accent group-hover:translate-x-1 transition-transform">
-              →
-            </span>
+        {/* Project Metadata */}
+        <div className="mb-4 pb-4 border-b border-border">
+          <div className="grid grid-cols-3 gap-3 text-xs">
+            <div>
+              <p className="text-muted/60 uppercase tracking-wide mb-1">Timeline</p>
+              <p className="text-muted font-medium">{caseStudy.timeline}</p>
+            </div>
+            <div>
+              <p className="text-muted/60 uppercase tracking-wide mb-1">Stage</p>
+              <p className="text-muted font-medium">{caseStudy.stage}</p>
+            </div>
+            <div>
+              <p className="text-muted/60 uppercase tracking-wide mb-1">Type</p>
+              <p className="text-muted font-medium">{caseStudy.type}</p>
+            </div>
           </div>
         </div>
+
+        {/* CTA */}
+        {isSanitarySystem ? (
+          <div className="pt-4 border-t border-border">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/clients/work/sanitary-waste-system/quick-overview"
+                className="flex-1 text-center px-4 py-2 text-sm font-medium text-accent border border-accent/30 hover:bg-accent/10 rounded transition-colors"
+              >
+                Quick Overview →
+              </Link>
+              <Link
+                href="/clients/work/sanitary-waste-system/full-overview"
+                className="flex-1 text-center px-4 py-2 text-sm font-medium bg-accent text-black hover:bg-accent/90 rounded transition-colors"
+              >
+                Full Case Study →
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="pt-4 border-t border-border">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-accent group-hover:underline">
+                View full case study
+              </span>
+              <span className="text-accent group-hover:translate-x-1 transition-transform">
+                →
+              </span>
+            </div>
+          </div>
+        )}
     </BaseCard>
   );
 }

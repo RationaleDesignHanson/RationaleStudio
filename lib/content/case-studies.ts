@@ -105,7 +105,11 @@ export interface CaseStudyTeaser {
   solution: string[];
   highlights: string[];
   impact: string[];
-  tech: string;
+  tech?: string;
+  // Metadata displayed consistently across cards
+  timeline: string;
+  stage: string;
+  type: string;
 }
 
 // ============================================================================
@@ -422,7 +426,10 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     solution: ['Genre channel system with real-time indexing', 'AI cultural and emotional tagging', 'Multi-agent deployment architecture'],
     highlights: ['6-week prototype partnership', 'Real-time content indexing', 'Multi-agent system', 'Browser extension prototypes'],
     impact: ['Investor-ready prototype', 'Cultural AI understanding', 'Scalable architecture', 'PRD-ready system'],
-    tech: 'JavaScript, Multi-agent architecture, Browser extensions'
+    tech: 'JavaScript, Multi-agent architecture, Browser extensions',
+    timeline: '6 weeks',
+    stage: 'In Development',
+    type: 'Prototype Partnership'
   },
   {
     slug: 'zero',
@@ -433,7 +440,10 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     solution: ['Swipe-based card interface', 'AI categorization', 'Customizable actions per email type', 'Multi-step flows'],
     highlights: ['Web + iOS native app', 'Equity partnership', '7+ action types', 'Haptic feedback system'],
     impact: ['3-5 second triage per email', 'Eliminated context-switching', 'Mobile-optimized', 'Active development'],
-    tech: 'React, SwiftUI, Node.js, Gemini AI'
+    tech: 'React, SwiftUI, Node.js, Gemini AI',
+    timeline: 'Ongoing',
+    stage: 'Active Development',
+    type: 'Equity Partnership'
   },
   {
     slug: 'amplify',
@@ -444,7 +454,10 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     solution: ['AI-powered content generation', 'Generative media platform', 'NIL compliance workflows', 'Brand consistency engine'],
     highlights: ['Platform prototype', 'NIL + AI model', '8-week delivery', 'Strategic partnership'],
     impact: ['Scales athlete presence', 'No constant shoots needed', 'NIL + generative media coexistence'],
-    tech: 'Generative AI, Platform architecture'
+    tech: 'Generative AI, Platform architecture',
+    timeline: '8 weeks',
+    stage: 'Prototype Complete',
+    type: 'Strategic Partnership'
   },
   {
     slug: 'atlas',
@@ -455,7 +468,10 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     solution: ['Unified intelligence layer', 'Real-time data aggregation', 'Broker workflow integration', 'Opportunity detection'],
     highlights: ['Product positioning', 'Intelligence system design', '6-week sprint', 'Investor-ready prototype'],
     impact: ['Clear product positioning', 'Unified CRE data', 'Actionable workflows', 'Broker intelligence layer'],
-    tech: 'Data aggregation, AI intelligence, B2B platform'
+    tech: 'Data aggregation, AI intelligence, B2B platform',
+    timeline: '6 weeks',
+    stage: 'Prototype Complete',
+    type: 'Strategic Partnership'
   },
   {
     slug: 'sanitary-waste-system',
@@ -466,7 +482,10 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     solution: ['Absorbent-lined containment system', 'Interfolded flat-pack format', 'Proprietary dispenser ecosystem'],
     highlights: ['Pre-seed fundraising', 'IP development', 'Manufacturing strategy', 'Retail beta plan'],
     impact: ['$435M+ market opportunity', 'Razor-blade business model', 'Format + dispenser lock-in'],
-    tech: 'Airlaid non-woven, PBAT/LDPE film, Interfold technology'
+    tech: 'Airlaid non-woven, PBAT/LDPE film, Interfold technology',
+    timeline: 'Pre-Seed Phase',
+    stage: 'Prototyping',
+    type: 'IP Development Partnership'
   }
 ];
 

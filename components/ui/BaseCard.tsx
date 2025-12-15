@@ -171,6 +171,7 @@ export function BaseCard({
   const baseClasses = `
     rounded-lg
     bg-gray-900/70
+    h-full
     ${borderAccent}
     ${variantClasses}
     ${sizeClasses}

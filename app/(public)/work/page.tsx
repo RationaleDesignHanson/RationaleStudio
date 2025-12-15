@@ -320,12 +320,18 @@ export default function WorkPage() {
               const needsBlur = isConfidential && !isInvestorOrPartner && !isClientProject;
 
               // Check if this project has a quick overview page
-              const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020';
-              const overviewSlug = project.slug === 'case-study-010' ? 'creait' : 'athletes-first';
+              const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020' || project.slug === 'sanitary-waste-system';
+              const overviewSlug = project.slug === 'case-study-010'
+                ? 'creait'
+                : project.slug === 'case-study-020'
+                ? 'athletes-first'
+                : 'sanitary-waste-system';
               const pitchDeckPath = project.slug === 'case-study-010'
                 ? '/clients/creait/strategic-roadmap'
                 : project.slug === 'case-study-020'
                 ? '/clients/athletes-first/pitch-deck'
+                : project.slug === 'sanitary-waste-system'
+                ? '/clients/work/sanitary-waste-system/full-overview'
                 : `/work/${project.slug}`;
 
               // Handle click for locked cards
@@ -337,18 +343,18 @@ export default function WorkPage() {
               };
 
               return (
-                <div key={project.id} className="relative">
+                <div key={project.id} className="relative h-full w-full">
                   <Link
                     href={`/work/${project.slug}`}
-                    className={`group block ${needsBlur ? 'cursor-pointer' : ''}`}
+                    className={`group block h-full w-full ${needsBlur ? 'cursor-pointer' : ''}`}
                     onClick={handleCardClick}
                   >
-                    <div className={`h-full p-4 sm:p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 ${
+                    <div className={`h-full w-full p-4 sm:p-6 bg-gray-900/50 border rounded-lg transition-all duration-300 flex flex-col ${
                       isConfidential
                         ? 'border-amber-400/30 hover:border-amber-400/50'
                         : 'border-gray-700 hover:border-terminal-gold/50'
                     }`}>
-                      <div className={`space-y-3 sm:space-y-4 ${needsBlur ? 'relative' : ''}`}>
+                      <div className={`flex-1 flex flex-col space-y-3 sm:space-y-4 ${needsBlur ? 'relative' : ''}`}>
                         {/* Title - Show just number for partnership work */}
                         <div>
                           <h3 className={`text-lg md:text-xl font-bold text-white mb-2 transition-colors ${
@@ -390,21 +396,12 @@ export default function WorkPage() {
                           </p>
 
                           {/* Metrics */}
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-4 border-y border-gray-700">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-4 border-t border-gray-700">
                             {project.metrics.map((metric, idx) => (
                               <div key={idx}>
                                 <div className="text-sm font-bold text-terminal-gold">{metric.value}</div>
                                 <div className="text-xs text-gray-500 uppercase tracking-wider">{metric.label}</div>
                               </div>
-                            ))}
-                          </div>
-
-                          {/* Tags */}
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag) => (
-                              <span key={tag} className="px-2 py-1 rounded text-xs bg-gray-800 text-gray-400 border border-gray-700">
-                                {tag}
-                              </span>
                             ))}
                           </div>
                         </div>
@@ -432,13 +429,14 @@ export default function WorkPage() {
                         {/* Protected Case Study CTA - Authenticated */}
                         {isConfidential && isAuthenticated && (
                           <div className="pt-4 border-t border-gray-700">
-                            <p className="text-xs text-gray-400 mb-3">
-                              Enter password to view case study or overview
-                            </p>
                             <div className="grid grid-cols-2 gap-3">
                               {hasQuickOverview && (
                                 <Link
-                                  href={`/work/${overviewSlug}/overview`}
+                                  href={
+                                    project.slug === 'sanitary-waste-system'
+                                      ? '/clients/work/sanitary-waste-system/quick-overview'
+                                      : `/work/${overviewSlug}/overview`
+                                  }
                                   className="flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
                                   onClick={(e) => e.stopPropagation()}
                                 >
