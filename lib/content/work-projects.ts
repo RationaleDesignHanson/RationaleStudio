@@ -90,7 +90,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Sports Tech', 'Streaming', 'Live'],
     isProtected: true,
     featured: true,
-    description: 'Live sports streaming platform partnership delivering enhanced user experiences and real-time engagement features.'
+    description: 'AI-powered thumbnail generation system for live sports streaming. Built in 2-week sprint with Google Gemini 2.5 Flash, generating brand-consistent thumbnails across 200+ teams, 8 leagues, and 24 visual styles.'
   }
 ];
 

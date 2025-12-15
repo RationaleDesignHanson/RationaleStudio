@@ -295,7 +295,7 @@ export default function WorkPage() {
               <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3">Partnership Model</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">We're selective about partnerships.</span> We only engage when we see
-                strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Some work
+                strong alignment and the opportunity to apply our product methodology to genuinely complex problems. Partner work
                 is confidential and password-protected—we respect our partners' need for discretion.
               </p>
             </div>
