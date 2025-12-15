@@ -215,7 +215,7 @@ export function Header() {
               }
 
               return (
-                <>
+                <React.Fragment key={link.href}>
                   {/* Inject role-based links before this item if needed */}
                   {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
                     <Link
@@ -229,7 +229,6 @@ export function Header() {
                     </Link>
                   ))}
                   <Link
-                    key={link.href}
                     href={link.href}
                     className={`text-sm font-medium transition-colors hover:text-terminal-gold whitespace-nowrap py-3 px-1 inline-flex items-center ${
                       isActive(link.href) ? 'text-terminal-gold border-b-2 border-terminal-gold' : 'text-gray-400'
@@ -237,7 +236,7 @@ export function Header() {
                   >
                     {link.label}
                   </Link>
-                </>
+                </React.Fragment>
               );
             })}
           </nav>
