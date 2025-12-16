@@ -15,6 +15,13 @@ const nextConfig = {
   // Disable X-Powered-By header for security
   poweredByHeader: false,
 
+  // Exclude public assets from serverless bundle tracing
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': ['public/**'],
+    },
+  },
+
   // Explicitly pass Firebase credentials to serverless functions
   // This ensures the env var is available at runtime in Netlify functions
   env: {

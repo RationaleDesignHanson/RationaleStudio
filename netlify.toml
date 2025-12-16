@@ -15,6 +15,7 @@
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["firebase-admin", "@google-cloud/firestore", "@google-cloud/storage"]
 
 [[functions."*"]]
   timeout = 26
