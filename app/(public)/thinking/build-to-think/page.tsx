@@ -80,9 +80,14 @@ export default function BuildToThinkPage() {
             </GlassCard>
 
             <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">The 7-Prototype Framework</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">A Systematic Prototype Approach</h2>
+              <div className="bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-bold text-white">This is a guideline, not a prescription.</span> Some projects need 3 prototypes. Some need 12. What matters is the systematic approach: identify assumptions, build minimal tests, validate or pivot before committing to production.
+                </p>
+              </div>
               <p className="text-gray-300 leading-relaxed mb-6">
-                This isn't random prototyping. It's systematic validation of every major decision point before production.
+                The framework below shows a typical progression we use. Think of it as a checklist of decision points, not a rigid sequence.
               </p>
 
               <div className="space-y-4">
@@ -131,7 +136,7 @@ export default function BuildToThinkPage() {
                 Each prototype has success criteria. Pass → Next prototype. Fail → Pivot or kill.
               </p>
               <p className="text-gray-300 leading-relaxed mt-4">
-                Zero used this exact framework to go from concept to production-ready architecture in 2 weeks.
+                Zero used this approach (adapting the scope to their specific decisions) to go from concept to production-ready architecture in 2 weeks.
               </p>
             </GlassCard>
 
@@ -167,19 +172,6 @@ export default function BuildToThinkPage() {
                   0 architectural pivots during production because we validated with 7 prototypes first.
                 </p>
               </div>
-            </GlassCard>
-
-            <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
-              <h2 className="text-2xl font-bold text-white mb-4">Adaptive, Not Rigid</h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                The 7-prototype framework is a guideline, not a straitjacket. Some projects need 5 prototypes. Some need 10.
-              </p>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                What matters is the systematic approach: identify assumptions, build minimal tests, validate or pivot.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                The framework adapts to your domain, but the principle doesn't change: validate before you commit capital to production.
-              </p>
             </GlassCard>
           </div>
 

@@ -10,12 +10,13 @@
 'use client';
 
 import Link from 'next/link';
-import { OS8Window } from '@/components/visual-test';
+import { BaseCard, BaseCardContent, BaseCardTitle } from '@/components/ui/BaseCard';
+import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 import { ExternalLink, Zap, Layers, Palette } from 'lucide-react';
 
 export default function FUBOCaseStudyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <main className="min-h-screen bg-gray-950 text-white">
       {' '}
       {/* Hero Section */}{' '}
       <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
@@ -29,11 +30,10 @@ export default function FUBOCaseStudyPage() {
             {' '}
             ← Back to Portfolio{' '}
           </Link>{' '}
-          <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full">
-            {' '}
-            <span className="text-sm text-red-400 font-medium">
+          <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full">
+            <span className="text-sm text-accent font-medium">
               Client Confidential • By Request Only
-            </span>{' '}
+            </span>
           </div>{' '}
           <p className="text-xs sm:text-sm font-mono text-terminal-gold tracking-widest mb-4">
             {' '}
@@ -49,23 +49,18 @@ export default function FUBOCaseStudyPage() {
             creation for FUBO's streaming platform across 200+ teams and 8 major leagues.{' '}
           </p>{' '}
           <div className="flex flex-wrap gap-2">
-            {' '}
-            <span className="px-3 py-1 rounded-full bg-[#FF6C00]/10 border border-[#FF6C00]/30 text-[#FF6C00] text-xs font-semibold">
-              {' '}
-              Google Gemini AI{' '}
-            </span>{' '}
-            <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold">
-              {' '}
-              Python Flask{' '}
-            </span>{' '}
-            <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold">
-              {' '}
-              Real-time Generation{' '}
-            </span>{' '}
-            <span className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold">
-              {' '}
-              200+ Teams{' '}
-            </span>{' '}
+            <span className="px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-semibold">
+              Google Gemini AI
+            </span>
+            <span className="px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-gray-300 text-xs font-semibold">
+              Python Flask
+            </span>
+            <span className="px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-gray-300 text-xs font-semibold">
+              Real-time Generation
+            </span>
+            <span className="px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-gray-300 text-xs font-semibold">
+              200+ Teams
+            </span>
           </div>{' '}
         </div>{' '}
       </section>{' '}
@@ -73,39 +68,29 @@ export default function FUBOCaseStudyPage() {
       <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         {' '}
         <div className="max-w-5xl mx-auto">
-          {' '}
-          <OS8Window
-            title="Project Overview"
-            variant="yellow"
-            animateIn={false}
-            className="max-w-4xl mx-auto"
-          >
-            {' '}
-            <div className="space-y-4 text-gray-700 leading-relaxed">
-              {' '}
-              <p className="text-base">
-                {' '}
-                <span className="font-bold text-black">Challenge:</span> Sports streaming platforms
+          <BaseCard variant="featured" paddingSize="lg" borderAccent="border-accent/30" className="max-w-4xl mx-auto">
+            <BaseCardTitle className="mb-6 text-accent">Project Overview</BaseCardTitle>
+            <BaseCardContent className="space-y-4">
+              <p className="text-base text-gray-300">
+                <span className="font-bold text-white">Challenge:</span> Sports streaming platforms
                 need massive amounts of stylized thumbnail content across hundreds of teams and
                 events. FUBO required a system to generate brand-consistent thumbnails for 200+
                 teams across 8 major leagues (NFL, NBA, NHL, MLS, EPL, La Liga, Bundesliga, F1)
-                without manual design bottlenecks.{' '}
-              </p>{' '}
-              <p className="text-base">
-                {' '}
-                <span className="font-bold text-black">Solution:</span> Built AI-powered generation
+                without manual design bottlenecks.
+              </p>
+              <p className="text-base text-gray-300">
+                <span className="font-bold text-white">Solution:</span> Built AI-powered generation
                 system using Google Gemini 2.5 Flash with 24 visual styles, two-step generation
                 process, and sport-aware styling. Complete system delivered in 2-week strategic
-                sprint with bulk processing, style blending, and quality assurance.{' '}
-              </p>{' '}
-              <p className="text-base border-t border-[#FF6C00] pt-4 font-semibold text-black">
-                {' '}
+                sprint with bulk processing, style blending, and quality assurance.
+              </p>
+              <p className="text-base border-t border-accent/30 pt-4 font-semibold text-white">
                 Impact: Enabled scalable content creation across 200+ teams with 3-5 second
                 generation time per image, 24 distinct visual styles, and complete brand
-                consistency.{' '}
-              </p>{' '}
-            </div>{' '}
-          </OS8Window>{' '}
+                consistency.
+              </p>
+            </BaseCardContent>
+          </BaseCard>
         </div>{' '}
       </section>{' '}
       {/* Key Features */}{' '}
@@ -122,62 +107,57 @@ export default function FUBOCaseStudyPage() {
           </div>{' '}
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {' '}
-            {/* AI Generation */}{' '}
-            <OS8Window title="AI Generation" variant="minimal" delay={100}>
-              {' '}
+            {/* AI Generation */}
+            <BaseCard variant="default" paddingSize="md" borderAccent="border-accent/30">
               <div className="space-y-3">
-                {' '}
-                <Zap className="w-8 h-8 text-[#FF6C00] mb-2" />{' '}
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {' '}
+                <Zap className="w-8 h-8 text-accent mb-2" />
+                <BaseCardTitle className="text-lg mb-2">AI Generation</BaseCardTitle>
+                <p className="text-sm text-gray-300 leading-relaxed">
                   Google Gemini 2.5 Flash integration with two-step generation process: base image
-                  creation + style application.{' '}
-                </p>{' '}
-                <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3">
-                  {' '}
-                  <li>• 3-5 second generation time</li> <li>• Subject preservation prompting</li>{' '}
-                  <li>• Team color accuracy</li> <li>• Sport-aware context</li>{' '}
-                </ul>{' '}
-              </div>{' '}
-            </OS8Window>{' '}
-            {/* 24 Visual Styles */}{' '}
-            <OS8Window title="24 Visual Styles" variant="minimal" delay={200}>
-              {' '}
+                  creation + style application.
+                </p>
+                <ul className="text-xs text-gray-400 space-y-1 border-t border-gray-700 pt-3">
+                  <li>• 3-5 second generation time</li>
+                  <li>• Subject preservation prompting</li>
+                  <li>• Team color accuracy</li>
+                  <li>• Sport-aware context</li>
+                </ul>
+              </div>
+            </BaseCard>{' '}
+            {/* 24 Visual Styles */}
+            <BaseCard variant="default" paddingSize="md" borderAccent="border-accent/30">
               <div className="space-y-3">
-                {' '}
-                <Palette className="w-8 h-8 text-[#FF6C00] mb-2" />{' '}
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {' '}
+                <Palette className="w-8 h-8 text-accent mb-2" />
+                <BaseCardTitle className="text-lg mb-2">24 Visual Styles</BaseCardTitle>
+                <p className="text-sm text-gray-300 leading-relaxed">
                   Comprehensive style catalog covering artistic, digital, photography, and
-                  conceptual aesthetics.{' '}
-                </p>{' '}
-                <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3">
-                  {' '}
-                  <li>• Comic Book, Neon Noir, Cinematic</li>{' '}
-                  <li>• Watercolor, Pixel Art, Glitch Art</li>{' '}
-                  <li>• Style blending (up to 3 styles)</li>{' '}
-                  <li>• Weighted control per style</li>{' '}
-                </ul>{' '}
-              </div>{' '}
-            </OS8Window>{' '}
-            {/* Bulk Processing */}{' '}
-            <OS8Window title="Enterprise Scale" variant="minimal" delay={300}>
-              {' '}
+                  conceptual aesthetics.
+                </p>
+                <ul className="text-xs text-gray-400 space-y-1 border-t border-gray-700 pt-3">
+                  <li>• Comic Book, Neon Noir, Cinematic</li>
+                  <li>• Watercolor, Pixel Art, Glitch Art</li>
+                  <li>• Style blending (up to 3 styles)</li>
+                  <li>• Weighted control per style</li>
+                </ul>
+              </div>
+            </BaseCard>{' '}
+            {/* Bulk Processing */}
+            <BaseCard variant="default" paddingSize="md" borderAccent="border-accent/30">
               <div className="space-y-3">
-                {' '}
-                <Layers className="w-8 h-8 text-[#FF6C00] mb-2" />{' '}
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {' '}
+                <Layers className="w-8 h-8 text-accent mb-2" />
+                <BaseCardTitle className="text-lg mb-2">Enterprise Scale</BaseCardTitle>
+                <p className="text-sm text-gray-300 leading-relaxed">
                   Process entire league rosters in single batch operations with organized export
-                  system.{' '}
-                </p>{' '}
-                <ul className="text-xs text-gray-600 space-y-1 border-t border-gray-200 pt-3">
-                  {' '}
-                  <li>• 200+ teams supported</li> <li>• 8 major leagues (NFL, NBA, NHL+)</li>{' '}
-                  <li>• Bulk generation workflows</li> <li>• Quality assurance scoring</li>{' '}
-                </ul>{' '}
-              </div>{' '}
-            </OS8Window>{' '}
+                  system.
+                </p>
+                <ul className="text-xs text-gray-400 space-y-1 border-t border-gray-700 pt-3">
+                  <li>• 200+ teams supported</li>
+                  <li>• 8 major leagues (NFL, NBA, NHL+)</li>
+                  <li>• Bulk generation workflows</li>
+                  <li>• Quality assurance scoring</li>
+                </ul>
+              </div>
+            </BaseCard>{' '}
           </div>{' '}
         </div>{' '}
       </section>{' '}
@@ -194,9 +174,8 @@ export default function FUBOCaseStudyPage() {
             {/* Two-Step Process */}{' '}
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               {' '}
-              <h3 className="text-xl font-bold text-[#FF6C00] mb-4">
-                {' '}
-                Two-Step Generation Process{' '}
+              <h3 className="text-xl font-bold text-accent mb-4">
+                Two-Step Generation Process
               </h3>{' '}
               <div className="space-y-3 text-sm text-gray-300">
                 {' '}
@@ -224,9 +203,8 @@ export default function FUBOCaseStudyPage() {
             {/* Style Blending Example */}{' '}
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               {' '}
-              <h3 className="text-xl font-bold text-[#FF6C00] mb-4">
-                {' '}
-                Style Blending System{' '}
+              <h3 className="text-xl font-bold text-accent mb-4">
+                Style Blending System
               </h3>{' '}
               <pre className="text-xs text-gray-300 bg-black/30 p-4 rounded overflow-x-auto">
                 {`# Example: Combine styles with weighted control
@@ -249,9 +227,8 @@ generate_thumbnail(
             {/* Supported Leagues */}{' '}
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               {' '}
-              <h3 className="text-xl font-bold text-[#FF6C00] mb-4">
-                {' '}
-                Supported Leagues & Teams{' '}
+              <h3 className="text-xl font-bold text-accent mb-4">
+                Supported Leagues & Teams
               </h3>{' '}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
                 {' '}
@@ -317,13 +294,12 @@ generate_thumbnail(
               AI generation.{' '}
             </p>{' '}
           </div>{' '}
-          <div className="p-8 bg-gray-900/50 border border-[#FF6C00]/30 rounded-lg">
+          <div className="p-8 bg-gray-900/50 border border-accent/30 rounded-lg">
             {' '}
             <div className="flex flex-col items-center gap-6">
               {' '}
-              <div className="w-16 h-16 bg-[#FF6C00]/20 border border-[#FF6C00]/40 rounded-full flex items-center justify-center">
-                {' '}
-                <ExternalLink className="w-8 h-8 text-[#FF6C00]" />{' '}
+              <div className="w-16 h-16 bg-accent/20 border border-accent/40 rounded-full flex items-center justify-center">
+                <ExternalLink className="w-8 h-8 text-accent" />
               </div>{' '}
               <div className="text-center">
                 {' '}
@@ -332,31 +308,29 @@ generate_thumbnail(
                   FUBO Thumbnail Generator v6.0{' '}
                 </h3>{' '}
                 <p className="text-sm text-gray-400 mb-6">
-                  {' '}
-                  Launch the working prototype to generate thumbnails in real-time. Requires Google
-                  Gemini API key (free tier available).{' '}
-                </p>{' '}
-              </div>{' '}
-              <a
+                  Launch the working prototype to generate thumbnails in real-time. Fully functional with pre-configured AI integration.
+                </p>
+              </div>
+              <ButtonPrimary
                 href="/prototypes/fubo/index.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 sm:px-6 md:px-8 py-4 bg-[#FF6C00] hover:bg-[#FF6C00]/90 text-white font-semibold rounded-lg transition-colors"
+                size="lg"
+                className="gap-2"
               >
-                {' '}
-                <ExternalLink className="w-5 h-5" /> Launch Prototype{' '}
-              </a>{' '}
+                <ExternalLink className="w-5 h-5" />
+                Launch Prototype
+              </ButtonPrimary>
               <div className="mt-4 p-4 bg-black/30 border border-gray-800 rounded-lg text-xs text-gray-400 max-w-md">
-                {' '}
                 <p className="mb-2">
-                  <span className="font-semibold text-white">Setup Required:</span>
-                </p>{' '}
+                  <span className="font-semibold text-white">Usage:</span>
+                </p>
                 <ol className="list-decimal list-inside space-y-1">
-                  {' '}
-                  <li>Get free API key from aistudio.google.com/app/apikey</li>{' '}
-                  <li>Enter key when prompted in the prototype</li>{' '}
-                  <li>Select styles and teams to generate thumbnails</li>{' '}
-                </ol>{' '}
+                  <li>Select a league and team from the dropdowns</li>
+                  <li>Choose one or more visual styles to apply</li>
+                  <li>Click "Generate" to create styled thumbnails</li>
+                  <li>Use bulk mode to process entire rosters</li>
+                </ol>
               </div>{' '}
             </div>{' '}
           </div>{' '}
@@ -374,7 +348,7 @@ generate_thumbnail(
             {' '}
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               {' '}
-              <h3 className="text-lg font-bold text-[#FF6C00] mb-3"> Core Features </h3>{' '}
+              <h3 className="text-lg font-bold text-accent mb-3">Core Features</h3>{' '}
               <ul className="space-y-2 text-sm text-gray-300">
                 {' '}
                 <li> Web-based UI (runs in browser)</li> <li> 11 built-in visual styles</li>{' '}
@@ -384,9 +358,8 @@ generate_thumbnail(
             </div>{' '}
             <div className="p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
               {' '}
-              <h3 className="text-lg font-bold text-[#FF6C00] mb-3">
-                {' '}
-                Advanced Capabilities{' '}
+              <h3 className="text-lg font-bold text-accent mb-3">
+                Advanced Capabilities
               </h3>{' '}
               <ul className="space-y-2 text-sm text-gray-300">
                 {' '}

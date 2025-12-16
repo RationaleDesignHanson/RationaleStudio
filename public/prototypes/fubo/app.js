@@ -6,6 +6,9 @@
 
 console.log('Initializing FUBO Thumbnail Generator v6.0');
 
+// Backend API configuration
+const API_BASE_URL = 'http://localhost:5001';
+
 // Global state
 let teamColors = {};
 let generationResults = [];
@@ -232,7 +235,7 @@ async function handleGenerate() {
     
     // Get teams for selected league
     console.log(`Fetching teams for ${league}...`);
-    const teamsResponse = await fetch(`/get_teams/${league}`);
+    const teamsResponse = await fetch(`${API_BASE_URL}/get_teams/${league}`);
     const teamsData = await teamsResponse.json();
     console.log('Teams response:', teamsData);
     
@@ -347,7 +350,7 @@ async function generateSingleImage(team, style, section, league) {
     
     try {
         // Step 1: Generate base image
-        const baseResponse = await fetch('/generate_base_image', {
+        const baseResponse = await fetch(`${API_BASE_URL}/generate_base_image`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -378,7 +381,7 @@ async function generateSingleImage(team, style, section, league) {
             team_colors: teamColors[`${league}/${team.team_name}`] || {}
         }));
         
-        const styleResponse = await fetch('/apply_style', {
+        const styleResponse = await fetch(`${API_BASE_URL}/apply_style`, {
             method: 'POST',
             body: formData
         });
@@ -399,7 +402,7 @@ async function generateSingleImage(team, style, section, league) {
             // If transparency was requested, still extract it for clean cutout
             if (withAlpha) {
                 try {
-                    const alphaResponse = await fetch('/extract_alpha', {
+                    const alphaResponse = await fetch(`${API_BASE_URL}/extract_alpha`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -421,7 +424,7 @@ async function generateSingleImage(team, style, section, league) {
         } else if (withAlpha) {
             // WITH transparency: extract alpha and composite over underlay
             try {
-                const alphaResponse = await fetch('/extract_alpha', {
+                const alphaResponse = await fetch(`${API_BASE_URL}/extract_alpha`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -433,7 +436,7 @@ async function generateSingleImage(team, style, section, league) {
                 const alphaData = await alphaResponse.json();
                 if (alphaData.success) {
                     // Apply overlay (includes shift)
-                    const overlayResponse = await fetch('/apply_overlay', {
+                    const overlayResponse = await fetch(`${API_BASE_URL}/apply_overlay`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -455,7 +458,7 @@ async function generateSingleImage(team, style, section, league) {
             // WITHOUT transparency: apply overlay on top for preview (includes shift)
             console.log('🎨 Applying overlay (no transparency mode) - Section:', section);
             try {
-                const overlayResponse = await fetch('/apply_overlay', {
+                const overlayResponse = await fetch(`${API_BASE_URL}/apply_overlay`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -752,7 +755,7 @@ async function applyPosition(index, newOffsetX, newOffsetY) {
         const baseImage = result.cleanBaseImage || result.downloadImage;
         
         // Re-composite with ABSOLUTE 2D offset position
-        const response = await fetch('/apply_overlay', {
+        const response = await fetch(`${API_BASE_URL}/apply_overlay`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -814,7 +817,7 @@ async function exportAllImages() {
             }))
         };
         
-        const response = await fetch('/export_to_folders', {
+        const response = await fetch(`${API_BASE_URL}/export_to_folders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(exportData)
@@ -923,7 +926,7 @@ async function loadOverlayPreviews() {
     
     for (const { type, previewId } of overlayTypes) {
         try {
-            const response = await fetch(`/get_overlay_preview?overlay_type=${type}`);
+            const response = await fetch(`${API_BASE_URL}/get_overlay_preview?overlay_type=${type}`);
             const data = await response.json();
             
             if (data.success && data.preview) {
@@ -993,7 +996,7 @@ async function uploadOverlay(type) {
         formData.append('overlay_image', file);
         formData.append('overlay_type', type);
         
-        const response = await fetch('/upload_overlay', {
+        const response = await fetch(`${API_BASE_URL}/upload_overlay`, {
             method: 'POST',
             body: formData
         });
@@ -1025,7 +1028,7 @@ async function removeOverlay(type) {
     showNotification(`Removing ${type} overlay...`, 'info');
     
     try {
-        const response = await fetch('/remove_overlay', {
+        const response = await fetch(`${API_BASE_URL}/remove_overlay`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ overlay_type: type })
@@ -1054,7 +1057,7 @@ async function restoreDefaultOverlay(type) {
     showNotification(`Restoring ${type} default...`, 'info');
     
     try {
-        const response = await fetch('/restore_default_overlay', {
+        const response = await fetch(`${API_BASE_URL}/restore_default_overlay`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ overlay_type: type })
@@ -1079,7 +1082,7 @@ async function restoreDefaultOverlay(type) {
 // Load custom styles from backend
 async function loadCustomStyles() {
     try {
-        const response = await fetch('/get_custom_styles');
+        const response = await fetch(`${API_BASE_URL}/get_custom_styles`);
         const data = await response.json();
         
         if (data.success) {
@@ -1140,7 +1143,7 @@ async function handleStyleEditorSelect() {
         
         // Load reference if available
         try {
-            const response = await fetch(`/get_style_reference_preview?style=${selectedStyle}`);
+            const response = await fetch(`${API_BASE_URL}/get_style_reference_preview?style=${selectedStyle}`);
             const data = await response.json();
             
             if (data.success && data.has_reference) {
@@ -1158,7 +1161,7 @@ async function handleStyleEditorSelect() {
     } else {
         // Load built-in style prompt
         try {
-            const response = await fetch(`/get_builtin_style_prompt?style=${selectedStyle}`);
+            const response = await fetch(`${API_BASE_URL}/get_builtin_style_prompt?style=${selectedStyle}`);
             const data = await response.json();
             
             if (data.success) {
@@ -1219,7 +1222,7 @@ async function uploadStyleReference() {
         formData.append('reference_image', file);
         formData.append('style_id', selectedStyle);
         
-        const response = await fetch('/upload_style_reference', {
+        const response = await fetch(`${API_BASE_URL}/upload_style_reference`, {
             method: 'POST',
             body: formData
         });
@@ -1254,7 +1257,7 @@ async function removeStyleReference() {
     showNotification(`Removing reference...`, 'info');
     
     try {
-        const response = await fetch('/remove_style_reference', {
+        const response = await fetch(`${API_BASE_URL}/remove_style_reference`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ style_id: selectedStyle })
@@ -1294,7 +1297,7 @@ async function saveCustomStyle() {
     showNotification(`Saving ${selectedStyle}...`, 'info');
     
     try {
-        const response = await fetch('/save_custom_style', {
+        const response = await fetch(`${API_BASE_URL}/save_custom_style`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -1337,7 +1340,7 @@ async function clearCustomStyle() {
     showNotification(`Clearing ${selectedStyle}...`, 'info');
     
     try {
-        const response = await fetch('/delete_custom_style', {
+        const response = await fetch(`${API_BASE_URL}/delete_custom_style`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ style_id: selectedStyle })

@@ -62,10 +62,10 @@ export default function MethodologyOriginsPage() {
             <GlassCard className="p-8 mb-8" borderRadius="0.75rem">
               <h2 className="text-2xl font-bold text-white mb-4">The Vision Video Request</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                When I worked at Meta, right after they acquired Oculus, I wanted to create a vision video for our augmented reality platform. I went to my skip manager (who would later form Reality Labs) to request budget approval.
+                At Meta, shortly after the Oculus acquisition, a designer wanted to create a vision video for the augmented reality platform. They went to the head of design (who would later form Reality Labs) to request budget approval.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                He stopped me and told me this story: Someone once came to his office asking for a few million dollars to finish a feature film about virtual reality. It was impressive, expensive, but the entire film only had about 10 minutes of actual in-headset product experience. You couldn't really understand what it did.
+                The head of design stopped them and shared this story: Someone once came to his office asking for a few million dollars to finish a feature film about virtual reality. It was impressive, expensive, but the entire film only had about 10 minutes of actual in-headset product experience. You couldn't really understand what it did.
               </p>
             </GlassCard>
 
@@ -131,7 +131,7 @@ export default function MethodologyOriginsPage() {
                 </p>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                That conversation changed everything for me. It crystallized a principle I'd seen work at scale but never articulated so clearly: the closer you get to real, shipping software, the more value you create. The further left you stay—in concepts, presentations, specs—the less certain you are about what actually works.
+                That conversation crystallized a principle that had been observed at scale but never articulated so clearly: the closer you get to real, shipping software, the more value you create. The further left you stay—in concepts, presentations, specs—the less certain you are about what actually works.
               </p>
             </GlassCard>
 
