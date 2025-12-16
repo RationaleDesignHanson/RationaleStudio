@@ -1,12 +1,12 @@
 /**
- * Zero Client Dashboard - Redirect to Clients Portal
+ * Zero Dashboard - Redirect (typo fix)
  *
- * This route redirects /client/zero/dashboard to /clients/zero/dashboard
- * Used by 7 links across the site
+ * This route redirects /client/zero/dashboard (singular) to /clients/zero/dashboard (plural)
+ * Fixes typo in route naming
  */
 
 import { redirect } from 'next/navigation';
 
-export default function ClientZeroDashboardPage() {
+export default function ClientZeroDashboardRedirect() {
   redirect('/clients/zero/dashboard');
 }
