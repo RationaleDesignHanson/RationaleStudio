@@ -120,7 +120,7 @@ async function initializeFirebaseAdmin(): Promise<{ app: App; auth: Auth; db: Fi
  */
 export async function verifyIdToken(idToken: string) {
   try {
-    const { auth } = initializeFirebaseAdmin();
+    const { auth } = await initializeFirebaseAdmin();
     const decodedToken = await auth.verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
@@ -137,7 +137,7 @@ export async function verifyIdToken(idToken: string) {
  */
 export async function getUserByUid(uid: string) {
   try {
-    const { auth } = initializeFirebaseAdmin();
+    const { auth } = await initializeFirebaseAdmin();
     const userRecord = await auth.getUser(uid);
     return userRecord;
   } catch (error) {
@@ -154,7 +154,7 @@ export async function getUserByUid(uid: string) {
  */
 export async function setCustomUserClaims(uid: string, claims: Record<string, any>) {
   try {
-    const { auth } = initializeFirebaseAdmin();
+    const { auth } = await initializeFirebaseAdmin();
     await auth.setCustomUserClaims(uid, claims);
     console.log(`[Firebase Admin] Custom claims set for user ${uid}:`, claims);
   } catch (error) {
@@ -175,7 +175,7 @@ export async function createCustomToken(
   additionalClaims?: Record<string, any>
 ) {
   try {
-    const { auth } = initializeFirebaseAdmin();
+    const { auth } = await initializeFirebaseAdmin();
     const customToken = await auth.createCustomToken(uid, additionalClaims);
     return customToken;
   } catch (error) {
@@ -185,13 +185,13 @@ export async function createCustomToken(
 }
 
 // Export admin instances for advanced use cases
-export function getAdminAuth(): Auth {
-  const { auth } = initializeFirebaseAdmin();
+export async function getAdminAuth(): Promise<Auth> {
+  const { auth } = await initializeFirebaseAdmin();
   return auth;
 }
 
-export function getAdminApp(): App {
-  const { app } = initializeFirebaseAdmin();
+export async function getAdminApp(): Promise<App> {
+  const { app } = await initializeFirebaseAdmin();
   return app;
 }
 
@@ -205,7 +205,7 @@ export function getAdminApp(): App {
 export async function getAdminUserProfile(uid: string) {
   try {
     const { getFirestore } = await import('firebase-admin/firestore');
-    const { app } = initializeFirebaseAdmin();
+    const { app } = await initializeFirebaseAdmin();
     const db = getFirestore(app);
 
     const userDoc = await db.collection('users').doc(uid).get();
@@ -234,7 +234,7 @@ export async function getAdminUserProfile(uid: string) {
  * Get Firestore instance (server-side only)
  * Use this for direct database access in API routes and server components
  */
-export function getAdminDb(): Firestore {
-  const { db } = initializeFirebaseAdmin();
+export async function getAdminDb(): Promise<Firestore> {
+  const { db } = await initializeFirebaseAdmin();
   return db;
 }
