@@ -4,6 +4,8 @@
  * Support documentation for Heirloom recipe app
  */
 
+'use client';
+
 export default function HeirloomSupportPage() {
   return (
     <div className="min-h-screen bg-[#FDF6E3] text-[#3D3D3D] p-5">

@@ -15,11 +15,9 @@ const nextConfig = {
   // Disable X-Powered-By header for security
   poweredByHeader: false,
 
-  // Exclude public assets from serverless bundle tracing
-  experimental: {
-    outputFileTracingExcludes: {
-      '*': ['public/**'],
-    },
+  // Exclude public assets from serverless bundle tracing (Next.js 16+)
+  outputFileTracingExcludes: {
+    '*': ['public/**'],
   },
 
   // Explicitly pass Firebase credentials to serverless functions
