@@ -50,10 +50,6 @@ export default function VisionProofBurdenPage() {
       <article className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8">
         <div className="relative z-10 max-w-3xl mx-auto prose prose-invert prose-lg">
 
-          <p className="lead text-xl text-gray-300 mb-8">
-            The gift of vision is often misunderstood. It is not simply the ability to imagine what could exist, but the responsibility to stand in the gap between what is visible and what is provable. Vision, by its nature, arrives early. Proof arrives late. The distance between the two is where most ideas fail—not because they are wrong, but because they are unvalidated.
-          </p>
-
           <GlassCard className="my-8 p-6 border-accent/30">
             <blockquote className="text-2xl font-serif italic text-accent mb-2">
               "The gift of vision is cursed with the burden of proof."
@@ -62,6 +58,10 @@ export default function VisionProofBurdenPage() {
               © Matt Hanson, Rationale
             </p>
           </GlassCard>
+
+          <p className="lead text-xl text-gray-300 mb-8">
+            The gift of vision is often misunderstood. It is not simply the ability to imagine what could exist, but the responsibility to stand in the gap between what is visible and what is provable. Vision, by its nature, arrives early. Proof arrives late. The distance between the two is where most ideas fail—not because they are wrong, but because they are unvalidated.
+          </p>
 
           <p>
             This gap creates a burden. Those who can see a future state clearly are routinely asked to defend it using the language, tools, and metrics of the present. Visionaries are expected to produce certainty before the conditions for certainty exist. This is the quiet curse of vision: the obligation to justify what cannot yet be measured, benchmarked, or A/B tested.

@@ -91,7 +91,7 @@ export default function ThinkingPage() {
 
       {/* Essays Grid */}
       <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
-        <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto">
           <div className="space-y-6">
             {essays.map((essay) => (
               <Link
@@ -136,7 +136,7 @@ export default function ThinkingPage() {
 
       {/* CTA */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-t border-gray-800">
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Ready to apply this methodology?</h2>
           <p className="text-gray-300 mb-4 md:mb-8">
             We use this systematic approach on every engagement—whether it's a 3-week sprint or 12-week pilot.
