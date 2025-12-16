@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Verify the Firebase ID token using Firebase Admin SDK
-    const adminAuth = getAdminAuth();
+    const adminAuth = await getAdminAuth();
     const decodedToken = await adminAuth.verifyIdToken(idToken);
     const uid = decodedToken.uid;
 
