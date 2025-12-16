@@ -265,7 +265,7 @@ export async function getPitchAccesses(companySlug: string): Promise<PitchAccess
     .orderBy('createdAt', 'desc')
     .get();
 
-  return snapshot.docs.map(doc => ({
+  return snapshot.docs.map((doc: any) => ({
     pitchId: doc.id,
     ...doc.data(),
     expiresAt: doc.data().expiresAt?.toDate?.() || doc.data().expiresAt,
@@ -285,7 +285,7 @@ export async function getPitchAnalytics(pitchId: string) {
     .orderBy('viewedAt', 'desc')
     .get();
 
-  return snapshot.docs.map(doc => ({
+  return snapshot.docs.map((doc: any) => ({
     id: doc.id,
     ...doc.data(),
     viewedAt: doc.data().viewedAt?.toDate?.() || doc.data().viewedAt,
