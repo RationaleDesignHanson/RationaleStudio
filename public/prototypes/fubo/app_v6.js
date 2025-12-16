@@ -6,6 +6,13 @@
 
 console.log('Initializing FUBO Thumbnail Generator v6.0');
 
+// Helper function to safely call feather.replace()
+function safeFeatherReplace() {
+    if (typeof feather !== 'undefined') {
+        feather.replace();
+    }
+}
+
 // Global state
 let teamColors = {};
 let generationResults = [];
@@ -39,8 +46,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Load custom styles and overlays in background (non-blocking)
         loadCustomStyles().then(() => console.log('Custom styles loaded')).catch(err => console.error('Custom styles error:', err));
         loadOverlayPreviews().then(() => console.log('Overlay previews loaded')).catch(err => console.error('Overlay previews error:', err));
-        
-        feather.replace();
+
+        // Initialize feather icons
+        safeFeatherReplace();
         console.log('v6 initialization complete');
     } catch (error) {
         console.error('v6 initialization error:', error);
@@ -109,7 +117,7 @@ function setupEventListeners() {
 // Modal control functions
 function openImageInputsModal() {
     document.getElementById('imageInputsModal').classList.remove('hidden');
-    feather.replace();
+    safeFeatherReplace();
 }
 
 function closeImageInputsModal() {
@@ -118,7 +126,7 @@ function closeImageInputsModal() {
 
 function openCompositingModal() {
     document.getElementById('compositingModal').classList.remove('hidden');
-    feather.replace();
+    safeFeatherReplace();
 }
 
 function closeCompositingModal() {
@@ -127,7 +135,7 @@ function closeCompositingModal() {
 
 function openImportModal() {
     document.getElementById('importModal').classList.remove('hidden');
-    feather.replace();
+    safeFeatherReplace();
 }
 
 function closeImportModal() {
@@ -634,7 +642,7 @@ function addResultCard(result) {
     `;
     
     grid.appendChild(card);
-    feather.replace();
+    safeFeatherReplace();
 }
 
 // Regenerate single image
@@ -707,7 +715,7 @@ function openPreview(index) {
     `;
     
     document.body.appendChild(modal);
-    feather.replace();
+    safeFeatherReplace();
 }
 
 // Nudge position by delta X and Y

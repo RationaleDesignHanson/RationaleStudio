@@ -24,6 +24,14 @@ interface Essay {
 const essays: Essay[] = [
   {
     id: '1',
+    title: 'Vision, Proof, and the Work Between',
+    slug: 'vision-proof-burden',
+    description: 'The gift of vision is cursed with the burden of proof. On the responsibility of standing between what is visible and what is provable.',
+    readTime: '9 min',
+    category: 'Vision'
+  },
+  {
+    id: '2',
     title: 'The Build-First Trap',
     slug: 'build-first-trap',
     description: 'Why most teams waste 6 months building the wrong thing—and how specs fail before you even start coding.',
@@ -31,7 +39,7 @@ const essays: Essay[] = [
     category: 'Problem'
   },
   {
-    id: '2',
+    id: '3',
     title: 'Build-to-Think Methodology',
     slug: 'build-to-think',
     description: 'The systematic framework for de-risking development through rapid prototyping and validated decisions.',
@@ -39,7 +47,7 @@ const essays: Essay[] = [
     category: 'Methodology'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Spec vs Prototype',
     slug: 'spec-vs-prototype',
     description: 'Why experiencing beats describing. The fundamental difference between documentation and validation.',
@@ -47,7 +55,7 @@ const essays: Essay[] = [
     category: 'Methodology'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Methodology Origins',
     slug: 'methodology-origins',
     description: '7 years at Meta Reality Labs shipping AR/AI products to billions. Where Rationale\'s approach comes from.',
