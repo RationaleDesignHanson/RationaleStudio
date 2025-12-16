@@ -52,7 +52,7 @@ export async function validatePitchAccess(
 ): Promise<PitchValidationResult> {
   try {
     // Find pitch access record by company slug and token
-    const db = await getAdminDb();
+    const db = getAdminDb();
     const accessSnapshot = await db
       .collection('outbound_pitches')
       .where('companySlug', '==', companySlug)
@@ -151,7 +151,7 @@ async function trackPitchView(
   username: string | null
 ): Promise<void> {
   try {
-    const db = await getAdminDb();
+    const db = getAdminDb();
     await db.collection('pitch_analytics').add({
       pitchId,
       clientIP,
@@ -201,7 +201,7 @@ export async function createPitchAccess(
     },
   };
 
-  const db = await getAdminDb();
+  const db = getAdminDb();
   const docRef = await db.collection('outbound_pitches').add(pitchData);
 
   return {
@@ -215,7 +215,7 @@ export async function createPitchAccess(
  * Revoke pitch access
  */
 export async function revokePitchAccess(pitchId: string): Promise<void> {
-  const db = await getAdminDb();
+  const db = getAdminDb();
   await db.collection('outbound_pitches').doc(pitchId).update({
     isRevoked: true,
   });
@@ -228,7 +228,7 @@ export async function extendPitchAccess(
   pitchId: string,
   additionalDays: number
 ): Promise<Date> {
-  const db = await getAdminDb();
+  const db = getAdminDb();
   const doc = await db.collection('outbound_pitches').doc(pitchId).get();
 
   if (!doc.exists) {
@@ -258,7 +258,7 @@ export async function extendPitchAccess(
  * Get all pitch accesses for a company
  */
 export async function getPitchAccesses(companySlug: string): Promise<PitchAccess[]> {
-  const db = await getAdminDb();
+  const db = getAdminDb();
   const snapshot = await db
     .collection('outbound_pitches')
     .where('companySlug', '==', companySlug)
@@ -278,7 +278,7 @@ export async function getPitchAccesses(companySlug: string): Promise<PitchAccess
  * Get pitch analytics
  */
 export async function getPitchAnalytics(pitchId: string) {
-  const db = await getAdminDb();
+  const db = getAdminDb();
   const snapshot = await db
     .collection('pitch_analytics')
     .where('pitchId', '==', pitchId)

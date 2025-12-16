@@ -14,11 +14,9 @@
  *    - FIREBASE_SERVICE_ACCOUNT_PATH=/path/to/serviceAccountKey.json
  */
 
-// Dynamic imports to avoid bundling firebase-admin
-// All imports are done at runtime, not build time
-type App = any;
-type Auth = any;
-type Firestore = any;
+import { initializeApp, getApps, cert, App } from 'firebase-admin/app';
+import { getAuth, Auth } from 'firebase-admin/auth';
+import { getFirestore, Firestore } from 'firebase-admin/firestore';
 
 let adminApp: App | undefined;
 let adminAuth: Auth | undefined;
@@ -28,16 +26,11 @@ let _adminDb: Firestore | undefined;
  * Initialize Firebase Admin SDK
  * Only initializes once (singleton pattern)
  */
-async function initializeFirebaseAdmin(): Promise<{ app: App; auth: Auth; db: Firestore }> {
+function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
   // Return existing instance if already initialized
   if (adminApp && adminAuth && _adminDb) {
     return { app: adminApp, auth: adminAuth, db: _adminDb };
   }
-
-  // Dynamic imports - only loaded at runtime
-  const { initializeApp, getApps, cert } = await import('firebase-admin/app');
-  const { getAuth } = await import('firebase-admin/auth');
-  const { getFirestore } = await import('firebase-admin/firestore');
 
   // Check if already initialized by another module
   const existingApps = getApps();
@@ -120,7 +113,7 @@ async function initializeFirebaseAdmin(): Promise<{ app: App; auth: Auth; db: Fi
  */
 export async function verifyIdToken(idToken: string) {
   try {
-    const { auth } = await initializeFirebaseAdmin();
+    const { auth } = initializeFirebaseAdmin();
     const decodedToken = await auth.verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
@@ -137,7 +130,7 @@ export async function verifyIdToken(idToken: string) {
  */
 export async function getUserByUid(uid: string) {
   try {
-    const { auth } = await initializeFirebaseAdmin();
+    const { auth } = initializeFirebaseAdmin();
     const userRecord = await auth.getUser(uid);
     return userRecord;
   } catch (error) {
@@ -154,7 +147,7 @@ export async function getUserByUid(uid: string) {
  */
 export async function setCustomUserClaims(uid: string, claims: Record<string, any>) {
   try {
-    const { auth } = await initializeFirebaseAdmin();
+    const { auth } = initializeFirebaseAdmin();
     await auth.setCustomUserClaims(uid, claims);
     console.log(`[Firebase Admin] Custom claims set for user ${uid}:`, claims);
   } catch (error) {
@@ -175,7 +168,7 @@ export async function createCustomToken(
   additionalClaims?: Record<string, any>
 ) {
   try {
-    const { auth } = await initializeFirebaseAdmin();
+    const { auth } = initializeFirebaseAdmin();
     const customToken = await auth.createCustomToken(uid, additionalClaims);
     return customToken;
   } catch (error) {
@@ -185,13 +178,13 @@ export async function createCustomToken(
 }
 
 // Export admin instances for advanced use cases
-export async function getAdminAuth(): Promise<Auth> {
-  const { auth } = await initializeFirebaseAdmin();
+export function getAdminAuth(): Auth {
+  const { auth } = initializeFirebaseAdmin();
   return auth;
 }
 
-export async function getAdminApp(): Promise<App> {
-  const { app } = await initializeFirebaseAdmin();
+export function getAdminApp(): App {
+  const { app } = initializeFirebaseAdmin();
   return app;
 }
 
@@ -204,8 +197,7 @@ export async function getAdminApp(): Promise<App> {
  */
 export async function getAdminUserProfile(uid: string) {
   try {
-    const { getFirestore } = await import('firebase-admin/firestore');
-    const { app } = await initializeFirebaseAdmin();
+    const { app } = initializeFirebaseAdmin();
     const db = getFirestore(app);
 
     const userDoc = await db.collection('users').doc(uid).get();
@@ -234,7 +226,7 @@ export async function getAdminUserProfile(uid: string) {
  * Get Firestore instance (server-side only)
  * Use this for direct database access in API routes and server components
  */
-export async function getAdminDb(): Promise<Firestore> {
-  const { db } = await initializeFirebaseAdmin();
+export function getAdminDb(): Firestore {
+  const { db } = initializeFirebaseAdmin();
   return db;
 }

@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify session cookie using Firebase Admin SDK
-    const adminAuth = await getAdminAuth();
+    const adminAuth = getAdminAuth();
     const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie, true);
     const uid = decodedClaims.uid;
 
