@@ -107,9 +107,9 @@ export interface CaseStudyTeaser {
   impact: string[];
   tech?: string;
   // Metadata displayed consistently across cards
-  timeline: string;
   stage: string;
-  type: string;
+  market: string;
+  status: string;
 }
 
 // ============================================================================
@@ -427,9 +427,9 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     highlights: ['6-week prototype partnership', 'Real-time content indexing', 'Multi-agent system', 'Browser extension prototypes'],
     impact: ['Investor-ready prototype', 'Cultural AI understanding', 'Scalable architecture', 'PRD-ready system'],
     tech: 'JavaScript, Multi-agent architecture, Browser extensions',
-    timeline: '6 weeks',
-    stage: 'In Development',
-    type: 'Prototype Partnership'
+    stage: 'Prototype',
+    market: 'Content Discovery',
+    status: 'In Development'
   },
   {
     slug: 'zero',
@@ -441,9 +441,9 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     highlights: ['Web + iOS native app', 'Equity partnership', '7+ action types', 'Haptic feedback system'],
     impact: ['3-5 second triage per email', 'Eliminated context-switching', 'Mobile-optimized', 'Active development'],
     tech: 'React, SwiftUI, Node.js, Gemini AI',
-    timeline: 'Ongoing',
-    stage: 'Active Development',
-    type: 'Equity Partnership'
+    stage: 'Production',
+    market: 'Productivity',
+    status: 'Active Development'
   },
   {
     slug: 'amplify',
@@ -455,9 +455,9 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     highlights: ['Platform prototype', 'NIL + AI model', '8-week delivery', 'Strategic partnership'],
     impact: ['Scales athlete presence', 'No constant shoots needed', 'NIL + generative media coexistence'],
     tech: 'Generative AI, Platform architecture',
-    timeline: '8 weeks',
-    stage: 'Prototype Complete',
-    type: 'Strategic Partnership'
+    stage: 'Prototype',
+    market: 'Sports & NIL',
+    status: 'In Development'
   },
   {
     slug: 'atlas',
@@ -466,26 +466,26 @@ export const caseStudyTeasers: CaseStudyTeaser[] = [
     tags: ['AI', 'Real Estate', 'B2B'],
     challenge: 'Commercial real estate data is scattered across platforms, making it hard to find and act on opportunities',
     solution: ['Unified intelligence layer', 'Real-time data aggregation', 'Broker workflow integration', 'Opportunity detection'],
-    highlights: ['Product positioning', 'Intelligence system design', '6-week sprint', 'Investor-ready prototype'],
+    highlights: ['Product positioning', 'Intelligence system design', 'Strategic partnership', 'Investor-ready prototype'],
     impact: ['Clear product positioning', 'Unified CRE data', 'Actionable workflows', 'Broker intelligence layer'],
     tech: 'Data aggregation, AI intelligence, B2B platform',
-    timeline: '6 weeks',
-    stage: 'Prototype Complete',
-    type: 'Strategic Partnership'
+    stage: 'Prototype',
+    market: 'Commercial RE',
+    status: 'In Development'
   },
   {
     slug: 'sanitary-waste-system',
     title: '040',
-    tagline: 'Prototyping',
+    tagline: 'New category in pet care',
     tags: ['Physical Product', 'IP Development', 'Pre-Seed'],
-    challenge: 'Physical product in prototyping',
+    challenge: 'Turning a hated moment into a premium hygiene system',
     solution: ['Absorbent-lined containment system', 'Interfolded flat-pack format', 'Proprietary dispenser ecosystem'],
     highlights: ['Pre-seed fundraising', 'IP development', 'Manufacturing strategy', 'Retail beta plan'],
     impact: ['$435M+ market opportunity', 'Razor-blade business model', 'Format + dispenser lock-in'],
     tech: 'Airlaid non-woven, PBAT/LDPE film, Interfold technology',
-    timeline: 'Pre-Seed Phase',
     stage: 'Prototyping',
-    type: 'IP Development Partnership'
+    market: 'Pet Care',
+    status: 'Pre-Seed'
   }
 ];
 

@@ -87,16 +87,16 @@ export function CaseStudyTeaser({ caseStudy, className = '' }: CaseStudyTeaserPr
         <div className="mb-4 pb-4 border-b border-border">
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div>
-              <p className="text-muted/60 uppercase tracking-wide mb-1">Timeline</p>
-              <p className="text-muted font-medium">{caseStudy.timeline}</p>
-            </div>
-            <div>
               <p className="text-muted/60 uppercase tracking-wide mb-1">Stage</p>
               <p className="text-muted font-medium">{caseStudy.stage}</p>
             </div>
             <div>
-              <p className="text-muted/60 uppercase tracking-wide mb-1">Type</p>
-              <p className="text-muted font-medium">{caseStudy.type}</p>
+              <p className="text-muted/60 uppercase tracking-wide mb-1">Market</p>
+              <p className="text-muted font-medium">{caseStudy.market}</p>
+            </div>
+            <div>
+              <p className="text-muted/60 uppercase tracking-wide mb-1">Status</p>
+              <p className="text-muted font-medium">{caseStudy.status}</p>
             </div>
           </div>
         </div>

@@ -112,7 +112,9 @@ export function Header() {
           {/* Logo / Brand - Responsive */}
           <Link
             href="/"
-            className="text-xs sm:text-base lg:text-xl tracking-tight text-gray-50 transition-colors hover:text-terminal-gold flex-shrink-0"
+            className={`text-xs sm:text-base lg:text-xl tracking-tight transition-colors hover:text-terminal-gold flex-shrink-0 ${
+              pathname.startsWith('/investors') ? 'text-terminal-gold' : 'text-gray-50'
+            }`}
           >
             {pathname === '/' ? (
               <span className="font-semibold text-2xl sm:text-3xl lg:text-4xl">®</span>
