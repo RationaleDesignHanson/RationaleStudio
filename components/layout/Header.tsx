@@ -116,14 +116,8 @@ export function Header() {
               pathname.startsWith('/investors') ? 'text-terminal-gold' : 'text-gray-50'
             }`}
           >
-            {pathname === '/' ? (
-              <span className="font-semibold text-2xl sm:text-3xl lg:text-4xl">®</span>
-            ) : (
-              <>
-                <span className="font-semibold whitespace-nowrap">Rationale: </span>
-                <span className="font-light hidden xl:inline">Your Product Design Company</span>
-              </>
-            )}
+            <span className="font-semibold whitespace-nowrap">Rationale: </span>
+            <span className="font-light hidden xl:inline">Your Product Design Company</span>
           </Link>
 
           {/* Navigation - Hidden on mobile */}
@@ -138,7 +132,7 @@ export function Header() {
 
               if (hasDropdown) {
                 return (
-                  <>
+                  <React.Fragment key={link.label}>
                     {/* Inject role-based links before this item if needed */}
                     {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
                       <Link
@@ -151,7 +145,7 @@ export function Header() {
                         {roleLink.label}
                       </Link>
                     ))}
-                    <div key={link.label} className="relative">
+                    <div className="relative">
                     <button
                       onClick={() => !isDisabled && setOpenDropdown(isDropdownOpen ? null : link.label)}
                       onKeyDown={(e) => !isDisabled && handleKeyDown(e, link.label)}
@@ -212,7 +206,7 @@ export function Header() {
                       </div>
                     )}
                   </div>
-                  </>
+                  </React.Fragment>
                 );
               }
 
@@ -282,7 +276,7 @@ export function Header() {
 
               if (hasDropdown) {
                 return (
-                  <>
+                  <React.Fragment key={link.label}>
                     {/* Inject role-based links before this item if needed */}
                     {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
                       <Link
@@ -296,7 +290,7 @@ export function Header() {
                         {roleLink.label}
                       </Link>
                     ))}
-                    <div key={link.label}>
+                    <div>
                     <button
                       onClick={() => !isDisabled && setExpandedMobileDropdown(isExpanded ? null : link.label)}
                       disabled={isDisabled}
@@ -356,12 +350,12 @@ export function Header() {
                       })}
                     </div>
                   </div>
-                  </>
+                  </React.Fragment>
                 );
               }
 
               return (
-                <>
+                <React.Fragment key={link.href}>
                   {/* Inject role-based links before this item if needed */}
                   {shouldInjectRoleLinks && roleBasedLinks.map((roleLink) => (
                     <Link
@@ -376,7 +370,6 @@ export function Header() {
                     </Link>
                   ))}
                   <Link
-                    key={link.href}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`block px-4 py-4 text-sm font-medium transition-colors hover:text-terminal-gold min-h-[48px] flex items-center ${
@@ -385,7 +378,7 @@ export function Header() {
                   >
                     {link.label}
                   </Link>
-                </>
+                </React.Fragment>
               );
             })}
           </nav>
