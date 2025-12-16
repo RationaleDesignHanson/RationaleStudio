@@ -1022,6 +1022,11 @@ def generate_bulk_images():
         print(f"Error in generate_bulk_images: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route(x27/healthx27)
+def health_check():
+    """Health check endpoint for monitoring."""
+    return jsonify({x27statusx27: x27okx27, x27servicex27: x27fubo-thumbnail-generatorx27}), 200
+
 @app.route('/')
 def serve_index():
     """Serve the main HTML file (v6.0 with sidebar UX)."""
