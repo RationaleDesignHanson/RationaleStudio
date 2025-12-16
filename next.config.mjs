@@ -24,7 +24,6 @@ const nextConfig = {
         'node_modules/@swc/**/*',
         'node_modules/webpack/**/*',
         'node_modules/terser/**/*',
-        'node_modules/next/dist/compiled/**/*',
       ],
     },
   },
