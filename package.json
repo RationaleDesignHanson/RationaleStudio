@@ -39,6 +39,7 @@
     "@react-email/components": "^1.0.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
+    "@sentry/nextjs": "^10.31.0",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/postcss": "^4.1.17",
