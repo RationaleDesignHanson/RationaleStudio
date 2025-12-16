@@ -1,0 +1,9 @@
+public/**
+.git/**
+node_modules/**
+.next/**
+tests/**
+playwright-report/**
+_archive/**
+docs/**
+*.md
