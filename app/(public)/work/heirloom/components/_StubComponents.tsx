@@ -4,8 +4,8 @@
 // Stub implementations for remaining sections
 // Replace with actual implementations as needed
 
-import TechnicalArchitectureDiagram from './diagrams/TechnicalArchitectureDiagram'
-import TimelineVisualization from './diagrams/TimelineVisualization'
+import TechnicalArchitectureDiagram from '@/components/heirloom/diagrams/TechnicalArchitectureDiagram'
+import TimelineVisualization from '@/components/heirloom/diagrams/TimelineVisualization'
 import OutcomesDashboard from './OutcomesDashboard'
 import DesignSystemTokens from './DesignSystemTokens'
 

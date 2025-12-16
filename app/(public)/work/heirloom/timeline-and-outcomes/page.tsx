@@ -4,7 +4,7 @@
 // Heirloom Timeline and Outcomes Detail Page
 
 import Link from 'next/link'
-import UserJourneyMap from '../components/diagrams/UserJourneyMap'
+import UserJourneyDiagram from '@/components/heirloom/diagrams/UserJourneyDiagram'
 import { Timeline, Outcomes, LessonsLearned } from '../components/_StubComponents'
 import FinalCTA from '../components/FinalCTA'
 
@@ -50,7 +50,7 @@ export default function HeirloomTimelineAndOutcomesPage() {
       {/* User Journey Map */}
       <section className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <UserJourneyMap />
+          <UserJourneyDiagram />
         </div>
       </section>
 

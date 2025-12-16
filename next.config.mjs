@@ -15,11 +15,6 @@ const nextConfig = {
   // Disable X-Powered-By header for security
   poweredByHeader: false,
 
-  // Enable instrumentation for monitoring (Sentry)
-  experimental: {
-    instrumentationHook: true,
-  },
-
   // Exclude public assets from serverless bundle tracing (Next.js 16+)
   outputFileTracingExcludes: {
     '*': ['public/**'],
