@@ -14,11 +14,11 @@
  *    - FIREBASE_SERVICE_ACCOUNT_PATH=/path/to/serviceAccountKey.json
  */
 
-import { initializeApp, getApps, cert, App } from 'firebase-admin/app';
-import { getAuth, Auth } from 'firebase-admin/auth';
-import { getFirestore, Firestore } from 'firebase-admin/firestore';
-import * as fs from 'fs';
-import * as path from 'path';
+// Dynamic imports to avoid bundling firebase-admin
+// All imports are done at runtime, not build time
+type App = any;
+type Auth = any;
+type Firestore = any;
 
 let adminApp: App | undefined;
 let adminAuth: Auth | undefined;
@@ -28,11 +28,16 @@ let _adminDb: Firestore | undefined;
  * Initialize Firebase Admin SDK
  * Only initializes once (singleton pattern)
  */
-function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
+async function initializeFirebaseAdmin(): Promise<{ app: App; auth: Auth; db: Firestore }> {
   // Return existing instance if already initialized
   if (adminApp && adminAuth && _adminDb) {
     return { app: adminApp, auth: adminAuth, db: _adminDb };
   }
+
+  // Dynamic imports - only loaded at runtime
+  const { initializeApp, getApps, cert } = await import('firebase-admin/app');
+  const { getAuth } = await import('firebase-admin/auth');
+  const { getFirestore } = await import('firebase-admin/firestore');
 
   // Check if already initialized by another module
   const existingApps = getApps();
