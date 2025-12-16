@@ -14,7 +14,8 @@
     "test:visual:report": "playwright show-report",
     "analyze": "ANALYZE=true next build --webpack",
     "analyze:server": "ANALYZE=true BUNDLE_ANALYZE=server next build --webpack",
-    "analyze:browser": "ANALYZE=true BUNDLE_ANALYZE=browser next build --webpack"
+    "analyze:browser": "ANALYZE=true BUNDLE_ANALYZE=browser next build --webpack",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -48,10 +49,10 @@
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.555.0",
     "mermaid": "^11.12.2",
-    "next": "^16.0.7",
-    "react": "^19.2.0",
+    "next": "^16.0.10",
+    "react": "^19.2.3",
     "react-circular-progressbar": "^2.2.0",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19.2.3",
     "react-use-gesture": "^9.1.3",
     "react-zoom-pan-pinch": "^3.7.0",
     "recharts": "^2.15.4",
@@ -73,6 +74,7 @@
     "eslint-config-next": "^16.0.6",
     "eslint-config-prettier": "^10.1.8",
     "glob": "^13.0.0",
+    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
     "sharp": "^0.34.5",
