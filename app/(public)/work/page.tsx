@@ -342,10 +342,17 @@ export default function WorkPage() {
                 }
               };
 
+              // Determine the correct href based on auth status and quick overview availability
+              const cardHref = isAuthenticated && hasQuickOverview && project.slug === 'sanitary-waste-system'
+                ? '/clients/work/sanitary-waste-system/quick-overview'
+                : isAuthenticated && hasQuickOverview
+                ? `/work/${overviewSlug}/overview`
+                : `/work/${project.slug}`;
+
               return (
                 <div key={project.id} className="relative h-full w-full">
                   <Link
-                    href={`/work/${project.slug}`}
+                    href={cardHref}
                     className={`group block h-full w-full ${needsBlur ? 'cursor-pointer' : ''}`}
                     onClick={handleCardClick}
                   >
