@@ -14,8 +14,17 @@
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  node_bundler = "nft"
-  external_node_modules = ["firebase-admin"]
+  node_bundler = "esbuild"
+  external_node_modules = [
+    "firebase-admin",
+    "@google-cloud/firestore",
+    "@google-cloud/storage",
+    "@google-cloud/functions-framework",
+    "google-auth-library",
+    "googleapis",
+    "gaxios",
+    "gcp-metadata"
+  ]
 
 [[functions."*"]]
   timeout = 26
