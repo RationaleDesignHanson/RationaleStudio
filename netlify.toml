@@ -14,7 +14,7 @@
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  node_bundler = "esbuild"
+  node_bundler = "nft"
 
 [[functions."*"]]
   timeout = 26
