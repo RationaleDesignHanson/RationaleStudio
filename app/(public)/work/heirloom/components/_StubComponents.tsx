@@ -36,13 +36,13 @@ export function DesignSystem() {
                 <div className="text-xs text-gray-500">Primary Accent</div>
               </div>
               <div>
-                <div className="h-32 rounded-lg mb-3" style={{ backgroundColor: '#F4A261' }}></div>
+                <div className="h-32 rounded-lg mb-3" style={{ backgroundColor: 'var(--color-heirloom-orange)' }}></div>
                 <div className="font-semibold text-[#2D2D2D]">Amber</div>
                 <div className="text-sm text-gray-600">#F4A261</div>
                 <div className="text-xs text-gray-500">Secondary Accent</div>
               </div>
               <div>
-                <div className="h-32 rounded-lg mb-3" style={{ backgroundColor: '#2A9D8F' }}></div>
+                <div className="h-32 rounded-lg mb-3" style={{ backgroundColor: 'var(--color-heirloom-teal)' }}></div>
                 <div className="font-semibold text-[#2D2D2D]">Sage</div>
                 <div className="text-sm text-gray-600">#2A9D8F</div>
                 <div className="text-xs text-gray-500">Success States</div>

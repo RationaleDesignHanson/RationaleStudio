@@ -72,7 +72,7 @@ export default function AboutPage() {
 
           <div className="space-y-6 mb-8">
             {/* Insight 1 */}
-            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00D9FF' }}>
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: 'var(--color-zero-cyan)' }}>
               <h3 className="text-xl font-bold text-white mb-2">Specs Failed in Predictable Ways</h3>
               <p className="text-gray-300 leading-relaxed">
                 Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory. You can't spec your way to understanding those.
@@ -80,7 +80,7 @@ export default function AboutPage() {
             </div>
 
             {/* Insight 2 */}
-            <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#00FF94' }}>
+            <div className="border-l-4 pl-6 py-4" style={{ borderColor: 'var(--color-zero-green)' }}>
               <h3 className="text-xl font-bold text-white mb-2">Prototypes Revealed Truth</h3>
               <p className="text-gray-300 leading-relaxed">
                 Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. They misunderstand affordances. All discoverable in hours, not months.

@@ -128,7 +128,7 @@ const btnContainer = {
 }
 
 const button = {
-  backgroundColor: '#E85D4D',
+  backgroundColor: 'var(--color-heirloom-coral)',
   borderRadius: '8px',
   color: '#ffffff',
   fontSize: '16px',
@@ -140,7 +140,7 @@ const button = {
 }
 
 const link = {
-  color: '#E85D4D',
+  color: 'var(--color-heirloom-coral)',
   textDecoration: 'underline',
 }
 

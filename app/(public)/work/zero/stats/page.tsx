@@ -129,7 +129,7 @@ function EnhancedQuickStats() {
       label: "Intent Categories",
       value: "43",
       description: "Classified types",
-      color: "#FFD700"
+      color: "var(--color-terminal-gold)"
     },
     {
       label: "Baseline Accuracy",
@@ -149,7 +149,7 @@ function EnhancedQuickStats() {
       value: "100%",
       progress: 100,
       description: "Perfect recall",
-      color: "#F59E0B"
+      color: "var(--color-warning)"
     }
   ];
 
@@ -171,7 +171,7 @@ function EnhancedQuickStatsFullWidth() {
       label: "Intent Categories",
       value: "43",
       description: "From billing to travel, covering common business email types",
-      color: "#FFD700"
+      color: "var(--color-terminal-gold)"
     },
     {
       label: "Baseline Accuracy",
@@ -191,7 +191,7 @@ function EnhancedQuickStatsFullWidth() {
       value: "100%",
       progress: 100,
       description: "Perfect identification of required actions and deadlines",
-      color: "#F59E0B"
+      color: "var(--color-warning)"
     }
   ];
 

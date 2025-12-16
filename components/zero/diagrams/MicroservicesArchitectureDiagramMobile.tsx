@@ -214,7 +214,7 @@ export default function MicroservicesArchitectureDiagramMobile() {
                   onClick={() => toggleGroup(group.id)}
                   className="w-full p-4 rounded-lg border-2 transition-all text-left"
                   style={{
-                    backgroundColor: isExpanded ? '#2D3748' : '#1A202C',
+                    backgroundColor: isExpanded ? '#2D3748' : 'var(--color-text-charcoal)',
                     borderColor: group.color
                   }}
                 >
@@ -258,7 +258,7 @@ export default function MicroservicesArchitectureDiagramMobile() {
                             onClick={() => toggleService(service.id)}
                             className="w-full p-3 rounded-lg border transition-all text-left"
                             style={{
-                              backgroundColor: isServiceExpanded ? '#2D3748' : '#1A202C',
+                              backgroundColor: isServiceExpanded ? '#2D3748' : 'var(--color-text-charcoal)',
                               borderColor: isServiceExpanded ? service.color : '#4A5568'
                             }}
                           >

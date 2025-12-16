@@ -45,10 +45,10 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
   }
 
   const recipes: Recipe[] = [
-    { id: '1', name: 'Roasted Chicken', cookTime: 75, prepTime: 15, servings: 4, color: '#E85D4D' },
-    { id: '2', name: 'Garlic Mashed Potatoes', cookTime: 20, prepTime: 10, servings: 4, color: '#F4A261' },
-    { id: '3', name: 'Green Bean Casserole', cookTime: 25, prepTime: 15, servings: 6, color: '#2A9D8F' },
-    { id: '4', name: 'Apple Pie', cookTime: 50, prepTime: 30, servings: 8, color: '#8B9F8D' },
+    { id: '1', name: 'Roasted Chicken', cookTime: 75, prepTime: 15, servings: 4, color: 'var(--color-heirloom-coral)' },
+    { id: '2', name: 'Garlic Mashed Potatoes', cookTime: 20, prepTime: 10, servings: 4, color: 'var(--color-heirloom-orange)' },
+    { id: '3', name: 'Green Bean Casserole', cookTime: 25, prepTime: 15, servings: 6, color: 'var(--color-heirloom-teal)' },
+    { id: '4', name: 'Apple Pie', cookTime: 50, prepTime: 30, servings: 8, color: 'var(--color-heirloom-sage)' },
   ]
 
   // Calculate timeline (simplified)
@@ -61,7 +61,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
       time: `${dinnerHour - 3}:00`,
       recipe: 'Apple Pie',
       action: 'Start prep (30 min prep + 50 min bake + cooling)',
-      color: '#8B9F8D'
+      color: 'var(--color-heirloom-sage)'
     })
 
     // Chicken (longest cook time)
@@ -69,14 +69,14 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
       time: `${dinnerHour - 2}:00`,
       recipe: 'Roasted Chicken',
       action: 'Start prep (season and truss)',
-      color: '#E85D4D'
+      color: 'var(--color-heirloom-coral)'
     })
 
     events.push({
       time: `${dinnerHour - 1}:45`,
       recipe: 'Roasted Chicken',
       action: 'Put in oven (75 min cook)',
-      color: '#E85D4D'
+      color: 'var(--color-heirloom-coral)'
     })
 
     // Green beans
@@ -84,14 +84,14 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
       time: `${dinnerHour - 1}:00`,
       recipe: 'Green Bean Casserole',
       action: 'Start prep (trim and blanch)',
-      color: '#2A9D8F'
+      color: 'var(--color-heirloom-teal)'
     })
 
     events.push({
       time: `${dinnerHour}:${45 - 25}`,
       recipe: 'Green Bean Casserole',
       action: 'Put in oven (25 min)',
-      color: '#2A9D8F'
+      color: 'var(--color-heirloom-teal)'
     })
 
     // Potatoes (last, to stay hot)
@@ -99,14 +99,14 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
       time: `${dinnerHour}:${30}`,
       recipe: 'Mashed Potatoes',
       action: 'Start boiling potatoes',
-      color: '#F4A261'
+      color: 'var(--color-heirloom-orange)'
     })
 
     events.push({
       time: dinnerTime,
       recipe: 'Dinner Time!',
       action: 'Everything ready to serve',
-      color: '#FFD700'
+      color: 'var(--color-terminal-gold)'
     })
 
     return events
@@ -119,12 +119,12 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Timeline Panel */}
         <div>
-          <h3 className="text-lg font-bold text-[#2D2D2D] mb-4">Cooking Timeline</h3>
+          <h3 className="text-lg font-bold text-[var(--color-text-dark)] mb-4">Cooking Timeline</h3>
 
           {/* Settings */}
           <div className="mb-6 space-y-3 bg-white rounded-lg border-2 border-gray-200 p-4">
             <div>
-              <label className="block text-sm font-semibold text-[#2D2D2D] mb-2">
+              <label className="block text-sm font-semibold text-[var(--color-text-dark)] mb-2">
                 Number of Guests
               </label>
               <input
@@ -133,24 +133,24 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
                 onChange={(e) => setGuests(parseInt(e.target.value) || 4)}
                 min="2"
                 max="20"
-                className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:border-[#E85D4D] focus:outline-none"
+                className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:border-[var(--color-heirloom-coral)] focus:outline-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-[#2D2D2D] mb-2">
+              <label className="block text-sm font-semibold text-[var(--color-text-dark)] mb-2">
                 Dinner Time
               </label>
               <input
                 type="time"
                 value={dinnerTime}
                 onChange={(e) => setDinnerTime(e.target.value)}
-                className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:border-[#E85D4D] focus:outline-none"
+                className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:border-[var(--color-heirloom-coral)] focus:outline-none"
               />
             </div>
           </div>
 
           {/* Timeline */}
-          <div className="bg-white rounded-xl border-2 border-[#E85D4D]/20 p-6 space-y-3 max-h-[400px] overflow-y-auto">
+          <div className="bg-white rounded-xl border-2 border-[var(--color-heirloom-coral)]/20 p-6 space-y-3 max-h-[400px] overflow-y-auto">
             {timeline.map((event, idx) => (
               <div
                 key={idx}
@@ -162,7 +162,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
                   </span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-[#2D2D2D]">{event.recipe}</p>
+                  <p className="text-sm font-semibold text-[var(--color-text-dark)]">{event.recipe}</p>
                   <p className="text-xs text-gray-600 mt-1">{event.action}</p>
                 </div>
                 <div
@@ -176,7 +176,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
 
         {/* Recipe Cards & Features */}
         <div className="space-y-4">
-          <h3 className="text-lg font-bold text-[#2D2D2D]">Selected Recipes</h3>
+          <h3 className="text-lg font-bold text-[var(--color-text-dark)]">Selected Recipes</h3>
 
           {/* Recipe Cards */}
           <div className="grid grid-cols-2 gap-3">
@@ -186,13 +186,13 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
                 className="rounded-lg border-2 p-3 cursor-pointer hover:scale-105 transition-transform"
                 style={{ borderColor: recipe.color }}
               >
-                <p className="font-semibold text-sm text-[#2D2D2D]">{recipe.name}</p>
+                <p className="font-semibold text-sm text-[var(--color-text-dark)]">{recipe.name}</p>
                 <div className="mt-2 space-y-1 text-xs text-gray-600">
                   <p> {recipe.prepTime + recipe.cookTime} min total</p>
                   <p>
                     👥 Serves {recipe.servings}
                     {guests > recipe.servings && (
-                      <span className="ml-1 text-[#E85D4D] font-semibold">
+                      <span className="ml-1 text-[var(--color-heirloom-coral)] font-semibold">
                         (×{Math.ceil(guests / recipe.servings)})
                       </span>
                     )}
@@ -208,7 +208,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
               <div className="flex items-start gap-3">
                 <span className="text-2xl"></span>
                 <div>
-                  <p className="font-semibold text-[#2D2D2D] text-sm">Smart Timeline</p>
+                  <p className="font-semibold text-[var(--color-text-dark)] text-sm">Smart Timeline</p>
                   <p className="text-xs text-gray-600 mt-1">
                     Automatically sequences recipes so everything finishes at dinner time. Accounts for cooling, resting, and keeping warm.
                   </p>
@@ -220,7 +220,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
               <div className="flex items-start gap-3">
                 <span className="text-2xl"></span>
                 <div>
-                  <p className="font-semibold text-[#2D2D2D] text-sm">Auto-Scaling</p>
+                  <p className="font-semibold text-[var(--color-text-dark)] text-sm">Auto-Scaling</p>
                   <p className="text-xs text-gray-600 mt-1">
                     Ingredients automatically scale based on guest count. 6 guests + 4-serving recipe = 1.5x ingredients.
                   </p>
@@ -232,7 +232,7 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
               <div className="flex items-start gap-3">
                 <span className="text-2xl"></span>
                 <div>
-                  <p className="font-semibold text-[#2D2D2D] text-sm">Reminders</p>
+                  <p className="font-semibold text-[var(--color-text-dark)] text-sm">Reminders</p>
                   <p className="text-xs text-gray-600 mt-1">
                     Get notifications for each step. "Start prepping mashed potatoes in 15 minutes."
                   </p>
@@ -247,8 +247,8 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
             disabled={addedToList}
             className={`mt-6 w-full px-6 py-4 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
               addedToList
-                ? 'bg-[#2A9D8F] text-white cursor-default'
-                : 'bg-[#E85D4D] text-white hover:bg-[#d54d3d] hover:shadow-lg'
+                ? 'bg-[var(--color-heirloom-teal)] text-white cursor-default'
+                : 'bg-[var(--color-heirloom-coral)] text-white hover:bg-[#d54d3d] hover:shadow-lg'
             }`}
           >
             {addedToList ? (
@@ -265,17 +265,17 @@ export function DinnerPartyDemo({ onAddToShoppingList }: DinnerPartyDemoProps) {
           </button>
 
           {addedToList && (
-            <div className="mt-3 rounded-lg bg-[#2A9D8F]/10 border border-[#2A9D8F] p-3 text-center">
+            <div className="mt-3 rounded-lg bg-[var(--color-heirloom-teal)]/10 border border-[var(--color-heirloom-teal)] p-3 text-center">
               <p className="text-xs text-gray-700">
-                <span className="font-bold text-[#2A9D8F]">Success!</span> Switch to the Shopping List tab to see all 4 dinner party recipes aggregated with your existing list.
+                <span className="font-bold text-[var(--color-heirloom-teal)]">Success!</span> Switch to the Shopping List tab to see all 4 dinner party recipes aggregated with your existing list.
               </p>
             </div>
           )}
 
           {/* Stats */}
-          <div className="mt-4 rounded-lg bg-[#E85D4D]/10 p-4 text-center">
+          <div className="mt-4 rounded-lg bg-[var(--color-heirloom-coral)]/10 p-4 text-center">
             <p className="text-xs text-gray-700">
-              <span className="font-bold text-[#E85D4D]">Dinner party mode</span> was tested with 12 beta users hosting Thanksgiving meals - all reported reduced stress and better timing.
+              <span className="font-bold text-[var(--color-heirloom-coral)]">Dinner party mode</span> was tested with 12 beta users hosting Thanksgiving meals - all reported reduced stress and better timing.
             </p>
           </div>
         </div>

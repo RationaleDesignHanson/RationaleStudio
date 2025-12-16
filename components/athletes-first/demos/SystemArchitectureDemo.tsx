@@ -196,10 +196,10 @@ const CONNECTIONS: Connection[] = [
 ];
 
 const DATA_TYPE_COLORS = {
-  'user-data': '#3B82F6',
+  'user-data': 'var(--color-data-blue)',
   'content': '#8B5CF6',
-  'payments': '#10B981',
-  'ai-processing': '#F59E0B'
+  'payments': 'var(--color-success)',
+  'ai-processing': 'var(--color-warning)'
 };
 
 const DATA_TYPE_LABELS = {
@@ -408,7 +408,7 @@ export default function SystemArchitectureDemo() {
                       <stop
                         offset="0%"
                         style={{
-                          stopColor: node.type === 'external' ? '#3B82F6' : node.type === 'core' ? '#8B5CF6' : '#10B981',
+                          stopColor: node.type === 'external' ? 'var(--color-data-blue)' : node.type === 'core' ? '#8B5CF6' : 'var(--color-success)',
                           stopOpacity: 0.3
                         }}
                       />
@@ -455,7 +455,7 @@ export default function SystemArchitectureDemo() {
                       height={nodeSize + 4}
                       rx="14"
                       fill="none"
-                      stroke={node.type === 'external' ? '#3B82F6' : node.type === 'core' ? '#8B5CF6' : '#10B981'}
+                      stroke={node.type === 'external' ? 'var(--color-data-blue)' : node.type === 'core' ? '#8B5CF6' : 'var(--color-success)'}
                       strokeWidth="2"
                       className="animate-pulse"
                     />

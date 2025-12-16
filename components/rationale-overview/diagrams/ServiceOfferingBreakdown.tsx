@@ -34,7 +34,7 @@ export default function ServiceOfferingBreakdown() {
       description: 'De-risk hypothesis with prototypes before heavy investment',
       duration: '3 weeks',
       investment: 50000,
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       services: [
         {
           category: 'Product Strategy',
@@ -71,7 +71,7 @@ export default function ServiceOfferingBreakdown() {
       description: 'Ship validated product from concept to real users',
       duration: '12 weeks',
       investment: 200000,
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       services: [
         {
           category: 'Full Validation Sprint (Week 1-3)',

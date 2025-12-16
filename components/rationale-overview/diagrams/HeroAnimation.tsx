@@ -53,22 +53,22 @@ export default function HeroAnimation() {
       id: 'solution',
       headline: '7 Prototypes First',
       subtext: 'Validate every assumption before production',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       icon: '✓',
       stats: [
-        { label: 'Prototypes', value: '7', color: '#00FF94' },
-        { label: 'Production pivots', value: '0', color: '#00FF94' }
+        { label: 'Prototypes', value: '7', color: 'var(--color-zero-green)' },
+        { label: 'Production pivots', value: '0', color: 'var(--color-zero-green)' }
       ]
     },
     {
       id: 'proof',
       headline: 'Zero: 30 Days to App Store',
       subtext: '10 microservices, 0 pivots, complete strategy',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       icon: '🚀',
       stats: [
-        { label: 'Time to market', value: '1 month', color: '#FFD700' },
-        { label: 'ROI multiple', value: '10-15x', color: '#FFD700' }
+        { label: 'Time to market', value: '1 month', color: 'var(--color-terminal-gold)' },
+        { label: 'ROI multiple', value: '10-15x', color: 'var(--color-terminal-gold)' }
       ]
     }
   ];
@@ -105,7 +105,7 @@ export default function HeroAnimation() {
               className="h-1 rounded-full transition-all duration-500 cursor-pointer"
               style={{
                 width: idx === currentPhase ? '48px' : '24px',
-                backgroundColor: idx === currentPhase ? phase.color : '#374151',
+                backgroundColor: idx === currentPhase ? phase.color : 'var(--color-text-gray-700)',
                 opacity: idx === currentPhase ? 1 : 0.3
               }}
               onClick={() => {

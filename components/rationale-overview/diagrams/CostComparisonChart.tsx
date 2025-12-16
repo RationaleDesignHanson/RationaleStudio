@@ -41,7 +41,7 @@ export default function CostComparisonChart() {
       label: 'Early Discovery (Rationale)',
       discoveryTime: 'Day 3',
       timeWasted: 0.5, // weeks (2.5 days)
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       breakdown: [
         '2 days building Prototype 3',
         '1 day user testing with 15 participants',
@@ -173,8 +173,8 @@ export default function CostComparisonChart() {
           <div className="text-lg font-bold text-white mb-1">12 weeks</div>
           <div className="text-xs text-gray-400">Production waste</div>
         </div>
-        <div className="p-3 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded">
-          <div className="text-xs font-mono text-[#00FF94] mb-1">RATIONALE</div>
+        <div className="p-3 bg-[var(--color-zero-green)]/10 border border-[var(--color-zero-green)]/30 rounded">
+          <div className="text-xs font-mono text-[var(--color-zero-green)] mb-1">RATIONALE</div>
           <div className="text-lg font-bold text-white mb-1">2 days</div>
           <div className="text-xs text-gray-400">Prototype pivot</div>
         </div>

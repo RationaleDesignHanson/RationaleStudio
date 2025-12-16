@@ -1,0 +1,850 @@
+/**
+ * Athletes First Pitch Deck Component
+ *
+ * Interactive presentation deck for Athletes First pilot program
+ * Linear slide-by-slide format with keyboard navigation
+ * Now using content-v2.ts as single source of truth
+ */
+
+'use client';
+
+import { useState, useEffect } from 'react';
+import { getAllSectionsV2, Section, Slide, DemoTab } from '@/lib/athletes-first/content-v2';
+import dynamic from 'next/dynamic';
+import PhaseBadge from './PhaseBadge';
+import ModuleFlowProgress from './ModuleFlowProgress';
+
+// Loading component for dynamic imports
+const LoadingComponent = () => (
+  <div className="flex items-center justify-center min-h-[400px]">
+    <div className="text-center">
+      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-400 mb-4"></div>
+      <p className="text-white/60 text-sm">Loading...</p>
+    </div>
+  </div>
+);
+
+// Dynamic import for ASCII Unified Grid (only load when needed)
+const ASCIIUnifiedGrid = dynamic(
+  () => import('@/components/visual/ASCIIUnifiedGrid').then(mod => mod.ASCIIUnifiedGrid),
+  { ssr: false, loading: () => null }
+);
+
+// Dynamically import demo components for code splitting
+const DEMO_COMPONENTS: Record<string, React.ComponentType<any>> = {
+  // Interactive Demos
+  DigitalTwinsDemo: dynamic(() => import('./demos/DigitalTwinsDemo'), { loading: () => <LoadingComponent /> }),
+  BrandCampaignDemo: dynamic(() => import('./demos/BrandCampaignDemo'), { loading: () => <LoadingComponent /> }),
+  RosterCampaignDemo: dynamic(() => import('./demos/RosterCampaignDemo'), { loading: () => <LoadingComponent /> }),
+  UnifiedVideoDigitalTwinsDemo: dynamic(() => import('./demos/UnifiedVideoDigitalTwinsDemo'), { loading: () => <LoadingComponent /> }),
+  NILAnalyzerDemo: dynamic(() => import('./demos/NILAnalyzerDemo'), { loading: () => <LoadingComponent /> }),
+  ImmersivePitchDemo: dynamic(() => import('./demos/ImmersivePitchDemo'), { loading: () => <LoadingComponent /> }),
+  ContractModelingCanvas: dynamic(() => import('./demos/ContractModelingCanvas'), { loading: () => <LoadingComponent /> }),
+  ContractModelingMobile: dynamic(() => import('./demos/ContractModelingMobile'), { loading: () => <LoadingComponent /> }),
+  UnifiedPitchExperience: dynamic(() => import('./demos/UnifiedPitchExperience'), { loading: () => <LoadingComponent /> }),
+  VisionProSpatialDemo: dynamic(() => import('./demos/VisionProSpatialDemo'), { loading: () => <LoadingComponent /> }),
+  RecruitAIDemo: dynamic(() => import('./demos/RecruitAIDemo'), { loading: () => <LoadingComponent /> }),
+  AgentToolkitDemo: dynamic(() => import('./demos/AgentToolkitDemo'), { loading: () => <LoadingComponent /> }),
+  AISTSimulatorDemo: dynamic(() => import('./demos/AISTSimulatorDemo'), { loading: () => <LoadingComponent /> }),
+  AmplifyAIDemo: dynamic(() => import('./demos/AmplifyAIDemo'), { loading: () => <LoadingComponent /> }),
+  // Platform Demos
+  PlatformWalkthroughDemo: dynamic(() => import('./demos/PlatformWalkthroughDemo'), { loading: () => <LoadingComponent /> }),
+  AthleteDashboardDemo: dynamic(() => import('./demos/AthleteDashboardDemo'), { loading: () => <LoadingComponent /> }),
+  SystemArchitectureDemo: dynamic(() => import('./demos/SystemArchitectureDemo'), { loading: () => <LoadingComponent /> }),
+  // Diagram Components (Mobile-Responsive)
+  AgencyParadoxDiagram: dynamic(() => import('./diagrams/AgencyParadoxDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  ThreeBottlenecksDiagram: dynamic(() => import('./diagrams/ThreeBottlenecksDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  StatusQuoCeilingDiagram: dynamic(() => import('./diagrams/StatusQuoCeilingDiagram'), { loading: () => <LoadingComponent /> }),
+  NILComplexityDiagram: dynamic(() => import('./diagrams/NILComplexityDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  DigitalTwinFlowDiagram: dynamic(() => import('./diagrams/DigitalTwinFlowDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  BreakthroughDiagram: dynamic(() => import('./diagrams/BreakthroughDiagram'), { loading: () => <LoadingComponent /> }),
+  InfiniteDeploymentDiagram: dynamic(() => import('./diagrams/InfiniteDeploymentDiagram'), { loading: () => <LoadingComponent /> }),
+  RevenueUnlockDiagram: dynamic(() => import('./diagrams/RevenueUnlockDiagram'), { loading: () => <LoadingComponent /> }),
+  CloseRateImprovementDiagram: dynamic(() => import('./diagrams/CloseRateImprovementDiagram'), { loading: () => <LoadingComponent /> }),
+  AIAdoptionCurveDiagram: dynamic(() => import('./diagrams/AIAdoptionCurveDiagram'), { loading: () => <LoadingComponent /> }),
+  SuccessMetricsDiagram: dynamic(() => import('./diagrams/SuccessMetricsDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  FourModulesSystemDiagram: dynamic(() => import('./diagrams/FourModulesSystemDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  // Phase 1: Critical visuals
+  AmplifyAITimingDiagram: dynamic(() => import('./diagrams/AmplifyAITimingDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  AmplifyAIProcessDiagram: dynamic(() => import('./diagrams/AmplifyAIProcessDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  NILPlatformFlowDiagram: dynamic(() => import('./diagrams/NILPlatformFlowDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  InteractivePitchInterfaceDiagram: dynamic(() => import('./diagrams/InteractivePitchInterfaceDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  DealMultiplierDiagram: dynamic(() => import('./diagrams/DealMultiplierDiagram'), { loading: () => <LoadingComponent /> }),
+  AdoptionWindowDiagram: dynamic(() => import('./diagrams/AdoptionWindowDiagram'), { loading: () => <LoadingComponent /> }),
+  CompetitiveComparisonMatrix: dynamic(() => import('./diagrams/CompetitiveComparisonMatrix'), { loading: () => <LoadingComponent /> }),
+  MarketSaturationDiagram: dynamic(() => import('./diagrams/MarketSaturationDiagram'), { loading: () => <LoadingComponent /> }),
+  // Supporting Components
+  WelcomeSlide: dynamic(() => import('./WelcomeSlide'), { loading: () => <LoadingComponent /> }),
+  ModulesOverviewSlide: dynamic(() => import('./ModulesOverviewSlide'), { loading: () => <LoadingComponent /> }),
+  PilotTimelineSlide: dynamic(() => import('./PilotTimelineSlide'), { loading: () => <LoadingComponent /> }),
+  ModulesIntroSlide: dynamic(() => import('./ModulesIntroSlide'), { loading: () => <LoadingComponent /> }),
+};
+
+// Section colors matching Athletes First branding
+const SECTION_COLORS: Record<string, string> = {
+  'opening': '#0066FF',
+  'solution-overview': '#00D9FF',
+  'video-digital-twins': '#00FF94',
+  'nil-platform': '#FF6B00',
+  'interactive-pitch': '#9D4EDD',
+  'amplify-ai': '#FF3366',
+  'why-rationale': '#00D9FF',
+  'pilot-details': '#0066FF',
+};
+
+// Module metadata for intro and breadcrumbs (ATHLETE LIFECYCLE ORDER)
+const MODULES = [
+  { id: 'nil-platform', name: 'NIL Guidance Platform', color: '#FF6B00' },
+  { id: 'interactive-pitch', name: 'Interactive Pitch', color: '#9D4EDD' },
+  { id: 'video-digital-twins', name: 'Video & Digital Twins', color: '#00FF94' },
+  { id: 'amplify-ai', name: 'AmplifyAI', color: '#FF3366' }
+];
+
+type SlideType = 'problem' | 'solution' | 'demo' | 'impact' | 'custom';
+
+export default function AthletesFirstPitchDeck() {
+  const sections = getAllSectionsV2();
+
+  // Initialize state from localStorage if available
+  const [activeSection, setActiveSection] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('athletes-first-section');
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+
+  const [activeSlide, setActiveSlide] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('athletes-first-slide');
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
+
+  const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>('expanded-by-default');
+  const [activeDemoTab, setActiveDemoTab] = useState<string | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState<'forward' | 'backward'>('forward');
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [selectedContract, setSelectedContract] = useState<any>(null);
+
+  const currentSection = sections[activeSection];
+  const currentSlide = currentSection.slides[activeSlide];
+  const totalSlides = currentSection.slides.length;
+  const currentColor = SECTION_COLORS[currentSection.id] || SECTION_COLORS['opening'];
+
+  // Save progress to localStorage whenever section or slide changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('athletes-first-section', activeSection.toString());
+      localStorage.setItem('athletes-first-slide', activeSlide.toString());
+    }
+  }, [activeSection, activeSlide]);
+
+  // Check for URL parameter to reset to start
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('start') === '0') {
+        setActiveSection(0);
+        setActiveSlide(0);
+        localStorage.setItem('athletes-first-section', '0');
+        localStorage.setItem('athletes-first-slide', '0');
+        // Clean up URL parameter
+        window.history.replaceState({}, '', window.location.pathname);
+      }
+    }
+  }, []);
+
+  // Fullscreen change detection
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Toggle fullscreen mode
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.error('Fullscreen toggle failed:', err);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        previousSlide();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        nextSection();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        previousSection();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  // Touch/swipe gesture navigation
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const minSwipeDistance = 50; // Minimum distance for a swipe (pixels)
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Check if horizontal swipe is more significant than vertical
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+        if (deltaX > 0) {
+          // Swipe right → previous slide
+          previousSlide();
+        } else {
+          // Swipe left → next slide
+          nextSlide();
+        }
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  });
+
+  const nextSlide = () => {
+    setIsTransitioning(true);
+    setTransitionDirection('forward');
+    setTimeout(() => {
+      if (activeSlide < totalSlides - 1) {
+        setActiveSlide(activeSlide + 1);
+        setExpandedDeepDive('expanded-by-default');
+        setActiveDemoTab(null);
+      } else {
+        nextSection();
+      }
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 200);
+  };
+
+  const previousSlide = () => {
+    setIsTransitioning(true);
+    setTransitionDirection('backward');
+    setTimeout(() => {
+      if (activeSlide > 0) {
+        setActiveSlide(activeSlide - 1);
+        setExpandedDeepDive('expanded-by-default');
+        setActiveDemoTab(null);
+      } else {
+        previousSection();
+      }
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 200);
+  };
+
+  const nextSection = () => {
+    if (activeSection < sections.length - 1) {
+      setActiveSection(activeSection + 1);
+      setActiveSlide(0);
+      setExpandedDeepDive('expanded-by-default');
+      setActiveDemoTab(null);
+    }
+  };
+
+  const previousSection = () => {
+    if (activeSection > 0) {
+      setActiveSection(activeSection - 1);
+      setActiveSlide(0);
+      setExpandedDeepDive('expanded-by-default');
+      setActiveDemoTab(null);
+    }
+  };
+
+  const goToSection = (index: number) => {
+    setActiveSection(index);
+    setActiveSlide(0);
+    setExpandedDeepDive('expanded-by-default');
+    setActiveDemoTab(null);
+  };
+
+  // Auto-select first demo tab when demos change
+  useEffect(() => {
+    if (currentSlide.demos && currentSlide.demos.length > 0 && !activeDemoTab) {
+      setActiveDemoTab(currentSlide.demos[0].id);
+    }
+  }, [currentSlide.id, currentSlide.demos, activeDemoTab]);
+
+  // Render demo component
+  const renderDemo = (demos: DemoTab[]) => {
+    if (!demos || demos.length === 0) return null;
+
+    const activeDemo = demos.find(d => d.id === activeDemoTab) || demos[0];
+    const DemoComponent = DEMO_COMPONENTS[activeDemo.component];
+
+    return (
+      <div className="space-y-6 relative">
+        {/* Demo tabs - Enhanced with Terminal Republic styling */}
+        {demos.length > 1 && (
+          <div className="flex gap-2 border-b-2 flex-wrap pb-2"
+               style={{ borderColor: `${currentColor}30` }}>
+            {demos.map((demo) => (
+              <button
+                key={demo.id}
+                onClick={() => setActiveDemoTab(demo.id)}
+                className={`px-4 py-2 font-mono text-sm font-semibold transition-all duration-300
+                           border-2 border-transparent rounded-t ${
+                  activeDemoTab === demo.id
+                    ? 'shadow-md'
+                    : 'text-white/60 hover:text-white hover:bg-white/5 hover:border-white/20'
+                }`}
+                style={activeDemoTab === demo.id ? {
+                  borderColor: currentColor,
+                  backgroundColor: `${currentColor}10`,
+                  color: currentColor,
+                  boxShadow: `0 0 15px ${currentColor}30`
+                } : {}}
+              >
+                {demo.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Interactive Demo Badge - prominent indicator */}
+        <div className="flex items-center justify-between mb-4 p-3 rounded-lg border-2 backdrop-blur-sm relative overflow-hidden"
+             style={{
+               borderColor: `${currentColor}60`,
+               backgroundColor: `${currentColor}20`
+             }}>
+          {/* Holographic shine effect */}
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: `linear-gradient(90deg, transparent 0%, ${currentColor}60 50%, transparent 100%)`,
+              animation: 'shine 3s ease-in-out infinite',
+              transform: 'translateX(-100%)'
+            }}
+          />
+          <style jsx>{`
+            @keyframes shine {
+              0% {
+                transform: translateX(-100%);
+              }
+              100% {
+                transform: translateX(100%);
+              }
+            }
+          `}</style>
+          <div className="flex items-center gap-3 relative z-10">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md border-2 font-mono text-xs font-bold uppercase tracking-wider"
+                 style={{
+                   borderColor: currentColor,
+                   backgroundColor: `${currentColor}15`,
+                   color: 'white',
+                   boxShadow: `0 0 10px ${currentColor}30`
+                 }}>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              Interactive Demo
+            </div>
+            <span className="text-sm text-white/60 font-mono">
+              Click and explore • Not a live system
+            </span>
+          </div>
+        </div>
+
+        {/* Demo content - Terminal Republic featured variant */}
+        <div className="rounded-lg border-2 shadow-lg p-4 md:p-8 min-h-[400px] bg-gray-900
+                        hover:shadow-xl transition-all duration-300"
+             style={{
+               borderColor: `${currentColor}80`,
+               boxShadow: `0 0 20px ${currentColor}20, 0 10px 40px rgba(0,0,0,0.3)`
+             }}>
+          {DemoComponent ? (
+            <DemoComponent
+              {...(activeDemo.component === 'ContractModelingCanvas' && {
+                onContractClick: (contract: any) => {
+                  setSelectedContract(contract);
+                  setActiveDemoTab('immersive-pitch');
+                }
+              })}
+              {...(activeDemo.component === 'ImmersivePitchDemo' && {
+                selectedContract
+              })}
+            />
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-center py-12">
+              <h3 className="text-2xl font-bold mb-2" style={{ color: currentColor }}>
+                {activeDemo.label}
+              </h3>
+              <p className="text-white/60 mb-2">{activeDemo.description}</p>
+              <p className="text-sm text-white/40 font-mono">Demo: {activeDemo.component}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // Render section indicator with navigation
+  const renderSectionIndicator = () => {
+    const isFirstSlide = activeSection === 0 && activeSlide === 0;
+    const isLastSlide = activeSection === sections.length - 1 && activeSlide === totalSlides - 1;
+
+    // Calculate overall slide number
+    let overallSlideNumber = 0;
+    let totalSlidesCount = 0;
+
+    for (let i = 0; i < sections.length; i++) {
+      if (i < activeSection) {
+        overallSlideNumber += sections[i].slides.length;
+      }
+      totalSlidesCount += sections[i].slides.length;
+    }
+    overallSlideNumber += activeSlide + 1;
+
+    // Check if we're in a module section
+    const currentModule = MODULES.find(m => m.id === currentSection.id);
+
+    return (
+      <div className="flex flex-col gap-3 mb-8">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={previousSlide}
+            disabled={isFirstSlide}
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Previous slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-white/40">{currentSection.navLabel}</span>
+            <span className="text-white/40">·</span>
+            <span className="text-white/60">{overallSlideNumber} of {totalSlidesCount}</span>
+          </div>
+
+          <button
+            onClick={nextSlide}
+            disabled={isLastSlide}
+            className="p-3 rounded hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Next slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Fullscreen toggle button */}
+          <button
+            onClick={toggleFullscreen}
+            className="p-3 rounded hover:bg-white/10 transition-all min-w-[48px] min-h-[48px] flex items-center justify-center ml-auto"
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            title={isFullscreen ? "Exit fullscreen (Esc)" : "Enter fullscreen (F)"}
+          >
+            {isFullscreen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Module breadcrumbs - only show when in a module section */}
+        {currentModule && (
+          <div className="flex flex-wrap items-center gap-3">
+            {MODULES.map((module) => {
+              const isActive = module.id === currentSection.id;
+              // Map module IDs to section indices
+              const moduleToSectionIndex: Record<string, number> = {
+                'nil-platform': 3,
+                'interactive-pitch': 4,
+                'video-digital-twins': 2,
+                'amplify-ai': 5
+              };
+              const sectionIndex = moduleToSectionIndex[module.id];
+
+              return (
+                <button
+                  key={module.id}
+                  onClick={() => {
+                    if (sectionIndex !== undefined) {
+                      goToSection(sectionIndex);
+                    }
+                  }}
+                  className="px-4 py-3 rounded text-sm md:text-base font-semibold transition-all cursor-pointer
+                             hover:scale-105 hover:shadow-lg active:scale-95 min-h-[48px] flex items-center"
+                  style={{
+                    backgroundColor: isActive ? `${module.color}20` : 'transparent',
+                    borderLeft: `4px solid ${isActive ? module.color : 'transparent'}`,
+                    opacity: isActive ? 1 : 0.5,
+                    color: isActive ? module.color : '#ffffff'
+                  }}
+                >
+                  {module.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Within-module progress - only show on problem/solution/demo/impact slides */}
+        {currentModule && currentSlide.type !== 'section-header' && currentSlide.type !== 'custom' && (
+          <div className="flex items-center gap-3 pl-2">
+            <ModuleFlowProgress
+              currentPhase={
+                currentSlide.type === 'problem' ? 1 :
+                currentSlide.type === 'solution' ? 2 :
+                currentSlide.type === 'demo' ? 3 :
+                currentSlide.type === 'impact' ? 4 : 1
+              }
+              moduleColor={currentColor}
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Helper to render text with clickable URLs
+  const renderTextWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan-400 hover:text-cyan-300 underline transition-colors"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
+  // Render slide content based on type
+  const renderSlideContent = (slide: Slide) => {
+    // Parse content for bullet points if it includes emoji bullets
+    const contentBullets = slide.content?.includes('🎬') || slide.content?.includes('⚖️') || slide.content?.includes('🎯')
+      ? slide.content.split(/(?=[🎬⚖️🎯])/).filter(Boolean).map(s => s.trim())
+      : null;
+
+    // Check if slide type should use title format
+    const isTitleSlide = slide.type === 'impact' && slide.id === 'hook';
+
+    // Section header slides - Terminal Republic style with emphasized ASCII background
+    if (slide.type === 'section-header') {
+      return (
+        <div className="min-h-[50vh] md:min-h-[70vh] relative -mx-4 sm:-mx-8">
+          {/* Enhanced ASCII Grid Background - Full width edge-to-edge */}
+          <div className="absolute inset-0">
+            <ASCIIUnifiedGrid
+              opacity={0.18}
+              animated={true}
+              colorTheme={{
+                colors: ['var(--color-terminal-gold)', '#FFA500', '#FF8C00'], // Terminal Gold gradient
+                name: 'terminal-gold',
+                primary: 'var(--color-terminal-gold)',
+                description: 'Terminal Republic gold theme'
+              }}
+              charSet="compute"
+            />
+          </div>
+
+          {/* Content overlay - keep centered with padding */}
+          <div className="relative z-10 px-4 sm:px-8">
+            {renderSectionIndicator()}
+            <div className="flex flex-col items-center justify-center min-h-[calc(70vh-4rem)]">
+              {/* Section number badge */}
+              <div className="mb-6 px-4 py-2 border-2 font-mono text-sm backdrop-blur-sm bg-black/20" style={{
+                borderColor: currentColor,
+                color: currentColor
+              }}>
+                SECTION {slide.sectionNumber}
+              </div>
+
+              {/* Main headline */}
+              <h2 className="text-5xl sm:text-6xl font-black mb-4 text-center" style={{ color: currentColor }}>
+                {slide.headline}
+              </h2>
+
+              {/* Subtitle/description */}
+              {slide.content && (
+                <p className="text-lg text-white/70 max-w-2xl text-center font-light">
+                  {slide.content}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (isTitleSlide) {
+      return (
+        <div className="min-h-[50vh] md:min-h-[70vh]">
+          {renderSectionIndicator()}
+          <div className="flex flex-col items-center justify-center text-center min-h-[calc(70vh-4rem)]">
+            <h2 className="text-4xl sm:text-5xl font-black mb-4" style={{ color: currentColor }}>
+              {slide.headline}
+            </h2>
+            {slide.content && (
+              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mb-6">
+                {slide.content}
+              </p>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    if (slide.type === 'demo') {
+      return (
+        <div className="min-h-[50vh] md:min-h-[70vh]">
+          {renderSectionIndicator()}
+          <div className="min-h-[calc(70vh-4rem)]">
+            <h2 className="text-3xl font-bold mb-2" style={{ color: currentColor }}>
+              {slide.headline}
+            </h2>
+            {/* Phase badge for demo slides */}
+            <div className="mb-4">
+              <PhaseBadge phase="demo" color={currentColor} />
+            </div>
+            {slide.demos && renderDemo(slide.demos)}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="min-h-[50vh] md:min-h-[85vh] relative">
+        {renderSectionIndicator()}
+        <div className="flex flex-col justify-center min-h-[calc(75vh-3rem)]">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: currentColor }}>
+            {slide.headline}
+          </h2>
+
+          {/* Phase badge - positioned below title, left-justified */}
+          {(slide.type === 'problem' || slide.type === 'solution' || slide.type === 'impact') && (
+            <div className="mb-4">
+              <PhaseBadge phase={slide.type} color={currentColor} />
+            </div>
+          )}
+
+        {slide.content && !contentBullets && (
+          <p className="text-lg text-white/80 mb-6 max-w-4xl leading-snug whitespace-pre-line">
+            {renderTextWithLinks(slide.content)}
+          </p>
+        )}
+        {contentBullets && (
+          <div className="grid gap-3 mb-8 max-w-4xl">
+            {contentBullets.map((bullet, i) => (
+              <div
+                key={i}
+                className="flex gap-4 p-4 bg-gray-800 border border-gray-600 rounded-lg
+                           hover:border-gray-500 transition-colors"
+              >
+                <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border-2"
+                     style={{
+                       backgroundColor: `${currentColor}10`,
+                       borderColor: `${currentColor}30`
+                     }}>
+                  <span className="text-xs font-mono font-bold" style={{ color: currentColor }}>
+                    {i + 1}
+                  </span>
+                </div>
+                <span className="text-base text-gray-100 leading-relaxed">{bullet}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Impact metric box */}
+        {slide.type === 'impact' && slide.visual?.type === 'stat' && (
+          <div className="mt-6 p-6 rounded-lg bg-white/5 border border-white/10">
+            <div className="text-5xl font-bold mb-2" style={{ color: currentColor }}>
+              {slide.visual.data?.value}
+            </div>
+            <div className="text-white/60">{slide.visual.data?.label}</div>
+          </div>
+        )}
+
+        {/* Diagram/Component rendering */}
+        {slide.visual?.type === 'component' && slide.visual.component && (
+          <div className="mt-8">
+            {(() => {
+              const Component = DEMO_COMPONENTS[slide.visual.component];
+              if (!Component) {
+                return (
+                  <div className="p-6 rounded-lg bg-white/5 border border-white/10 text-center">
+                    <div className="text-white/60">Component: {slide.visual.component}</div>
+                  </div>
+                );
+              }
+
+              // Pass navigation props to ModulesIntroSlide
+              if (slide.visual.component === 'ModulesIntroSlide') {
+                const handleModuleClick = (moduleId: string) => {
+                  const moduleToSectionIndex: Record<string, number> = {
+                    'nil-platform': 3,
+                    'interactive-pitch': 4,
+                    'video-digital-twins': 2,
+                    'amplify-ai': 5
+                  };
+                  const sectionIndex = moduleToSectionIndex[moduleId];
+                  if (sectionIndex !== undefined) {
+                    goToSection(sectionIndex);
+                  }
+                };
+                return <Component onModuleClick={handleModuleClick} />;
+              }
+
+              return <Component />;
+            })()}
+          </div>
+        )}
+
+        {/* Gradient fade overlay - indicates scrollable content below */}
+        {slide.deepDive && (
+          <div className="fixed bottom-0 left-0 right-0 h-32 pointer-events-none z-20 opacity-60"
+               style={{
+                 background: `linear-gradient(to top,
+                   rgba(0,0,0,1) 0%,
+                   ${currentColor}0a 20%,
+                   rgba(0,0,0,0.7) 50%,
+                   transparent 100%)`
+               }} />
+        )}
+
+        {/* Deep Dive Content - Terminal Republic card styling */}
+        {slide.deepDive && (
+          <div className={slide.visual ? "mt-8" : "mt-12"}>
+            {/* Wrap in body-variant card - matching exact style from screenshot */}
+            <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-6 shadow-md w-full">
+              {/* Header with terminal styling */}
+              <div className="flex items-center gap-2 mb-5 pb-4 border-b border-[#334155]">
+                <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                <h3 className="text-sm font-bold font-mono text-white uppercase tracking-wide">
+                  {slide.deepDive.title}
+                </h3>
+              </div>
+
+              {/* Sections with comfortable spacing */}
+              <div className="space-y-5">
+                {slide.deepDive.sections.map((section, i) => (
+                  <div key={i} className="border-l-2 pl-4"
+                       style={{ borderColor: `${currentColor}40` }}>
+                    <h4 className="text-base font-semibold mb-2" style={{ color: currentColor }}>
+                      {section.title}
+                    </h4>
+                    <p className="text-sm text-white leading-relaxed whitespace-pre-line">
+                      {section.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Global ASCII Grid Background - Subtle on all slides */}
+      <div className="fixed inset-0 pointer-events-none">
+        <ASCIIUnifiedGrid
+          opacity={0.04}
+          animated={true}
+          colorTheme={{
+            colors: [currentColor, currentColor, currentColor],
+            name: 'current-section',
+            primary: currentColor,
+            description: 'Current section color theme'
+          }}
+          charSet="depth"
+        />
+      </div>
+
+      {/* Progress bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-white/10 z-[100]">
+        <div
+          className="h-full transition-all duration-300"
+          style={{
+            width: `${((activeSection * 100) / sections.length) + ((activeSlide / totalSlides) * (100 / sections.length))}%`,
+            backgroundColor: currentColor,
+          }}
+        />
+      </div>
+
+      {/* Main content area - full width, centered content with max-width */}
+      <div className="relative pt-8 pb-16 z-10">
+        <div
+          className={`px-2 sm:px-8 max-w-6xl mx-auto transition-all duration-300 ease-in-out ${
+            isTransitioning
+              ? `opacity-0 ${transitionDirection === 'forward' ? 'translate-x-8' : '-translate-x-8'}`
+              : 'opacity-100 translate-x-0'
+          }`}
+        >
+          {renderSlideContent(currentSlide)}
+        </div>
+      </div>
+
+    </div>
+  );
+}

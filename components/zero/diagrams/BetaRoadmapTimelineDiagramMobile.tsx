@@ -284,7 +284,7 @@ export default function BetaRoadmapTimelineDiagramMobile() {
                 onClick={() => setSelectedMilestone(isSelected ? null : milestone.id)}
                 className="w-full text-left p-3 rounded-lg border-2 transition-all"
                 style={{
-                  backgroundColor: isSelected ? '#2D3748' : '#1A202C',
+                  backgroundColor: isSelected ? '#2D3748' : 'var(--color-text-charcoal)',
                   borderColor: isSelected ? trackColors[currentTrack] : '#4A5568'
                 }}
               >

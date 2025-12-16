@@ -13,13 +13,13 @@ export default function WhoThisIsForInfographic() {
       icon: Zap,
       title: 'Hands-on Builders',
       description: 'Founders and product leaders who roll up sleeves and ship',
-      color: '#00FF94'
+      color: 'var(--color-zero-green)'
     },
     {
       icon: TrendingUp,
       title: 'Need Execution Velocity',
       description: 'Limited runway or competitive pressure demands speed',
-      color: '#00D9FF'
+      color: 'var(--color-zero-cyan)'
     },
     {
       icon: Users,
@@ -31,7 +31,7 @@ export default function WhoThisIsForInfographic() {
       icon: Handshake,
       title: 'Open to Equity Discussions',
       description: 'Willing to explore equity alignment (cash welcome too)',
-      color: '#FFD700'
+      color: 'var(--color-terminal-gold)'
     }
   ];
 

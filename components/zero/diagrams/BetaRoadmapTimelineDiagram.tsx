@@ -294,7 +294,7 @@ export default function BetaRoadmapTimelineDiagram() {
                         <div
                           className="absolute top-14 left-1/2 -translate-x-1/2 w-48 p-3 rounded-lg border-2 text-left"
                           style={{
-                            backgroundColor: '#1A202C',
+                            backgroundColor: 'var(--color-text-charcoal)',
                             borderColor: trackColors[track]
                           }}
                         >

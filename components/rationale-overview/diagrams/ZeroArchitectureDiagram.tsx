@@ -29,7 +29,7 @@ export default function ZeroArchitectureDiagram() {
       id: 'technical',
       title: 'Technical Execution',
       metric: '10 Microservices',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       icon: '',
       layers: [
         {
@@ -68,7 +68,7 @@ export default function ZeroArchitectureDiagram() {
       id: 'velocity',
       title: 'Systematic Velocity',
       metric: '0 Pivots',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       icon: '',
       layers: [
         {
@@ -106,7 +106,7 @@ export default function ZeroArchitectureDiagram() {
       id: 'product',
       title: 'Product Thinking',
       metric: 'Complete Strategy',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       icon: '',
       layers: [
         {
@@ -226,11 +226,11 @@ export default function ZeroArchitectureDiagram() {
 
       {/* Summary Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="p-4 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded-lg">
+        <div className="p-4 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded-lg">
           <div className="text-2xl font-bold text-white mb-1">10</div>
           <div className="text-xs text-gray-400">Production microservices</div>
         </div>
-        <div className="p-4 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-lg">
+        <div className="p-4 bg-[var(--color-zero-green)]/10 border border-[var(--color-zero-green)]/30 rounded-lg">
           <div className="text-2xl font-bold text-white mb-1">0</div>
           <div className="text-xs text-gray-400">Architectural pivots</div>
         </div>
@@ -245,7 +245,7 @@ export default function ZeroArchitectureDiagram() {
         <div className="text-xs font-mono text-terminal-gold mb-3 uppercase tracking-wide">What This Architecture Demonstrates</div>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 text-[#00D9FF] text-lg">⚙️</div>
+            <div className="flex-shrink-0 text-[var(--color-zero-cyan)] text-lg">⚙️</div>
             <div>
               <div className="text-sm font-semibold text-white mb-1">Production-Grade Execution</div>
               <div className="text-xs text-gray-400 leading-relaxed">
@@ -254,7 +254,7 @@ export default function ZeroArchitectureDiagram() {
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 text-[#00FF94] text-lg">⚡</div>
+            <div className="flex-shrink-0 text-[var(--color-zero-green)] text-lg">⚡</div>
             <div>
               <div className="text-sm font-semibold text-white mb-1">Systematic Velocity</div>
               <div className="text-xs text-gray-400 leading-relaxed">

@@ -27,9 +27,9 @@ export default function TraditionalVsRationaleDiagramMobile() {
   ];
 
   const rationalePhases: TimelinePhase[] = [
-    { label: 'Rapid Prototyping', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
-    { label: 'Lock', weeks: 1, color: '#FFD700', description: 'Architecture locked after validation' },
-    { label: 'Production (validated)', weeks: 8, color: '#00D9FF', description: 'Build with confidence' },
+    { label: 'Rapid Prototyping', weeks: 2, color: 'var(--color-zero-green)', description: 'Rapid iteration with user feedback' },
+    { label: 'Lock', weeks: 1, color: 'var(--color-terminal-gold)', description: 'Architecture locked after validation' },
+    { label: 'Production (validated)', weeks: 8, color: 'var(--color-zero-cyan)', description: 'Build with confidence' },
   ];
 
   const traditionalTotal = traditionalPhases.reduce((sum, p) => sum + p.weeks, 0);
@@ -83,7 +83,7 @@ export default function TraditionalVsRationaleDiagramMobile() {
                     width: `${riskPercent}%`,
                     background: isTraditional
                       ? 'linear-gradient(90deg, #FF4444, #990000)'
-                      : 'linear-gradient(90deg, #00FF94, #00D9FF)',
+                      : 'linear-gradient(90deg, var(--color-zero-green), var(--color-zero-cyan))',
                   }}
                 />
               </div>
@@ -177,7 +177,7 @@ export default function TraditionalVsRationaleDiagramMobile() {
           rationalePhases,
           rationaleTotal,
           'Controlled risk',
-          '#00FF94',
+          'var(--color-zero-green)',
           25,
           false
         )}

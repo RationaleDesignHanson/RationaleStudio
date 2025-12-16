@@ -138,7 +138,7 @@ export default function InboxJourneyDiagramMobile() {
                   transform: index === currentStageIndex ? 'scale(1.1)' : 'scale(1)'
                 }}
               >
-                <span className="text-xs font-bold" style={{ color: index <= currentStageIndex ? '#1A202C' : '#718096' }}>
+                <span className="text-xs font-bold" style={{ color: index <= currentStageIndex ? 'var(--color-text-charcoal)' : '#718096' }}>
                   {stage.id}
                 </span>
               </div>
@@ -166,7 +166,7 @@ export default function InboxJourneyDiagramMobile() {
               className="w-10 h-10 rounded-full flex items-center justify-center"
               style={{ backgroundColor: '#D4AF37' }}
             >
-              <span style={{ color: '#1A202C' }}>
+              <span style={{ color: 'var(--color-text-charcoal)' }}>
                 <Icon className="w-5 h-5" />
               </span>
             </div>

@@ -27,9 +27,9 @@ export default function TraditionalVsRationaleDiagram() {
 
   // Rationale approach: 11 weeks total
   const rationalePhases: TimelinePhase[] = [
-    { label: 'Rapidly Prototype', weeks: 2, color: '#00FF94', description: 'Rapid iteration with user feedback' },
-    { label: 'Lock', weeks: 1, color: '#FFD700', description: 'Architecture locked after validation' },
-    { label: 'Production (validated)', weeks: 8, color: '#00D9FF', description: 'Build with confidence' },
+    { label: 'Rapidly Prototype', weeks: 2, color: 'var(--color-zero-green)', description: 'Rapid iteration with user feedback' },
+    { label: 'Lock', weeks: 1, color: 'var(--color-terminal-gold)', description: 'Architecture locked after validation' },
+    { label: 'Production (validated)', weeks: 8, color: 'var(--color-zero-cyan)', description: 'Build with confidence' },
   ];
 
   const totalWeeks = 24; // Scale to traditional timeline
@@ -111,12 +111,12 @@ export default function TraditionalVsRationaleDiagram() {
                 width: isTraditional ? '100%' : '25%',
                 background: isTraditional
                   ? 'linear-gradient(90deg, #FF4444, #990000)'
-                  : 'linear-gradient(90deg, #00FF94, #00D9FF)',
+                  : 'linear-gradient(90deg, var(--color-zero-green), var(--color-zero-cyan))',
               }}
             />
           </div>
           <div className="text-xs font-medium" style={{
-            color: isTraditional ? '#FF4444' : '#00FF94'
+            color: isTraditional ? '#FF4444' : 'var(--color-zero-green)'
           }}>
             {isTraditional ? 'high investment at risk' : 'controlled validation'}
           </div>
@@ -177,7 +177,7 @@ export default function TraditionalVsRationaleDiagram() {
       <div className="mt-8 pt-6 border-t border-gray-700">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-2xl font-bold text-[#00FF94]">54%</div>
+            <div className="text-2xl font-bold text-[var(--color-zero-green)]">54%</div>
             <div className="text-xs text-gray-500 mt-1">Faster time to market</div>
           </div>
           <div>
@@ -185,7 +185,7 @@ export default function TraditionalVsRationaleDiagram() {
             <div className="text-xs text-gray-500 mt-1">Risk reduction</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-[#00D9FF]">7x</div>
+            <div className="text-2xl font-bold text-[var(--color-zero-cyan)]">7x</div>
             <div className="text-xs text-gray-500 mt-1">More validation cycles</div>
           </div>
         </div>

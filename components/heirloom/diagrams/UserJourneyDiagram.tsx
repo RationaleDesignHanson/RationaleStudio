@@ -123,13 +123,13 @@ export default function UserJourneyDiagram() {
   const { path, points, width, height } = generateEmotionCurvePath();
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[#F4A460]/30 shadow-lg">
+    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[var(--color-heirloom-orange)]/30 shadow-lg">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-[#2D2D2D] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <h3 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           User Journey: From Chaos to Confidence
         </h3>
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Five stages of transformation • Hover to explore
         </p>
       </div>
@@ -142,19 +142,19 @@ export default function UserJourneyDiagram() {
           style={{ maxHeight: '200px' }}
         >
           {/* Grid lines (subtle) */}
-          <line x1="50" y1="40" x2="1150" y2="40" stroke="#F4A460" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
-          <line x1="50" y1="110" x2="1150" y2="110" stroke="#F4A460" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
-          <line x1="50" y1="180" x2="1150" y2="180" stroke="#F4A460" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
+          <line x1="50" y1="40" x2="1150" y2="40" stroke="var(--color-heirloom-orange)" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
+          <line x1="50" y1="110" x2="1150" y2="110" stroke="var(--color-heirloom-orange)" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
+          <line x1="50" y1="180" x2="1150" y2="180" stroke="var(--color-heirloom-orange)" strokeWidth="1" strokeDasharray="4 4" opacity="0.2" />
 
           {/* Y-axis labels */}
-          <text x="10" y="45" fill="#2D2D2D" fontSize="12" fontFamily="JetBrains Mono">😊</text>
-          <text x="10" y="115" fill="#2D2D2D" fontSize="12" fontFamily="JetBrains Mono">😐</text>
-          <text x="10" y="185" fill="#2D2D2D" fontSize="12" fontFamily="JetBrains Mono">😟</text>
+          <text x="10" y="45" fill="var(--color-text-dark)" fontSize="12" fontFamily="JetBrains Mono">😊</text>
+          <text x="10" y="115" fill="var(--color-text-dark)" fontSize="12" fontFamily="JetBrains Mono">😐</text>
+          <text x="10" y="185" fill="var(--color-text-dark)" fontSize="12" fontFamily="JetBrains Mono">😟</text>
 
           {/* Emotion curve path */}
           <path
             d={path}
-            stroke="#E85D4D"
+            stroke="var(--color-heirloom-coral)"
             strokeWidth="4"
             fill="none"
             style={{
@@ -170,7 +170,7 @@ export default function UserJourneyDiagram() {
                 cy={point.y}
                 r={hoveredStage === stages[index].id ? 10 : 8}
                 fill={stages[index].colorAccent}
-                stroke="#FBF8F3"
+                stroke="var(--color-heirloom-light-cream)"
                 strokeWidth="3"
                 style={{
                   transition: 'all 0.3s ease',
@@ -183,7 +183,7 @@ export default function UserJourneyDiagram() {
               <text
                 x={point.x}
                 y={point.y - 20}
-                fill="#2D2D2D"
+                fill="var(--color-text-dark)"
                 fontSize="11"
                 fontFamily="JetBrains Mono"
                 textAnchor="middle"
@@ -212,7 +212,7 @@ export default function UserJourneyDiagram() {
               `}
               style={{
                 backgroundColor: 'white',
-                borderColor: isHovered || isExpanded ? stage.colorAccent : '#F4A460'
+                borderColor: isHovered || isExpanded ? stage.colorAccent : 'var(--color-heirloom-orange)'
               }}
               onMouseEnter={() => setHoveredStage(stage.id)}
               onMouseLeave={() => setHoveredStage(null)}
@@ -243,7 +243,7 @@ export default function UserJourneyDiagram() {
                   {stage.id}
                 </div>
                 <h4
-                  className="text-sm font-bold text-[#2D2D2D] tracking-wide"
+                  className="text-sm font-bold text-[var(--color-text-dark)] tracking-wide"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {stage.name}
@@ -262,9 +262,9 @@ export default function UserJourneyDiagram() {
                 <div>
                   <div className="flex items-center gap-1 mb-1">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: stage.colorAccent }} />
-                    <span className="font-bold text-[#2D2D2D]">User</span>
+                    <span className="font-bold text-[var(--color-text-dark)]">User</span>
                   </div>
-                  <p className="text-[#2D2D2D]/70 text-xs leading-relaxed">
+                  <p className="text-[var(--color-text-dark)]/70 text-xs leading-relaxed">
                     {isExpanded ? stage.userAction : stage.userAction.substring(0, 40) + '...'}
                   </p>
                 </div>
@@ -273,9 +273,9 @@ export default function UserJourneyDiagram() {
                 <div>
                   <div className="flex items-center gap-1 mb-1">
                     <div className="w-2 h-2 rounded-full bg-red-400" />
-                    <span className="font-bold text-[#2D2D2D]">Pain</span>
+                    <span className="font-bold text-[var(--color-text-dark)]">Pain</span>
                   </div>
-                  <p className="text-[#2D2D2D]/70 text-xs leading-relaxed">
+                  <p className="text-[var(--color-text-dark)]/70 text-xs leading-relaxed">
                     {isExpanded ? stage.painPoint : stage.painPoint.substring(0, 40) + '...'}
                   </p>
                 </div>
@@ -283,10 +283,10 @@ export default function UserJourneyDiagram() {
                 {/* Heirloom Solution */}
                 <div>
                   <div className="flex items-center gap-1 mb-1">
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#8B9F8D' }} />
-                    <span className="font-bold text-[#2D2D2D]">Heirloom</span>
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-heirloom-sage)' }} />
+                    <span className="font-bold text-[var(--color-text-dark)]">Heirloom</span>
                   </div>
-                  <p className="text-[#2D2D2D]/70 text-xs leading-relaxed">
+                  <p className="text-[var(--color-text-dark)]/70 text-xs leading-relaxed">
                     {isExpanded ? stage.solution : stage.solution.substring(0, 40) + '...'}
                   </p>
                 </div>
@@ -295,7 +295,7 @@ export default function UserJourneyDiagram() {
               {/* Emotion Badge */}
               <div className="mt-4 pt-3 border-t" style={{ borderColor: `${stage.colorAccent}20` }}>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs italic text-[#2D2D2D]/60">
+                  <span className="text-xs italic text-[var(--color-text-dark)]/60">
                     {stage.emotionLabel}
                   </span>
                   <span className="text-lg">{stage.emoji}</span>
@@ -305,7 +305,7 @@ export default function UserJourneyDiagram() {
               {/* Expand/Collapse Indicator */}
               {!isExpanded && (
                 <div className="absolute bottom-2 right-2 opacity-50">
-                  <Info className="w-4 h-4 text-[#2D2D2D]/40" />
+                  <Info className="w-4 h-4 text-[var(--color-text-dark)]/40" />
                 </div>
               )}
             </div>
@@ -315,9 +315,9 @@ export default function UserJourneyDiagram() {
 
       {/* Timeline Footer */}
       <div className="mt-8 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border-2 border-[#E85D4D]/30 shadow-sm">
-          <div className="w-2 h-2 rounded-full bg-[#E85D4D] animate-pulse" />
-          <span className="text-xs text-[#2D2D2D]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border-2 border-[var(--color-heirloom-coral)]/30 shadow-sm">
+          <div className="w-2 h-2 rounded-full bg-[var(--color-heirloom-coral)] animate-pulse" />
+          <span className="text-xs text-[var(--color-text-dark)]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
             From Chaos to Confidence in 5 Steps
           </span>
         </div>

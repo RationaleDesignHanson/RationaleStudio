@@ -104,7 +104,7 @@ export default function SwipeTriageTreeDiagramMobile() {
                 onClick={() => toggleDirection(action.direction)}
                 className="w-full p-4 rounded-lg border-2 transition-all text-left"
                 style={{
-                  backgroundColor: isExpanded ? '#2D3748' : '#1A202C',
+                  backgroundColor: isExpanded ? '#2D3748' : 'var(--color-text-charcoal)',
                   borderColor: isExpanded ? action.color : '#4A5568',
                   boxShadow: isExpanded ? `0 0 20px ${action.color}40` : 'none'
                 }}

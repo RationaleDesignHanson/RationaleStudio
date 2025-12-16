@@ -20,15 +20,15 @@ const ENTITY_TYPE_CONFIG: Record<Entity['type'], {
 }> = {
   amount: {
     label: 'Amount',
-    color: 'text-[#FFD700]',
-    bgColor: 'bg-[#FFD700]/10',
-    borderColor: 'border-[#FFD700]',
+    color: 'text-[var(--color-terminal-gold)]',
+    bgColor: 'bg-[var(--color-terminal-gold)]/10',
+    borderColor: 'border-[var(--color-terminal-gold)]',
   },
   date: {
     label: 'Date',
-    color: 'text-[#FFD700]',
-    bgColor: 'bg-[#FFD700]/10',
-    borderColor: 'border-[#FFD700]',
+    color: 'text-[var(--color-terminal-gold)]',
+    bgColor: 'bg-[var(--color-terminal-gold)]/10',
+    borderColor: 'border-[var(--color-terminal-gold)]',
   },
   location: {
     label: 'Location',

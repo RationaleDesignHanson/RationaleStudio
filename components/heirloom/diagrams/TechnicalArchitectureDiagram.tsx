@@ -103,26 +103,26 @@ export default function TechnicalArchitectureDiagram() {
   const [hoveredLayer, setHoveredLayer] = useState<string | null>(null);
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[#F4A460]/30 shadow-lg">
+    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[var(--color-heirloom-orange)]/30 shadow-lg">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-[#2D2D2D] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <h3 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Technical Architecture: Modern, Scalable, Private
         </h3>
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Three-layer system with local-first data strategy
         </p>
       </div>
 
       {/* Technical Badges (Top Right) */}
       <div className="absolute top-8 right-8 space-y-1">
-        <div className="px-3 py-1 bg-white border-2 border-[#E85D4D]/30 rounded-lg text-xs text-[#2D2D2D] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="px-3 py-1 bg-white border-2 border-[var(--color-heirloom-coral)]/30 rounded-lg text-xs text-[var(--color-text-dark)] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           iOS 17+
         </div>
-        <div className="px-3 py-1 bg-white border-2 border-[#E85D4D]/30 rounded-lg text-xs text-[#2D2D2D] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="px-3 py-1 bg-white border-2 border-[var(--color-heirloom-coral)]/30 rounded-lg text-xs text-[var(--color-text-dark)] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Swift 5.9
         </div>
-        <div className="px-3 py-1 bg-white border-2 border-[#E85D4D]/30 rounded-lg text-xs text-[#2D2D2D] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="px-3 py-1 bg-white border-2 border-[var(--color-heirloom-coral)]/30 rounded-lg text-xs text-[var(--color-text-dark)] shadow-sm" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           SwiftUI 5.0
         </div>
       </div>
@@ -132,19 +132,19 @@ export default function TechnicalArchitectureDiagram() {
         className="mb-6 p-6 rounded-2xl border-2 transition-all duration-300"
         style={{
           backgroundColor: 'white',
-          borderColor: hoveredLayer === 'client' ? '#E85D4D' : '#F4A460'
+          borderColor: hoveredLayer === 'client' ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
         }}
         onMouseEnter={() => setHoveredLayer('client')}
         onMouseLeave={() => setHoveredLayer(null)}
       >
         {/* Layer Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Smartphone className="w-6 h-6 text-[#E85D4D]" />
+          <Smartphone className="w-6 h-6 text-[var(--color-heirloom-coral)]" />
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <h4 className="text-base font-bold text-[var(--color-text-dark)]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               CLIENT LAYER (iOS 17+)
             </h4>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               User Device • Native iOS Frameworks
             </p>
           </div>
@@ -160,8 +160,8 @@ export default function TechnicalArchitectureDiagram() {
                 ${hoveredTech === tech.id ? 'scale-105 shadow-md' : 'scale-100'}
               `}
               style={{
-                backgroundColor: '#FBF8F3',
-                borderColor: hoveredTech === tech.id ? tech.colorAccent : '#F4A460'
+                backgroundColor: 'var(--color-heirloom-light-cream)',
+                borderColor: hoveredTech === tech.id ? tech.colorAccent : 'var(--color-heirloom-orange)'
               }}
               onMouseEnter={() => setHoveredTech(tech.id)}
               onMouseLeave={() => setHoveredTech(null)}
@@ -179,7 +179,7 @@ export default function TechnicalArchitectureDiagram() {
 
               {/* Tech Name */}
               <h5
-                className="text-xs font-bold text-[#2D2D2D] mb-1"
+                className="text-xs font-bold text-[var(--color-text-dark)] mb-1"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {tech.name}
@@ -187,7 +187,7 @@ export default function TechnicalArchitectureDiagram() {
 
               {/* Purpose */}
               <p
-                className="text-[10px] text-[#2D2D2D]/70"
+                className="text-[10px] text-[var(--color-text-dark)]/70"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {tech.purpose}
@@ -198,8 +198,8 @@ export default function TechnicalArchitectureDiagram() {
 
         {/* Layer Badge */}
         <div className="mt-4 flex items-center gap-2">
-          <Lock className="w-4 h-4 text-[#8B9F8D]" />
-          <span className="text-xs text-[#8B9F8D]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+          <Lock className="w-4 h-4 text-[var(--color-heirloom-sage)]" />
+          <span className="text-xs text-[var(--color-heirloom-sage)]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
             Local-first architecture • User data stays in iCloud
           </span>
         </div>
@@ -208,11 +208,11 @@ export default function TechnicalArchitectureDiagram() {
       {/* Data Flow Arrows (Between Layers) */}
       <div className="flex justify-center my-4">
         <div className="flex flex-col items-center">
-          <ArrowDown className="w-6 h-6 text-[#E85D4D] animate-bounce" />
-          <span className="text-xs text-[#2D2D2D]/70 mt-1" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+          <ArrowDown className="w-6 h-6 text-[var(--color-heirloom-coral)] animate-bounce" />
+          <span className="text-xs text-[var(--color-text-dark)]/70 mt-1" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
             API Calls
           </span>
-          <ArrowUp className="w-6 h-6 text-[#F4A460] mt-1" />
+          <ArrowUp className="w-6 h-6 text-[var(--color-heirloom-orange)] mt-1" />
         </div>
       </div>
 
@@ -221,19 +221,19 @@ export default function TechnicalArchitectureDiagram() {
         className="mb-6 p-6 rounded-2xl border-2 transition-all duration-300"
         style={{
           backgroundColor: 'white',
-          borderColor: hoveredLayer === 'backend' ? '#E85D4D' : '#F4A460'
+          borderColor: hoveredLayer === 'backend' ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
         }}
         onMouseEnter={() => setHoveredLayer('backend')}
         onMouseLeave={() => setHoveredLayer(null)}
       >
         {/* Layer Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Cloud className="w-6 h-6 text-[#E85D4D]" />
+          <Cloud className="w-6 h-6 text-[var(--color-heirloom-coral)]" />
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <h4 className="text-base font-bold text-[var(--color-text-dark)]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               BACKEND SERVICES
             </h4>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Cloud Infrastructure • Serverless Architecture
             </p>
           </div>
@@ -249,8 +249,8 @@ export default function TechnicalArchitectureDiagram() {
                 ${hoveredTech === tech.id ? 'scale-105 shadow-md' : 'scale-100'}
               `}
               style={{
-                backgroundColor: '#FBF8F3',
-                borderColor: hoveredTech === tech.id ? tech.colorAccent : '#F4A460'
+                backgroundColor: 'var(--color-heirloom-light-cream)',
+                borderColor: hoveredTech === tech.id ? tech.colorAccent : 'var(--color-heirloom-orange)'
               }}
               onMouseEnter={() => setHoveredTech(tech.id)}
               onMouseLeave={() => setHoveredTech(null)}
@@ -261,7 +261,7 @@ export default function TechnicalArchitectureDiagram() {
                 style={{
                   backgroundColor: tech.id === 'vercel' ? '#000000' : `${tech.colorAccent}20`,
                   color: tech.id === 'vercel' ? '#FFFFFF' : tech.colorAccent,
-                  border: tech.id === 'vercel' ? '1px solid #2D2D2D' : 'none'
+                  border: tech.id === 'vercel' ? '1px solid var(--color-text-dark)' : 'none'
                 }}
               >
                 {tech.name.substring(0, 2).toUpperCase()}
@@ -269,7 +269,7 @@ export default function TechnicalArchitectureDiagram() {
 
               {/* Tech Name */}
               <h5
-                className="text-xs font-bold text-[#2D2D2D] mb-1"
+                className="text-xs font-bold text-[var(--color-text-dark)] mb-1"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {tech.name}
@@ -277,7 +277,7 @@ export default function TechnicalArchitectureDiagram() {
 
               {/* Purpose */}
               <p
-                className="text-[10px] text-[#2D2D2D]/70"
+                className="text-[10px] text-[var(--color-text-dark)]/70"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {tech.purpose}
@@ -289,20 +289,20 @@ export default function TechnicalArchitectureDiagram() {
         {/* Layer Badges */}
         <div className="mt-4 flex flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#8B9F8D]" />
-            <span className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <div className="w-2 h-2 rounded-full bg-[var(--color-heirloom-sage)]" />
+            <span className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               99.9% recipes via JSON-LD (no LLM cost)
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#4299E1]" />
-            <span className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <span className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Fallback LLM for edge cases only
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#F6AD55]" />
-            <span className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <span className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Zero-config sync via CloudKit
             </span>
           </div>
@@ -310,15 +310,15 @@ export default function TechnicalArchitectureDiagram() {
       </div>
 
       {/* Layer 3: Data Flow */}
-      <div className="p-6 rounded-2xl border-2 border-[#F4A460]/30 bg-gradient-to-r from-[#FBF8F3] to-white shadow-sm">
+      <div className="p-6 rounded-2xl border-2 border-[var(--color-heirloom-orange)]/30 bg-gradient-to-r from-[#FBF8F3] to-white shadow-sm">
         {/* Layer Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Database className="w-6 h-6 text-[#E85D4D]" />
+          <Database className="w-6 h-6 text-[var(--color-heirloom-coral)]" />
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <h4 className="text-base font-bold text-[var(--color-text-dark)]" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               DATA FLOW
             </h4>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Recipe Import → Processing → Storage → Sync → Share
             </p>
           </div>
@@ -330,11 +330,11 @@ export default function TechnicalArchitectureDiagram() {
             <div key={step.id} className="flex items-center">
               {/* Step Block */}
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 rounded-lg bg-white border-2 border-[#E85D4D]/50 flex items-center justify-center text-2xl mb-1 shadow-sm">
+                <div className="w-12 h-12 rounded-lg bg-white border-2 border-[var(--color-heirloom-coral)]/50 flex items-center justify-center text-2xl mb-1 shadow-sm">
                   {step.icon}
                 </div>
                 <div
-                  className="text-[10px] text-center text-[#2D2D2D] max-w-[60px]"
+                  className="text-[10px] text-center text-[var(--color-text-dark)] max-w-[60px]"
                   style={{ fontFamily: 'JetBrains Mono, monospace', lineHeight: '1.2' }}
                 >
                   {step.label}
@@ -343,7 +343,7 @@ export default function TechnicalArchitectureDiagram() {
 
               {/* Arrow */}
               {index < dataFlowSteps.length - 1 && (
-                <div className="mx-2 text-[#E85D4D]">→</div>
+                <div className="mx-2 text-[var(--color-heirloom-coral)]">→</div>
               )}
             </div>
           ))}
@@ -351,37 +351,37 @@ export default function TechnicalArchitectureDiagram() {
       </div>
 
       {/* Bottom Stats */}
-      <div className="mt-6 pt-6 border-t-2 border-[#F4A460]/20">
+      <div className="mt-6 pt-6 border-t-2 border-[var(--color-heirloom-orange)]/20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
           <div>
             <div
-              className="text-xl font-bold text-[#8B9F8D] mb-1"
+              className="text-xl font-bold text-[var(--color-heirloom-sage)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               $0.003
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Cost per user/month at scale
             </p>
           </div>
           <div>
             <div
-              className="text-xl font-bold text-[#E85D4D] mb-1"
+              className="text-xl font-bold text-[var(--color-heirloom-coral)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               99.9%
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Recipes parsed without LLM cost
             </p>
           </div>
           <div>
             <div
-              className="text-xl font-bold text-[#E85D4D] mb-1"
+              className="text-xl font-bold text-[var(--color-heirloom-coral)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               100%
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               User data privacy (local + iCloud)
             </p>
           </div>

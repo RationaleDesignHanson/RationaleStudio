@@ -172,7 +172,7 @@ export default function InboxJourneyDiagram() {
                 cy={point.y}
                 r={hoveredStage === stages[index].id || selectedStage === stages[index].id ? 10 : 7}
                 fill={hoveredStage === stages[index].id || selectedStage === stages[index].id ? '#D4AF37' : '#4299E1'}
-                stroke="#1A202C"
+                stroke="var(--color-text-charcoal)"
                 strokeWidth="2"
                 style={{
                   transition: 'all 0.3s ease',
@@ -227,7 +227,7 @@ export default function InboxJourneyDiagram() {
                   className="flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
                   style={{
                     backgroundColor: '#D4AF37',
-                    color: '#1A202C',
+                    color: 'var(--color-text-charcoal)',
                     fontFamily: 'JetBrains Mono, monospace'
                   }}
                 >

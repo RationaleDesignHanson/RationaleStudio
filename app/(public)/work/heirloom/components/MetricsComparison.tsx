@@ -7,17 +7,17 @@ export default function MetricsComparison() {
   const [showMethodology, setShowMethodology] = useState(false)
   // Comparison data with industry benchmarks
   const timelineData = [
-    { name: 'Heirloom', value: 5, color: '#E85D4D', label: '5 weeks' },
+    { name: 'Heirloom', value: 5, color: 'var(--color-heirloom-coral)', label: '5 weeks' },
     { name: 'Industry Avg', value: 14, color: '#D1D5DB', label: '14 weeks' },
   ]
 
   const compatibilityData = [
-    { name: 'Heirloom', value: 500, color: '#E85D4D', label: '500+ sites' },
+    { name: 'Heirloom', value: 500, color: 'var(--color-heirloom-coral)', label: '500+ sites' },
     { name: 'Competitors', value: 50, color: '#D1D5DB', label: '~50' },
   ]
 
   const pricingModelScore = [
-    { name: 'One-Time\n($4.99)', value: 85, color: '#E85D4D', label: '85%' },
+    { name: 'One-Time\n($4.99)', value: 85, color: 'var(--color-heirloom-coral)', label: '85%' },
     { name: 'Subscription\n($3/mo)', value: 45, color: '#D1D5DB', label: '45%' },
   ]
 
@@ -112,7 +112,7 @@ export default function MetricsComparison() {
                     {timelineData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: 'var(--color-text-dark)' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -137,7 +137,7 @@ export default function MetricsComparison() {
                     {compatibilityData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: 'var(--color-text-dark)' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -162,7 +162,7 @@ export default function MetricsComparison() {
                     {pricingModelScore.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: '#2D2D2D' }} />
+                    <LabelList dataKey="label" position="top" offset={8} style={{ fontSize: 14, fontWeight: 'bold', fill: 'var(--color-text-dark)' }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>

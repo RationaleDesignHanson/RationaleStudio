@@ -50,11 +50,11 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
 
 // Section colors - Terminal Republic palette
 const SECTION_COLORS: Record<string, string> = {
-  'opening': '#FFD700',
+  'opening': 'var(--color-terminal-gold)',
   'problem': '#FF4444',
-  'solution': '#00D9FF',
-  'proof': '#00FF94',
-  'de-risk': '#FFD700',
+  'solution': 'var(--color-zero-cyan)',
+  'proof': 'var(--color-zero-green)',
+  'de-risk': 'var(--color-terminal-gold)',
 };
 
 export default function RationalePitchDeck() {

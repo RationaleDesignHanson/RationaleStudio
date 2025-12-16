@@ -53,7 +53,7 @@ export default function DualEngineModel() {
     {
       id: 'clients',
       name: 'Client Partnerships',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       icon: '',
       activities: [
         'Apply proven methodologies to client products',
@@ -103,7 +103,7 @@ export default function DualEngineModel() {
               hoveredEngine === 'products' ? 'bg-gray-800/70' : 'bg-gray-800/30'
             }`}
             style={{
-              borderColor: hoveredEngine === 'products' ? engines[0].color : '#374151'
+              borderColor: hoveredEngine === 'products' ? engines[0].color : 'var(--color-text-gray-700)'
             }}
             onMouseEnter={() => setHoveredEngine('products')}
             onMouseLeave={() => setHoveredEngine(null)}
@@ -163,7 +163,7 @@ export default function DualEngineModel() {
               hoveredEngine === 'clients' ? 'bg-gray-800/70' : 'bg-gray-800/30'
             }`}
             style={{
-              borderColor: hoveredEngine === 'clients' ? engines[1].color : '#374151'
+              borderColor: hoveredEngine === 'clients' ? engines[1].color : 'var(--color-text-gray-700)'
             }}
             onMouseEnter={() => setHoveredEngine('clients')}
             onMouseLeave={() => setHoveredEngine(null)}

@@ -54,8 +54,8 @@ export function SwipeableDiagram({
         navigation={true}
         className="rounded-lg mobile-diagram-swiper"
         style={{
-          '--swiper-pagination-color': '#FFD700',
-          '--swiper-navigation-color': '#FFD700',
+          '--swiper-pagination-color': 'var(--color-terminal-gold)',
+          '--swiper-navigation-color': 'var(--color-terminal-gold)',
         } as React.CSSProperties}
       >
         {slides.map((slide) => (
@@ -79,7 +79,7 @@ export function SwipeableDiagram({
       <style jsx global>{`
         .mobile-diagram-swiper .swiper-button-next,
         .mobile-diagram-swiper .swiper-button-prev {
-          color: #ffd700;
+          color: var(--color-terminal-gold);
           width: 40px;
           height: 40px;
         }
@@ -94,7 +94,7 @@ export function SwipeableDiagram({
         }
 
         .mobile-diagram-swiper .swiper-pagination-bullet-active {
-          background: #ffd700;
+          background: var(--color-terminal-gold);
         }
 
         .mobile-diagram-swiper {

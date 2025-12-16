@@ -84,15 +84,15 @@ export default function TechnicalArchitectureDiagram() {
       theme: 'base',
       themeVariables: {
         primaryColor: '#E85D42', // Tomato
-        primaryTextColor: '#2D2D2D',
+        primaryTextColor: 'var(--color-text-dark)',
         primaryBorderColor: '#E85D42',
-        lineColor: '#2D2D2D',
-        secondaryColor: '#F4A261', // Amber
-        tertiaryColor: '#2A9D8F', // Sage
+        lineColor: 'var(--color-text-dark)',
+        secondaryColor: 'var(--color-heirloom-orange)', // Amber
+        tertiaryColor: 'var(--color-heirloom-teal)', // Sage
         background: '#F5F1E8', // Cream
         mainBkg: '#FFFFFF',
         secondBkg: '#F5F1E8',
-        border1: '#2D2D2D',
+        border1: 'var(--color-text-dark)',
         border2: '#E85D42',
         fontSize: '14px',
         fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -252,15 +252,15 @@ export default function TechnicalArchitectureDiagram() {
           <span className="text-gray-700">Presentation (SwiftUI)</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: '#F4A261' }}></div>
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: 'var(--color-heirloom-orange)' }}></div>
           <span className="text-gray-700">Business Logic</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: '#2A9D8F' }}></div>
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: 'var(--color-heirloom-teal)' }}></div>
           <span className="text-gray-700">Data Layer</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: '#8B9F8D' }}></div>
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: 'var(--color-heirloom-sage)' }}></div>
           <span className="text-gray-700">System Services</span>
         </div>
       </div>

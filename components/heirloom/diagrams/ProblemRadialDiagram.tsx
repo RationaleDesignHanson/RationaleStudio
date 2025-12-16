@@ -88,13 +88,13 @@ export default function ProblemRadialDiagram() {
   const orbitRadius = 280;
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[#F4A460]/30 shadow-lg overflow-hidden">
+    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[var(--color-heirloom-orange)]/30 shadow-lg overflow-hidden">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-[#2D2D2D] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <h3 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           The Problem: Recipe Fragmentation
         </h3>
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Six pain points across the recipe journey
         </p>
       </div>
@@ -109,7 +109,7 @@ export default function ProblemRadialDiagram() {
             {/* Background subtle grid */}
             <defs>
               <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F4A460" strokeWidth="0.5" opacity="0.1" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-heirloom-orange)" strokeWidth="0.5" opacity="0.1" />
               </pattern>
             </defs>
             <rect width={svgSize} height={svgSize} fill="url(#grid)" />
@@ -124,7 +124,7 @@ export default function ProblemRadialDiagram() {
                   y1={center.y}
                   x2={pos.x}
                   y2={pos.y}
-                  stroke="#E85D4D"
+                  stroke="var(--color-heirloom-coral)"
                   strokeWidth="3"
                   strokeDasharray="8 4"
                   opacity={hoveredPoint === point.id ? 0.6 : 0.3}
@@ -139,7 +139,7 @@ export default function ProblemRadialDiagram() {
               cy={center.y}
               r={centerRadius}
               fill="white"
-              stroke="#E85D4D"
+              stroke="var(--color-heirloom-coral)"
               strokeWidth="4"
               style={{
                 filter: 'drop-shadow(0 2px 8px rgba(232, 93, 77, 0.3))'
@@ -150,7 +150,7 @@ export default function ProblemRadialDiagram() {
             <text
               x={center.x}
               y={center.y - 20}
-              fill="#2D2D2D"
+              fill="var(--color-text-dark)"
               fontSize="18"
               fontFamily="JetBrains Mono"
               fontWeight="bold"
@@ -161,7 +161,7 @@ export default function ProblemRadialDiagram() {
             <text
               x={center.x}
               y={center.y + 10}
-              fill="#E85D4D"
+              fill="var(--color-heirloom-coral)"
               fontSize="24"
               fontFamily="JetBrains Mono"
               fontWeight="bold"
@@ -172,7 +172,7 @@ export default function ProblemRadialDiagram() {
             <text
               x={center.x}
               y={center.y + 35}
-              fill="#2D2D2D"
+              fill="var(--color-text-dark)"
               fontSize="11"
               fontFamily="JetBrains Mono"
               textAnchor="middle"
@@ -204,7 +204,7 @@ export default function ProblemRadialDiagram() {
                   top: `${topPercent}%`,
                   transform: 'translate(-50%, -50%)',
                   backgroundColor: 'white',
-                  borderColor: isHovered ? '#E85D4D' : '#F4A460',
+                  borderColor: isHovered ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)',
                   width: '140px'
                 }}
                 onMouseEnter={() => setHoveredPoint(point.id)}
@@ -216,13 +216,13 @@ export default function ProblemRadialDiagram() {
                     className="p-2 rounded-full"
                     style={{ backgroundColor: 'rgba(232, 93, 77, 0.1)' }}
                   >
-                    <Icon className="w-5 h-5 text-[#E85D4D]" />
+                    <Icon className="w-5 h-5 text-[var(--color-heirloom-coral)]" />
                   </div>
                 </div>
 
                 {/* Label */}
                 <h4
-                  className="text-xs font-bold text-[#2D2D2D] text-center mb-1 tracking-wide"
+                  className="text-xs font-bold text-[var(--color-text-dark)] text-center mb-1 tracking-wide"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {point.label.toUpperCase()}
@@ -230,7 +230,7 @@ export default function ProblemRadialDiagram() {
 
                 {/* Metric */}
                 <div
-                  className="text-lg font-bold text-[#E85D4D] text-center mb-1"
+                  className="text-lg font-bold text-[var(--color-heirloom-coral)] text-center mb-1"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {point.metric}
@@ -238,7 +238,7 @@ export default function ProblemRadialDiagram() {
 
                 {/* Description */}
                 <p
-                  className="text-[9px] text-[#2D2D2D]/70 text-center leading-tight"
+                  className="text-[9px] text-[var(--color-text-dark)]/70 text-center leading-tight"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {point.description}
@@ -264,7 +264,7 @@ export default function ProblemRadialDiagram() {
               `}
               style={{
                 backgroundColor: 'white',
-                borderColor: isHovered ? '#E85D4D' : '#F4A460'
+                borderColor: isHovered ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
               }}
               onMouseEnter={() => setHoveredPoint(point.id)}
               onMouseLeave={() => setHoveredPoint(null)}
@@ -275,13 +275,13 @@ export default function ProblemRadialDiagram() {
                   className="p-3 rounded-full"
                   style={{ backgroundColor: 'rgba(232, 93, 77, 0.1)' }}
                 >
-                  <Icon className="w-8 h-8 text-[#E85D4D]" />
+                  <Icon className="w-8 h-8 text-[var(--color-heirloom-coral)]" />
                 </div>
               </div>
 
               {/* Label */}
               <h4
-                className="text-sm font-bold text-[#2D2D2D] text-center mb-2 tracking-wide"
+                className="text-sm font-bold text-[var(--color-text-dark)] text-center mb-2 tracking-wide"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {point.label.toUpperCase()}
@@ -289,7 +289,7 @@ export default function ProblemRadialDiagram() {
 
               {/* Metric */}
               <div
-                className="text-2xl font-bold text-[#E85D4D] text-center mb-2"
+                className="text-2xl font-bold text-[var(--color-heirloom-coral)] text-center mb-2"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {point.metric}
@@ -297,7 +297,7 @@ export default function ProblemRadialDiagram() {
 
               {/* Description */}
               <p
-                className="text-xs text-[#2D2D2D]/70 text-center leading-relaxed"
+                className="text-xs text-[var(--color-text-dark)]/70 text-center leading-relaxed"
                 style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
                 {point.description}
@@ -308,38 +308,38 @@ export default function ProblemRadialDiagram() {
       </div>
 
       {/* Bottom Stats */}
-      <div className="mt-8 pt-6 border-t-2 border-[#F4A460]/20">
+      <div className="mt-8 pt-6 border-t-2 border-[var(--color-heirloom-orange)]/20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
           <div>
             <div
-              className="text-3xl font-bold text-[#E85D4D] mb-1"
+              className="text-3xl font-bold text-[var(--color-heirloom-coral)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               67%
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Family recipes lost per generation
             </p>
           </div>
           <div>
             <div
-              className="text-3xl font-bold text-[#E85D4D] mb-1"
+              className="text-3xl font-bold text-[var(--color-heirloom-coral)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               6-12 hrs
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Lost per month to recipe chaos
             </p>
           </div>
           <div>
             <div
-              className="text-3xl font-bold text-[#E85D4D] mb-1"
+              className="text-3xl font-bold text-[var(--color-heirloom-coral)] mb-1"
               style={{ fontFamily: 'JetBrains Mono, monospace' }}
             >
               82%
             </div>
-            <p className="text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            <p className="text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
               Report frustration with current tools
             </p>
           </div>

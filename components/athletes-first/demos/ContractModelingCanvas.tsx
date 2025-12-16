@@ -106,9 +106,9 @@ export default function ContractModelingCanvas({ onContractClick }: ContractMode
 
     const { width, height } = resize();
 
-    const gold = '#FFD700';
+    const gold = 'var(--color-terminal-gold)';
     const gray = 'rgba(156, 163, 175, 0.6)';
-    const red = '#EF4444';
+    const red = 'var(--color-error)';
 
     let animationId: number;
 
@@ -166,7 +166,7 @@ export default function ContractModelingCanvas({ onContractClick }: ContractMode
         ctx.fillText(offer.team, x + offerWidth / 2, y + 30);
 
         // Risk badge
-        const riskColor = offer.risk === 'low' ? '#00FF94' : (offer.risk === 'medium' ? '#FFD700' : red);
+        const riskColor = offer.risk === 'low' ? '#00FF94' : (offer.risk === 'medium' ? 'var(--color-terminal-gold)' : red);
         ctx.fillStyle = `${riskColor}20`;
         ctx.fillRect(x + 10, y + 45, 80, 24);
         ctx.strokeStyle = riskColor;

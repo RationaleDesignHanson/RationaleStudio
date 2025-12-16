@@ -269,7 +269,7 @@ function IngredientItem({
                 onClick={onToggleRecipe}
                 className="flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-medium transition-colors"
                 style={{
-                  backgroundColor: '#FEF3C7',
+                  backgroundColor: 'var(--color-terminal-gold-light)',
                   color: '#92400E',
                 }}
               >

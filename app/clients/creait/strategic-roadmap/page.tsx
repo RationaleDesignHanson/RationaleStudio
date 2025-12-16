@@ -203,7 +203,7 @@ export default function StrategicRoadmapPage() {
               key={sectionIndex}
               title={section.title}
               defaultExpanded={false}
-              accentColor="#FFD700"
+              accentColor="var(--color-terminal-gold)"
             >
               <div className="space-y-4">
                 {section.bullets.map((bullet, bulletIndex) => {
@@ -283,9 +283,9 @@ export default function StrategicRoadmapPage() {
           opacity={0.04}
           animated={true}
           colorTheme={{
-            colors: ['#FFD700', '#FFA500', '#FF8C00'], // Terminal Gold gradient
+            colors: ['var(--color-terminal-gold)', '#FFA500', '#FF8C00'], // Terminal Gold gradient
             name: 'terminal-gold',
-            primary: '#FFD700',
+            primary: 'var(--color-terminal-gold)',
             description: 'Terminal Republic gold theme'
           }}
           charSet="depth"
@@ -356,7 +356,7 @@ export default function StrategicRoadmapPage() {
 
           {/* Title - Athletes First Style */}
           <div className="mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#FFD700' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: 'var(--color-terminal-gold)' }}>
               {currentSlide.title}
             </h2>
             {currentSlide.subtitle && (

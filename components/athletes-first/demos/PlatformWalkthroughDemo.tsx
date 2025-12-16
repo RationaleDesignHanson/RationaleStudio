@@ -97,11 +97,11 @@ const MOCK_AGENT: Agent = {
 };
 
 const MOCK_ATHLETES: Athlete[] = [
-  { id: 'ath-001', name: 'Marcus Johnson', position: 'QB', school: 'Ohio State', avatarColor: '#3B82F6' },
+  { id: 'ath-001', name: 'Marcus Johnson', position: 'QB', school: 'Ohio State', avatarColor: 'var(--color-data-blue)' },
   { id: 'ath-002', name: 'Emily Rodriguez', position: 'WR', school: 'USC', avatarColor: '#8B5CF6' },
-  { id: 'ath-003', name: 'James Wilson', position: 'RB', school: 'Alabama', avatarColor: '#10B981' },
-  { id: 'ath-004', name: 'Sophia Lee', position: 'DB', school: 'Georgia', avatarColor: '#F59E0B' },
-  { id: 'ath-005', name: 'David Martinez', position: 'LB', school: 'Texas', avatarColor: '#EF4444' }
+  { id: 'ath-003', name: 'James Wilson', position: 'RB', school: 'Alabama', avatarColor: 'var(--color-success)' },
+  { id: 'ath-004', name: 'Sophia Lee', position: 'DB', school: 'Georgia', avatarColor: 'var(--color-warning)' },
+  { id: 'ath-005', name: 'David Martinez', position: 'LB', school: 'Texas', avatarColor: 'var(--color-error)' }
 ];
 
 const MOCK_CONTENT_BRIEF: ContentBrief = {

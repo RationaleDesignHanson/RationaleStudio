@@ -56,10 +56,10 @@ export function DotGrid({
     <div
       className="fixed inset-0 pointer-events-none z-0"
       style={{
-        backgroundImage: `radial-gradient(circle, #6A54F6 ${size}px, transparent ${size}px)`,
+        backgroundImage: `radial-gradient(circle, var(--accent) ${size}px, transparent ${size}px)`,
         backgroundSize: `${gap}px ${gap}px`,
         opacity,
-        color: '#6A54F6', // Spectral Violet
+        color: 'var(--accent)', // Spectral Violet
         transform: `translate(${offset.x}px, ${offset.y}px)`,
         transition: animated ? 'transform 0.1s linear' : 'none',
       }}

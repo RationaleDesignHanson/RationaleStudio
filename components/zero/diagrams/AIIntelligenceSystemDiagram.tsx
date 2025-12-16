@@ -148,7 +148,7 @@ export default function AIIntelligenceSystemDiagram() {
                   key={group.id}
                   className="p-2 rounded cursor-pointer transition-all"
                   style={{
-                    backgroundColor: hoveredIntent === group.id ? `${group.color}30` : '#1A202C',
+                    backgroundColor: hoveredIntent === group.id ? `${group.color}30` : 'var(--color-text-charcoal)',
                     borderLeft: `3px solid ${group.color}`
                   }}
                   onMouseEnter={() => setHoveredIntent(group.id)}
@@ -192,7 +192,7 @@ export default function AIIntelligenceSystemDiagram() {
                   key={action.id}
                   className="p-2 rounded cursor-pointer transition-all text-center"
                   style={{
-                    backgroundColor: hoveredAction === action.id ? '#48BB7830' : '#1A202C'
+                    backgroundColor: hoveredAction === action.id ? '#48BB7830' : 'var(--color-text-charcoal)'
                   }}
                   onMouseEnter={() => setHoveredAction(action.id)}
                   onMouseLeave={() => setHoveredAction(null)}

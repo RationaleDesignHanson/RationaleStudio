@@ -241,13 +241,13 @@ export function formatTimeRange(start: Date, end: Date): string {
 export function getStatusInfo(status: RecipeTimeline['status']): { label: string; color: string; icon: string } {
   switch (status) {
     case 'upcoming':
-      return { label: 'Coming Up', color: '#9CA3AF', icon: '⏳' };
+      return { label: 'Coming Up', color: 'var(--color-neutral-400)', icon: '⏳' };
     case 'prep':
-      return { label: 'Prepping', color: '#F59E0B', icon: '🔪' };
+      return { label: 'Prepping', color: 'var(--color-warning)', icon: '🔪' };
     case 'cooking':
-      return { label: 'Cooking', color: '#EF4444', icon: '🔥' };
+      return { label: 'Cooking', color: 'var(--color-error)', icon: '🔥' };
     case 'completed':
-      return { label: 'Done!', color: '#10B981', icon: '✓' };
+      return { label: 'Done!', color: 'var(--color-success)', icon: '✓' };
   }
 }
 

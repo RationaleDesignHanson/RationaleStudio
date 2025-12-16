@@ -60,9 +60,9 @@ export default function ModulesOverviewSlide() {
               title={module.title}
               description={module.description}
               shaderTheme={{
-                colors: ['#1f2937', '#374151', '#FFD700'],
+                colors: ['#1f2937', '#374151', 'var(--color-terminal-gold)'],
                 name: 'module-theme',
-                primary: '#FFD700',
+                primary: 'var(--color-terminal-gold)',
                 description: 'Module overview theme'
               }}
               shaderOpacity={0.05}

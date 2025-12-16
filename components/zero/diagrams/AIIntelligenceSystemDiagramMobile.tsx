@@ -235,7 +235,7 @@ export default function AIIntelligenceSystemDiagramMobile() {
                 onClick={() => setExpandedItem(expandedItem === index ? null : index)}
                 className="w-full text-left p-3 rounded transition-all"
                 style={{
-                  backgroundColor: expandedItem === index ? '#1A202C' : 'transparent',
+                  backgroundColor: expandedItem === index ? 'var(--color-text-charcoal)' : 'transparent',
                   borderLeft: `3px solid ${'color' in item ? item.color : currentLayer.color}`
                 }}
               >

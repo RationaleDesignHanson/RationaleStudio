@@ -22,7 +22,7 @@ export function BetaSignupButton({
 }: BetaSignupButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const appColor = appName === 'zero' ? '#FFD700' : '#E85D4D'
+  const appColor = appName === 'zero' ? 'var(--color-terminal-gold)' : 'var(--color-heirloom-coral)'
   const defaultLabel = `Join ${appName === 'zero' ? 'Zero' : 'Heirloom'} Beta`
 
   // Size classes

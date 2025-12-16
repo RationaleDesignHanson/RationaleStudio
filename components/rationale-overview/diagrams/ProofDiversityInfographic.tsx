@@ -12,7 +12,7 @@ export default function ProofDiversityInfographic() {
       subtitle: 'Consumer AI Product',
       timeline: '30 days',
       timelineLabel: 'Concept to App Store',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       highlights: [
         '10 microservices',
         '182 Swift files',
@@ -24,7 +24,7 @@ export default function ProofDiversityInfographic() {
       subtitle: 'Enterprise B2B Platform',
       timeline: '16 weeks',
       timelineLabel: 'MVP delivery',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       highlights: [
         'Commercial RE',
         'Full-stack platform',
@@ -36,7 +36,7 @@ export default function ProofDiversityInfographic() {
       subtitle: 'Complex Multi-Module System',
       timeline: '4 major modules',
       timelineLabel: 'Iterative validation',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       highlights: [
         '4 integrated modules',
         'Wearables integration',

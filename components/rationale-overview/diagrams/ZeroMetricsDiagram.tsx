@@ -26,7 +26,7 @@ export default function ZeroMetricsDiagram() {
       label: 'Microservices',
       value: '10',
       unit: 'services',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       description: 'Production infrastructure'
     },
     {
@@ -34,7 +34,7 @@ export default function ZeroMetricsDiagram() {
       label: 'Swift Files',
       value: '182',
       unit: 'files',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       description: 'Full iOS codebase'
     },
     {
@@ -42,7 +42,7 @@ export default function ZeroMetricsDiagram() {
       label: 'Prototypes',
       value: '7',
       unit: 'iterations',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       description: 'Validated before build'
     }
   ];
@@ -57,13 +57,13 @@ export default function ZeroMetricsDiagram() {
           {/* Rationale Timeline - Hero */}
           <div>
             <div className="flex items-end gap-3 mb-3">
-              <div className="text-6xl font-black text-[#00FF94] leading-none tabular-nums">1</div>
+              <div className="text-6xl font-black text-[var(--color-zero-green)] leading-none tabular-nums">1</div>
               <div className="pb-2">
-                <div className="text-2xl font-bold text-[#00FF94] leading-none">MONTH</div>
+                <div className="text-2xl font-bold text-[var(--color-zero-green)] leading-none">MONTH</div>
                 <div className="text-xs text-gray-400 mt-1">Rationale Approach</div>
               </div>
             </div>
-            <div className="h-4 bg-[#00FF94] rounded-full shadow-lg shadow-[#00FF94]/30" style={{ width: '16.7%' }} />
+            <div className="h-4 bg-[var(--color-zero-green)] rounded-full shadow-lg shadow-[var(--color-zero-green)]/30" style={{ width: '16.7%' }} />
           </div>
 
           {/* Traditional Timeline - Comparison */}
@@ -80,9 +80,9 @@ export default function ZeroMetricsDiagram() {
         </div>
 
         {/* Impact Badge */}
-        <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-full">
-          <div className="w-2 h-2 bg-[#00FF94] rounded-full animate-pulse" />
-          <span className="text-sm font-bold text-[#00FF94]">6X FASTER</span>
+        <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-zero-green)]/10 border border-[var(--color-zero-green)]/30 rounded-full">
+          <div className="w-2 h-2 bg-[var(--color-zero-green)] rounded-full animate-pulse" />
+          <span className="text-sm font-bold text-[var(--color-zero-green)]">6X FASTER</span>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ export default function ZeroMetricsDiagram() {
                 key={metric.id}
                 className="p-5 rounded-lg border-2 transition-all duration-200 cursor-pointer"
                 style={{
-                  borderColor: isHovered ? metric.color : '#374151',
+                  borderColor: isHovered ? metric.color : 'var(--color-text-gray-700)',
                   backgroundColor: isHovered ? `${metric.color}08` : 'transparent',
                   boxShadow: isHovered ? `0 0 20px ${metric.color}30` : 'none'
                 }}
@@ -137,7 +137,7 @@ export default function ZeroMetricsDiagram() {
               <span className="text-xs text-terminal-gold font-bold">7 iterations</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-[#00FF94] flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-[var(--color-zero-green)] flex items-center justify-center">
                 <span className="text-xs font-black">0</span>
               </div>
               <span className="text-xs text-gray-400">Post-build pivots</span>
@@ -172,23 +172,23 @@ export default function ZeroMetricsDiagram() {
       {/* Production Badge */}
       <div className="mt-8 pt-6 border-t border-gray-700">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded">
-            <svg className="w-3 h-3 text-[#00D9FF]" fill="currentColor" viewBox="0 0 20 20">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded">
+            <svg className="w-3 h-3 text-[var(--color-zero-cyan)]" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            <span className="text-xs font-bold text-[#00D9FF]">PRODUCTION-READY</span>
+            <span className="text-xs font-bold text-[var(--color-zero-cyan)]">PRODUCTION-READY</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded">
-            <svg className="w-3 h-3 text-[#00D9FF]" fill="currentColor" viewBox="0 0 20 20">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded">
+            <svg className="w-3 h-3 text-[var(--color-zero-cyan)]" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            <span className="text-xs font-bold text-[#00D9FF]">REAL USERS</span>
+            <span className="text-xs font-bold text-[var(--color-zero-cyan)]">REAL USERS</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded">
-            <svg className="w-3 h-3 text-[#00D9FF]" fill="currentColor" viewBox="0 0 20 20">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded">
+            <svg className="w-3 h-3 text-[var(--color-zero-cyan)]" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            <span className="text-xs font-bold text-[#00D9FF]">APP STORE LIVE</span>
+            <span className="text-xs font-bold text-[var(--color-zero-cyan)]">APP STORE LIVE</span>
           </div>
         </div>
       </div>

@@ -69,8 +69,8 @@ export function AnnotationEditor({ onAnnotationAdd }: AnnotationEditorProps) {
                 fontFamily: "'Caveat', cursive",
                 fontSize: '18px',
                 backgroundColor: 'white',
-                border: '2px dashed #E5E5E5',
-                color: '#666',
+                border: '2px dashed var(--border)',
+                color: 'var(--color-text-gray-500)',
               }}
             >
               {phrase}
@@ -104,7 +104,7 @@ export function AnnotationEditor({ onAnnotationAdd }: AnnotationEditorProps) {
             disabled={!customText.trim()}
             className="px-4 py-2 rounded-md font-medium transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
-              backgroundColor: '#F39C12',
+              backgroundColor: 'var(--color-heirloom-orange)',
               color: 'white',
             }}
           >

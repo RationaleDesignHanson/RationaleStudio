@@ -8,7 +8,7 @@ export default function UserJourneyMap() {
     {
       stage: 'Discover',
       icon: '🔍',
-      color: '#E85D4D',
+      color: 'var(--color-heirloom-coral)',
       userAction: 'User finds recipe online or in cookbook',
       emotion: 'Interested',
       emotionLevel: 70,
@@ -19,7 +19,7 @@ export default function UserJourneyMap() {
     {
       stage: 'Import',
       icon: '📥',
-      color: '#F4A261',
+      color: 'var(--color-heirloom-orange)',
       userAction: 'Adds recipe to Heirloom collection',
       emotion: 'Hopeful',
       emotionLevel: 75,
@@ -30,7 +30,7 @@ export default function UserJourneyMap() {
     {
       stage: 'Customize',
       icon: '',
-      color: '#2A9D8F',
+      color: 'var(--color-heirloom-teal)',
       userAction: 'Personalizes card with colors, stickers, notes',
       emotion: 'Delighted',
       emotionLevel: 95,
@@ -41,7 +41,7 @@ export default function UserJourneyMap() {
     {
       stage: 'Share',
       icon: '📤',
-      color: '#8B9F8D',
+      color: 'var(--color-heirloom-sage)',
       userAction: 'Exports styled card or shares with family',
       emotion: 'Proud',
       emotionLevel: 90,

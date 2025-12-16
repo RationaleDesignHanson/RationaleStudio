@@ -12,9 +12,9 @@ export default function DesignSystemTokens() {
   const colorTokens = [
     { name: 'Cream', value: '#F5F1E8', usage: 'Primary background, card surfaces', wcag: 'AA' },
     { name: 'Tomato', value: '#E85D42', usage: 'Primary accent, CTAs, links', wcag: 'AAA' },
-    { name: 'Amber', value: '#F4A261', usage: 'Secondary accent, highlights', wcag: 'AA' },
-    { name: 'Sage', value: '#2A9D8F', usage: 'Success states, validation', wcag: 'AAA' },
-    { name: 'Charcoal', value: '#2D2D2D', usage: 'Primary text, headings', wcag: 'AAA' },
+    { name: 'Amber', value: 'var(--color-heirloom-orange)', usage: 'Secondary accent, highlights', wcag: 'AA' },
+    { name: 'Sage', value: 'var(--color-heirloom-teal)', usage: 'Success states, validation', wcag: 'AAA' },
+    { name: 'Charcoal', value: 'var(--color-text-dark)', usage: 'Primary text, headings', wcag: 'AAA' },
   ]
 
   const typographyTokens = [
@@ -267,8 +267,8 @@ export default function DesignSystemTokens() {
 {`extension Color {
     static let heirloomCream = Color(hex: "#F5F1E8")
     static let heirloomTomato = Color(hex: "#E85D42")
-    static let heirloomAmber = Color(hex: "#F4A261")
-    static let heirloomSage = Color(hex: "#2A9D8F")
+    static let heirloomAmber = Color(hex: "var(--color-heirloom-orange)")
+    static let heirloomSage = Color(hex: "var(--color-heirloom-teal)")
 }`}
             </pre>
           </div>

@@ -231,7 +231,7 @@ export default function RetailBetaTimelineDiagram() {
 
       // Phase label
       ctx.font = 'bold 11px system-ui';
-      ctx.fillStyle = '#2D2D2D';
+      ctx.fillStyle = 'var(--color-text-dark)';
       ctx.textAlign = 'left';
       ctx.fillText(phase.name, phaseStartX + 8, y + 12);
 

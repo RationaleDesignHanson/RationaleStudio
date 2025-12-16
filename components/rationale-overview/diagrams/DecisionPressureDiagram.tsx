@@ -27,7 +27,7 @@ export default function DecisionPressureDiagram() {
       pressureLevel: 25,
       decision: 'UX issue discovered in early testing',
       consequences: {
-        pivot: { cost: '2 weeks', outcome: 'Quick pivot, minimal waste', color: '#00FF94' },
+        pivot: { cost: '2 weeks', outcome: 'Quick pivot, minimal waste', color: 'var(--color-zero-green)' },
         continue: { cost: 'no delay', outcome: 'Continue with known risk', color: '#FFA500' }
       }
     },
@@ -81,7 +81,7 @@ export default function DecisionPressureDiagram() {
           {decisionPoints.map((point) => {
             const isSelected = point.week === selectedWeek;
             const pressureColor =
-              point.pressureLevel <= 25 ? '#00FF94' :
+              point.pressureLevel <= 25 ? 'var(--color-zero-green)' :
               point.pressureLevel <= 50 ? '#FFA500' :
               point.pressureLevel <= 75 ? '#FF4444' : '#990000';
 
@@ -114,7 +114,7 @@ export default function DecisionPressureDiagram() {
           <div className="text-right">
             <div className="text-xs text-gray-500 mb-1">Pressure to Ship</div>
             <div className="text-2xl font-bold" style={{
-              color: selectedPoint.pressureLevel <= 25 ? '#00FF94' :
+              color: selectedPoint.pressureLevel <= 25 ? 'var(--color-zero-green)' :
                      selectedPoint.pressureLevel <= 50 ? '#FFA500' :
                      selectedPoint.pressureLevel <= 75 ? '#FF4444' : '#990000'
             }}>
@@ -179,11 +179,11 @@ export default function DecisionPressureDiagram() {
       </div>
 
       {/* Rationale Approach */}
-      <div className="p-4 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-lg">
+      <div className="p-4 bg-[var(--color-zero-green)]/10 border border-[var(--color-zero-green)]/30 rounded-lg">
         <div className="flex items-start gap-3">
           <div className="flex-shrink-0 text-2xl">✓</div>
           <div>
-            <div className="text-sm font-bold text-[#00FF94] mb-2">How Rationale Eliminates This Trap</div>
+            <div className="text-sm font-bold text-[var(--color-zero-green)] mb-2">How Rationale Eliminates This Trap</div>
             <div className="text-xs text-gray-300 leading-relaxed space-y-2">
               <div>
                 <span className="font-semibold text-white">Prototype framework before production:</span> Validate every UX decision while time invested is minimal. Pivoting a prototype costs 2 days. Pivoting Week 12 production costs months.
@@ -207,7 +207,7 @@ export default function DecisionPressureDiagram() {
           </div>
           <div>
             <div className="text-xs text-gray-500 mb-2">Rationale Approach</div>
-            <div className="text-2xl font-bold text-[#00FF94] mb-1">2 weeks</div>
+            <div className="text-2xl font-bold text-[var(--color-zero-green)] mb-1">2 weeks</div>
             <div className="text-xs text-gray-400">to validate with prototypes</div>
             <div className="text-xs text-gray-500 mt-1">Pivot freely before commitment</div>
           </div>

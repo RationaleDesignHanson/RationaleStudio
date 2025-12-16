@@ -14,7 +14,7 @@ export default function ReadyToBuildInfographic() {
       title: 'View Work',
       description: 'See case studies and proof points across domains',
       href: '/work',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       cta: 'Explore Projects'
     },
     {
@@ -22,7 +22,7 @@ export default function ReadyToBuildInfographic() {
       title: 'Our Services',
       description: 'Learn about engagement models and how we work',
       href: '/how-we-work',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       cta: 'See Services'
     },
     {
@@ -30,7 +30,7 @@ export default function ReadyToBuildInfographic() {
       title: 'Book Call',
       description: 'Start a conversation about your project',
       href: '/contact',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       cta: 'Schedule Intro'
     }
   ];

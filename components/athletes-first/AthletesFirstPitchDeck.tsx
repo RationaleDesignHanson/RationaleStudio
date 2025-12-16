@@ -83,12 +83,12 @@ const DEMO_COMPONENTS: Record<string, React.ComponentType<any>> = {
 // Section colors matching Athletes First branding
 const SECTION_COLORS: Record<string, string> = {
   'opening': '#0066FF',
-  'solution-overview': '#00D9FF',
-  'video-digital-twins': '#00FF94',
+  'solution-overview': 'var(--color-zero-cyan)',
+  'video-digital-twins': 'var(--color-zero-green)',
   'nil-platform': '#FF6B00',
   'interactive-pitch': '#9D4EDD',
   'amplify-ai': '#FF3366',
-  'why-rationale': '#00D9FF',
+  'why-rationale': 'var(--color-zero-cyan)',
   'pilot-details': '#0066FF',
 };
 
@@ -96,7 +96,7 @@ const SECTION_COLORS: Record<string, string> = {
 const MODULES = [
   { id: 'nil-platform', name: 'NIL Guidance Platform', color: '#FF6B00' },
   { id: 'interactive-pitch', name: 'Interactive Pitch', color: '#9D4EDD' },
-  { id: 'video-digital-twins', name: 'Video & Digital Twins', color: '#00FF94' },
+  { id: 'video-digital-twins', name: 'Video & Digital Twins', color: 'var(--color-zero-green)' },
   { id: 'amplify-ai', name: 'AmplifyAI', color: '#FF3366' }
 ];
 
@@ -595,9 +595,9 @@ export default function AthletesFirstPitchDeck() {
               opacity={0.18}
               animated={true}
               colorTheme={{
-                colors: ['#FFD700', '#FFA500', '#FF8C00'], // Terminal Gold gradient
+                colors: ['var(--color-terminal-gold)', '#FFA500', '#FF8C00'], // Terminal Gold gradient
                 name: 'terminal-gold',
-                primary: '#FFD700',
+                primary: 'var(--color-terminal-gold)',
                 description: 'Terminal Republic gold theme'
               }}
               charSet="compute"

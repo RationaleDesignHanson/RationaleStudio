@@ -23,7 +23,7 @@ export default function ZeroMetricsDiagramMobile() {
       label: 'Microservices',
       value: '10',
       unit: 'services',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       description: 'Production infrastructure'
     },
     {
@@ -31,7 +31,7 @@ export default function ZeroMetricsDiagramMobile() {
       label: 'Swift Files',
       value: '182',
       unit: 'files',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       description: 'Full iOS codebase'
     },
     {
@@ -39,7 +39,7 @@ export default function ZeroMetricsDiagramMobile() {
       label: 'Prototypes',
       value: '7',
       unit: 'iterations',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       description: 'Validated before build'
     }
   ];
@@ -56,11 +56,11 @@ export default function ZeroMetricsDiagramMobile() {
           {/* Rationale Timeline - Hero */}
           <div>
             <div className="flex items-end gap-2 mb-2">
-              <div className="text-5xl font-black text-[#00FF94] leading-none tabular-nums">
+              <div className="text-5xl font-black text-[var(--color-zero-green)] leading-none tabular-nums">
                 1
               </div>
               <div className="pb-1">
-                <div className="text-xl font-bold text-[#00FF94] leading-none">
+                <div className="text-xl font-bold text-[var(--color-zero-green)] leading-none">
                   MONTH
                 </div>
                 <div className="text-xs text-gray-400 mt-0.5">
@@ -69,7 +69,7 @@ export default function ZeroMetricsDiagramMobile() {
               </div>
             </div>
             <div
-              className="h-3 bg-[#00FF94] rounded-full shadow-lg"
+              className="h-3 bg-[var(--color-zero-green)] rounded-full shadow-lg"
               style={{
                 width: '16.7%',
                 boxShadow: '0 0 15px rgba(0, 255, 148, 0.3)'
@@ -97,9 +97,9 @@ export default function ZeroMetricsDiagramMobile() {
         </div>
 
         {/* Impact Badge */}
-        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-full">
-          <div className="w-1.5 h-1.5 bg-[#00FF94] rounded-full animate-pulse" />
-          <span className="text-sm font-bold text-[#00FF94]">6X FASTER</span>
+        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-zero-green)]/10 border border-[var(--color-zero-green)]/30 rounded-full">
+          <div className="w-1.5 h-1.5 bg-[var(--color-zero-green)] rounded-full animate-pulse" />
+          <span className="text-sm font-bold text-[var(--color-zero-green)]">6X FASTER</span>
         </div>
       </div>
 
@@ -113,7 +113,7 @@ export default function ZeroMetricsDiagramMobile() {
             <div
               key={metric.id}
               className="p-4 rounded-lg border"
-              style={{ borderColor: '#374151' }}
+              style={{ borderColor: 'var(--color-text-gray-700)' }}
             >
               <div
                 className="text-4xl font-black leading-none mb-1.5 tabular-nums"
@@ -160,7 +160,7 @@ export default function ZeroMetricsDiagramMobile() {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-[#00FF94] flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-[var(--color-zero-green)] flex items-center justify-center">
                 <span className="text-xs font-black">0</span>
               </div>
               <span className="text-xs text-gray-300">
@@ -210,7 +210,7 @@ export default function ZeroMetricsDiagramMobile() {
       {/* Production Badges */}
       <div>
         <div className="flex flex-wrap gap-2">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded text-xs font-bold text-[#00D9FF]">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded text-xs font-bold text-[var(--color-zero-cyan)]">
             <svg
               className="w-3 h-3"
               fill="currentColor"
@@ -224,7 +224,7 @@ export default function ZeroMetricsDiagramMobile() {
             </svg>
             PRODUCTION
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded text-xs font-bold text-[#00D9FF]">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded text-xs font-bold text-[var(--color-zero-cyan)]">
             <svg
               className="w-3 h-3"
               fill="currentColor"
@@ -238,7 +238,7 @@ export default function ZeroMetricsDiagramMobile() {
             </svg>
             REAL USERS
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded text-xs font-bold text-[#00D9FF]">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--color-zero-cyan)]/10 border border-[var(--color-zero-cyan)]/30 rounded text-xs font-bold text-[var(--color-zero-cyan)]">
             <svg
               className="w-3 h-3"
               fill="currentColor"

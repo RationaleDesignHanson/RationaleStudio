@@ -26,7 +26,7 @@ export function RecipeCardDemo() {
   const [handwrittenNote, setHandwrittenNote] = useState("Mom's secret: use cold butter!")
 
   const backgrounds = [
-    { id: 'cream', name: 'Cream', color: '#F5F1E8' },
+    { id: 'cream', name: 'Cream', color: 'var(--color-heirloom-cream)' },
     { id: 'vintage-paper', name: 'Vintage Paper', color: '#F4E4C1' },
     { id: 'recipe-card', name: 'Recipe Card', color: '#FFF8E7' },
     { id: 'cookbook', name: 'Cookbook', color: '#F0E6D2' },
@@ -60,18 +60,18 @@ export function RecipeCardDemo() {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Preview Panel */}
         <div>
-          <h3 className="text-lg font-bold text-[#2D2D2D] mb-4">Recipe Card Preview</h3>
+          <h3 className="text-lg font-bold text-[var(--color-text-dark)] mb-4">Recipe Card Preview</h3>
           <div
-            className="aspect-[3/4] rounded-2xl border-4 border-[#E85D4D]/20 shadow-2xl relative overflow-hidden"
+            className="aspect-[3/4] rounded-2xl border-4 border-[var(--color-heirloom-coral)]/20 shadow-2xl relative overflow-hidden"
             style={{ backgroundColor: backgrounds.find(b => b.id === selectedBackground)?.color }}
           >
             {/* Recipe Card Content */}
             <div className="p-6">
-              <h4 className="text-2xl font-bold text-[#2D2D2D] mb-2">Grandma's Apple Pie</h4>
+              <h4 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2">Grandma's Apple Pie</h4>
               <p className="text-sm text-gray-600 mb-4">Family favorite since 1952</p>
 
               <div className="space-y-2 text-sm">
-                <p className="font-semibold text-[#2D2D2D]">Ingredients:</p>
+                <p className="font-semibold text-[var(--color-text-dark)]">Ingredients:</p>
                 <p className="text-gray-700">• 6 cups sliced apples</p>
                 <p className="text-gray-700">• 1 cup sugar</p>
                 <p className="text-gray-700">• 2 tbsp butter</p>
@@ -108,7 +108,7 @@ export function RecipeCardDemo() {
                 value={handwrittenNote}
                 onChange={(e) => setHandwrittenNote(e.target.value)}
                 placeholder="Add your personal note..."
-                className="w-full bg-transparent font-handwriting text-[#2D2D2D] text-base resize-none border-none outline-none"
+                className="w-full bg-transparent font-handwriting text-[var(--color-text-dark)] text-base resize-none border-none outline-none"
                 rows={2}
                 maxLength={80}
               />
@@ -120,7 +120,7 @@ export function RecipeCardDemo() {
         <div className="space-y-6">
           {/* Backgrounds */}
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D] mb-3">Backgrounds</h4>
+            <h4 className="text-base font-bold text-[var(--color-text-dark)] mb-3">Backgrounds</h4>
             <div className="grid grid-cols-4 gap-2">
               {backgrounds.map(bg => (
                 <button
@@ -128,8 +128,8 @@ export function RecipeCardDemo() {
                   onClick={() => setSelectedBackground(bg.id)}
                   className={`aspect-square rounded-lg border-2 transition-all ${
                     selectedBackground === bg.id
-                      ? 'border-[#E85D4D] scale-110 shadow-md'
-                      : 'border-gray-300 hover:border-[#E85D4D]/50'
+                      ? 'border-[var(--color-heirloom-coral)] scale-110 shadow-md'
+                      : 'border-gray-300 hover:border-[var(--color-heirloom-coral)]/50'
                   }`}
                   style={{ backgroundColor: bg.color }}
                   title={bg.name}
@@ -140,7 +140,7 @@ export function RecipeCardDemo() {
 
           {/* Stickers */}
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D] mb-3">
+            <h4 className="text-base font-bold text-[var(--color-text-dark)] mb-3">
               Love & Food Stickers{' '}
               <span className="text-xs text-gray-600">
                 ({selectedStickers.length}/3 added)
@@ -152,7 +152,7 @@ export function RecipeCardDemo() {
                   key={sticker.id}
                   onClick={() => addSticker(sticker)}
                   disabled={selectedStickers.length >= 3}
-                  className={`aspect-square rounded-lg border-2 border-gray-300 hover:border-[#E85D4D] hover:scale-110 transition-all flex items-center justify-center bg-white p-2 ${
+                  className={`aspect-square rounded-lg border-2 border-gray-300 hover:border-[var(--color-heirloom-coral)] hover:scale-110 transition-all flex items-center justify-center bg-white p-2 ${
                     selectedStickers.length >= 3 ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                   title={sticker.name}
@@ -169,7 +169,7 @@ export function RecipeCardDemo() {
             </div>
             <button
               onClick={() => setSelectedStickers([])}
-              className="mt-3 text-xs text-[#E85D4D] hover:underline"
+              className="mt-3 text-xs text-[var(--color-heirloom-coral)] hover:underline"
             >
               Clear all stickers
             </button>
@@ -177,12 +177,12 @@ export function RecipeCardDemo() {
 
           {/* Handwritten Note Editor */}
           <div>
-            <h4 className="text-base font-bold text-[#2D2D2D] mb-3">Handwritten Note</h4>
+            <h4 className="text-base font-bold text-[var(--color-text-dark)] mb-3">Handwritten Note</h4>
             <textarea
               value={handwrittenNote}
               onChange={(e) => setHandwrittenNote(e.target.value)}
               placeholder="Type your personal note..."
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#E85D4D] focus:outline-none font-handwriting text-sm resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-heirloom-coral)] focus:outline-none font-handwriting text-sm resize-none"
               rows={3}
               maxLength={80}
             />
@@ -190,8 +190,8 @@ export function RecipeCardDemo() {
           </div>
 
           {/* Instructions */}
-          <div className="rounded-lg bg-[#E85D4D]/10 p-4 text-sm text-gray-700">
-            <p className="font-semibold text-[#2D2D2D] mb-2">How it works:</p>
+          <div className="rounded-lg bg-[var(--color-heirloom-coral)]/10 p-4 text-sm text-gray-700">
+            <p className="font-semibold text-[var(--color-text-dark)] mb-2">How it works:</p>
             <ul className="space-y-1 text-xs">
               <li>• Choose a vintage background</li>
               <li>• Add love & food stickers (up to 3)</li>

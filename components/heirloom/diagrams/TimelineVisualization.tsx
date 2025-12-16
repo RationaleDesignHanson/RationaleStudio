@@ -139,13 +139,13 @@ export default function TimelineVisualization() {
   const [hoveredWeek, setHoveredWeek] = useState<number | null>(null);
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[#F4A460]/30 shadow-lg">
+    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[var(--color-heirloom-orange)]/30 shadow-lg">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-[#2D2D2D] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <h3 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Development Progress: Execution Velocity
         </h3>
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Rapid iteration from concept to TestFlight beta
         </p>
       </div>
@@ -168,7 +168,7 @@ export default function TimelineVisualization() {
                 `}
                 style={{
                   backgroundColor: 'white',
-                  borderColor: isComplete ? '#8B9F8D' : isInProgress ? '#E85D4D' : '#F4A460'
+                  borderColor: isComplete ? 'var(--color-heirloom-sage)' : isInProgress ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
                 }}
                 onMouseEnter={() => setHoveredWeek(week.id)}
                 onMouseLeave={() => setHoveredWeek(null)}
@@ -177,17 +177,17 @@ export default function TimelineVisualization() {
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1">
                     <h4
-                      className="text-sm font-bold text-[#2D2D2D]"
+                      className="text-sm font-bold text-[var(--color-text-dark)]"
                       style={{ fontFamily: 'JetBrains Mono, monospace' }}
                     >
                       Week {week.id}: {week.label}
                     </h4>
-                    {isComplete && <Check className="w-5 h-5 text-[#8B9F8D]" />}
-                    {isInProgress && <Zap className="w-5 h-5 text-[#E85D4D] animate-pulse" />}
-                    {!isComplete && !isInProgress && <Circle className="w-5 h-5 text-[#F4A460]" />}
+                    {isComplete && <Check className="w-5 h-5 text-[var(--color-heirloom-sage)]" />}
+                    {isInProgress && <Zap className="w-5 h-5 text-[var(--color-heirloom-coral)] animate-pulse" />}
+                    {!isComplete && !isInProgress && <Circle className="w-5 h-5 text-[var(--color-heirloom-orange)]" />}
                   </div>
                   <p
-                    className="text-xs text-[#2D2D2D]/70"
+                    className="text-xs text-[var(--color-text-dark)]/70"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     {week.dateRange}
@@ -199,14 +199,14 @@ export default function TimelineVisualization() {
                   {week.tasks.map((task, index) => (
                     <div key={index} className="flex items-start gap-2">
                       {isComplete ? (
-                        <Check className="w-3 h-3 text-[#8B9F8D] mt-0.5 flex-shrink-0" />
+                        <Check className="w-3 h-3 text-[var(--color-heirloom-sage)] mt-0.5 flex-shrink-0" />
                       ) : isInProgress && index < 2 ? (
-                        <Zap className="w-3 h-3 text-[#E85D4D] mt-0.5 flex-shrink-0" />
+                        <Zap className="w-3 h-3 text-[var(--color-heirloom-coral)] mt-0.5 flex-shrink-0" />
                       ) : (
-                        <Circle className="w-3 h-3 text-[#F4A460] mt-0.5 flex-shrink-0" />
+                        <Circle className="w-3 h-3 text-[var(--color-heirloom-orange)] mt-0.5 flex-shrink-0" />
                       )}
                       <span
-                        className="text-[10px] text-[#2D2D2D]/70 leading-tight"
+                        className="text-[10px] text-[var(--color-text-dark)]/70 leading-tight"
                         style={{ fontFamily: 'JetBrains Mono, monospace' }}
                       >
                         {task}
@@ -217,17 +217,17 @@ export default function TimelineVisualization() {
 
                 {/* Progress Bar */}
                 <div className="mb-3">
-                  <div className="h-2 bg-[#F4A460]/20 rounded-full overflow-hidden">
+                  <div className="h-2 bg-[var(--color-heirloom-orange)]/20 rounded-full overflow-hidden">
                     <div
                       className="h-full transition-all duration-500"
                       style={{
                         width: `${week.progress}%`,
-                        backgroundColor: isComplete ? '#8B9F8D' : '#E85D4D'
+                        backgroundColor: isComplete ? 'var(--color-heirloom-sage)' : 'var(--color-heirloom-coral)'
                       }}
                     />
                   </div>
                   <p
-                    className="text-right text-[10px] text-[#2D2D2D]/70 mt-1"
+                    className="text-right text-[10px] text-[var(--color-text-dark)]/70 mt-1"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     {week.progress}%
@@ -239,8 +239,8 @@ export default function TimelineVisualization() {
                   <div
                     className="flex items-center gap-2 px-2 py-1 rounded-full text-[10px] font-bold"
                     style={{
-                      backgroundColor: isComplete ? '#8B9F8D20' : '#E85D4D20',
-                      color: isComplete ? '#8B9F8D' : '#E85D4D',
+                      backgroundColor: isComplete ? 'var(--color-heirloom-sage)20' : 'var(--color-heirloom-coral)20',
+                      color: isComplete ? 'var(--color-heirloom-sage)' : 'var(--color-heirloom-coral)',
                       fontFamily: 'JetBrains Mono, monospace'
                     }}
                   >
@@ -260,11 +260,11 @@ export default function TimelineVisualization() {
               <div
                 className="w-3 h-3 rounded-full"
                 style={{
-                  backgroundColor: week.progress === 100 ? '#8B9F8D' : week.progress > 0 ? '#E85D4D' : '#F4A460'
+                  backgroundColor: week.progress === 100 ? 'var(--color-heirloom-sage)' : week.progress > 0 ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
                 }}
               />
               {index < weeks.length - 1 && (
-                <div className="flex-1 h-0.5 bg-[#F4A460]/30 mx-2" />
+                <div className="flex-1 h-0.5 bg-[var(--color-heirloom-orange)]/30 mx-2" />
               )}
             </div>
           ))}
@@ -272,9 +272,9 @@ export default function TimelineVisualization() {
       </div>
 
       {/* Velocity Metrics Section */}
-      <div className="pt-8 border-t-2 border-[#F4A460]/20">
+      <div className="pt-8 border-t-2 border-[var(--color-heirloom-orange)]/20">
         <h4
-          className="text-lg font-bold text-[#2D2D2D] mb-6"
+          className="text-lg font-bold text-[var(--color-text-dark)] mb-6"
           style={{ fontFamily: 'JetBrains Mono, monospace' }}
         >
           Execution Velocity
@@ -286,7 +286,7 @@ export default function TimelineVisualization() {
               {/* Metric Name */}
               <div className="mb-2">
                 <h5
-                  className="text-sm font-bold text-[#2D2D2D] mb-1"
+                  className="text-sm font-bold text-[var(--color-text-dark)] mb-1"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {metric.name}
@@ -297,17 +297,17 @@ export default function TimelineVisualization() {
               <div className="mb-2">
                 <div className="flex items-center gap-3">
                   <span
-                    className="text-xs text-[#2D2D2D]/70 w-24"
+                    className="text-xs text-[var(--color-text-dark)]/70 w-24"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     Heirloom
                   </span>
-                  <div className="flex-1 h-6 bg-[#F4A460]/20 rounded-lg overflow-hidden relative">
+                  <div className="flex-1 h-6 bg-[var(--color-heirloom-orange)]/20 rounded-lg overflow-hidden relative">
                     <div
                       className="h-full transition-all duration-700"
                       style={{
                         width: `${metric.heirloomBar}%`,
-                        backgroundColor: '#E85D4D'
+                        backgroundColor: 'var(--color-heirloom-coral)'
                       }}
                     />
                     <span
@@ -333,21 +333,21 @@ export default function TimelineVisualization() {
               <div>
                 <div className="flex items-center gap-3">
                   <span
-                    className="text-xs text-[#2D2D2D]/50 w-24"
+                    className="text-xs text-[var(--color-text-dark)]/50 w-24"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     Industry Avg
                   </span>
-                  <div className="flex-1 h-6 bg-[#F4A460]/20 rounded-lg overflow-hidden relative">
+                  <div className="flex-1 h-6 bg-[var(--color-heirloom-orange)]/20 rounded-lg overflow-hidden relative">
                     <div
                       className="h-full transition-all duration-700"
                       style={{
                         width: `${metric.industryBar}%`,
-                        backgroundColor: '#8B9F8D'
+                        backgroundColor: 'var(--color-heirloom-sage)'
                       }}
                     />
                     <span
-                      className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-[#2D2D2D]/70"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-[var(--color-text-dark)]/70"
                       style={{ fontFamily: 'JetBrains Mono, monospace' }}
                     >
                       {metric.industryValue}
@@ -362,8 +362,8 @@ export default function TimelineVisualization() {
       </div>
 
       {/* Bottom Summary */}
-      <div className="mt-8 pt-6 border-t-2 border-[#F4A460]/20 text-center">
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+      <div className="mt-8 pt-6 border-t-2 border-[var(--color-heirloom-orange)]/20 text-center">
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Why we're fast: Native iOS, SwiftData simplicity, Supabase backend, LLM parsing for edge cases
         </p>
       </div>

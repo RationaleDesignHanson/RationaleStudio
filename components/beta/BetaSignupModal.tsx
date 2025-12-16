@@ -17,7 +17,7 @@ export function BetaSignupModal({ isOpen, onClose, appName, source }: BetaSignup
   const [errorMessage, setErrorMessage] = useState('')
 
   const appDisplayName = appName === 'zero' ? 'Zero' : 'Heirloom'
-  const appColor = appName === 'zero' ? '#FFD700' : '#E85D4D'
+  const appColor = appName === 'zero' ? 'var(--color-terminal-gold)' : 'var(--color-heirloom-coral)'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

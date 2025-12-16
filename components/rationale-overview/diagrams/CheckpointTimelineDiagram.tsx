@@ -121,7 +121,7 @@ export default function CheckpointTimelineDiagram() {
               y1={padding + chartHeight * fraction}
               x2={padding + chartWidth}
               y2={padding + chartHeight * fraction}
-              stroke="#374151"
+              stroke="var(--color-text-gray-700)"
               strokeWidth="1"
               strokeDasharray="4 4"
               opacity="0.3"
@@ -133,7 +133,7 @@ export default function CheckpointTimelineDiagram() {
             <linearGradient id="riskGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FF4444" />
               <stop offset="50%" stopColor="#FFA500" />
-              <stop offset="100%" stopColor="#FFD700" />
+              <stop offset="100%" stopColor="var(--color-terminal-gold)" />
             </linearGradient>
           </defs>
 
@@ -158,7 +158,7 @@ export default function CheckpointTimelineDiagram() {
                   y1={y}
                   x2={x}
                   y2={padding + chartHeight}
-                  stroke="#6B7280"
+                  stroke="var(--color-text-gray-500)"
                   strokeWidth="1"
                   strokeDasharray="2 2"
                 />
@@ -166,8 +166,8 @@ export default function CheckpointTimelineDiagram() {
                 {/* Diamond checkpoint */}
                 <path
                   d={`M ${x} ${y - 8} L ${x + 8} ${y} L ${x} ${y + 8} L ${x - 8} ${y} Z`}
-                  fill={isHovered ? '#FFA500' : '#FFD700'}
-                  stroke={isHovered ? '#FFD700' : '#FFF'}
+                  fill={isHovered ? '#FFA500' : 'var(--color-terminal-gold)'}
+                  stroke={isHovered ? 'var(--color-terminal-gold)' : '#FFF'}
                   strokeWidth="2"
                   className="cursor-pointer transition-all duration-200"
                   onMouseEnter={() => setHoveredCheckpoint(idx)}
@@ -189,7 +189,7 @@ export default function CheckpointTimelineDiagram() {
                   x={x}
                   y={y - 50}
                   className="text-xs font-medium"
-                  fill={isHovered ? '#FFD700' : '#9CA3AF'}
+                  fill={isHovered ? 'var(--color-terminal-gold)' : '#9CA3AF'}
                   textAnchor="middle"
                 >
                   {checkpoint.title.split(' ').map((word, i) => (

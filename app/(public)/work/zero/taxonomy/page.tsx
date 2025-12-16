@@ -123,7 +123,7 @@ function IntentTaxonomy() {
     },
     {
       domain: "Logistics",
-      color: "#F59E0B",
+      color: "var(--color-warning)",
       count: 7,
       intents: [
         "Shipping notification",
@@ -162,7 +162,7 @@ function IntentTaxonomy() {
     },
     {
       domain: "Legal",
-      color: "#EF4444",
+      color: "var(--color-error)",
       count: 5,
       intents: [
         "Contract review",
@@ -174,7 +174,7 @@ function IntentTaxonomy() {
     },
     {
       domain: "General",
-      color: "#FFD700",
+      color: "var(--color-terminal-gold)",
       count: 6,
       intents: [
         "Information request",

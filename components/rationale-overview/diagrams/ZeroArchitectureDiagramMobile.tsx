@@ -30,7 +30,7 @@ export default function ZeroArchitectureDiagramMobile() {
       id: 'technical',
       title: 'Technical Execution',
       metric: '10 Microservices',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       layers: [
         {
           title: 'Backend Services (Node.js)',
@@ -68,7 +68,7 @@ export default function ZeroArchitectureDiagramMobile() {
       id: 'velocity',
       title: 'Systematic Velocity',
       metric: '0 Pivots',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       layers: [
         {
           title: 'Week 1-2: Prototyping Phase',
@@ -105,7 +105,7 @@ export default function ZeroArchitectureDiagramMobile() {
       id: 'product',
       title: 'Product Thinking',
       metric: 'Complete Strategy',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       layers: [
         {
           title: 'Go-To-Market Strategy',
@@ -165,7 +165,7 @@ export default function ZeroArchitectureDiagramMobile() {
                 className="w-full p-0 rounded-lg border-2 transition-all text-left"
                 style={{
                   backgroundColor: isExpanded ? '#1F2937' : '#111827',
-                  borderColor: isExpanded ? pillar.color : '#374151'
+                  borderColor: isExpanded ? pillar.color : 'var(--color-text-gray-700)'
                 }}
               >
                 {/* Title section */}

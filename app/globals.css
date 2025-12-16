@@ -29,6 +29,26 @@
   --tertiary-violet: #5b21b6;
   --tertiary-teal: #134e4a;
   --tertiary-rose: #9f1239;
+
+  /* Project-specific brand colors */
+  /* Heirloom Brand Colors */
+  --heirloom-coral: #E85D4D;
+  --heirloom-orange: #F4A261;
+  --heirloom-teal: #2A9D8F;
+  --heirloom-sage: #8B9F8D;
+  --heirloom-cream: #F5F1E8;
+  --heirloom-light-cream: #FBF8F3;
+
+  /* Zero Brand Colors */
+  --zero-green: #00FF94;
+  --zero-cyan: #00D9FF;
+
+  /* Common text colors */
+  --text-dark: #2D2D2D;
+  --text-charcoal: #1A202C;
+  --text-gray-700: #374151;
+  --text-gray-600: #4A5568;
+  --text-gray-500: #6B7280;
 }
 
 @theme inline {
@@ -66,6 +86,24 @@
   --color-data-red: #EF4444;
   --color-data-purple: #8B5CF6;
   --color-data-orange: #F97316;
+
+  /* Project-specific brand tokens */
+  --color-heirloom-coral: var(--heirloom-coral);
+  --color-heirloom-orange: var(--heirloom-orange);
+  --color-heirloom-teal: var(--heirloom-teal);
+  --color-heirloom-sage: var(--heirloom-sage);
+  --color-heirloom-cream: var(--heirloom-cream);
+  --color-heirloom-light-cream: var(--heirloom-light-cream);
+
+  --color-zero-green: var(--zero-green);
+  --color-zero-cyan: var(--zero-cyan);
+
+  /* Common text color tokens */
+  --color-text-dark: var(--text-dark);
+  --color-text-charcoal: var(--text-charcoal);
+  --color-text-gray-700: var(--text-gray-700);
+  --color-text-gray-600: var(--text-gray-600);
+  --color-text-gray-500: var(--text-gray-500);
 
   /* Status colors */
   --color-success: #10B981;

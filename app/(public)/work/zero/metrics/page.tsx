@@ -87,7 +87,7 @@ function PerformanceMetrics() {
       label: "Intent Classification",
       value: 91.7,
       total: 100,
-      color: "#FFD700",
+      color: "var(--color-terminal-gold)",
       description: "43 intent categories"
     },
     {

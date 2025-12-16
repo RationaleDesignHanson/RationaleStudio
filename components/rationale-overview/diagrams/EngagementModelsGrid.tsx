@@ -35,7 +35,7 @@ export default function EngagementModelsGrid() {
       tagline: 'Answer core hypothesis with prototypes',
       duration: '4 weeks',
       investment: '4 weeks',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       bestFor: 'Testing a single product hypothesis or UX direction before heavy investment',
       deliverables: [
         '7 interactive prototypes testing core assumptions',
@@ -62,7 +62,7 @@ export default function EngagementModelsGrid() {
       tagline: 'Ship validated product to real users',
       duration: '12+ weeks',
       investment: '12+ weeks',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       bestFor: 'Building production-ready product after validation, or entire 0→1 journey',
       deliverables: [
         'Week 1-3: Validation Sprint (if not already complete)',
@@ -217,7 +217,7 @@ export default function EngagementModelsGrid() {
             <thead>
               <tr className="border-b border-gray-700">
                 <th className="text-left text-gray-400 font-medium py-3 px-3"></th>
-                <th className="text-center text-[#00FF94] font-medium py-3 px-3">Sprint</th>
+                <th className="text-center text-[var(--color-zero-green)] font-medium py-3 px-3">Sprint</th>
                 <th className="text-center text-terminal-gold font-medium py-3 px-3">Pilot</th>
               </tr>
             </thead>

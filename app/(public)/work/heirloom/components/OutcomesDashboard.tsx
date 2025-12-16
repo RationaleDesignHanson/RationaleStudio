@@ -49,8 +49,8 @@ export default function OutcomesDashboard() {
 
   const getStatusColor = (status: string) => {
     const colors = {
-      active: '#F4A261',
-      achieved: '#2A9D8F',
+      active: 'var(--color-heirloom-orange)',
+      achieved: 'var(--color-heirloom-teal)',
       pending: '#94A3B8',
     }
     return colors[status as keyof typeof colors] || '#94A3B8'
@@ -111,7 +111,7 @@ export default function OutcomesDashboard() {
                   className="h-full rounded-full transition-all"
                   style={{
                     width: `${Math.min(100, (metric.value / metric.target) * 100)}%`,
-                    backgroundColor: metric.value >= metric.target ? '#2A9D8F' : '#F4A261',
+                    backgroundColor: metric.value >= metric.target ? 'var(--color-heirloom-teal)' : 'var(--color-heirloom-orange)',
                   }}
                 ></div>
               </div>
@@ -154,7 +154,7 @@ export default function OutcomesDashboard() {
                   className="h-full rounded-full transition-all"
                   style={{
                     width: `${Math.min(100, (metric.value / metric.target) * 100)}%`,
-                    backgroundColor: metric.value >= metric.target ? '#2A9D8F' : '#F4A261',
+                    backgroundColor: metric.value >= metric.target ? 'var(--color-heirloom-teal)' : 'var(--color-heirloom-orange)',
                   }}
                 ></div>
               </div>
@@ -211,8 +211,8 @@ export default function OutcomesDashboard() {
                   text={`${metric.value}${metric.unit}`}
                   styles={buildStyles({
                     textSize: '20px',
-                    pathColor: metric.better === 'lower' && metric.value < metric.target ? '#2A9D8F' : metric.better === 'higher' && metric.value > metric.target ? '#2A9D8F' : '#E85D4D',
-                    textColor: '#2D2D2D',
+                    pathColor: metric.better === 'lower' && metric.value < metric.target ? 'var(--color-heirloom-teal)' : metric.better === 'higher' && metric.value > metric.target ? 'var(--color-heirloom-teal)' : 'var(--color-heirloom-coral)',
+                    textColor: 'var(--color-text-dark)',
                     trailColor: '#E5E7EB',
                   })}
                 />

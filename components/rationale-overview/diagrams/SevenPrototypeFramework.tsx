@@ -56,7 +56,7 @@ export default function SevenPrototypeFramework() {
       id: 'p1-2',
       number: 'P1-2',
       label: 'Core Interaction',
-      color: '#00FF94',
+      color: 'var(--color-zero-green)',
       description: 'Build the absolute minimum viable interaction',
       outcome: 'Does the core concept resonate with users?'
     },
@@ -64,7 +64,7 @@ export default function SevenPrototypeFramework() {
       id: 'p3-4',
       number: 'P3-4',
       label: 'Information Architecture',
-      color: '#00D9FF',
+      color: 'var(--color-zero-cyan)',
       description: 'Validate data model and user mental models',
       outcome: 'Can users understand the information structure?'
     },
@@ -80,7 +80,7 @@ export default function SevenPrototypeFramework() {
       id: 'p7',
       number: 'P7',
       label: 'Polish',
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
       description: 'Final validation before architecture lock',
       outcome: 'Ready for production commitment?'
     },
@@ -107,7 +107,7 @@ export default function SevenPrototypeFramework() {
               START
             </div>
             <svg className="w-6 h-4" viewBox="0 0 24 16">
-              <path d="M0 8 L20 8 L15 3 M20 8 L15 13" stroke="#6B7280" strokeWidth="2" fill="none" />
+              <path d="M0 8 L20 8 L15 3 M20 8 L15 13" stroke="var(--color-text-gray-500)" strokeWidth="2" fill="none" />
             </svg>
           </div>
 
@@ -157,7 +157,7 @@ export default function SevenPrototypeFramework() {
               {idx < phases.length - 1 ? (
                 <div className="flex items-center mx-1">
                   <svg className="w-6 h-4" viewBox="0 0 24 16">
-                    <path d="M0 8 L10 8" stroke="#6B7280" strokeWidth="2" fill="none" />
+                    <path d="M0 8 L10 8" stroke="var(--color-text-gray-500)" strokeWidth="2" fill="none" />
                   </svg>
                   {/* Diamond decision gate */}
                   <div className="relative group">
@@ -184,13 +184,13 @@ export default function SevenPrototypeFramework() {
                     </div>
                   </div>
                   <svg className="w-6 h-4" viewBox="0 0 24 16">
-                    <path d="M0 8 L10 8" stroke="#6B7280" strokeWidth="2" fill="none" />
+                    <path d="M0 8 L10 8" stroke="var(--color-text-gray-500)" strokeWidth="2" fill="none" />
                   </svg>
                 </div>
               ) : (
                 <div className="flex items-center mx-1">
                   <svg className="w-6 h-4" viewBox="0 0 24 16">
-                    <path d="M0 8 L20 8 L15 3 M20 8 L15 13" stroke="#6B7280" strokeWidth="2" fill="none" />
+                    <path d="M0 8 L20 8 L15 3 M20 8 L15 13" stroke="var(--color-text-gray-500)" strokeWidth="2" fill="none" />
                   </svg>
                 </div>
               )}
@@ -198,7 +198,7 @@ export default function SevenPrototypeFramework() {
           ))}
 
           {/* LOCK ARCH */}
-          <div className="px-3 py-1.5 bg-gradient-to-r from-[#FFD700] to-[#FFA500] border-2 border-terminal-gold rounded text-xs font-bold text-black">
+          <div className="px-3 py-1.5 bg-gradient-to-r from-[var(--color-terminal-gold)] to-[#FFA500] border-2 border-terminal-gold rounded text-xs font-bold text-black">
             LOCK ARCH
           </div>
         </div>
@@ -333,7 +333,7 @@ export default function SevenPrototypeFramework() {
       <div className="mt-8 pt-6 border-t border-gray-700">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-2xl font-bold text-[#00FF94]">Flexible timelines</div>
+            <div className="text-2xl font-bold text-[var(--color-zero-green)]">Flexible timelines</div>
             <div className="text-xs text-gray-500 mt-1">Adaptive to project needs</div>
           </div>
           <div>
@@ -341,7 +341,7 @@ export default function SevenPrototypeFramework() {
             <div className="text-xs text-gray-500 mt-1">Validation gates</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-[#00D9FF]">0</div>
+            <div className="text-2xl font-bold text-[var(--color-zero-cyan)]">0</div>
             <div className="text-xs text-gray-500 mt-1">False starts in production</div>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function TimelineVisualization() {
       week: 1,
       title: 'Foundation',
       status: 'completed',
-      color: '#E85D4D',
+      color: 'var(--color-heirloom-coral)',
       tracks: [
         { name: 'Core Setup', duration: 100, offset: 0, details: 'Xcode, SwiftData models, CRUD, Navigation' },
         { name: 'Design System', duration: 100, offset: 0, details: 'Color palette, typography, components, assets' },
@@ -16,7 +16,7 @@ export default function TimelineVisualization() {
       week: 2,
       title: 'Core Features',
       status: 'completed',
-      color: '#F4A261',
+      color: 'var(--color-heirloom-orange)',
       tracks: [
         { name: 'Recipe Management', duration: 100, offset: 0, details: 'Creation flow, parser, image upload, search' },
         { name: 'Import System', duration: 100, offset: 0, details: 'URL parsing, Seriouseats, Allrecipes, NYT' },
@@ -26,7 +26,7 @@ export default function TimelineVisualization() {
       week: 3,
       title: 'Customization',
       status: 'in-progress',
-      color: '#2A9D8F',
+      color: 'var(--color-heirloom-teal)',
       tracks: [
         { name: 'Card Styling', duration: 100, offset: 0, details: 'Background colors, sticker library, drag & drop' },
         { name: 'Annotations', duration: 100, offset: 0, details: 'Handwriting font, text layer, export with styling' },
@@ -56,8 +56,8 @@ export default function TimelineVisualization() {
 
   const statusBadge = (status: string) => {
     const badges = {
-      completed: { bg: '#E85D4D', text: 'Complete', icon: '' },
-      'in-progress': { bg: '#2A9D8F', text: 'In Progress', icon: '◐' },
+      completed: { bg: 'var(--color-heirloom-coral)', text: 'Complete', icon: '' },
+      'in-progress': { bg: 'var(--color-heirloom-teal)', text: 'In Progress', icon: '◐' },
       upcoming: { bg: '#94A3B8', text: 'Upcoming', icon: '○' },
     }
     const badge = badges[status as keyof typeof badges]
@@ -109,7 +109,7 @@ export default function TimelineVisualization() {
               {/* Track 1: Setup/Management/Styling/EventKit/QA */}
               <div>
                 <div className="mb-2 flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full" style={{ backgroundColor: '#E85D4D' }}></div>
+                  <div className="h-3 w-3 rounded-full" style={{ backgroundColor: 'var(--color-heirloom-coral)' }}></div>
                   <span className="text-sm font-semibold text-gray-700">Track 1</span>
                 </div>
                 <div className="grid grid-cols-5 gap-4">
@@ -143,7 +143,7 @@ export default function TimelineVisualization() {
               {/* Track 2: Design/Import/Annotations/Shopping/AppStore */}
               <div>
                 <div className="mb-2 flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full" style={{ backgroundColor: '#F4A261' }}></div>
+                  <div className="h-3 w-3 rounded-full" style={{ backgroundColor: 'var(--color-heirloom-orange)' }}></div>
                   <span className="text-sm font-semibold text-gray-700">Track 2</span>
                 </div>
                 <div className="grid grid-cols-5 gap-4">

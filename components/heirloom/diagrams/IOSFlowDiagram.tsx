@@ -80,13 +80,13 @@ export default function IOSFlowDiagram() {
   const [hoveredDevice, setHoveredDevice] = useState<string | null>(null);
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[#F4A460]/30 shadow-lg">
+    <div className="relative w-full bg-gradient-to-br from-[#FBF8F3] to-white rounded-2xl p-8 border-2 border-[var(--color-heirloom-orange)]/30 shadow-lg">
       {/* Header */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-[#2D2D2D] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <h3 className="text-2xl font-bold text-[var(--color-text-dark)] mb-2" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           Secret Weapon: iOS Reminders Integration
         </h3>
-        <p className="text-sm text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <p className="text-sm text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           We don't build a shopping list app. Apple already made the best one.
         </p>
       </div>
@@ -109,7 +109,7 @@ export default function IOSFlowDiagram() {
                   `}
                   style={{
                     backgroundColor: 'white',
-                    borderColor: isHovered ? step.colorAccent : '#F4A460',
+                    borderColor: isHovered ? step.colorAccent : 'var(--color-heirloom-orange)',
                     minHeight: '280px',
                     maxWidth: '200px'
                   }}
@@ -141,7 +141,7 @@ export default function IOSFlowDiagram() {
 
                   {/* Title */}
                   <h4
-                    className="text-sm font-bold text-[#2D2D2D] text-center mb-2"
+                    className="text-sm font-bold text-[var(--color-text-dark)] text-center mb-2"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     {step.title}
@@ -149,7 +149,7 @@ export default function IOSFlowDiagram() {
 
                   {/* Description */}
                   <p
-                    className="text-xs text-[#2D2D2D]/70 text-center leading-relaxed flex-grow"
+                    className="text-xs text-[var(--color-text-dark)]/70 text-center leading-relaxed flex-grow"
                     style={{ fontFamily: 'JetBrains Mono, monospace' }}
                   >
                     {step.description}
@@ -158,7 +158,7 @@ export default function IOSFlowDiagram() {
                   {/* Detail (on hover) */}
                   {isHovered && (
                     <p
-                      className="text-[10px] text-[#2D2D2D]/50 text-center italic mt-2"
+                      className="text-[10px] text-[var(--color-text-dark)]/50 text-center italic mt-2"
                       style={{ fontFamily: 'JetBrains Mono, monospace' }}
                     >
                       {step.detail}
@@ -194,7 +194,7 @@ export default function IOSFlowDiagram() {
                           refY="3"
                           orient="auto"
                         >
-                          <polygon points="0 0, 10 3, 0 6" fill="#E85D4D" />
+                          <polygon points="0 0, 10 3, 0 6" fill="var(--color-heirloom-coral)" />
                         </marker>
                       </defs>
                       <line
@@ -202,7 +202,7 @@ export default function IOSFlowDiagram() {
                         y1="20"
                         x2="35"
                         y2="20"
-                        stroke="#E85D4D"
+                        stroke="var(--color-heirloom-coral)"
                         strokeWidth="3"
                         strokeDasharray="5 3"
                         markerEnd="url(#arrowhead)"
@@ -225,7 +225,7 @@ export default function IOSFlowDiagram() {
 
             return (
               <div key={step.id}>
-                <div className="p-4 rounded-2xl border-2 border-[#F4A460] bg-white shadow-sm">
+                <div className="p-4 rounded-2xl border-2 border-[var(--color-heirloom-orange)] bg-white shadow-sm">
                   <div className="flex items-start gap-4">
                     {/* Step Number */}
                     <div
@@ -241,7 +241,7 @@ export default function IOSFlowDiagram() {
                     <div className="flex-1">
                       {/* Title */}
                       <h4
-                        className="text-sm font-bold text-[#2D2D2D] mb-1"
+                        className="text-sm font-bold text-[var(--color-text-dark)] mb-1"
                         style={{ fontFamily: 'JetBrains Mono, monospace' }}
                       >
                         {step.title}
@@ -249,7 +249,7 @@ export default function IOSFlowDiagram() {
 
                       {/* Description */}
                       <p
-                        className="text-xs text-[#2D2D2D]/70 mb-2"
+                        className="text-xs text-[var(--color-text-dark)]/70 mb-2"
                         style={{ fontFamily: 'JetBrains Mono, monospace' }}
                       >
                         {step.description}
@@ -284,7 +284,7 @@ export default function IOSFlowDiagram() {
                 {/* Arrow */}
                 {index < flowSteps.length - 1 && (
                   <div className="flex justify-center py-2">
-                    <div className="text-[#E85D4D] text-2xl">↓</div>
+                    <div className="text-[var(--color-heirloom-coral)] text-2xl">↓</div>
                   </div>
                 )}
               </div>
@@ -294,9 +294,9 @@ export default function IOSFlowDiagram() {
       </div>
 
       {/* Apple Ecosystem Section */}
-      <div className="pt-8 border-t-2 border-[#F4A460]/20">
+      <div className="pt-8 border-t-2 border-[var(--color-heirloom-orange)]/20">
         <h4
-          className="text-lg font-bold text-[#2D2D2D] mb-6 text-center"
+          className="text-lg font-bold text-[var(--color-text-dark)] mb-6 text-center"
           style={{ fontFamily: 'JetBrains Mono, monospace' }}
         >
           Works Across Your Apple Ecosystem
@@ -316,7 +316,7 @@ export default function IOSFlowDiagram() {
                 `}
                 style={{
                   backgroundColor: 'white',
-                  borderColor: isHovered ? '#E85D4D' : '#F4A460'
+                  borderColor: isHovered ? 'var(--color-heirloom-coral)' : 'var(--color-heirloom-orange)'
                 }}
                 onMouseEnter={() => setHoveredDevice(device.name)}
                 onMouseLeave={() => setHoveredDevice(null)}
@@ -327,13 +327,13 @@ export default function IOSFlowDiagram() {
                     className="p-3 rounded-full"
                     style={{ backgroundColor: 'rgba(232, 93, 77, 0.1)' }}
                   >
-                    <Icon className="w-6 h-6 text-[#E85D4D]" />
+                    <Icon className="w-6 h-6 text-[var(--color-heirloom-coral)]" />
                   </div>
                 </div>
 
                 {/* Device Name */}
                 <h5
-                  className="text-sm font-bold text-[#2D2D2D] text-center mb-2"
+                  className="text-sm font-bold text-[var(--color-text-dark)] text-center mb-2"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {device.name}
@@ -341,7 +341,7 @@ export default function IOSFlowDiagram() {
 
                 {/* Feature */}
                 <p
-                  className="text-xs text-[#2D2D2D]/70 text-center"
+                  className="text-xs text-[var(--color-text-dark)]/70 text-center"
                   style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
                   {device.feature}
@@ -353,14 +353,14 @@ export default function IOSFlowDiagram() {
       </div>
 
       {/* Competitive Advantage Callout */}
-      <div className="mt-8 p-6 bg-gradient-to-r from-[#E85D4D]/10 to-transparent border-l-4 border-[#E85D4D] rounded-xl">
+      <div className="mt-8 p-6 bg-gradient-to-r from-[var(--color-heirloom-coral)]/10 to-transparent border-l-4 border-[var(--color-heirloom-coral)] rounded-xl">
         <h5
-          className="text-sm font-bold text-[#E85D4D] mb-2"
+          className="text-sm font-bold text-[var(--color-heirloom-coral)] mb-2"
           style={{ fontFamily: 'JetBrains Mono, monospace' }}
         >
           Competitive Advantage
         </h5>
-        <div className="space-y-2 text-xs text-[#2D2D2D]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="space-y-2 text-xs text-[var(--color-text-dark)]/70" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
           <div className="flex items-start gap-2">
             <span className="text-red-500">✗</span>
             <span>React Native library for Reminders: <strong>Dead</strong> (last update 2017)</span>
@@ -370,7 +370,7 @@ export default function IOSFlowDiagram() {
             <span>Flutter package: <strong>Brand new</strong>, untested, doesn't support iOS 17 Grocery type</span>
           </div>
           <div className="flex items-start gap-2">
-            <span className="text-[#8B9F8D]">✓</span>
+            <span className="text-[var(--color-heirloom-sage)]">✓</span>
             <span><strong>Only native iOS apps can integrate this deeply</strong> - 18-24 month head start</span>
           </div>
         </div>

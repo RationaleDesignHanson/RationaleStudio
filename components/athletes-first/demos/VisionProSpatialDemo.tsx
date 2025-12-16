@@ -37,7 +37,7 @@ const VISION_PRO_SCENARIOS: VisionProScenario[] = [
     title: 'Being Drafted',
     description: 'Your name is called. The commissioner shakes your hand. Cameras flash. Your family celebrates. Relive the moment that changes everything—before it happens.',
     emoji: '📞',
-    color: '#FFD700',
+    color: 'var(--color-terminal-gold)',
   },
   {
     id: 'super-bowl-victory',

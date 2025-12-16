@@ -158,7 +158,7 @@ export function ShoppingListDemo() {
     <div className="w-full max-w-7xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-serif mb-3" style={{ color: '#2C1810' }}>
+        <h1 className="text-4xl font-serif mb-3" style={{ color: 'var(--color-text-dark)' }}>
           Smart Shopping List
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">

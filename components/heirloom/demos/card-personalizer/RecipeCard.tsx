@@ -59,7 +59,7 @@ export function RecipeCard({
         <h2
           className="text-3xl font-serif text-center"
           style={{
-            color: '#2C1810',
+            color: 'var(--color-text-dark)',
             textShadow: '0 1px 2px rgba(0,0,0,0.05)',
           }}
         >

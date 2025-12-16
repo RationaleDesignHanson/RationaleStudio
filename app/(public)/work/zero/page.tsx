@@ -202,7 +202,7 @@ function DevelopmentTimeline() {
       date: 'Aug 2024',
       description: 'Identified inbox management as core workflow friction',
       metrics: ['100+ user interviews', 'Hidden work quantified'],
-      color: '#FFD700',
+      color: 'var(--color-terminal-gold)',
     },
     {
       phase: 'Phase 2',

@@ -116,7 +116,7 @@ export default function ContractModelingMobile({ onContractClick }: ContractMode
   };
 
   const currentOffer = DEFAULT_OFFERS[activeIndex];
-  const riskColor = currentOffer.risk === 'low' ? '#00FF94' : (currentOffer.risk === 'medium' ? '#FFD700' : '#EF4444');
+  const riskColor = currentOffer.risk === 'low' ? '#00FF94' : (currentOffer.risk === 'medium' ? 'var(--color-terminal-gold)' : 'var(--color-error)');
 
   // Find best offer
   const bestIndex = DEFAULT_OFFERS.reduce((maxI, offer, i, arr) =>
