@@ -36,15 +36,15 @@ export interface SanitaryWasteSection {
   slides: SanitaryWasteSlide[];
 }
 
-// Section colors - green/mint theme for "sanitary/clean" positioning
+// Section colors - Heirloom-inspired warm, muted palette
 export const SECTION_COLORS = {
-  opening: '#10B981',      // Green
-  problem: '#EF4444',      // Red
-  solution: '#3B82F6',     // Blue
-  product: '#8B5CF6',      // Purple
-  goToMarket: '#F59E0B',   // Orange
-  business: '#00D9FF',     // Cyan
-  ask: '#FFD700',          // Gold
+  opening: '#E85D42',      // Tomato (primary accent)
+  problem: '#D84A32',      // Deeper tomato
+  solution: '#2A9D8F',     // Sage (success/solution)
+  product: '#F4A261',      // Amber (warmth)
+  goToMarket: '#E76F51',   // Burnt sienna
+  business: '#2A9D8F',     // Sage (repeat for cohesion)
+  ask: '#E85D42',          // Tomato (bookend with opening)
 };
 
 export const sanitaryWasteSections: SanitaryWasteSection[] = [
@@ -64,6 +64,14 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           'Absorbent-lined pickup + pop-up dispensing + proprietary dispenser ecosystem',
           'Raising pre-seed to validate retail pull and scale manufacturing'
         ],
+        visual: {
+          type: 'image',
+          data: {
+            src: '/images/sanitary-waste-system/imagecover.png',
+            alt: 'Premium sanitary waste system hero shot',
+            caption: 'Turning a hated moment into a premium hygiene system'
+          }
+        },
         notes: 'IP Development Co. | Confidential'
       },
       {
@@ -96,26 +104,31 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         id: 'slide-03',
         sectionId: 'problem',
         slideNumber: 3,
-        type: 'section-header',
-        headline: 'The Problem',
-        subheadline: 'Dog waste pickup is a visceral sensory problem'
-      },
-      {
-        id: 'slide-04',
-        sectionId: 'problem',
-        slideNumber: 4,
         type: 'problem',
-        headline: 'Four Sensory Pain Points',
-        bullets: [
-          'Heat transfer through thin film (13-20 microns)',
-          'Moisture "pressure" and smear risk',
-          'Odor anxiety during carry-time',
-          'Loose stool makes everything worse'
-        ],
+        headline: 'The Disgust Problem',
+        subheadline: 'Four sensory pain points drive avoidance behavior',
         content: [
           'People already hack around it: double-bagging, leaves/grass lining.',
-          'This isn\'t convenience. It\'s disgust sensitivity.'
+          'This isn\'t convenience. It\'s disgust sensitivity.',
+          'When the experience is unpleasant, people dread walks, avoid pickup situations, feel embarrassed in public, and overuse plastic.'
         ],
+        bullets: [
+          'Heat transfer through thin film (13-20 microns) → Dread walks',
+          'Moisture "pressure" and smear risk → Avoid pickup situations',
+          'Odor anxiety during carry-time → Feel embarrassed in public',
+          'Loose stool makes everything worse → Overuse plastic (double-bagging)'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'DisgustBarrierDiagram',
+          data: {
+            supplementaryImage: {
+              src: '/images/sanitary-waste-system/image6.png',
+              alt: 'Hand holding thick absorbent liner material showing texture and thickness',
+              caption: 'The airlaid liner is 40-60x thicker than standard film, creating tactile insulation'
+            }
+          }
+        },
         deepDive: {
           title: 'Psychology of Disgust',
           sections: [
@@ -130,26 +143,13 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             {
               title: 'Double Bagging Behavior',
               content: 'A significant subset of users currently mitigates this aversion by using two bags or lining the bag with leaves/grass, effectively acknowledging the failure of the single-bag design.'
+            },
+            {
+              title: 'Behavioral Impact',
+              content: 'The disgust response creates real behavioral changes: owners dread walks, strategically avoid situations requiring pickup, experience public embarrassment, and resort to wasteful double-bagging. We\'re solving the tactile gap that drives these avoidance behaviors.'
             }
           ]
         }
-      },
-      {
-        id: 'slide-05',
-        sectionId: 'problem',
-        slideNumber: 5,
-        type: 'problem',
-        headline: 'Why This Matters',
-        subheadline: 'When the experience is unpleasant, people:',
-        bullets: [
-          'Dread walks',
-          'Avoid pickup situations',
-          'Feel embarrassed in public',
-          'Overuse plastic (double-bagging)'
-        ],
-        content: [
-          'We\'re solving the tactile gap.'
-        ]
       }
     ]
   },
@@ -159,30 +159,34 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
     color: SECTION_COLORS.solution,
     slides: [
       {
-        id: 'slide-06',
+        id: 'slide-04',
         sectionId: 'solution',
-        slideNumber: 6,
-        type: 'section-header',
-        headline: 'The Solution',
-        subheadline: 'Absorbent-Lined Sanitary Waste System'
-      },
-      {
-        id: 'slide-07',
-        sectionId: 'solution',
-        slideNumber: 7,
+        slideNumber: 4,
         type: 'solution',
-        headline: 'Hybrid Material Architecture',
-        bullets: [
-          'Inner liner: Airlaid non-woven (wet-strong, high loft, absorbent)',
-          'Outer shell: Compostable film or recycled LDPE',
-          'Bonding: Zone bonding to keep flexibility',
-          'Format: Interfolded flat-pack for reliable dispensing'
-        ],
+        headline: 'Material Innovation Meets User Experience',
+        subheadline: 'Hybrid Material Architecture That Transforms the Experience',
         content: [
+          'Before: "I can feel it. I hate this."',
+          'After: "It feels insulated, drier, less gross."',
           'Same pickup behavior (invert + tie), vastly better experience.'
         ],
+        bullets: [
+          'Inner liner: Airlaid non-woven (absorbent, wet-strong) → Reduced heat transmission',
+          'Outer shell: Compostable film or recycled LDPE → Rapid moisture uptake',
+          'Zone bonding for flexibility → Calmer carry-time experience',
+          'Interfolded flat-pack format → Familiar invert-and-tie motion retained'
+        ],
+        visual: {
+          type: 'image',
+          data: {
+            src: '/images/sanitary-waste-system/image1.png',
+            alt: 'Cross-section showing airlaid liner, compostable film, and zone bonding',
+            caption: 'Three-layer construction: 600-1000 micron absorbent liner eliminates heat transfer',
+            description: 'Product cross-section showing material layers'
+          }
+        },
         deepDive: {
-          title: 'Material Science',
+          title: 'Material Science & User Benefits',
           sections: [
             {
               title: 'Why Airlaid Non-Woven',
@@ -195,14 +199,18 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             {
               title: 'Zone Bonding Chemistry',
               content: 'Adhesive is applied only in specific areas (e.g., top cuff and center strip) to allow materials to move independently ("float"), improving drape and flexibility while preventing delamination.'
+            },
+            {
+              title: 'User Experience Transformation',
+              content: 'The hybrid material architecture directly translates technical specs into tangible benefits: reduced heat transmission eliminates the visceral disgust response, rapid moisture uptake stabilizes loose stool and prevents smearing, the airlaid cushion creates a calmer carry-time experience, and the familiar invert-and-tie motion means zero learning curve for users.'
             }
           ]
         }
       },
       {
-        id: 'slide-08',
+        id: 'slide-05',
         sectionId: 'solution',
-        slideNumber: 8,
+        slideNumber: 5,
         type: 'technical',
         headline: 'Why Interfolded',
         subheadline: 'Roll format breaks due to liner thickness',
@@ -216,12 +224,12 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           'Interfolded flat packs are proven in tissues/wipes → manufacturable + premium UX.'
         ],
         visual: {
-          type: 'diagram',
-          component: 'RollVsInterfoldedDiagram',
+          type: 'image',
           data: {
-            comparison: 'side-by-side',
-            rollIssues: ['Telescoping', 'Tension mismatch', 'Perforation failure'],
-            interfoldedBenefits: ['No winding issues', 'Pop-up dispensing', 'One-handed use']
+            src: '/images/sanitary-waste-system/image9.png',
+            alt: 'Side-by-side comparison showing interfolded flat pack versus rolled bag format with visible thickness difference',
+            caption: 'Interfolded format eliminates roll geometry constraints and enables thick absorbent liner',
+            description: 'Product comparison: interfolded vs rolled format'
           }
         },
         deepDive: {
@@ -237,24 +245,6 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             }
           ]
         }
-      },
-      {
-        id: 'slide-09',
-        sectionId: 'solution',
-        slideNumber: 9,
-        type: 'solution',
-        headline: 'The UX Difference',
-        subheadline: 'What Users Feel',
-        content: [
-          'Before: "I can feel it. I hate this."',
-          'After: "It feels insulated, drier, less gross."'
-        ],
-        bullets: [
-          'Reduced heat transmission',
-          'Rapid moisture uptake (stabilizes loose stool)',
-          'Calmer carry-time experience',
-          'Familiar invert-and-tie motion retained'
-        ]
       }
     ]
   },
@@ -264,17 +254,9 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
     color: SECTION_COLORS.product,
     slides: [
       {
-        id: 'slide-10',
+        id: 'slide-06',
         sectionId: 'product',
-        slideNumber: 10,
-        type: 'section-header',
-        headline: 'Product System',
-        subheadline: '"Razor + blade economics in pet hygiene"'
-      },
-      {
-        id: 'slide-11',
-        sectionId: 'product',
-        slideNumber: 11,
+        slideNumber: 6,
         type: 'product',
         headline: 'The Three-SKU System',
         content: [
@@ -291,14 +273,19 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           data: {
             sku1: { name: 'Bags', price: '$0.25-0.30', role: 'Consumable' },
             sku2: { name: 'Refills', price: '$15-18/box', role: 'Subscription' },
-            sku3: { name: 'Dispenser', price: '$24.99', role: 'Acquisition' }
+            sku3: { name: 'Dispenser', price: '$24.99', role: 'Acquisition' },
+            productImage: {
+              src: '/images/sanitary-waste-system/image4.png',
+              alt: 'Product flat lay showing complete ecosystem: dispenser, refill packs, and absorbent-lined bags',
+              caption: 'The complete three-SKU system: format lock-in creates recurring revenue'
+            }
           }
         }
       },
       {
-        id: 'slide-12',
+        id: 'slide-07',
         sectionId: 'product',
-        slideNumber: 12,
+        slideNumber: 7,
         type: 'product',
         headline: 'Dispenser UX',
         subheadline: 'One-Handed Flow',
@@ -312,6 +299,31 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           '4. Invert + tie as normal',
           '5. Carry with reduced odor anxiety'
         ],
+        visual: {
+          type: 'image',
+          data: {
+            gallery: [
+              {
+                src: '/images/sanitary-waste-system/image5.png',
+                alt: 'Woman walking golden retriever at sunset using sanitary waste system dispenser',
+                caption: 'Real-world use case: One-handed access during walks',
+                description: 'Lifestyle shot showing product in use'
+              },
+              {
+                src: '/images/sanitary-waste-system/image7.png',
+                alt: 'Close-up of dispenser hanging mechanism showing one-handed thumb-pull access',
+                caption: 'Pop-up dispens ing: Next bag auto-presents after pull',
+                description: 'Detail shot of dispenser mechanism'
+              },
+              {
+                src: '/images/sanitary-waste-system/image3.png',
+                alt: 'Premium leash-mounted dispenser with soft-touch neoprene and leather strap',
+                caption: 'Premium materials: Soft-touch neoprene with secondary pocket',
+                description: 'Product hero shot'
+              }
+            ]
+          }
+        },
         notes: 'Material: Soft-touch neoprene or recycled ocean plastic. Function: Holds rectangular pocket pack + secondary pocket for keys/treats.'
       }
     ]
@@ -322,19 +334,11 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
     color: SECTION_COLORS.goToMarket,
     slides: [
       {
-        id: 'slide-13',
+        id: 'slide-08',
         sectionId: 'goToMarket',
-        slideNumber: 13,
-        type: 'section-header',
-        headline: 'Path to Market',
-        subheadline: 'Manufacturing + Retail Beta Strategy'
-      },
-      {
-        id: 'slide-14',
-        sectionId: 'goToMarket',
-        slideNumber: 14,
+        slideNumber: 8,
         type: 'business',
-        headline: 'Manufacturing Strategy',
+        headline: 'Manufacturing Process & Partners',
         subheadline: 'We don\'t build factories early. We partner.',
         content: [
           'Partner with nonwoven hygiene converters who already run similar lines (wet wipes, tissues, sanitary products).',
@@ -350,27 +354,44 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           component: 'ManufacturingFlowDiagram',
           data: {
             process: ['Airlaid + PBAT webs', 'Cut & Place', 'Hot Melt Bonding', 'Interfolding', 'Pocket Pack'],
-            partners: ['China/Turkey (cost)', 'USA (speed/quality)']
-          }
-        },
-        deepDive: {
-          title: 'Supply Chain',
-          sections: [
-            {
-              title: 'Material Sourcing',
-              content: 'Bioplastic film: BASF (Ecoflex), Novamont (Mater-Bi), or Asian PBAT suppliers. Airlaid paper: Glatfelter, McAirlaid\'s, or Chinese equivalents. Adhesives: Henkel, H.B. Fuller, or eco-adhesive specialists.'
-            },
-            {
-              title: 'Capital Expenditure',
-              content: 'Custom dies: $5K-10K. Entry-level semi-auto: <$15K (prototyping). Mid-range modified Chinese machine: $40K-80K. High-end European line: $250K+.'
+            partners: ['China/Turkey (cost)', 'USA (speed/quality)'],
+            productImage: {
+              src: '/images/sanitary-waste-system/image8.png',
+              alt: 'Hand holding interfolded pack of absorbent-lined bags showing pop-up format',
+              caption: 'Interfolded format is the key manufacturing output: enables pop-up dispensing'
             }
-          ]
+          }
         }
       },
       {
-        id: 'slide-15',
+        id: 'slide-09',
         sectionId: 'goToMarket',
-        slideNumber: 15,
+        slideNumber: 9,
+        type: 'business',
+        headline: 'Supply Chain & Economics',
+        subheadline: 'Strategic sourcing from pilot through scale',
+        content: [
+          'Material sourcing is straightforward: bioplastic film, airlaid non-woven, and bio-based adhesives from established suppliers.',
+          'CAPEX scales with production phase: from $5K-15K for prototyping to $40K-250K+ for automated production.'
+        ],
+        bullets: [
+          'Buy finished materials for pilot runs',
+          'Partner with converters for 5K-10K beta production',
+          'Scale with dedicated lines or long-term partnerships'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'SupplyChainEconomicsDiagram',
+          data: {
+            materials: ['Bioplastic film', 'Airlaid non-woven', 'Bio-based adhesives'],
+            geography: ['China/Turkey (cost)', 'USA (speed/quality)']
+          }
+        }
+      },
+      {
+        id: 'slide-10',
+        sectionId: 'goToMarket',
+        slideNumber: 10,
         type: 'business',
         headline: 'Market Wedge',
         subheadline: 'High-end pet stores + urban premium owners',
@@ -389,7 +410,12 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           data: {
             phase1: { weeks: '1-4', milestone: 'Frankenstein prototypes + mustard test' },
             phase2: { weeks: '5-12', milestone: '5k-10k pilot + retail beta + provisional patent' },
-            phase3: { months: '4-9', milestone: 'Automated interfold production + certification + scale' }
+            phase3: { months: '4-9', milestone: 'Automated interfold production + certification + scale' },
+            retailImage: {
+              src: '/images/sanitary-waste-system/image10.png',
+              alt: 'Boutique retail display mockup showing premium product placement on warm wood shelving',
+              caption: 'Retail beta target: 25-50 flagship boutiques with in-store demo and staff training'
+            }
           }
         },
         deepDive: {
@@ -407,23 +433,67 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         }
       },
       {
-        id: 'slide-16',
+        id: 'slide-11',
         sectionId: 'goToMarket',
-        slideNumber: 16,
+        slideNumber: 11,
         type: 'business',
         headline: 'Competitive Positioning',
         subheadline: 'Why We Win',
         content: [
-          '2×2: Containment-only vs Sanitary performance × Commodity vs Premium'
+          'We occupy a blue ocean position at the intersection of premium pricing and true sanitary performance.',
+          'Competitors fail because they optimize for only one dimension—either cheap containment or expensive alternatives with different UX.'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'CompetitivePositioningDiagram'
+        },
+        notes: 'Blue Ocean opportunity: Retain flexible bag mechanics + add performance of paper solutions'
+      },
+      {
+        id: 'slide-12',
+        sectionId: 'goToMarket',
+        slideNumber: 12,
+        type: 'business',
+        headline: 'Roadmap & Milestones',
+        subheadline: '18-month path from concept to national distribution',
+        content: [
+          '4-phase execution roadmap with clear funding gates at each transition.',
+          'Each phase builds proof points for the next round of capital.'
         ],
         bullets: [
-          'Standard HDPE: Cheap, gross, environmental guilt',
-          'Earth Rated: Scent masks but doesn\'t eliminate, still thin film',
-          'Flush Puppies: Dissolves in rain/wet grass, high failure rate',
-          'PoopShark (paper): Rigid, bulky, requires different scooping motion',
-          'Us: Familiar motion + sanitary insulation + premium system'
+          'Weeks 1-4: Foundation (patent, BOM, manufacturer)',
+          'Weeks 5-12: Validation (pilot production, retail beta)',
+          'Months 4-9: Scale Prep (hit seed metrics, distribution)',
+          'Months 10-18: Market Expansion (national rollout)'
         ],
-        notes: 'Blue Ocean opportunity: Retain flexible bag mechanics + add performance of paper solutions'
+        visual: {
+          type: 'diagram',
+          component: 'RoadmapTimelineDiagram'
+        },
+        notes: 'Funding gates: F&F $25-35K → Pre-Seed $100-150K → Seed $300-400K'
+      },
+      {
+        id: 'slide-13',
+        sectionId: 'goToMarket',
+        slideNumber: 13,
+        type: 'business',
+        headline: 'Seed Trigger Metrics',
+        subheadline: '4 hard thresholds that unlock seed funding',
+        content: [
+          'Pre-seed funds the retail beta. Seed only deploys after hitting validation metrics.',
+          'This de-risks capital by proving product-market fit before scaling.'
+        ],
+        bullets: [
+          'Refill Repeat Rate: >40% (customers buying refills within 60 days)',
+          'Dispenser Attach Rate: >60% (starter kit sales vs bag-only)',
+          'Net Promoter Score: >50 (customer satisfaction)',
+          'Review Keyword Frequency: >30% (mentions of disgust problem solved)'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'SeedMetricsDashboard'
+        },
+        notes: 'All 4 metrics must hit before seed capital deploys'
       }
     ]
   },
@@ -433,17 +503,9 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
     color: SECTION_COLORS.business,
     slides: [
       {
-        id: 'slide-17',
+        id: 'slide-14',
         sectionId: 'business',
-        slideNumber: 17,
-        type: 'section-header',
-        headline: 'Business Model & IP',
-        subheadline: 'Razor-blade economics + format lock-in'
-      },
-      {
-        id: 'slide-18',
-        sectionId: 'business',
-        slideNumber: 18,
+        slideNumber: 14,
         type: 'business',
         headline: 'Unit Economics',
         subheadline: 'Healthy margins in super-premium segment',
@@ -481,37 +543,67 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         }
       },
       {
-        id: 'slide-19',
+        id: 'slide-15',
         sectionId: 'business',
-        slideNumber: 19,
+        slideNumber: 15,
         type: 'business',
-        headline: 'Business Model',
-        bullets: [
-          'Starter Kit: Dispenser + 2 refills (near break-even CAC)',
-          'Refills: Recurring margin engine (subscription + retail)',
-          'Accessories: Leash clip / mini pouch / travel kit'
-        ],
+        headline: 'Unit Economics Detail',
+        subheadline: 'Bill of Materials breakdown & pricing architecture',
         content: [
-          'Moat: Format + dispenser ecosystem.',
-          'Customers can\'t easily switch back to cheap generic rolls—they don\'t fit the superior dispenser.'
-        ]
+          'Detailed COGS breakdown by component reveals path to margin expansion at scale.',
+          'We\'re pricing at "diaper economics" not "trash bag economics"—this is a sanitary hygiene product.'
+        ],
+        bullets: [
+          'Per-bag COGS: Film ($0.022), Liner ($0.018), Adhesive ($0.003), Packaging ($0.010), Conversion ($0.012)',
+          '60-bag pack retail: $15-18 → Wholesale: $7.50-9.00 → COGS: $3.18-4.56',
+          'Starter Kit: $24.99 retail (dispenser + 2 packs) → Break-even CAC',
+          'Path to 50-55% margins at scale (50K+ units)'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'UnitEconomicsDetailDiagram'
+        },
+        notes: 'Current margins assume pilot volumes. Scale economics improve 15-30% across all categories.'
       },
       {
-        id: 'slide-20',
+        id: 'slide-16',
         sectionId: 'business',
-        slideNumber: 20,
+        slideNumber: 16,
         type: 'business',
-        headline: 'IP Strategy',
-        subheadline: 'We\'re an IP development company',
+        headline: 'Defensible Business Model',
+        subheadline: 'Razor-Blade Economics with Multi-Layer IP Moat',
         content: [
-          'Defensibility layers:'
+          'Format + dispenser ecosystem creates switching costs.',
+          'Customers can\'t easily switch back to cheap generic rolls—they don\'t fit the superior dispenser.',
+          'We\'re an IP development company building defensibility layers from day one.'
         ],
         bullets: [
-          'Folding / interfold system + liner placement',
-          'Dispenser + refill interface (ecosystem lock-in)',
-          'Trade secrets: Bonding zones, dimensions, QC thresholds',
-          'Provisional → utility patent as traction confirms'
+          'Starter Kit: Dispenser + 2 refills (~break-even CAC) | Folding / interfold system + liner placement',
+          'Refills: Recurring margin engine (subscription + retail) | Dispenser + refill interface (ecosystem lock-in)',
+          'Accessories: Leash clip / mini pouch / travel kit | Trade secrets: Bonding zones, dimensions, QC',
+          'Recurring revenue moat | Provisional → utility patent as traction confirms'
         ],
+        deepDive: {
+          title: 'Business Model & IP Strategy',
+          sections: [
+            {
+              title: 'Revenue Streams',
+              content: 'Starter Kit ($24.99) serves as near break-even customer acquisition, getting the proprietary dispenser into users\' hands. Refills ($15-18/box) create the recurring margin engine through both subscription and retail channels, with 44% gross margins. Accessories (leash clips, mini pouches, travel kits) provide additional margin expansion and ecosystem lock-in.'
+            },
+            {
+              title: 'IP Layers',
+              content: 'The folding/interfold system and liner placement create manufacturing IP. The dispenser and refill interface create ecosystem lock-in—generic bags won\'t fit the premium dispenser. Trade secrets around bonding zones, precise dimensions, and QC thresholds provide additional defensibility. Provisional patent filed at 5k pilot run, converting to utility patent as retail beta validates pull.'
+            },
+            {
+              title: 'Ecosystem Lock-In',
+              content: 'Once customers invest in the premium dispenser ($24.99), they\'re locked into our refill format. Generic thin bags won\'t fit properly, and customers won\'t want to downgrade after experiencing the superior sanitary performance. This creates a natural moat similar to razor-blade economics but with stronger format lock-in than commodity consumables.'
+            },
+            {
+              title: 'IP Development Timeline',
+              content: 'File provisional patent at 5k pilot run to establish priority date. Convert to utility patent if retail beta validates pull (25-50 stores showing repeat purchase). Trade secrets maintained around exact bonding zones, material specifications, and quality control thresholds that aren\'t disclosed in patent applications.'
+            }
+          ]
+        },
         notes: 'File provisional patent at 5k pilot run, convert to utility if retail beta validates pull'
       }
     ]
@@ -522,40 +614,53 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
     color: SECTION_COLORS.ask,
     slides: [
       {
-        id: 'slide-21',
+        id: 'slide-17',
         sectionId: 'ask',
-        slideNumber: 21,
-        type: 'section-header',
-        headline: 'The Raise',
-        subheadline: 'Pre-seed to validate retail pull and scale manufacturing'
-      },
-      {
-        id: 'slide-22',
-        sectionId: 'ask',
-        slideNumber: 22,
+        slideNumber: 17,
         type: 'ask',
-        headline: 'What We\'re Raising For',
-        bullets: [
-          'Materials + pilot manufacturing (5k-10k units)',
-          'Dispenser iterations + tooling',
-          'Retail beta + sampling (25-50 stores)',
-          'IP filing + certifications (compostability, etc.)'
-        ],
+        headline: 'The Raise: Staged Funding Strategy',
+        subheadline: 'Metrics-driven capital deployment in two phases',
         content: [
-          'Outcome: Validated unit economics + retail pull + scalable manufacturing partner.',
-          'Timeline: 9-12 months to retail beta completion.'
-        ]
+          'Pre-seed funds the retail beta. Seed only deploys after hitting hard validation metrics.',
+          'This structure protects investor downside and ensures capital isn\'t burned on scale before proving the model works.'
+        ],
+        bullets: [
+          'Pre-Seed: $100-150K → Validation + retail beta + IP filing',
+          'Seed Trigger: Hit 4 hard metrics (refill >40%, attach >60%, NPS >50, keywords >30%)',
+          'Seed: $300-400K → Scale manufacturing + national distribution',
+          'Timeline: Pre-seed 3-4 months, seed unlocks at 12-week mark if metrics hit'
+        ],
+        visual: {
+          type: 'diagram',
+          component: 'StagedFundingDiagram'
+        },
+        notes: 'Two-stage raise: Pre-seed current, Seed triggered by metrics'
       },
       {
-        id: 'slide-23',
+        id: 'slide-18',
         sectionId: 'ask',
-        slideNumber: 23,
+        slideNumber: 18,
         type: 'ask',
         headline: 'We\'re turning a hated moment into a premium hygiene system',
-        content: [
-          'If pets are family, cleanup should feel like it.'
+        subheadline: 'If pets are family, cleanup should feel like it.',
+        visual: {
+          type: 'image',
+          data: {
+            src: '/images/sanitary-waste-system/image11.png',
+            alt: 'Dog owner with pet - emotional connection and premium care',
+            caption: 'Premium sanitary experience for modern pet owners'
+          }
+        },
+        bullets: [
+          'Pilot manufacturing (5-10K units) + retail beta (25-50 stores)',
+          'IP filing + certifications',
+          'Validated unit economics + retail pull',
+          'Timeline: 9-12 months to retail beta completion'
         ],
-        notes: 'CTA: "Let\'s discuss pilot + rollout."'
+        content: [
+          'Let\'s discuss pilot + rollout.'
+        ],
+        notes: 'Final slide: Emotional appeal + practical next steps'
       }
     ]
   }

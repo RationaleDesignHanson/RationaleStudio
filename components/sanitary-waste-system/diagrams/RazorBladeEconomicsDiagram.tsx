@@ -17,9 +17,6 @@ interface RevenueBar {
 
 export default function RazorBladeEconomicsDiagram() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number | undefined>(undefined);
-  const [isAnimating, setIsAnimating] = useState(true);
-  const timeRef = useRef(0);
   const barsRef = useRef<RevenueBar[]>([]);
 
   // Initialize revenue bars
@@ -55,55 +52,47 @@ export default function RazorBladeEconomicsDiagram() {
       canvas.style.height = `${rect.height}px`;
     };
 
-    setupCanvas();
-    window.addEventListener('resize', setupCanvas);
-
-    // Animation loop
-    const animate = () => {
-      if (!isAnimating) return;
-
+    const draw = () => {
       const width = canvas.getBoundingClientRect().width;
       const height = canvas.getBoundingClientRect().height;
 
       ctx.clearRect(0, 0, width, height);
 
-      timeRef.current += 0.02;
-
       // Draw background gradient
       const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-      bgGradient.addColorStop(0, 'rgba(17, 24, 39, 0.3)');
-      bgGradient.addColorStop(1, 'rgba(17, 24, 39, 0.6)');
+      bgGradient.addColorStop(0, 'rgba(245, 241, 232, 0.95)');
+      bgGradient.addColorStop(1, 'rgba(255, 250, 245, 0.9)');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
-      // Draw revenue growth chart
-      drawRevenueGrowth(ctx, width, height, timeRef.current);
+      // Draw revenue growth chart (static final state)
+      drawRevenueGrowth(ctx, width, height);
 
-      // Draw money flow particles
-      drawMoneyFlow(ctx, width, height, timeRef.current);
+      // Draw money flow (static)
+      drawMoneyFlow(ctx, width, height);
 
-      // Draw LTV accumulation
-      drawLTVAccumulation(ctx, width, height, timeRef.current);
-
-      animationFrameRef.current = requestAnimationFrame(animate);
+      // Draw LTV accumulation (static)
+      drawLTVAccumulation(ctx, width, height);
     };
 
-    animate();
+    setupCanvas();
+    draw();
+
+    window.addEventListener('resize', () => {
+      setupCanvas();
+      draw();
+    });
 
     return () => {
-      window.removeEventListener('resize', setupCanvas);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      window.removeEventListener('resize', draw);
     };
-  }, [isAnimating]);
+  }, []);
 
   // Draw revenue growth bars
   const drawRevenueGrowth = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
     const chartHeight = height * 0.5;
     const chartY = height * 0.15;
@@ -112,18 +101,18 @@ export default function RazorBladeEconomicsDiagram() {
     const startX = width * 0.05;
 
     // Draw axis
-    ctx.strokeStyle = 'rgba(75, 85, 99, 0.5)';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(45, 45, 45, 0.3)';
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(startX, chartY + chartHeight);
     ctx.lineTo(startX + barWidth * 13, chartY + chartHeight);
     ctx.stroke();
 
-    // Draw bars with animation
+    // Draw bars at full height (no animation)
     barsRef.current.forEach((bar, index) => {
       const x = startX + (barWidth * index);
       const normalizedHeight = (bar.value / maxValue) * chartHeight;
-      const animatedHeight = normalizedHeight * Math.min(1, (time - index * 0.1));
+      const animatedHeight = normalizedHeight; // Full height, no animation
 
       // Bar gradient
       const barGradient = ctx.createLinearGradient(x, chartY + chartHeight - animatedHeight, x, chartY + chartHeight);
@@ -150,7 +139,7 @@ export default function RazorBladeEconomicsDiagram() {
       // Month label
       if (index % 3 === 0 || index === 12) {
         ctx.font = '10px system-ui';
-        ctx.fillStyle = 'rgba(156, 163, 175, 0.8)';
+        ctx.fillStyle = 'rgba(45, 45, 45, 0.7)';
         ctx.textAlign = 'center';
         ctx.fillText(index === 0 ? 'Start' : `M${index}`, x + barWidth / 2, chartY + chartHeight + 15);
       }
@@ -169,7 +158,7 @@ export default function RazorBladeEconomicsDiagram() {
     yLabels.forEach(value => {
       const y = chartY + chartHeight - (value / maxValue) * chartHeight;
 
-      ctx.strokeStyle = 'rgba(75, 85, 99, 0.2)';
+      ctx.strokeStyle = 'rgba(45, 45, 45, 0.15)';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(startX, y);
@@ -177,50 +166,24 @@ export default function RazorBladeEconomicsDiagram() {
       ctx.stroke();
 
       ctx.font = '10px system-ui';
-      ctx.fillStyle = 'rgba(156, 163, 175, 0.6)';
+      ctx.fillStyle = 'rgba(45, 45, 45, 0.6)';
       ctx.textAlign = 'right';
       ctx.fillText(`$${value}`, startX - 5, y + 3);
     });
   };
 
-  // Draw money flow particles
+  // Draw money flow (static)
   const drawMoneyFlow = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
-    const numParticles = 20;
     const flowY = height * 0.75;
 
-    for (let i = 0; i < numParticles; i++) {
-      const progress = ((time * 0.5 + i * 0.3) % 2) / 2;
-      const x = width * 0.1 + (width * 0.8 * progress);
-      const y = flowY + Math.sin(time * 2 + i) * 10;
-      const size = 3 + Math.sin(time * 3 + i) * 2;
-      const opacity = 0.3 + Math.sin(time * 2 + i) * 0.2;
-
-      // Dollar sign particle
-      ctx.fillStyle = `rgba(34, 197, 94, ${opacity})`;
-      ctx.font = `${size * 3}px system-ui`;
-      ctx.textAlign = 'center';
-      ctx.fillText('$', x, y);
-
-      // Particle glow
-      const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, size * 4);
-      glowGradient.addColorStop(0, `rgba(34, 197, 94, ${opacity * 0.5})`);
-      glowGradient.addColorStop(1, 'rgba(34, 197, 94, 0)');
-      ctx.fillStyle = glowGradient;
-      ctx.beginPath();
-      ctx.arc(x, y, size * 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // Flow arrow
+    // Flow arrow (static dashed line)
     ctx.strokeStyle = 'rgba(34, 197, 94, 0.4)';
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
-    ctx.lineDashOffset = -time * 10;
 
     ctx.beginPath();
     ctx.moveTo(width * 0.1, flowY);
@@ -239,27 +202,26 @@ export default function RazorBladeEconomicsDiagram() {
 
     // Labels
     ctx.font = 'bold 11px system-ui';
-    ctx.fillStyle = 'rgba(59, 130, 246, 1)';
+    ctx.fillStyle = 'rgba(37, 99, 235, 1)';
     ctx.textAlign = 'center';
     ctx.fillText('ACQUISITION', width * 0.1, flowY - 15);
 
-    ctx.fillStyle = 'rgba(34, 197, 94, 1)';
+    ctx.fillStyle = 'rgba(22, 163, 74, 1)';
     ctx.fillText('RECURRING REVENUE', width * 0.9, flowY - 15);
   };
 
-  // Draw LTV accumulation counter
+  // Draw LTV accumulation counter (static at max)
   const drawLTVAccumulation = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
     const centerX = width * 0.5;
     const centerY = height * 0.88;
 
-    // Animated LTV value
+    // Static LTV value at maximum
     const maxLTV = 241;
-    const currentLTV = Math.floor((Math.sin(time * 0.5) * 0.5 + 0.5) * maxLTV);
+    const currentLTV = maxLTV;
 
     // Background circle
     ctx.beginPath();
@@ -271,10 +233,9 @@ export default function RazorBladeEconomicsDiagram() {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Progress arc
-    const progress = currentLTV / maxLTV;
+    // Complete progress arc
     ctx.beginPath();
-    ctx.arc(centerX, centerY, 50, -Math.PI / 2, -Math.PI / 2 + (progress * Math.PI * 2));
+    ctx.arc(centerX, centerY, 50, -Math.PI / 2, -Math.PI / 2 + (Math.PI * 2));
     ctx.strokeStyle = 'rgba(34, 197, 94, 0.8)';
     ctx.lineWidth = 4;
     ctx.stroke();
@@ -287,76 +248,69 @@ export default function RazorBladeEconomicsDiagram() {
 
     // Label
     ctx.font = '10px system-ui';
-    ctx.fillStyle = 'rgba(156, 163, 175, 0.8)';
+    ctx.fillStyle = 'rgba(45, 45, 45, 0.7)';
     ctx.fillText('12-Mo LTV', centerX, centerY + 20);
   };
 
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 lg:p-8">
-      <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">Business Model: Recurring Revenue</h3>
+    <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm">
+      <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-[#2D2D2D]">Business Model: Recurring Revenue</h3>
 
-      {/* Canvas Animation */}
-      <div className="relative bg-gray-950/50 border border-gray-800 rounded-lg overflow-hidden mb-6 sm:mb-8" style={{ height: '500px' }}>
+      {/* Canvas Visualization */}
+      <div className="relative bg-[#F5F1E8] border-2 border-gray-200 rounded-2xl overflow-hidden mb-6 sm:mb-8 h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
         <canvas
           ref={canvasRef}
           className="w-full h-full"
           style={{ display: 'block' }}
         />
-
-        <button
-          onClick={() => setIsAnimating(!isAnimating)}
-          className="absolute top-4 right-4 px-3 py-1.5 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 rounded text-xs text-gray-300 transition-colors backdrop-blur-sm"
-        >
-          {isAnimating ? 'Pause' : 'Resume'}
-        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
         {/* Acquisition */}
-        <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 sm:p-6">
+        <div className="bg-[#E85D42]/5 border-2 border-[#E85D42]/30 rounded-2xl p-4 sm:p-6">
           <div className="text-center mb-4">
-            <div className="inline-flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-blue-500/20 mb-3">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="inline-flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-[#E85D42]/20 mb-3">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#E85D42]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             </div>
-            <h4 className="font-bold text-white mb-2 text-base sm:text-lg">Acquisition</h4>
+            <h4 className="font-bold text-[#2D2D2D] mb-2 text-base sm:text-lg">Acquisition</h4>
           </div>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-sm sm:text-base text-gray-400">Starter Kit</span>
-              <span className="font-bold text-blue-400 text-base sm:text-lg">$24.99</span>
+              <span className="text-sm sm:text-base text-[#2D2D2D]/70">Starter Kit</span>
+              <span className="font-bold text-[#E85D42] text-base sm:text-lg">$24.99</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm sm:text-base text-gray-400">Margin</span>
-              <span className="text-sm sm:text-base text-gray-400">Break-even</span>
+              <span className="text-sm sm:text-base text-[#2D2D2D]/70">Margin</span>
+              <span className="text-sm sm:text-base text-[#2D2D2D]/70">Break-even</span>
             </div>
-            <div className="pt-3 border-t border-gray-700 text-xs sm:text-sm text-gray-500">
+            <div className="pt-3 border-t border-gray-200 text-xs sm:text-sm text-[#2D2D2D]/60">
               Includes dispenser + 2 refill packs
             </div>
           </div>
         </div>
 
         {/* Retention */}
-        <div className="bg-gray-800/50 border border-green-700 rounded-lg p-4 sm:p-6">
+        <div className="bg-[#2A9D8F]/5 border-2 border-[#2A9D8F]/30 rounded-2xl p-4 sm:p-6">
           <div className="text-center mb-4">
-            <div className="inline-flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-green-500/20 mb-3">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="inline-flex items-center justify-center h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-[#2A9D8F]/20 mb-3">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#2A9D8F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
             </div>
-            <h4 className="font-bold text-white mb-2 text-base sm:text-lg">Retention</h4>
+            <h4 className="font-bold text-[#2D2D2D] mb-2 text-base sm:text-lg">Retention</h4>
           </div>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-sm sm:text-base text-gray-400">Monthly Refills</span>
-              <span className="font-bold text-green-400 text-base sm:text-lg">$15-18</span>
+              <span className="text-sm sm:text-base text-[#2D2D2D]/70">Monthly Refills</span>
+              <span className="font-bold text-[#2A9D8F] text-base sm:text-lg">$15-18</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm sm:text-base text-gray-400">Gross Margin</span>
-              <span className="font-bold text-green-400 text-base sm:text-lg">~44%</span>
+              <span className="text-sm sm:text-base text-[#2D2D2D]/70">Gross Margin</span>
+              <span className="font-bold text-[#2A9D8F] text-base sm:text-lg">~44%</span>
             </div>
-            <div className="pt-3 border-t border-gray-700 text-xs sm:text-sm text-gray-500">
+            <div className="pt-3 border-t border-gray-200 text-xs sm:text-sm text-[#2D2D2D]/60">
               Subscription + retail channels
             </div>
           </div>
@@ -364,23 +318,23 @@ export default function RazorBladeEconomicsDiagram() {
       </div>
 
       {/* LTV Calculation */}
-      <div className="bg-gray-950/50 border border-green-500/30 rounded-lg p-4 sm:p-6">
-        <h4 className="font-bold text-white mb-4 text-center text-base sm:text-lg">12-Month Customer Lifetime Value</h4>
+      <div className="bg-[#2A9D8F]/5 border-2 border-[#2A9D8F]/30 rounded-2xl p-4 sm:p-6">
+        <h4 className="font-bold text-[#2D2D2D] mb-4 text-center text-base sm:text-lg">12-Month Customer Lifetime Value</h4>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-xs sm:text-sm text-gray-400 mb-1">Starter Kit</div>
-            <div className="text-xl sm:text-2xl font-bold text-white">$25</div>
+            <div className="text-xs sm:text-sm text-[#2D2D2D]/60 mb-1">Starter Kit</div>
+            <div className="text-xl sm:text-2xl font-bold text-[#2D2D2D]">$25</div>
           </div>
           <div>
-            <div className="text-xs sm:text-sm text-gray-400 mb-1">+ 12 Refills</div>
-            <div className="text-xl sm:text-2xl font-bold text-white">$180-216</div>
+            <div className="text-xs sm:text-sm text-[#2D2D2D]/60 mb-1">+ 12 Refills</div>
+            <div className="text-xl sm:text-2xl font-bold text-[#2D2D2D]">$180-216</div>
           </div>
           <div>
-            <div className="text-xs sm:text-sm text-gray-400 mb-1">= Total LTV</div>
-            <div className="text-2xl sm:text-3xl font-bold text-green-400">$205-241</div>
+            <div className="text-xs sm:text-sm text-[#2D2D2D]/60 mb-1">= Total LTV</div>
+            <div className="text-2xl sm:text-3xl font-bold text-[#2A9D8F]">$205-241</div>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-gray-800 text-center text-xs sm:text-sm text-gray-400">
+        <div className="mt-4 pt-4 border-t-2 border-gray-200 text-center text-xs sm:text-sm text-[#2D2D2D]/60">
           Assumes monthly subscription at $15-18/box (60 bags)
         </div>
       </div>

@@ -21,9 +21,6 @@ interface Phase {
 
 export default function RetailBetaTimelineDiagram() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number | undefined>(undefined);
-  const [isAnimating, setIsAnimating] = useState(true);
-  const timeRef = useRef(0);
 
   const phases: Phase[] = [
     {
@@ -93,55 +90,47 @@ export default function RetailBetaTimelineDiagram() {
       canvas.style.height = `${rect.height}px`;
     };
 
-    setupCanvas();
-    window.addEventListener('resize', setupCanvas);
-
-    // Animation loop
-    const animate = () => {
-      if (!isAnimating) return;
-
+    const draw = () => {
       const width = canvas.getBoundingClientRect().width;
       const height = canvas.getBoundingClientRect().height;
 
       ctx.clearRect(0, 0, width, height);
 
-      timeRef.current += 0.02;
-
       // Draw background
       const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-      bgGradient.addColorStop(0, 'rgba(17, 24, 39, 0.3)');
-      bgGradient.addColorStop(1, 'rgba(17, 24, 39, 0.5)');
+      bgGradient.addColorStop(0, 'rgba(245, 241, 232, 0.95)');
+      bgGradient.addColorStop(1, 'rgba(255, 250, 245, 0.9)');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
-      // Draw timeline
-      drawTimeline(ctx, width, height, timeRef.current);
+      // Draw timeline at completion (week 36)
+      drawTimeline(ctx, width, height);
 
-      // Draw phase progression
-      drawPhaseProgression(ctx, width, height, timeRef.current);
+      // Draw phase progression at 100%
+      drawPhaseProgression(ctx, width, height);
 
-      // Draw milestone markers
-      drawMilestoneMarkers(ctx, width, height, timeRef.current);
-
-      animationFrameRef.current = requestAnimationFrame(animate);
+      // Draw milestone markers all reached
+      drawMilestoneMarkers(ctx, width, height);
     };
 
-    animate();
+    setupCanvas();
+    draw();
+
+    window.addEventListener('resize', () => {
+      setupCanvas();
+      draw();
+    });
 
     return () => {
-      window.removeEventListener('resize', setupCanvas);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      window.removeEventListener('resize', draw);
     };
-  }, [isAnimating]);
+  }, []);
 
   // Draw timeline base
   const drawTimeline = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
     const timelineY = height * 0.5;
     const startX = width * 0.1;
@@ -149,7 +138,7 @@ export default function RetailBetaTimelineDiagram() {
     const totalWeeks = 36;
 
     // Timeline base line
-    ctx.strokeStyle = 'rgba(75, 85, 99, 0.5)';
+    ctx.strokeStyle = 'rgba(45, 45, 45, 0.3)';
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(startX, timelineY);
@@ -160,7 +149,7 @@ export default function RetailBetaTimelineDiagram() {
     for (let week = 0; week <= totalWeeks; week += 4) {
       const x = startX + ((endX - startX) * (week / totalWeeks));
 
-      ctx.strokeStyle = 'rgba(107, 114, 128, 0.6)';
+      ctx.strokeStyle = 'rgba(45, 45, 45, 0.4)';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(x, timelineY - 8);
@@ -169,16 +158,15 @@ export default function RetailBetaTimelineDiagram() {
 
       // Week label
       ctx.font = '10px system-ui';
-      ctx.fillStyle = 'rgba(156, 163, 175, 0.8)';
+      ctx.fillStyle = 'rgba(45, 45, 45, 0.7)';
       ctx.textAlign = 'center';
       ctx.fillText(week === 0 ? 'Start' : `W${week}`, x, timelineY + 25);
     }
 
-    // Current time indicator (animated)
-    const currentWeek = (Math.sin(time * 0.5) * 0.5 + 0.5) * totalWeeks;
-    const currentX = startX + ((endX - startX) * (currentWeek / totalWeeks));
+    // Completion marker at week 36
+    const currentX = endX;
 
-    ctx.strokeStyle = 'rgba(139, 92, 246, 0.8)';
+    ctx.strokeStyle = 'rgba(34, 197, 94, 0.8)';
     ctx.lineWidth = 3;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
@@ -187,29 +175,28 @@ export default function RetailBetaTimelineDiagram() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Current time marker
+    // Completion marker
     ctx.beginPath();
     ctx.arc(currentX, timelineY, 8, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(139, 92, 246, 1)';
+    ctx.fillStyle = 'rgba(34, 197, 94, 1)';
     ctx.fill();
 
-    ctx.strokeStyle = 'rgba(167, 139, 250, 1)';
+    ctx.strokeStyle = 'rgba(74, 222, 128, 1)';
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Current week label
+    // Completion label
     ctx.font = 'bold 11px system-ui';
-    ctx.fillStyle = 'rgba(167, 139, 250, 1)';
+    ctx.fillStyle = 'rgba(74, 222, 128, 1)';
     ctx.textAlign = 'center';
-    ctx.fillText(`Week ${Math.round(currentWeek)}`, currentX, timelineY - 60);
+    ctx.fillText('Complete', currentX, timelineY - 60);
   };
 
   // Draw phase progression bars
   const drawPhaseProgression = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
     const startX = width * 0.1;
     const endX = width * 0.9;
@@ -224,18 +211,18 @@ export default function RetailBetaTimelineDiagram() {
       const y = height * 0.3 + (index * 25);
 
       // Phase bar background
-      ctx.fillStyle = 'rgba(55, 65, 81, 0.3)';
+      ctx.fillStyle = 'rgba(232, 223, 208, 0.4)';
       ctx.fillRect(phaseStartX, y, phaseWidth, 18);
 
-      // Phase progress (animated)
-      const progress = Math.min(1, Math.max(0, (Math.sin(time * 0.5) * 0.5 + 0.5) * 1.2 - index * 0.3));
+      // Phase progress at 100%
+      const progress = 1;
 
       const progressGradient = ctx.createLinearGradient(phaseStartX, y, phaseEndX, y);
       progressGradient.addColorStop(0, phase.borderColor);
       progressGradient.addColorStop(1, phase.borderColor.replace('0.8', '0.4'));
 
       ctx.fillStyle = progressGradient;
-      ctx.fillRect(phaseStartX, y, phaseWidth * progress, 18);
+      ctx.fillRect(phaseStartX, y, phaseWidth, 18);
 
       // Phase border
       ctx.strokeStyle = phase.borderColor;
@@ -244,15 +231,15 @@ export default function RetailBetaTimelineDiagram() {
 
       // Phase label
       ctx.font = 'bold 11px system-ui';
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#2D2D2D';
       ctx.textAlign = 'left';
       ctx.fillText(phase.name, phaseStartX + 8, y + 12);
 
-      // Progress percentage
+      // Progress percentage - always 100%
       ctx.font = 'bold 10px system-ui';
       ctx.textAlign = 'right';
-      ctx.fillStyle = progress > 0.8 ? 'rgba(34, 197, 94, 1)' : 'rgba(255, 255, 255, 0.8)';
-      ctx.fillText(`${Math.round(progress * 100)}%`, phaseEndX - 8, y + 12);
+      ctx.fillStyle = 'rgba(42, 157, 143, 1)';
+      ctx.fillText('100%', phaseEndX - 8, y + 12);
     });
   };
 
@@ -260,8 +247,7 @@ export default function RetailBetaTimelineDiagram() {
   const drawMilestoneMarkers = (
     ctx: CanvasRenderingContext2D,
     width: number,
-    height: number,
-    time: number
+    height: number
   ) => {
     const startX = width * 0.1;
     const endX = width * 0.9;
@@ -275,9 +261,8 @@ export default function RetailBetaTimelineDiagram() {
       { week: 36, label: 'Scale', color: 'rgba(34, 197, 94, 0.8)' }
     ];
 
-    milestones.forEach((milestone, index) => {
+    milestones.forEach((milestone) => {
       const x = startX + (timelineWidth * (milestone.week / totalWeeks));
-      const pulse = Math.sin(time * 2 + index) * 0.3 + 0.7;
 
       // Milestone marker
       ctx.beginPath();
@@ -292,12 +277,6 @@ export default function RetailBetaTimelineDiagram() {
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Milestone glow
-      ctx.shadowColor = milestone.color;
-      ctx.shadowBlur = 15 * pulse;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
       // Milestone label
       ctx.font = 'bold 10px system-ui';
       ctx.fillStyle = milestone.color.replace('0.8', '1');
@@ -307,36 +286,29 @@ export default function RetailBetaTimelineDiagram() {
   };
 
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 lg:p-8">
-      <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">Product Development Roadmap</h3>
+    <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm">
+      <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-[#2D2D2D]">Product Development Roadmap</h3>
 
-      {/* Canvas Animation */}
-      <div className="relative bg-gray-950/50 border border-gray-800 rounded-lg overflow-hidden mb-6 sm:mb-8" style={{ height: '350px' }}>
+      {/* Canvas Visualization */}
+      <div className="relative bg-[#F5F1E8] border-2 border-gray-200 rounded-2xl overflow-hidden mb-6 sm:mb-8 h-[250px] sm:h-[300px] md:h-[350px]">
         <canvas
           ref={canvasRef}
           className="w-full h-full"
           style={{ display: 'block' }}
         />
-
-        <button
-          onClick={() => setIsAnimating(!isAnimating)}
-          className="absolute top-4 right-4 px-3 py-1.5 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 rounded text-xs text-gray-300 transition-colors backdrop-blur-sm"
-        >
-          {isAnimating ? 'Pause' : 'Resume'}
-        </button>
       </div>
 
       <div className="space-y-4 sm:space-y-6">
         {phases.map((phase, index) => (
-          <div key={index} className={`bg-gray-800/50 border-2 ${phase.color} rounded-lg p-4 sm:p-6`}>
+          <div key={index} className={`bg-white border-2 ${phase.color} rounded-2xl p-4 sm:p-6 shadow-sm hover:border-opacity-60 transition-all`}>
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div>
-                <h4 className="font-bold text-white text-base sm:text-lg mb-1">{phase.name}</h4>
-                <p className="text-xs sm:text-sm text-gray-400">{phase.timeline}</p>
+                <h4 className="font-bold text-[#2D2D2D] text-base sm:text-lg mb-1">{phase.name}</h4>
+                <p className="text-xs sm:text-sm text-[#2D2D2D]/60">{phase.timeline}</p>
               </div>
               <div className="text-left md:text-right">
-                <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-gray-900/50 border border-gray-700">
-                  <span className="text-xs sm:text-sm font-medium text-white">{phase.milestone}</span>
+                <div className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full bg-[#F5F1E8] border-2 border-gray-200">
+                  <span className="text-xs sm:text-sm font-medium text-[#2D2D2D]">{phase.milestone}</span>
                 </div>
               </div>
             </div>
@@ -344,10 +316,10 @@ export default function RetailBetaTimelineDiagram() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
               {phase.deliverables.map((deliverable, idx) => (
                 <div key={idx} className="flex items-start gap-2">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#2A9D8F] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-xs sm:text-sm text-gray-300">{deliverable}</span>
+                  <span className="text-xs sm:text-sm text-[#2D2D2D]/80">{deliverable}</span>
                 </div>
               ))}
             </div>
@@ -355,18 +327,18 @@ export default function RetailBetaTimelineDiagram() {
         ))}
       </div>
 
-      <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800">
-        <div className="flex flex-wrap gap-3 sm:gap-4 justify-center text-xs sm:text-sm text-gray-400">
+      <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t-2 border-gray-200">
+        <div className="flex flex-wrap gap-3 sm:gap-4 justify-center text-xs sm:text-sm text-[#2D2D2D]/70">
           <div className="flex items-center gap-2">
-            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-blue-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#3B82F6]"></div>
             <span>Validation</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-purple-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#8B5CF6]"></div>
             <span>Beta Testing</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-green-500"></div>
+            <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#2A9D8F]"></div>
             <span>Scale</span>
           </div>
         </div>

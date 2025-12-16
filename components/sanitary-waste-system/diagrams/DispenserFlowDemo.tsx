@@ -448,10 +448,10 @@ export default function DispenserFlowDemo() {
   const currentStep = steps.find(s => s.id === activeView) || steps[0];
 
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 lg:p-8">
+    <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm">
       <div className="mb-6 sm:mb-8 text-center">
-        <h3 className="text-xl sm:text-2xl font-bold mb-2">Product Demonstration</h3>
-        <p className="text-sm sm:text-base text-gray-400">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2 text-[#2D2D2D]">Product Demonstration</h3>
+        <p className="text-sm sm:text-base text-[#2D2D2D]/70">
           Interactive walkthrough of the 3-second disposal process
         </p>
       </div>
@@ -463,10 +463,10 @@ export default function DispenserFlowDemo() {
             key={step.id}
             onClick={() => setActiveView(step.id)}
             className={`
-              flex-1 min-w-[140px] px-4 py-3 rounded-lg text-sm font-medium transition-all
+              flex-1 min-w-[140px] px-4 py-3 rounded-2xl text-sm font-medium transition-all
               ${activeView === step.id
-                ? 'bg-purple-500/20 border-2 border-purple-500 text-white'
-                : 'bg-gray-800/50 border border-gray-700 text-gray-400 hover:bg-gray-800 hover:text-gray-300'
+                ? 'bg-[#F4A261]/10 border-2 border-[#F4A261] text-[#2D2D2D]'
+                : 'bg-white border-2 border-gray-200 text-[#2D2D2D]/70 hover:border-[#F4A261]/50 hover:text-[#2D2D2D]'
               }
             `}
           >
@@ -477,7 +477,7 @@ export default function DispenserFlowDemo() {
       </div>
 
       {/* Canvas Demo */}
-      <div className="relative bg-gray-950/50 border border-gray-800 rounded-lg overflow-hidden mb-6" style={{ height: '400px' }}>
+      <div className="relative bg-[#F5F1E8] border-2 border-gray-200 rounded-2xl overflow-hidden mb-6" style={{ height: '400px' }}>
         <canvas
           ref={canvasRef}
           className="w-full h-full"
@@ -486,18 +486,18 @@ export default function DispenserFlowDemo() {
       </div>
 
       {/* Step Details */}
-      <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 sm:p-6">
+      <div className="bg-[#F5F1E8] border-2 border-gray-200 rounded-2xl p-4 sm:p-6">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h4 className="font-bold text-white text-base sm:text-lg mb-1">{currentStep.title}</h4>
-            <p className="text-sm text-gray-400">{currentStep.description}</p>
+            <h4 className="font-bold text-[#2D2D2D] text-base sm:text-lg mb-1">{currentStep.title}</h4>
+            <p className="text-sm text-[#2D2D2D]/70">{currentStep.description}</p>
           </div>
           <div className="text-right">
-            <div className="text-xs text-gray-500 mb-1">Duration</div>
-            <div className="text-sm font-bold text-purple-400">{currentStep.duration}</div>
+            <div className="text-xs text-[#2D2D2D]/60 mb-1">Duration</div>
+            <div className="text-sm font-bold text-[#F4A261]">{currentStep.duration}</div>
           </div>
         </div>
-        <p className="text-sm text-gray-300">{currentStep.detail}</p>
+        <p className="text-sm text-[#2D2D2D]/80">{currentStep.detail}</p>
       </div>
     </div>
   );
