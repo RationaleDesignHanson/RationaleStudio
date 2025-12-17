@@ -80,8 +80,8 @@ export function SwipeableDiagram({
         .mobile-diagram-swiper .swiper-button-next,
         .mobile-diagram-swiper .swiper-button-prev {
           color: var(--color-terminal-gold);
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
         }
 
         .mobile-diagram-swiper .swiper-button-next::after,

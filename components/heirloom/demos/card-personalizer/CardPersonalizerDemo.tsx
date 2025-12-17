@@ -228,13 +228,15 @@ export function CardPersonalizerDemo() {
                 <button
                   onClick={() => handleTimesCooked(-1)}
                   disabled={card.timesCooked === 0}
-                  className="w-8 h-8 rounded-full bg-white border-2 border-amber-300 text-amber-700 font-medium hover:bg-amber-50 disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="w-11 h-11 rounded-full bg-white border-2 border-amber-300 text-amber-700 font-medium hover:bg-amber-50 disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Decrease times cooked"
                 >
                   −
                 </button>
                 <button
                   onClick={() => handleTimesCooked(1)}
-                  className="w-8 h-8 rounded-full bg-white border-2 border-amber-300 text-amber-700 font-medium hover:bg-amber-50"
+                  className="w-11 h-11 rounded-full bg-white border-2 border-amber-300 text-amber-700 font-medium hover:bg-amber-50"
+                  aria-label="Increase times cooked"
                 >
                   +
                 </button>

@@ -261,7 +261,7 @@ export default function SevenPrototypeFramework() {
             <button
               onClick={() => setCurrentPhaseIndex(Math.max(0, currentPhaseIndex - 1))}
               disabled={currentPhaseIndex === 0}
-              className="w-8 h-8 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+              className="w-11 h-11 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
               aria-label="Previous"
             >
               &lt;
@@ -285,7 +285,7 @@ export default function SevenPrototypeFramework() {
             <button
               onClick={() => setCurrentPhaseIndex(Math.min(phases.length - 1, currentPhaseIndex + 1))}
               disabled={currentPhaseIndex === phases.length - 1}
-              className="w-8 h-8 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+              className="w-11 h-11 flex items-center justify-center bg-gray-800 border border-gray-700 rounded text-white disabled:opacity-30 disabled:cursor-not-allowed text-sm"
               aria-label="Next"
             >
               &gt;
