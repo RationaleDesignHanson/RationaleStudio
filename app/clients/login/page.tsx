@@ -24,15 +24,19 @@ const CLIENT_REDIRECTS: Record<string, string> = {
 function ClientLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { signIn } = useAuth();
+  const { signIn, signOut, user, profile, loading } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showClearCache, setShowClearCache] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const redirect = searchParams.get('redirect');
+
+  // If user is already authenticated, show profile instead of login form
+  const isAuthenticated = !!(user && profile);
 
   const clearFirebaseCache = () => {
     // Clear all Firebase-related localStorage
@@ -48,6 +52,17 @@ function ClientLoginForm() {
     setError('');
     setShowClearCache(false);
     alert(`Cleared ${keysToRemove.length} cached authentication items. Please try logging in again.`);
+  };
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await signOut();
+      router.push('/clients/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      setIsLoggingOut(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -97,6 +112,101 @@ function ClientLoginForm() {
     }
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-terminal-gold">Loading...</div>
+      </div>
+    );
+  }
+
+  // Show authenticated user info
+  if (isAuthenticated && profile) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <Container>
+          <div className="max-w-md mx-auto">
+            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <h1 className="text-2xl font-semibold text-terminal-gold mb-2">
+                  Already Signed In
+                </h1>
+                <p className="text-gray-400 text-sm">
+                  You're currently authenticated
+                </p>
+              </div>
+
+              {/* Profile Info */}
+              <div className="space-y-4 mb-8">
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">
+                    Email
+                  </div>
+                  <div className="text-white font-medium">
+                    {user?.email}
+                  </div>
+                </div>
+
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">
+                    Role
+                  </div>
+                  <div className="text-white font-medium capitalize">
+                    {profile.role}
+                  </div>
+                </div>
+
+                {profile.clientId && (
+                  <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">
+                      Client ID
+                    </div>
+                    <div className="text-white font-medium">
+                      {profile.clientId}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-3">
+                {redirect && (
+                  <button
+                    onClick={() => router.push(redirect)}
+                    className="w-full bg-terminal-gold text-black font-medium py-3 px-4 rounded-md hover:bg-terminal-gold/90 transition-colors"
+                  >
+                    Continue to Content
+                  </button>
+                )}
+
+                <button
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                  className="w-full bg-gray-800 border border-gray-700 text-white font-medium py-3 px-4 rounded-md hover:border-red-500 hover:text-red-400 transition-colors disabled:opacity-50"
+                >
+                  {isLoggingOut ? 'Signing out...' : 'Sign Out'}
+                </button>
+              </div>
+            </div>
+
+            {/* Back to Home */}
+            <div className="mt-6 text-center">
+              <a
+                href="/"
+                className="text-sm text-gray-400 hover:text-terminal-gold transition-colors"
+              >
+                ← Back to Rationale.studio
+              </a>
+            </div>
+          </div>
+        </Container>
+      </div>
+    );
+  }
+
+  // Show login form
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <Container>
