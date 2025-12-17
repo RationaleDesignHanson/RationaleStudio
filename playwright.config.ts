@@ -1,14 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright Configuration for Visual Regression Testing
+ * Playwright Configuration for E2E and Visual Regression Testing
  *
- * Tests located in: tests/visual/
+ * Tests located in:
+ * - tests/e2e/ (functional E2E tests)
+ * - tests/visual/ (visual regression tests)
  * Strategy doc: docs/testing/VISUAL_REGRESSION_STRATEGY.md
  */
 
 export default defineConfig({
-  testDir: './tests/visual',
+  testDir: './tests',
+  testMatch: '**/*.spec.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
