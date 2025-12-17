@@ -5,6 +5,7 @@
 
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { logger } from '@/lib/utils/logger';
 
 // Firebase config - uses environment variables
 const firebaseConfig = {
@@ -25,7 +26,7 @@ export const db = getFirestore(app);
 // Connect to emulator in development (optional)
 if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_USE_EMULATOR === 'true') {
   connectFirestoreEmulator(db, 'localhost', 8080);
-  console.log('🔧 Using Firestore Emulator');
+  logger.log('🔧 Using Firestore Emulator');
 }
 
 export { app };

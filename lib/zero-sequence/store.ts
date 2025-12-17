@@ -14,6 +14,7 @@ import type {
   StepName,
 } from './types';
 import { classifyIntent, extractEntities } from './api';
+import { logger } from '@/lib/utils/logger';
 
 interface ZeroSequenceStore extends ZeroSequenceState {
   // Actions
@@ -57,32 +58,32 @@ export const useZeroSequenceStore = create<ZeroSequenceStore>((set, get) => ({
 
   // Main business logic: Run the full Zero Sequence
   runSequence: async (email: EmailData) => {
-    console.log('[Store] Starting runSequence with email:', email);
+    logger.log('[Store] Starting runSequence with email:', email);
     set({ loading: true, error: null, emailInput: email });
 
     try {
       // Step 1: Classification
-      console.log('[Store] Step 1: Starting classification');
+      logger.log('[Store] Step 1: Starting classification');
       set({ currentStep: 'classification' });
       const classificationResult = await classifyIntent(email);
-      console.log('[Store] Classification result:', classificationResult);
+      logger.log('[Store] Classification result:', classificationResult);
       set({ classification: classificationResult });
 
       // Small delay for UX (let user see the step)
       await new Promise(resolve => setTimeout(resolve, 300));
 
       // Step 2: Entity Extraction
-      console.log('[Store] Step 2: Starting entity extraction');
+      logger.log('[Store] Step 2: Starting entity extraction');
       set({ currentStep: 'entities' });
       const entityData = await extractEntities(email, classificationResult.detectedIntent);
-      console.log('[Store] Entity extraction result:', entityData);
+      logger.log('[Store] Entity extraction result:', entityData);
       set({ entities: entityData });
 
       await new Promise(resolve => setTimeout(resolve, 300));
 
       // Step 3: Action Routing
-      console.log('[Store] Step 3: Starting action routing');
-      console.log('[Store] suggestedActions from classification:', classificationResult.suggestedActions);
+      logger.log('[Store] Step 3: Starting action routing');
+      logger.log('[Store] suggestedActions from classification:', classificationResult.suggestedActions);
       set({ currentStep: 'actions' });
 
       // Map intent to action ID if suggestedActions is empty or not in the right format
@@ -113,17 +114,17 @@ export const useZeroSequenceStore = create<ZeroSequenceStore>((set, get) => ({
         actionData.primaryAction = actionData.actions[0];
       }
 
-      console.log('[Store] Action data:', actionData);
+      logger.log('[Store] Action data:', actionData);
       set({ actions: actionData });
 
       await new Promise(resolve => setTimeout(resolve, 300));
 
       // Step 4: Modal Flow
-      console.log('[Store] Step 4: Starting modal flow');
+      logger.log('[Store] Step 4: Starting modal flow');
       set({ currentStep: 'modal' });
       // Load modal flow for primary action
       if (actionData.primaryAction) {
-        console.log('[Store] Primary action:', actionData.primaryAction);
+        logger.log('[Store] Primary action:', actionData.primaryAction);
         try {
           // Load modal flows from JSON
           const response = await fetch('/config/zero-sequence/modal-flows.json');
@@ -149,7 +150,7 @@ export const useZeroSequenceStore = create<ZeroSequenceStore>((set, get) => ({
             classificationResult.detectedIntent;
           const flow = flowsData.flows[flowKey];
 
-          console.log('[Store] Flow lookup:', {
+          logger.log('[Store] Flow lookup:', {
             flowKey,
             found: !!flow,
             intent: classificationResult.detectedIntent,
@@ -289,23 +290,23 @@ export const useZeroSequenceStore = create<ZeroSequenceStore>((set, get) => ({
               },
               visualization: 'horizontal', // Desktop: horizontal, mobile will use vertical via CSS
             };
-            console.log('[Store] Setting modal flow data:', modalFlowData);
+            logger.log('[Store] Setting modal flow data:', modalFlowData);
             set({ modalFlow: modalFlowData });
           } else {
-            console.warn('[Store] No flow found for flowKey:', flowKey);
+            logger.warn('[Store] No flow found for flowKey:', flowKey);
           }
         } catch (error) {
-          console.error('[Store] Failed to load modal flows:', error);
+          logger.error('[Store] Failed to load modal flows:', error);
           // Continue without modal flow - not a critical error
         }
       } else {
-        console.warn('[Store] No primary action to load modal flow');
+        logger.warn('[Store] No primary action to load modal flow');
       }
 
-      console.log('[Store] Sequence complete, setting loading to false');
+      logger.log('[Store] Sequence complete, setting loading to false');
       set({ loading: false });
     } catch (error) {
-      console.error('Zero Sequence error:', error);
+      logger.error('Zero Sequence error:', error);
       const errorMessage = error instanceof Error
         ? error.message.includes('timeout')
           ? 'Request timed out. Please try again.'

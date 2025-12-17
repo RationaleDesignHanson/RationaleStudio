@@ -9,6 +9,7 @@
 
 import { useEffect, useCallback, useRef } from 'react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { logger } from '@/lib/utils/logger';
 
 interface FormRecoveryOptions {
   formId: string;
@@ -52,7 +53,7 @@ export function useFormRecovery(options: FormRecoveryOptions) {
       try {
         localStorage.setItem(storageKey, JSON.stringify(savedData));
       } catch (error) {
-        console.error('Failed to save form data:', error);
+        logger.error('Failed to save form data:', error);
       }
     }, debounceMs);
   }, [storageKey, debounceMs]);
@@ -80,7 +81,7 @@ export function useFormRecovery(options: FormRecoveryOptions) {
 
       return parsed;
     } catch (error) {
-      console.error('Failed to retrieve form data:', error);
+      logger.error('Failed to retrieve form data:', error);
       return null;
     }
   }, [storageKey, expiryHours]);
@@ -94,7 +95,7 @@ export function useFormRecovery(options: FormRecoveryOptions) {
     try {
       localStorage.removeItem(storageKey);
     } catch (error) {
-      console.error('Failed to clear form data:', error);
+      logger.error('Failed to clear form data:', error);
     }
   }, [storageKey]);
 

@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/utils/logger';
 
 // Force dynamic rendering (don't prerender at build time)
 export const dynamic = 'force-dynamic';
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log signup (in production, this would go to database)
-    console.log('[Zero Beta Signup]', {
+    logger.log('[Zero Beta Signup]', {
       email,
       name: name || 'Anonymous',
       timestamp: new Date().toISOString(),
@@ -45,14 +46,14 @@ export async function POST(request: NextRequest) {
     };
 
     // Log notification (in production, actually send email)
-    console.log('[Email Notification]', notificationPayload);
+    logger.log('[Email Notification]', notificationPayload);
 
     return NextResponse.json({
       success: true,
       message: 'Beta signup successful',
     });
   } catch (error) {
-    console.error('[Zero Beta Signup Error]', error);
+    logger.error('[Zero Beta Signup Error]', error);
     return NextResponse.json(
       { error: 'Failed to process signup' },
       { status: 500 }

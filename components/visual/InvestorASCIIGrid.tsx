@@ -20,6 +20,7 @@
 
 import { ASCIIUnifiedGrid } from './ASCIIUnifiedGrid';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { logger } from '@/lib/utils/logger';
 
 interface InvestorASCIIGridProps {
   /** Opacity value (automatically capped at 0.05 for investor credibility) */
@@ -38,7 +39,7 @@ export function InvestorASCIIGrid({
 
   // Log warning if trying to exceed limit
   if (opacity > INVESTOR_MAX_OPACITY) {
-    console.warn(
+    logger.warn(
       `[InvestorASCIIGrid] Opacity ${opacity} exceeds investor limit. ` +
       `Capping at ${INVESTOR_MAX_OPACITY} for credibility.`
     );

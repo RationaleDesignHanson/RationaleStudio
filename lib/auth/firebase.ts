@@ -18,6 +18,7 @@ import {
   Auth,
 } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc, Firestore } from 'firebase/firestore';
+import { logger } from '@/lib/utils/logger';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -51,7 +52,7 @@ function getFirebaseApp(): FirebaseApp {
       if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'undefined' || firebaseConfig.apiKey.length < 10) {
         // Development logging for debugging
         if (process.env.NODE_ENV === 'development') {
-          console.error('[Firebase] Configuration error:', {
+          logger.error('[Firebase] Configuration error:', {
             hasApiKey: !!firebaseConfig.apiKey,
             apiKeyValue: firebaseConfig.apiKey,
             apiKeyType: typeof firebaseConfig.apiKey,
@@ -66,7 +67,7 @@ function getFirebaseApp(): FirebaseApp {
       initError = error as Error;
       // Only log in development to avoid Lighthouse Best Practices penalty
       if (process.env.NODE_ENV === 'development') {
-        console.error('[Firebase] Initialization failed:', error);
+        logger.error('[Firebase] Initialization failed:', error);
       }
       throw initError;
     }
@@ -137,7 +138,7 @@ export async function signIn(email: string, password: string): Promise<UserProfi
 
     return profile;
   } catch (error: unknown) {
-    console.error('Sign in error:', error);
+    logger.error('Sign in error:', error);
     const message = error instanceof Error ? error.message : 'Authentication failed';
     throw new Error(message);
   }
@@ -157,7 +158,7 @@ export async function signOut(): Promise<void> {
     // Sign out from Firebase
     await firebaseSignOut(getFirebaseAuth());
   } catch (error) {
-    console.error('Sign out error:', error);
+    logger.error('Sign out error:', error);
     throw new Error('Sign out failed');
   }
 }
@@ -175,7 +176,7 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
 
     return userDoc.data() as UserProfile;
   } catch (error) {
-    console.error('Get user profile error:', error);
+    logger.error('Get user profile error:', error);
     return null;
   }
 }
@@ -191,7 +192,7 @@ async function updateLastLogin(uid: string): Promise<void> {
       { merge: true }
     );
   } catch (error) {
-    console.error('Update last login error:', error);
+    logger.error('Update last login error:', error);
   }
 }
 

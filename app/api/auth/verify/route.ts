@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getAdminAuth, getAdminUserProfile } from '@/lib/auth/firebase-admin';
+import { logger } from '@/lib/utils/logger';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
       sessionCookie = cookieStore.get('session')?.value;
     }
 
-    console.log('[Verify API] Cookie check:', {
+    logger.log('[Verify API] Cookie check:', {
       hasCookieHeader: !!cookieHeader,
       hasSessionCookie: !!sessionCookie,
       cookieLength: sessionCookie?.length,
@@ -69,7 +70,7 @@ export async function POST(request: NextRequest) {
       email: userProfile.email,
     });
   } catch (error) {
-    console.error('[Verify API] Session verification failed:', error);
+    logger.error('[Verify API] Session verification failed:', error);
 
     // Check if it's a token expired error
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';

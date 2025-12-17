@@ -1,5 +1,6 @@
 import { BaseAgent } from './base-agent';
 import { AgentMetadata, AgentRole, AgentCapability } from '../types/agent.types';
+import { logger } from '@/lib/utils/logger';
 
 type AgentFilter = {
   role?: AgentRole;
@@ -50,7 +51,7 @@ export class AgentRegistry {
       this.capabilityIndex.get(capability.name)!.add(metadata.id);
     }
 
-    console.log(`[AgentRegistry] Registered agent: ${metadata.name} (${metadata.id})`);
+    logger.log(`[AgentRegistry] Registered agent: ${metadata.name} (${metadata.id})`);
   }
 
   unregister(agentId: string): boolean {
@@ -70,7 +71,7 @@ export class AgentRegistry {
     // Remove the agent
     this.agents.delete(agentId);
 
-    console.log(`[AgentRegistry] Unregistered agent: ${metadata.name} (${agentId})`);
+    logger.log(`[AgentRegistry] Unregistered agent: ${metadata.name} (${agentId})`);
     return true;
   }
 
@@ -188,7 +189,7 @@ export class AgentRegistry {
     this.agents.clear();
     this.roleIndex.clear();
     this.capabilityIndex.clear();
-    console.log('[AgentRegistry] Cleared all agents');
+    logger.log('[AgentRegistry] Cleared all agents');
   }
 
   getStatus(): {

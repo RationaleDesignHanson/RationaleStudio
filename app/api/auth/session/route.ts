@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getAdminAuth, getAdminUserProfile } from '@/lib/auth/firebase-admin';
+import { logger } from '@/lib/utils/logger';
 
 // Force dynamic rendering (don't prerender at build time)
 export const dynamic = 'force-dynamic';
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log environment variable status for debugging
-    console.log('[Session API] Environment check:', {
+    logger.log('[Session API] Environment check:', {
       hasProjectId: !!process.env.FIREBASE_PROJECT_ID,
       hasClientEmail: !!process.env.FIREBASE_CLIENT_EMAIL,
       hasPrivateKey: !!process.env.FIREBASE_PRIVATE_KEY,
@@ -39,14 +40,14 @@ export async function POST(request: NextRequest) {
     // Get user profile from Firestore using Admin SDK (bypasses security rules)
     const userProfile = await getAdminUserProfile(uid);
 
-    console.log('[Session API] User profile lookup:', {
+    logger.log('[Session API] User profile lookup:', {
       uid,
       profileFound: !!userProfile,
       profile: userProfile,
     });
 
     if (!userProfile || !userProfile.role) {
-      console.error('[Session API] Profile validation failed:', {
+      logger.error('[Session API] Profile validation failed:', {
         hasProfile: !!userProfile,
         hasRole: userProfile ? !!userProfile.role : false,
         role: userProfile?.role || null,
@@ -83,7 +84,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Session creation error:', error);
+    logger.error('Session creation error:', error);
     return NextResponse.json(
       { error: 'Failed to create session', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
@@ -99,7 +100,7 @@ export async function DELETE() {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Session deletion error:', error);
+    logger.error('Session deletion error:', error);
     return NextResponse.json(
       { error: 'Failed to delete session' },
       { status: 500 }

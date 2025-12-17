@@ -12,6 +12,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { interpolateColors, type WatercolorTheme } from '@/lib/theme/watercolor-palette';
+import { logger } from '@/lib/utils/logger';
 
 export interface ASCIIUnifiedGridProps {
   opacity?: number;
@@ -141,7 +142,7 @@ export function ASCIIUnifiedGrid({
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    console.log('[ASCIIUnifiedGrid] Animation starting with theme:', colorTheme?.name, 'charSet:', charSet);
+    logger.log('[ASCIIUnifiedGrid] Animation starting with theme:', colorTheme?.name, 'charSet:', charSet);
 
     // Setup canvas
     const updateCanvasSize = () => {
@@ -287,7 +288,7 @@ export function ASCIIUnifiedGrid({
       if (transitionStartRef.current === null) {
         // Start transition to next pattern
         transitionStartRef.current = timeRef.current;
-        console.log('[ASCIIUnifiedGrid] Starting transition to:', NOISE_PATTERNS[nextNoisePatternIndexRef.current].name);
+        logger.log('[ASCIIUnifiedGrid] Starting transition to:', NOISE_PATTERNS[nextNoisePatternIndexRef.current].name);
       }
     }, 8000);
 

@@ -11,6 +11,7 @@
 
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { interpolateColors, type WatercolorTheme } from '@/lib/theme/watercolor-palette';
+import { logger } from '@/lib/utils/logger';
 
 interface ASCIIWaveDividerProps {
   opacity?: number;
@@ -120,7 +121,7 @@ export function ASCIIWaveDivider({
 
         // Calculate columns with generous padding to ensure full coverage
         const calculatedCols = Math.ceil(containerWidth / charWidth) + 10; // Add 10 for safety
-        console.log('Container width:', containerWidth, 'Char width:', charWidth, 'Cols:', calculatedCols, 'Rows:', isMobile ? 3 : 6);
+        logger.log('Container width:', containerWidth, 'Char width:', charWidth, 'Cols:', calculatedCols, 'Rows:', isMobile ? 3 : 6);
         setCols(Math.max(100, calculatedCols));
       }
     };

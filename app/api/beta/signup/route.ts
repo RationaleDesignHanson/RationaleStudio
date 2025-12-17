@@ -3,6 +3,7 @@ import { createBetaSignup, checkExistingSignup } from '@/lib/firestore/beta-sign
 import { resend } from '@/lib/resend/client'
 import { ZeroBetaEmail } from '@/lib/resend/templates/zero-beta'
 import { HeirloomBetaEmail } from '@/lib/resend/templates/heirloom-beta'
+import { logger } from '@/lib/utils/logger';
 
 // TestFlight URLs (update these with your actual TestFlight links)
 const TESTFLIGHT_URLS = {
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
         })
 
         if (emailError) {
-          console.error('Email send error:', emailError)
+          logger.error('Email send error:', emailError)
           return NextResponse.json({
             success: true,
             message: 'Signup saved, but email failed to send. Please contact support.',
@@ -101,7 +102,7 @@ export async function POST(request: NextRequest) {
           signupId: signup.id,
         })
       } catch (emailError) {
-        console.error('Email send exception:', emailError)
+        logger.error('Email send exception:', emailError)
         return NextResponse.json({
           success: true,
           message: 'Signup saved, but email failed to send. Please contact support.',
@@ -131,7 +132,7 @@ export async function POST(request: NextRequest) {
         })
       } catch (emailError) {
         // Don't fail the signup if notification fails
-        console.error('Admin notification failed:', emailError)
+        logger.error('Admin notification failed:', emailError)
       }
 
       return NextResponse.json({
@@ -141,14 +142,14 @@ export async function POST(request: NextRequest) {
       })
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to save signup';
-      console.error('Database insert error:', errorMessage)
+      logger.error('Database insert error:', errorMessage)
       return NextResponse.json(
         { error: 'Failed to save signup' },
         { status: 500 }
       )
     }
   } catch (error) {
-    console.error('Beta signup error:', error)
+    logger.error('Beta signup error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

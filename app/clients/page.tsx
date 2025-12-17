@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { Container } from '@/components/layout/Container';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { LogOut, LayoutDashboard, ArrowRight } from 'lucide-react';
+import { logger } from '@/lib/utils/logger';
 
 interface ClientPage {
   title: string;
@@ -303,7 +304,7 @@ export default function ClientDashboard() {
       await signOut();
       router.push('/clients/login');
     } catch (error) {
-      console.error('Logout error:', error);
+      logger.error('Logout error:', error);
     }
   };
 

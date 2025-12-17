@@ -9,6 +9,7 @@
 'use client';
 
 import { useState, createContext, useContext, ReactNode } from 'react';
+import { logger } from '@/lib/utils/logger';
 
 type View = 'executive' | 'technical';
 
@@ -53,7 +54,7 @@ export function ViewToggle({ executiveLabel = 'Executive View', technicalLabel =
     <div className="inline-flex items-center gap-2 p-1 rounded-lg bg-muted/30 border border-border">
       <button
         onClick={() => {
-          console.log('Switching to executive view');
+          logger.log('Switching to executive view');
           setView('executive');
         }}
         className={`px-4 py-2 text-sm font-medium rounded-md transition-all cursor-pointer ${
@@ -66,7 +67,7 @@ export function ViewToggle({ executiveLabel = 'Executive View', technicalLabel =
       </button>
       <button
         onClick={() => {
-          console.log('Switching to technical view');
+          logger.log('Switching to technical view');
           setView('technical');
         }}
         className={`px-4 py-2 text-sm font-medium rounded-md transition-all cursor-pointer ${
@@ -93,7 +94,7 @@ interface ViewContentProps {
 export function ViewContent({ executive, technical, both }: ViewContentProps) {
   const { view } = useView();
 
-  console.log('ViewContent rendering with view:', view);
+  logger.log('ViewContent rendering with view:', view);
 
   if (both) return <>{both}</>;
 

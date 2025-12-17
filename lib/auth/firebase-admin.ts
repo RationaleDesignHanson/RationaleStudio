@@ -17,6 +17,7 @@
 import { initializeApp, getApps, cert, App } from 'firebase-admin/app';
 import { getAuth, Auth } from 'firebase-admin/auth';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';
+import { logger } from '@/lib/utils/logger';
 
 let adminApp: App | undefined;
 let adminAuth: Auth | undefined;
@@ -44,7 +45,7 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
   try {
     // Skip initialization during build time (no credentials needed)
     if (process.env.NEXT_PHASE === 'phase-production-build') {
-      console.log('[Firebase Admin] Skipping initialization during build phase');
+      logger.log('[Firebase Admin] Skipping initialization during build phase');
       throw new Error('Firebase Admin not available during build');
     }
 
@@ -61,9 +62,9 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
       if (!privateKey.startsWith('-----BEGIN')) {
         try {
           privateKey = Buffer.from(privateKey, 'base64').toString('utf-8');
-          console.log('[Firebase Admin] Decoded base64-encoded private key');
+          logger.log('[Firebase Admin] Decoded base64-encoded private key');
         } catch (error) {
-          console.error('[Firebase Admin] Failed to decode base64 private key:', error);
+          logger.error('[Firebase Admin] Failed to decode base64 private key:', error);
         }
       } else {
         // Handle escaped newlines
@@ -77,14 +78,14 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
           privateKey,
         }),
       });
-      console.log('[Firebase Admin] Initialized with individual environment variables');
+      logger.log('[Firebase Admin] Initialized with individual environment variables');
     }
     // Option 2: Use service account JSON file path (local development)
     else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
       adminApp = initializeApp({
         credential: cert(process.env.FIREBASE_SERVICE_ACCOUNT_PATH),
       });
-      console.log('[Firebase Admin] Initialized with service account file path');
+      logger.log('[Firebase Admin] Initialized with service account file path');
     }
     // No credentials provided
     else {
@@ -95,11 +96,11 @@ function initializeFirebaseAdmin(): { app: App; auth: Auth; db: Firestore } {
 
     adminAuth = getAuth(adminApp);
     _adminDb = getFirestore(adminApp);
-    console.log('[Firebase Admin] Successfully initialized');
+    logger.log('[Firebase Admin] Successfully initialized');
 
     return { app: adminApp, auth: adminAuth, db: _adminDb };
   } catch (error) {
-    console.error('[Firebase Admin] Initialization error:', error);
+    logger.error('[Firebase Admin] Initialization error:', error);
     throw error;
   }
 }
@@ -117,7 +118,7 @@ export async function verifyIdToken(idToken: string) {
     const decodedToken = await auth.verifyIdToken(idToken);
     return decodedToken;
   } catch (error) {
-    console.error('[Firebase Admin] Token verification failed:', error);
+    logger.error('[Firebase Admin] Token verification failed:', error);
     throw new Error('Invalid or expired token');
   }
 }
@@ -134,7 +135,7 @@ export async function getUserByUid(uid: string) {
     const userRecord = await auth.getUser(uid);
     return userRecord;
   } catch (error) {
-    console.error('[Firebase Admin] Get user failed:', error);
+    logger.error('[Firebase Admin] Get user failed:', error);
     throw new Error('User not found');
   }
 }
@@ -149,9 +150,9 @@ export async function setCustomUserClaims(uid: string, claims: Record<string, an
   try {
     const { auth } = initializeFirebaseAdmin();
     await auth.setCustomUserClaims(uid, claims);
-    console.log(`[Firebase Admin] Custom claims set for user ${uid}:`, claims);
+    logger.log(`[Firebase Admin] Custom claims set for user ${uid}:`, claims);
   } catch (error) {
-    console.error('[Firebase Admin] Set custom claims failed:', error);
+    logger.error('[Firebase Admin] Set custom claims failed:', error);
     throw error;
   }
 }
@@ -172,7 +173,7 @@ export async function createCustomToken(
     const customToken = await auth.createCustomToken(uid, additionalClaims);
     return customToken;
   } catch (error) {
-    console.error('[Firebase Admin] Create custom token failed:', error);
+    logger.error('[Firebase Admin] Create custom token failed:', error);
     throw error;
   }
 }
@@ -216,7 +217,7 @@ export async function getAdminUserProfile(uid: string) {
       lastLogin: number;
     };
   } catch (error) {
-    console.error('[Firebase Admin] Get user profile error:', error);
+    logger.error('[Firebase Admin] Get user profile error:', error);
     return null;
   }
 }

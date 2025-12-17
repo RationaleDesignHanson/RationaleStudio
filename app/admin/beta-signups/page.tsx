@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { getBetaSignups, serializeBetaSignup, BetaSignup as FirestoreBetaSignup } from '@/lib/firestore/beta-signups'
+import { logger } from '@/lib/utils/logger';
 
 interface BetaSignup {
   id: string
@@ -34,7 +35,7 @@ export default function BetaSignupsAdmin() {
       const serialized = data.map(serializeBetaSignup)
       setSignups(serialized)
     } catch (error) {
-      console.error('Error fetching signups:', error)
+      logger.error('Error fetching signups:', error)
     } finally {
       setLoading(false)
     }

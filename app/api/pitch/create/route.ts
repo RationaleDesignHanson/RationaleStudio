@@ -9,6 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createPitchAccess } from '@/lib/pitch/security';
+import { logger } from '@/lib/utils/logger';
 
 // Force dynamic rendering (don't prerender at build time)
 export const dynamic = 'force-dynamic';
@@ -54,7 +55,7 @@ export async function POST(request: NextRequest) {
       expiresAt: expiresAt.toISOString(),
     });
   } catch (error) {
-    console.error('Error creating pitch access:', error);
+    logger.error('Error creating pitch access:', error);
     return NextResponse.json(
       { error: 'Failed to create pitch access' },
       { status: 500 }

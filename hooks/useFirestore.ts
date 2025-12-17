@@ -16,6 +16,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase-tracker';
 import type {
+import { logger } from '@/lib/utils/logger';
   UnifiedProject,
   Checkpoint,
   AgentOpinion,
@@ -64,7 +65,7 @@ export function useProjects() {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching projects:', err);
+        logger.error('Error fetching projects:', err);
         setError(err as Error);
         setLoading(false);
       }
@@ -111,7 +112,7 @@ export function useProject(projectId: string | null) {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching project:', err);
+        logger.error('Error fetching project:', err);
         setError(err as Error);
         setLoading(false);
       }
@@ -159,7 +160,7 @@ export function useCheckpoints(projectId: string | null, limitCount = 10) {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching checkpoints:', err);
+        logger.error('Error fetching checkpoints:', err);
         setError(err as Error);
         setLoading(false);
       }
@@ -201,7 +202,7 @@ export function useCheckpoint(checkpointId: string | null) {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching checkpoint:', err);
+        logger.error('Error fetching checkpoint:', err);
         setError(err as Error);
         setLoading(false);
       }
@@ -247,7 +248,7 @@ export function useAgentOpinions(checkpointId: string | null) {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching agent opinions:', err);
+        logger.error('Error fetching agent opinions:', err);
         setError(err as Error);
         setLoading(false);
       }
@@ -294,7 +295,7 @@ export function useWeeks(projectId: string | null) {
         setLoading(false);
       },
       (err) => {
-        console.error('Error fetching weeks:', err);
+        logger.error('Error fetching weeks:', err);
         setError(err as Error);
         setLoading(false);
       }

@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
 import {
+import { logger } from '@/lib/utils/logger';
   Plus,
   Link2,
   Clock,
@@ -176,9 +177,9 @@ export default function OutboundDashboardPage() {
                     key={pitch.pitchId}
                     pitch={pitch}
                     onCopyLink={copyPitchLink}
-                    onRevoke={(id) => console.log('Revoke', id)}
-                    onExtend={(id) => console.log('Extend', id)}
-                    onViewAnalytics={(id) => console.log('Analytics', id)}
+                    onRevoke={(id) => logger.log('Revoke', id)}
+                    onExtend={(id) => logger.log('Extend', id)}
+                    onViewAnalytics={(id) => logger.log('Analytics', id)}
                   />
                 ))}
               </div>
@@ -194,9 +195,9 @@ export default function OutboundDashboardPage() {
                       key={pitch.pitchId}
                       pitch={pitch}
                       onCopyLink={copyPitchLink}
-                      onRevoke={(id) => console.log('Revoke', id)}
-                      onExtend={(id) => console.log('Extend', id)}
-                      onViewAnalytics={(id) => console.log('Analytics', id)}
+                      onRevoke={(id) => logger.log('Revoke', id)}
+                      onExtend={(id) => logger.log('Extend', id)}
+                      onViewAnalytics={(id) => logger.log('Analytics', id)}
                       expired
                     />
                   ))}

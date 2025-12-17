@@ -13,6 +13,7 @@ import { getAllSectionsV2, Section, Slide, DemoTab } from '@/lib/athletes-first/
 import dynamic from 'next/dynamic';
 import PhaseBadge from './PhaseBadge';
 import ModuleFlowProgress from './ModuleFlowProgress';
+import { logger } from '@/lib/utils/logger';
 
 // Loading component for dynamic imports
 const LoadingComponent = () => (
@@ -176,7 +177,7 @@ export default function AthletesFirstPitchDeck() {
         await document.exitFullscreen();
       }
     } catch (err) {
-      console.error('Fullscreen toggle failed:', err);
+      logger.error('Fullscreen toggle failed:', err);
     }
   };
 

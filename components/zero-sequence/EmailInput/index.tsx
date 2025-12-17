@@ -9,6 +9,7 @@
 import { useState, useEffect } from 'react';
 import type { EmailData, EmailTemplate } from '@/lib/zero-sequence/types';
 import { generateRandomEmail } from '@/lib/zero-sequence/utils';
+import { logger } from '@/lib/utils/logger';
 
 interface EmailInputProps {
   onSubmit: (email: EmailData) => void;
@@ -32,16 +33,16 @@ export default function EmailInput({ onSubmit, loading = false, disabled = false
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('[EmailInput] Loaded data:', {
+        logger.log('[EmailInput] Loaded data:', {
           hasTemplates: !!data.templates,
           templateCount: data.templates ? Object.keys(data.templates).length : 0
         });
         // Convert object of templates to array
         const templatesArray = Object.values(data.templates) as EmailTemplate[];
-        console.log('[EmailInput] Templates array length:', templatesArray.length);
+        logger.log('[EmailInput] Templates array length:', templatesArray.length);
         setTemplates(templatesArray);
       } catch (error) {
-        console.error('[EmailInput] Failed to load email templates:', error);
+        logger.error('[EmailInput] Failed to load email templates:', error);
       }
     }
     loadTemplates();

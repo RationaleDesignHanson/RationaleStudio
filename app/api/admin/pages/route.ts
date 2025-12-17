@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { archivePage, deletePage, logDeletion, scanPages } from '@/lib/admin/page-manager';
+import { logger } from '@/lib/utils/logger';
 
 /**
  * GET /api/admin/pages - List all pages
@@ -9,7 +10,7 @@ export async function GET() {
     const pages = await scanPages();
     return NextResponse.json({ pages });
   } catch (error) {
-    console.error('Error scanning pages:', error);
+    logger.error('Error scanning pages:', error);
     return NextResponse.json(
       { error: 'Failed to scan pages' },
       { status: 500 }
@@ -71,7 +72,7 @@ export async function DELETE(request: NextRequest) {
       action,
     });
   } catch (error) {
-    console.error('Error deleting page:', error);
+    logger.error('Error deleting page:', error);
     return NextResponse.json(
       { error: 'Failed to delete page', details: String(error) },
       { status: 500 }
@@ -118,7 +119,7 @@ export async function POST(request: NextRequest) {
       message: `${results.length} pages ${action}d, ${errors.length} errors`,
     });
   } catch (error) {
-    console.error('Error bulk deleting pages:', error);
+    logger.error('Error bulk deleting pages:', error);
     return NextResponse.json(
       { error: 'Failed to bulk delete pages' },
       { status: 500 }

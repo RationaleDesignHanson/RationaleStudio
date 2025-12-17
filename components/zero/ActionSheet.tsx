@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Email, SuggestedAction } from './types';
+import { logger } from '@/lib/utils/logger';
 
 interface ActionSheetProps {
   email: Email;
@@ -36,7 +37,7 @@ export default function ActionSheet({ email, onClose, onSelectAction }: ActionSh
             setTimeout(() => onClose(), 300);
           })
           .catch((err) => {
-            console.error('Copy failed:', err);
+            logger.error('Copy failed:', err);
             alert('❌ Copy failed');
           });
         break;
@@ -52,7 +53,7 @@ export default function ActionSheet({ email, onClose, onSelectAction }: ActionSh
               alert('✓ Shared successfully');
               onClose();
             })
-            .catch((err) => console.log('Share cancelled'));
+            .catch((err) => logger.log('Share cancelled'));
         } else {
           alert('ℹ️ Share not available in demo');
         }

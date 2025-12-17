@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Search, Trash2, Archive, ExternalLink, Filter, Download, Tag, X, Plus } from 'lucide-react';
+import { logger } from '@/lib/utils/logger';
 
 interface PageEntry {
   route: string;
@@ -63,7 +64,7 @@ export default function SiteAdminPage() {
 
       setPages(pagesWithTags);
     } catch (error) {
-      console.error('Failed to fetch pages:', error);
+      logger.error('Failed to fetch pages:', error);
     } finally {
       setLoading(false);
     }
@@ -224,7 +225,7 @@ export default function SiteAdminPage() {
         alert(`Errors occurred: ${result.errors.length} pages failed`);
       }
     } catch (error) {
-      console.error('Delete failed:', error);
+      logger.error('Delete failed:', error);
       alert('Failed to delete pages');
     }
   }

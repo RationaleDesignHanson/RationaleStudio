@@ -4,6 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/utils/logger';
 
 export async function POST(request: NextRequest) {
   try {
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error('Entity extraction error:', error);
+    logger.error('Entity extraction error:', error);
     return NextResponse.json(
       { error: 'Entity extraction failed' },
       { status: 500 }

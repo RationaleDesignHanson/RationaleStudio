@@ -7,6 +7,7 @@
 
 import { getAdminDb } from '@/lib/auth/firebase-admin';
 import crypto from 'crypto';
+import { logger } from '@/lib/utils/logger';
 
 export interface PitchAccess {
   pitchId: string;
@@ -134,7 +135,7 @@ export async function validatePitchAccess(
       },
     };
   } catch (error) {
-    console.error('Error validating pitch access:', error);
+    logger.error('Error validating pitch access:', error);
     return {
       valid: false,
       error: 'An error occurred while validating access. Please try again.',
@@ -160,7 +161,7 @@ async function trackPitchView(
       userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'unknown',
     });
   } catch (error) {
-    console.error('Error tracking pitch view:', error);
+    logger.error('Error tracking pitch view:', error);
   }
 }
 

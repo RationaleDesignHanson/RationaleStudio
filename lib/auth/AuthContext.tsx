@@ -9,6 +9,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User as FirebaseUser } from 'firebase/auth';
 import { onAuthChange, getUserProfile, UserProfile, signIn, signOut } from './firebase';
+import { logger } from '@/lib/utils/logger';
 
 interface AuthContextType {
   user: FirebaseUser | null;
@@ -49,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Firebase initialization failed - this is OK for public pages
       // Only log in development to avoid Lighthouse Best Practices penalty
       if (process.env.NODE_ENV === 'development') {
-        console.error('[AuthContext] Firebase initialization failed:', err);
+        logger.error('[AuthContext] Firebase initialization failed:', err);
       }
       setError('Authentication system unavailable');
       setLoading(false);

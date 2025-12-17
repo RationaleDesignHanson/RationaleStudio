@@ -6,6 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { validatePitchAccess } from '@/lib/pitch/security';
+import { logger } from '@/lib/utils/logger';
 
 // Force dynamic rendering (don't prerender at build time)
 export const dynamic = 'force-dynamic';
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error('Error in pitch validation API:', error);
+    logger.error('Error in pitch validation API:', error);
     return NextResponse.json(
       { valid: false, error: 'An error occurred while validating access' },
       { status: 500 }

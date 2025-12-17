@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { GannettPitch } from '@/components/pitches/GannettPitch';
 import { CreaitRoadmap } from '@/components/pitches/CreaitRoadmap';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import { logger } from '@/lib/utils/logger';
 
 interface PitchValidation {
   valid: boolean;
@@ -74,7 +75,7 @@ export default function PitchPage({ params }: { params: { company: string } }) {
         setShowUsernameForm(true);
       }
     } catch (error) {
-      console.error('Validation error:', error);
+      logger.error('Validation error:', error);
       setValidation({
         valid: false,
         error: 'Failed to validate access. Please try again.',

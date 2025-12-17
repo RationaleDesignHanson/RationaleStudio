@@ -13,6 +13,7 @@ import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { type WatercolorTheme } from '@/lib/theme/watercolor-palette';
+import { logger } from '@/lib/utils/logger';
 
 export type CharacterSetName = 'minimal' | 'typography' | 'symbols' | 'geometric' | 'dense';
 
@@ -605,7 +606,7 @@ function ASCIIShaderMesh({
     const colors = colorTheme?.colors || ['#8b5cf6', '#6366f1', '#3b82f6'];
 
     if (process.env.NODE_ENV === 'development') {
-      console.log('[ASCIIShaderGrid] Colors:', colors);
+      logger.log('[ASCIIShaderGrid] Colors:', colors);
     }
 
     return new THREE.ShaderMaterial({
@@ -809,18 +810,18 @@ export function ASCIIShaderGrid({
     const timer = setTimeout(() => {
       const canvas = document.querySelector('canvas[data-engine="three.js"]');
       if (!canvas) {
-        console.warn('[ASCIIShaderGrid] Canvas not found for context loss handling');
+        logger.warn('[ASCIIShaderGrid] Canvas not found for context loss handling');
         return;
       }
 
       const handleContextLost = (event: Event) => {
         event.preventDefault();
-        console.warn('[ASCIIShaderGrid] WebGL context lost - will attempt recovery');
+        logger.warn('[ASCIIShaderGrid] WebGL context lost - will attempt recovery');
         setContextLost(true);
       };
 
       const handleContextRestored = () => {
-        console.log('[ASCIIShaderGrid] WebGL context restored - recovering render');
+        logger.log('[ASCIIShaderGrid] WebGL context restored - recovering render');
         setContextLost(false);
         // Force component re-mount to rebuild WebGL context
         setIsClient(false);

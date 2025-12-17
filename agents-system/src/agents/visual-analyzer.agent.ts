@@ -6,6 +6,7 @@ import {
   AgentCapability
 } from '../types/agent.types';
 import { generateId } from '../utils/helpers';
+import { logger } from '@/lib/utils/logger';
 
 // ============================================================================
 // Visual Analyzer Types
@@ -173,7 +174,7 @@ export class VisualAnalyzerAgent extends BaseAgent {
 
   protected async handleEvent(message: AgentMessage): Promise<AgentResponse<unknown>> {
     // Handle system events
-    console.log(`[VisualAnalyzer] Received event: ${message.type}`);
+    logger.log(`[VisualAnalyzer] Received event: ${message.type}`);
     return {
       success: true,
       data: { event: message.type, handled: true }

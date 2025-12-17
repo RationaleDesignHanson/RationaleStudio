@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { Container } from '@/components/layout';
 import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
+import { logger } from '@/lib/utils/logger';
 
 export default function LogoutPage() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function LogoutPage() {
           router.push('/login');
         }, 1000);
       } catch (error) {
-        console.error('Logout error:', error);
+        logger.error('Logout error:', error);
         setIsLoggingOut(false);
       }
     }

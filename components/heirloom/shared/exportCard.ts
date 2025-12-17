@@ -2,6 +2,7 @@
 // Uses html2canvas to capture the recipe card and download as PNG
 
 import html2canvas from 'html2canvas';
+import { logger } from '@/lib/utils/logger';
 
 export interface ExportOptions {
   fileName?: string;
@@ -63,7 +64,7 @@ export async function exportAsImage(
 
     return { success: true };
   } catch (error) {
-    console.error('Error exporting card:', error);
+    logger.error('Error exporting card:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',
@@ -123,7 +124,7 @@ export async function shareCardImage(
 
     return { success: true };
   } catch (error) {
-    console.error('Error sharing card:', error);
+    logger.error('Error sharing card:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',
@@ -173,7 +174,7 @@ export async function copyCardToClipboard(
 
     return { success: true };
   } catch (error) {
-    console.error('Error copying card:', error);
+    logger.error('Error copying card:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',

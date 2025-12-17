@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { OnboardingFlow } from './OnboardingFlow';
+import { logger } from '@/lib/utils/logger';
 
 interface BetaSignupButtonProps {
   appStoreUrl: string;
@@ -56,7 +57,7 @@ export default function BetaSignupButton({ appStoreUrl, className, children }: B
       setShowModal(false);
       setShowOnboarding(true);
     } catch (error) {
-      console.error('Failed to send beta signup notification:', error);
+      logger.error('Failed to send beta signup notification:', error);
       setError('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);

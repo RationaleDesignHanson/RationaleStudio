@@ -8,6 +8,7 @@ import {
   ProjectContext 
 } from '../types/agent.types';
 import { generateId } from '../utils/helpers';
+import { logger } from '@/lib/utils/logger';
 
 type RouteStrategy = 'direct' | 'role' | 'capability' | 'broadcast';
 
@@ -38,7 +39,7 @@ export class AgentRouter {
 
   setProjectContext(context: ProjectContext): void {
     this.projectContext = context;
-    console.log(`[AgentRouter] Project context set: ${context.name}`);
+    logger.log(`[AgentRouter] Project context set: ${context.name}`);
   }
 
   // ============================================================================

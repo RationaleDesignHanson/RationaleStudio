@@ -11,6 +11,7 @@
 import { useState, useEffect } from 'react';
 import { sanitaryWasteSections, SECTION_COLORS, type SanitaryWasteSection, type SanitaryWasteSlide } from '@/lib/content/sanitary-waste-system';
 import dynamic from 'next/dynamic';
+import { logger } from '@/lib/utils/logger';
 
 // Dynamic import for ASCII Unified Grid
 const ASCIIUnifiedGrid = dynamic(
@@ -187,7 +188,7 @@ export default function SanitaryWasteDeck() {
       document.documentElement.requestFullscreen().then(() => {
         setIsFullscreen(true);
       }).catch(err => {
-        console.log('Error attempting to enable fullscreen:', err);
+        logger.log('Error attempting to enable fullscreen:', err);
       });
     } else {
       exitFullscreen();

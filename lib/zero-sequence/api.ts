@@ -5,6 +5,7 @@
 
 import { API_CONFIG, API_TIMEOUTS, RETRY_CONFIG } from './config';
 import type {
+import { logger } from '@/lib/utils/logger';
   EmailData,
   ClassificationResult,
   EntityData,
@@ -116,7 +117,7 @@ export async function classifyIntent(
     },
     {
       onRetry: (attempt, error) => {
-        console.warn(`Classification retry ${attempt}/${RETRY_CONFIG.maxRetries}:`, error.message);
+        logger.warn(`Classification retry ${attempt}/${RETRY_CONFIG.maxRetries}:`, error.message);
       },
     }
   );
@@ -154,7 +155,7 @@ export async function extractEntities(
     },
     {
       onRetry: (attempt, error) => {
-        console.warn(`Entity extraction retry ${attempt}/${RETRY_CONFIG.maxRetries}:`, error.message);
+        logger.warn(`Entity extraction retry ${attempt}/${RETRY_CONFIG.maxRetries}:`, error.message);
       },
     }
   );
@@ -217,7 +218,7 @@ export async function checkServiceHealth(): Promise<ApiHealthStatus> {
       lastChecked: new Date().toISOString(),
     };
   } catch (error) {
-    console.warn('Service health check failed:', error);
+    logger.warn('Service health check failed:', error);
     return {
       status: 'offline',
       classificationUrl: API_CONFIG.classification,

@@ -11,6 +11,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { logger } from '@/lib/utils/logger';
 
 interface ClientAuthGuardProps {
   children: React.ReactNode;
@@ -44,7 +45,7 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
 
     // Client users can only access their specific client
     if (profile.role === 'client' && profile.clientId) {
-      console.log('[ClientAuthGuard] Client authorization check:', {
+      logger.log('[ClientAuthGuard] Client authorization check:', {
         profileClientId: profile.clientId,
         requiredClient: requiredClient,
         profileClientIdUpper: profile.clientId.toUpperCase(),
@@ -56,7 +57,7 @@ export function ClientAuthGuard({ children, requiredClient }: ClientAuthGuardPro
         setIsAuthorized(true);
       } else {
         // Wrong client - redirect to their dashboard
-        console.log('[ClientAuthGuard] Client mismatch - redirecting to /clients');
+        logger.log('[ClientAuthGuard] Client mismatch - redirecting to /clients');
         router.push('/clients');
       }
       return;

@@ -8,6 +8,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { logger } from '@/lib/utils/logger';
 
 interface NavSection {
   title: string;
@@ -78,7 +79,7 @@ export function DocsNavigation() {
           {/* Logo / Home */}
           <div
             onClick={() => {
-              console.log('Logo clicked, navigating to:', '/client/creait');
+              logger.log('Logo clicked, navigating to:', '/client/creait');
               window.location.href = '/client/creait';
             }}
             className="text-lg font-bold text-foreground hover:text-accent transition-colors cursor-pointer"
@@ -94,7 +95,7 @@ export function DocsNavigation() {
                 <div
                   key={section.href}
                   onClick={() => {
-                    console.log('Nav link clicked:', section.href);
+                    logger.log('Nav link clicked:', section.href);
                     window.location.href = section.href;
                   }}
                   className={`px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${

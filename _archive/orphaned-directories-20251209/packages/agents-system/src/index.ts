@@ -52,7 +52,7 @@ export function initializeAgents(projectContext?: ProjectContext): void {
     agentRouter.setProjectContext(projectContext);
   }
 
-  console.log('[AgentSystem] Initialized with agents:', agentRegistry.getStatus());
+  logger.log('[AgentSystem] Initialized with agents:', agentRegistry.getStatus());
 }
 
 /**
@@ -110,6 +110,7 @@ export const AGENT_IDS = {
 
 /*
 import { 
+import { logger } from '@/lib/utils/logger';
   initializeAgents, 
   invokeArchitect, 
   invokeUXExpert, 

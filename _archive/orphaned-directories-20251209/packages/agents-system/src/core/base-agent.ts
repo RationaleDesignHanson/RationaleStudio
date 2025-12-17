@@ -9,6 +9,7 @@ import {
   TaskResult
 } from '../types/agent.types';
 import { generateId } from '../utils/helpers';
+import { logger } from '@/lib/utils/logger';
 
 export abstract class BaseAgent {
   protected metadata: AgentMetadata;
@@ -191,9 +192,9 @@ export abstract class BaseAgent {
     const prefix = `[${timestamp}] [${this.metadata.id}] [${level.toUpperCase()}]`;
     
     if (data) {
-      console.log(`${prefix} ${message}`, data);
+      logger.log(`${prefix} ${message}`, data);
     } else {
-      console.log(`${prefix} ${message}`);
+      logger.log(`${prefix} ${message}`);
     }
   }
 }

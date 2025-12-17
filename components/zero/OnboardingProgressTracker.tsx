@@ -10,6 +10,7 @@
 import { useState, useEffect } from 'react';
 import { CheckCircle2, Circle, Download, Mail, Zap, Bell, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { logger } from '@/lib/utils/logger';
 
 interface OnboardingStep {
   id: string;
@@ -97,7 +98,7 @@ export function OnboardingProgressTracker({
           }))
         );
       } catch (error) {
-        console.error('Failed to load onboarding progress:', error);
+        logger.error('Failed to load onboarding progress:', error);
       }
     }
   }, []);

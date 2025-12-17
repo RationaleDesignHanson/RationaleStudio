@@ -9,6 +9,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
+import { logger } from '@/lib/utils/logger';
 
 interface MermaidDiagramProps {
   chart: string;
@@ -54,11 +55,11 @@ export function MermaidDiagram({ chart, id, className = '' }: MermaidDiagramProp
           setSvg(svg);
           setError('');
         }).catch((error) => {
-          console.error('Mermaid rendering error:', error);
+          logger.error('Mermaid rendering error:', error);
           setError('Error rendering diagram. Please check the diagram syntax.');
         });
       } catch (error) {
-        console.error('Mermaid error:', error);
+        logger.error('Mermaid error:', error);
         setError('Error initializing diagram renderer.');
       }
     }

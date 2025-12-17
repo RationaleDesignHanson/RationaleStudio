@@ -10,6 +10,7 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import { Container } from '@/components/layout';
+import { logger } from '@/lib/utils/logger';
 
 interface Props {
   children: ReactNode;
@@ -43,7 +44,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
-      console.error('Error boundary caught:', error, errorInfo);
+      logger.error('Error boundary caught:', error, errorInfo);
     }
   }
 

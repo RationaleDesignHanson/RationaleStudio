@@ -22,6 +22,7 @@
 
 import { ASCIIUnifiedGrid } from './ASCIIUnifiedGrid';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { logger } from '@/lib/utils/logger';
 
 interface ZeroASCIIGridProps {
   /** Opacity value (automatically capped at 0.06 for Zero brand protection) */
@@ -40,7 +41,7 @@ export function ZeroASCIIGrid({
 
   // Log warning if trying to exceed limit
   if (opacity > ZERO_MAX_OPACITY) {
-    console.warn(
+    logger.warn(
       `[ZeroASCIIGrid] Opacity ${opacity} exceeds Zero brand limit. ` +
       `Capping at ${ZERO_MAX_OPACITY} to protect product identity.`
     );

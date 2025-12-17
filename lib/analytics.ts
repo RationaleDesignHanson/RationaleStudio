@@ -1,3 +1,5 @@
+import { logger } from '@/lib/utils/logger';
+
 /**
  * Analytics & Session Recording Setup
  *
@@ -68,7 +70,7 @@ export function trackEvent(event: AnalyticsEvent, properties?: EventProperties):
 
   // Console log in development
   if (process.env.NODE_ENV === 'development') {
-    console.log('[Analytics]', event, properties);
+    logger.log('[Analytics]', event, properties);
   }
 }
 

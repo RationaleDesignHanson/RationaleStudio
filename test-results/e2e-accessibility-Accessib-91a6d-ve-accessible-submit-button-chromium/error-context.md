@@ -1,0 +1,136 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - 'link "Rationale: Your Product Design Company" [ref=e6] [cursor=pointer]':
+        - /url: /
+        - generic [ref=e7]: "Rationale:"
+        - generic [ref=e8]: Your Product Design Company
+      - navigation [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "Work" [ref=e11] [cursor=pointer]:
+          - /url: /work
+        - link "Thinking" [ref=e12] [cursor=pointer]:
+          - /url: /thinking
+        - link "How We Work" [ref=e13] [cursor=pointer]:
+          - /url: /how-we-work
+        - link "About" [ref=e14] [cursor=pointer]:
+          - /url: /about
+        - link "Clients" [ref=e15] [cursor=pointer]:
+          - /url: /clients/login
+        - link "Contact" [ref=e16] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e17]:
+    - main [ref=e18]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: START A CONVERSATION
+        - heading "Let's Figure Out the Right Fit" [level=1] [ref=e22]
+        - paragraph [ref=e23]: Whether you need a 2-week strategy sprint or an 18-month technical co-founder, we're here to help you ship.
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - img [ref=e29]
+          - heading "Get in Touch" [level=2] [ref=e32]
+          - button "Click to Reveal Email" [ref=e33]
+          - paragraph [ref=e34]: We typically respond within 24 hours with initial feedback and next steps.
+        - button "What to Include in Your Email" [ref=e36]:
+          - generic [ref=e37]: What to Include in Your Email
+          - img [ref=e38]
+        - paragraph [ref=e41]: Not the right fit? We'll tell you honestly and recommend alternatives. No hard feelings.
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - paragraph [ref=e45]: OUR PROCESS
+          - heading "What Happens Next" [level=2] [ref=e46]
+        - generic [ref=e47]:
+          - generic [ref=e49]:
+            - img [ref=e51]
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - generic [ref=e56]: STEP 1
+                - generic [ref=e57]: •
+                - generic [ref=e58]: 24 hours
+              - heading "Initial Review" [level=3] [ref=e59]
+              - paragraph [ref=e60]: We review your email and respond with initial thoughts on fit, approach, and feasibility. If we're not the right partner, we'll recommend alternatives.
+          - generic [ref=e62]:
+            - img [ref=e64]
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - generic [ref=e68]: STEP 2
+                - generic [ref=e69]: •
+                - generic [ref=e70]: 2-3 days
+              - heading "Discovery Call" [level=3] [ref=e71]
+              - paragraph [ref=e72]: 30-minute conversation to dig deeper into your goals, constraints, and success criteria. We'll discuss which engagement model (cash, equity, hybrid) makes sense.
+          - generic [ref=e74]:
+            - img [ref=e76]
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - generic [ref=e80]: STEP 3
+                - generic [ref=e81]: •
+                - generic [ref=e82]: 1 week
+              - heading "Proposal & Terms" [level=3] [ref=e83]
+              - paragraph [ref=e84]: We send a detailed proposal with scope, timeline, deliverables, and commercial terms. You review, we adjust if needed, and finalize the agreement.
+          - generic [ref=e86]:
+            - img [ref=e88]
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93]: STEP 4
+                - generic [ref=e94]: •
+                - generic [ref=e95]: Kickoff
+              - heading "Start Building" [level=3] [ref=e96]
+              - paragraph [ref=e97]: We kick off with day 1 planning, establish communication cadence, and start shipping. You'll see progress daily with working software every sprint.
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - paragraph [ref=e101]: THREE OPTIONS
+          - heading "Which Engagement Fits Best?" [level=2] [ref=e102]
+          - paragraph [ref=e103]: Choose the timeline that matches where you are today
+        - generic [ref=e104]:
+          - 'link "2 WEEKS Discovery Sprint Get technical plan, market positioning, and clear direction: build, pivot, or pass Investment: ~2-3 weeks of senior engineering time Learn More →" [ref=e105] [cursor=pointer]':
+            - /url: mailto:hanson@rationale.work?subject=Discovery%20Sprint%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Discovery%20Sprint%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - paragraph [ref=e108]: 2 WEEKS
+                - heading "Discovery Sprint" [level=3] [ref=e109]
+                - paragraph [ref=e110]: "Get technical plan, market positioning, and clear direction: build, pivot, or pass"
+              - generic [ref=e111]:
+                - paragraph [ref=e112]: "Investment: ~2-3 weeks of senior engineering time"
+                - generic [ref=e113]:
+                  - generic [ref=e114]: Learn More
+                  - generic [ref=e115]: →
+          - 'link "4-6 WEEKS Prototype Sprint Get interactive software to validate with real users before full build Investment: ~Mid-level full-stack dev for 2 months Learn More →" [ref=e116] [cursor=pointer]':
+            - /url: mailto:hanson@rationale.work?subject=Prototype%20Sprint%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Prototype%20Sprint%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!
+            - generic [ref=e117]:
+              - generic [ref=e118]:
+                - paragraph [ref=e119]: 4-6 WEEKS
+                - heading "Prototype Sprint" [level=3] [ref=e120]
+                - paragraph [ref=e121]: Get interactive software to validate with real users before full build
+              - generic [ref=e122]:
+                - paragraph [ref=e123]: "Investment: ~Mid-level full-stack dev for 2 months"
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Learn More
+                  - generic [ref=e126]: →
+          - 'link "6-18 MONTHS Build Ship Run Get full product development from concept to App Store/launch Investment: ~Your first technical co-founder Learn More →" [ref=e127] [cursor=pointer]':
+            - /url: mailto:hanson@rationale.work?subject=Build%20Ship%20Run%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20interested%20in%20a%20Build%20Ship%20Run%20engagement.%0A%0AWhat%20I'm%20building%3A%20%0ATimeline%3A%20%0APreference%3A%20cash%20%7C%20equity%20%7C%20hybrid%0A%0AThanks!
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - paragraph [ref=e130]: 6-18 MONTHS
+                - heading "Build Ship Run" [level=3] [ref=e131]
+                - paragraph [ref=e132]: Get full product development from concept to App Store/launch
+              - generic [ref=e133]:
+                - paragraph [ref=e134]: "Investment: ~Your first technical co-founder"
+                - generic [ref=e135]:
+                  - generic [ref=e136]: Learn More
+                  - generic [ref=e137]: →
+        - paragraph [ref=e139]:
+          - text: Not sure which fits?
+          - link "Let's talk — we'll help you figure out the right approach →" [ref=e140] [cursor=pointer]:
+            - /url: mailto:hanson@rationale.work?subject=Custom%20Engagement%20Inquiry&body=Hi%20Rationale%20team%2C%0A%0AI'm%20not%20sure%20which%20engagement%20fits%20best.%20Here's%20what%20I'm%20looking%20for%3A%0A%0A%0A%0AThanks!
+  - contentinfo [ref=e141]:
+    - paragraph [ref=e144]: Rationale © 2025. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=e150] [cursor=pointer]:
+    - img [ref=e151]
+  - alert [ref=e154]
+```

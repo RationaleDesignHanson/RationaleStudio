@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/utils/logger';
 
 const PYTHON_BACKEND_URL = process.env.FUBO_BACKEND_URL || 'http://localhost:5001';
 
@@ -22,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Backend error:', errorText);
+      logger.error('Backend error:', errorText);
       return NextResponse.json(
         { error: `Backend error: ${response.statusText}` },
         { status: response.status }
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error: unknown) {
-    console.error('Base image generation error:', error);
+    logger.error('Base image generation error:', error);
 
     if (error && typeof error === 'object' && 'code' in error && error.code === 'ECONNREFUSED') {
       return NextResponse.json(
