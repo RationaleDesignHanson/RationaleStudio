@@ -69,6 +69,12 @@ jobs:
         run: npx playwright test tests/e2e/ --project=chromium --reporter=list
         env:
           CI: true
+          NEXT_PUBLIC_FIREBASE_API_KEY: AIzaSyAKRxuyFhxCb8O1lVQcR3r9RDiUswEnwGA
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: rationaledesigns-4d354.firebaseapp.com
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: rationaledesigns-4d354
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: rationaledesigns-4d354.firebasestorage.app
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: 844463328870
+          NEXT_PUBLIC_FIREBASE_APP_ID: 1:844463328870:web:7d2fe11212c986f9baa7a7
 
       - name: Upload test results
         if: always()
@@ -103,6 +109,12 @@ jobs:
         run: npx playwright test tests/e2e/accessibility.spec.ts --project=chromium --reporter=list
         env:
           CI: true
+          NEXT_PUBLIC_FIREBASE_API_KEY: AIzaSyAKRxuyFhxCb8O1lVQcR3r9RDiUswEnwGA
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: rationaledesigns-4d354.firebaseapp.com
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: rationaledesigns-4d354
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: rationaledesigns-4d354.firebasestorage.app
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: 844463328870
+          NEXT_PUBLIC_FIREBASE_APP_ID: 1:844463328870:web:7d2fe11212c986f9baa7a7
 
       - name: Upload accessibility results
         if: always()
