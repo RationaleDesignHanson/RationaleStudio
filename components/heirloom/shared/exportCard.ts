@@ -1,8 +1,13 @@
 // Export Card as Image
 // Uses html2canvas to capture the recipe card and download as PNG
 
-import html2canvas from 'html2canvas';
 import { logger } from '@/lib/utils/logger';
+
+// Dynamic import helper - loads html2canvas only when needed (~50KB savings)
+async function loadHtml2Canvas() {
+  const html2canvas = await import('html2canvas');
+  return html2canvas.default;
+}
 
 export interface ExportOptions {
   fileName?: string;
@@ -26,6 +31,9 @@ export async function exportAsImage(
   } = options;
 
   try {
+    // Dynamically load html2canvas only when needed
+    const html2canvas = await loadHtml2Canvas();
+
     // Capture the element as canvas
     const canvas = await html2canvas(element, {
       scale,
@@ -94,6 +102,9 @@ export async function shareCardImage(
   }
 
   try {
+    // Dynamically load html2canvas only when needed
+    const html2canvas = await loadHtml2Canvas();
+
     // Capture the element as canvas
     const canvas = await html2canvas(element, {
       scale: 2,
@@ -147,6 +158,9 @@ export async function copyCardToClipboard(
   }
 
   try {
+    // Dynamically load html2canvas only when needed
+    const html2canvas = await loadHtml2Canvas();
+
     // Capture the element as canvas
     const canvas = await html2canvas(element, {
       scale: 2,

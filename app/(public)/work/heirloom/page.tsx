@@ -3,6 +3,7 @@
 // app/work/heirloom/page.tsx
 // Heirloom Case Study - Main Page Component
 
+import { lazy, Suspense } from 'react'
 import './print.css'
 import HeroSection from './components/HeroSection'
 import AtAGlance from './components/AtAGlance'
@@ -10,10 +11,12 @@ import ChallengeSection from './components/ChallengeSection'
 import PrototypeEmbed from './components/PrototypeEmbed'
 import ApproachSection from './components/ApproachSection'
 import ProjectOverview from './components/ProjectOverview'
-import MetricsComparison from './components/MetricsComparison'
 import FeatureGrid from './components/FeatureGrid'
 import FinalCTA from './components/FinalCTA'
 import Link from 'next/link'
+
+// Lazy load MetricsComparison to reduce initial bundle (Recharts is ~90KB)
+const MetricsComparison = lazy(() => import('./components/MetricsComparison'))
 
 export default function HeirloomCaseStudy() {
   return (
@@ -43,7 +46,9 @@ export default function HeirloomCaseStudy() {
       <FeatureGrid />
 
       {/* Comparative metrics with industry benchmarks */}
-      <MetricsComparison />
+      <Suspense fallback={<div className="py-12 md:py-16 lg:py-20" />}>
+        <MetricsComparison />
+      </Suspense>
 
       {/* CTA Links Section */}
       <section className="bg-gray-50 py-12 md:py-8 md:py-12 lg:py-16">

@@ -106,7 +106,7 @@ export default function HomePage() {
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
                         <Image
-                          src="/images/icons/zero-icon.png"
+                          src="/images/icons/zero-icon.avif"
                           alt="Zero app icon"
                           fill
                           sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
@@ -155,7 +155,7 @@ export default function HomePage() {
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden relative">
                         <Image
-                          src="/images/icons/heirloom-icon.png"
+                          src="/images/icons/heirloom-icon.avif"
                           alt="Heirloom app icon"
                           fill
                           sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
