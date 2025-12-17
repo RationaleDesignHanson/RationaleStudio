@@ -118,8 +118,8 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                {isAuthenticated && (
-                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                <div className="relative">
+                  <div className={`p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5 ${!isAuthenticated ? 'blur-sm select-none' : ''}`}>
                     <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
                     <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
                       <li className="flex items-start gap-2">
@@ -136,7 +136,17 @@ export default function HowWeWorkPage() {
                       </li>
                     </ul>
                   </div>
-                )}
+                  {!isAuthenticated && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg backdrop-blur-[2px]">
+                      <Link
+                        href="/sign-in"
+                        className="px-3 py-1.5 md:px-4 md:py-2 bg-terminal-gold text-black text-xs md:text-sm font-semibold rounded hover:bg-terminal-gold/90 transition-colors"
+                      >
+                        Sign in to view details
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
@@ -177,8 +187,8 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                {isAuthenticated && (
-                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                <div className="relative">
+                  <div className={`p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5 ${!isAuthenticated ? 'blur-sm select-none' : ''}`}>
                     <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
                     <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
                       <li className="flex items-start gap-2">
@@ -195,7 +205,17 @@ export default function HowWeWorkPage() {
                       </li>
                     </ul>
                   </div>
-                )}
+                  {!isAuthenticated && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg backdrop-blur-[2px]">
+                      <Link
+                        href="/sign-in"
+                        className="px-3 py-1.5 md:px-4 md:py-2 bg-terminal-gold text-black text-xs md:text-sm font-semibold rounded hover:bg-terminal-gold/90 transition-colors"
+                      >
+                        Sign in to view details
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
@@ -236,8 +256,8 @@ export default function HowWeWorkPage() {
                   </ul>
                 </div>
 
-                {isAuthenticated && (
-                  <div className="p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5">
+                <div className="relative">
+                  <div className={`p-3 md:p-4 rounded-lg border-2 border-terminal-gold bg-terminal-gold/5 ${!isAuthenticated ? 'blur-sm select-none' : ''}`}>
                     <p className="text-[0.65rem] md:text-xs font-semibold text-gray-400 uppercase mb-1.5 md:mb-2">Structure</p>
                     <ul className="text-xs md:text-sm text-gray-300 space-y-1 md:space-y-1.5">
                       <li className="flex items-start gap-2">
@@ -254,7 +274,17 @@ export default function HowWeWorkPage() {
                       </li>
                     </ul>
                   </div>
-                )}
+                  {!isAuthenticated && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg backdrop-blur-[2px]">
+                      <Link
+                        href="/sign-in"
+                        className="px-3 py-1.5 md:px-4 md:py-2 bg-terminal-gold text-black text-xs md:text-sm font-semibold rounded hover:bg-terminal-gold/90 transition-colors"
+                      >
+                        Sign in to view details
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <ButtonTertiary href="/contact" className="gap-2 text-xs md:text-sm">
