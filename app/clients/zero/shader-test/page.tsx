@@ -2,9 +2,22 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ASCIIShaderGrid } from '@/components/visual/ASCIIShaderGrid';
+import dynamic from 'next/dynamic';
 import { getSectionTheme } from '@/lib/theme/watercolor-palette';
 import type { CharacterSetName } from '@/components/visual/ASCIIShaderGrid';
+
+// Lazy load Three.js component with SSR disabled
+const ASCIIShaderGrid = dynamic(
+  () => import('@/components/visual/ASCIIShaderGrid').then(mod => mod.ASCIIShaderGrid),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 flex items-center justify-center bg-black">
+        <div className="text-white/60 text-sm">Loading shader...</div>
+      </div>
+    )
+  }
+);
 
 export default function ShaderTestPage() {
   const [characterSet, setCharacterSet] = useState<CharacterSetName>('minimal');
