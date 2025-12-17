@@ -5,7 +5,5 @@
  * Each demo showcases a key feature of the Heirloom iOS app.
  */
 
-export { RecipeCardDemo } from './card-personalizer'
-export { ShoppingListDemo } from './shopping-list'
+export { ShoppingLabDemo } from './shopping-lab'
 export { DinnerPartyDemo } from './dinner-party'
-export { SmallifyDemo } from './smallify/SmallifyDemo'

@@ -136,16 +136,16 @@ export default function WorkPage() {
                       </a>
                       <div className="flex gap-2 sm:gap-3">
                         <Link
-                          href="/work/zero/overview"
+                          href="/products/zero"
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded-lg text-center text-xs sm:text-sm font-bold text-terminal-gold transition-all"
                         >
-                          Overview
+                          About
                         </Link>
                         <Link
                           href={`/work/${zero.slug}`}
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-terminal-gold transition-all"
                         >
-                          Case Study
+                          Demo
                         </Link>
                       </div>
                     </div>
@@ -200,16 +200,16 @@ export default function WorkPage() {
                       </a>
                       <div className="flex gap-2 sm:gap-3">
                         <Link
-                          href="/work/heirloom/pitch"
+                          href="/products/heirloom"
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-[#00D9FF]/10 border border-[#00D9FF]/30 hover:border-[#00D9FF] hover:bg-[#00D9FF]/20 rounded-lg text-center text-xs sm:text-sm font-bold text-[#00D9FF] transition-all"
                         >
-                          Overview
+                          About
                         </Link>
                         <Link
                           href={`/work/${heirloom.slug}`}
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-[#00D9FF] transition-all"
                         >
-                          Case Study
+                          Demo
                         </Link>
                       </div>
                     </div>
@@ -320,12 +320,14 @@ export default function WorkPage() {
               const needsBlur = isConfidential && !isInvestorOrPartner && !isClientProject;
 
               // Check if this project has a quick overview page
-              const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020' || project.slug === 'sanitary-waste-system';
+              const hasQuickOverview = project.slug === 'case-study-010' || project.slug === 'case-study-020' || project.slug === 'case-study-030' || project.slug === 'sanitary-waste-system';
               const overviewSlug = project.slug === 'case-study-010'
                 ? 'creait'
                 : project.slug === 'case-study-020'
                 ? 'athletes-first'
-                : 'sanitary-waste-system';
+                : project.slug === 'case-study-030'
+                ? 'fubo'
+                : 'sanitary-system';
               const pitchDeckPath = project.slug === 'case-study-010'
                 ? '/clients/creait/strategic-roadmap'
                 : project.slug === 'case-study-020'
@@ -343,10 +345,8 @@ export default function WorkPage() {
               };
 
               // Determine the correct href based on auth status and quick overview availability
-              const cardHref = isAuthenticated && hasQuickOverview && project.slug === 'sanitary-waste-system'
-                ? '/clients/work/sanitary-waste-system/quick-overview'
-                : isAuthenticated && hasQuickOverview
-                ? `/work/${overviewSlug}/overview`
+              const cardHref = isAuthenticated && hasQuickOverview
+                ? `/products/${overviewSlug}`
                 : `/work/${project.slug}`;
 
               return (
@@ -439,16 +439,12 @@ export default function WorkPage() {
                             <div className="grid grid-cols-2 gap-3">
                               {hasQuickOverview && (
                                 <Link
-                                  href={
-                                    project.slug === 'sanitary-waste-system'
-                                      ? '/clients/work/sanitary-waste-system/quick-overview'
-                                      : `/work/${overviewSlug}/overview`
-                                  }
+                                  href={`/products/${overviewSlug}`}
                                   className="flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <Lock className="w-3 h-3" />
-                                  <span>Quick Overview</span>
+                                  <span>About</span>
                                 </Link>
                               )}
                               <Link
@@ -457,7 +453,7 @@ export default function WorkPage() {
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <Lock className="w-3 h-3" />
-                                <span>Full Case Study</span>
+                                <span>Demo</span>
                               </Link>
                             </div>
                           </div>

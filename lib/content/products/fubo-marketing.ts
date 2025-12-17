@@ -132,7 +132,7 @@ export const fuboMarketingContent: ProductMarketingContent = {
       },
       {
         title: 'Apply Visual Templates',
-        description: "24 pre-built styles (bold, minimal, retro, neon) adapt to each team's brand colors and logos."
+        description: '24 pre-built styles (bold, minimal, retro, neon) adapt to each team\'s brand colors and logos.'
       },
       {
         title: 'Generate Thumbnails',
@@ -143,7 +143,7 @@ export const fuboMarketingContent: ProductMarketingContent = {
         description: 'Thumbnails auto-publish to your CMS or CDN—no manual upload required.'
       }
     ],
-    techSidebar: "Built with AI image generation, brand rule engines, and real-time asset pipelines. Deployed on Fubo's infrastructure in 2 weeks.",
+    techSidebar: 'Built with AI image generation, brand rule engines, and real-time asset pipelines. Deployed on Fubo\'s infrastructure in 2 weeks.',
     deepDiveLink: {
       text: 'View full case study',
       href: '/work/fubo'
@@ -165,7 +165,7 @@ export const fuboMarketingContent: ProductMarketingContent = {
       },
       {
         label: 'Learn About Rationale',
-        description: "Fubo is one of many partnership products we've shipped at speed.",
+        description: 'Fubo is one of many partnership products we\'ve shipped at speed.',
         href: '/'
       }
     ]

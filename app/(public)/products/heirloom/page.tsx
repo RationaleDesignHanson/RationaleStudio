@@ -29,37 +29,44 @@ export const metadata: Metadata = {
 
 export default function HeirloomProductPage() {
   const content = heirloomMarketingContent;
-  const accentColor = '#00D9FF'; // Heirloom brand cyan
+  const accentColor = '#E85D4D'; // Heirloom brand coral/red
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <main className="min-h-screen bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460]">
 
       {/* SECTION 1: HERO (JTBD-FIRST) */}
-      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.08}
+            opacity={0.03}
             animated={true}
-            colorTheme={watercolorThemes.blueTeal}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Product Name */}
+          <div className="mb-6">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-[#E85D4D]">
+              HEIRLOOM
+            </h1>
+          </div>
+
           {/* Pre-headline */}
           <div className="mb-4">
-            <span className="inline-block px-4 py-1.5 bg-[#00D9FF]/10 border border-[#00D9FF]/30 rounded-full text-sm font-semibold text-[#00D9FF] uppercase tracking-wide">
+            <span className="inline-block px-4 py-1.5 bg-[#E85D4D]/10 border border-[#E85D4D]/30 rounded-full text-sm font-semibold text-[#E85D4D] uppercase tracking-wide">
               {content.hero.preHeadline}
             </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#2D2D2D] leading-tight mb-6">
             {content.hero.headline}
-          </h1>
+          </h2>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
             {content.hero.subheadline}
           </p>
 
@@ -67,7 +74,7 @@ export default function HeirloomProductPage() {
           <div className="mb-12">
             <Link
               href="/work/heirloom"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors underline underline-offset-4"
+              className="inline-flex items-center gap-2 text-[#E85D4D] hover:text-[#D84D3D] transition-colors underline underline-offset-4 font-medium"
             >
               Check out the demo
               <ArrowRight className="w-4 h-4" />
@@ -76,10 +83,10 @@ export default function HeirloomProductPage() {
 
           {/* Visual Placeholder */}
           <div className="relative max-w-4xl mx-auto">
-            <div className="aspect-video bg-gray-800/50 border border-[#00D9FF]/30 rounded-lg flex items-center justify-center">
+            <div className="aspect-video bg-white/50 border-2 border-[#E85D4D]/30 rounded-lg flex items-center justify-center shadow-lg">
               <div className="text-center">
-                <BookOpen className="w-16 h-16 text-[#00D9FF] mx-auto mb-4" />
-                <p className="text-gray-400 text-sm">App Screenshots Coming Soon</p>
+                <BookOpen className="w-16 h-16 text-[#E85D4D] mx-auto mb-4" />
+                <p className="text-gray-600 text-sm font-medium">Image/Video Placeholder</p>
               </div>
             </div>
           </div>
@@ -87,28 +94,28 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 2: THE PROBLEM */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.02}
             animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
             {content.problem.headline}
           </h2>
 
           <div className="space-y-8 mb-12">
             {content.problem.scenarios.map((scenario, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <div className="w-8 h-8 rounded-full bg-[#00D9FF]/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-[#00D9FF] font-bold">{index + 1}</span>
+              <div key={index} className="flex items-start gap-4 p-6 bg-white/60 border border-[#E85D4D]/20 rounded-lg shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-[#E85D4D]/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <span className="text-[#E85D4D] font-bold">{index + 1}</span>
                 </div>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-lg text-gray-700 leading-relaxed">
                   {scenario.scenario}
                 </p>
               </div>
@@ -116,7 +123,7 @@ export default function HeirloomProductPage() {
           </div>
 
           <div className="text-center">
-            <p className="text-xl md:text-2xl text-[#00D9FF] font-semibold italic">
+            <p className="text-xl md:text-2xl text-[#E85D4D] font-semibold italic">
               {content.problem.transition}
             </p>
           </div>
@@ -124,18 +131,18 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 3: THE SOLUTION */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.02}
             animated={true}
-            colorTheme={watercolorThemes.blueTeal}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
             {content.solution.headline}
           </h2>
 
@@ -143,25 +150,25 @@ export default function HeirloomProductPage() {
             {content.solution.useCases.map((useCase, index) => {
               const icons = [<BookOpen key={0} className="w-6 h-6" />, <Scale key={1} className="w-6 h-6" />, <ShoppingCart key={2} className="w-6 h-6" />, <Camera key={3} className="w-6 h-6" />];
               return (
-                <div key={index} className="p-6 lg:p-8 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg">
+                <div key={index} className="p-6 lg:p-8 bg-white/60 border-2 border-[#E85D4D]/30 rounded-lg shadow-sm">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="text-[#00D9FF]">
+                      <div className="text-[#E85D4D]">
                         {icons[index] || <BookOpen className="w-6 h-6" />}
                       </div>
-                      <h3 className="text-lg font-bold text-white">
+                      <h3 className="text-lg font-bold text-[#2D2D2D]">
                         {useCase.trigger}
                       </h3>
                     </div>
 
-                    <div className="space-y-3 text-gray-300">
+                    <div className="space-y-3 text-gray-700">
                       <p className="flex items-start gap-2">
-                        <ArrowRight className="w-5 h-5 text-[#00D9FF] flex-shrink-0 mt-0.5" />
+                        <ArrowRight className="w-5 h-5 text-[#E85D4D] flex-shrink-0 mt-0.5" />
                         <span>{useCase.action}</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span className="font-semibold text-white">{useCase.outcome}</span>
+                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <span className="font-semibold text-[#2D2D2D]">{useCase.outcome}</span>
                       </p>
                     </div>
                   </div>
@@ -173,28 +180,28 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 4: PROOF IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.02}
             animated={true}
-            colorTheme={watercolorThemes.blueTeal}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
             {content.proof.headline}
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {content.proof.outcomes.map((outcome, index) => (
-              <div key={index} className="p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg text-center">
-                <div className="text-2xl font-bold text-[#00D9FF] mb-3">
+              <div key={index} className="p-6 bg-white/60 border-2 border-[#E85D4D]/30 rounded-lg text-center shadow-sm">
+                <div className="text-2xl font-bold text-[#E85D4D] mb-3">
                   {outcome.metric}
                 </div>
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-sm text-gray-700 leading-relaxed">
                   {outcome.context}
                 </p>
               </div>
@@ -203,19 +210,19 @@ export default function HeirloomProductPage() {
 
           {/* Testimonial */}
           {content.proof.testimonial && (
-            <div className="max-w-3xl mx-auto p-8 bg-gradient-to-br from-[#00D9FF]/20 to-transparent border-2 border-[#00D9FF] rounded-lg">
-              <blockquote className="text-lg md:text-xl text-gray-200 italic mb-4">
+            <div className="max-w-3xl mx-auto p-8 bg-gradient-to-br from-[#E85D4D]/10 to-white/50 border-2 border-[#E85D4D] rounded-lg shadow-lg">
+              <blockquote className="text-lg md:text-xl text-gray-800 italic mb-4">
                 "{content.proof.testimonial.quote}"
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#00D9FF]/20 flex items-center justify-center">
-                  <span className="text-[#00D9FF] font-bold text-xl">
+                <div className="w-12 h-12 rounded-full bg-[#E85D4D]/20 flex items-center justify-center">
+                  <span className="text-[#E85D4D] font-bold text-xl">
                     {content.proof.testimonial.author.charAt(0)}
                   </span>
                 </div>
                 <div>
-                  <div className="font-semibold text-white">{content.proof.testimonial.author}</div>
-                  <div className="text-sm text-gray-400">{content.proof.testimonial.role}</div>
+                  <div className="font-semibold text-[#2D2D2D]">{content.proof.testimonial.author}</div>
+                  <div className="text-sm text-gray-600">{content.proof.testimonial.role}</div>
                 </div>
               </div>
             </div>
@@ -224,12 +231,12 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 5: PRIMARY CTA */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#00D9FF]/10 to-transparent border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#E85D4D]/15 to-transparent border-b border-[#E85D4D]/20">
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2D2D] mb-4">
             {content.cta.headline}
           </h2>
-          <p className="text-lg text-gray-300 mb-8">
+          <p className="text-lg text-gray-700 mb-8">
             {content.cta.subheadline}
           </p>
 
@@ -237,42 +244,42 @@ export default function HeirloomProductPage() {
             href={content.hero.ctaPrimary.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg font-bold transition-all shadow-xl shadow-[#00D9FF]/30 mb-6"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E85D4D] hover:bg-[#D84D3D] text-white rounded-lg font-bold transition-all shadow-xl shadow-[#E85D4D]/30 mb-6"
           >
             <BookOpen className="w-5 h-5" />
             {content.cta.buttonText}
           </a>
 
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-600">
             {content.cta.trustSignal}
           </p>
         </div>
       </section>
 
       {/* SECTION 6: WHO IT'S FOR */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.02}
             animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2D2D] mb-12 text-center">
             {content.whoItsFor.headline}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Personas */}
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-[#00D9FF] mb-6">Perfect if you:</h3>
+              <h3 className="text-xl font-bold text-[#E85D4D] mb-6">Perfect if you:</h3>
               {content.whoItsFor.personas.map((persona, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <p className="text-gray-300">{persona}</p>
+                  <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                  <p className="text-gray-700">{persona}</p>
                 </div>
               ))}
             </div>
@@ -280,11 +287,11 @@ export default function HeirloomProductPage() {
             {/* Anti-personas */}
             {content.whoItsFor.antiPersonas && (
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-400 mb-6">Not right for you if:</h3>
+                <h3 className="text-xl font-bold text-gray-600 mb-6">Not right for you if:</h3>
                 {content.whoItsFor.antiPersonas.map((antiPersona, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <X className="w-5 h-5 text-gray-500 flex-shrink-0 mt-1" />
-                    <p className="text-gray-400">{antiPersona}</p>
+                    <p className="text-gray-600">{antiPersona}</p>
                   </div>
                 ))}
               </div>
@@ -294,30 +301,30 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 7: HOW IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.02}
             animated={true}
-            colorTheme={watercolorThemes.blueTeal}
+            colorTheme={watercolorThemes.coralOrange}
             charSet="default"
           />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2D2D] mb-12 text-center">
             {content.howItWorks.headline}
           </h2>
 
           <div className="space-y-6 mb-12">
             {content.howItWorks.steps.map((step, index) => (
-              <div key={index} className="flex items-start gap-6 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <div className="w-12 h-12 rounded-full bg-[#00D9FF]/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#00D9FF] font-bold text-xl">{index + 1}</span>
+              <div key={index} className="flex items-start gap-6 p-6 bg-white/60 border border-[#E85D4D]/20 rounded-lg shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-[#E85D4D]/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[#E85D4D] font-bold text-xl">{index + 1}</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-gray-300">{step.description}</p>
+                  <h3 className="text-xl font-bold text-[#2D2D2D] mb-2">{step.title}</h3>
+                  <p className="text-gray-700">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -325,16 +332,16 @@ export default function HeirloomProductPage() {
 
           {/* Tech Sidebar */}
           {content.howItWorks.techSidebar && (
-            <div className="p-6 bg-gray-900/70 border border-gray-700 rounded-lg">
+            <div className="p-6 bg-white/60 border-2 border-[#E85D4D]/30 rounded-lg shadow-sm">
               <div className="flex items-start gap-3">
-                <Heart className="w-5 h-5 text-[#00D9FF] flex-shrink-0 mt-1" />
+                <Heart className="w-5 h-5 text-[#E85D4D] flex-shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-semibold text-white mb-2">Technology</h4>
-                  <p className="text-sm text-gray-300 mb-4">{content.howItWorks.techSidebar}</p>
+                  <h4 className="font-semibold text-[#2D2D2D] mb-2">Technology</h4>
+                  <p className="text-sm text-gray-700 mb-4">{content.howItWorks.techSidebar}</p>
                   {content.howItWorks.deepDiveLink && (
                     <Link
                       href={content.howItWorks.deepDiveLink.href}
-                      className="text-sm text-[#00D9FF] hover:underline inline-flex items-center gap-2"
+                      className="text-sm text-[#E85D4D] hover:text-[#D84D3D] hover:underline inline-flex items-center gap-2 font-medium"
                     >
                       {content.howItWorks.deepDiveLink.text}
                       <ArrowRight className="w-4 h-4" />
@@ -348,24 +355,24 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 8: SECONDARY CTAs */}
-      <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white/30">
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">
+          <h3 className="text-2xl font-bold text-[#2D2D2D] mb-8 text-center">
             {content.secondaryCTAs.headline}
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {content.secondaryCTAs.paths.map((path, index) => (
               <Link
                 key={index}
                 href={path.href}
-                className="group p-6 bg-gray-900/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg transition-all"
+                className="group p-6 bg-white/60 border border-[#E85D4D]/20 hover:border-[#E85D4D]/50 rounded-lg transition-all shadow-sm hover:shadow-md flex flex-col"
               >
-                <h4 className="font-bold text-white mb-2 group-hover:text-[#00D9FF] transition-colors">
+                <h4 className="font-bold text-[#2D2D2D] mb-2 group-hover:text-[#E85D4D] transition-colors">
                   {path.label}
                 </h4>
-                <p className="text-sm text-gray-400 mb-4">{path.description}</p>
-                <div className="flex items-center text-[#00D9FF] text-sm font-semibold">
+                <p className="text-sm text-gray-600 mb-4 flex-grow">{path.description}</p>
+                <div className="flex items-center text-[#E85D4D] text-sm font-semibold mt-auto">
                   Learn more
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -376,8 +383,8 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* Footer Note */}
-      <div className="py-8 px-4 text-center border-t border-gray-800">
-        <p className="text-sm text-gray-500">
+      <div className="py-8 px-4 text-center border-t border-[#E85D4D]/20 bg-white/30">
+        <p className="text-sm text-gray-600">
           Heirloom Recipe Management • Built by Rationale Studio
         </p>
       </div>

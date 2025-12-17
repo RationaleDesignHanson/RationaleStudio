@@ -45,6 +45,13 @@ export default function ZeroProductPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Product Name */}
+          <div className="mb-6">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-terminal-gold">
+              ZERO
+            </h1>
+          </div>
+
           {/* Pre-headline */}
           <div className="mb-4">
             <span className="inline-block px-4 py-1.5 bg-terminal-gold/10 border border-terminal-gold/30 rounded-full text-sm font-semibold text-terminal-gold uppercase tracking-wide">
@@ -53,9 +60,9 @@ export default function ZeroProductPage() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
             {content.hero.headline}
-          </h1>
+          </h2>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -78,7 +85,7 @@ export default function ZeroProductPage() {
             <div className="aspect-video bg-gray-800/50 border border-terminal-gold/30 rounded-lg flex items-center justify-center">
               <div className="text-center">
                 <Zap className="w-16 h-16 text-terminal-gold mx-auto mb-4" />
-                <p className="text-gray-400 text-sm">Interactive Demo Coming Soon</p>
+                <p className="text-gray-400 text-sm">Image/Video Placeholder</p>
               </div>
             </div>
           </div>
@@ -347,18 +354,18 @@ export default function ZeroProductPage() {
             {content.secondaryCTAs.headline}
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {content.secondaryCTAs.paths.map((path, index) => (
               <Link
                 key={index}
                 href={path.href}
-                className="group p-6 bg-gray-900/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg transition-all"
+                className="group p-6 bg-gray-900/50 border border-terminal-gold/50 rounded-lg transition-all flex flex-col"
               >
                 <h4 className="font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
                   {path.label}
                 </h4>
-                <p className="text-sm text-gray-400 mb-4">{path.description}</p>
-                <div className="flex items-center text-terminal-gold text-sm font-semibold">
+                <p className="text-sm text-gray-400 mb-4 flex-grow">{path.description}</p>
+                <div className="flex items-center text-terminal-gold text-sm font-semibold mt-auto">
                   Learn more
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>

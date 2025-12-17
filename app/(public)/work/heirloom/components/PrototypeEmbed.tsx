@@ -2,23 +2,20 @@
 
 'use client'
 
-import { useState } from 'react'
-import { RecipeCardDemo, ShoppingListDemo, DinnerPartyDemo, SmallifyDemo } from '@/components/heirloom/demos'
+import { useState, lazy, Suspense } from 'react'
+import { DinnerPartyDemo } from '@/components/heirloom/demos'
+
+// Lazy load Shopping Lab for performance (complex component with many features)
+const ShoppingLabDemo = lazy(() =>
+  import('@/components/heirloom/demos').then(mod => ({ default: mod.ShoppingLabDemo }))
+)
 
 export default function PrototypeEmbed() {
-  const [activeDemo, setActiveDemo] = useState<'card' | 'shopping' | 'dinner' | 'smallify'>('card')
-  const [dinnerPartyAddedToList, setDinnerPartyAddedToList] = useState(false)
-
-  const handleAddDinnerPartyToList = () => {
-    setDinnerPartyAddedToList(true)
-    setActiveDemo('shopping')
-  }
+  const [activeDemo, setActiveDemo] = useState<'shopping' | 'dinner'>('shopping')
 
   const demos = [
-    { id: 'card' as const, label: 'Recipe Card', icon: '' },
-    { id: 'shopping' as const, label: 'Shopping List', icon: '' },
+    { id: 'shopping' as const, label: 'Shopping Lab', icon: '' },
     { id: 'dinner' as const, label: 'Dinner Party', icon: '' },
-    { id: 'smallify' as const, label: 'Smallify', icon: '' },
   ]
 
   return (
@@ -30,7 +27,7 @@ export default function PrototypeEmbed() {
             Try It Yourself
           </h2>
           <p className="text-xl text-gray-700">
-            Explore Heirloom's key features in these interactive demos. No download required.
+            Explore Heirloom's intelligent shopping features in these interactive demos. No download required.
           </p>
         </div>
 
@@ -43,7 +40,7 @@ export default function PrototypeEmbed() {
                 key={demo.id}
                 onClick={() => setActiveDemo(demo.id)}
                 className={`
-                  relative px-2.5 md:px-3 py-1 md:py-1.5 text-xs md:text-sm font-bold transition-all
+                  relative px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-bold transition-all
                   ${activeDemo === demo.id
                     ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px]'
                     : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
@@ -65,11 +62,22 @@ export default function PrototypeEmbed() {
           </div>
 
           {/* Demo Container */}
-          <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden relative z-0">
-            {activeDemo === 'card' && <RecipeCardDemo />}
-            {activeDemo === 'shopping' && <ShoppingListDemo dinnerPartyAdded={dinnerPartyAddedToList} />}
-            {activeDemo === 'dinner' && <DinnerPartyDemo onAddToShoppingList={handleAddDinnerPartyToList} />}
-            {activeDemo === 'smallify' && <SmallifyDemo />}
+          <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden relative z-0 bg-white">
+            <div className="p-6 md:p-8 lg:p-12">
+              {activeDemo === 'shopping' && (
+                <Suspense fallback={
+                  <div className="flex items-center justify-center py-20">
+                    <div className="text-center">
+                      <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E85D4D]"></div>
+                      <p className="mt-4 text-gray-600">Loading Shopping Lab...</p>
+                    </div>
+                  </div>
+                }>
+                  <ShoppingLabDemo />
+                </Suspense>
+              )}
+              {activeDemo === 'dinner' && <DinnerPartyDemo />}
+            </div>
           </div>
 
           {/* Instructions */}
@@ -78,44 +86,27 @@ export default function PrototypeEmbed() {
               How to use the demos:
             </h4>
 
-            {activeDemo === 'card' && (
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">1.</span>
-                  <span>Choose from 4 vintage backgrounds (cream, vintage paper, recipe card, cookbook)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">2.</span>
-                  <span>Add up to 3 stickers from 50+ hand-drawn options across categories</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">3.</span>
-                  <span>See how customizations preserve the vintage recipe card aesthetic</span>
-                </li>
-              </ul>
-            )}
-
             {activeDemo === 'shopping' && (
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
-                  <span>Notice how Butter and Sugar show <strong>total amounts</strong> calculated from multiple recipes</span>
+                  <span><strong>Add Recipes:</strong> Enter recipes manually, paste a single URL, or use <strong>Bulk Mode</strong> to import multiple recipe URLs at once (comma or newline separated)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">2.</span>
-                  <span>Aggregated ingredients show a breakdown of individual amounts with recipe sources</span>
+                  <span><strong>Bulk Import Demo:</strong> Click "Bulk Mode →" to see how the scraper processes 5-10 recipe URLs simultaneously with real-time progress tracking</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">3.</span>
-                  <span><strong>Try it:</strong> Switch to Dinner Party, click "Add to Shopping List", then come back to see Butter's total updated with a 3rd recipe!</span>
+                  <span><strong>Track Pantry:</strong> Switch to the Pantry tab and add items you already have at home</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">4.</span>
-                  <span>Check off items as you shop to track progress</span>
+                  <span><strong>Generate Smart List:</strong> Click "Generate List" to see ingredients consolidated and pantry items excluded</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">5.</span>
-                  <span>Export to iOS Reminders for cross-device sync via iCloud</span>
+                  <span><strong>Parser Demo:</strong> Try the Parser tab to see how ingredient text is analyzed in real-time (try "2-3 cups flour" or "1 1/2 lbs butter, softened")</span>
                 </li>
               </ul>
             )}
@@ -140,36 +131,7 @@ export default function PrototypeEmbed() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">5.</span>
-                  <span><strong>Click "Add to Shopping List"</strong> then switch to the Shopping List tab to see dinner party recipes added!</span>
-                </li>
-              </ul>
-            )}
-
-            {activeDemo === 'smallify' && (
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">1.</span>
-                  <span>Select different serving sizes to see <strong>intelligent ingredient scaling</strong></span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">2.</span>
-                  <span>Notice <strong>purple "Smart Scaled" badges</strong> on ingredients with non-linear adjustments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">3.</span>
-                  <span>See how spices scale at 90% (too much overpowers), eggs at 95% (rounded to whole numbers)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">4.</span>
-                  <span>Watch for warnings when scaling to extreme sizes (very small or very large batches)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">5.</span>
-                  <span>Compare original quantities (shown in gray) to understand the scaling adjustments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#E85D4D]">6.</span>
-                  <span><strong>Pro tip:</strong> Try scaling to 6 cookies vs 72 cookies to see how dramatically different the adjustments are!</span>
+                  <span><strong>Play the simulation</strong> at various speeds (1x to 60x) to watch the timeline progress in real-time</span>
                 </li>
               </ul>
             )}

@@ -1,0 +1,619 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2024-12-16",
+  "description": "Comprehensive synonym mappings with US/UK/AU regional variants, abbreviations, and common alternative names",
+  "mappings": [
+    {
+      "canonical": "all-purpose flour",
+      "synonyms": [
+        { "term": "ap flour", "confidence": 1.0 },
+        { "term": "plain flour", "confidence": 1.0, "region": "UK" },
+        { "term": "all purpose flour", "confidence": 1.0 },
+        { "term": "white flour", "confidence": 0.9 },
+        { "term": "flour", "confidence": 0.8 }
+      ]
+    },
+    {
+      "canonical": "bread flour",
+      "synonyms": [
+        { "term": "strong flour", "confidence": 1.0, "region": "UK" },
+        { "term": "strong white flour", "confidence": 1.0, "region": "UK" },
+        { "term": "high protein flour", "confidence": 0.95 },
+        { "term": "high gluten flour", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "cake flour",
+      "synonyms": [
+        { "term": "soft flour", "confidence": 0.95, "region": "UK" },
+        { "term": "pastry flour", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "whole wheat flour",
+      "synonyms": [
+        { "term": "wholemeal flour", "confidence": 1.0, "region": "UK" },
+        { "term": "whole meal flour", "confidence": 1.0, "region": "UK" },
+        { "term": "wholewheat flour", "confidence": 1.0 },
+        { "term": "brown flour", "confidence": 0.9, "region": "UK" },
+        { "term": "graham flour", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "almond flour",
+      "synonyms": [
+        { "term": "almond meal", "confidence": 0.95 },
+        { "term": "ground almonds", "confidence": 1.0, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "sugar",
+      "synonyms": [
+        { "term": "granulated sugar", "confidence": 0.95 },
+        { "term": "white sugar", "confidence": 0.95 },
+        { "term": "cane sugar", "confidence": 0.9 },
+        { "term": "table sugar", "confidence": 0.9 },
+        { "term": "refined sugar", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "brown sugar",
+      "synonyms": [
+        { "term": "light brown sugar", "confidence": 0.95 },
+        { "term": "dark brown sugar", "confidence": 0.95 },
+        { "term": "soft brown sugar", "confidence": 0.95, "region": "UK" },
+        { "term": "demerara sugar", "confidence": 0.85, "region": "UK" },
+        { "term": "muscovado sugar", "confidence": 0.85, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "powdered sugar",
+      "synonyms": [
+        { "term": "icing sugar", "confidence": 1.0, "region": "UK" },
+        { "term": "confectioners sugar", "confidence": 1.0 },
+        { "term": "confectioners' sugar", "confidence": 1.0 },
+        { "term": "10x sugar", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "butter",
+      "synonyms": [
+        { "term": "unsalted butter", "confidence": 0.95 },
+        { "term": "salted butter", "confidence": 0.95 },
+        { "term": "sweet butter", "confidence": 0.9 },
+        { "term": "stick of butter", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "milk",
+      "synonyms": [
+        { "term": "whole milk", "confidence": 0.95 },
+        { "term": "full fat milk", "confidence": 0.95, "region": "UK" },
+        { "term": "2% milk", "confidence": 0.9 },
+        { "term": "skim milk", "confidence": 0.9 },
+        { "term": "skimmed milk", "confidence": 0.9, "region": "UK" },
+        { "term": "semi-skimmed milk", "confidence": 0.9, "region": "UK" },
+        { "term": "low-fat milk", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "heavy cream",
+      "synonyms": [
+        { "term": "double cream", "confidence": 1.0, "region": "UK" },
+        { "term": "heavy whipping cream", "confidence": 1.0 },
+        { "term": "whipping cream", "confidence": 0.95 },
+        { "term": "thick cream", "confidence": 0.9, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "sour cream",
+      "synonyms": [
+        { "term": "soured cream", "confidence": 1.0, "region": "UK" },
+        { "term": "cultured cream", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "cheddar cheese",
+      "synonyms": [
+        { "term": "cheddar", "confidence": 1.0 },
+        { "term": "sharp cheddar", "confidence": 0.95 },
+        { "term": "mild cheddar", "confidence": 0.95 },
+        { "term": "mature cheddar", "confidence": 0.95, "region": "UK" },
+        { "term": "extra mature cheddar", "confidence": 0.95, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "parmesan cheese",
+      "synonyms": [
+        { "term": "parmesan", "confidence": 1.0 },
+        { "term": "parmigiano", "confidence": 1.0 },
+        { "term": "parmigiano-reggiano", "confidence": 1.0 },
+        { "term": "parmigiano reggiano", "confidence": 1.0 },
+        { "term": "parm", "confidence": 0.95 },
+        { "term": "parma", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "mozzarella cheese",
+      "synonyms": [
+        { "term": "mozzarella", "confidence": 1.0 },
+        { "term": "mozz", "confidence": 0.9 },
+        { "term": "fresh mozzarella", "confidence": 0.95 },
+        { "term": "buffalo mozzarella", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "yogurt",
+      "synonyms": [
+        { "term": "yoghurt", "confidence": 1.0, "region": "UK" },
+        { "term": "plain yogurt", "confidence": 0.95 },
+        { "term": "greek yogurt", "confidence": 0.9 },
+        { "term": "greek yoghurt", "confidence": 0.9, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "green onion",
+      "synonyms": [
+        { "term": "scallion", "confidence": 1.0 },
+        { "term": "scallions", "confidence": 1.0 },
+        { "term": "spring onion", "confidence": 1.0, "region": "UK" },
+        { "term": "spring onions", "confidence": 1.0, "region": "UK" },
+        { "term": "salad onion", "confidence": 0.95, "region": "UK" },
+        { "term": "green onions", "confidence": 1.0 }
+      ]
+    },
+    {
+      "canonical": "cilantro",
+      "synonyms": [
+        { "term": "coriander", "confidence": 1.0, "region": "UK" },
+        { "term": "fresh coriander", "confidence": 1.0, "region": "UK" },
+        { "term": "coriander leaves", "confidence": 1.0, "region": "UK" },
+        { "term": "chinese parsley", "confidence": 0.9 },
+        { "term": "dhania", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "eggplant",
+      "synonyms": [
+        { "term": "aubergine", "confidence": 1.0, "region": "UK" },
+        { "term": "eggplants", "confidence": 1.0 },
+        { "term": "aubergines", "confidence": 1.0, "region": "UK" },
+        { "term": "brinjal", "confidence": 0.9, "region": "AU" }
+      ]
+    },
+    {
+      "canonical": "zucchini",
+      "synonyms": [
+        { "term": "courgette", "confidence": 1.0, "region": "UK" },
+        { "term": "zucchinis", "confidence": 1.0 },
+        { "term": "courgettes", "confidence": 1.0, "region": "UK" },
+        { "term": "summer squash", "confidence": 0.8 }
+      ]
+    },
+    {
+      "canonical": "bell pepper",
+      "synonyms": [
+        { "term": "capsicum", "confidence": 1.0, "region": "AU" },
+        { "term": "sweet pepper", "confidence": 0.95 },
+        { "term": "bell peppers", "confidence": 1.0 },
+        { "term": "capsicums", "confidence": 1.0, "region": "AU" },
+        { "term": "pepper", "confidence": 0.7 },
+        { "term": "red pepper", "confidence": 0.9 },
+        { "term": "green pepper", "confidence": 0.9 },
+        { "term": "yellow pepper", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "arugula",
+      "synonyms": [
+        { "term": "rocket", "confidence": 1.0, "region": "UK" },
+        { "term": "roquette", "confidence": 0.95 },
+        { "term": "rucola", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "shrimp",
+      "synonyms": [
+        { "term": "prawns", "confidence": 1.0, "region": "UK" },
+        { "term": "prawn", "confidence": 1.0, "region": "UK" },
+        { "term": "shrimps", "confidence": 1.0 }
+      ]
+    },
+    {
+      "canonical": "ground beef",
+      "synonyms": [
+        { "term": "beef mince", "confidence": 1.0, "region": "UK" },
+        { "term": "minced beef", "confidence": 1.0, "region": "UK" },
+        { "term": "mince", "confidence": 0.8, "region": "UK" },
+        { "term": "hamburger", "confidence": 0.9 },
+        { "term": "hamburger meat", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "baking soda",
+      "synonyms": [
+        { "term": "bicarbonate of soda", "confidence": 1.0, "region": "UK" },
+        { "term": "bicarb", "confidence": 0.95, "region": "UK" },
+        { "term": "sodium bicarbonate", "confidence": 1.0 },
+        { "term": "bicarb soda", "confidence": 0.95, "region": "AU" }
+      ]
+    },
+    {
+      "canonical": "black pepper",
+      "synonyms": [
+        { "term": "pepper", "confidence": 0.9 },
+        { "term": "ground black pepper", "confidence": 1.0 },
+        { "term": "peppercorns", "confidence": 0.85 },
+        { "term": "black peppercorns", "confidence": 0.9 },
+        { "term": "cracked black pepper", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "olive oil",
+      "synonyms": [
+        { "term": "evoo", "confidence": 0.95 },
+        { "term": "extra virgin olive oil", "confidence": 1.0 },
+        { "term": "extra-virgin olive oil", "confidence": 1.0 },
+        { "term": "virgin olive oil", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "soy sauce",
+      "synonyms": [
+        { "term": "shoyu", "confidence": 0.95 },
+        { "term": "tamari", "confidence": 0.9 },
+        { "term": "soya sauce", "confidence": 1.0, "region": "UK" },
+        { "term": "light soy sauce", "confidence": 0.9 },
+        { "term": "dark soy sauce", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "vanilla extract",
+      "synonyms": [
+        { "term": "vanilla", "confidence": 0.95 },
+        { "term": "pure vanilla extract", "confidence": 1.0 },
+        { "term": "vanilla essence", "confidence": 0.9, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "chicken breast",
+      "synonyms": [
+        { "term": "chicken breasts", "confidence": 1.0 },
+        { "term": "boneless chicken breast", "confidence": 0.98 },
+        { "term": "boneless skinless chicken breast", "confidence": 0.98 },
+        { "term": "chicken breast fillet", "confidence": 0.95, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "cornstarch",
+      "synonyms": [
+        { "term": "corn starch", "confidence": 1.0 },
+        { "term": "cornflour", "confidence": 1.0, "region": "UK" },
+        { "term": "corn flour", "confidence": 1.0, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "ketchup",
+      "synonyms": [
+        { "term": "catsup", "confidence": 1.0 },
+        { "term": "tomato ketchup", "confidence": 1.0 },
+        { "term": "tomato sauce", "confidence": 0.8, "region": "AU" }
+      ]
+    },
+    {
+      "canonical": "onion",
+      "synonyms": [
+        { "term": "onions", "confidence": 1.0 },
+        { "term": "yellow onion", "confidence": 0.9 },
+        { "term": "brown onion", "confidence": 0.9, "region": "AU" },
+        { "term": "white onion", "confidence": 0.9 },
+        { "term": "red onion", "confidence": 0.9 },
+        { "term": "sweet onion", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "garlic",
+      "synonyms": [
+        { "term": "garlic cloves", "confidence": 0.95 },
+        { "term": "clove of garlic", "confidence": 0.95 },
+        { "term": "cloves of garlic", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "tomato",
+      "synonyms": [
+        { "term": "tomatoes", "confidence": 1.0 },
+        { "term": "fresh tomatoes", "confidence": 0.95 },
+        { "term": "ripe tomatoes", "confidence": 0.95 },
+        { "term": "plum tomatoes", "confidence": 0.9 },
+        { "term": "roma tomatoes", "confidence": 0.9 },
+        { "term": "beefsteak tomatoes", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "potato",
+      "synonyms": [
+        { "term": "potatoes", "confidence": 1.0 },
+        { "term": "russet potato", "confidence": 0.9 },
+        { "term": "idaho potato", "confidence": 0.9 },
+        { "term": "yukon gold potato", "confidence": 0.9 },
+        { "term": "red potato", "confidence": 0.9 },
+        { "term": "new potatoes", "confidence": 0.9 },
+        { "term": "white potato", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "carrot",
+      "synonyms": [
+        { "term": "carrots", "confidence": 1.0 },
+        { "term": "baby carrots", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "celery",
+      "synonyms": [
+        { "term": "celery stalks", "confidence": 0.95 },
+        { "term": "celery sticks", "confidence": 0.95 },
+        { "term": "celery ribs", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "spinach",
+      "synonyms": [
+        { "term": "fresh spinach", "confidence": 0.95 },
+        { "term": "baby spinach", "confidence": 0.9 },
+        { "term": "frozen spinach", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "lettuce",
+      "synonyms": [
+        { "term": "iceberg lettuce", "confidence": 0.9 },
+        { "term": "romaine lettuce", "confidence": 0.9 },
+        { "term": "cos lettuce", "confidence": 0.9, "region": "UK" },
+        { "term": "butter lettuce", "confidence": 0.9 },
+        { "term": "leaf lettuce", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "cucumber",
+      "synonyms": [
+        { "term": "cucumbers", "confidence": 1.0 },
+        { "term": "english cucumber", "confidence": 0.9 },
+        { "term": "persian cucumber", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "basil",
+      "synonyms": [
+        { "term": "fresh basil", "confidence": 0.95 },
+        { "term": "sweet basil", "confidence": 0.95 },
+        { "term": "thai basil", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "parsley",
+      "synonyms": [
+        { "term": "fresh parsley", "confidence": 0.95 },
+        { "term": "flat-leaf parsley", "confidence": 0.9 },
+        { "term": "italian parsley", "confidence": 0.9 },
+        { "term": "curly parsley", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "lemon",
+      "synonyms": [
+        { "term": "lemons", "confidence": 1.0 },
+        { "term": "fresh lemon", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "lime",
+      "synonyms": [
+        { "term": "limes", "confidence": 1.0 },
+        { "term": "fresh lime", "confidence": 0.95 },
+        { "term": "key lime", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "lemon juice",
+      "synonyms": [
+        { "term": "fresh lemon juice", "confidence": 0.95 },
+        { "term": "juice of lemon", "confidence": 0.95 },
+        { "term": "lemon", "confidence": 0.7 }
+      ]
+    },
+    {
+      "canonical": "vegetable oil",
+      "synonyms": [
+        { "term": "veg oil", "confidence": 0.95 },
+        { "term": "canola oil", "confidence": 0.9 },
+        { "term": "rapeseed oil", "confidence": 0.9, "region": "UK" },
+        { "term": "sunflower oil", "confidence": 0.9 },
+        { "term": "neutral oil", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "coconut oil",
+      "synonyms": [
+        { "term": "virgin coconut oil", "confidence": 0.95 },
+        { "term": "refined coconut oil", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "ground beef",
+      "synonyms": [
+        { "term": "beef mince", "confidence": 1.0, "region": "UK" },
+        { "term": "minced beef", "confidence": 1.0, "region": "UK" },
+        { "term": "mince", "confidence": 0.8, "region": "UK" },
+        { "term": "hamburger", "confidence": 0.9 },
+        { "term": "ground chuck", "confidence": 0.95 },
+        { "term": "ground sirloin", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "bacon",
+      "synonyms": [
+        { "term": "bacon strips", "confidence": 0.95 },
+        { "term": "bacon slices", "confidence": 0.95 },
+        { "term": "streaky bacon", "confidence": 0.95, "region": "UK" },
+        { "term": "back bacon", "confidence": 0.9, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "salmon",
+      "synonyms": [
+        { "term": "salmon fillet", "confidence": 0.95 },
+        { "term": "salmon fillets", "confidence": 0.95 },
+        { "term": "fresh salmon", "confidence": 0.95 },
+        { "term": "atlantic salmon", "confidence": 0.9 },
+        { "term": "wild salmon", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "tuna",
+      "synonyms": [
+        { "term": "tuna fish", "confidence": 0.95 },
+        { "term": "canned tuna", "confidence": 0.9 },
+        { "term": "tinned tuna", "confidence": 0.9, "region": "UK" }
+      ]
+    },
+    {
+      "canonical": "rice",
+      "synonyms": [
+        { "term": "white rice", "confidence": 0.95 },
+        { "term": "long grain rice", "confidence": 0.9 },
+        { "term": "long-grain rice", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "pasta",
+      "synonyms": [
+        { "term": "dried pasta", "confidence": 0.95 },
+        { "term": "dry pasta", "confidence": 0.95 },
+        { "term": "spaghetti", "confidence": 0.8 },
+        { "term": "penne", "confidence": 0.8 },
+        { "term": "macaroni", "confidence": 0.8 }
+      ]
+    },
+    {
+      "canonical": "oats",
+      "synonyms": [
+        { "term": "rolled oats", "confidence": 0.95 },
+        { "term": "old-fashioned oats", "confidence": 0.95 },
+        { "term": "old fashioned oats", "confidence": 0.95 },
+        { "term": "porridge oats", "confidence": 0.95, "region": "UK" },
+        { "term": "quick oats", "confidence": 0.9 },
+        { "term": "oatmeal", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "bread",
+      "synonyms": [
+        { "term": "white bread", "confidence": 0.9 },
+        { "term": "sandwich bread", "confidence": 0.9 },
+        { "term": "loaf of bread", "confidence": 0.95 },
+        { "term": "bread slices", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "breadcrumbs",
+      "synonyms": [
+        { "term": "bread crumbs", "confidence": 1.0 },
+        { "term": "dry breadcrumbs", "confidence": 0.95 },
+        { "term": "panko", "confidence": 0.9 },
+        { "term": "panko breadcrumbs", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "tortilla",
+      "synonyms": [
+        { "term": "tortillas", "confidence": 1.0 },
+        { "term": "flour tortilla", "confidence": 0.9 },
+        { "term": "corn tortilla", "confidence": 0.9 },
+        { "term": "wheat tortilla", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "chickpeas",
+      "synonyms": [
+        { "term": "garbanzo beans", "confidence": 1.0 },
+        { "term": "garbanzos", "confidence": 1.0 },
+        { "term": "chick peas", "confidence": 1.0 },
+        { "term": "chickpea", "confidence": 1.0 }
+      ]
+    },
+    {
+      "canonical": "peanut butter",
+      "synonyms": [
+        { "term": "pb", "confidence": 0.9 },
+        { "term": "smooth peanut butter", "confidence": 0.95 },
+        { "term": "crunchy peanut butter", "confidence": 0.95 },
+        { "term": "creamy peanut butter", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "almonds",
+      "synonyms": [
+        { "term": "almond", "confidence": 1.0 },
+        { "term": "whole almonds", "confidence": 0.95 },
+        { "term": "sliced almonds", "confidence": 0.9 },
+        { "term": "slivered almonds", "confidence": 0.9 },
+        { "term": "chopped almonds", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "walnuts",
+      "synonyms": [
+        { "term": "walnut", "confidence": 1.0 },
+        { "term": "chopped walnuts", "confidence": 0.95 },
+        { "term": "walnut halves", "confidence": 0.95 },
+        { "term": "walnut pieces", "confidence": 0.95 }
+      ]
+    },
+    {
+      "canonical": "chocolate chips",
+      "synonyms": [
+        { "term": "choc chips", "confidence": 0.95 },
+        { "term": "chocolate chip", "confidence": 0.95 },
+        { "term": "semi-sweet chocolate chips", "confidence": 0.95 },
+        { "term": "semisweet chocolate chips", "confidence": 0.95 },
+        { "term": "dark chocolate chips", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "cocoa powder",
+      "synonyms": [
+        { "term": "cocoa", "confidence": 0.95 },
+        { "term": "unsweetened cocoa powder", "confidence": 1.0 },
+        { "term": "dutch-process cocoa", "confidence": 0.9 },
+        { "term": "dutch process cocoa", "confidence": 0.9 },
+        { "term": "cacao powder", "confidence": 0.85 }
+      ]
+    },
+    {
+      "canonical": "vinegar",
+      "synonyms": [
+        { "term": "white vinegar", "confidence": 0.95 },
+        { "term": "distilled white vinegar", "confidence": 0.95 },
+        { "term": "white wine vinegar", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "mustard",
+      "synonyms": [
+        { "term": "yellow mustard", "confidence": 0.9 },
+        { "term": "dijon mustard", "confidence": 0.9 },
+        { "term": "wholegrain mustard", "confidence": 0.9, "region": "UK" },
+        { "term": "whole grain mustard", "confidence": 0.9 }
+      ]
+    },
+    {
+      "canonical": "mayonnaise",
+      "synonyms": [
+        { "term": "mayo", "confidence": 0.95 },
+        { "term": "real mayonnaise", "confidence": 0.95 }
+      ]
+    }
+  ]
+}

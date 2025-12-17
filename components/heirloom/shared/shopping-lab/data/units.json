@@ -1,0 +1,248 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2024-12-16",
+  "units": [
+    {
+      "canonical": "teaspoon",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["tsp", "t", "tspn", "teaspn"],
+      "mlEquivalent": 4.92892,
+      "regional": {
+        "US": 4.92892,
+        "metric": 5.0
+      }
+    },
+    {
+      "canonical": "tablespoon",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["tbsp", "T", "Tbsp", "TB", "tbs", "tbl"],
+      "mlEquivalent": 14.7868,
+      "regional": {
+        "US": 14.7868,
+        "UK": 17.7582,
+        "AU": 20.0,
+        "metric": 15.0
+      }
+    },
+    {
+      "canonical": "cup",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["c", "C", "cup", "cups"],
+      "mlEquivalent": 236.588,
+      "regional": {
+        "US": 236.588,
+        "metric": 250.0,
+        "AU": 250.0
+      }
+    },
+    {
+      "canonical": "fluid ounce",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["fl oz", "fl. oz.", "fluid ounce", "fluid oz"],
+      "mlEquivalent": 29.5735
+    },
+    {
+      "canonical": "pint",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["pt", "pint", "pints"],
+      "mlEquivalent": 473.176,
+      "regional": {
+        "US": 473.176,
+        "UK": 568.261
+      }
+    },
+    {
+      "canonical": "quart",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["qt", "quart", "quarts"],
+      "mlEquivalent": 946.353
+    },
+    {
+      "canonical": "gallon",
+      "type": "volume",
+      "system": "imperial",
+      "abbreviations": ["gal", "gallon", "gallons"],
+      "mlEquivalent": 3785.41
+    },
+    {
+      "canonical": "milliliter",
+      "type": "volume",
+      "system": "metric",
+      "abbreviations": ["ml", "mL", "milliliter", "millilitre", "milliliters", "millilitres"],
+      "mlEquivalent": 1.0
+    },
+    {
+      "canonical": "liter",
+      "type": "volume",
+      "system": "metric",
+      "abbreviations": ["l", "L", "liter", "litre", "liters", "litres"],
+      "mlEquivalent": 1000.0
+    },
+    {
+      "canonical": "ounce",
+      "type": "weight",
+      "system": "imperial",
+      "abbreviations": ["oz", "ounce", "ounces"],
+      "gramEquivalent": 28.3495
+    },
+    {
+      "canonical": "pound",
+      "type": "weight",
+      "system": "imperial",
+      "abbreviations": ["lb", "lbs", "pound", "pounds"],
+      "gramEquivalent": 453.592
+    },
+    {
+      "canonical": "gram",
+      "type": "weight",
+      "system": "metric",
+      "abbreviations": ["g", "gm", "gram", "grams", "gramme", "grammes"],
+      "gramEquivalent": 1.0
+    },
+    {
+      "canonical": "kilogram",
+      "type": "weight",
+      "system": "metric",
+      "abbreviations": ["kg", "kilo", "kilogram", "kilograms", "kilogramme", "kilogrammes"],
+      "gramEquivalent": 1000.0
+    },
+    {
+      "canonical": "pinch",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["pinch", "pinches"],
+      "mlEquivalent": 0.308
+    },
+    {
+      "canonical": "dash",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["dash", "dashes"],
+      "mlEquivalent": 0.616
+    },
+    {
+      "canonical": "smidgen",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["smidgen", "smidgeon", "smidgin"],
+      "mlEquivalent": 0.154
+    },
+    {
+      "canonical": "splash",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["splash"],
+      "mlEquivalent": 2.5
+    },
+    {
+      "canonical": "handful",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["handful", "handfuls"],
+      "gramEquivalent": 30.0
+    },
+    {
+      "canonical": "glug",
+      "type": "informal",
+      "system": "universal",
+      "abbreviations": ["glug", "glugs"],
+      "mlEquivalent": 15.0
+    },
+    {
+      "canonical": "each",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["each", "piece", "pieces", "whole"]
+    },
+    {
+      "canonical": "slice",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["slice", "slices"]
+    },
+    {
+      "canonical": "clove",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["clove", "cloves"]
+    },
+    {
+      "canonical": "head",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["head", "heads"]
+    },
+    {
+      "canonical": "bunch",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["bunch", "bunches"]
+    },
+    {
+      "canonical": "sprig",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["sprig", "sprigs"]
+    },
+    {
+      "canonical": "stalk",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["stalk", "stalks"]
+    },
+    {
+      "canonical": "leaf",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["leaf", "leaves"]
+    },
+    {
+      "canonical": "can",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["can", "cans"]
+    },
+    {
+      "canonical": "jar",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["jar", "jars"]
+    },
+    {
+      "canonical": "package",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["package", "packages", "pkg"]
+    },
+    {
+      "canonical": "bag",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["bag", "bags"]
+    },
+    {
+      "canonical": "box",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["box", "boxes"]
+    },
+    {
+      "canonical": "bottle",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["bottle", "bottles"]
+    },
+    {
+      "canonical": "stick",
+      "type": "count",
+      "system": "universal",
+      "abbreviations": ["stick", "sticks"]
+    }
+  ]
+}

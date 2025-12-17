@@ -1,1 +1,0 @@
-export { SmallifyDemo } from './SmallifyDemo'
