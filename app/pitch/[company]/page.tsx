@@ -31,7 +31,7 @@ interface PitchValidation {
   };
 }
 
-export default function PitchPage({ params }: any) {
+export default function PitchPage({ params }: { params: { company: string } }) {
   const searchParams = useSearchParams();
   const [validation, setValidation] = useState<PitchValidation | null>(null);
   const [loading, setLoading] = useState(true);

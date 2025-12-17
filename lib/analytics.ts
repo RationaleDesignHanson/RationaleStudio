@@ -120,8 +120,15 @@ export function trackConversion(goalName: string, value?: number): void {
 // Type declarations for global window objects
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    clarity: (...args: any[]) => void;
-    dataLayer: any[];
+    // Google Analytics 4 gtag.js
+    gtag: (
+      command: 'config' | 'event' | 'set' | 'get',
+      targetId: string,
+      config?: Record<string, string | number | boolean | undefined>
+    ) => void;
+    // Microsoft Clarity
+    clarity: (command: string, ...args: (string | number | undefined)[]) => void;
+    // Google Analytics data layer
+    dataLayer: Array<Record<string, unknown>>;
   }
 }
