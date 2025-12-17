@@ -15,8 +15,8 @@ import {
   QueryConstraint,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase-tracker';
-import type {
 import { logger } from '@/lib/utils/logger';
+import type {
   UnifiedProject,
   Checkpoint,
   AgentOpinion,

@@ -1,151 +1,152 @@
 /**
- * Rumi Marketing Content (030)
+ * Fubo Thumbnail System Marketing Content (030)
  *
- * Consumer/Partnership marketing page content centered on JTBD:
- * "When I want to watch live sports with friends remotely, I need instant
- * sync and zero setup so we can experience the game together."
+ * Partnership marketing page content centered on JTBD:
+ * "When I stream live sports across 200+ teams and 8 leagues, I need
+ * compelling, brand-consistent thumbnails generated at scale so viewers
+ * can discover the right content."
  */
 
 import { ProductMarketingContent } from './types';
 
-export const rumiMarketingContent: ProductMarketingContent = {
-  slug: 'rumi',
-  productName: 'Rumi',
-  category: 'consumer',
+export const fuboMarketingContent: ProductMarketingContent = {
+  slug: 'fubo',
+  productName: 'Fubo Thumbnail System',
+  category: 'partnership',
 
   jtbd: {
-    functional: 'When I want to watch live sports with friends remotely, I need instant sync and zero setup so we can experience the game together.',
-    emotional: 'I want to feel connected to friends during big moments, not isolated watching alone.',
-    social: 'I want to be the person who brings everyone together for game day, even when we\'re miles apart.'
+    functional: 'When I stream live sports across 200+ teams and 8 leagues, I need compelling, brand-consistent thumbnails generated at scale so viewers can discover the right content.',
+    emotional: 'I want to feel confident our thumbnails look professional and match our brand, not generic or off-brand.',
+    social: 'I want our platform to be seen as polished and premium, with visual quality that matches ESPN or DAZN.'
   },
 
   hero: {
-    preHeadline: 'Live Sports Streaming',
-    headline: 'Watch Live Sports Together, From Anywhere',
-    subheadline: 'For sports fans with friends in different cities—instant watch parties, perfect sync, no app downloads. Just send a link and watch together.',
+    preHeadline: 'AI Thumbnail Generation',
+    headline: 'Brand-Consistent Thumbnails for 200+ Teams, Generated in Seconds',
+    subheadline: 'For streaming platforms managing thousands of live sports events—AI-powered thumbnail generation with 24 visual styles, built and deployed in 2 weeks.',
     ctaPrimary: {
-      text: 'Start a Watch Party',
-      href: 'https://rumi.tv'
+      text: 'See the System',
+      href: '/contact?product=fubo-thumbnails'
     },
     ctaSecondary: {
-      text: 'See How It Works',
-      href: '/work/case-study-030'
+      text: 'View Case Study',
+      href: '/work/fubo'
     }
   },
 
   problem: {
-    headline: 'The Problem: Watching Alone Feels Lonely',
+    headline: "The Problem: Thumbnails Don't Scale",
     scenarios: [
       {
-        scenario: 'Your friends are scattered across 3 cities. Game starts in 20 minutes. You try to coordinate on a video call, but everyone\'s stream is 15-45 seconds out of sync. Someone texts about the goal before you see it. Moment: ruined.'
+        scenario: "You stream 200+ live sports games per week. Each needs a thumbnail. Your design team can produce 10-15 per day manually. You fall behind within hours. Generic thumbnails go live. Viewers scroll past."
       },
       {
-        scenario: 'You want to watch with your college roommates like old times. But setting up a watch party requires: accounts, downloads, logins, invites, permissions. By the time it works, you\'ve missed the first quarter.'
+        scenario: "Your brand guidelines require specific team colors, logo placement, and typography. Manual creation means inconsistency—some thumbnails look premium, others look rushed. Brand integrity suffers at scale."
       },
       {
-        scenario: 'You\'re watching on your TV. Your friend is on their laptop. Your cousin is on their phone. Everyone\'s at different moments in the game. There\'s no shared experience—just three people watching alone while texting about it.'
+        scenario: "A marquee game goes live in 30 minutes. The thumbnail isn't ready. You scramble, upload something generic, hope it doesn't hurt viewership. This happens weekly."
       }
     ],
-    transition: 'What if watch parties were as easy as sending a link—and everyone stayed perfectly synced?'
+    transition: "What if every thumbnail was brand-perfect, auto-generated, and ready before the event went live?"
   },
 
   solution: {
-    headline: 'How Rumi Solves This',
+    headline: 'How Fubo Thumbnail System Solves This',
     useCases: [
       {
-        trigger: 'When game day arrives',
-        action: 'Rumi generates a watch party link—no signups, no downloads, just open and watch',
-        outcome: 'Send the link. Friends join. Everyone\'s ready in under 30 seconds.'
+        trigger: 'When a new game is scheduled',
+        action: 'System auto-generates thumbnails using team colors, logos, and 24 visual style templates',
+        outcome: 'Every event has a polished, on-brand thumbnail—no designer intervention needed.'
       },
       {
-        trigger: 'When you need perfect sync',
-        action: 'Rumi keeps all viewers within 5 seconds of real-time—no spoilers, no lag',
-        outcome: 'Everyone sees the goal at the same moment. Reactions happen together, not staggered.'
+        trigger: 'When you need brand consistency',
+        action: 'System enforces typography, spacing, and color rules across all 200+ teams',
+        outcome: 'Every thumbnail looks like it came from the same premium design system.'
       },
       {
-        trigger: 'When you watch on any device',
-        action: 'Rumi works on phones, tablets, laptops, TVs—without platform restrictions',
-        outcome: 'Watch however you want. Everyone stays synced regardless of device.'
+        trigger: 'When games go live unexpectedly',
+        action: 'System generates thumbnails in under 10 seconds—faster than manual approval cycles',
+        outcome: 'No more scrambling. Thumbnails are ready before the event even starts.'
       },
       {
-        trigger: 'When new friends want to join mid-game',
-        action: 'Rumi allows instant entry—no permissions, no host approval',
-        outcome: 'Share the link anytime. Friends jump in without disrupting the party.'
+        trigger: 'When you want to test styles',
+        action: 'System supports 24 visual variants (bold, minimal, retro, neon, etc.) per event',
+        outcome: 'A/B test thumbnail styles to optimize click-through rates across leagues.'
       }
     ],
     visual: {
-      type: 'video',
-      description: 'Video showing watch party creation, link sharing, and multi-device sync'
+      type: 'image',
+      description: 'Grid showing thumbnails across 8 leagues, 24 visual styles, all brand-consistent'
     }
   },
 
   proof: {
-    headline: 'What You Get',
+    headline: 'What Fubo Got',
     outcomes: [
       {
-        metric: 'Sub-5-second sync',
-        context: 'Everyone experiences big moments together. No more spoiled goals via text.'
+        metric: '200+ teams',
+        context: 'Full coverage across MLB, NBA, NFL, NHL, MLS, Liga MX, and more.'
       },
       {
-        metric: 'Zero setup friction',
-        context: 'No accounts, no downloads, no permissions. Just click the link and watch.'
+        metric: '24 visual styles',
+        context: 'From bold and dramatic to clean and minimal—all brand-compliant.'
       },
       {
-        metric: 'Works on any device',
-        context: 'Phone, tablet, laptop, smart TV. Everyone watches however they want.'
+        metric: '2-week sprint',
+        context: 'From kickoff to production deployment. No 6-month design cycles.'
       },
       {
-        metric: '1M+ watch party minutes',
-        context: 'Fans around the world using Rumi to stay connected during live games.'
+        metric: 'Zero manual work',
+        context: 'Thumbnails generated, approved, and published—fully automated.'
       }
     ]
   },
 
   cta: {
-    headline: 'Start Your Watch Party',
-    subheadline: 'Free to use. No credit card. No account required. Just create a link and share.',
-    buttonText: 'Create Watch Party Link',
-    trustSignal: 'Works with any live stream. Your friends don\'t need Rumi—just the link.'
+    headline: 'Get a System Like This',
+    subheadline: 'Need thumbnail generation, asset pipelines, or brand-at-scale solutions? We build partnership systems fast.',
+    buttonText: 'Start a Conversation',
+    trustSignal: 'Built and deployed in 2 weeks for Fubo. Can do the same for your platform.'
   },
 
   whoItsFor: {
     headline: 'Built For',
     personas: [
-      'You have friends/family in different cities who share your team fandom',
-      'You watch games regularly and want a social experience, not solo viewing',
-      'You\'ve tried video calls during games but sync issues ruined the experience',
-      'You want to recreate the sports bar atmosphere from home'
+      "You manage a streaming platform with hundreds or thousands of live events",
+      "Your design team can't keep up with thumbnail demand at scale",
+      "You need brand consistency across leagues, teams, and visual styles",
+      "You want to ship fast—weeks, not quarters"
     ],
     antiPersonas: [
-      'You always watch games alone by choice',
-      'You don\'t have friends interested in the same sports'
+      "You only have 5-10 events per month (manual thumbnails work fine)",
+      "You don't care about brand consistency or visual quality"
     ]
   },
 
   howItWorks: {
-    headline: 'How Rumi Works',
+    headline: 'How It Works',
     steps: [
       {
-        title: 'Create a Watch Party',
-        description: 'Go to Rumi, paste your stream link, generate a watch party URL. Takes 10 seconds.'
+        title: 'Ingest Team Data',
+        description: 'System pulls team names, logos, colors, and league metadata from your CMS or API.'
       },
       {
-        title: 'Share the Link',
-        description: 'Text, email, or post the link. Your friends click and join—no signup required.'
+        title: 'Apply Visual Templates',
+        description: "24 pre-built styles (bold, minimal, retro, neon) adapt to each team's brand colors and logos."
       },
       {
-        title: 'Everyone Stays Synced',
-        description: 'Rumi monitors playback across all viewers and keeps everyone within 5 seconds of each other.'
+        title: 'Generate Thumbnails',
+        description: 'AI-powered composition engine creates thumbnails in under 10 seconds per event.'
       },
       {
-        title: 'Watch Together',
-        description: 'React in real-time. Text, video call, or just watch knowing you\'re all experiencing the same moment.'
+        title: 'Deploy to Production',
+        description: 'Thumbnails auto-publish to your CMS or CDN—no manual upload required.'
       }
     ],
-    techSidebar: 'Sub-5-second latency ensures you\'re never more than one play behind real-time. Works with most streaming platforms.',
+    techSidebar: "Built with AI image generation, brand rule engines, and real-time asset pipelines. Deployed on Fubo's infrastructure in 2 weeks.",
     deepDiveLink: {
-      text: 'View technical case study',
-      href: '/work/case-study-030'
+      text: 'View full case study',
+      href: '/work/fubo'
     }
   },
 
@@ -154,25 +155,25 @@ export const rumiMarketingContent: ProductMarketingContent = {
     paths: [
       {
         label: 'View Case Study',
-        description: 'See how Rumi was built—technical architecture, AI thumbnail generation, and 2-week sprint execution.',
-        href: '/work/case-study-030'
+        description: 'See how we built and shipped the Fubo thumbnail system in a 2-week sprint.',
+        href: '/work/fubo'
       },
       {
-        label: 'Partner With Us',
-        description: 'League, team, or platform interested in integrated watch parties? Let\'s talk.',
+        label: 'Explore Partnerships',
+        description: 'Need custom systems for your platform? We specialize in fast, high-impact partnership builds.',
         href: '/partnerships'
       },
       {
         label: 'Learn About Rationale',
-        description: 'Rumi is built by Rationale, a studio that ships consumer products fast.',
+        description: "Fubo is one of many partnership products we've shipped at speed.",
         href: '/'
       }
     ]
   },
 
   seo: {
-    title: 'Rumi - Watch Live Sports Together, From Anywhere',
-    description: 'Instant watch parties for live sports. Perfect sync, no downloads, works on any device. Create a link, share with friends, watch together. Free.',
-    keywords: ['watch party', 'sports streaming', 'live sports together', 'watch sports with friends', 'synchronized streaming', 'sports watch party']
+    title: 'Fubo Thumbnail System - AI-Generated Sports Thumbnails at Scale',
+    description: 'AI thumbnail generation for live sports streaming. 200+ teams, 24 visual styles, built in 2 weeks. Brand-consistent thumbnails for Fubo.',
+    keywords: ['sports thumbnails', 'AI image generation', 'live sports streaming', 'thumbnail automation', 'brand consistency', 'Fubo']
   }
 };

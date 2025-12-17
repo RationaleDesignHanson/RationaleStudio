@@ -4,8 +4,8 @@
  */
 
 import { API_CONFIG, API_TIMEOUTS, RETRY_CONFIG } from './config';
-import type {
 import { logger } from '@/lib/utils/logger';
+import type {
   EmailData,
   ClassificationResult,
   EntityData,
