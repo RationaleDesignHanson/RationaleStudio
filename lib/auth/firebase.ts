@@ -217,3 +217,11 @@ export function hasRole(userRole: UserRole, requiredRole: UserRole): boolean {
 
   return roleHierarchy[userRole] >= roleHierarchy[requiredRole];
 }
+
+/**
+ * Get Firestore database instance
+ * Exported for Firestore collections (e.g., beta signups)
+ */
+export function getFirebaseDB(): Firestore {
+  return getFirebaseDb();
+}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createBetaSignup, checkExistingSignup } from '@/lib/firestore/beta-signups'
 import { resend } from '@/lib/resend/client'
 import { ZeroBetaEmail } from '@/lib/resend/templates/zero-beta'
 import { HeirloomBetaEmail } from '@/lib/resend/templates/heirloom-beta'
@@ -45,16 +45,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create Supabase client with service role for database operations
-    const supabase = await createClient()
-
-    // Check if email already signed up for this app
-    const { data: existing, error: checkError } = await supabase
-      .from('beta_signups')
-      .select('id')
-      .eq('email', email)
-      .eq('app_name', appName)
-      .single()
+    // Check if email already signed up for this app (Firestore)
+    const existing = await checkExistingSignup(email, appName)
 
     if (existing) {
       return NextResponse.json(
@@ -63,105 +55,98 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Insert signup into database
-    const { data: signup, error: insertError } = await supabase
-      .from('beta_signups')
-      .insert({
+    // Insert signup into Firestore
+    try {
+      const signup = await createBetaSignup({
         email,
         app_name: appName,
         signup_source: source || 'unknown',
       })
-      .select()
-      .single()
 
-    if (insertError) {
-      console.error('Database insert error:', insertError)
-      return NextResponse.json(
-        { error: 'Failed to save signup' },
-        { status: 500 }
-      )
-    }
+      if (!signup || !signup.id) {
+        throw new Error('Failed to create signup')
+      }
 
-    // PHASE 1: Internal Testing - Manual invites only
-    // Automated emails disabled until External Testing is approved
-    // TODO: Re-enable when TestFlight public links are available
+      // PHASE 1: Internal Testing - Manual invites only
+      // Automated emails disabled until External Testing is approved
+      // TODO: Re-enable when TestFlight public links are available
 
-    // Send welcome email with TestFlight link (DISABLED FOR PHASE 1)
-    /*
-    try {
-      const testflightUrl = TESTFLIGHT_URLS[appName]
-      const emailTemplate = appName === 'zero'
-        ? ZeroBetaEmail({ testflightUrl })
-        : HeirloomBetaEmail({ testflightUrl })
+      // Send welcome email with TestFlight link (DISABLED FOR PHASE 1)
+      /*
+      try {
+        const testflightUrl = TESTFLIGHT_URLS[appName]
+        const emailTemplate = appName === 'zero'
+          ? ZeroBetaEmail({ testflightUrl })
+          : HeirloomBetaEmail({ testflightUrl })
 
-      const { data: emailData, error: emailError } = await resend.emails.send({
-        from: 'Rationale <onboarding@resend.dev>',
-        to: email,
-        subject: `Welcome to ${appName === 'zero' ? 'Zero' : 'Heirloom'} Beta`,
-        react: emailTemplate,
-      })
+        const { data: emailData, error: emailError } = await resend.emails.send({
+          from: 'Rationale <onboarding@resend.dev>',
+          to: email,
+          subject: `Welcome to ${appName === 'zero' ? 'Zero' : 'Heirloom'} Beta`,
+          react: emailTemplate,
+        })
 
-      if (emailError) {
-        console.error('Email send error:', emailError)
+        if (emailError) {
+          console.error('Email send error:', emailError)
+          return NextResponse.json({
+            success: true,
+            message: 'Signup saved, but email failed to send. Please contact support.',
+            signupId: signup.id,
+          })
+        }
+
+        return NextResponse.json({
+          success: true,
+          message: 'Successfully signed up! Check your email for TestFlight instructions.',
+          signupId: signup.id,
+        })
+      } catch (emailError) {
+        console.error('Email send exception:', emailError)
         return NextResponse.json({
           success: true,
           message: 'Signup saved, but email failed to send. Please contact support.',
           signupId: signup.id,
         })
       }
+      */
 
-      await supabase
-        .from('beta_signups')
-        .update({
-          email_sent: true,
-          email_sent_at: new Date().toISOString(),
+      // Phase 1: Just save signup and return success
+
+      // Send admin notification email
+      try {
+        await resend.emails.send({
+          from: 'Rationale Beta Signups <onboarding@resend.dev>',
+          to: 'matt@rationale.work', // Your email
+          subject: `New ${appName === 'zero' ? 'Zero' : 'Heirloom'} Beta Signup`,
+          html: `
+            <h2>New Beta Signup</h2>
+            <p><strong>App:</strong> ${appName === 'zero' ? 'Zero' : 'Heirloom'}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Source:</strong> ${source || 'unknown'}</p>
+            <p><strong>Signed up:</strong> ${new Date().toLocaleString()}</p>
+            <hr />
+            <p><small>View all signups: <a href="https://rationale.work/admin/beta-signups">Admin Dashboard</a></small></p>
+            <p><small>To invite: Copy email → App Store Connect → TestFlight → Internal Testing → Add Tester</small></p>
+          `,
         })
-        .eq('id', signup.id)
+      } catch (emailError) {
+        // Don't fail the signup if notification fails
+        console.error('Admin notification failed:', emailError)
+      }
 
       return NextResponse.json({
         success: true,
-        message: 'Successfully signed up! Check your email for TestFlight instructions.',
+        message: 'Thanks for your interest! We\'ll send you a TestFlight invite soon.',
         signupId: signup.id,
       })
-    } catch (emailError) {
-      console.error('Email send exception:', emailError)
-      return NextResponse.json({
-        success: true,
-        message: 'Signup saved, but email failed to send. Please contact support.',
-        signupId: signup.id,
-      })
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to save signup';
+      console.error('Database insert error:', errorMessage)
+      return NextResponse.json(
+        { error: 'Failed to save signup' },
+        { status: 500 }
+      )
     }
-    */
-
-    // Phase 1: Just save signup and return success
-
-    // Send admin notification email
-    try {
-      await resend.emails.send({
-        from: 'Rationale Beta Signups <onboarding@resend.dev>',
-        to: 'matt@rationale.work', // Your email
-        subject: `New ${appName === 'zero' ? 'Zero' : 'Heirloom'} Beta Signup`,
-        html: `
-          <h2>New Beta Signup</h2>
-          <p><strong>App:</strong> ${appName === 'zero' ? 'Zero' : 'Heirloom'}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Source:</strong> ${source || 'unknown'}</p>
-          <p><strong>Signed up:</strong> ${new Date().toLocaleString()}</p>
-          <hr />
-          <p><small>View all signups: <a href="https://rationale.work/admin/beta-signups">Admin Dashboard</a></small></p>
-          <p><small>To invite: Copy email → App Store Connect → TestFlight → Internal Testing → Add Tester</small></p>
-        `,
-      })
-    } catch (emailError) {
-      // Don't fail the signup if notification fails
-      console.error('Admin notification failed:', emailError)
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: 'Thanks for your interest! We\'ll send you a TestFlight invite soon.',
-      signupId: signup.id,
-    })
   } catch (error) {
     console.error('Beta signup error:', error)
     return NextResponse.json(

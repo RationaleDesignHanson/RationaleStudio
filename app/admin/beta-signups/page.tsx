@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
+import { getBetaSignups, serializeBetaSignup, BetaSignup as FirestoreBetaSignup } from '@/lib/firestore/beta-signups'
 
 interface BetaSignup {
   id: string
@@ -25,25 +25,19 @@ export default function BetaSignupsAdmin() {
 
   const fetchSignups = async () => {
     setLoading(true)
-    const supabase = createClient()
 
-    let query = supabase
-      .from('beta_signups')
-      .select('*')
-      .order('signed_up_at', { ascending: false })
+    try {
+      const filterArg = filter !== 'all' ? { app_name: filter } : undefined
+      const data = await getBetaSignups(filterArg)
 
-    if (filter !== 'all') {
-      query = query.eq('app_name', filter)
-    }
-
-    const { data, error } = await query
-
-    if (error) {
+      // Serialize Firestore Timestamps to ISO strings
+      const serialized = data.map(serializeBetaSignup)
+      setSignups(serialized)
+    } catch (error) {
       console.error('Error fetching signups:', error)
-    } else {
-      setSignups(data || [])
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   const copyEmail = (email: string) => {
