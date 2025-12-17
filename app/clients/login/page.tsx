@@ -85,8 +85,8 @@ function ClientLoginForm() {
 
       // Use full page reload to ensure cookie is set before middleware runs
       window.location.href = destination;
-    } catch (err: any) {
-      const errorMessage = err.message || 'Authentication failed';
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Authentication failed';
       setError(errorMessage);
       setIsLoading(false);
 

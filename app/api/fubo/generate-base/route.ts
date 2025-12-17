@@ -31,10 +31,10 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Base image generation error:', error);
 
-    if (error.code === 'ECONNREFUSED') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ECONNREFUSED') {
       return NextResponse.json(
         {
           error: 'Python backend is not running. Please start it with: cd public/prototypes/fubo/backend && python app.py'
@@ -43,8 +43,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Failed to generate base image: ${error.message}` },
+      { error: `Failed to generate base image: ${errorMessage}` },
       { status: 500 }
     );
   }

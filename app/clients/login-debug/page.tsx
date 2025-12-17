@@ -78,8 +78,9 @@ export default function LoginDebugPage() {
       const auth = getAuth(app);
 
       setTestResult(`✅ Firebase initialized successfully\nProject: ${firebaseConfig.projectId}\nAuth Domain: ${firebaseConfig.authDomain}`);
-    } catch (error: any) {
-      setTestResult(`❌ Firebase initialization failed:\n${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setTestResult(`❌ Firebase initialization failed:\n${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
@@ -107,8 +108,10 @@ export default function LoginDebugPage() {
 
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setTestResult(`✅ Login successful!\nUID: ${userCredential.user.uid}\nEmail: ${userCredential.user.email}`);
-    } catch (error: any) {
-      setTestResult(`❌ Login failed:\n${error.code}\n${error.message}`);
+    } catch (error: unknown) {
+      const errorCode = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown';
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setTestResult(`❌ Login failed:\n${errorCode}\n${errorMessage}`);
     } finally {
       setIsLoading(false);
     }

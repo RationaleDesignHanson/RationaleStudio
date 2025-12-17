@@ -136,9 +136,10 @@ export async function signIn(email: string, password: string): Promise<UserProfi
     await updateLastLogin(profile.uid);
 
     return profile;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Sign in error:', error);
-    throw new Error(error.message || 'Authentication failed');
+    const message = error instanceof Error ? error.message : 'Authentication failed';
+    throw new Error(message);
   }
 }
 

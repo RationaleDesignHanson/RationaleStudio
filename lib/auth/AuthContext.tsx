@@ -64,8 +64,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const userProfile = await signIn(email, password);
       setProfile(userProfile);
       return userProfile;
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Authentication failed';
+      setError(message);
       throw err;
     } finally {
       setLoading(false);
@@ -78,8 +79,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await signOut();
       setUser(null);
       setProfile(null);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Authentication failed';
+      setError(message);
       throw err;
     }
   };

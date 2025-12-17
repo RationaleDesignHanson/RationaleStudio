@@ -37,11 +37,11 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('API route error:', error);
 
     // Check if it's a connection error (Python backend not running)
-    if (error.code === 'ECONNREFUSED') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ECONNREFUSED') {
       return NextResponse.json(
         {
           error: 'Python backend is not running. Please start it with: cd public/prototypes/fubo/backend && python app.py'
@@ -50,8 +50,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Failed to generate image: ${error.message}` },
+      { error: `Failed to generate image: ${errorMessage}` },
       { status: 500 }
     );
   }
@@ -83,10 +84,10 @@ export async function PUT(request: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Bulk generation error:', error);
 
-    if (error.code === 'ECONNREFUSED') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ECONNREFUSED') {
       return NextResponse.json(
         {
           error: 'Python backend is not running. Please start it with: cd public/prototypes/fubo/backend && python app.py'
@@ -95,8 +96,9 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: `Failed to generate images: ${error.message}` },
+      { error: `Failed to generate images: ${errorMessage}` },
       { status: 500 }
     );
   }
