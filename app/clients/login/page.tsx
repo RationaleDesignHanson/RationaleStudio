@@ -149,15 +149,6 @@ function ClientLoginForm() {
                   </div>
                 </div>
 
-                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
-                  <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">
-                    Role
-                  </div>
-                  <div className="text-white font-medium capitalize">
-                    {profile.role}
-                  </div>
-                </div>
-
                 {profile.clientId && (
                   <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
                     <div className="text-xs text-gray-400 uppercase tracking-wider mb-2">
