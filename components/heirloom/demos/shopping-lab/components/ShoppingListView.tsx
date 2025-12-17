@@ -1,39 +1,39 @@
 'use client';
 
+import { useState } from 'react';
 import type { ShoppingList } from '@/components/heirloom/shared/shopping-lab/shopping';
 
 interface ShoppingListViewProps {
   shoppingList: ShoppingList | null;
-  onBack: () => void;
 }
 
-export function ShoppingListView({ shoppingList, onBack }: ShoppingListViewProps) {
+type UnitSystem = 'imperial' | 'metric';
+
+export function ShoppingListView({ shoppingList }: ShoppingListViewProps) {
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('imperial');
+
   if (!shoppingList) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-12">
-        <svg
-          className="mx-auto h-16 w-16 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-          />
-        </svg>
-        <h4 className="mt-4 text-lg font-medium text-gray-900">No shopping list yet</h4>
-        <p className="mt-2 text-sm text-gray-500">
-          Add some recipes and click "Generate List" to create your shopping list
-        </p>
-        <button
-          onClick={onBack}
-          className="mt-6 px-4 py-2 bg-heirloom-coral text-white text-sm font-medium rounded-md hover:bg-heirloom-coral/90"
-        >
-          Go to Recipes
-        </button>
+      <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="text-center py-12">
+          <svg
+            className="mx-auto h-16 w-16 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
+          </svg>
+          <h4 className="mt-4 text-lg font-medium text-gray-900">No shopping list yet</h4>
+          <p className="mt-2 text-sm text-gray-500">
+            Add recipes from the example browser or paste a URL to generate your shopping list
+          </p>
+        </div>
       </div>
     );
   }
@@ -51,7 +51,7 @@ export function ShoppingListView({ shoppingList, onBack }: ShoppingListViewProps
   const categories = Object.keys(itemsByCategory).sort();
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div>
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -61,12 +61,30 @@ export function ShoppingListView({ shoppingList, onBack }: ShoppingListViewProps
               {' '}From {shoppingList.recipes.length} recipe{shoppingList.recipes.length !== 1 ? 's' : ''}
             </p>
           </div>
-          <button
-            onClick={onBack}
-            className="px-4 py-2 bg-heirloom-sage text-white text-sm font-medium rounded-md hover:bg-heirloom-sage/90"
-          >
-            Back to Recipes
-          </button>
+
+          {/* Metric/Imperial Toggle */}
+          <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+            <button
+              onClick={() => setUnitSystem('imperial')}
+              className={`px-3 py-1.5 text-xs font-medium rounded transition-colors ${
+                unitSystem === 'imperial'
+                  ? 'bg-white text-heirloom-coral shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Imperial
+            </button>
+            <button
+              onClick={() => setUnitSystem('metric')}
+              className={`px-3 py-1.5 text-xs font-medium rounded transition-colors ${
+                unitSystem === 'metric'
+                  ? 'bg-white text-heirloom-coral shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Metric
+            </button>
+          </div>
         </div>
 
         {/* Recipe Source List */}

@@ -13,9 +13,11 @@ import {
   formatTime,
   formatDuration,
 } from '@/components/heirloom/shared/timeCalculator';
+import { ShoppingListManager, type Recipe } from '@/components/heirloom/shared/shopping-lab/shopping';
+import { ShoppingListView } from '../shopping-lab/components/ShoppingListView';
 
 // Sample recipes for dinner party
-const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string })[] = [
+const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string; ingredients: string[] })[] = [
   {
     recipeId: 'roast',
     recipeName: 'Herb-Crusted Roast',
@@ -24,6 +26,16 @@ const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string }
     canCookSimultaneously: false, // Needs full oven
     emoji: '🥩',
     description: 'Main course - requires oven',
+    ingredients: [
+      '3 lbs beef roast',
+      '2 tablespoons olive oil',
+      '4 cloves garlic, minced',
+      '2 tablespoons fresh rosemary, chopped',
+      '1 tablespoon fresh thyme, chopped',
+      '1 teaspoon salt',
+      '½ teaspoon black pepper',
+      '1 cup beef broth',
+    ],
   },
   {
     recipeId: 'potatoes',
@@ -33,6 +45,16 @@ const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string }
     canCookSimultaneously: true, // Stovetop
     emoji: '🥔',
     description: 'Side dish - stovetop',
+    ingredients: [
+      '3 lbs russet potatoes',
+      '4 cloves garlic',
+      '½ cup unsalted butter',
+      '¾ cup whole milk',
+      '½ cup sour cream',
+      '1 teaspoon salt',
+      '½ teaspoon black pepper',
+      '2 tablespoons fresh chives, chopped',
+    ],
   },
   {
     recipeId: 'vegetables',
@@ -42,6 +64,15 @@ const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string }
     canCookSimultaneously: true, // Can share oven
     emoji: '🥕',
     description: 'Side dish - can share oven',
+    ingredients: [
+      '2 lbs carrots, chopped',
+      '1 lb Brussels sprouts, halved',
+      '1 red onion, quartered',
+      '3 tablespoons olive oil',
+      '1 teaspoon dried rosemary',
+      '½ teaspoon salt',
+      '¼ teaspoon black pepper',
+    ],
   },
   {
     recipeId: 'salad',
@@ -51,6 +82,19 @@ const DINNER_PARTY_RECIPES: (RecipeTime & { emoji: string; description: string }
     canCookSimultaneously: true, // No cooking
     emoji: '🥗',
     description: 'Salad - no cooking required',
+    ingredients: [
+      '1 large head romaine lettuce',
+      '½ cup grated parmesan',
+      '2 cups croutons',
+      '⅓ cup olive oil',
+      '3 tablespoons lemon juice',
+      '2 cloves garlic, minced',
+      '1 teaspoon Dijon mustard',
+      '2 teaspoons Worcestershire sauce',
+      '1 egg yolk',
+      '¼ teaspoon salt',
+      '¼ teaspoon black pepper',
+    ],
   },
 ];
 
@@ -69,6 +113,9 @@ export function DinnerPartyDemo() {
   const [isSimulating, setIsSimulating] = useState(false);
   const [simulationSpeed, setSimulationSpeed] = useState(1); // 1 = real-time, 60 = 1 hour per second
 
+  // Shopping List Manager
+  const [shoppingListManager] = useState(() => new ShoppingListManager());
+
   // Calculate timeline
   const timelines = useMemo(() => {
     const selectedRecipeData = DINNER_PARTY_RECIPES.filter((r) =>
@@ -83,6 +130,35 @@ export function DinnerPartyDemo() {
 
   const slots = useMemo(() => createTimelineSlots(timelines), [timelines]);
   const totalMinutes = useMemo(() => calculateTotalTimeSpan(timelines), [timelines]);
+
+  // Generate shopping list from selected recipes
+  const shoppingList = useMemo(() => {
+    // Clear existing recipes
+    shoppingListManager.getRecipes().forEach(r => shoppingListManager.removeRecipe(r.id));
+
+    // Add selected recipes
+    const selectedRecipeData = DINNER_PARTY_RECIPES.filter((r) =>
+      selectedRecipes.has(r.recipeId)
+    );
+
+    selectedRecipeData.forEach((recipe) => {
+      const formattedRecipe: Recipe = {
+        id: recipe.recipeId,
+        name: recipe.recipeName,
+        servings: 6, // Default servings for dinner party
+        ingredientLines: recipe.ingredients,
+      };
+      shoppingListManager.addRecipe(formattedRecipe);
+    });
+
+    // Generate and return shopping list
+    if (selectedRecipeData.length === 0) return null;
+
+    return shoppingListManager.generateShoppingList({
+      excludePantry: false,
+      groupByCategory: true,
+    });
+  }, [selectedRecipes, shoppingListManager]);
 
   // Simulation effect
   useEffect(() => {
@@ -379,6 +455,23 @@ export function DinnerPartyDemo() {
           />
         </div>
       </div>
+
+      {/* Shopping List Section */}
+      {selectedRecipes.size > 0 && (
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-serif mb-2" style={{ color: '#2C1810' }}>
+              Shopping List
+            </h2>
+            <p className="text-gray-600">
+              Consolidated ingredients from your selected recipes
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <ShoppingListView shoppingList={shoppingList} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

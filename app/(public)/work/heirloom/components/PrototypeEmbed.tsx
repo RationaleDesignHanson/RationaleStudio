@@ -90,23 +90,23 @@ export default function PrototypeEmbed() {
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
-                  <span><strong>Add Recipes:</strong> Enter recipes manually, paste a single URL, or use <strong>Bulk Mode</strong> to import multiple recipe URLs at once (comma or newline separated)</span>
+                  <span><strong>Browse Example Recipes:</strong> Click category buttons (Dinner, Breakfast, Dessert, Sides) to filter through 23 curated recipes instantly</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">2.</span>
-                  <span><strong>Bulk Import Demo:</strong> Click "Bulk Mode →" to see how the scraper processes 5-10 recipe URLs simultaneously with real-time progress tracking</span>
+                  <span><strong>Add from URL:</strong> Paste a single recipe URL, or click <strong>"Bulk Mode"</strong> to process multiple URLs simultaneously with real-time progress tracking</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">3.</span>
-                  <span><strong>Track Pantry:</strong> Switch to the Pantry tab and add items you already have at home</span>
+                  <span><strong>Watch Consolidation:</strong> As you add recipes, the right column shows your shopping list auto-updating with consolidated ingredients</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">4.</span>
-                  <span><strong>Generate Smart List:</strong> Click "Generate List" to see ingredients consolidated and pantry items excluded</span>
+                  <span><strong>Unit Toggle:</strong> Switch between <strong>Imperial</strong> and <strong>Metric</strong> units in the shopping list header</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">5.</span>
-                  <span><strong>Parser Demo:</strong> Try the Parser tab to see how ingredient text is analyzed in real-time (try "2-3 cups flour" or "1 1/2 lbs butter, softened")</span>
+                  <span><strong>Smart Grouping:</strong> Notice how ingredients are grouped by category (Produce, Dairy, Meat, etc.) for efficient shopping</span>
                 </li>
               </ul>
             )}
@@ -115,23 +115,23 @@ export default function PrototypeEmbed() {
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
-                  <span>Adjust the number of guests to see ingredients auto-scale</span>
+                  <span><strong>Select Recipes:</strong> Choose which dishes to include in your dinner party (roast, potatoes, vegetables, salad)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">2.</span>
-                  <span>Set your desired dinner time and watch the timeline adjust</span>
+                  <span><strong>Set Dinner Time:</strong> Pick your desired meal time and watch the timeline adjust to show when to start each recipe</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">3.</span>
-                  <span>See how recipes are sequenced so everything finishes at dinner time</span>
+                  <span><strong>Smart Sequencing:</strong> Notice how recipes are staggered so everything finishes perfectly at dinner time</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">4.</span>
-                  <span>Notice scaling multipliers (×1.5, ×2) when guest count exceeds servings</span>
+                  <span><strong>Simulate Cooking:</strong> Click "Start Cooking" and adjust speed (1x to 60x) to watch the timeline progress in real-time</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">5.</span>
-                  <span><strong>Play the simulation</strong> at various speeds (1x to 60x) to watch the timeline progress in real-time</span>
+                  <span><strong>Auto Shopping List:</strong> Scroll down to see a consolidated shopping list automatically generated from your selected recipes</span>
                 </li>
               </ul>
             )}

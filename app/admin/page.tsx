@@ -74,6 +74,19 @@ export default function AdminPage() {
               </GlassCard>
             </Link>
 
+            {/* Recipe Scrape Failures */}
+            <Link href="/admin/recipe-failures" className="group">
+              <GlassCard className="p-6 h-full hover:scale-[1.02] transition-all">
+                <div className="text-3xl mb-4">🍳</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
+                  Recipe Failures
+                </h3>
+                <p className="text-sm text-gray-400">
+                  View failed recipe scrapes from Heirloom Shopping Lab
+                </p>
+              </GlassCard>
+            </Link>
+
             {/* User Management */}
             <div className="opacity-50 cursor-not-allowed">
               <GlassCard className="p-6 h-full">
