@@ -413,23 +413,38 @@ export default function WorkPage() {
                           </div>
                         </div>
 
-                        {/* Protected Case Study CTA */}
+                        {/* Protected Case Study CTA - Unauthenticated */}
                         {isConfidential && !isAuthenticated && (
                           <div className="pt-4 border-t border-gray-700">
                             <p className="text-xs text-amber-400 mb-3 font-semibold">
                               Sign in to view this case study
                             </p>
-                            <button
-                              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                router.push(`/clients/login?redirect=/work/${project.slug}`);
-                              }}
-                            >
-                              <Lock className="w-3 h-3" />
-                              <span>Sign In to Access</span>
-                            </button>
+                            <div className="grid grid-cols-2 gap-3">
+                              {hasQuickOverview && (
+                                <button
+                                  className="flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    router.push(`/clients/login?redirect=/products/${overviewSlug}`);
+                                  }}
+                                >
+                                  <Lock className="w-3 h-3" />
+                                  <span>About</span>
+                                </button>
+                              )}
+                              <button
+                                className={`flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all ${hasQuickOverview ? '' : 'col-span-2'}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  router.push(`/clients/login?redirect=${pitchDeckPath}`);
+                                }}
+                              >
+                                <Lock className="w-3 h-3" />
+                                <span>Demo</span>
+                              </button>
+                            </div>
                           </div>
                         )}
 
@@ -440,7 +455,7 @@ export default function WorkPage() {
                               {hasQuickOverview && (
                                 <Link
                                   href={`/products/${overviewSlug}`}
-                                  className="flex items-center justify-center gap-2 px-3 py-2 bg-amber-400/10 border border-amber-400/30 hover:border-amber-400 hover:bg-amber-400/20 rounded text-amber-400 text-xs font-semibold transition-all"
+                                  className="flex items-center justify-center gap-2 px-3 py-2 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded text-terminal-gold text-xs font-semibold transition-all"
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   <Lock className="w-3 h-3" />
@@ -449,7 +464,7 @@ export default function WorkPage() {
                               )}
                               <Link
                                 href={pitchDeckPath}
-                                className={`flex items-center justify-center gap-2 px-3 py-2 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded text-white hover:text-terminal-gold text-xs font-semibold transition-all ${hasQuickOverview ? '' : 'col-span-2'}`}
+                                className={`flex items-center justify-center gap-2 px-3 py-2 bg-terminal-gold/10 border border-terminal-gold/30 hover:border-terminal-gold hover:bg-terminal-gold/20 rounded text-terminal-gold text-xs font-semibold transition-all ${hasQuickOverview ? '' : 'col-span-2'}`}
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <Lock className="w-3 h-3" />
