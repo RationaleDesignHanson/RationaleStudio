@@ -35,7 +35,7 @@ export default function HeirloomProductPage() {
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
 
       {/* SECTION 1: HERO (JTBD-FIRST) */}
-      <section className="relative py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.08}
@@ -63,27 +63,15 @@ export default function HeirloomProductPage() {
             {content.hero.subheadline}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-            <a
-              href={content.hero.ctaPrimary.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
+          {/* Case Study Link */}
+          <div className="mb-12">
+            <Link
+              href="/work/heirloom"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors underline underline-offset-4"
             >
-              <BookOpen className="w-5 h-5" />
-              {content.hero.ctaPrimary.text}
-            </a>
-            {content.hero.ctaSecondary && (
-              <ButtonSecondary
-                href={content.hero.ctaSecondary.href}
-                size="lg"
-                className="gap-2 border-[#00D9FF]/30 hover:border-[#00D9FF] text-[#00D9FF]"
-              >
-                {content.hero.ctaSecondary.text}
-                <ArrowRight className="w-5 h-5" />
-              </ButtonSecondary>
-            )}
+              Check out the demo
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
           {/* Visual Placeholder */}

@@ -75,7 +75,7 @@ export const fuboMarketingContent: ProductMarketingContent = {
       }
     ],
     visual: {
-      type: 'image',
+      type: 'screenshots',
       description: 'Grid showing thumbnails across 8 leagues, 24 visual styles, all brand-consistent'
     }
   },

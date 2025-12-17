@@ -74,7 +74,7 @@ export const sanitaryMarketingContent: ProductMarketingContent = {
       }
     ],
     visual: {
-      type: 'image',
+      type: 'screenshots',
       description: 'Product photos showing dispenser, flat-pack bags, and step-by-step usage'
     }
   },
