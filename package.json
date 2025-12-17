@@ -67,6 +67,7 @@
     "three": "^0.181.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@next/bundle-analyzer": "^16.0.8",
     "@percy/cli": "^1.31.5",
     "@percy/playwright": "^1.0.10",
