@@ -340,7 +340,7 @@ export class RandomRecipeGenerator {
     const parts: string[] = [];
 
     // Look up ingredient in database to get its actual category
-    const ingredientRecord = this.db.findIngredient(ingredientName);
+    const ingredientRecord = this.db.getByCanonical(ingredientName);
     const category = ingredientRecord?.category?.toLowerCase() || 'other';
 
     // Random chance of no quantity (5%)
