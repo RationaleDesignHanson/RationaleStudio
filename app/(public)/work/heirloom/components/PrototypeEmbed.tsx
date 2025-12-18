@@ -42,7 +42,7 @@ export default function PrototypeEmbed() {
                 className={`
                   relative px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-bold transition-all
                   ${activeDemo === demo.id
-                    ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px]'
+                    ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px] shadow-md'
                     : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
                   }
                 `}
