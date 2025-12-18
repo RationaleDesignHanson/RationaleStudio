@@ -354,6 +354,68 @@ export default function HeirloomProductPage() {
         </div>
       </section>
 
+      {/* SECTION 7B: FULL FEATURE SET */}
+      {content.fullFeatureSet && (
+        <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+          <div className="absolute inset-0 pointer-events-none">
+            <ASCIIUnifiedGrid
+              opacity={0.02}
+              animated={true}
+              colorTheme={watercolorThemes.coralOrange}
+              charSet="default"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-5xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2D2D] mb-4 text-center">
+              {content.fullFeatureSet.headline}
+            </h2>
+            <p className="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
+              {content.fullFeatureSet.description}
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {/* Demoed Features */}
+              <div className="p-6 bg-gradient-to-br from-[#E85D4D]/10 to-white/50 border-2 border-[#E85D4D] rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-[#E85D4D] mb-4">
+                  {content.fullFeatureSet.demoedFeatures.headline}
+                </h3>
+                <div className="space-y-4 mb-6">
+                  {content.fullFeatureSet.demoedFeatures.features.map((feature, index) => (
+                    <div key={index} className="pb-4 border-b border-[#E85D4D]/20 last:border-0 last:pb-0">
+                      <h4 className="font-bold text-[#2D2D2D] mb-2">{feature.name}</h4>
+                      <p className="text-sm text-gray-700">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href={content.fullFeatureSet.demoedFeatures.link.href}
+                  className="inline-flex items-center gap-2 text-[#E85D4D] hover:text-[#D84D3D] transition-colors font-medium text-sm"
+                >
+                  {content.fullFeatureSet.demoedFeatures.link.text}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              {/* Additional Features */}
+              <div className="p-6 bg-white/60 border border-[#E85D4D]/20 rounded-lg shadow-sm">
+                <h3 className="text-xl font-bold text-[#2D2D2D] mb-4">
+                  {content.fullFeatureSet.additionalFeatures.headline}
+                </h3>
+                <div className="space-y-3">
+                  {content.fullFeatureSet.additionalFeatures.features.map((feature, index) => (
+                    <div key={index} className="pb-3 border-b border-gray-200 last:border-0 last:pb-0">
+                      <h4 className="font-semibold text-[#2D2D2D] text-sm mb-1">{feature.name}</h4>
+                      <p className="text-xs text-gray-600 leading-relaxed">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* SECTION 8: SECONDARY CTAs */}
       <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white/30">
         <div className="relative z-10 max-w-5xl mx-auto">

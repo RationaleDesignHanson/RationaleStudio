@@ -47,7 +47,7 @@ export default function ChallengeSection() {
                 <span className="text-[#E85D4D] text-xl leading-none mt-1">•</span>
                 <div>
                   <span className="font-bold text-[#2D2D2D]">Subscription Fatigue:</span>
-                  <span className="text-gray-700"> Pay $5-15/month forever to access recipes that belong to you and your family</span>
+                  <span className="text-gray-700"> Pay $5-15/month forever to access recipes that belong to you and your family, friends, and community</span>
                 </div>
               </li>
             </ul>

@@ -212,8 +212,8 @@ export class ConsolidationEngine {
 
     const modifiers = Array.from(new Set(group.flatMap(g => g.parsed.modifiers)));
 
-    // Collect unique recipe IDs and names
-    const recipes = Array.from(new Set(group.map(g => g.recipeName)));
+    // Collect all recipe names (including duplicates for when same recipe is added multiple times)
+    const recipes = group.map(g => g.recipeName);
 
     // Try to consolidate quantities
     const { totalQuantity, unit, hasConflict, conflictReason } = this.sumQuantities(

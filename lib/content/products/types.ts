@@ -100,6 +100,29 @@ export interface ProductMarketingSecondaryCTA {
   }[];
 }
 
+export interface ProductMarketingFullFeatureSet {
+  headline: string;
+  description: string;
+  demoedFeatures: {
+    headline: string;
+    link: {
+      text: string;
+      href: string;
+    };
+    features: {
+      name: string;
+      description: string;
+    }[];
+  };
+  additionalFeatures: {
+    headline: string;
+    features: {
+      name: string;
+      description: string;
+    }[];
+  };
+}
+
 export interface ProductMarketingContent {
   slug: string;
   productName: string;
@@ -116,6 +139,7 @@ export interface ProductMarketingContent {
   cta: ProductMarketingCTA;
   whoItsFor: ProductMarketingWhoItsFor;
   howItWorks: ProductMarketingHowItWorks;
+  fullFeatureSet?: ProductMarketingFullFeatureSet;
   secondaryCTAs: ProductMarketingSecondaryCTA;
   seo: {
     title: string;

@@ -20,7 +20,13 @@ export function ShoppingLabDemo() {
   const [shoppingList, setShoppingList] = useState<ShoppingList | null>(null);
 
   const handleAddRecipe = (recipe: Recipe) => {
-    manager.addRecipe(recipe);
+    // Create a unique instance of the recipe to allow adding the same recipe multiple times
+    const uniqueRecipe = {
+      ...recipe,
+      id: `${recipe.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    };
+
+    manager.addRecipe(uniqueRecipe);
 
     // Auto-regenerate shopping list
     const list = manager.generateShoppingList({

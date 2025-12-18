@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { RecipeScraper } from '@/components/heirloom/shared/services/RecipeScraper';
+import { RandomRecipeGenerator } from '@/components/heirloom/shared/services/RandomRecipeGenerator';
 import type { Recipe } from '@/components/heirloom/shared/shopping-lab/shopping';
 import { EXAMPLE_RECIPES, type ExampleRecipe } from '../data/exampleRecipes';
 
@@ -9,9 +10,10 @@ interface ExampleRecipeBrowserProps {
   onAddRecipe: (recipe: Recipe) => void;
 }
 
-type Category = 'all' | 'dinner' | 'breakfast' | 'dessert' | 'sides';
+type Category = 'dinner' | 'breakfast' | 'dessert' | 'sides' | 'rando';
 
 const scraper = new RecipeScraper();
+const randomGenerator = new RandomRecipeGenerator();
 
 export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps) {
   const [url, setUrl] = useState('');
@@ -26,7 +28,10 @@ export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps)
     recipeName?: string;
     error?: string;
   }>>([]);
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
+  const [selectedCategory, setSelectedCategory] = useState<Category>('dinner');
+  const [randomRecipes, setRandomRecipes] = useState<ExampleRecipe[]>([]);
+  const [expandedRecipes, setExpandedRecipes] = useState<Set<string>>(new Set());
+  const [urlSectionCollapsed, setUrlSectionCollapsed] = useState(false);
 
   const handleFetchFromUrl = async () => {
     if (!url.trim()) {
@@ -113,6 +118,45 @@ export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps)
     setBulkProcessing(false);
   };
 
+  const toggleRecipeExpansion = (recipeId: string) => {
+    setExpandedRecipes(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(recipeId)) {
+        newSet.delete(recipeId);
+      } else {
+        newSet.add(recipeId);
+      }
+      return newSet;
+    });
+  };
+
+  const generateRecipeDescription = (name: string, ingredients: string[]): string => {
+    // Extract key words from the recipe name for riffing
+    const nameLower = name.toLowerCase();
+    const words = name.split(' ');
+
+    // Silly riff templates that play off the recipe name
+    const templates = [
+      `Not your grandma's ${name.toLowerCase()}, unless your grandma was really weird`,
+      `${name} - exactly what it sounds like, but somehow worse`,
+      `Legend says ${name.split(' ').slice(0, 2).join(' ')} was invented by accident. This proves it.`,
+      `${name}: because normal food is overrated`,
+      `Warning: ${name} may cause confusion, delight, or mild regret`,
+      `The ${name.split(' ')[0].toLowerCase()} speaks to your soul. Your soul is confused.`,
+      `${name} - when you want to impress absolutely nobody`,
+      `Serving suggestion: Don't tell anyone what's in this`,
+      `${name.length > 40 ? 'Yes, the name is this long. No, we will not explain.' : `${name} tastes better than it sounds. Probably.`}`,
+      `Your kitchen will never be the same after making this`,
+      `${name.split(' ').pop()} enthusiasts hate this one simple trick`,
+      `Brought to you by the same chef who invented ${name.split(' ')[0].toLowerCase() + ' chaos'}`,
+      `This ${name.toLowerCase()} has been banned in 3 countries. Make it at your own risk.`,
+      `${name.split(' ').slice(0, 2).join(' ')} - sounds fancy, tastes... interesting`,
+      `Fun fact: Nobody asked for ${name.toLowerCase()}, but here we are`
+    ];
+
+    return templates[Math.floor(Math.random() * templates.length)];
+  };
+
   const handleAddExampleRecipe = (example: ExampleRecipe) => {
     const recipe: Recipe = {
       id: `recipe-${Date.now()}`,
@@ -123,9 +167,33 @@ export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps)
     onAddRecipe(recipe);
   };
 
+  const handleCategoryChange = (newCategory: Category) => {
+    if (newCategory === 'rando') {
+      // Generate 10 random recipes
+      const generatedRecipes: ExampleRecipe[] = [];
+      for (let i = 0; i < 10; i++) {
+        const randomRecipe = randomGenerator.generateRecipe({
+          ingredientCount: Math.floor(Math.random() * 8) + 5, // 5-12 ingredients
+        });
+        generatedRecipes.push({
+          id: `random-${Date.now()}-${i}`,
+          name: randomRecipe.name,
+          description: generateRecipeDescription(randomRecipe.name, randomRecipe.ingredients),
+          category: 'dinner', // doesn't matter for display
+          servings: Math.floor(Math.random() * 6) + 2, // 2-7 servings
+          ingredients: randomRecipe.ingredients,
+        });
+      }
+      setRandomRecipes(generatedRecipes);
+      setSelectedCategory('rando');
+    } else {
+      setSelectedCategory(newCategory);
+    }
+  };
+
   const getDisplayRecipes = (): ExampleRecipe[] => {
-    if (selectedCategory === 'all') {
-      return EXAMPLE_RECIPES;
+    if (selectedCategory === 'rando') {
+      return randomRecipes;
     }
     return EXAMPLE_RECIPES.filter(r => r.category === selectedCategory);
   };
@@ -133,20 +201,29 @@ export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps)
   const displayRecipes = getDisplayRecipes();
 
   const categories: Array<{ id: Category; label: string }> = [
-    { id: 'all', label: 'All' },
     { id: 'dinner', label: 'Dinner' },
     { id: 'breakfast', label: 'Breakfast' },
     { id: 'dessert', label: 'Dessert' },
     { id: 'sides', label: 'Sides' },
+    { id: 'rando', label: '🎲 Rando' },
   ];
 
   return (
     <div className="space-y-6">
       {/* URL Entry Section */}
-      <div className="bg-heirloom-cream rounded-lg p-6">
-        <h4 className="text-lg font-bold text-gray-900 mb-4">Add from URL</h4>
+      <div className="bg-heirloom-cream rounded-lg p-4 sm:p-6">
+        <button
+          onClick={() => setUrlSectionCollapsed(!urlSectionCollapsed)}
+          className="w-full flex items-center justify-between text-left mb-3 sm:mb-4 group"
+        >
+          <h4 className="text-base sm:text-lg font-bold text-gray-900">Add from URL</h4>
+          <span className="text-gray-500 group-hover:text-gray-700 transition-transform duration-200" style={{ transform: urlSectionCollapsed ? 'rotate(0deg)' : 'rotate(180deg)' }}>
+            ▼
+          </span>
+        </button>
 
-        <div className="space-y-4">
+        {!urlSectionCollapsed && (
+          <div className="space-y-4">
           {/* Toggle between single/bulk */}
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700">
@@ -271,61 +348,104 @@ export function ExampleRecipeBrowser({ onAddRecipe }: ExampleRecipeBrowserProps)
               )}
             </>
           )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Example Recipe Browser */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200">
-        <h4 className="text-lg font-bold text-gray-900 mb-4">Example Recipes</h4>
+      <div className="bg-white rounded-lg p-4 sm:p-6 border border-gray-200">
+        <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Example Recipes</h4>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                selectedCategory === cat.id
-                  ? 'bg-heirloom-coral text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {cat.label}
-              {cat.id !== 'all' && (
-                <span className="ml-1.5 text-xs opacity-75">
-                  ({EXAMPLE_RECIPES.filter(r => r.category === cat.id).length})
-                </span>
-              )}
-            </button>
-          ))}
+        {/* Category Filter Dropdown */}
+        <div className="mb-3 sm:mb-4">
+          <label htmlFor="category-select" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+            Filter by Category
+          </label>
+          <select
+            id="category-select"
+            value={selectedCategory}
+            onChange={(e) => handleCategoryChange(e.target.value as Category)}
+            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-heirloom-coral focus:border-heirloom-coral bg-white"
+          >
+            {categories.map((cat) => {
+              if (cat.id === 'rando') {
+                return (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.label}
+                  </option>
+                );
+              }
+              const count = EXAMPLE_RECIPES.filter(r => r.category === cat.id).length;
+              return (
+                <option key={cat.id} value={cat.id}>
+                  {cat.label} ({count})
+                </option>
+              );
+            })}
+          </select>
         </div>
 
         {/* Recipe Cards */}
-        <div className="space-y-3 max-h-[500px] overflow-y-auto">
-          {displayRecipes.map((recipe) => (
-            <div
-              key={recipe.id}
-              className="border border-gray-200 rounded-lg p-4 hover:border-heirloom-coral/50 transition-colors"
-            >
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex-1">
-                  <h5 className="font-semibold text-gray-900 text-sm">{recipe.name}</h5>
-                  <p className="text-xs text-gray-500 mt-1">{recipe.description}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 h-[400px] overflow-y-auto">
+          {displayRecipes.map((recipe) => {
+            const isExpanded = expandedRecipes.has(recipe.id);
+            return (
+              <div
+                key={recipe.id}
+                className="border border-gray-200 rounded-lg p-3 hover:border-heirloom-coral/50 transition-colors"
+              >
+                <div className="mb-2">
+                  <h5 className="font-semibold text-gray-900 text-sm mb-1">{recipe.name}</h5>
+                  {!isExpanded && (
+                    <p className="text-xs text-gray-500 line-clamp-2">{recipe.description}</p>
+                  )}
+                </div>
+
+                {isExpanded && (
+                  <div className="mb-3 p-2 bg-gray-50 rounded text-xs">
+                    <button
+                      onClick={() => toggleRecipeExpansion(recipe.id)}
+                      className="flex items-center gap-1 font-medium text-gray-700 mb-1 hover:text-heirloom-coral w-full"
+                      aria-label="Collapse ingredients"
+                    >
+                      <span>Ingredients</span>
+                      <span className="text-heirloom-coral text-[10px]">▼</span>
+                    </button>
+                    <ul className="space-y-0.5 text-gray-600">
+                      {recipe.ingredients.map((ingredient, idx) => (
+                        <li key={idx} className="leading-tight">• {ingredient}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                  {!isExpanded && (
+                    <>
+                      <span className="whitespace-nowrap">{recipe.servings} servings</span>
+                      <span>•</span>
+                      <button
+                        onClick={() => toggleRecipeExpansion(recipe.id)}
+                        className="flex items-center gap-1 hover:text-heirloom-coral"
+                      >
+                        <span>{recipe.ingredients.length} ingredients</span>
+                        <span className="text-[10px]">▶</span>
+                      </button>
+                    </>
+                  )}
+                  {isExpanded && (
+                    <span className="whitespace-nowrap">{recipe.servings} servings</span>
+                  )}
                 </div>
                 <button
                   onClick={() => handleAddExampleRecipe(recipe)}
-                  className="ml-3 px-3 py-1.5 bg-heirloom-teal text-white text-xs font-medium rounded hover:bg-heirloom-teal/90 flex-shrink-0"
+                  className="w-full px-3 py-1.5 bg-heirloom-teal text-white text-xs font-medium rounded hover:bg-heirloom-teal/90"
                 >
                   Add
                 </button>
               </div>
-              <div className="flex items-center gap-3 text-xs text-gray-500">
-                <span>{recipe.servings} servings</span>
-                <span>•</span>
-                <span>{recipe.ingredients.length} ingredients</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

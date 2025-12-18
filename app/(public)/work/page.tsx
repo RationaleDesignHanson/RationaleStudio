@@ -132,7 +132,7 @@ export default function WorkPage() {
                         rel="noopener noreferrer"
                         className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-terminal-gold hover:bg-terminal-gold-hover text-gray-900 rounded-lg text-center text-sm sm:text-base font-bold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30"
                       >
-                        🚀 Join Beta on TestFlight
+                        Join Beta on TestFlight
                       </a>
                       <div className="flex gap-2 sm:gap-3">
                         <Link
@@ -196,7 +196,7 @@ export default function WorkPage() {
                         rel="noopener noreferrer"
                         className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#00D9FF] hover:bg-[#00C5E6] text-gray-900 rounded-lg text-center text-sm sm:text-base font-bold transition-all shadow-lg shadow-[#00D9FF]/20 hover:shadow-xl hover:shadow-[#00D9FF]/30"
                       >
-                        🚀 Join Beta on TestFlight
+                        Join Beta on TestFlight
                       </a>
                       <div className="flex gap-2 sm:gap-3">
                         <Link

@@ -13,8 +13,8 @@ export default function AtAGlance() {
         {/* Core Metrics - Compact Format */}
         <dl className="divide-y divide-[#E85D4D]/20">
           <div className="flex justify-between items-center py-2.5">
-            <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">Timeline</dt>
-            <dd className="text-sm font-bold text-[#E85D4D]">5 weeks MVP</dd>
+            <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">Status</dt>
+            <dd className="text-sm font-bold text-[#E85D4D]">In Development</dd>
           </div>
           <div className="flex justify-between items-center py-2.5">
             <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">Market</dt>
@@ -46,7 +46,7 @@ export default function AtAGlance() {
             </div>
             <div>
               <span className="font-semibold text-[#2D2D2D]">Impact:</span>
-              <span className="text-gray-700"> NPS 78 in beta. 95% satisfaction. 99.1% crash-free. 5-week sprint achieved strong product-market fit.</span>
+              <span className="text-gray-700"> Native iOS app with SwiftUI delivering sub-2s launch times and seamless CloudKit sync. Production-ready architecture for App Store launch.</span>
             </div>
           </div>
 
@@ -56,15 +56,15 @@ export default function AtAGlance() {
             <ul className="space-y-1.5 text-xs text-gray-700">
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Rapid Iteration:</strong> SwiftUI Previews enabled daily builds, reducing 14-week timeline to 5</span>
+                <span><strong className="text-[#2D2D2D]">Rapid Iteration:</strong> SwiftUI Previews enabled daily builds with immediate visual feedback</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Differentiated UX:</strong> Vintage cards with 50+ stickers drove 95% satisfaction</span>
+                <span><strong className="text-[#2D2D2D]">Differentiated UX:</strong> Vintage cards with 50+ stickers and customizable aesthetics</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Smart Integration:</strong> EventKit sync for shopping lists cited by 78% as premium driver</span>
+                <span><strong className="text-[#2D2D2D]">Smart Integration:</strong> EventKit sync creates smart shopping lists in iOS Reminders</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
@@ -76,11 +76,7 @@ export default function AtAGlance() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Native Performance:</strong> Sub-2s launch, 0.8s CloudKit sync</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#2A9D8F] flex-shrink-0">✓</span>
-                <span><strong className="text-[#2D2D2D]">Pricing Validation:</strong> 85% prefer one-time $4.99 vs subscription</span>
+                <span><strong className="text-[#2D2D2D]">Native Performance:</strong> Sub-2s launch, 0.8s CloudKit sync delivers premium-feeling experience</span>
               </li>
             </ul>
           </div>
@@ -89,7 +85,7 @@ export default function AtAGlance() {
         {/* Bottom Line */}
         <div className="rounded-lg bg-[#E85D4D]/10 p-3">
           <p className="text-xs text-gray-700">
-            <span className="font-bold text-[#E85D4D]">Bottom Line:</span> Rapid MVP (5 weeks) + quality (99.1% crash-free) + strong beta metrics (NPS 78) validate product-market fit.
+            <span className="font-bold text-[#E85D4D]">Bottom Line:</span> Native iOS app with SwiftUI + SwiftData delivers premium recipe management experience. Production-ready architecture with AI-powered parsing and seamless iCloud sync.
           </p>
         </div>
       </div>
@@ -98,10 +94,10 @@ export default function AtAGlance() {
       <div className="hidden md:block">
         <div className="mb-6 grid gap-4 md:grid-cols-3">
           <div className="rounded-lg border border-[#E85D4D]/20 bg-white p-4">
-            <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">Timeline</div>
-            <div className="text-3xl font-bold text-[#E85D4D]">5 weeks</div>
-            <div className="mt-1 text-sm text-gray-700">MVP → TestFlight</div>
-            <div className="mt-2 text-xs text-[#2A9D8F]">64% faster than industry avg</div>
+            <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">Status</div>
+            <div className="text-3xl font-bold text-[#E85D4D]">In Development</div>
+            <div className="mt-1 text-sm text-gray-700">iOS app with SwiftUI</div>
+            <div className="mt-2 text-xs text-[#2A9D8F]">Production-ready architecture</div>
           </div>
 
           <div className="rounded-lg border border-[#E85D4D]/20 bg-white p-4">
@@ -115,7 +111,7 @@ export default function AtAGlance() {
             <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">Adoption Model</div>
             <div className="text-3xl font-bold text-[#E85D4D]">$4.99</div>
             <div className="mt-1 text-sm text-gray-700">One-time premium</div>
-            <div className="mt-2 text-xs text-[#2A9D8F]">85% prefer vs subscription</div>
+            <div className="mt-2 text-xs text-[#2A9D8F]">No subscription fatigue</div>
           </div>
         </div>
 
@@ -144,7 +140,7 @@ export default function AtAGlance() {
           <div>
             <span className="font-semibold text-[#2D2D2D]">The Impact:</span>
             <span className="text-gray-700">
-              {' '}Achieved strong product-market fit (NPS 78) in beta with 42 testers. 95% satisfaction during customization phase validates differentiation. Production-ready quality (99.1% crash-free) in 5-week sprint.
+              {' '}Native iOS app with SwiftUI delivering sub-2s launch times and 0.8s CloudKit sync. Production-ready architecture with AI-powered ingredient parsing and vision-based cookbook scanner for seamless recipe digitization.
             </span>
           </div>
         </div>
@@ -155,22 +151,19 @@ export default function AtAGlance() {
             <div className="flex items-start gap-2">
               <span className="text-[#2A9D8F]">✓</span>
               <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Rapid Iteration:</strong> SwiftUI Previews enabled daily builds and immediate
-                feedback, reducing typical 14-week timeline to 5 weeks
+                <strong className="text-[#2D2D2D]">Rapid Iteration:</strong> SwiftUI Previews enabled daily builds with immediate visual feedback and fast iteration cycles
               </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-[#2A9D8F]">✓</span>
               <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Differentiated UX:</strong> Vintage card design with 50+ stickers and handwriting
-                drove 95% satisfaction vs generic database interfaces
+                <strong className="text-[#2D2D2D]">Differentiated UX:</strong> Vintage card design with 50+ stickers and customizable aesthetics stands apart from generic database interfaces
               </span>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-[#2A9D8F]">✓</span>
               <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Smart Integration:</strong> EventKit sync for shopping lists created "aha moment"
-                cited by 78% as premium conversion driver
+                <strong className="text-[#2D2D2D]">Smart Integration:</strong> EventKit sync creates smart shopping lists directly in iOS Reminders with automatic ingredient consolidation
               </span>
             </div>
             <div className="flex items-start gap-2">
@@ -188,15 +181,7 @@ export default function AtAGlance() {
             <div className="flex items-start gap-2">
               <span className="text-[#2A9D8F]">✓</span>
               <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Native Performance:</strong> Sub-2s app launch and 0.8s CloudKit sync deliver
-                responsive, premium-feeling experience
-              </span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-[#2A9D8F]">✓</span>
-              <span className="text-gray-700">
-                <strong className="text-[#2D2D2D]">Pricing Validation:</strong> Beta testing confirmed 85% user preference for
-                one-time $4.99 vs subscription (no fatigue)
+                <strong className="text-[#2D2D2D]">Native Performance:</strong> Sub-2s app launch and 0.8s CloudKit sync deliver responsive, premium-feeling experience
               </span>
             </div>
           </div>
@@ -204,9 +189,7 @@ export default function AtAGlance() {
 
         <div className="mt-6 rounded-lg bg-[#E85D4D]/10 p-4">
           <p className="text-sm text-gray-700">
-            <span className="font-bold text-[#E85D4D]">Bottom Line:</span> Heirloom demonstrates that rapid MVP delivery (5 weeks)
-            doesn't compromise quality (99.1% crash-free) when paired with modern tooling (SwiftUI Previews, SwiftData) and focused
-            scope. Strong beta metrics (NPS 78, 95% customization satisfaction) validate product-market fit before App Store launch.
+            <span className="font-bold text-[#E85D4D]">Bottom Line:</span> Heirloom leverages modern iOS tooling (SwiftUI, SwiftData, CloudKit) to deliver a production-ready recipe management experience. Native performance, AI-powered parsing, and seamless iCloud sync create a premium-feeling app that stands apart from generic database interfaces.
           </p>
         </div>
       </div>

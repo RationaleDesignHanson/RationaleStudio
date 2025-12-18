@@ -154,6 +154,57 @@ export const heirloomMarketingContent: ProductMarketingContent = {
     }
   },
 
+  fullFeatureSet: {
+    headline: 'Complete Feature Set',
+    description: 'Heirloom includes powerful features beyond what\'s shown in the interactive demos.',
+    demoedFeatures: {
+      headline: 'Try These Features in the Demo',
+      link: {
+        text: 'Explore interactive demos',
+        href: '/work/heirloom'
+      },
+      features: [
+        {
+          name: 'Smart Shopping Lists',
+          description: 'Automatically consolidates ingredients from multiple recipes, groups by category, and supports metric/imperial conversion'
+        },
+        {
+          name: 'Dinner Party Timeline',
+          description: 'Intelligent recipe sequencing that calculates when to start each dish so everything finishes perfectly at meal time'
+        }
+      ]
+    },
+    additionalFeatures: {
+      headline: 'Additional Features in the Full App',
+      features: [
+        {
+          name: 'Recipe Card Personalization',
+          description: 'Customize card layouts, fonts, and colors. Design beautiful recipe cards that reflect your style or family heritage'
+        },
+        {
+          name: 'Social Sharing',
+          description: 'Share recipes with family and friends. Send as beautifully formatted PDFs or invite others to collaborate on collections'
+        },
+        {
+          name: 'Community Recommendations',
+          description: 'Discover new recipes through comments and ratings. See what adaptations others have made to classic dishes'
+        },
+        {
+          name: 'Advanced Search & Filters',
+          description: 'Find recipes by ingredients you have on hand, dietary restrictions, prep time, or cuisine type'
+        },
+        {
+          name: 'Photo Management',
+          description: 'Add multiple photos per recipe. Preserve handwritten cards with OCR text extraction for searchability'
+        },
+        {
+          name: 'Recipe Collections',
+          description: 'Organize recipes into custom collections like "Weeknight Dinners", "Holiday Baking", or "Mom\'s Recipes"'
+        }
+      ]
+    }
+  },
+
   secondaryCTAs: {
     headline: 'More Ways to Engage',
     paths: [

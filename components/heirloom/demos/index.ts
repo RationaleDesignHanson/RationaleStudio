@@ -6,4 +6,4 @@
  */
 
 export { ShoppingLabDemo } from './shopping-lab'
-export { DinnerPartyDemo } from './dinner-party'
+export { DinnerPartyDemo } from './dinner-party/DinnerPartyDemo'

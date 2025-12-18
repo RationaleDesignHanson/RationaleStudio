@@ -6,7 +6,6 @@
 
 import TechnicalArchitectureDiagram from '@/components/heirloom/diagrams/TechnicalArchitectureDiagram'
 import TimelineVisualization from '@/components/heirloom/diagrams/TimelineVisualization'
-import OutcomesDashboard from './OutcomesDashboard'
 import DesignSystemTokens from './DesignSystemTokens'
 
 export function DesignSystem() {
@@ -500,7 +499,9 @@ export function Outcomes() {
     <section className="bg-gray-50 py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <h2 className="mb-12 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">Outcomes & Metrics</h2>
-        <OutcomesDashboard />
+        <div className="rounded-xl border-2 border-gray-200 bg-white p-8 text-center">
+          <p className="text-gray-600">Outcomes section coming soon. This product is currently in development.</p>
+        </div>
       </div>
     </section>
   )
