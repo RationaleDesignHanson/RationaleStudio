@@ -67,26 +67,6 @@ export class RandomRecipeGenerator {
     'room temperature', 'chilled', 'thawed', 'drained', 'rinsed'
   ];
 
-  private weirdQuantityFormats: Array<() => string> = [
-    // Fractions
-    () => `${this.randomInt(1, 4)}/${this.randomInt(2, 8)}`,
-    () => `${this.randomInt(1, 3)} ${this.randomInt(1, 4)}/${this.randomInt(2, 8)}`,
-    // Decimals
-    () => (Math.random() * 10).toFixed(this.randomInt(1, 3)),
-    // Ranges
-    () => `${this.randomInt(1, 10)}-${this.randomInt(11, 20)}`,
-    () => `${this.randomInt(1, 3)}-${this.randomInt(4, 6)}`,
-    // Approximations
-    () => `~${this.randomInt(1, 10)}`,
-    () => `about ${this.randomInt(1, 5)}`,
-    () => `around ${this.randomInt(2, 8)}`,
-    () => `roughly ${this.randomInt(1, 4)} ${this.randomInt(1, 4)}/${this.randomInt(2, 4)}`,
-    // Weird formats
-    () => `${this.randomInt(1, 20)}.${this.randomInt(0, 99)}`,
-    () => `${this.randomInt(10, 99)}/${this.randomInt(100, 999)}`,
-    () => `${this.randomInt(1, 5)} to ${this.randomInt(6, 10)}`,
-  ];
-
   constructor() {
     this.db = new IngredientDatabase();
   }
@@ -332,6 +312,23 @@ export class RandomRecipeGenerator {
     }
   }
 
+  /**
+   * Get a random proper cooking fraction
+   */
+  private getRandomFraction(): string {
+    const fractions = ['1/4', '1/3', '1/2', '2/3', '3/4'];
+    return this.pickRandom(fractions);
+  }
+
+  /**
+   * Get a random mixed number with proper fraction
+   */
+  private getRandomMixedNumber(): string {
+    const whole = this.randomInt(1, 2); // 1 or 2
+    const fraction = this.getRandomFraction();
+    return `${whole} ${fraction}`;
+  }
+
   private generateIngredientLine(
     ingredientName: string,
     options: Required<Omit<RandomRecipeOptions, 'ingredientCount'>>
@@ -350,12 +347,12 @@ export class RandomRecipeGenerator {
       if (options.includeWeirdQuantities && Math.random() < 0.3) {
         // 30% chance of slightly unusual (but valid) quantity format
         const format = Math.random();
-        if (format < 0.4) {
+        if (format < 0.5) {
           // Simple fraction
-          parts.push(`${this.randomInt(1, 4)}/${this.randomInt(2, 4)}`);
-        } else if (format < 0.7) {
+          parts.push(this.getRandomFraction());
+        } else if (format < 0.8) {
           // Mixed number
-          parts.push(`${this.randomInt(1, 2)} ${this.randomInt(1, 3)}/${this.randomInt(2, 4)}`);
+          parts.push(this.getRandomMixedNumber());
         } else {
           // Range
           const low = this.randomInt(1, 3);
@@ -363,12 +360,13 @@ export class RandomRecipeGenerator {
         }
       } else {
         // Normal quantity
-        if (Math.random() < 0.3) {
+        const rand = Math.random();
+        if (rand < 0.3) {
           // Fraction
-          parts.push(`${this.randomInt(1, 4)}/${this.randomInt(2, 4)}`);
-        } else if (Math.random() < 0.5) {
+          parts.push(this.getRandomFraction());
+        } else if (rand < 0.5) {
           // Mixed number
-          parts.push(`${this.randomInt(1, 2)} ${this.randomInt(1, 3)}/${this.randomInt(2, 4)}`);
+          parts.push(this.getRandomMixedNumber());
         } else {
           // Whole number (1-6 for most things, but adjust for category)
           const maxQty = category === 'seasoning' ? 3 : category === 'liquid' ? 4 : 6;
