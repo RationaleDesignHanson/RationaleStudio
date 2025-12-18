@@ -139,7 +139,7 @@ export class RandomRecipeGenerator {
                         'basil', 'thyme', 'rosemary', 'sage', 'bay leaf', 'cayenne', 'chili powder',
                         'ginger', 'garlic powder', 'turmeric', 'coriander', 'cardamom', 'clove', 'vanilla',
                         'parsley', 'dill', 'cilantro', 'mint', 'tarragon', 'fennel', 'anise',
-                        'cornstarch', 'baking powder', 'baking soda', 'yeast', 'extract'];
+                        'cornstarch', 'baking powder', 'baking soda', 'yeast', 'extract', 'cocoa'];
     if (seasonings.some(s => lower.includes(s))) {
       return 'seasoning';
     }
@@ -185,55 +185,59 @@ export class RandomRecipeGenerator {
   }
 
   /**
-   * Select appropriate unit based on ingredient type
+   * Select appropriate unit based on ingredient database category
    */
-  private getAppropriateUnit(ingredientName: string): string {
-    const category = this.getIngredientCategory(ingredientName);
-    const lower = ingredientName.toLowerCase();
+  private getAppropriateUnit(ingredientName: string, ingredientRecord?: any): string {
+    const category = ingredientRecord?.category?.toLowerCase() || 'other';
+    const subcategory = ingredientRecord?.subcategory?.toLowerCase() || '';
+    const note = ingredientRecord?.note?.toLowerCase() || '';
+
+    // Special case: Eggs and other count-based ingredients should have no unit
+    if (subcategory === 'eggs' || note.includes('count-based')) {
+      return '';
+    }
 
     switch (category) {
-      case 'seasoning':
-        // Seasonings use small units only
-        return this.pickRandom(['teaspoon', 'teaspoons', 'tsp', 'tablespoon', 'tablespoons', 'tbsp', 'pinch', 'dash']);
+      case 'spices':
+      case 'baking':
+        // Small measurements for spices and baking ingredients
+        return this.pickRandom(['teaspoon', 'teaspoons', 'tsp', 'tablespoon', 'tablespoons', 'tbsp', 'pinch', 'dash', 'cup', 'cups']);
 
-      case 'liquid':
-        // Liquids use volume, but reasonable sizes (not gallons for small amounts)
+      case 'condiments':
+      case 'oils':
+        // Liquids use volume
         return this.pickRandom(['cup', 'cups', 'tablespoon', 'tablespoons', 'tbsp', 'teaspoon', 'teaspoons', 'tsp',
-                                'fluid ounce', 'fluid ounces', 'fl oz', 'pint', 'pints', 'ml', 'milliliter', 'milliliters']);
+                                'fluid ounce', 'fluid ounces', 'fl oz', 'ml', 'milliliter', 'milliliters']);
 
-      case 'protein':
-        // For discrete items, prefer count units or no unit
-        if (lower.includes('shrimp') || lower.includes('drumstick') || lower.includes('wing')) {
-          return Math.random() < 0.5 ? '' : this.pickRandom(['piece', 'pieces']);
-        }
-        // For cuts of meat, prefer weight units
-        return this.pickRandom(this.weightUnits);
+      case 'meat':
+      case 'seafood':
+        // Proteins use weight
+        return this.pickRandom(['pound', 'pounds', 'lb', 'lbs', 'ounce', 'ounces', 'oz']);
 
       case 'produce':
-        // Produce that comes in stalks
-        if (lower.includes('celery') || lower.includes('broccoli') || lower.includes('asparagus')) {
-          return this.pickRandom(['stalk', 'stalks', 'bunch', 'bunches', '']);
-        }
-        // Other produce - count or no unit
-        return this.pickRandom(['', 'piece', 'pieces', 'slice', 'slices']);
+        // Produce typically counted or by piece
+        return this.pickRandom(['piece', 'pieces', 'slice', 'slices', 'cup', 'cups']);
 
-      case 'grain':
-        // Grains use cups primarily, not large volume units like liters/gallons
-        const grainUnits = ['cup', 'cups', 'tablespoon', 'tablespoons', 'tbsp',
-                           'ounce', 'ounces', 'oz', 'gram', 'grams', 'g'];
-        return this.pickRandom(grainUnits);
+      case 'grains':
+      case 'pantry':
+        // Grains and pantry items use cups/weight
+        return this.pickRandom(['cup', 'cups', 'tablespoon', 'tablespoons', 'tbsp',
+                               'ounce', 'ounces', 'oz']);
 
       case 'dairy':
-        // Cheese can be grated/sliced, use weight or volume
-        if (lower.includes('cheese')) {
-          return this.pickRandom(['cup', 'cups', 'ounce', 'ounces', 'oz', 'gram', 'grams', 'g', 'slice', 'slices']);
+        // Dairy uses volume or weight
+        if (subcategory === 'cheese') {
+          return this.pickRandom(['cup', 'cups', 'ounce', 'ounces', 'oz', 'slice', 'slices']);
         }
-        // Other dairy uses volume or weight
         return this.pickRandom(['cup', 'cups', 'tablespoon', 'tablespoons', 'tbsp',
-                               'ounce', 'ounces', 'oz', 'gram', 'grams', 'g']);
+                               'ounce', 'ounces', 'oz']);
+
+      case 'bakery':
+        // Bakery items like bread
+        return this.pickRandom(['slice', 'slices', 'piece', 'pieces']);
 
       default:
-        // Default: reasonable mix (no huge units like gallons)
+        // Default: reasonable mix
         return this.pickRandom(['cup', 'cups', 'tablespoon', 'tablespoons', 'piece', 'pieces']);
     }
   }
@@ -334,17 +338,30 @@ export class RandomRecipeGenerator {
     options: Required<Omit<RandomRecipeOptions, 'ingredientCount'>>
   ): string {
     const parts: string[] = [];
-    const category = this.getIngredientCategory(ingredientName);
 
-    // Random chance of no quantity (10%)
-    const skipQuantity = options.includeNoQuantity && Math.random() < 0.1;
+    // Look up ingredient in database to get its actual category
+    const ingredientRecord = this.db.findIngredient(ingredientName);
+    const category = ingredientRecord?.category?.toLowerCase() || 'other';
 
-    // Random chance of no unit (15%)
-    const skipUnit = options.includeNoUnit && Math.random() < 0.15;
+    // Random chance of no quantity (5%)
+    const skipQuantity = options.includeNoQuantity && Math.random() < 0.05;
+
+    // Random chance of no unit when there's a quantity (5%)
+    // This creates things like "3 eggs" instead of "3 large eggs"
+    const skipUnit = options.includeNoUnit && Math.random() < 0.05;
+
+    // Check if this is count-based (no fractions allowed)
+    const subcategory = ingredientRecord?.subcategory?.toLowerCase() || '';
+    const note = ingredientRecord?.note?.toLowerCase() || '';
+    const isCountBased = subcategory === 'eggs' || note.includes('count-based');
 
     // Add quantity
     if (!skipQuantity) {
-      if (options.includeWeirdQuantities && Math.random() < 0.3) {
+      if (isCountBased) {
+        // Count-based ingredients only get whole numbers
+        const maxQty = 6;
+        parts.push(this.randomInt(1, maxQty).toString());
+      } else if (options.includeWeirdQuantities && Math.random() < 0.3) {
         // 30% chance of slightly unusual (but valid) quantity format
         const format = Math.random();
         if (format < 0.5) {
@@ -369,7 +386,7 @@ export class RandomRecipeGenerator {
           parts.push(this.getRandomMixedNumber());
         } else {
           // Whole number (1-6 for most things, but adjust for category)
-          const maxQty = category === 'seasoning' ? 3 : category === 'liquid' ? 4 : 6;
+          const maxQty = category === 'spices' || category === 'baking' ? 3 : 6;
           parts.push(this.randomInt(1, maxQty).toString());
         }
       }
@@ -377,7 +394,8 @@ export class RandomRecipeGenerator {
 
     // Add unit (if not skipped) - use appropriate unit for ingredient
     if (!skipQuantity && !skipUnit) {
-      const unit = this.getAppropriateUnit(ingredientName);
+      const unit = this.getAppropriateUnit(ingredientName, ingredientRecord);
+      // Only add unit if it's not empty (count-based ingredients have no unit)
       if (unit) {
         parts.push(unit);
       }
