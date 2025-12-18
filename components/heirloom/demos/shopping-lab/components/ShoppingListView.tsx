@@ -251,7 +251,7 @@ export function ShoppingListView({ shoppingList }: ShoppingListViewProps) {
                 </h5>
                 <div className="space-y-1.5 sm:space-y-2">
                   {itemsByCategory[category].map((item, idx) => {
-                    const converted = convertToSystem(item.quantity ?? undefined, item.unit);
+                    const converted = convertToSystem(item.quantity ?? undefined, item.unit ?? undefined);
                     const itemKey = `${category}-${idx}`;
                     const isModalOpen = activeRecipeModal === itemKey;
 
