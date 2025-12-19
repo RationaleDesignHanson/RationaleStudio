@@ -41,10 +41,11 @@ export default function RecipeSelector({
           src={imageUrl}
           alt="Recipe card with multiple recipes"
           className="w-full h-auto block"
+          style={{ display: 'block' }}
         />
 
-        {/* Overlay Regions */}
-        <div className="absolute inset-0">
+        {/* Overlay Regions - positioned over the image */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           {detectedRecipes.map((recipe) => {
             const isHovered = hoveredId === recipe.id;
 
@@ -54,7 +55,8 @@ export default function RecipeSelector({
                 onClick={() => onSelectRecipe(recipe.id)}
                 onMouseEnter={() => setHoveredId(recipe.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="absolute transition-all duration-200 cursor-pointer"
+                onTouchStart={() => setHoveredId(recipe.id)}
+                className="absolute transition-all duration-200 cursor-pointer pointer-events-auto"
                 style={{
                   left: `${recipe.boundingBox.x}%`,
                   top: `${recipe.boundingBox.y}%`,
