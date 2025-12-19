@@ -15,7 +15,7 @@ import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 import { heirloomMarketingContent } from '@/lib/content/products/heirloom-marketing';
-import { HeirloomDemo } from '@/components/heirloom/HeirloomDemo';
+import PrototypeEmbed from '@/app/(public)/work/heirloom/components/PrototypeEmbed';
 
 export const metadata: Metadata = {
   title: heirloomMarketingContent.seo.title,
@@ -70,12 +70,12 @@ export default function HeirloomProductPage() {
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
             {content.hero.subheadline}
           </p>
-
-          {/* Interactive Demo */}
-          <div className="relative w-full">
-            <HeirloomDemo />
-          </div>
         </div>
+      </section>
+
+      {/* Interactive Demos Section */}
+      <section id="demo" className="bg-white">
+        <PrototypeEmbed />
       </section>
 
       {/* SECTION 2: THE PROBLEM */}

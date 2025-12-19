@@ -8,7 +8,6 @@ import './print.css'
 import HeroSection from './components/HeroSection'
 import AtAGlance from './components/AtAGlance'
 import ChallengeSection from './components/ChallengeSection'
-import PrototypeEmbed from './components/PrototypeEmbed'
 import ApproachSection from './components/ApproachSection'
 import ProjectOverview from './components/ProjectOverview'
 import FeatureGrid from './components/FeatureGrid'
@@ -35,9 +34,6 @@ export default function HeirloomCaseStudy() {
 
       {/* The problem: recipe apps lose the heritage */}
       <ChallengeSection />
-
-      {/* Interactive prototype demos */}
-      <PrototypeEmbed />
 
       {/* Our approach: treat recipes as heirlooms */}
       <ApproachSection />
