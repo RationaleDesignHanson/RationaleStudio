@@ -1027,3 +1027,5 @@ export function HeirloomDemo({
     </div>
   );
 }
+
+export default HeirloomDemo;

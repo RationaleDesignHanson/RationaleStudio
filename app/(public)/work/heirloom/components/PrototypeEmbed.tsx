@@ -5,15 +5,20 @@
 import { useState, lazy, Suspense } from 'react'
 import { DinnerPartyDemo } from '@/components/heirloom/demos'
 
-// Lazy load Shopping Lab for performance (complex component with many features)
+// Lazy load Shopping Lab and Recipe Capture for performance
 const ShoppingLabDemo = lazy(() =>
   import('@/components/heirloom/demos').then(mod => ({ default: mod.ShoppingLabDemo }))
 )
 
+const RecipeCaptureDemo = lazy(() =>
+  import('@/components/heirloom/HeirloomDemo')
+)
+
 export default function PrototypeEmbed() {
-  const [activeDemo, setActiveDemo] = useState<'shopping' | 'dinner'>('shopping')
+  const [activeDemo, setActiveDemo] = useState<'capture' | 'shopping' | 'dinner'>('capture')
 
   const demos = [
+    { id: 'capture' as const, label: 'Recipe Capture', icon: '' },
     { id: 'shopping' as const, label: 'Shopping Lab', icon: '' },
     { id: 'dinner' as const, label: 'Dinner Party', icon: '' },
   ]
@@ -27,7 +32,7 @@ export default function PrototypeEmbed() {
             Try It Yourself
           </h2>
           <p className="text-xl text-gray-700">
-            Explore Heirloom's intelligent shopping features in these interactive demos. No download required.
+            Experience Heirloom's recipe capture, smart shopping, and dinner planning features. No download required.
           </p>
         </div>
 
@@ -64,6 +69,18 @@ export default function PrototypeEmbed() {
           {/* Demo Container */}
           <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden relative z-0 bg-white">
             <div className="p-6 md:p-8 lg:p-12">
+              {activeDemo === 'capture' && (
+                <Suspense fallback={
+                  <div className="flex items-center justify-center py-20">
+                    <div className="text-center">
+                      <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E85D4D]"></div>
+                      <p className="mt-4 text-gray-600">Loading Recipe Capture...</p>
+                    </div>
+                  </div>
+                }>
+                  <RecipeCaptureDemo className="!min-h-0 !bg-transparent !p-0" />
+                </Suspense>
+              )}
               {activeDemo === 'shopping' && (
                 <Suspense fallback={
                   <div className="flex items-center justify-center py-20">
@@ -85,6 +102,35 @@ export default function PrototypeEmbed() {
             <h4 className="mb-3 font-semibold text-[#2D2D2D]">
               How to use the demos:
             </h4>
+
+            {activeDemo === 'capture' && (
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">1.</span>
+                  <span><strong>Choose a Sample Recipe:</strong> Browse 23 photographed recipe cards organized by category, or upload your own handwritten recipe photo</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">2.</span>
+                  <span><strong>Watch OCR Extraction:</strong> Claude analyzes the recipe card, extracting title, ingredients, and instructions with confidence scoring</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">3.</span>
+                  <span><strong>Edit the Recipe:</strong> Click any field (title, ingredients, instructions) to make corrections or add notes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">4.</span>
+                  <span><strong>Share with Mom:</strong> Simulate passing the recipe to the next generation — Mom can add her own notes and stickers on the back of the card</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">5.</span>
+                  <span><strong>Add Your Own Notes:</strong> Continue the lineage by adding your generation's modifications and memories</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#E85D4D]">6.</span>
+                  <span><strong>View the Timeline:</strong> See how recipes evolve across generations with visual attribution and change tracking</span>
+                </li>
+              </ul>
+            )}
 
             {activeDemo === 'shopping' && (
               <ul className="space-y-2 text-gray-700">
