@@ -388,13 +388,10 @@ export function HeirloomDemo({
   const stepContent = getStepContent();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-10 pb-0 px-5 ${className}`}>
+    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-16 pb-16 px-5 ${className}`}>
       {/* Header */}
-      <div className="text-center mb-10">
-        <h1
-          className="text-3xl md:text-4xl font-bold text-[#3d2914] mb-2"
-          style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-        >
+      <div className="text-center mb-12">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#3d2914] mb-2">
           {stepContent.title}
         </h1>
         <p className="text-base text-[#8b7355]">{stepContent.description}</p>
