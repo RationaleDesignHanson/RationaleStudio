@@ -19,11 +19,8 @@
 [[functions."*"]]
   timeout = 26
 
-# Make Firebase Admin credentials available to serverless functions
-[functions.environment]
-  FIREBASE_PROJECT_ID = "${FIREBASE_PROJECT_ID}"
-  FIREBASE_CLIENT_EMAIL = "${FIREBASE_CLIENT_EMAIL}"
-  FIREBASE_PRIVATE_KEY = "${FIREBASE_PRIVATE_KEY}"
+# Environment variables are available globally, no need to specify in functions
+# Removed functions.environment to avoid AWS Lambda 4KB limit
 
 # Security headers
 [[headers]]
