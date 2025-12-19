@@ -106,13 +106,14 @@ export function RecipeCard({
               fontWeight: 600,
               boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
               zIndex: 10,
+              display: isFlipped ? 'none' : 'block',
             }}
           >
             {getGenerationLabel()}
           </div>
 
           {/* Original image thumbnail */}
-          {imagePreview && (
+          {imagePreview && !isFlipped && (
             <div
               className="group"
               onClick={(e) => {
