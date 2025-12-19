@@ -613,7 +613,7 @@ export function HeirloomDemo({
                             title={sticker.label}
                             type="button"
                           >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain p-1" />
+                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
                           </button>
                         ))}
                       </div>
@@ -659,7 +659,7 @@ export function HeirloomDemo({
                             title={sticker.label}
                             type="button"
                           >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain p-1" />
+                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
                           </button>
                         ))}
                       </div>
@@ -793,7 +793,7 @@ export function HeirloomDemo({
                             title={sticker.label}
                             type="button"
                           >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain p-1" />
+                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
                           </button>
                         ))}
                       </div>
@@ -841,7 +841,7 @@ export function HeirloomDemo({
                             title={sticker.label}
                             type="button"
                           >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain p-1" />
+                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
                           </button>
                         ))}
                       </div>
@@ -982,6 +982,7 @@ export function HeirloomDemo({
         .sticker-btn {
           width: 44px;
           height: 44px;
+          padding: 6px;
           border-radius: 12px;
           border: 2px solid #e8e0d5;
           background: white;
