@@ -13,6 +13,9 @@ export async function GET() {
     hasFirebaseAppId: !!process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     // Show first 10 chars of API key for verification
     apiKeyPrefix: process.env.NEXT_PUBLIC_FIREBASE_API_KEY?.substring(0, 10) || 'undefined',
+    // Check Anthropic API key for Heirloom recipe extraction
+    hasAnthropicApiKey: !!process.env.ANTHROPIC_API_KEY,
+    anthropicKeyPrefix: process.env.ANTHROPIC_API_KEY?.substring(0, 15) || 'undefined',
     nodeEnv: process.env.NODE_ENV,
     allNextPublicKeys: Object.keys(process.env).filter(k => k.startsWith('NEXT_PUBLIC_')),
   };
