@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { UploadSection } from './UploadSection';
 import { ProcessingSection } from './ProcessingSection';
 import { SampleRecipeSelector } from './SampleRecipeSelector';
@@ -52,6 +52,7 @@ export function HeirloomDemo({
   const [savedYourNote, setSavedYourNote] = useState('');
   const [momStickers, setMomStickers] = useState<string[]>([]);
   const [yourStickers, setYourStickers] = useState<string[]>([]);
+  const [shuffledStickers, setShuffledStickers] = useState(DEMO_STICKERS);
 
   // UI state
   const [isDragging, setIsDragging] = useState(false);
@@ -66,6 +67,12 @@ export function HeirloomDemo({
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const demoContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Shuffle stickers whenever recipe changes
+  useEffect(() => {
+    const shuffled = [...DEMO_STICKERS].sort(() => Math.random() - 0.5);
+    setShuffledStickers(shuffled);
+  }, [recipe?.title]);
 
   const updateStep = useCallback(
     (newStep: DemoStep) => {
@@ -605,7 +612,7 @@ export function HeirloomDemo({
                     <div className="mb-3">
                       <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
                       <div className="sticker-picker flex gap-2 flex-wrap justify-center">
-                        {DEMO_STICKERS.map((sticker) => (
+                        {shuffledStickers.map((sticker) => (
                           <button
                             key={sticker.id}
                             className={`sticker-btn ${momStickers.includes(sticker.id) ? 'selected' : ''}`}
@@ -651,7 +658,7 @@ export function HeirloomDemo({
                     <div className="mb-3">
                       <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
                       <div className="sticker-picker flex gap-2 flex-wrap justify-center">
-                        {DEMO_STICKERS.map((sticker) => (
+                        {shuffledStickers.map((sticker) => (
                           <button
                             key={sticker.id}
                             className={`sticker-btn ${yourStickers.includes(sticker.id) ? 'selected' : ''}`}
@@ -982,7 +989,7 @@ export function HeirloomDemo({
         .sticker-btn {
           width: 44px;
           height: 44px;
-          padding: 6px;
+          padding: 3px;
           border-radius: 12px;
           border: 2px solid #e8e0d5;
           background: white;
