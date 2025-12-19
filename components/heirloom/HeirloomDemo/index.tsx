@@ -10,6 +10,7 @@ import { useState, useCallback, useRef } from 'react';
 import { UploadSection } from './UploadSection';
 import { ProcessingSection } from './ProcessingSection';
 import { SampleRecipeSelector } from './SampleRecipeSelector';
+import RecipeSelector from './RecipeSelector';
 import { RecipeCard } from './RecipeCard';
 import { Timeline } from './Timeline';
 import {
@@ -19,8 +20,10 @@ import {
   FieldChange,
   HeirloomDemoProps,
   StickerOnCard,
+  DetectedRecipe,
+  BoundingBox,
 } from './types';
-import { DEMO_STICKERS, COLORS, API_ENDPOINT } from './constants';
+import { DEMO_STICKERS, COLORS, API_ENDPOINT, DETECT_API_ENDPOINT } from './constants';
 import type { SampleRecipe } from '@/lib/heirloom/sample-recipes';
 import Image from 'next/image';
 
@@ -37,6 +40,10 @@ export function HeirloomDemo({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Multi-recipe detection state
+  const [detectedRecipes, setDetectedRecipes] = useState<DetectedRecipe[]>([]);
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
 
   // Notes and stickers
   const [momNote, setMomNote] = useState('');
@@ -58,6 +65,7 @@ export function HeirloomDemo({
   const [changes, setChanges] = useState<ChangeHistory>({});
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const demoContainerRef = useRef<HTMLDivElement | null>(null);
 
   const updateStep = useCallback(
     (newStep: DemoStep) => {
@@ -73,15 +81,64 @@ export function HeirloomDemo({
     return null;
   }, [step]);
 
-  const extractRecipe = async (base64Image: string) => {
+  const detectRecipes = async (base64Image: string) => {
     updateStep('processing');
     setError(null);
 
     try {
-      const response = await fetch(API_ENDPOINT, {
+      const response = await fetch(DETECT_API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: base64Image }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to detect recipes');
+      }
+
+      if ('error' in data) {
+        throw new Error(data.error);
+      }
+
+      // Check if multiple recipes were detected
+      if (data.recipes && data.recipes.length > 1) {
+        setDetectedRecipes(data.recipes);
+        updateStep('selecting');
+      } else if (data.recipes && data.recipes.length === 1) {
+        // Single recipe detected, proceed directly to extraction
+        const selectedRecipe = data.recipes[0];
+        setSelectedRecipeId(selectedRecipe.id);
+        extractRecipe(base64Image, selectedRecipe.boundingBox);
+      } else {
+        throw new Error('No recipes detected in image');
+      }
+    } catch (err) {
+      console.error('Detection error:', err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Failed to analyze image. Please try another image.'
+      );
+      updateStep('upload');
+    }
+  };
+
+  const extractRecipe = async (base64Image: string, boundingBox?: BoundingBox) => {
+    updateStep('processing');
+    setError(null);
+
+    try {
+      const requestBody: any = { image: base64Image };
+      if (boundingBox) {
+        requestBody.boundingBox = boundingBox;
+      }
+
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -97,6 +154,13 @@ export function HeirloomDemo({
       setRecipe(data);
       updateStep('scanned');
       onRecipeExtracted?.(data);
+
+      // Prevent scroll jump on mobile
+      if (typeof window !== 'undefined' && window.innerWidth < 768) {
+        setTimeout(() => {
+          demoContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
     } catch (err) {
       console.error('Extraction error:', err);
       setError(
@@ -121,7 +185,7 @@ export function HeirloomDemo({
       setImagePreview(result);
       const base64Data = result.split(',')[1];
       setUploadedImage(base64Data);
-      extractRecipe(base64Data);
+      detectRecipes(base64Data);
     };
     reader.readAsDataURL(file);
   }, []);
@@ -139,10 +203,18 @@ export function HeirloomDemo({
           const result = e.target?.result as string;
           const base64Data = result.split(',')[1];
           setUploadedImage(base64Data);
-          extractRecipe(base64Data);
+          detectRecipes(base64Data);
         };
         reader.readAsDataURL(blob);
       });
+  };
+
+  const handleRecipeSelection = (recipeId: string) => {
+    const selected = detectedRecipes.find((r) => r.id === recipeId);
+    if (!selected || !uploadedImage) return;
+
+    setSelectedRecipeId(recipeId);
+    extractRecipe(uploadedImage, selected.boundingBox);
   };
 
   const handleDrop = useCallback(
@@ -360,6 +432,11 @@ export function HeirloomDemo({
           title: 'Reading Your Recipe...',
           description: 'Using AI to extract every detail',
         };
+      case 'selecting':
+        return {
+          title: 'Multiple Recipes Found',
+          description: 'Click on a recipe to extract its details',
+        };
       case 'scanned':
         return {
           title: 'Recipe Captured',
@@ -388,20 +465,35 @@ export function HeirloomDemo({
   const stepContent = getStepContent();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-16 pb-16 px-5 ${className}`}>
+    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-2 pb-6 px-3 md:pt-8 md:pb-16 md:px-5 ${className}`}>
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#3d2914] mb-2">
+      <div className="text-center mb-3 mt-0">
+        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-1 leading-none">
           {stepContent.title}
         </h1>
-        <p className="text-base text-[#8b7355]">{stepContent.description}</p>
+        <p className="text-sm md:text-base text-[#8b7355] leading-relaxed max-w-xs md:max-w-md mx-auto">
+          {step === 'upload' && showSampleSelector ? (
+            <>
+              Select or{' '}
+              <button
+                onClick={() => setShowSampleSelector(false)}
+                className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
+              >
+                upload
+              </button>{' '}
+              a recipe photo
+            </>
+          ) : (
+            stepContent.description
+          )}
+        </p>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto">
+      <div ref={demoContainerRef} className="max-w-6xl mx-auto">
         {/* UPLOAD STEP */}
         {step === 'upload' && (
-          <div className="space-y-8">
+          <div className="space-y-4 md:space-y-8">
             {showSampleSelector ? (
               <SampleRecipeSelector
                 onSelectSample={handleSampleSelect}
@@ -423,6 +515,17 @@ export function HeirloomDemo({
 
         {/* PROCESSING STEP */}
         {step === 'processing' && imagePreview && <ProcessingSection imagePreview={imagePreview} />}
+
+        {/* SELECTING STEP */}
+        {step === 'selecting' && imagePreview && detectedRecipes.length > 0 && (
+          <div className="fade-in">
+            <RecipeSelector
+              imageUrl={imagePreview}
+              detectedRecipes={detectedRecipes}
+              onSelectRecipe={handleRecipeSelection}
+            />
+          </div>
+        )}
 
         {/* RECIPE CARD - shown from scanned onward */}
         {(step === 'scanned' || step === 'fork1' || step === 'fork2' || step === 'lineage') && recipe && (
@@ -487,20 +590,20 @@ export function HeirloomDemo({
                 {/* Fork 1 - Mom's note input */}
                 {step === 'fork1' && !isFlipped && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-2">
+                    <label className="text-[13px] text-[#5c4033] font-medium block mb-1.5">
                       Mom writes on the back of the card:
                     </label>
                     <textarea
                       value={momNote}
                       onChange={(e) => setMomNote(e.target.value)}
                       placeholder="I always double the honey — our family likes it sweeter..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-4"
+                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-3"
                       style={{ fontFamily: 'Georgia, serif' }}
                     />
 
                     {/* Sticker picker */}
-                    <div className="mb-4">
-                      <label className="text-xs text-[#8b7355] block mb-2">Add a sticker (optional):</label>
+                    <div className="mb-3">
+                      <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
                       <div className="sticker-picker flex gap-2 flex-wrap justify-center">
                         {DEMO_STICKERS.map((sticker) => (
                           <button
@@ -545,8 +648,8 @@ export function HeirloomDemo({
                     />
 
                     {/* Sticker picker */}
-                    <div className="mb-4">
-                      <label className="text-xs text-[#8b7355] block mb-2">Add a sticker (optional):</label>
+                    <div className="mb-3">
+                      <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
                       <div className="sticker-picker flex gap-2 flex-wrap justify-center">
                         {DEMO_STICKERS.map((sticker) => (
                           <button
@@ -579,7 +682,7 @@ export function HeirloomDemo({
                 {/* Lineage - final state */}
                 {step === 'lineage' && (
                   <div className="fade-in text-center">
-                    <div className="p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-5">
+                    <div className="p-4 md:p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-3 md:mb-5">
                       <p
                         className="text-xl text-[#3d2914] italic leading-relaxed m-0"
                         style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
@@ -601,9 +704,12 @@ export function HeirloomDemo({
               </div>
             </div>
 
-            {/* Mobile: Stacked layout */}
-            <div className="md:hidden flex flex-col items-center gap-6">
-              <Timeline step={step} />
+            {/* Mobile: Side-by-side layout */}
+            <div className="md:hidden flex flex-row items-start gap-1">
+              <div className="flex-shrink-0">
+                <Timeline step={step} />
+              </div>
+              <div className="flex-1 min-w-0">
               <RecipeCard
                 recipe={recipe}
                 isFlipped={isFlipped}
@@ -640,11 +746,11 @@ export function HeirloomDemo({
                 {/* Scanned - proceed to fork */}
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
-                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-4 mb-5">
-                      <div className="text-[32px] font-bold text-[#2d5a27] mb-1" style={{ fontFamily: 'ui-monospace, monospace' }}>
+                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-2 mb-3 md:p-3 md:mb-4">
+                      <div className="text-[24px] md:text-[32px] font-bold text-[#2d5a27] mb-0.5" style={{ fontFamily: 'ui-monospace, monospace' }}>
                         {overallScore}%
                       </div>
-                      <div className="text-xs text-[#5c4033]">Overall Confidence</div>
+                      <div className="text-[10px] md:text-xs text-[#5c4033]">Overall Confidence</div>
                     </div>
                     <button
                       onClick={() => setStep('fork1')}
@@ -658,14 +764,14 @@ export function HeirloomDemo({
                 {/* Fork 1 - Mom's note input */}
                 {step === 'fork1' && !isFlipped && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-2">
+                    <label className="text-[13px] text-[#5c4033] font-medium block mb-1.5">
                       Mom writes on the back of the card:
                     </label>
                     <textarea
                       value={momNote}
                       onChange={(e) => setMomNote(e.target.value)}
                       placeholder="I always double the honey — our family likes it sweeter..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-4"
+                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-3"
                       style={{ fontFamily: 'Georgia, serif' }}
                     />
 
@@ -754,7 +860,7 @@ export function HeirloomDemo({
                 {/* Lineage - final state */}
                 {step === 'lineage' && (
                   <div className="fade-in text-center">
-                    <div className="p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-5">
+                    <div className="p-4 md:p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-3 md:mb-5">
                       <p
                         className="text-xl text-[#3d2914] italic leading-relaxed m-0"
                         style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
@@ -772,6 +878,7 @@ export function HeirloomDemo({
                     </button>
                   </div>
                 )}
+              </div>
               </div>
             </div>
           </div>

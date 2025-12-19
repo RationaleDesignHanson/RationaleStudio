@@ -66,27 +66,9 @@ export default function ZeroProductPage() {
           </h2>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-3 leading-relaxed">
             {content.hero.subheadline}
           </p>
-
-          {/* Case Study Link */}
-          <div className="mb-12">
-            <Link
-              href="/work/zero"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors underline underline-offset-4"
-            >
-              Check out the demo
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          {/* Interactive Demo Hero */}
-          <div className="relative max-w-7xl mx-auto">
-            <div className="rounded-2xl border-4 border-terminal-gold/20 shadow-2xl overflow-hidden bg-black">
-              <InteractiveDemo />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -168,36 +150,38 @@ export default function ZeroProductPage() {
               </div>
             ))}
           </div>
+
+          {/* Case Study Link */}
+          <div className="text-center mt-12">
+            <Link
+              href="/work/zero"
+              className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover transition-colors underline underline-offset-4 font-medium text-lg"
+            >
+              See overview
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 4: PROOF IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+      {/* SECTION 4: HOW IT WORKS (Interactive Demo) */}
+      <section id="demo" className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
-            opacity={0.04}
+            opacity={0.08}
             animated={true}
             colorTheme={watercolorThemes.terminalGold}
             charSet="default"
           />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-            {content.proof.headline}
+            How It Works
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {content.proof.outcomes.map((outcome, index) => (
-              <div key={index} className="p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg text-center">
-                <div className="text-2xl font-bold text-terminal-gold mb-3">
-                  {outcome.metric}
-                </div>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  {outcome.context}
-                </p>
-              </div>
-            ))}
+          <div className="rounded-2xl border-4 border-terminal-gold/20 shadow-2xl overflow-hidden bg-black">
+            <InteractiveDemo />
           </div>
         </div>
       </section>
@@ -271,61 +255,7 @@ export default function ZeroProductPage() {
         </div>
       </section>
 
-      {/* SECTION 7: HOW IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.blueTeal}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
-            {content.howItWorks.headline}
-          </h2>
-
-          <div className="space-y-6 mb-12">
-            {content.howItWorks.steps.map((step, index) => (
-              <div key={index} className="flex items-start gap-6 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <div className="w-12 h-12 rounded-full bg-terminal-gold/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-terminal-gold font-bold text-xl">{index + 1}</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-gray-300">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Tech Sidebar */}
-          {content.howItWorks.techSidebar && (
-            <div className="p-6 bg-gray-900/70 border border-gray-700 rounded-lg">
-              <div className="flex items-start gap-3">
-                <Shield className="w-5 h-5 text-terminal-gold flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-white mb-2">Technology</h4>
-                  <p className="text-sm text-gray-300 mb-4">{content.howItWorks.techSidebar}</p>
-                  {content.howItWorks.deepDiveLink && (
-                    <Link
-                      href={content.howItWorks.deepDiveLink.href}
-                      className="text-sm text-terminal-gold hover:underline inline-flex items-center gap-2"
-                    >
-                      {content.howItWorks.deepDiveLink.text}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* SECTION 8: SECONDARY CTAs */}
+      {/* SECTION 7: SECONDARY CTAs */}
       <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h3 className="text-2xl font-bold text-white mb-8 text-center">

@@ -1,10 +1,10 @@
 /**
- * Heirloom Recipe Extraction API Route
+ * Heirloom Recipe Detection API Route
  *
- * Proxies OCR extraction requests to Anthropic API to protect API key
- * Accepts base64 image data and returns structured recipe JSON
+ * Analyzes images to detect multiple recipes and their locations
+ * Returns array of detected recipes with bounding boxes for selection
  *
- * Route: POST /api/heirloom/extract-recipe
+ * Route: POST /api/heirloom/detect-recipes
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,28 +14,26 @@ const requestCounts = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 10;
 
-interface ExtractRecipeRequest {
+interface DetectRecipesRequest {
   image: string; // base64 encoded image
-  boundingBox?: {
+}
+
+interface DetectedRecipe {
+  id: string;
+  title: string;
+  boundingBox: {
     x: number;
     y: number;
     width: number;
     height: number;
   };
+  confidence: 'high' | 'medium' | 'low';
 }
 
-interface RecipeExtraction {
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  servings?: string | null;
-  prepTime?: string | null;
-  cookTime?: string | null;
-  confidence: {
-    title: 'high' | 'medium' | 'low';
-    ingredients: 'high' | 'medium' | 'low';
-    instructions: 'high' | 'medium' | 'low';
-  };
+interface DetectionResponse {
+  recipes: DetectedRecipe[];
+  imageWidth: number;
+  imageHeight: number;
 }
 
 interface ErrorResponse {
@@ -96,7 +94,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Parse request body
-    const body: ExtractRecipeRequest = await req.json();
+    const body: DetectRecipesRequest = await req.json();
 
     if (!body.image) {
       return NextResponse.json(
@@ -119,37 +117,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Build the prompt text, including bounding box info if provided
-    let promptText = `You are an OCR system for recipe cards. Extract the recipe from this image and return ONLY valid JSON with no markdown formatting, no code blocks, no explanation. Just the raw JSON object.`;
-
-    if (body.boundingBox) {
-      const bb = body.boundingBox;
-      promptText += `\n\nIMPORTANT: This image contains multiple recipes. Focus ONLY on the recipe located in the region at approximately ${bb.x}% from left, ${bb.y}% from top, spanning ${bb.width}% width and ${bb.height}% height. Ignore all other recipes in the image.`;
-    }
-
-    promptText += `\n\nUse this exact structure:
-{
-  "title": "Recipe Name",
-  "ingredients": ["ingredient 1", "ingredient 2"],
-  "instructions": ["step 1", "step 2"],
-  "servings": "4" or null,
-  "prepTime": "15 min" or null,
-  "cookTime": "30 min" or null,
-  "confidence": {
-    "title": "high" | "medium" | "low",
-    "ingredients": "high" | "medium" | "low",
-    "instructions": "high" | "medium" | "low"
-  }
-}
-
-Base confidence on legibility:
-- "high" = clearly readable, confident extraction
-- "medium" = some words unclear but context helped
-- "low" = significant guessing required
-
-If you cannot read the image or it's not a recipe, return:
-{"error": "Could not extract recipe from image"}`;
-
     // Make request to Anthropic API
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -160,7 +127,7 @@ If you cannot read the image or it's not a recipe, return:
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
+        max_tokens: 1000,
         messages: [
           {
             role: 'user',
@@ -175,7 +142,44 @@ If you cannot read the image or it's not a recipe, return:
               },
               {
                 type: 'text',
-                text: promptText,
+                text: `Analyze this image and detect all recipes present. This could be a cookbook page, recipe card collection, or single recipe.
+
+For each recipe detected, identify:
+1. The recipe title (extract the actual title if visible)
+2. Its approximate position in the image as a bounding box (x, y, width, height as percentages 0-100)
+3. Your confidence in the detection
+
+Return ONLY valid JSON with no markdown formatting, no code blocks, no explanation. Just the raw JSON object.
+
+Use this exact structure:
+{
+  "recipes": [
+    {
+      "id": "1",
+      "title": "Recipe Name Here",
+      "boundingBox": {
+        "x": 10,
+        "y": 20,
+        "width": 40,
+        "height": 60
+      },
+      "confidence": "high" | "medium" | "low"
+    }
+  ],
+  "imageWidth": 100,
+  "imageHeight": 100
+}
+
+Guidelines:
+- If you see only ONE recipe, return an array with one item
+- If you see MULTIPLE recipes (like a cookbook page with 2-3 recipes), return all of them
+- Bounding box coordinates should be percentages (0-100) of the image dimensions
+- "high" confidence = clear distinct recipe with visible title
+- "medium" confidence = recipe visible but title unclear
+- "low" confidence = possible recipe but uncertain
+- If no recipes detected, return: {"error": "No recipes found in image"}
+
+Important: Even if there's just one recipe, still return it in the array format so the UI can handle it consistently.`,
               },
             ],
           },
@@ -211,25 +215,33 @@ If you cannot read the image or it's not a recipe, return:
       .trim();
 
     // Parse the JSON
-    const recipe: RecipeExtraction | ErrorResponse = JSON.parse(cleanedText);
+    const result: DetectionResponse | ErrorResponse = JSON.parse(cleanedText);
 
-    // Check if extraction failed
-    if ('error' in recipe) {
+    // Check if detection failed
+    if ('error' in result) {
       return NextResponse.json(
-        { error: recipe.error },
+        { error: result.error },
         { status: 422 }
       );
     }
 
-    // Return successful extraction
-    return NextResponse.json(recipe, { status: 200 });
+    // Validate response structure
+    if (!result.recipes || !Array.isArray(result.recipes)) {
+      return NextResponse.json(
+        { error: 'Invalid detection response format' },
+        { status: 500 }
+      );
+    }
+
+    // Return successful detection
+    return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    console.error('Recipe extraction error:', error);
+    console.error('Recipe detection error:', error);
 
     // Handle JSON parse errors
     if (error instanceof SyntaxError) {
       return NextResponse.json(
-        { error: 'Invalid response format from OCR service' },
+        { error: 'Invalid response format from detection service' },
         { status: 500 }
       );
     }

@@ -13,10 +13,8 @@ import HeroSection from './components/HeroSection'
 import AtAGlance from './components/AtAGlance'
 import ChallengeSection from './components/ChallengeSection'
 import ApproachSection from './components/ApproachSection'
-import PrototypeEmbed from './components/PrototypeEmbed'
-import WearablesRoadmap from './components/WearablesRoadmap'
-import BeforeAfterComparison from '@/components/zero/BeforeAfterComparison'
-import EmbeddedCTA from '@/components/zero/EmbeddedCTA'
+import FinalCTA from './components/FinalCTA'
+import Link from 'next/link'
 
 export default function ZeroPage() {
   return (
@@ -36,77 +34,75 @@ export default function ZeroPage() {
       {/* The problem: inbox is full of hidden work */}
       <ChallengeSection />
 
-      {/* Before/After Comparison - Show the impact */}
-      <section className="bg-black py-12 md:py-16 lg:py-20 border-t border-gray-800">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-4xl">
-            <BeforeAfterComparison variant="inline" />
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive demos with toggle */}
-      <PrototypeEmbed />
-
-      {/* CTA after demo */}
-      <section className="bg-gray-900 py-8 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-4xl">
-            <EmbeddedCTA
-              variant="primary"
-              message="Ready to reclaim your time?"
-              ctaText="Join the Waitlist"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Our approach: AI extracts actions automatically */}
       <ApproachSection />
 
       {/* Feature Grid */}
       <FeatureGrid />
 
-      {/* Technical Architecture */}
-      <section className="relative bg-black py-6 md:py-8 lg:py-12 md:py-28 border-t border-gray-800">
-        <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="mb-3 md:mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-white md:text-5xl text-center">
-              How Zero Works
-            </h2>
-            <p className="mb-3 md:mb-6 md:mb-12 text-lg text-gray-300 text-center">
-              Scalable architecture built with proven technologies
-            </p>
-            <SystemArchitecture />
-          </div>
-        </div>
-      </section>
-
-      {/* Wearables Roadmap */}
-      <WearablesRoadmap />
-
-      {/* Final CTA */}
-      <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-6 md:py-8 lg:py-12 md:py-28 border-t border-terminal-gold/30">
+      {/* CTA Links Section */}
+      <section className="bg-gray-900 py-12 md:py-8 md:py-12 lg:py-16">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-3 md:mb-6 text-3xl font-bold text-white md:text-2xl md:text-3xl lg:text-4xl">
-              Want to Build Products Like This?
-            </h2>
-            <p className="mb-4 md:mb-8 text-lg text-gray-300">
-              Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-terminal-gold px-4 sm:px-6 md:px-8 py-4 font-semibold text-black transition-all hover:bg-[#FFE34D] hover:shadow-lg"
-            >
-              Start a Conversation
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
+          <div className="mx-auto max-w-5xl">
+            <h3 className="mb-4 md:mb-8 text-center text-xl md:text-2xl font-bold text-white">Explore More</h3>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <Link
+                href="/products/zero"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-700 bg-gray-800/50 p-4 md:p-6 transition-all hover:border-terminal-gold hover:shadow-lg"
+              >
+                <div>
+                  <h4 className="text-base md:text-lg font-bold text-white group-hover:text-terminal-gold">
+                    Consumer Product Page
+                  </h4>
+                  <p className="text-xs md:text-sm text-gray-400 leading-snug">
+                    Try the interactive demo and join the beta waitlist
+                  </p>
+                </div>
+                <svg className="h-5 w-5 flex-shrink-0 ml-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+
+              <Link
+                href="/work/zero/technical-architecture"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-700 bg-gray-800/50 p-4 md:p-6 transition-all hover:border-terminal-gold hover:shadow-lg"
+              >
+                <div>
+                  <h4 className="text-base md:text-lg font-bold text-white group-hover:text-terminal-gold">
+                    Technical Architecture
+                  </h4>
+                  <p className="text-xs md:text-sm text-gray-400 leading-snug">
+                    Deep dive into system design, AI pipeline, and infrastructure
+                  </p>
+                </div>
+                <svg className="h-5 w-5 flex-shrink-0 ml-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+
+              <Link
+                href="/work/zero/development-timeline"
+                className="group flex items-center justify-between rounded-lg border-2 border-gray-700 bg-gray-800/50 p-4 md:p-6 transition-all hover:border-terminal-gold hover:shadow-lg"
+              >
+                <div>
+                  <h4 className="text-base md:text-lg font-bold text-white group-hover:text-terminal-gold">
+                    Development Timeline
+                  </h4>
+                  <p className="text-xs md:text-sm text-gray-400 leading-snug">
+                    From problem discovery to beta launch in 4 months
+                  </p>
+                </div>
+                <svg className="h-5 w-5 flex-shrink-0 ml-4 text-terminal-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Final CTA: Work with us */}
+      <FinalCTA />
 
       {/* Structured data for SEO */}
       <script

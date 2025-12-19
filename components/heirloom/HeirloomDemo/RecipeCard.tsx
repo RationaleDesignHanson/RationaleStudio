@@ -5,6 +5,7 @@
 
 'use client';
 
+import { useState } from 'react';
 import { EditableText } from './EditableText';
 import { Recipe, FieldChange, StickerOnCard } from './types';
 import { COLORS } from './constants';
@@ -72,16 +73,17 @@ export function RecipeCard({
 }: RecipeCardProps) {
   const hasNotes = savedMomNote || savedYourNote;
   const hasStickers = allStickers.length > 0;
+  const [showImageModal, setShowImageModal] = useState(false);
 
   return (
     <div className="card-container w-full flex justify-center" style={{ perspective: '1200px', overflow: 'visible' }}>
       <div
         className={`card-flipper ${isFlipped ? 'flipped' : ''}`}
-        style={{ marginTop: '30px', marginLeft: '30px' }}
+        style={{ marginTop: '15px', marginLeft: '15px' }}
       >
         {/* FRONT OF CARD */}
         <div
-          className="card-front bg-white p-8 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#ece6dc] rounded-xl"
+          className="card-front bg-white p-4 md:p-8 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#ece6dc] rounded-xl"
           style={{ backfaceVisibility: 'hidden' }}
         >
           {/* Generation Badge */}
@@ -113,6 +115,13 @@ export function RecipeCard({
           {imagePreview && (
             <div
               className="group"
+              onClick={(e) => {
+                e.stopPropagation();
+                // Only on mobile/touch devices
+                if (typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window)) {
+                  setShowImageModal(true);
+                }
+              }}
               style={{
                 position: 'absolute',
                 top: '-20px',
@@ -152,14 +161,14 @@ export function RecipeCard({
           )}
 
           {/* Origin Tag */}
-          <div style={{ fontSize: '11px', color: COLORS.grayText, marginBottom: '8px' }}>
+          <div style={{ fontSize: '11px', color: COLORS.grayText, marginBottom: '8px', paddingLeft: '50px' }}>
             Grandma Kay • 1987
           </div>
 
           {/* Title */}
           <h2
             className="mb-5 border-b-2 border-[#f0ebe3] pb-4"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', fontSize: '28px', color: COLORS.primaryDarkest }}
+            style={{ fontFamily: '"Playfair Display", Georgia, serif', fontSize: '28px', color: COLORS.primaryDarkest, paddingLeft: '50px' }}
           >
             <EditableText
               field="title"
@@ -353,7 +362,7 @@ export function RecipeCard({
 
         {/* BACK OF CARD */}
         <div
-          className="card-back bg-[#f5f0e6] p-8 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#e0d5c5] rounded-xl"
+          className="card-back bg-[#f5f0e6] p-4 md:p-8 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#e0d5c5] rounded-xl"
           style={{
             position: 'absolute',
             top: 0,
@@ -504,6 +513,33 @@ export function RecipeCard({
           )}
         </div>
       </div>
+
+      {/* Image Modal for Mobile */}
+      {showImageModal && imagePreview && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setShowImageModal(false)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] w-full">
+            <button
+              className="absolute -top-10 right-0 bg-white rounded-full w-10 h-10 flex items-center justify-center text-gray-800 font-bold text-xl hover:bg-gray-100 transition-colors z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowImageModal(false);
+              }}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <img
+              src={imagePreview}
+              alt="Recipe card"
+              className="max-w-full max-h-[90vh] w-auto h-auto mx-auto rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

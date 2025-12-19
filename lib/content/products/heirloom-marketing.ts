@@ -34,7 +34,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
   },
 
   problem: {
-    headline: 'The Problem: Recipe Chaos Across 6 Apps',
+    headline: 'The Problem: Recipe Chaos Across Apps',
     scenarios: [
       {
         scenario: 'You screenshot recipes from Instagram. Bookmark food blogs. Text yourself ingredient lists. Your mom emails you her lasagna recipe. Your friend sends you a Pinterest link. It\'s all scattered—phone photos, random bookmarks, sticky notes in the kitchen.'
@@ -98,12 +98,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
         metric: 'iCloud sync across devices',
         context: 'Save on your phone, cook with your iPad. Your recipes are always with you, always in sync.'
       }
-    ],
-    testimonial: {
-      quote: 'I finally have all my family recipes in one place—from my grandmother\'s handwritten cards to the pasta recipe I found on Instagram. It\'s like a digital cookbook that actually makes sense.',
-      author: 'Emily R.',
-      role: 'Home Cook'
-    }
+    ]
   },
 
   cta: {

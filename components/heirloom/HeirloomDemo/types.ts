@@ -5,12 +5,27 @@
 export type DemoStep =
   | 'upload'
   | 'processing'
+  | 'selecting'
   | 'scanned'
   | 'fork1'
   | 'fork2'
   | 'lineage';
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low';
+
+export interface BoundingBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface DetectedRecipe {
+  id: string;
+  title: string;
+  boundingBox: BoundingBox;
+  confidence: ConfidenceLevel;
+}
 
 export interface RecipeConfidence {
   title: ConfidenceLevel;

@@ -16,6 +16,7 @@ const RecipeCaptureDemo = lazy(() =>
 
 export default function PrototypeEmbed() {
   const [activeDemo, setActiveDemo] = useState<'capture' | 'shopping' | 'dinner'>('capture')
+  const [instructionsOpen, setInstructionsOpen] = useState(false)
 
   const demos = [
     { id: 'capture' as const, label: 'Recipe Capture', icon: '' },
@@ -27,35 +28,27 @@ export default function PrototypeEmbed() {
     <section id="prototype" className="bg-white py-12 md:py-16 lg:py-20 md:py-28">
       <div className="container mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-6 text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2D2D] md:text-5xl">
+        <div className="mx-auto mb-12 max-w-5xl text-center">
+          <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D]">
             Try It Yourself
           </h2>
-          <p className="text-xl text-gray-700">
-            Experience Heirloom's recipe capture, smart shopping, and dinner planning features. No download required.
-          </p>
         </div>
 
         {/* Demo Container with Binder Tabs */}
         <div className="mx-auto max-w-6xl">
           {/* Binder Tabs - Positioned above the demo */}
-          <div className="flex justify-start gap-0.5 mb-[-4px] pl-8 md:pl-12">
+          <div className="flex justify-start gap-0.5 mb-[-1px] pl-8 md:pl-12">
             {demos.map(demo => (
               <button
                 key={demo.id}
                 onClick={() => setActiveDemo(demo.id)}
                 className={`
-                  relative px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-bold transition-all
+                  relative px-3 md:px-4 py-1.5 md:py-2 text-sm md:text-base font-bold transition-all rounded-t-lg
                   ${activeDemo === demo.id
-                    ? 'bg-white text-[#E85D4D] z-10 translate-y-[4px] shadow-md'
-                    : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D] rounded-t-sm'
+                    ? 'bg-white text-[#E85D4D] z-10 border-4 border-b-0 border-[#e0d5c5]'
+                    : 'bg-gray-100/50 text-gray-500 hover:text-[#E85D4D]'
                   }
                 `}
-                style={{
-                  clipPath: activeDemo === demo.id
-                    ? 'polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%)'
-                    : 'none'
-                }}
               >
                 <span>{demo.label}</span>
                 {/* Tab hole punch effect */}
@@ -67,18 +60,18 @@ export default function PrototypeEmbed() {
           </div>
 
           {/* Demo Container */}
-          <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden relative z-0 bg-white">
+          <div className="rounded-2xl border-4 border-[#e0d5c5] shadow-2xl overflow-hidden relative z-0 bg-white">
             <div className="p-6 md:p-8 lg:p-12">
               {activeDemo === 'capture' && (
                 <Suspense fallback={
                   <div className="flex items-center justify-center py-20">
                     <div className="text-center">
                       <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E85D4D]"></div>
-                      <p className="mt-4 text-gray-600">Loading Recipe Capture...</p>
+                      <p className="mt-4 text-sm md:text-base text-gray-600">Loading Recipe Capture...</p>
                     </div>
                   </div>
                 }>
-                  <RecipeCaptureDemo className="!min-h-0 !bg-transparent !p-0" />
+                  <RecipeCaptureDemo className="!min-h-0 !bg-transparent !pt-8 !px-0 !pb-0" />
                 </Suspense>
               )}
               {activeDemo === 'shopping' && (
@@ -86,7 +79,7 @@ export default function PrototypeEmbed() {
                   <div className="flex items-center justify-center py-20">
                     <div className="text-center">
                       <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E85D4D]"></div>
-                      <p className="mt-4 text-gray-600">Loading Shopping Lab...</p>
+                      <p className="mt-4 text-sm md:text-base text-gray-600">Loading Shopping Lab...</p>
                     </div>
                   </div>
                 }>
@@ -99,19 +92,34 @@ export default function PrototypeEmbed() {
 
           {/* Instructions */}
           <div className="mt-8 rounded-xl bg-[#FBF8F3] p-6">
-            <h4 className="mb-3 font-semibold text-[#2D2D2D]">
-              How to use the demos:
-            </h4>
+            <p className="text-sm md:text-base text-[#E85D4D] mb-4 font-semibold">
+              Experience Heirloom's recipe capture, smart shopping, and dinner planning features. No download required.
+            </p>
+            <button
+              onClick={() => setInstructionsOpen(!instructionsOpen)}
+              className="flex items-center justify-between w-full mb-3 text-base md:text-lg font-semibold text-[#2D2D2D] hover:text-[#E85D4D] transition-colors"
+            >
+              <span>How to use the demos</span>
+              <svg
+                className={`w-5 h-5 transition-transform duration-200 ${instructionsOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
 
+            <div className={`overflow-hidden transition-all duration-300 ${instructionsOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
             {activeDemo === 'capture' && (
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-sm md:text-base text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
                   <span><strong>Choose a Sample Recipe:</strong> Browse 23 photographed recipe cards organized by category, or upload your own handwritten recipe photo</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">2.</span>
-                  <span><strong>Watch OCR Extraction:</strong> Claude analyzes the recipe card, extracting title, ingredients, and instructions with confidence scoring</span>
+                  <span><strong>Watch OCR Extraction:</strong> We analyze the recipe card, extract the title, ingredients, and instructions with confidence scoring</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">3.</span>
@@ -133,7 +141,7 @@ export default function PrototypeEmbed() {
             )}
 
             {activeDemo === 'shopping' && (
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-sm md:text-base text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
                   <span><strong>Browse Example Recipes:</strong> Use the category dropdown to filter through 23 curated recipes (Dinner, Breakfast, Dessert, Sides)</span>
@@ -162,7 +170,7 @@ export default function PrototypeEmbed() {
             )}
 
             {activeDemo === 'dinner' && (
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-sm md:text-base text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-[#E85D4D]">1.</span>
                   <span><strong>Select Recipes:</strong> Choose which dishes to include in your dinner party (roast, potatoes, vegetables, salad)</span>
@@ -185,6 +193,7 @@ export default function PrototypeEmbed() {
                 </li>
               </ul>
             )}
+            </div>
           </div>
         </div>
       </div>

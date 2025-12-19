@@ -194,9 +194,9 @@
                 - generic [ref=e216]: Summarization and smart replies
           - generic [ref=e217]:
             - paragraph [ref=e218]: Want to see the user experience?
-            - link "Try the Interactive Demo →" [ref=e219] [cursor=pointer]:
-              - /url: /zero
-            - paragraph [ref=e220]: Experience the swipeable card interface on our marketing page
+            - link "Try the Swipe Demo →" [ref=e219] [cursor=pointer]:
+              - /url: /products/zero
+            - paragraph [ref=e220]: Experience the swipeable card interface on our product page
       - generic [ref=e227]:
         - generic [ref=e228]: Ready to reclaim your time?
         - generic [ref=e229]: Join thousands of people reclaiming their time with AI-powered email management
@@ -311,50 +311,16 @@
             - paragraph [ref=e355]: Built for future EMG wristbands and gesture input. Swipe actions translate naturally to neural gestures. Architecture supports next-gen interfaces.
             - text: Future-ready architecture
         - paragraph [ref=e357]: "The thesis: Email requires reading prose. Wearables require glanceable data. Zero's AI extraction creates the missing layer—turning buried actions into wearable-ready cards."
-      - generic [ref=e361]:
-        - generic [ref=e362]:
-          - heading "Trusted by Thousands" [level=3] [ref=e364]
-          - generic [ref=e365]:
-            - generic [ref=e366]:
-              - generic [ref=e367]: 👥
-              - generic [ref=e368]: 10K+
-              - generic [ref=e369]: Active Users
-            - generic [ref=e370]:
-              - generic [ref=e371]: 📧
-              - generic [ref=e372]: 2M+
-              - generic [ref=e373]: Emails Processed
-            - generic [ref=e374]:
-              - generic [ref=e375]: ⏰
-              - generic [ref=e376]: 40hrs
-              - generic [ref=e377]: Saved per Month
-            - generic [ref=e378]:
-              - generic [ref=e379]: ⭐
-              - generic [ref=e380]: 95%
-              - generic [ref=e381]: Satisfaction Rate
-        - generic [ref=e383]:
-          - generic [ref=e384]:
-            - generic [ref=e385]: 👩‍💼
-            - generic [ref=e386]:
-              - generic [ref=e387]: "\"Zero cut my email time from 2 hours to 15 minutes. Game changer for productivity.\""
-              - generic [ref=e388]:
-                - generic [ref=e389]:
-                  - generic [ref=e390]: Sarah Chen
-                  - generic [ref=e391]: Product Manager @ Tech Startup
-                - generic [ref=e392]: 87% time saved
-          - generic [ref=e393]:
-            - button "View testimonial 1" [ref=e394]
-            - button "View testimonial 2" [ref=e395]
-            - button "View testimonial 3" [ref=e396]
-      - generic [ref=e399]:
-        - heading "Want to Build Products Like This?" [level=2] [ref=e400]
-        - paragraph [ref=e401]: "Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next."
-        - link "Start a Conversation" [ref=e402] [cursor=pointer]:
+      - generic [ref=e360]:
+        - heading "Want to Build Products Like This?" [level=2] [ref=e361]
+        - paragraph [ref=e362]: "Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next."
+        - link "Start a Conversation" [ref=e363] [cursor=pointer]:
           - /url: /contact
           - text: Start a Conversation
-          - img [ref=e403]
-  - contentinfo [ref=e405]:
-    - paragraph [ref=e408]: Rationale © 2025. All rights reserved.
-  - button "Open Next.js Dev Tools" [ref=e414] [cursor=pointer]:
-    - img [ref=e415]
-  - alert [ref=e418]
+          - img [ref=e364]
+  - contentinfo [ref=e366]:
+    - paragraph [ref=e369]: Rationale © 2025. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=e375] [cursor=pointer]:
+    - img [ref=e376]
+  - alert [ref=e379]
 ```
