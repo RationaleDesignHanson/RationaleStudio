@@ -39,26 +39,29 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
     expect(visibleFound).toBe(true);
   });
 
-  test('should display interactive demo component', async ({ page }) => {
+  test('should display AI classification demo section', async ({ page }) => {
     await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
-    // Wait for demo to render
+    // Wait for page to render
     await page.waitForTimeout(1000);
 
-    // Check for demo container
-    const demoContainer = page.locator('[class*="demo"], [data-testid="interactive-demo"]').first();
-    await expect(demoContainer).toBeVisible({ timeout: 10000 });
+    // Check for demo section by looking for the section ID
+    const demoSection = page.locator('#demo');
+    await expect(demoSection).toBeVisible({ timeout: 10000 });
   });
 
-  test('should display initial email card', async ({ page }) => {
+  test('should display email classification form', async ({ page }) => {
     await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
-    // Look for email card elements
-    const emailCard = page.locator('[class*="email"], [class*="card"]').first();
-    await expect(emailCard).toBeVisible({ timeout: 10000 });
+    // Look for the email classification form inputs
+    const subjectInput = page.locator('input#subject-input');
+    await expect(subjectInput).toBeVisible({ timeout: 10000 });
+
+    const fromInput = page.locator('input#from-input');
+    await expect(fromInput).toBeVisible({ timeout: 10000 });
   });
 
   test('should load within acceptable time', async ({ page }) => {
