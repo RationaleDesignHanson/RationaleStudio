@@ -15,6 +15,7 @@ import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 import { zeroMarketingContent } from '@/lib/content/products/zero-marketing';
+import InteractiveDemo from '@/components/zero/InteractiveDemo';
 
 export const metadata: Metadata = {
   title: zeroMarketingContent.seo.title,
@@ -80,13 +81,10 @@ export default function ZeroProductPage() {
             </Link>
           </div>
 
-          {/* Visual Placeholder */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="aspect-video bg-gray-800/50 border border-terminal-gold/30 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <Zap className="w-16 h-16 text-terminal-gold mx-auto mb-4" />
-                <p className="text-gray-400 text-sm">Image/Video Placeholder</p>
-              </div>
+          {/* Interactive Demo Hero */}
+          <div className="relative max-w-7xl mx-auto">
+            <div className="rounded-2xl border-4 border-terminal-gold/20 shadow-2xl overflow-hidden bg-black">
+              <InteractiveDemo />
             </div>
           </div>
         </div>
@@ -201,26 +199,6 @@ export default function ZeroProductPage() {
               </div>
             ))}
           </div>
-
-          {/* Testimonial */}
-          {content.proof.testimonial && (
-            <div className="max-w-3xl mx-auto p-8 bg-gradient-to-br from-terminal-gold/20 to-transparent border-2 border-terminal-gold rounded-lg">
-              <blockquote className="text-lg md:text-xl text-gray-200 italic mb-4">
-                "{content.proof.testimonial.quote}"
-              </blockquote>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-terminal-gold/20 flex items-center justify-center">
-                  <span className="text-terminal-gold font-bold text-xl">
-                    {content.proof.testimonial.author.charAt(0)}
-                  </span>
-                </div>
-                <div>
-                  <div className="font-semibold text-white">{content.proof.testimonial.author}</div>
-                  <div className="text-sm text-gray-400">{content.proof.testimonial.role}</div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

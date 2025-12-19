@@ -1,0 +1,360 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - 'link "Rationale: Your Product Design Company" [ref=e6] [cursor=pointer]':
+        - /url: /
+        - generic [ref=e7]: "Rationale:"
+        - generic [ref=e8]: Your Product Design Company
+      - navigation [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "Work" [ref=e11] [cursor=pointer]:
+          - /url: /work
+        - link "Thinking" [ref=e12] [cursor=pointer]:
+          - /url: /thinking
+        - link "How We Work" [ref=e13] [cursor=pointer]:
+          - /url: /how-we-work
+        - link "About" [ref=e14] [cursor=pointer]:
+          - /url: /about
+        - link "Clients" [ref=e15] [cursor=pointer]:
+          - /url: /clients/login
+        - link "Contact" [ref=e16] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e17]:
+    - main [ref=e18]:
+      - generic [ref=e22]:
+        - img "Zero App - AI Email Intelligence" [ref=e24]
+        - generic [ref=e25]:
+          - 'heading "Zero: AI Email Intelligence" [level=1] [ref=e27]'
+          - paragraph [ref=e28]: "Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards."
+          - generic [ref=e29]:
+            - button "Join Beta" [ref=e30]
+            - button "Try Interactive Demo" [ref=e31]:
+              - text: Try Interactive Demo
+              - img [ref=e32]
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]: Z
+          - heading "At a Glance" [level=3] [ref=e40]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: Platform
+              - generic [ref=e45]: iOS 17+
+              - generic [ref=e46]: Native SwiftUI
+              - generic [ref=e47]: Cloud backend integration
+            - generic [ref=e48]:
+              - generic [ref=e49]: AI Power
+              - generic [ref=e50]: 43 / 168
+              - generic [ref=e51]: Intents / Actions
+              - generic [ref=e52]: 159 actions + 9 compound
+              - generic [ref=e53]: Claude 3.5 Sonnet
+            - generic [ref=e54]:
+              - generic [ref=e55]: Status
+              - generic [ref=e56]: Beta
+              - generic [ref=e57]: Available now
+              - generic [ref=e58]: Gmail OAuth ready
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - text: "The Challenge:"
+              - generic [ref=e61]: Your inbox is full of hidden work. Bills due tomorrow, packages arriving today, forms to sign—buried in 47 emails you have to manually decode.
+            - generic [ref=e62]:
+              - text: "The Solution:"
+              - generic [ref=e63]: AI-powered email intelligence that automatically extracts actions and presents them as swipeable cards. Swipe right to complete, left to archive, down to snooze. No reading. Just acting.
+            - generic [ref=e64]:
+              - text: "The Approach:"
+              - generic [ref=e65]: Built with native iOS (SwiftUI) and cloud backend (FastAPI + PostgreSQL). Claude 3.5 Sonnet classifies emails into 43 intent categories and extracts entities (tracking numbers, due dates, amounts). Gmail OAuth provides secure, read-only access.
+          - generic [ref=e66]:
+            - heading "Key Capabilities" [level=4] [ref=e67]
+            - generic [ref=e68]:
+              - generic [ref=e70]:
+                - strong [ref=e71]: "Swipe Interface:"
+                - text: Card-based triage makes email actions immediate—swipe right to pay bills, RSVP to events, track packages
+              - generic [ref=e73]:
+                - strong [ref=e74]: "AI Classification:"
+                - text: 43 intent categories automatically identify bills, packages, RSVPs, forms, subscriptions, and more
+              - generic [ref=e76]:
+                - strong [ref=e77]: "Entity Extraction:"
+                - text: Pulls tracking numbers, due dates, amounts, event details—surfaced instantly without opening emails
+              - generic [ref=e79]:
+                - strong [ref=e80]: "Gmail Integration:"
+                - text: OAuth 2.0 secure authentication with read-only permissions. No email content stored.
+              - generic [ref=e82]:
+                - strong [ref=e83]: "Native iOS Actions:"
+                - text: Add to Calendar, Save to Contacts, Add to Wallet—device integrations that work offline
+              - generic [ref=e85]:
+                - strong [ref=e86]: "Cloud Architecture:"
+                - text: 10 microservices on Google Cloud Run with async job queue handle classification at scale
+          - paragraph [ref=e88]: "Try It Now: Zero's interactive demos below let you experience the swipe interface and AI classification in action. No email connection required—see how Zero extracts actions from real email examples."
+      - generic [ref=e91]:
+        - heading "The Challenge" [level=2] [ref=e92]
+        - paragraph [ref=e93]: Your inbox is full of hidden work that requires manual decoding.
+        - generic [ref=e94]:
+          - paragraph [ref=e95]: "You get 47 emails today. Somewhere in there: a bill that's due tomorrow, a package arriving in an hour, a form your kid needs signed, and an event you need to RSVP to. But to find them, you have to read everything."
+          - paragraph [ref=e96]: Email tools organize your inbox. They don't extract what matters. You still have to open each email, scan for actions, then context-switch to pay the bill or track the package. Your inbox is a todo list you have to manually decode.
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - generic [ref=e99]: •
+              - generic [ref=e100]: "Hidden Actions: Bills, RSVPs, tracking numbers buried in prose"
+            - listitem [ref=e101]:
+              - generic [ref=e102]: •
+              - generic [ref=e103]: "Context Switching: Jump between inbox and external sites to complete tasks"
+            - listitem [ref=e104]:
+              - generic [ref=e105]: •
+              - generic [ref=e106]: "Manual Triage: Read every email to identify what needs action"
+            - listitem [ref=e107]:
+              - generic [ref=e108]: •
+              - generic [ref=e109]: "Notification Blindness: Your watch buzzes 47 times a day, but which notification is the urgent bill vs. another promo email?"
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - 'heading "Email Management: Before vs After" [level=3] [ref=e116]'
+          - paragraph [ref=e117]: See how Zero transforms your inbox workflow
+        - generic [ref=e118]:
+          - button "❌ Before Zero" [ref=e119]
+          - button "✅ With Zero" [ref=e120]
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e124]: ⏱️
+            - generic [ref=e125]:
+              - generic [ref=e126]: Time per Email
+              - generic [ref=e127]: 45s
+          - generic [ref=e129]:
+            - generic [ref=e130]: 🧠
+            - generic [ref=e131]:
+              - generic [ref=e132]: Cognitive Load
+              - generic [ref=e133]: High
+          - generic [ref=e135]:
+            - generic [ref=e136]: 🤔
+            - generic [ref=e137]:
+              - generic [ref=e138]: Decisions per Email
+              - generic [ref=e139]: "8"
+          - generic [ref=e141]:
+            - generic [ref=e142]: 😰
+            - generic [ref=e143]:
+              - generic [ref=e144]: Stress Level
+              - generic [ref=e145]: 😰 High
+          - generic [ref=e147]:
+            - generic [ref=e148]: 📅
+            - generic [ref=e149]:
+              - generic [ref=e150]: Daily Time Spent
+              - generic [ref=e151]: ~2 hours
+      - generic [ref=e154]:
+        - generic [ref=e155]:
+          - heading "AI Classification Demo" [level=2] [ref=e156]
+          - paragraph [ref=e157]: "See how Zero's AI pipeline processes emails in real-time: intent classification, entity extraction, and action routing."
+        - generic [ref=e158]:
+          - generic [ref=e163]:
+            - button "Generate Random Email" [ref=e165]
+            - generic [ref=e166]:
+              - heading "Email Details" [level=3] [ref=e167]
+              - generic [ref=e168]:
+                - generic [ref=e169]: Subject
+                - textbox "Subject" [ref=e170]:
+                  - /placeholder: e.g., Field Trip Permission Form - Please Sign
+              - generic [ref=e171]:
+                - generic [ref=e172]: From
+                - textbox "From" [ref=e173]:
+                  - /placeholder: e.g., Mrs. Johnson <teacher@school.edu>
+              - generic [ref=e174]:
+                - generic [ref=e175]: Body
+                - textbox "Body" [ref=e176]:
+                  - /placeholder: Enter email body text...
+              - button "Analyze Email" [disabled] [ref=e177]
+          - generic [ref=e178]:
+            - heading "How to use the demo:" [level=4] [ref=e179]
+            - list [ref=e180]:
+              - listitem [ref=e181]:
+                - generic [ref=e182]: "1."
+                - generic [ref=e183]: Test email classification with the golden corpus or paste your own examples
+              - listitem [ref=e184]:
+                - generic [ref=e185]: "2."
+                - generic [ref=e186]: Watch Zero extract entities (tracking numbers, dates, amounts)
+              - listitem [ref=e187]:
+                - generic [ref=e188]: "3."
+                - generic [ref=e189]: See how the AI identifies intent and generates response flows
+              - listitem [ref=e190]:
+                - generic [ref=e191]: "4."
+                - generic [ref=e192]: "Observe the 4-step pipeline: Classification → Entity Extraction → Action Routing → Modal Flow Analysis"
+          - generic [ref=e193]:
+            - heading "What the Production App Adds" [level=3] [ref=e194]
+            - paragraph [ref=e195]: The production app extends the prototype with real-world integrations, scalable architecture, and native iOS capabilities.
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - generic [ref=e200]: Real Gmail integration (OAuth 2.0)
+                - generic [ref=e203]: AI classification (43 intent categories)
+                - generic [ref=e206]: "Entity extraction (tracking #s, dates, amounts)"
+              - generic [ref=e207]:
+                - generic [ref=e210]: Native device actions (Calendar, Contacts, Wallet)
+                - generic [ref=e213]: 10-service backend architecture
+                - generic [ref=e216]: Summarization and smart replies
+          - generic [ref=e217]:
+            - paragraph [ref=e218]: Want to see the user experience?
+            - link "Try the Interactive Demo →" [ref=e219] [cursor=pointer]:
+              - /url: /zero
+            - paragraph [ref=e220]: Experience the swipeable card interface on our marketing page
+      - generic [ref=e227]:
+        - generic [ref=e228]: Ready to reclaim your time?
+        - generic [ref=e229]: Join thousands of people reclaiming their time with AI-powered email management
+        - button "Join the Waitlist" [ref=e230]:
+          - text: Join the Waitlist
+          - img [ref=e231]
+      - generic [ref=e235]:
+        - heading "Our Approach" [level=2] [ref=e236]
+        - paragraph [ref=e237]: AI reads your emails and extracts actions automatically.
+        - generic [ref=e238]:
+          - generic [ref=e239]:
+            - heading "Action-First" [level=3] [ref=e240]
+            - paragraph [ref=e241]: Zero doesn't organize emails—it extracts the actions that matter. RSVP to events. Track packages. Pay bills. Sign forms. All in swipeable cards.
+          - generic [ref=e242]:
+            - heading "AI Classification" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Claude 3.5 analyzes email content and classifies into 43 intent categories. Extracts entities (tracking numbers, dates, amounts) and generates action flows.
+          - generic [ref=e245]:
+            - heading "Native iOS" [level=3] [ref=e246]
+            - paragraph [ref=e247]: Native SwiftUI app with device integrations. Add to Calendar. Save to Contacts. Add to Wallet. Works offline with synced data.
+        - paragraph [ref=e249]: AI-powered email intelligence that automatically extracts actions and presents them as swipeable cards. Swipe right to complete, left to archive, down to snooze. No reading. Just actioning.
+      - generic [ref=e252]:
+        - heading "Key Features" [level=2] [ref=e253]
+        - paragraph [ref=e254]: Production-ready capabilities built for real-world email workflows
+        - generic [ref=e255]:
+          - generic [ref=e256]:
+            - heading "Gmail Integration" [level=3] [ref=e257]
+            - paragraph [ref=e258]: OAuth 2.0 authentication with read-only access. Secure token management and automatic refresh.
+          - generic [ref=e259]:
+            - heading "AI Classification" [level=3] [ref=e260]
+            - paragraph [ref=e261]: 43 intent categories powered by Claude 3.5. Identifies bills, packages, RSVPs, forms, and more.
+          - generic [ref=e262]:
+            - heading "Entity Extraction" [level=3] [ref=e263]
+            - paragraph [ref=e264]: Automatically extracts tracking numbers, due dates, amounts, event details, and actionable data.
+          - generic [ref=e265]:
+            - heading "Native iOS" [level=3] [ref=e266]
+            - paragraph [ref=e267]: SwiftUI app with device integrations. Add to Calendar, Save to Contacts, Add to Wallet.
+          - generic [ref=e268]:
+            - heading "Cloud Backend" [level=3] [ref=e269]
+            - paragraph [ref=e270]: 10 microservices on Google Cloud Run. FastAPI, PostgreSQL, async job queue, scalable architecture.
+          - generic [ref=e271]:
+            - heading "Security First" [level=3] [ref=e272]
+            - paragraph [ref=e273]: Encrypted OAuth tokens, read-only email access, no content storage. Privacy-focused design.
+      - generic [ref=e276]:
+        - heading "How Zero Works" [level=2] [ref=e277]
+        - paragraph [ref=e278]: Scalable architecture built with proven technologies
+        - generic [ref=e280]:
+          - generic [ref=e281]: Data flow through the system
+          - generic [ref=e282]:
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - heading "Gmail" [level=3] [ref=e285]
+                - generic [ref=e286]: OAuth 2.0
+                - generic [ref=e287]:
+                  - generic [ref=e288]: Real inbox
+                  - generic [ref=e289]: Read-only
+              - img [ref=e291]
+              - generic [ref=e293]:
+                - heading "Backend" [level=3] [ref=e294]
+                - generic [ref=e295]: Python/FastAPI
+                - generic [ref=e296]:
+                  - generic [ref=e297]: Queue mgmt
+                  - generic [ref=e298]: Security
+              - img [ref=e300]
+              - generic [ref=e302]:
+                - heading "AI Layer" [level=3] [ref=e303]
+                - generic [ref=e304]: Claude 3.5
+                - generic [ref=e305]:
+                  - generic [ref=e306]: 43 intents
+                  - generic [ref=e307]: Actions
+              - img [ref=e309]
+              - generic [ref=e311]:
+                - heading "Supabase" [level=3] [ref=e312]
+                - generic [ref=e313]: PostgreSQL
+                - generic [ref=e314]:
+                  - generic [ref=e315]: Results
+                  - generic [ref=e316]: History
+              - img [ref=e318]
+              - generic [ref=e320]:
+                - heading "Frontend" [level=3] [ref=e321]
+                - generic [ref=e322]: Next.js/React
+                - generic [ref=e323]:
+                  - generic [ref=e324]: Dashboard
+                  - generic [ref=e325]: Insights
+            - generic [ref=e326]:
+              - generic [ref=e327]:
+                - heading "Security First" [level=4] [ref=e328]
+                - paragraph [ref=e329]: OAuth tokens encrypted, read-only access, no email content stored
+              - generic [ref=e330]:
+                - heading "Async Processing" [level=4] [ref=e331]
+                - paragraph [ref=e332]: Background job queue handles classification without blocking UI
+              - generic [ref=e333]:
+                - heading "Scalable Design" [level=4] [ref=e334]
+                - paragraph [ref=e335]: Serverless architecture ready for 10k+ users
+      - generic [ref=e338]:
+        - generic [ref=e340]: Q1 2025 Roadmap
+        - heading "Designed for Wearables" [level=2] [ref=e341]
+        - paragraph [ref=e342]: Zero's action cards are built for glanceable interfaces. We're exploring how AI-extracted actions work on wrist, glasses, and future input devices.
+        - generic [ref=e343]:
+          - generic [ref=e344]:
+            - generic [ref=e345]: ⌚
+            - heading "Apple Watch" [level=3] [ref=e346]
+            - paragraph [ref=e347]: "Action cards on your wrist: bill amount, package ETA, RSVP deadline. Hypothesis: glanceable format reduces phone pulls for quick email actions."
+            - text: In development
+          - generic [ref=e348]:
+            - generic [ref=e349]: 👓
+            - heading "Smart Glasses" [level=3] [ref=e350]
+            - paragraph [ref=e351]: Exploring Meta Ray-Ban and monocular displays. Voice-triggered actions, heads-up notifications while walking. Cards map well to limited display real estate.
+            - text: Q1 2025 exploration
+          - generic [ref=e352]:
+            - generic [ref=e353]: 🧠
+            - heading "Neural Input" [level=3] [ref=e354]
+            - paragraph [ref=e355]: Built for future EMG wristbands and gesture input. Swipe actions translate naturally to neural gestures. Architecture supports next-gen interfaces.
+            - text: Future-ready architecture
+        - paragraph [ref=e357]: "The thesis: Email requires reading prose. Wearables require glanceable data. Zero's AI extraction creates the missing layer—turning buried actions into wearable-ready cards."
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - heading "Trusted by Thousands" [level=3] [ref=e364]
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: 👥
+              - generic [ref=e368]: 10K+
+              - generic [ref=e369]: Active Users
+            - generic [ref=e370]:
+              - generic [ref=e371]: 📧
+              - generic [ref=e372]: 2M+
+              - generic [ref=e373]: Emails Processed
+            - generic [ref=e374]:
+              - generic [ref=e375]: ⏰
+              - generic [ref=e376]: 40hrs
+              - generic [ref=e377]: Saved per Month
+            - generic [ref=e378]:
+              - generic [ref=e379]: ⭐
+              - generic [ref=e380]: 95%
+              - generic [ref=e381]: Satisfaction Rate
+        - generic [ref=e383]:
+          - generic [ref=e384]:
+            - generic [ref=e385]: 👩‍💼
+            - generic [ref=e386]:
+              - generic [ref=e387]: "\"Zero cut my email time from 2 hours to 15 minutes. Game changer for productivity.\""
+              - generic [ref=e388]:
+                - generic [ref=e389]:
+                  - generic [ref=e390]: Sarah Chen
+                  - generic [ref=e391]: Product Manager @ Tech Startup
+                - generic [ref=e392]: 87% time saved
+          - generic [ref=e393]:
+            - button "View testimonial 1" [ref=e394]
+            - button "View testimonial 2" [ref=e395]
+            - button "View testimonial 3" [ref=e396]
+      - generic [ref=e399]:
+        - heading "Want to Build Products Like This?" [level=2] [ref=e400]
+        - paragraph [ref=e401]: "Zero demonstrates Rationale's execution capability: fast iteration meets technical excellence. Let's build your product next."
+        - link "Start a Conversation" [ref=e402] [cursor=pointer]:
+          - /url: /contact
+          - text: Start a Conversation
+          - img [ref=e403]
+  - contentinfo [ref=e405]:
+    - paragraph [ref=e408]: Rationale © 2025. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=e414] [cursor=pointer]:
+    - img [ref=e415]
+  - alert [ref=e418]
+```

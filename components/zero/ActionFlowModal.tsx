@@ -305,6 +305,7 @@ const STEP_DURATION = 3000; // 3 seconds per step
 export default function ActionFlowModal({ action, onClose }: ActionFlowModalProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   // Memoize flow to prevent recreation on every render
   const flow = useMemo(
@@ -313,22 +314,46 @@ export default function ActionFlowModal({ action, onClose }: ActionFlowModalProp
     [action.actionId, JSON.stringify(action.context)]
   );
 
+  // Manual navigation handlers
+  const handleNext = () => {
+    if (flow && currentStep < flow.steps.length - 1) {
+      setIsAutoPlaying(false);
+      setCurrentStep(currentStep + 1);
+    } else if (currentStep === flow!.steps.length - 1) {
+      onClose();
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentStep > 0) {
+      setIsAutoPlaying(false);
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleSkip = () => {
+    if (flow) {
+      setIsAutoPlaying(false);
+      setCurrentStep(flow.steps.length - 1);
+    }
+  };
+
   useEffect(() => {
     // Reset progress when step changes
     setProgress(0);
 
-    // Auto-advance through steps
-    if (flow && currentStep < flow.steps.length - 1) {
+    // Auto-advance through steps only if auto-playing
+    if (isAutoPlaying && flow && currentStep < flow.steps.length - 1) {
       const timer = setTimeout(() => {
         setCurrentStep(currentStep + 1);
       }, STEP_DURATION);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, flow]);
+  }, [currentStep, flow, isAutoPlaying]);
 
   useEffect(() => {
-    // Animate progress bar
-    if (flow && currentStep < flow.steps.length - 1) {
+    // Animate progress bar only when auto-playing
+    if (isAutoPlaying && flow && currentStep < flow.steps.length - 1) {
       const startTime = Date.now();
       const interval = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -336,11 +361,11 @@ export default function ActionFlowModal({ action, onClose }: ActionFlowModalProp
         setProgress(newProgress);
       }, 16); // ~60fps
       return () => clearInterval(interval);
-    } else {
+    } else if (currentStep === flow!.steps.length - 1) {
       // Last step - fill to 100%
       setProgress(100);
     }
-  }, [currentStep, flow]);
+  }, [currentStep, flow, isAutoPlaying]);
 
   if (!flow) return null;
 
@@ -364,13 +389,30 @@ export default function ActionFlowModal({ action, onClose }: ActionFlowModalProp
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-extrabold text-white">{flow.title}</h2>
-            <button
-              onClick={onClose}
-              className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-white text-lg flex items-center justify-center hover:bg-white/20 transition-all"
-            >
-              ×
-            </button>
+            <div className="flex items-center gap-3">
+              <h2 className="text-xl font-extrabold text-white">{flow.title}</h2>
+              <span className="text-xs text-white/50 px-2 py-1 bg-white/10 rounded-full">
+                {currentStep + 1} of {flow.steps.length}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              {/* Skip button - only show if not on last step */}
+              {currentStep < flow.steps.length - 1 && (
+                <button
+                  onClick={handleSkip}
+                  className="px-3 py-1.5 text-xs font-semibold text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                >
+                  Skip
+                </button>
+              )}
+              <button
+                onClick={onClose}
+                className="w-7 h-7 rounded-full bg-white/10 border border-white/20 text-white text-lg flex items-center justify-center hover:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+            </div>
           </div>
 
           {/* Progress Steps - Instagram style */}
@@ -412,17 +454,52 @@ export default function ActionFlowModal({ action, onClose }: ActionFlowModalProp
             </motion.div>
           </AnimatePresence>
 
-          {/* Continue Button (on last step) */}
-          {currentStep === flow.steps.length - 1 && (
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              onClick={onClose}
-              className="mt-4 w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2.5 rounded-xl transition-colors"
+          {/* Navigation Controls */}
+          <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+            {/* Previous Button */}
+            <button
+              onClick={handlePrev}
+              disabled={currentStep === 0}
+              className="flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+              aria-label="Previous step"
             >
-              Done
-            </motion.button>
-          )}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+              Prev
+            </button>
+
+            {/* Auto-play indicator */}
+            {isAutoPlaying && currentStep < flow.steps.length - 1 && (
+              <div className="text-xs text-white/50 flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse" />
+                Auto-playing
+              </div>
+            )}
+
+            {/* Next/Done Button */}
+            <button
+              onClick={handleNext}
+              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold rounded-xl transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
+              aria-label={currentStep === flow.steps.length - 1 ? 'Done' : 'Next step'}
+            >
+              {currentStep === flow.steps.length - 1 ? (
+                <>
+                  Done
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  Next
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                  </svg>
+                </>
+              )}
+            </button>
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>

@@ -98,7 +98,7 @@ export default function HomePage() {
             {/* Row 1: Zero and Heirloom */}
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-10 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <Link href="/work/zero" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-terminal-gold/30 md:border-terminal-gold/40 rounded-lg hover:border-terminal-gold/50 md:hover:border-terminal-gold/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <Link href="/work" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-terminal-gold/30 md:border-terminal-gold/40 rounded-lg hover:border-terminal-gold/50 md:hover:border-terminal-gold/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col md:space-y-6">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
@@ -147,7 +147,7 @@ export default function HomePage() {
               </Link>
 
               {/* Heirloom - Beta/Dogfooding */}
-              <Link href="/work/heirloom" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <Link href="/work" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
                 <div className="flex flex-col md:space-y-6">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
@@ -198,7 +198,7 @@ export default function HomePage() {
 
             {/* Row 2: Pipeline (Full Width matching Zero + Heirloom) */}
             <div className="px-4 sm:px-0">
-              <Link href="/contact" className="block w-full p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
+              <Link href="/work" className="block w-full p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
               <div className="flex flex-col md:space-y-6">
                 {/* Icon, Title, and Badge Row */}
                 <div className="flex items-center gap-3 mb-3">

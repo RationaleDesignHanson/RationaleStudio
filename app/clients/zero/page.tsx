@@ -62,13 +62,13 @@ export default function ZeroPage() {
       </Section>
 
       {/* Demo Preview */}
-      <Section spacing="large" background="muted">
-        <div className="relative">
+      <Section spacing="large" background="muted" allowOverflow={true}>
+        <div className="relative overflow-visible">
           {/* Starfield Background */}
           <StarfieldBackground />
 
-          <Container>
-            <div className="max-w-4xl mx-auto" style={{ paddingTop: '40px', paddingBottom: '120px' }}>
+          <Container className="overflow-visible">
+            <div className="max-w-4xl mx-auto overflow-visible" style={{ paddingTop: '40px', paddingBottom: '120px' }}>
               <div className="text-center mb-8 sm:mb-12">
                 <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
                   Try it yourself

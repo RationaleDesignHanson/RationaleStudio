@@ -10,7 +10,33 @@ export const sampleEmails: Email[] = [
     from: 'Amazin\' Deliveries',
     initial: 'A',
     subject: 'Package Shipped - Arriving Tomorrow',
-    preview: 'Your order has shipped and is arriving tomorrow by 8 PM. Track with You\'re Probably Shipped.',
+    preview: `Hello,
+
+Great news! Your order has shipped and is on its way to you.
+
+━━━━━━━━━━━━━━━━━━━━━━
+ORDER DETAILS
+━━━━━━━━━━━━━━━━━━━━━━
+
+Order Number: #1234567
+Tracking Number: 1Z999AA10123456784
+Carrier: You're Probably Shipped (UPS)
+Estimated Delivery: Tomorrow by 8:00 PM
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+Track your package in real-time:
+https://www.ups.com/track?tracknum=1Z999AA10123456784
+
+Your package will be delivered to your doorstep. No signature required.
+
+Questions? Visit our Help Center or reply to this email.
+
+Thank you for shopping with us!
+
+Amazin' Deliveries Team
+Customer Service: 1-800-DELIVER
+www.amazindeliveries.com`,
     intent: 'e-commerce.shipping.notification',
     intentConfidence: 1.0,
     timeAgo: '30m ago',
@@ -54,14 +80,48 @@ export const sampleEmails: Email[] = [
       carrier: 'You\'re Probably Shipped',
       estimatedDelivery: 'Tomorrow by 8 PM'
     },
-    productImageUrl: 'https://picsum.photos/seed/package/400/240',
-    threadCount: 3
+    productImageUrl: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=240&fit=crop',
+    threadCount: 3,
+    recipients: ['me']
   },
   {
     from: 'Mrs. Johnson',
     initial: 'J',
     subject: 'Field Trip Permission Form - Science Museum',
-    preview: 'Emma\'s 3rd grade class is visiting the Science Museum on Oct 28. $25 fee due by Oct 24.',
+    preview: `Dear Parents and Guardians,
+
+I'm excited to announce that Emma's 3rd grade class will be taking a field trip to the Science Museum on October 28, 2025!
+
+FIELD TRIP DETAILS:
+───────────────────
+Date: October 28, 2025
+Destination: Science Museum
+Departure: 8:30 AM (please arrive by 8:15 AM)
+Return: 2:30 PM
+Activities: Dinosaur exhibit & planetarium show
+
+WHAT YOU NEED TO DO:
+───────────────────
+✓ Sign the attached permission form
+✓ Pay $25 field trip fee
+✓ Deadline: October 24, 2025
+
+Payment can be made online through the school portal or by check made out to "Lincoln Elementary School."
+
+Students should bring:
+• Packed lunch (nut-free please)
+• Water bottle
+• Comfortable walking shoes
+
+This will be an amazing educational experience! The museum has hands-on exhibits and we'll be seeing a special presentation on space exploration in the planetarium.
+
+Please email me if you have any questions or concerns.
+
+Thank you!
+Mrs. Johnson
+3rd Grade Teacher
+Lincoln Elementary School
+mjohnson@lincolnelementary.edu`,
     intent: 'education.permission.form',
     intentConfidence: 1.0,
     timeAgo: '2h ago',
@@ -124,13 +184,50 @@ export const sampleEmails: Email[] = [
       paymentAmount: 25.00,
       requiresSignature: true
     },
-    threadCount: 5
+    threadCount: 5,
+    recipients: ['me', 'spouse@email.com']
   },
   {
     from: 'Best... Buy Now!',
     initial: 'B',
     subject: 'Sound Innovation WH-1000XM5 Headphones',
-    preview: 'FLASH SALE: 30% off premium noise-cancelling headphones. Save $120 - today only!',
+    preview: `🔥 FLASH SALE - TODAY ONLY! 🔥
+
+Save BIG on Premium Audio
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOUND INNOVATION WH-1000XM5
+Wireless Noise-Cancelling Headphones
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Regular Price: $399.99
+FLASH SALE: $279.99
+YOUR SAVINGS: $120.00 (30% OFF)
+
+⏰ ENDS TONIGHT AT 11:59 PM ⏰
+
+FEATURES:
+▸ Industry-leading noise cancellation
+▸ 30-hour battery life
+▸ LDAC high-resolution audio
+▸ Multi-point connectivity
+▸ Premium comfort design
+
+✓ Free 2-day shipping
+✓ 30-day returns
+✓ 1-year manufacturer warranty
+
+[CLAIM DEAL NOW]
+👉 https://www.bestbuy.com/site/sony-wh-1000xm5
+
+Limited stock available. This flash sale won't last!
+
+Questions? Live chat available 24/7.
+
+Best... Buy Now! Electronics
+1-800-BUY-BEST | www.bestbuynow.com
+
+Unsubscribe | Manage Preferences`,
     intent: 'e-commerce.promotional.deal',
     intentConfidence: 0.95,
     timeAgo: '1h ago',
@@ -193,13 +290,53 @@ export const sampleEmails: Email[] = [
       urgent: true,
       expiresIn: '6 hours'
     },
-    productImageUrl: 'https://picsum.photos/seed/headphones/400/240'
+    productImageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=240&fit=crop',
+    recipients: ['me', 'family@email.com', 'friend1@email.com', 'friend2@email.com']
   },
   {
     from: 'Bullseye Bargains',
     initial: 'B',
     subject: 'Extra 20% Off - Code: SAVE20',
-    preview: 'Flash sale! Extra 20% off everything with code SAVE20. Ends tonight at midnight.',
+    preview: `⚡ FLASH SALE ALERT ⚡
+
+Extra 20% Off EVERYTHING
+
+Yes, you read that right. Stack your savings!
+
+┏━━━━━━━━━━━━━━━━━━━━━━━┓
+┃   USE CODE: SAVE20    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Extra 20% off already-reduced clearance items
+Valid on ALL departments:
+• Home & Furniture
+• Clothing & Accessories
+• Electronics & Tech
+• Kids & Baby
+• Beauty & Personal Care
+
+⏰ ENDS TONIGHT AT MIDNIGHT ⏰
+
+HOW IT WORKS:
+1. Shop online or in-store
+2. Add code SAVE20 at checkout
+3. Watch your savings grow!
+
+Already on sale? Add another 20% off!
+Clearance item? Add another 20% off!
+
+This is our biggest discount of the season.
+
+[SHOP NOW]
+👉 https://www.target.com?promo=SAVE20
+
+Store Hours: 8 AM - 10 PM daily
+
+Bullseye Bargains
+Making your dollar go further
+1-800-TARGET | www.target.com
+
+Exclusions apply. See website for details.`,
     intent: 'marketing.promo-code.offer',
     intentConfidence: 0.98,
     timeAgo: '3h ago',
@@ -246,13 +383,56 @@ export const sampleEmails: Email[] = [
       expiresIn: 'Tonight',
       urgent: true
     },
-    productImageUrl: 'https://picsum.photos/seed/target/400/240'
+    productImageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=240&fit=crop'
   },
   {
     from: 'Real Exciting Items',
     initial: 'R',
     subject: 'Complete Your Order - 3 Items Waiting',
-    preview: 'Your trail runners, water bottle, and yoga mat are waiting. Cart total: $156.97',
+    preview: `You left something behind...
+
+Hi there,
+
+We noticed you were shopping with us earlier and left a few items in your cart. We've saved them for you!
+
+YOUR CART ITEMS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Trail Running Shoes - Men's Size 10
+   Color: Forest Green/Black
+   $89.99
+
+2. Insulated Water Bottle - 32oz
+   Color: Ocean Blue
+   $29.99
+
+3. Premium Yoga Mat - 5mm
+   Color: Purple
+   $36.99
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CART TOTAL: $156.97
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Free shipping on orders over $50
+✓ 100% satisfaction guarantee
+✓ 30-day returns on all items
+✓ REI Co-op member? Get 10% back in rewards!
+
+Your cart is saved for 7 days, but these popular items sell out fast!
+
+[COMPLETE YOUR PURCHASE]
+👉 https://www.rei.com/cart/checkout
+
+Still deciding? Read reviews from fellow adventurers or contact our Gear Experts for personalized recommendations.
+
+Happy trails!
+The Real Exciting Items Team
+
+Real Exciting Items (REI)
+1-800-426-4840 | www.rei.com
+
+Not interested? Remove items from cart`,
     intent: 'e-commerce.cart.abandoned',
     intentConfidence: 0.93,
     timeAgo: '4h ago',
@@ -311,13 +491,58 @@ export const sampleEmails: Email[] = [
       cartTotal: 156.97,
       itemCount: 3
     },
-    productImageUrl: 'https://picsum.photos/seed/rei/400/240'
+    productImageUrl: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=240&fit=crop'
   },
   {
     from: 'Art Vanguard Gallery',
     initial: 'A',
     subject: 'James Jean - Sculpture and print duo',
-    preview: 'Limited edition Sun Tarot Nebula collection drops Oct 31. One week only - 500 pieces.',
+    preview: `JAMES JEAN × ART VANGUARD GALLERY
+
+Limited Edition Release Announcement
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SUN TAROT NEBULA
+Sculpture & Print Duo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+We're thrilled to announce an exclusive collaboration with visionary artist James Jean.
+
+DROP DATE: October 31, 2025
+RELEASE TIME: 10:00 AM PST
+EDITION SIZE: 500 pieces worldwide
+AVAILABILITY: One week only
+
+THE COLLECTION:
+───────────────
+
+▸ Hand-painted resin sculpture (8" tall)
+▸ Signed & numbered archival print (18" × 24")
+▸ Certificate of authenticity
+▸ Custom magnetic presentation box
+
+James Jean's signature ethereal style meets cosmic mysticism in this stunning interpretation of the Sun Tarot card. Each piece features luminous nebula effects achieved through his pioneering mixed-media technique.
+
+COLLECTOR INFORMATION:
+───────────────
+
+• Expected retail: $500 USD
+• Limit: 2 per customer
+• Shipping: Ships within 4-6 weeks
+• Payment plans available
+
+This will sell out. Set your alarm.
+
+[NOTIFY ME]
+Get SMS alert when the drop goes live
+👉 https://artvanguardgallery.com/james-jean-sun-tarot
+
+Follow @artvanguardgallery for preview images dropping this week.
+
+ART VANGUARD GALLERY
+Contemporary & Limited Edition Art
+Los Angeles, CA
+info@artvanguardgallery.com`,
     intent: 'shopping.future_sale',
     intentConfidence: 1.0,
     timeAgo: '2h ago',
@@ -368,13 +593,73 @@ export const sampleEmails: Email[] = [
       urgent: true,
       expiresIn: 'One week only'
     },
-    productImageUrl: 'https://picsum.photos/seed/art/400/240'
+    productImageUrl: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=240&fit=crop'
   },
   {
     from: 'Peak Performance Corp',
     initial: 'P',
     subject: 'Invoice Due - $599.00',
-    preview: 'Invoice #INV-2025-1234 is due on Oct 30. Professional services for September.',
+    preview: `INVOICE
+
+Peak Performance Corp
+123 Business Plaza, Suite 500
+San Francisco, CA 94105
+billing@peakperformancecorp.com
+(415) 555-0100
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Invoice Number: INV-2025-1234
+Invoice Date: October 1, 2025
+Due Date: October 30, 2025
+
+Bill To:
+Your Company Name
+Attn: Accounts Payable
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DESCRIPTION OF SERVICES
+
+Professional Services - September 2025
+
+• Strategic consulting (40 hours @ $120/hr)
+• Project management oversight
+• Technical implementation support
+• Quarterly business review preparation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AMOUNT DUE: $599.00
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PAYMENT INSTRUCTIONS:
+
+Online Payment (Preferred):
+👉 https://pay.peakperformancecorp.com/INV-2025-1234
+
+Accepted Methods:
+✓ ACH Bank Transfer (no fee)
+✓ Credit Card (2.9% processing fee applies)
+✓ Wire Transfer
+
+Mail Check To:
+Peak Performance Corp
+PO Box 12345
+San Francisco, CA 94105
+
+Please include invoice number on payment.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT: Payment is due within 30 days of invoice date. A late fee of 1.5% per month may be applied to overdue balances.
+
+Questions about this invoice?
+Contact: accounting@peakperformancecorp.com
+Phone: (415) 555-0100 ext. 2
+
+Thank you for your business!`,
     intent: 'billing.invoice.due',
     intentConfidence: 1.0,
     timeAgo: '6h ago',
@@ -440,7 +725,45 @@ export const sampleEmails: Email[] = [
     from: 'Mr. Thompson',
     initial: 'T',
     subject: 'Assignment Past Due - Math Homework',
-    preview: 'Lucas has a past-due Chapter 5 homework. Extended deadline: Friday 3 PM to avoid penalty.',
+    preview: `Hello Parents/Guardians,
+
+This is a reminder that Lucas has an overdue math assignment that needs immediate attention.
+
+ASSIGNMENT DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Subject: Math - 7th Grade
+Assignment: Chapter 5 Homework
+Status: PAST DUE
+Extended Deadline: Friday, 3:00 PM
+
+WHAT'S INCLUDED:
+Problems 1-24 covering:
+• Fractions and mixed numbers
+• Decimal operations
+• Real-world word problems
+
+This assignment was originally due last Monday. I'm extending the deadline to this Friday at 3:00 PM to give Lucas a chance to complete it without penalty.
+
+After Friday, late penalties will apply:
+• 10% deduction if submitted after Friday
+• Maximum of 70% possible score after one week
+
+WHAT YOU CAN DO:
+✓ Check that Lucas has the textbook (pages 124-128)
+✓ Encourage him to complete 5-6 problems per day
+✓ Office hours available: Tuesday & Thursday 3-4 PM
+✓ Online tutoring resources in the parent portal
+
+Lucas is a capable student and I know he can complete this work. Please reach out if there are any extenuating circumstances I should be aware of.
+
+Access assignment: https://schoolportal.com/assignment/CH5-math
+
+Best regards,
+Mr. Thompson
+7th Grade Mathematics
+River Vale Middle School
+rthompson@rivervaleschools.org
+(201) 555-7890`,
     intent: 'education.homework.reminder',
     intentConfidence: 0.92,
     timeAgo: '8h ago',
@@ -508,7 +831,44 @@ export const sampleEmails: Email[] = [
     from: 'Mrs. Johnson',
     initial: 'J',
     subject: 'Science Project Graded - 95/100',
-    preview: 'Emma\'s solar system project received 95/100! Excellent research and Saturn\'s rings detail.',
+    preview: `Dear Parents,
+
+Great news! Emma's science project has been graded and I'm pleased to share the results.
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  SCIENCE PROJECT - GRADED     ┃
+┃  Solar System Model           ┃
+┃  Score: 95/100 (A)           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+EVALUATION BREAKDOWN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Research & Accuracy: 48/50 ⭐⭐⭐⭐⭐
+Creativity & Design: 25/25 ⭐⭐⭐⭐⭐
+Presentation: 17/20 ⭐⭐⭐⭐
+Effort & Detail: 5/5 ⭐⭐⭐⭐⭐
+
+TEACHER COMMENTS:
+
+Emma created an exceptional solar system model! Her research on each planet was thorough and accurate. I was particularly impressed by her attention to detail on Saturn's rings - she even included the Cassini Division!
+
+The painted textures on Jupiter and Mars were very realistic. Her presentation showed excellent understanding of planetary characteristics, orbital patterns, and relative sizes.
+
+Suggestion for improvement: Adding planet distances to scale would make this an even more complete project.
+
+This is A-level work. Well done, Emma!
+
+You can view the full rubric and photos of Emma's project in the parent portal:
+👉 https://schoolportal.com/grades/emma-chen/science-project
+
+Please congratulate Emma on her excellent work!
+
+Best regards,
+Mrs. Johnson
+3rd Grade - Room 12
+Lincoln Elementary School
+mjohnson@lincolnelementary.edu`,
     intent: 'education.grade.notification',
     intentConfidence: 0.90,
     timeAgo: '1d ago',
@@ -571,7 +931,71 @@ export const sampleEmails: Email[] = [
     from: 'Tech Munch Daily',
     initial: 'T',
     subject: 'The Download: This Week in AI - Issue #47',
-    preview: 'Weekly AI & tech newsletter: GPT-5 speculation, EU AI Act, GitHub Copilot X upgrade...',
+    preview: `╔═══════════════════════════════════════╗
+║  THE DOWNLOAD: THIS WEEK IN AI       ║
+║  Issue #47 - Your Weekly AI Briefing ║
+╚═══════════════════════════════════════╝
+
+Hey tech enthusiasts! 👋
+
+Here's what you need to know this week in AI and technology.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📰 TOP STORIES
+
+1. GPT-5 SPECULATION HEATS UP
+OpenAI reportedly targeting Q2 2025 release. Sources suggest massive performance leap in reasoning capabilities and multimodal understanding. Read more →
+
+2. EU AI ACT OFFICIALLY GOES LIVE
+Europe's landmark AI regulation takes effect this week. What it means for developers, businesses, and AI deployment. Full breakdown →
+
+3. GITHUB COPILOT X UPGRADE RELEASED
+New features include voice coding, context-aware debugging, and PR review automation. Early access available now. Details →
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 BY THE NUMBERS
+
+• 67% of developers now use AI coding assistants daily (up from 42% last year)
+• $21B invested in AI startups this quarter
+• 2.3M new AI-related jobs posted globally
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔥 TRENDING DISCUSSIONS
+
+• "Is prompt engineering a real career?" - The great debate continues
+• Anthropic's Constitutional AI approach gaining traction
+• AI watermarking standards proposal from C2PA consortium
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 WHAT TO WATCH NEXT WEEK
+
+→ Google I/O AI announcements
+→ Stanford HAI Conference keynotes
+→ Meta's LLaMA 3 rumored release
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 RECOMMENDED READING
+
+"Attention Is All You Need" - Still relevant 6 years later. Why the Transformer architecture continues to dominate. [8 min read]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+That's all for this week! Stay curious.
+
+— The Tech Munch Daily Team
+
+[READ FULL NEWSLETTER] →
+https://techcrunch.com/newsletters/the-download-47
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tech Munch Daily | Weekly AI & Tech Newsletter
+Unsubscribe | Update Preferences | View in Browser`,
     intent: 'generic.newsletter',
     intentConfidence: 0.98,
     timeAgo: '2h ago',
@@ -628,7 +1052,7 @@ export const sampleEmails: Email[] = [
       priority: 'low',
       keyTopics: ['Artificial Intelligence', 'GPT-5', 'EU Regulation', 'GitHub']
     },
-    productImageUrl: 'https://picsum.photos/seed/tech/400/240'
+    productImageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=240&fit=crop'
   }
 ];
 

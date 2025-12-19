@@ -15,6 +15,8 @@ import ChallengeSection from './components/ChallengeSection'
 import ApproachSection from './components/ApproachSection'
 import PrototypeEmbed from './components/PrototypeEmbed'
 import WearablesRoadmap from './components/WearablesRoadmap'
+import BeforeAfterComparison from '@/components/zero/BeforeAfterComparison'
+import EmbeddedCTA from '@/components/zero/EmbeddedCTA'
 
 export default function ZeroPage() {
   return (
@@ -34,8 +36,30 @@ export default function ZeroPage() {
       {/* The problem: inbox is full of hidden work */}
       <ChallengeSection />
 
+      {/* Before/After Comparison - Show the impact */}
+      <section className="bg-black py-12 md:py-16 lg:py-20 border-t border-gray-800">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-4xl">
+            <BeforeAfterComparison variant="inline" />
+          </div>
+        </div>
+      </section>
+
       {/* Interactive demos with toggle */}
       <PrototypeEmbed />
+
+      {/* CTA after demo */}
+      <section className="bg-gray-900 py-8 md:py-12">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-4xl">
+            <EmbeddedCTA
+              variant="primary"
+              message="Ready to reclaim your time?"
+              ctaText="Join the Waitlist"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Our approach: AI extracts actions automatically */}
       <ApproachSection />

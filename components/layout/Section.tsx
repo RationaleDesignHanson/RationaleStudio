@@ -20,6 +20,7 @@ interface SectionProps {
   colorTheme?: WatercolorTheme;
   noPaddingBottom?: boolean; // Remove bottom padding
   noPaddingTop?: boolean; // Remove top padding
+  allowOverflow?: boolean; // Allow content to overflow section bounds (for badges, tooltips, etc)
 }
 
 const spacingClasses = {
@@ -55,6 +56,7 @@ export function Section({
   colorTheme,
   noPaddingBottom = false,
   noPaddingTop = false,
+  allowOverflow = false,
 }: SectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -93,7 +95,7 @@ export function Section({
   return (
     <section
       ref={sectionRef}
-      className={`${paddingClass} ${backgroundClasses[background]} ${className} relative overflow-hidden`}
+      className={`${paddingClass} ${backgroundClasses[background]} ${className} relative ${allowOverflow ? 'overflow-visible' : 'overflow-hidden'}`}
     >
       {children}
     </section>

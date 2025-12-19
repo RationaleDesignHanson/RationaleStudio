@@ -125,6 +125,7 @@ export interface Email {
   metadata: EmailMetadata;
   productImageUrl?: string;
   threadCount?: number;
+  recipients?: string[]; // e.g., ['me', 'john@example.com', 'sarah@example.com']
 }
 
 export interface DismissedState {
