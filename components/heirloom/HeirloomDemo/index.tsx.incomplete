@@ -1,0 +1,778 @@
+/**
+ * Heirloom Demo Component
+ *
+ * Interactive demo showcasing recipe OCR, generational editing, and card flip interaction
+ */
+
+'use client';
+
+import { useState, useCallback, useRef } from 'react';
+import Image from 'next/image';
+import { EditableText } from './EditableText';
+import {
+  DemoStep,
+  Recipe,
+  ChangeHistory,
+  FieldChange,
+  HeirloomDemoProps,
+  StickerOnCard,
+} from './types';
+import { DEMO_STICKERS, GENERATIONS, COLORS, API_ENDPOINT } from './constants';
+
+export function HeirloomDemo({
+  className = '',
+  onStepChange,
+  onRecipeExtracted,
+  onFlowComplete,
+}: HeirloomDemoProps) {
+  // Core state
+  const [step, setStep] = useState<DemoStep>('upload');
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Notes and stickers
+  const [momNote, setMomNote] = useState('');
+  const [yourNote, setYourNote] = useState('');
+  const [savedMomNote, setSavedMomNote] = useState('');
+  const [savedYourNote, setSavedYourNote] = useState('');
+  const [momStickers, setMomStickers] = useState<string[]>([]);
+  const [yourStickers, setYourStickers] = useState<string[]>([]);
+
+  // UI state
+  const [isDragging, setIsDragging] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [expandedIngredients, setExpandedIngredients] = useState(false);
+  const [expandedInstructions, setExpandedInstructions] = useState(false);
+  const [instructionsCollapsed, setInstructionsCollapsed] = useState(false);
+
+  // Change tracking
+  const [changes, setChanges] = useState<ChangeHistory>({});
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  /**
+   * Update step and notify parent
+   */
+  const updateStep = useCallback(
+    (newStep: DemoStep) => {
+      setStep(newStep);
+      onStepChange?.(newStep);
+    },
+    [onStepChange]
+  );
+
+  /**
+   * Get current editor based on step
+   */
+  const getCurrentEditor = useCallback(() => {
+    if (step === 'fork1') return { name: 'Mom', year: '2015' };
+    if (step === 'fork2') return { name: 'You', year: '2025' };
+    return null;
+  }, [step]);
+
+  /**
+   * Extract recipe from image using API
+   */
+  const extractRecipe = async (base64Image: string) => {
+    updateStep('processing');
+    setError(null);
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: base64Image }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to extract recipe');
+      }
+
+      if ('error' in data) {
+        throw new Error(data.error);
+      }
+
+      setRecipe(data);
+      updateStep('scanned');
+      onRecipeExtracted?.(data);
+    } catch (err) {
+      console.error('Extraction error:', err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Failed to extract recipe. Please try another image.'
+      );
+      updateStep('upload');
+    }
+  };
+
+  /**
+   * Handle image upload
+   */
+  const handleImageUpload = useCallback((file: File | null) => {
+    if (!file || !file.type.startsWith('image/')) {
+      setError('Please upload an image file');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      setImagePreview(result);
+      const base64Data = result.split(',')[1];
+      setUploadedImage(base64Data);
+      extractRecipe(base64Data);
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  /**
+   * Drag and drop handlers
+   */
+  const handleDrop = useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      setIsDragging(false);
+      const file = e.dataTransfer.files[0];
+      handleImageUpload(file);
+    },
+    [handleImageUpload]
+  );
+
+  const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+  }, []);
+
+  /**
+   * Handle recipe field edits with change tracking
+   */
+  const handleRecipeEdit = (field: string, value: string) => {
+    const editor = getCurrentEditor();
+
+    // Get old value for change tracking
+    let oldValue = '';
+    if (field === 'title') {
+      oldValue = recipe?.title || '';
+    } else if (field.startsWith('ingredient-')) {
+      const idx = parseInt(field.split('-')[1]);
+      oldValue = recipe?.ingredients?.[idx] || '';
+    } else if (field.startsWith('instruction-')) {
+      const idx = parseInt(field.split('-')[1]);
+      oldValue = recipe?.instructions?.[idx] || '';
+    }
+
+    // Track change if we have an editor and value actually changed
+    if (editor && value !== oldValue) {
+      setChanges((prev) => {
+        const fieldChanges = prev[field] || [];
+        const lastChange = fieldChanges[fieldChanges.length - 1];
+
+        // If same editor is making another change, update their last change
+        if (lastChange && lastChange.by === editor.name) {
+          return {
+            ...prev,
+            [field]: [
+              ...fieldChanges.slice(0, -1),
+              { ...lastChange, to: value },
+            ],
+          };
+        }
+
+        // New editor or first change
+        return {
+          ...prev,
+          [field]: [
+            ...fieldChanges,
+            { by: editor.name, year: editor.year, from: oldValue, to: value },
+          ],
+        };
+      });
+    }
+
+    // Update recipe
+    if (!recipe) return;
+
+    if (field === 'title') {
+      setRecipe({ ...recipe, title: value });
+    } else if (field.startsWith('ingredient-')) {
+      const idx = parseInt(field.split('-')[1]);
+      const ingredients = recipe.ingredients || [];
+      if (idx >= ingredients.length) {
+        setRecipe({ ...recipe, ingredients: [...ingredients, value] });
+      } else {
+        setRecipe({
+          ...recipe,
+          ingredients: ingredients.map((ing, i) => (i === idx ? value : ing)),
+        });
+      }
+    } else if (field.startsWith('instruction-')) {
+      const idx = parseInt(field.split('-')[1]);
+      const instructions = recipe.instructions || [];
+      if (idx >= instructions.length) {
+        setRecipe({ ...recipe, instructions: [...instructions, value] });
+      } else {
+        setRecipe({
+          ...recipe,
+          instructions: instructions.map((inst, i) =>
+            i === idx ? value : inst
+          ),
+        });
+      }
+    }
+  };
+
+  /**
+   * Get change history for a field
+   */
+  const getFieldChanges = (field: string): FieldChange[] => {
+    return changes[field] || [];
+  };
+
+  /**
+   * Get latest change for a field
+   */
+  const getLatestChange = (field: string): FieldChange | null => {
+    const fieldChanges = changes[field];
+    return fieldChanges?.[fieldChanges.length - 1] || null;
+  };
+
+  /**
+   * Toggle sticker selection
+   */
+  const toggleSticker = (stickerId: string, who: 'mom' | 'you') => {
+    if (who === 'mom') {
+      setMomStickers((prev) =>
+        prev.includes(stickerId)
+          ? prev.filter((s) => s !== stickerId)
+          : [...prev, stickerId]
+      );
+    } else {
+      setYourStickers((prev) =>
+        prev.includes(stickerId)
+          ? prev.filter((s) => s !== stickerId)
+          : [...prev, stickerId]
+      );
+    }
+  };
+
+  /**
+   * Submit Mom's note and advance
+   */
+  const handleMomSubmit = () => {
+    setSavedMomNote(momNote);
+    setIsFlipped(true);
+    setTimeout(() => {
+      updateStep('fork2');
+      setTimeout(() => setIsFlipped(false), 800);
+    }, 1200);
+  };
+
+  /**
+   * Submit your note and advance
+   */
+  const handleYourSubmit = () => {
+    setSavedYourNote(yourNote);
+    setIsFlipped(true);
+    setTimeout(() => {
+      updateStep('lineage');
+      onFlowComplete?.();
+    }, 800);
+  };
+
+  /**
+   * Reset demo to start
+   */
+  const reset = () => {
+    updateStep('upload');
+    setUploadedImage(null);
+    setImagePreview(null);
+    setRecipe(null);
+    setError(null);
+    setMomNote('');
+    setYourNote('');
+    setSavedMomNote('');
+    setSavedYourNote('');
+    setIsFlipped(false);
+    setChanges({});
+    setMomStickers([]);
+    setYourStickers([]);
+    setExpandedIngredients(false);
+    setExpandedInstructions(false);
+    setInstructionsCollapsed(false);
+  };
+
+  /**
+   * Confidence score mapping
+   */
+  const confidenceToScore = (level: string): number => {
+    switch (level) {
+      case 'high':
+        return Math.floor(Math.random() * 5) + 95;
+      case 'medium':
+        return Math.floor(Math.random() * 10) + 85;
+      case 'low':
+        return Math.floor(Math.random() * 15) + 70;
+      default:
+        return 90;
+    }
+  };
+
+  const confidenceToColor = (level: string): string => {
+    switch (level) {
+      case 'high':
+        return COLORS.green;
+      case 'medium':
+        return '#6b5b2d';
+      case 'low':
+        return '#8b4a2b';
+      default:
+        return COLORS.primaryDark;
+    }
+  };
+
+  /**
+   * Calculate scores if confidence data exists
+   */
+  const scores = recipe?.confidence
+    ? {
+        title: confidenceToScore(recipe.confidence.title),
+        ingredients: confidenceToScore(recipe.confidence.ingredients),
+        instructions: confidenceToScore(recipe.confidence.instructions),
+      }
+    : {};
+
+  const overallScore = recipe?.confidence && scores.title && scores.ingredients && scores.instructions
+    ? Math.round(
+        (scores.title + scores.ingredients + scores.instructions) / 3
+      )
+    : 0;
+
+  /**
+   * Get generation count
+   */
+  const getGenerationCount = () => {
+    if (savedYourNote || step === 'lineage') return 3;
+    if (savedMomNote || step === 'fork2') return 2;
+    return 1;
+  };
+
+  const getGenerationLabel = () => {
+    const count = getGenerationCount();
+    if (count === 1) return 'Original';
+    return `${count} Generations`;
+  };
+
+  /**
+   * Combine all stickers for display on card back
+   */
+  const allStickers: StickerOnCard[] = [
+    ...momStickers.map((id) => {
+      const sticker = DEMO_STICKERS.find((s) => s.id === id);
+      return { ...sticker!, by: 'Mom', year: '2015' };
+    }),
+    ...yourStickers.map((id) => {
+      const sticker = DEMO_STICKERS.find((s) => s.id === id);
+      return { ...sticker!, by: 'You', year: '2025' };
+    }),
+  ];
+
+  const hasNotes = savedMomNote || savedYourNote;
+  const hasStickers = momStickers.length > 0 || yourStickers.length > 0;
+  const isEditable = step === 'scanned' || step === 'fork1' || step === 'fork2';
+
+  // Continue in next part...
+  return (
+    <div
+      className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans py-10 px-5 ${className}`}
+    >
+      {/* Styles - will be converted to Tailwind later */}
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+        /* Animation keyframes */
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes pulse {
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes scan {
+          0% {
+            top: 10%;
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            top: 85%;
+            opacity: 1;
+          }
+        }
+
+        @keyframes badgePop {
+          0% {
+            transform: scale(0.8);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        @keyframes editableHint {
+          0%,
+          100% {
+            box-shadow: 0 0 0 0 transparent;
+            background-color: transparent;
+          }
+          50% {
+            box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.3);
+            background-color: rgba(139, 90, 43, 0.05);
+          }
+        }
+
+        /* Timeline styles */
+        .timeline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+        }
+
+        .timeline-node {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .timeline-dot {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+
+        .timeline-dot.inactive {
+          background-color: ${COLORS.grayLight};
+          color: ${COLORS.grayMid};
+        }
+
+        .timeline-dot.active {
+          background-color: ${COLORS.primary};
+          color: white;
+          box-shadow: 0 2px 8px rgba(139, 90, 43, 0.4);
+        }
+
+        .timeline-dot.complete {
+          background-color: ${COLORS.green};
+          color: white;
+        }
+
+        .timeline-label {
+          font-size: 11px;
+          font-weight: 500;
+          white-space: nowrap;
+          text-align: center;
+        }
+
+        .timeline-year {
+          font-size: 10px;
+          color: ${COLORS.grayMid};
+        }
+
+        .timeline-connector {
+          width: 3px;
+          height: 40px;
+          background-color: ${COLORS.grayLight};
+          position: relative;
+        }
+
+        .timeline-connector-fill {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: ${COLORS.green};
+          transition: height 0.5s ease;
+        }
+
+        /* Card flip styles */
+        .card-container {
+          perspective: 1200px;
+          overflow: visible;
+        }
+
+        .card-flipper {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          transform-style: preserve-3d;
+          overflow: visible;
+        }
+
+        .card-flipper.flipped {
+          transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          border-radius: 12px;
+          overflow: visible;
+        }
+
+        .card-front {
+          position: relative;
+          z-index: 2;
+        }
+
+        .card-back {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          transform: rotateY(180deg);
+          z-index: 1;
+        }
+
+        .flip-hint {
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .flip-hint:hover {
+          transform: scale(1.05);
+        }
+
+        /* Editable text styles */
+        .editable-text {
+          cursor: text;
+          border-radius: 4px;
+          transition: background-color 0.15s ease;
+          padding: 2px 4px;
+          margin: -2px -4px;
+        }
+
+        .editable-text:hover {
+          background-color: rgba(139, 90, 43, 0.08);
+        }
+
+        .editable-hint {
+          animation: editableHint 2s ease-in-out 3;
+        }
+
+        /* Change attribution styles */
+        .change-attribution {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .change-badge {
+          font-size: 9px;
+          padding: 2px 6px;
+          border-radius: 8px;
+          font-weight: 600;
+          white-space: nowrap;
+          cursor: help;
+          position: relative;
+        }
+
+        .change-badge.mom {
+          background-color: ${COLORS.badgeMom};
+          color: ${COLORS.badgeMomText};
+        }
+
+        .change-badge.you {
+          background-color: ${COLORS.badgeYou};
+          color: ${COLORS.badgeYouText};
+        }
+
+        .change-badge.multiple {
+          background-color: ${COLORS.badgeMultiple};
+          color: ${COLORS.badgeMultipleText};
+        }
+
+        .changed-text {
+          border-bottom: 1px dashed currentColor;
+          padding-bottom: 1px;
+        }
+
+        .change-tooltip {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: ${COLORS.primaryDarkest};
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 6px;
+          font-size: 11px;
+          white-space: nowrap;
+          z-index: 100;
+          margin-bottom: 6px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .change-tooltip::after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 5px solid transparent;
+          border-top-color: ${COLORS.primaryDarkest};
+        }
+
+        /* Sticker styles */
+        .sticker-picker {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .sticker-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          border: 2px solid ${COLORS.grayLight};
+          background: white;
+          font-size: 20px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .sticker-btn:hover {
+          border-color: ${COLORS.primaryLight};
+          transform: scale(1.1);
+        }
+
+        .sticker-btn.selected {
+          border-color: ${COLORS.primary};
+          background-color: #fef9e7;
+        }
+
+        .sticker-on-card {
+          position: absolute;
+          font-size: 24px;
+          filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.15));
+          cursor: default;
+        }
+
+        .sticker-tooltip-card {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: ${COLORS.primaryDarkest};
+          color: #fff;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 10px;
+          white-space: nowrap;
+          z-index: 100;
+          margin-top: 4px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+        }
+
+        .sticker-on-card:hover .sticker-tooltip-card {
+          opacity: 1;
+        }
+
+        /* Flip tab */
+        .card-flip-tab {
+          position: absolute;
+          bottom: 12px;
+          right: 12px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 10px;
+          background: rgba(139, 90, 43, 0.06);
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          color: ${COLORS.grayText};
+          font-size: 12px;
+        }
+
+        .card-flip-tab:hover {
+          background: rgba(139, 90, 43, 0.12);
+          color: ${COLORS.primaryDark};
+        }
+
+        .card-flip-tab svg {
+          width: 14px;
+          height: 14px;
+          transition: transform 0.2s ease;
+        }
+
+        .card-flip-tab:hover svg {
+          transform: rotateY(180deg);
+        }
+
+        /* Utility animations */
+        .fade-in {
+          animation: fadeSlideIn 0.5s ease-out both;
+        }
+
+        .badge-pop {
+          animation: badgePop 0.4s ease-out both;
+        }
+      `}</style>
+
+      {/* Content continues in next message due to length... */}
+      <div>Demo rendering will continue...</div>
+    </div>
+  );
+}

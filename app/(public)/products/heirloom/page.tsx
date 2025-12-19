@@ -15,6 +15,7 @@ import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 import { heirloomMarketingContent } from '@/lib/content/products/heirloom-marketing';
+import { HeirloomDemo } from '@/components/heirloom/HeirloomDemo';
 
 export const metadata: Metadata = {
   title: heirloomMarketingContent.seo.title,
@@ -35,7 +36,7 @@ export default function HeirloomProductPage() {
     <main className="min-h-screen bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460]">
 
       {/* SECTION 1: HERO (JTBD-FIRST) */}
-      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
+      <section className="relative pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-8 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.03}
@@ -66,35 +67,19 @@ export default function HeirloomProductPage() {
           </h2>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
             {content.hero.subheadline}
           </p>
 
-          {/* Case Study Link */}
-          <div className="mb-12">
-            <Link
-              href="/work/heirloom"
-              className="inline-flex items-center gap-2 text-[#E85D4D] hover:text-[#D84D3D] transition-colors underline underline-offset-4 font-medium"
-            >
-              Check out the demo
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          {/* Visual Placeholder */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="aspect-video bg-white/50 border-2 border-[#E85D4D]/30 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="text-center">
-                <BookOpen className="w-16 h-16 text-[#E85D4D] mx-auto mb-4" />
-                <p className="text-gray-600 text-sm font-medium">Image/Video Placeholder</p>
-              </div>
-            </div>
+          {/* Interactive Demo */}
+          <div className="relative w-full">
+            <HeirloomDemo />
           </div>
         </div>
       </section>
 
       {/* SECTION 2: THE PROBLEM */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+      <section className="relative py-12 md:py-16 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -175,6 +160,17 @@ export default function HeirloomProductPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Case Study Link */}
+          <div className="text-center mt-12">
+            <Link
+              href="/work/heirloom"
+              className="inline-flex items-center gap-2 text-[#E85D4D] hover:text-[#D84D3D] transition-colors underline underline-offset-4 font-medium text-lg"
+            >
+              See overview
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
