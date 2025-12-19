@@ -21,6 +21,7 @@
 
 # Environment variables are available globally, no need to specify in functions
 # Removed functions.environment to avoid AWS Lambda 4KB limit
+# ANTHROPIC_API_KEY configured in Netlify dashboard for recipe extraction
 
 # Security headers
 [[headers]]
