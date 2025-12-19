@@ -17,7 +17,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Zero Demo: Page Load and Initial State', () => {
   test('should load Zero demo page successfully', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Verify page title and meta
@@ -29,7 +29,7 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
   });
 
   test('should display interactive demo component', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Wait for demo to render
@@ -41,7 +41,7 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
   });
 
   test('should display initial email card', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -52,7 +52,7 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
 
   test('should load within acceptable time', async ({ page }) => {
     const startTime = Date.now();
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('domcontentloaded');
     const loadTime = Date.now() - startTime;
 
@@ -63,7 +63,7 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
 
 test.describe('Zero Demo: Email Interaction', () => {
   test('should display email with sender and subject', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -80,7 +80,7 @@ test.describe('Zero Demo: Email Interaction', () => {
   });
 
   test('should respond to swipe gestures on touch devices', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -104,7 +104,7 @@ test.describe('Zero Demo: Email Interaction', () => {
   });
 
   test('should display action buttons for email processing', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -120,7 +120,7 @@ test.describe('Zero Demo: Email Interaction', () => {
 test.describe('Zero Demo: Responsive Layouts', () => {
   test('should display mobile layout on small screens', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -131,7 +131,7 @@ test.describe('Zero Demo: Responsive Layouts', () => {
 
   test('should display tablet layout on medium screens', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 }); // iPad
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -142,7 +142,7 @@ test.describe('Zero Demo: Responsive Layouts', () => {
 
   test('should display desktop layout on large screens', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 }); // Desktop
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -154,7 +154,7 @@ test.describe('Zero Demo: Responsive Layouts', () => {
 
 test.describe('Zero Demo: Conversion Elements', () => {
   test('should display CTA buttons', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Look for waitlist/CTA buttons
@@ -166,7 +166,7 @@ test.describe('Zero Demo: Conversion Elements', () => {
   });
 
   test('should display before/after comparison', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Scroll through page to find comparison section
@@ -184,7 +184,7 @@ test.describe('Zero Demo: Conversion Elements', () => {
   });
 
   test('should display social proof elements', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Scroll to find social proof
@@ -212,7 +212,7 @@ test.describe('Zero Demo: Performance and Analytics', () => {
       }
     });
 
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000);
 
@@ -242,7 +242,7 @@ test.describe('Zero Demo: Performance and Analytics', () => {
       }
     });
 
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000);
 
@@ -259,7 +259,7 @@ test.describe('Zero Demo: Performance and Analytics', () => {
   });
 
   test('should load all images successfully', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -278,7 +278,7 @@ test.describe('Zero Demo: Performance and Analytics', () => {
   });
 
   test('should be keyboard accessible', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1500);
 
@@ -297,7 +297,7 @@ test.describe('Zero Demo: Performance and Analytics', () => {
 
 test.describe('Zero Demo: Navigation and CTAs', () => {
   test('should have working CTA links', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Find first CTA button/link
@@ -317,7 +317,7 @@ test.describe('Zero Demo: Navigation and CTAs', () => {
   });
 
   test('should have breadcrumb/back navigation', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Look for back link or breadcrumb
@@ -331,7 +331,7 @@ test.describe('Zero Demo: Navigation and CTAs', () => {
 
 test.describe('Zero Demo: SEO and Meta Tags', () => {
   test('should have proper meta tags', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Check title
@@ -347,7 +347,7 @@ test.describe('Zero Demo: SEO and Meta Tags', () => {
   });
 
   test('should have Open Graph tags for sharing', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Check for OG tags
@@ -356,7 +356,7 @@ test.describe('Zero Demo: SEO and Meta Tags', () => {
   });
 
   test('should have proper heading hierarchy', async ({ page }) => {
-    await page.goto('/clients/zero');
+    await page.goto('/work/zero');
     await page.waitForLoadState('networkidle');
 
     // Should have exactly one h1

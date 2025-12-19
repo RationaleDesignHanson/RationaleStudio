@@ -11,7 +11,7 @@
 import { test, expect } from '@playwright/test';
 
 // Configure URLs for both environments
-const DEMO_URL = 'http://localhost:3000/clients/zero';
+const DEMO_URL = 'http://localhost:3000/work/zero';
 const APP_URL = process.env.ZERO_APP_URL || 'http://localhost:3001'; // Adjust to your app URL
 
 test.describe('Demo vs App: Feature Parity', () => {
