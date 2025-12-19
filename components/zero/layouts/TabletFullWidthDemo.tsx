@@ -37,6 +37,12 @@ export default function TabletFullWidthDemo() {
   const analytics = useDemoAnalytics();
   const emailViewStartTimeRef = useRef<number>(Date.now());
 
+  // Filter emails by current archetype
+  const filteredEmails = sampleEmails.filter(email => email.metadata.type === archetype);
+  const totalEmails = sampleEmails.filter(email => email.metadata.type === archetype).length;
+  const remaining = totalEmails - dismissed[archetype];
+  const currentEmail = filteredEmails[currentIndex];
+
   // Track email views
   useEffect(() => {
     if (currentEmail) {
@@ -60,12 +66,6 @@ export default function TabletFullWidthDemo() {
       else if (showActionModal) setShowActionModal(false);
     },
   }, !showActionModal && !showActionSheet);
-
-  // Filter emails by current archetype
-  const filteredEmails = sampleEmails.filter(email => email.metadata.type === archetype);
-  const totalEmails = sampleEmails.filter(email => email.metadata.type === archetype).length;
-  const remaining = totalEmails - dismissed[archetype];
-  const currentEmail = filteredEmails[currentIndex];
 
   const showToast = (message: string) => {
     setToast(message);
