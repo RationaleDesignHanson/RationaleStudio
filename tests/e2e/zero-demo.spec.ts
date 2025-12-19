@@ -23,9 +23,20 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
     // Verify page title and meta
     await expect(page).toHaveTitle(/Zero/i);
 
-    // Verify main heading is present
-    const h1 = page.locator('h1').first();
-    await expect(h1).toBeVisible();
+    // Verify at least one heading is visible (responsive design has multiple h1s)
+    const h1s = page.locator('h1');
+    await expect(h1s).not.toHaveCount(0);
+
+    // Check that at least one h1 is visible
+    const h1Count = await h1s.count();
+    let visibleFound = false;
+    for (let i = 0; i < h1Count; i++) {
+      if (await h1s.nth(i).isVisible()) {
+        visibleFound = true;
+        break;
+      }
+    }
+    expect(visibleFound).toBe(true);
   });
 
   test('should display interactive demo component', async ({ page }) => {
