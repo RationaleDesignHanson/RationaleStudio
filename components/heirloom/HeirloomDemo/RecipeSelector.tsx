@@ -110,12 +110,12 @@ export default function RecipeSelector({
                 {/* First Row: Number, Title, Arrow */}
                 <div className="flex items-start gap-2">
                   <span
-                    className="text-base font-bold flex-shrink-0 leading-snug pt-0.5"
+                    className="text-sm font-bold flex-shrink-0 leading-snug pt-0.5"
                     style={{ color: COLORS.primary }}
                   >
                     {index + 1}.
                   </span>
-                  <h4 className="font-semibold text-base flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
+                  <h4 className="font-semibold text-sm flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
                     {recipe.title}
                   </h4>
                   <svg
