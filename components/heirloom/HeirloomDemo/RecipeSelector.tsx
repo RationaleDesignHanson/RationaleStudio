@@ -102,7 +102,7 @@ export default function RecipeSelector({
       {/* Mobile: Horizontal Carousel */}
       <div
         ref={carouselRef}
-        className="md:hidden overflow-x-auto flex gap-4 px-6 py-2 snap-x snap-mandatory scrollbar-hide"
+        className="md:hidden overflow-x-auto flex gap-4 px-6 py-4 snap-x snap-mandatory scrollbar-hide"
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
@@ -113,23 +113,23 @@ export default function RecipeSelector({
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="flex-shrink-0 w-[315px] p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md snap-center gap-3"
+            className="flex-shrink-0 w-[280px] snap-center cursor-pointer"
             style={{
-              borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
-              backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
-              textAlign: 'left',
+              textAlign: 'center',
               display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-start',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '12px',
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
             onTouchEnd={() => setHoveredId(null)}
           >
-            {/* Thumbnail Preview - Zoomed into recipe area */}
+            {/* Cropped Recipe Image */}
             <div
-              className="w-20 h-20 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 relative"
+              className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 relative transition-all duration-200"
               style={{
-                border: `2px solid ${COLORS.grayLight}`,
+                border: `3px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight}`,
+                boxShadow: hoveredId === recipe.id ? '0 4px 12px rgba(139, 90, 43, 0.2)' : 'none',
               }}
             >
               <img
@@ -146,35 +146,14 @@ export default function RecipeSelector({
               />
             </div>
 
-            {/* Content Area */}
-            <div className="flex-1 min-w-0 flex flex-col gap-1">
-              <div className="flex items-start gap-2">
-                <span
-                  className="text-base font-bold flex-shrink-0 leading-snug"
-                  style={{ color: COLORS.primary }}
-                >
-                  {index + 1}.
-                </span>
-                <h4 className="font-semibold text-base flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
-                  {recipe.title}
-                </h4>
-              </div>
-              <div className="flex items-center justify-end">
-                <svg
-                  className="w-5 h-5"
-                  style={{ color: COLORS.primary }}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
+            {/* Recipe Title Below */}
+            <div className="w-full">
+              <h4
+                className="font-semibold text-base m-0 leading-snug"
+                style={{ color: COLORS.primaryDark }}
+              >
+                {recipe.title}
+              </h4>
             </div>
           </button>
         ))}
