@@ -32,7 +32,7 @@ export default function RecipeSelector({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <div className="w-full max-w-4xl mx-0 md:mx-auto">
+    <div className="w-full md:max-w-4xl md:mx-auto">
       {/* Desktop: Image with Bounding Box Overlays */}
       <div className="hidden md:block relative">
         <img
