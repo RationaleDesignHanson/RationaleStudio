@@ -26,6 +26,27 @@ const confidenceToPercent = (confidence: ConfidenceLevel): number => {
   return mapping[confidence];
 };
 
+// Calculate optimal image transform to center on title area
+const getImageTransform = (boundingBox: { x: number; y: number; width: number; height: number }) => {
+  // Scale to fit width of container
+  const scale = 100 / boundingBox.width;
+  const translateX = -boundingBox.x;
+
+  // Calculate visible height in 4:3 container (as % of original image)
+  const containerAspect = 4 / 3;
+  const visibleHeight = boundingBox.width / containerAspect;
+
+  // Focus on title area (assume title is ~30% down from top of bounding box)
+  // Adjust this ratio to show more/less content below title
+  const titleFocusRatio = 0.3;
+  const titlePosition = boundingBox.y + boundingBox.height * titleFocusRatio;
+
+  // Center the visible area on the title position
+  const translateY = -(titlePosition - visibleHeight / 2);
+
+  return { translateX, translateY, scale };
+};
+
 export default function RecipeSelector({
   imageUrl,
   detectedRecipes,
@@ -109,54 +130,54 @@ export default function RecipeSelector({
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {detectedRecipes.map((recipe, index) => (
-          <button
-            key={recipe.id}
-            onClick={() => onSelectRecipe(recipe.id)}
-            className="flex-shrink-0 w-[280px] snap-center cursor-pointer"
-            style={{
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '12px',
-            }}
-            onTouchStart={() => setHoveredId(recipe.id)}
-            onTouchEnd={() => setHoveredId(null)}
-          >
-            {/* Cropped Recipe Image */}
-            <div
-              className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 relative transition-all duration-200"
+        {detectedRecipes.map((recipe, index) => {
+          const transform = getImageTransform(recipe.boundingBox);
+          return (
+            <button
+              key={recipe.id}
+              onClick={() => onSelectRecipe(recipe.id)}
+              className="flex-shrink-0 w-[280px] snap-center cursor-pointer"
               style={{
-                border: `3px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight}`,
-                boxShadow: hoveredId === recipe.id ? '0 4px 12px rgba(139, 90, 43, 0.2)' : 'none',
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '12px',
               }}
+              onTouchStart={() => setHoveredId(recipe.id)}
+              onTouchEnd={() => setHoveredId(null)}
             >
-              <img
-                src={imageUrl}
-                alt={recipe.title}
-                className="absolute top-0 left-0 w-full h-auto"
+              {/* Cropped Recipe Image */}
+              <div
+                className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 relative transition-all duration-200"
                 style={{
-                  transformOrigin: 'top left',
-                  transform: `
-                    translate(${-recipe.boundingBox.x}%, ${-recipe.boundingBox.y}%)
-                    scale(${100 / recipe.boundingBox.width})
-                  `,
+                  border: `3px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight}`,
+                  boxShadow: hoveredId === recipe.id ? '0 4px 12px rgba(139, 90, 43, 0.2)' : 'none',
                 }}
-              />
-            </div>
-
-            {/* Recipe Title Below */}
-            <div className="w-full">
-              <h4
-                className="font-semibold text-base m-0 leading-snug"
-                style={{ color: COLORS.primaryDark }}
               >
-                {recipe.title}
-              </h4>
-            </div>
-          </button>
-        ))}
+                <img
+                  src={imageUrl}
+                  alt={recipe.title}
+                  className="absolute top-0 left-0 w-full h-auto"
+                  style={{
+                    transformOrigin: 'top left',
+                    transform: `translate(${transform.translateX}%, ${transform.translateY}%) scale(${transform.scale})`,
+                  }}
+                />
+              </div>
+
+              {/* Recipe Title Below */}
+              <div className="w-full">
+                <h4
+                  className="font-semibold text-base m-0 leading-snug"
+                  style={{ color: COLORS.primaryDark }}
+                >
+                  {recipe.title}
+                </h4>
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
