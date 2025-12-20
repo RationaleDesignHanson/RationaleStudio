@@ -5,7 +5,7 @@
  * Displays clickable bounding box regions with recipe titles
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { DetectedRecipe } from './types';
 import { COLORS } from './constants';
 
@@ -22,6 +22,8 @@ export default function RecipeSelector({
 }: RecipeSelectorProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const listItemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollToListItem = (recipeId: string) => {
     const element = listItemRefs.current[recipeId];
@@ -39,10 +41,12 @@ export default function RecipeSelector({
       <div className="relative w-full bg-white rounded-lg shadow-xl overflow-hidden">
         {/* Background Image */}
         <img
+          ref={imageRef}
           src={imageUrl}
           alt="Recipe card with multiple recipes"
           className="w-full h-auto block"
           style={{ display: 'block' }}
+          onLoad={() => setImageLoaded(true)}
         />
 
         {/* Desktop: Bounding Box Overlay Regions */}
