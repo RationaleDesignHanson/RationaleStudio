@@ -35,16 +35,6 @@ export default function RecipeSelector({
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Instructions */}
-      <div className="mb-6 text-center">
-        <h3 className="text-xl font-bold mb-2" style={{ color: COLORS.primaryDark }}>
-          Multiple Recipes Detected
-        </h3>
-        <p className="text-sm" style={{ color: COLORS.grayText }}>
-          Click on a recipe region below to extract its details
-        </p>
-      </div>
-
       {/* Image with Overlay Regions */}
       <div className="relative w-full bg-white rounded-lg shadow-xl overflow-hidden">
         {/* Background Image */}
