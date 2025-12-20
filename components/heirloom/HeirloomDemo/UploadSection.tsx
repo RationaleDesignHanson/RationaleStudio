@@ -32,7 +32,7 @@ export function UploadSection({
         onDragLeave={onDragLeave}
         onClick={() => fileInputRef.current?.click()}
         className={`
-          w-full max-w-[500px] min-h-[300px] rounded-2xl p-10
+          w-full max-w-[500px] min-h-[300px] rounded-2xl p-4 sm:p-6 md:p-10
           flex flex-col items-center justify-center gap-4
           cursor-pointer transition-all duration-200
           ${isDragging

@@ -37,7 +37,7 @@ export default function HeirloomProductPage() {
     <main className="min-h-screen bg-gradient-to-br from-[#FBF8F3] via-[#FBF8F3] to-[#F4A460]">
 
       {/* SECTION 1: HERO (JTBD-FIRST) */}
-      <section className="relative pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-8 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
+      <section className="relative pt-8 pb-8 md:pt-12 md:pb-12 lg:pt-16 lg:pb-16 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.03}
@@ -64,18 +64,18 @@ export default function HeirloomProductPage() {
 
           {/* Main Headline */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#2D2D2D] leading-tight mb-6">
-            {content.hero.headline}
+            Save Every Recipe.<br className="sm:hidden" /> Cook With Confidence.
           </h2>
 
           {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto mb-3 sm:mb-4 md:mb-6 leading-relaxed">
             {content.hero.subheadline}
           </p>
         </div>
       </section>
 
       {/* SECTION 2: THE PROBLEM */}
-      <section className="relative py-12 md:py-16 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+      <section className="relative py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -86,8 +86,8 @@ export default function HeirloomProductPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
-            {content.problem.headline}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-4 sm:mb-6 md:mb-8 text-center">
+            The Problem:<br className="sm:hidden" /> Recipe Chaos Across Apps
           </h2>
 
           {/* Mobile: Carousel */}
@@ -129,7 +129,7 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 3: THE SOLUTION */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
+      <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -140,7 +140,7 @@ export default function HeirloomProductPage() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-12 text-center">
             {content.solution.headline}
           </h2>
 
@@ -229,7 +229,7 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 4: PROOF IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+      <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -240,7 +240,7 @@ export default function HeirloomProductPage() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-12 text-center">
             {content.proof.headline}
           </h2>
 
@@ -297,9 +297,9 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 5: PRIMARY CTA */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#E85D4D]/15 to-transparent border-b border-[#E85D4D]/20">
+      <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#E85D4D]/15 to-transparent border-b border-[#E85D4D]/20">
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-4">
             {content.cta.headline}
           </h2>
           <p className="text-base md:text-lg text-gray-700 mb-8">
@@ -323,7 +323,7 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 6: WHO IT'S FOR */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+      <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -334,7 +334,7 @@ export default function HeirloomProductPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-12 text-center">
             {content.whoItsFor.headline}
           </h2>
 
@@ -367,7 +367,7 @@ export default function HeirloomProductPage() {
       </section>
 
       {/* SECTION 7: HOW IT WORKS */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
+      <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.02}
@@ -378,7 +378,7 @@ export default function HeirloomProductPage() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-12 text-center">
             {content.howItWorks.headline}
           </h2>
 
@@ -422,7 +422,7 @@ export default function HeirloomProductPage() {
 
       {/* SECTION 7B: FULL FEATURE SET */}
       {content.fullFeatureSet && (
-        <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
+        <section className="relative py-8 sm:py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E85D4D]/20 bg-white/30">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.02}
@@ -433,7 +433,7 @@ export default function HeirloomProductPage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D2D2D] mb-4 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#6A6A6A] leading-tight mb-4 text-center">
               {content.fullFeatureSet.headline}
             </h2>
             <p className="text-base md:text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
@@ -483,7 +483,7 @@ export default function HeirloomProductPage() {
       )}
 
       {/* SECTION 8: SECONDARY CTAs */}
-      <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white/30">
+      <section className="relative py-8 sm:py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white/30">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h3 className="text-xl md:text-2xl font-bold text-[#2D2D2D] mb-8 text-center">
             {content.secondaryCTAs.headline}

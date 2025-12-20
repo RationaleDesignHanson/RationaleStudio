@@ -480,7 +480,7 @@ export function HeirloomDemo({
   const stepContent = getStepContent();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-2 pb-6 px-3 md:pt-8 md:pb-16 md:px-5 ${className}`}>
+    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-1 pb-4 sm:pt-2 sm:pb-6 md:pt-8 md:pb-16 px-3 md:px-5 ${className}`}>
       {/* Header */}
       <div className="mb-3 mt-0 flex flex-col items-center">
         <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight text-center">
