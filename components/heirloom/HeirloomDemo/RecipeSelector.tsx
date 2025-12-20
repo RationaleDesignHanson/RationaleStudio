@@ -5,7 +5,7 @@
  * Displays clickable bounding box regions with recipe titles
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DetectedRecipe } from './types';
 import { COLORS } from './constants';
 
@@ -21,100 +21,41 @@ export default function RecipeSelector({
   onSelectRecipe,
 }: RecipeSelectorProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const listItemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const imageRef = useRef<HTMLImageElement>(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const scrollToListItem = (recipeId: string) => {
-    const element = listItemRefs.current[recipeId];
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      // Brief highlight effect
-      setHoveredId(recipeId);
-      setTimeout(() => setHoveredId(null), 1000);
-    }
-  };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Hidden image for loading/reference */}
-      <img
-        ref={imageRef}
-        src={imageUrl}
-        alt="Recipe card"
-        className="hidden"
-        onLoad={() => setImageLoaded(true)}
-      />
-
-      {/* Desktop: Recipe Cards with Thumbnails */}
-      <div className="hidden md:grid md:grid-cols-2 gap-4 mb-4">
-        {detectedRecipes.map((recipe, index) => (
+      {/* Desktop: Image with Bounding Box Overlays */}
+      <div className="hidden md:block relative">
+        <img
+          src={imageUrl}
+          alt="Recipe card with multiple recipes"
+          className="w-full h-auto rounded-lg"
+        />
+        {detectedRecipes.map((recipe) => (
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="rounded-lg border-2 transition-all duration-200 text-left hover:shadow-lg overflow-hidden"
-            style={{
-              borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
-              backgroundColor: COLORS.bgCard,
-            }}
             onMouseEnter={() => setHoveredId(recipe.id)}
             onMouseLeave={() => setHoveredId(null)}
+            className="absolute transition-all duration-200 cursor-pointer"
+            style={{
+              left: `${recipe.boundingBox.x}%`,
+              top: `${recipe.boundingBox.y}%`,
+              width: `${recipe.boundingBox.width}%`,
+              height: `${recipe.boundingBox.height}%`,
+              border: `3px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.primaryLight}`,
+              backgroundColor: hoveredId === recipe.id ? 'rgba(139, 90, 43, 0.15)' : 'rgba(139, 90, 43, 0.08)',
+              borderRadius: '8px',
+            }}
           >
-            {/* Recipe thumbnail preview */}
-            <div className="relative h-40 overflow-hidden bg-gray-100">
-              <img
-                src={imageUrl}
-                alt={recipe.title}
-                className="w-full h-full object-cover"
-                style={{
-                  objectPosition: `${recipe.boundingBox.x + recipe.boundingBox.width / 2}% ${recipe.boundingBox.y + recipe.boundingBox.height / 2}%`,
-                }}
-              />
-              <div
-                className="absolute top-2 left-2"
-                style={{
-                  backgroundColor: COLORS.primary,
-                  color: '#fff',
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                }}
-              >
-                {index + 1}
-              </div>
-            </div>
-
-            {/* Card content */}
-            <div className="p-4">
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h4 className="font-semibold text-lg flex-1" style={{ color: COLORS.primaryDark }}>
-                  {recipe.title}
-                </h4>
-                <svg
-                  className="w-5 h-5 flex-shrink-0 mt-1"
-                  style={{ color: COLORS.primary }}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              <span
-                className="inline-block text-sm px-2.5 py-1 rounded font-semibold"
-                style={{
-                  backgroundColor: COLORS.badgeMom,
-                  color: COLORS.badgeMomText,
-                }}
-              >
-                {recipe.confidence} confidence
-              </span>
+            <div
+              className="absolute -top-8 left-0 px-3 py-1 rounded-md text-sm font-semibold whitespace-nowrap shadow-lg"
+              style={{
+                backgroundColor: COLORS.primary,
+                color: 'white',
+              }}
+            >
+              {recipe.title}
             </div>
           </button>
         ))}
@@ -124,7 +65,6 @@ export default function RecipeSelector({
       <div className="md:hidden space-y-3">{detectedRecipes.map((recipe, index) => (
           <button
             key={recipe.id}
-            ref={(el) => (listItemRefs.current[recipe.id] = el)}
             onClick={() => onSelectRecipe(recipe.id)}
             className="w-full p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md"
             style={{
