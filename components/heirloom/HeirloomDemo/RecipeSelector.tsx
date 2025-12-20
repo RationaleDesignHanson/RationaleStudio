@@ -5,7 +5,9 @@
  * Displays clickable bounding box regions with recipe titles
  */
 
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { DetectedRecipe, ConfidenceLevel } from './types';
 import { COLORS } from './constants';
 
@@ -30,6 +32,33 @@ export default function RecipeSelector({
   onSelectRecipe,
 }: RecipeSelectorProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Peek animation on first view
+  useEffect(() => {
+    const hasSeenPeek = sessionStorage.getItem('heirloom-carousel-peek-shown');
+
+    if (!hasSeenPeek && carouselRef.current && detectedRecipes.length > 1) {
+      const timer = setTimeout(() => {
+        if (carouselRef.current) {
+          // Scroll right to show next card exists
+          carouselRef.current.scrollTo({ left: 120, behavior: 'smooth' });
+
+          // Scroll back after a brief pause
+          setTimeout(() => {
+            if (carouselRef.current) {
+              carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+          }, 800);
+
+          // Mark as seen
+          sessionStorage.setItem('heirloom-carousel-peek-shown', 'true');
+        }
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [detectedRecipes.length]);
 
   return (
     <div className="w-full md:max-w-4xl md:mx-auto">
@@ -70,12 +99,21 @@ export default function RecipeSelector({
         ))}
       </div>
 
-      {/* Mobile: Compact List */}
-      <div className="md:hidden space-y-3 px-3">{detectedRecipes.map((recipe, index) => (
+      {/* Mobile: Horizontal Carousel */}
+      <div
+        ref={carouselRef}
+        className="md:hidden overflow-x-auto flex gap-4 px-6 py-2 snap-x snap-mandatory scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        {detectedRecipes.map((recipe, index) => (
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md text-left gap-3"
+            className="flex-shrink-0 w-[315px] p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md snap-center gap-3"
             style={{
               borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
               backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
@@ -85,41 +123,45 @@ export default function RecipeSelector({
               justifyContent: 'flex-start',
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
+            onTouchEnd={() => setHoveredId(null)}
           >
-              {/* Thumbnail Preview - Zoomed into recipe area */}
-              <div
-                className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 relative"
+            {/* Thumbnail Preview - Zoomed into recipe area */}
+            <div
+              className="w-20 h-20 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 relative"
+              style={{
+                border: `2px solid ${COLORS.grayLight}`,
+              }}
+            >
+              <img
+                src={imageUrl}
+                alt={recipe.title}
+                className="absolute top-0 left-0 w-full h-auto"
                 style={{
-                  border: `2px solid ${COLORS.grayLight}`,
+                  transformOrigin: 'top left',
+                  transform: `
+                    translate(${-recipe.boundingBox.x}%, ${-recipe.boundingBox.y}%)
+                    scale(${100 / recipe.boundingBox.width})
+                  `,
                 }}
-              >
-                <img
-                  src={imageUrl}
-                  alt={recipe.title}
-                  className="absolute top-0 left-0 w-full h-auto"
-                  style={{
-                    transformOrigin: 'top left',
-                    transform: `
-                      translate(${-recipe.boundingBox.x}%, ${-recipe.boundingBox.y}%)
-                      scale(${100 / recipe.boundingBox.width})
-                    `,
-                  }}
-                />
-              </div>
+              />
+            </div>
 
-              {/* Content Area */}
-              <div className="flex-1 min-w-0 flex items-start gap-2">
+            {/* Content Area */}
+            <div className="flex-1 min-w-0 flex flex-col gap-1">
+              <div className="flex items-start gap-2">
                 <span
-                  className="text-sm font-bold flex-shrink-0 leading-snug pt-0.5"
+                  className="text-base font-bold flex-shrink-0 leading-snug"
                   style={{ color: COLORS.primary }}
                 >
                   {index + 1}.
                 </span>
-                <h4 className="font-semibold text-sm flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
+                <h4 className="font-semibold text-base flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
                   {recipe.title}
                 </h4>
+              </div>
+              <div className="flex items-center justify-end">
                 <svg
-                  className="w-5 h-5 flex-shrink-0 mt-0.5"
+                  className="w-5 h-5"
                   style={{ color: COLORS.primary }}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -133,8 +175,10 @@ export default function RecipeSelector({
                   />
                 </svg>
               </div>
+            </div>
           </button>
-        ))}</div>
+        ))}
+      </div>
     </div>
   );
 }
