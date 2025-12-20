@@ -211,7 +211,7 @@ export function RecipeCard({
             className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-3 md:pl-[50px] transition-[font-size] duration-200"
             style={{
               fontFamily: '"Playfair Display", Georgia, serif',
-              fontSize: isMobile ? (titleIsLong ? '18px' : '22px') : '28px',
+              fontSize: isMobile ? (titleIsLong ? '18px' : '24px') : '28px',
               color: COLORS.primaryDarkest
             }}
           >
