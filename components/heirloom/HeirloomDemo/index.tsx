@@ -61,6 +61,7 @@ export function HeirloomDemo({
   const [expandedIngredients, setExpandedIngredients] = useState(false);
   const [expandedInstructions, setExpandedInstructions] = useState(false);
   const [instructionsCollapsed, setInstructionsCollapsed] = useState(false);
+  const [showConfidenceDetails, setShowConfidenceDetails] = useState(false);
 
   // Change tracking
   const [changes, setChanges] = useState<ChangeHistory>({});
@@ -591,11 +592,22 @@ export function HeirloomDemo({
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
                     <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-4 mb-5">
-                      <div className="text-sm text-[#5c4033] mb-3">
-                        Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono">{overallScore}%</span>
-                      </div>
+                      <button
+                        onClick={() => setShowConfidenceDetails(!showConfidenceDetails)}
+                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-3"
+                      >
+                        <div className="text-base text-[#5c4033] flex items-center justify-center gap-2">
+                          Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono text-lg">{overallScore}%</span>
+                          <span
+                            className="text-[#a89880] text-xs transition-transform duration-200 inline-block"
+                            style={{ transform: showConfidenceDetails ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                          >
+                            ▼
+                          </span>
+                        </div>
+                      </button>
                       {/* Confidence tags */}
-                      {recipe?.confidence && scores && (
+                      {showConfidenceDetails && recipe?.confidence && scores && (
                         <div className="flex gap-2 justify-center flex-wrap">
                           {(['title', 'ingredients', 'instructions'] as const).map((field) => {
                             const confidence = recipe.confidence?.[field];
@@ -784,11 +796,22 @@ export function HeirloomDemo({
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
                     <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-2 mb-3 md:p-3 md:mb-4">
-                      <div className="text-[11px] md:text-sm text-[#5c4033] mb-2">
-                        Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono">{overallScore}%</span>
-                      </div>
+                      <button
+                        onClick={() => setShowConfidenceDetails(!showConfidenceDetails)}
+                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-2"
+                      >
+                        <div className="text-[13px] md:text-base text-[#5c4033] flex items-center justify-center gap-2">
+                          Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono text-[15px] md:text-lg">{overallScore}%</span>
+                          <span
+                            className="text-[#a89880] text-[10px] md:text-xs transition-transform duration-200 inline-block"
+                            style={{ transform: showConfidenceDetails ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                          >
+                            ▼
+                          </span>
+                        </div>
+                      </button>
                       {/* Confidence tags - mobile compact version */}
-                      {recipe?.confidence && scores && (
+                      {showConfidenceDetails && recipe?.confidence && scores && (
                         <div className="flex gap-1.5 justify-center flex-wrap">
                           {(['title', 'ingredients', 'instructions'] as const).map((field) => {
                             const confidence = recipe.confidence?.[field];
