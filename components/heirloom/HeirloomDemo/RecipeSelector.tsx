@@ -5,7 +5,7 @@
  * Displays clickable bounding box regions with recipe titles
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DetectedRecipe } from './types';
 import { COLORS } from './constants';
 
@@ -21,6 +21,17 @@ export default function RecipeSelector({
   onSelectRecipe,
 }: RecipeSelectorProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const listItemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+
+  const scrollToListItem = (recipeId: string) => {
+    const element = listItemRefs.current[recipeId];
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // Brief highlight effect
+      setHoveredId(recipeId);
+      setTimeout(() => setHoveredId(null), 1000);
+    }
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -44,8 +55,8 @@ export default function RecipeSelector({
           style={{ display: 'block' }}
         />
 
-        {/* Overlay Regions - positioned over the image */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        {/* Desktop: Bounding Box Overlay Regions */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block">
           {detectedRecipes.map((recipe) => {
             const isHovered = hoveredId === recipe.id;
 
@@ -55,7 +66,6 @@ export default function RecipeSelector({
                 onClick={() => onSelectRecipe(recipe.id)}
                 onMouseEnter={() => setHoveredId(recipe.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                onTouchStart={() => setHoveredId(recipe.id)}
                 className="absolute transition-all duration-200 cursor-pointer pointer-events-auto"
                 style={{
                   left: `${recipe.boundingBox.x}%`,
@@ -63,7 +73,7 @@ export default function RecipeSelector({
                   width: `${recipe.boundingBox.width}%`,
                   height: `${recipe.boundingBox.height}%`,
                   backgroundColor: isHovered
-                    ? 'rgba(139, 90, 43, 0.3)' // COLORS.primary with opacity
+                    ? 'rgba(139, 90, 43, 0.3)'
                     : 'rgba(139, 90, 43, 0.1)',
                   border: isHovered
                     ? `3px solid ${COLORS.primary}`
@@ -72,7 +82,6 @@ export default function RecipeSelector({
                 }}
                 aria-label={`Select recipe: ${recipe.title}`}
               >
-                {/* Recipe Title Label */}
                 <div
                   className="absolute top-2 left-2 right-2 px-3 py-2 rounded shadow-lg text-sm font-semibold transition-all duration-200"
                   style={{
@@ -83,7 +92,6 @@ export default function RecipeSelector({
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="truncate">{recipe.title}</span>
-                    {/* Confidence Badge */}
                     <span
                       className="text-xs px-2 py-0.5 rounded-full"
                       style={{
@@ -96,7 +104,6 @@ export default function RecipeSelector({
                   </div>
                 </div>
 
-                {/* Click Indicator (appears on hover) */}
                 {isHovered && (
                   <div
                     className="absolute inset-0 flex items-center justify-center"
@@ -119,6 +126,41 @@ export default function RecipeSelector({
             );
           })}
         </div>
+
+        {/* Mobile: Numbered Dot Markers */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none md:hidden">
+          {detectedRecipes.map((recipe, index) => {
+            const centerX = recipe.boundingBox.x + recipe.boundingBox.width / 2;
+            const centerY = recipe.boundingBox.y + recipe.boundingBox.height / 2;
+            const isHovered = hoveredId === recipe.id;
+
+            return (
+              <button
+                key={recipe.id}
+                onClick={() => scrollToListItem(recipe.id)}
+                onTouchStart={() => setHoveredId(recipe.id)}
+                className="absolute pointer-events-auto transition-all duration-200"
+                style={{
+                  left: `${centerX}%`,
+                  top: `${centerY}%`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                aria-label={`Scroll to recipe: ${recipe.title}`}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg transition-all duration-200"
+                  style={{
+                    backgroundColor: isHovered ? COLORS.primaryDark : COLORS.primary,
+                    color: '#fff',
+                    transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+                  }}
+                >
+                  {index + 1}
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Recipe List (for accessibility and mobile) */}
@@ -126,6 +168,7 @@ export default function RecipeSelector({
         {detectedRecipes.map((recipe, index) => (
           <button
             key={recipe.id}
+            ref={(el) => (listItemRefs.current[recipe.id] = el)}
             onClick={() => onSelectRecipe(recipe.id)}
             className="p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md"
             style={{
@@ -148,7 +191,7 @@ export default function RecipeSelector({
                     {index + 1}
                   </span>
                   <span
-                    className="text-xs px-2 py-0.5 rounded"
+                    className="text-sm px-2.5 py-1 rounded font-semibold"
                     style={{
                       backgroundColor: COLORS.badgeMom,
                       color: COLORS.badgeMomText,
