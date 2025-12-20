@@ -139,7 +139,7 @@ export default function RecipeSelector({
                 key={recipe.id}
                 onClick={() => scrollToListItem(recipe.id)}
                 onTouchStart={() => setHoveredId(recipe.id)}
-                className="absolute pointer-events-auto transition-all duration-200"
+                className="absolute pointer-events-auto transition-all duration-200 p-2 -m-2"
                 style={{
                   left: `${centerX}%`,
                   top: `${centerY}%`,
@@ -148,11 +148,11 @@ export default function RecipeSelector({
                 aria-label={`Scroll to recipe: ${recipe.title}`}
               >
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg transition-all duration-200"
+                  className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm shadow-lg transition-all duration-200"
                   style={{
                     backgroundColor: isHovered ? COLORS.primaryDark : COLORS.primary,
                     color: '#fff',
-                    transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+                    transform: isHovered ? 'scale(1.2)' : 'scale(1)',
                   }}
                 >
                   {index + 1}
