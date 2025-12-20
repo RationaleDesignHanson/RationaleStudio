@@ -75,15 +75,17 @@ export default function RecipeSelector({
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md block text-left"
+            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md text-left gap-3"
             style={{
               borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
               backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
               textAlign: 'left',
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start',
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
           >
-            <div className="flex items-start gap-3 text-left">
               {/* Thumbnail Preview - Zoomed into recipe area */}
               <div
                 className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 relative"
@@ -147,7 +149,6 @@ export default function RecipeSelector({
                   </span>
                 </div>
               </div>
-            </div>
           </button>
         ))}</div>
     </div>
