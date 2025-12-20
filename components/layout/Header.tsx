@@ -116,8 +116,8 @@ export function Header() {
               pathname.startsWith('/investors') ? 'text-terminal-gold' : 'text-gray-50'
             }`}
           >
-            <span className="font-semibold whitespace-nowrap">Rationale: </span>
-            <span className="font-light hidden xl:inline">Your Product Design Company</span>
+            <span className="font-semibold">Rationale: </span>
+            <span className="font-light">Your Product Design Company</span>
           </Link>
 
           {/* Navigation - Hidden on mobile */}

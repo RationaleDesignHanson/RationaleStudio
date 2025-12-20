@@ -79,7 +79,7 @@ export default function SanitarySystemProductPage() {
           {/* Case Study Link */}
           <div className="mb-12">
             <Link
-              href="/work/sanitary-waste-system"
+              href="/clients/work/sanitary-waste-system/full-overview"
               className="inline-flex items-center gap-2 text-[#E85D42] hover:text-[#D84A32] transition-colors underline underline-offset-4 font-medium"
             >
               Check out the demo

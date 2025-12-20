@@ -88,7 +88,7 @@ export default function HomePage() {
           <div className="relative z-10 max-w-6xl mx-auto">
             <div className="mb-12 px-4 sm:px-0">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                What We've Shipped
+                What We're Shipping
               </h2>
               <p className="text-sm sm:text-base text-gray-300 max-w-3xl">
                 This site, Zero, and Heirloom—plus partner explorations—designed and shipped in weeks to months, not quarters. No mockups. No proposals. Click to see working architecture, prototypes, and live demos.

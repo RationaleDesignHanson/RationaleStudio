@@ -58,11 +58,10 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         sectionId: 'opening',
         slideNumber: 1,
         type: 'title',
-        headline: 'A New Category in Pet Care',
-        subheadline: 'Sanitary Waste Systems (not "poop bags")',
+        headline: 'Nimbus',
+        subheadline: 'A new category in pet care: sanitary waste systems (no more poop bags)',
         content: [
-          'Absorbent-lined pickup + pop-up dispensing + proprietary dispenser ecosystem',
-          'Raising pre-seed to validate retail pull and scale manufacturing'
+          'Absorbent-lined pickup + pop-up dispensing + proprietary dispenser ecosystem'
         ],
         visual: {
           type: 'image',
@@ -72,7 +71,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             caption: 'Turning a hated moment into a premium hygiene system'
           }
         },
-        notes: 'IP Development Co. | Confidential'
+        notes: '© Rationale / 2025 | Confidential'
       },
       {
         id: 'slide-02',
@@ -105,12 +104,10 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         sectionId: 'problem',
         slideNumber: 3,
         type: 'problem',
-        headline: 'The Disgust Problem',
-        subheadline: 'Four sensory pain points drive avoidance behavior',
+        headline: 'The Sensory Barrier',
+        subheadline: 'Why existing bags fail the moment-of-use test',
         content: [
-          'People already hack around it: double-bagging, leaves/grass lining.',
-          'This isn\'t convenience. It\'s disgust sensitivity.',
-          'When the experience is unpleasant, people dread walks, avoid pickup situations, feel embarrassed in public, and overuse plastic.'
+          'Standard bags solve containment but ignore the unpleasant sensory experience. People already hack around this: double-bagging, stuffing leaves/grass inside as insulation.'
         ],
         bullets: [
           'Heat transfer through thin film (13-20 microns) → Dread walks',
@@ -130,23 +127,23 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           }
         },
         deepDive: {
-          title: 'Psychology of Disgust',
+          title: 'Why This Matters',
           sections: [
             {
               title: 'Sensory Transmission',
-              content: 'Current market offerings utilize films ranging from 0.5 mil to 0.8 mil (13-20 microns). While visually opaque, these films offer negligible thermal resistance. The immediate transfer of body heat from the waste to the user\'s hand triggers a visceral "contamination response," even if the barrier is intact.'
+              content: 'Standard films (13-20 microns) offer negligible thermal resistance. Heat transfers instantly from waste to hand, triggering an immediate "contamination response" even when the barrier is intact.'
             },
             {
-              title: 'Olfactory Permeability',
-              content: 'Polyethylene and compostable plastics are gas-permeable to varying degrees. The "wafting scent" of waste is a common complaint, particularly during longer walks where the user must carry the bag for extended periods.'
+              title: 'Odor Permeability',
+              content: 'All plastic films are gas-permeable. The "wafting scent" during walks is a common complaint, especially when carrying the bag for extended periods before disposal.'
             },
             {
-              title: 'Double Bagging Behavior',
-              content: 'A significant subset of users currently mitigates this aversion by using two bags or lining the bag with leaves/grass, effectively acknowledging the failure of the single-bag design.'
+              title: 'User Workarounds',
+              content: 'Many users already double-bag or stuff leaves/grass inside as insulation—effectively acknowledging that standard bags fail the sensory test. This wastes plastic and adds friction to the experience.'
             },
             {
               title: 'Behavioral Impact',
-              content: 'The disgust response creates real behavioral changes: owners dread walks, strategically avoid situations requiring pickup, experience public embarrassment, and resort to wasteful double-bagging. We\'re solving the tactile gap that drives these avoidance behaviors.'
+              content: 'Unpleasant sensory experiences create real behavioral changes: owners dread walks, avoid pickup situations, feel embarrassed in public, and overuse plastic. We solve the tactile gap driving these avoidance behaviors.'
             }
           ]
         }
