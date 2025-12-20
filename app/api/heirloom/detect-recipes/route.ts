@@ -142,11 +142,18 @@ export async function POST(req: NextRequest) {
               },
               {
                 type: 'text',
-                text: `Analyze this image and detect all recipes present. This could be a cookbook page, recipe card collection, or single recipe.
+                text: `Analyze this image and detect all DISTINCT, COMPLETE recipes present. This could be a cookbook page, recipe card collection, or single recipe.
 
-For each recipe detected, identify:
-1. The recipe title (extract the actual title if visible)
-2. Its approximate position in the image as a bounding box (x, y, width, height as percentages 0-100)
+IMPORTANT: Do NOT split a single recipe into multiple detections. Common mistakes to avoid:
+- A recipe with "Crust" and "Filling" sections is ONE recipe, not two
+- A recipe with "Sauce" and "Main" components is ONE recipe, not two
+- Sub-recipes or component instructions within one recipe should be treated as a single entity
+
+Only return multiple recipes if they are truly separate, complete recipes with different final dishes (e.g., "Apple Pie" and "Chocolate Cake" on the same page).
+
+For each DISTINCT recipe detected, identify:
+1. The main recipe title (use the primary title, not sub-section names like "crust" or "filling")
+2. Its approximate position in the image as a bounding box covering the ENTIRE recipe including all sub-sections (x, y, width, height as percentages 0-100)
 3. Your confidence in the detection
 
 Return ONLY valid JSON with no markdown formatting, no code blocks, no explanation. Just the raw JSON object.
@@ -171,15 +178,19 @@ Use this exact structure:
 }
 
 Guidelines:
-- If you see only ONE recipe, return an array with one item
-- If you see MULTIPLE recipes (like a cookbook page with 2-3 recipes), return all of them
+- If you see only ONE complete recipe (even with multiple sections), return an array with one item
+- If you see MULTIPLE truly distinct recipes (different final dishes), return all of them
+- The bounding box should encompass the entire recipe including all its components and sub-sections
 - Bounding box coordinates should be percentages (0-100) of the image dimensions
-- "high" confidence = clear distinct recipe with visible title
+- "high" confidence = clear distinct recipe with visible main title
 - "medium" confidence = recipe visible but title unclear
 - "low" confidence = possible recipe but uncertain
 - If no recipes detected, return: {"error": "No recipes found in image"}
 
-Important: Even if there's just one recipe, still return it in the array format so the UI can handle it consistently.`,
+Examples:
+- "Pumpkin Pie" with "Crust" and "Filling" sections → 1 recipe with bounding box covering both
+- "Apple Pie" and "Cherry Pie" on same page → 2 recipes with separate bounding boxes
+- "Lasagna" with "Sauce", "Pasta", and "Assembly" sections → 1 recipe covering all sections`,
               },
             ],
           },
