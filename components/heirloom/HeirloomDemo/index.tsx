@@ -480,14 +480,16 @@ export function HeirloomDemo({
         </h1>
         <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-md mx-auto px-6">
           {step === 'upload' && showSampleSelector ? (
-            <span className="whitespace-nowrap">Select or </span>
-            <button
-              onClick={() => setShowSampleSelector(false)}
-              className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
-            >
-              upload
-            </button>
-            <span> a recipe photo</span>
+            <>
+              <span className="whitespace-nowrap">Select or </span>
+              <button
+                onClick={() => setShowSampleSelector(false)}
+                className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
+              >
+                upload
+              </button>
+              <span> a recipe photo</span>
+            </>
           ) : (
             stepContent.description
           )}
