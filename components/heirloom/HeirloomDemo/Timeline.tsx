@@ -46,11 +46,11 @@ export function Timeline({ step }: TimelineProps) {
   };
 
   return (
-    <div className="timeline flex flex-row md:flex-col items-center justify-between md:justify-center gap-0 pt-[10px] md:pt-[60px] pb-4 md:pb-0 w-full md:w-auto">
+    <div className="timeline flex flex-row md:flex-col items-center justify-center md:justify-center gap-0 pt-[10px] md:pt-[60px] pb-4 md:pb-0 w-full md:w-auto px-4 md:px-0">
       {GENERATIONS.map((gen, idx) => {
         const status = getNodeStatus(idx);
         return (
-          <div key={gen.name} className="flex flex-row md:flex-col items-center flex-1 md:flex-none">
+          <div key={gen.name} className="flex flex-row md:flex-col items-center">
             {/* Timeline Node */}
             <div className="timeline-node flex flex-col items-center gap-0.5 md:gap-1 relative z-[2]">
               <div
@@ -82,7 +82,7 @@ export function Timeline({ step }: TimelineProps) {
             {/* Connector (not after last node) */}
             {idx < GENERATIONS.length - 1 && (
               <div
-                className="timeline-connector h-[2px] flex-1 md:flex-none md:w-[3px] md:h-10 relative"
+                className="timeline-connector h-[2px] w-8 mx-2 md:mx-0 md:w-[3px] md:h-10 relative"
                 style={{ backgroundColor: COLORS.grayLight }}
               >
                 <div
