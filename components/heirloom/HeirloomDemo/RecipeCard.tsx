@@ -210,7 +210,7 @@ export function RecipeCard({
 
           {/* Edit hint */}
           {isEditable && (
-            <div className="text-[11px] text-[#b8a890] mb-4">Click any text to edit</div>
+            <div className="text-[11px] text-[#b8a890] mb-4">Modify the recipe to your tastes</div>
           )}
 
           {/* Ingredients */}

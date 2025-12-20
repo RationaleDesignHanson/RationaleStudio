@@ -15,7 +15,6 @@ import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
 import { heirloomMarketingContent } from '@/lib/content/products/heirloom-marketing';
-import PrototypeEmbed from '@/app/(public)/work/heirloom/components/PrototypeEmbed';
 import { MobileCarousel } from '@/components/ui/MobileCarousel';
 
 export const metadata: Metadata = {
@@ -221,11 +220,6 @@ export default function HeirloomProductPage() {
             </Link>
           </div>
         </div>
-      </section>
-
-      {/* Interactive Demos Section */}
-      <section id="demo" className="bg-white">
-        <PrototypeEmbed />
       </section>
 
       {/* SECTION 4: PROOF IT WORKS */}
