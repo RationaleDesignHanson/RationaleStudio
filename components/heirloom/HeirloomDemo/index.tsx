@@ -475,10 +475,10 @@ export function HeirloomDemo({
     <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-2 pb-6 px-3 md:pt-8 md:pb-16 md:px-5 ${className}`}>
       {/* Header */}
       <div className="text-center mb-3 mt-0">
-        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-1 leading-none">
+        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight">
           {stepContent.title}
         </h1>
-        <p className="text-sm md:text-base text-[#8b7355] leading-relaxed max-w-xs md:max-w-md mx-auto">
+        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-xs md:max-w-md mx-auto">
           {step === 'upload' && showSampleSelector ? (
             <>
               Select or{' '}
