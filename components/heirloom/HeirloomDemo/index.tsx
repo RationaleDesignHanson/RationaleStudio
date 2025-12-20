@@ -478,13 +478,13 @@ export function HeirloomDemo({
         <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight">
           {stepContent.title}
         </h1>
-        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-xs md:max-w-md mx-auto">
+        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-sm md:max-w-md mx-auto px-4">
           {step === 'upload' && showSampleSelector ? (
             <>
               Select or{' '}
               <button
                 onClick={() => setShowSampleSelector(false)}
-                className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
+                className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer inline-block"
               >
                 upload
               </button>{' '}
