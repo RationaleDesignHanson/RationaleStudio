@@ -591,11 +591,12 @@ export function HeirloomDemo({
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
                     <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-4 mb-5">
-                      <div className="text-3xl font-bold text-[#2d5a27] font-mono">{overallScore}%</div>
-                      <div className="text-xs text-[#5c4033] mb-3">Overall Confidence</div>
+                      <div className="text-sm text-[#5c4033] mb-3">
+                        Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono">{overallScore}%</span>
+                      </div>
                       {/* Confidence tags */}
                       {recipe?.confidence && scores && (
-                        <div className="flex gap-2 justify-center flex-wrap mt-3">
+                        <div className="flex gap-2 justify-center flex-wrap">
                           {(['title', 'ingredients', 'instructions'] as const).map((field) => {
                             const confidence = recipe.confidence?.[field];
                             return (
@@ -783,13 +784,12 @@ export function HeirloomDemo({
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
                     <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-2 mb-3 md:p-3 md:mb-4">
-                      <div className="text-[24px] md:text-[32px] font-bold text-[#2d5a27] mb-0.5" style={{ fontFamily: 'ui-monospace, monospace' }}>
-                        {overallScore}%
+                      <div className="text-[11px] md:text-sm text-[#5c4033] mb-2">
+                        Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono">{overallScore}%</span>
                       </div>
-                      <div className="text-[10px] md:text-xs text-[#5c4033]">Overall Confidence</div>
                       {/* Confidence tags - mobile compact version */}
                       {recipe?.confidence && scores && (
-                        <div className="flex gap-1.5 justify-center flex-wrap mt-2">
+                        <div className="flex gap-1.5 justify-center flex-wrap">
                           {(['title', 'ingredients', 'instructions'] as const).map((field) => {
                             const confidence = recipe.confidence?.[field];
                             return (
