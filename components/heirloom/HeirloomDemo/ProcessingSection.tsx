@@ -26,16 +26,18 @@ export function ProcessingSection({ imagePreview }: ProcessingSectionProps) {
           }}
         />
         {/* Animated gradient pill overlay */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
-            className="px-6 py-3 rounded-full text-white text-sm font-semibold shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-sm"
+            className="px-6 py-3 rounded-full text-white text-sm font-bold shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-sm"
             style={{
               background: 'linear-gradient(90deg, #8b5a2b 0%, #b8825f 50%, #8b5a2b 100%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 2.5s ease-in-out infinite',
             }}
           >
-            Extracting recipe fields...
+            <span style={{ animation: 'textPulse 1.5s ease-in-out infinite' }}>
+              Extracting recipe...
+            </span>
           </div>
         </div>
       </div>
@@ -60,6 +62,16 @@ export function ProcessingSection({ imagePreview }: ProcessingSectionProps) {
           }
           100% {
             background-position: -200% 0;
+          }
+        }
+        @keyframes textPulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.85;
+            transform: scale(1.02);
           }
         }
       `}</style>
