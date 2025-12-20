@@ -52,9 +52,9 @@ export function Timeline({ step }: TimelineProps) {
         return (
           <div key={gen.name}>
             {/* Timeline Node */}
-            <div className="timeline-node flex flex-col items-center gap-1 relative z-[2]">
+            <div className="timeline-node flex flex-col items-center gap-0.5 md:gap-1 relative z-[2]">
               <div
-                className={`timeline-dot w-7 h-7 md:w-12 md:h-12 rounded-full flex items-center justify-center text-[10px] md:text-sm font-semibold transition-all duration-300 ${status}`}
+                className={`timeline-dot w-3.5 h-3.5 md:w-12 md:h-12 rounded-full flex items-center justify-center text-[8px] md:text-sm font-semibold transition-all duration-300 ${status}`}
                 style={{
                   backgroundColor:
                     status === 'active'
@@ -69,12 +69,12 @@ export function Timeline({ step }: TimelineProps) {
                 {gen.initials}
               </div>
               <div
-                className="timeline-label text-xs md:text-sm font-medium whitespace-nowrap text-center"
+                className="timeline-label text-[10px] md:text-sm font-medium whitespace-nowrap text-center"
                 style={{ color: getLabelColor(status) }}
               >
                 {gen.name}
               </div>
-              <div className="timeline-year text-[10px] md:text-xs" style={{ color: COLORS.grayMid }}>
+              <div className="timeline-year text-[8px] md:text-xs" style={{ color: COLORS.grayMid }}>
                 {gen.year}
               </div>
             </div>
@@ -82,7 +82,7 @@ export function Timeline({ step }: TimelineProps) {
             {/* Connector (not after last node) */}
             {idx < GENERATIONS.length - 1 && (
               <div
-                className="timeline-connector w-[3px] h-6 md:h-10 relative"
+                className="timeline-connector w-[2px] md:w-[3px] h-3 md:h-10 relative"
                 style={{ backgroundColor: COLORS.grayLight }}
               >
                 <div
