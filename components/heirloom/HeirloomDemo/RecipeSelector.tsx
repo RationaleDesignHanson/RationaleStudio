@@ -32,7 +32,7 @@ export default function RecipeSelector({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-0 md:mx-auto">
       {/* Desktop: Image with Bounding Box Overlays */}
       <div className="hidden md:block relative">
         <img
@@ -93,13 +93,13 @@ export default function RecipeSelector({
                 <img
                   src={imageUrl}
                   alt={recipe.title}
-                  className="absolute"
+                  className="absolute top-0 left-0 w-full h-auto"
                   style={{
-                    width: `${100 / (recipe.boundingBox.width / 100)}%`,
-                    height: `${100 / (recipe.boundingBox.height / 100)}%`,
-                    left: `${-recipe.boundingBox.x / (recipe.boundingBox.width / 100)}%`,
-                    top: `${-recipe.boundingBox.y / (recipe.boundingBox.height / 100)}%`,
-                    objectFit: 'cover',
+                    transformOrigin: 'top left',
+                    transform: `
+                      translate(${-recipe.boundingBox.x}%, ${-recipe.boundingBox.y}%)
+                      scale(${100 / recipe.boundingBox.width})
+                    `,
                   }}
                 />
               </div>
