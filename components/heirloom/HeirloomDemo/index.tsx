@@ -507,7 +507,7 @@ export function HeirloomDemo({
       </div>
 
       {/* Main Content */}
-      <div ref={demoContainerRef} className="max-w-6xl mx-auto">
+      <div ref={demoContainerRef} className="max-w-6xl md:mx-auto">
         {/* UPLOAD STEP */}
         {step === 'upload' && (
           <div className="space-y-4 md:space-y-8">
@@ -535,7 +535,7 @@ export function HeirloomDemo({
 
         {/* SELECTING STEP */}
         {step === 'selecting' && imagePreview && detectedRecipes.length > 0 && (
-          <div className="fade-in -mx-3 md:mx-0">
+          <div className="fade-in">
             <RecipeSelector
               imageUrl={imagePreview}
               detectedRecipes={detectedRecipes}
