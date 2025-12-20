@@ -478,17 +478,17 @@ export function HeirloomDemo({
         <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight">
           {stepContent.title}
         </h1>
-        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-md mx-auto px-6">
+        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-[280px] md:max-w-md mx-auto">
           {step === 'upload' && showSampleSelector ? (
             <>
-              <span className="whitespace-nowrap">Select or </span>
+              Select or{' '}
               <button
                 onClick={() => setShowSampleSelector(false)}
                 className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
               >
                 upload
-              </button>
-              <span> a recipe photo</span>
+              </button>{' '}
+              a recipe photo
             </>
           ) : (
             stepContent.description
