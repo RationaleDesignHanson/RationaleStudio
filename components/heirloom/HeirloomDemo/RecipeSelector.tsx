@@ -37,126 +37,101 @@ export default function RecipeSelector({
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Image with Overlay Regions */}
-      <div className="relative w-full bg-white rounded-lg shadow-xl overflow-hidden">
-        {/* Background Image */}
-        <img
-          ref={imageRef}
-          src={imageUrl}
-          alt="Recipe card with multiple recipes"
-          className="w-full h-auto block"
-          style={{ display: 'block' }}
-          onLoad={() => setImageLoaded(true)}
-        />
+      {/* Hidden image for loading/reference */}
+      <img
+        ref={imageRef}
+        src={imageUrl}
+        alt="Recipe card"
+        className="hidden"
+        onLoad={() => setImageLoaded(true)}
+      />
 
-        {/* Desktop: Bounding Box Overlay Regions */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block">
-          {detectedRecipes.map((recipe) => {
-            const isHovered = hoveredId === recipe.id;
-
-            return (
-              <button
-                key={recipe.id}
-                onClick={() => onSelectRecipe(recipe.id)}
-                onMouseEnter={() => setHoveredId(recipe.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="absolute transition-all duration-200 cursor-pointer pointer-events-auto"
-                style={{
-                  left: `${recipe.boundingBox.x}%`,
-                  top: `${recipe.boundingBox.y}%`,
-                  width: `${recipe.boundingBox.width}%`,
-                  height: `${recipe.boundingBox.height}%`,
-                  backgroundColor: isHovered
-                    ? 'rgba(139, 90, 43, 0.3)'
-                    : 'rgba(139, 90, 43, 0.1)',
-                  border: isHovered
-                    ? `3px solid ${COLORS.primary}`
-                    : `2px dashed ${COLORS.primary}`,
-                  borderRadius: '8px',
-                }}
-                aria-label={`Select recipe: ${recipe.title}`}
-              >
-                <div
-                  className="absolute top-2 left-2 right-2 px-3 py-2 rounded shadow-lg text-sm font-semibold transition-all duration-200"
-                  style={{
-                    backgroundColor: isHovered ? COLORS.primary : COLORS.primaryDark,
-                    color: '#fff',
-                    opacity: isHovered ? 1 : 0.9,
-                  }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="truncate">{recipe.title}</span>
-                    <span
-                      className="text-xs px-2 py-0.5 rounded-full"
-                      style={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        color: '#fff',
-                      }}
-                    >
-                      {recipe.confidence}
-                    </span>
-                  </div>
-                </div>
-
-                {isHovered && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      backgroundColor: 'rgba(139, 90, 43, 0.1)',
-                    }}
-                  >
-                    <div
-                      className="px-6 py-3 rounded-lg font-bold text-lg shadow-xl"
-                      style={{
-                        backgroundColor: COLORS.primary,
-                        color: '#fff',
-                      }}
-                    >
-                      Click to Select
-                    </div>
-                  </div>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Mobile: Directional Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none md:hidden">
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.15)' }}
+      {/* Desktop: Recipe Cards with Thumbnails */}
+      <div className="hidden md:grid md:grid-cols-2 gap-4 mb-4">
+        {detectedRecipes.map((recipe, index) => (
+          <button
+            key={recipe.id}
+            onClick={() => onSelectRecipe(recipe.id)}
+            className="rounded-lg border-2 transition-all duration-200 text-left hover:shadow-lg overflow-hidden"
+            style={{
+              borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
+              backgroundColor: COLORS.bgCard,
+            }}
+            onMouseEnter={() => setHoveredId(recipe.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
-            <div className="text-center">
+            {/* Recipe thumbnail preview */}
+            <div className="relative h-40 overflow-hidden bg-gray-100">
+              <img
+                src={imageUrl}
+                alt={recipe.title}
+                className="w-full h-full object-cover"
+                style={{
+                  objectPosition: `${recipe.boundingBox.x + recipe.boundingBox.width / 2}% ${recipe.boundingBox.y + recipe.boundingBox.height / 2}%`,
+                }}
+              />
               <div
-                className="text-sm font-semibold px-4 py-2 rounded-lg shadow-lg"
+                className="absolute top-2 left-2"
                 style={{
                   backgroundColor: COLORS.primary,
                   color: '#fff',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
                 }}
               >
-                Choose a recipe below
+                {index + 1}
               </div>
-              <div className="text-white text-2xl mt-2 animate-bounce">↓</div>
             </div>
-          </div>
-        </div>
+
+            {/* Card content */}
+            <div className="p-4">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h4 className="font-semibold text-lg flex-1" style={{ color: COLORS.primaryDark }}>
+                  {recipe.title}
+                </h4>
+                <svg
+                  className="w-5 h-5 flex-shrink-0 mt-1"
+                  style={{ color: COLORS.primary }}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span
+                className="inline-block text-sm px-2.5 py-1 rounded font-semibold"
+                style={{
+                  backgroundColor: COLORS.badgeMom,
+                  color: COLORS.badgeMomText,
+                }}
+              >
+                {recipe.confidence} confidence
+              </span>
+            </div>
+          </button>
+        ))}
       </div>
 
-      {/* Recipe List (for accessibility and mobile) */}
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {detectedRecipes.map((recipe, index) => (
+      {/* Mobile: Compact List */}
+      <div className="md:hidden space-y-3">{detectedRecipes.map((recipe, index) => (
           <button
             key={recipe.id}
             ref={(el) => (listItemRefs.current[recipe.id] = el)}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md"
+            className="w-full p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md"
             style={{
               borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
               backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
             }}
-            onMouseEnter={() => setHoveredId(recipe.id)}
-            onMouseLeave={() => setHoveredId(null)}
+            onTouchStart={() => setHoveredId(recipe.id)}
           >
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1">
@@ -200,8 +175,7 @@ export default function RecipeSelector({
               </svg>
             </div>
           </button>
-        ))}
-      </div>
+        ))}</div>
     </div>
   );
 }
