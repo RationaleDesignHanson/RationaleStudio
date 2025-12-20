@@ -82,10 +82,10 @@ export default function RecipeSelector({
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
           >
-            <div className="flex items-start gap-3">
-              {/* Thumbnail Preview */}
+            <div className="flex items-start gap-3 text-left">
+              {/* Thumbnail Preview - Zoomed into recipe area */}
               <div
-                className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0"
+                className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 relative"
                 style={{
                   border: `2px solid ${COLORS.grayLight}`,
                 }}
@@ -93,24 +93,28 @@ export default function RecipeSelector({
                 <img
                   src={imageUrl}
                   alt={recipe.title}
-                  className="w-full h-full object-cover"
+                  className="absolute"
                   style={{
-                    objectPosition: `${recipe.boundingBox.x + recipe.boundingBox.width / 2}% ${recipe.boundingBox.y + recipe.boundingBox.height / 2}%`,
+                    width: `${100 / (recipe.boundingBox.width / 100)}%`,
+                    height: `${100 / (recipe.boundingBox.height / 100)}%`,
+                    left: `${-recipe.boundingBox.x / (recipe.boundingBox.width / 100)}%`,
+                    top: `${-recipe.boundingBox.y / (recipe.boundingBox.height / 100)}%`,
+                    objectFit: 'cover',
                   }}
                 />
               </div>
 
               {/* Content Area */}
-              <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+              <div className="flex-1 min-w-0 flex flex-col gap-1.5 text-left">
                 {/* First Row: Number, Title, Arrow */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-start">
                   <span
-                    className="text-base font-bold flex-shrink-0"
+                    className="text-base font-bold flex-shrink-0 leading-none"
                     style={{ color: COLORS.primary }}
                   >
                     {index + 1}.
                   </span>
-                  <h4 className="font-semibold text-base flex-1" style={{ color: COLORS.primaryDark }}>
+                  <h4 className="font-semibold text-base flex-1 text-left m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
                     {recipe.title}
                   </h4>
                   <svg
@@ -130,7 +134,7 @@ export default function RecipeSelector({
                 </div>
 
                 {/* Second Row: Confidence Badge */}
-                <div className="ml-5">
+                <div className="ml-5 text-left">
                   <span
                     className="text-xs px-2 py-0.5 rounded font-medium inline-block"
                     style={{
