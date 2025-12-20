@@ -28,28 +28,38 @@ const confidenceToPercent = (confidence: ConfidenceLevel): number => {
 
 // Calculate optimal image transform to center on recipe content
 const getImageTransform = (boundingBox: { x: number; y: number; width: number; height: number }) => {
-  // Scale to fit width of container
-  const scale = 100 / boundingBox.width;
-  const translateX = -boundingBox.x;
-
-  // Calculate visible height in 4:3 container (as % of original image)
+  // Calculate visible dimensions in 4:3 container (as % of original image)
   const containerAspect = 4 / 3;
   const visibleHeight = boundingBox.width / containerAspect;
 
-  // Calculate the center point of the bounding box
-  const boundingBoxCenter = boundingBox.y + boundingBox.height / 2;
+  // Scale to fit width of container
+  const scale = 100 / boundingBox.width;
 
-  // If the bounding box is taller than the visible area, show upper portion (title area)
-  // Otherwise, center the visible area on the bounding box
-  let translateY;
-  if (boundingBox.height > visibleHeight) {
-    // Bounding box is tall - show top 40% to prioritize title
-    const topOffset = boundingBox.y + boundingBox.height * 0.2;
-    translateY = -(topOffset - visibleHeight / 2);
+  // Horizontal positioning: align bounding box left edge to container left edge
+  // After scaling, we need to account for the scale factor in our translate
+  // translateX = -scale * boundingBox.x to move the left edge to position 0
+  const translateX = -scale * boundingBox.x;
+
+  // Calculate the center point of the bounding box
+  const boundingBoxCenterY = boundingBox.y + boundingBox.height / 2;
+
+  // Vertical positioning: prioritize showing the title area
+  let targetY;
+  if (boundingBox.height > visibleHeight * 1.5) {
+    // Very tall recipe - show top 15% to focus on title
+    targetY = boundingBox.y + boundingBox.height * 0.15;
+  } else if (boundingBox.height > visibleHeight) {
+    // Tall recipe - show upper 25% to include title + some content
+    targetY = boundingBox.y + boundingBox.height * 0.25;
   } else {
-    // Bounding box fits - center it in the visible area
-    translateY = -(boundingBoxCenter - visibleHeight / 2);
+    // Recipe fits - center it vertically
+    targetY = boundingBoxCenterY;
   }
+
+  // Calculate translateY: center the target point in the visible area
+  // Account for scale factor in the translation
+  const visibleCenterY = visibleHeight / 2;
+  const translateY = -scale * (targetY - visibleCenterY);
 
   return { translateX, translateY, scale };
 };
