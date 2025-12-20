@@ -93,6 +93,13 @@ export function HeirloomDemo({
     updateStep('processing');
     setError(null);
 
+    // Scroll to center the processing view on mobile
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setTimeout(() => {
+        demoContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
     try {
       const response = await fetch(DETECT_API_ENDPOINT, {
         method: 'POST',

@@ -208,7 +208,7 @@ export function RecipeCard({
           {/* Title */}
           <h2
             ref={titleRef}
-            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-3 md:pl-[50px] transition-[font-size] duration-200"
+            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-[50px] transition-[font-size] duration-200"
             style={{
               fontFamily: '"Playfair Display", Georgia, serif',
               fontSize: isMobile ? (titleIsLong ? '18px' : '24px') : '28px',
