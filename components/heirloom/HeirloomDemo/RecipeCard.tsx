@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { EditableText } from './EditableText';
 import { Recipe, FieldChange, StickerOnCard } from './types';
 import { COLORS } from './constants';
@@ -74,6 +74,45 @@ export function RecipeCard({
   const hasNotes = savedMomNote || savedYourNote;
   const hasStickers = allStickers.length > 0;
   const [showImageModal, setShowImageModal] = useState(false);
+  const [titleIsLong, setTitleIsLong] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Check if title wraps to multiple lines (mobile only)
+  useEffect(() => {
+    if (!titleRef.current || !isMobile) {
+      setTitleIsLong(false);
+      return;
+    }
+
+    const checkTitleWrap = () => {
+      const element = titleRef.current;
+      if (!element) return;
+
+      // Get the line height and total height
+      const lineHeight = parseFloat(window.getComputedStyle(element).lineHeight);
+      const totalHeight = element.offsetHeight;
+
+      // If total height is more than 1.5x line height, it's wrapped
+      setTitleIsLong(totalHeight > lineHeight * 1.5);
+    };
+
+    // Small delay to ensure styles are applied
+    setTimeout(checkTitleWrap, 50);
+    window.addEventListener('resize', checkTitleWrap);
+
+    return () => window.removeEventListener('resize', checkTitleWrap);
+  }, [recipe.title, isMobile]);
 
   return (
     <div className="card-container w-full flex justify-center" style={{ perspective: '1200px', overflow: 'visible' }}>
@@ -168,8 +207,13 @@ export function RecipeCard({
 
           {/* Title */}
           <h2
-            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-3 md:pl-[50px]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', fontSize: '28px', color: COLORS.primaryDarkest }}
+            ref={titleRef}
+            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-3 md:pl-[50px] transition-[font-size] duration-200"
+            style={{
+              fontFamily: '"Playfair Display", Georgia, serif',
+              fontSize: isMobile ? (titleIsLong ? '18px' : '22px') : '28px',
+              color: COLORS.primaryDarkest
+            }}
           >
             <EditableText
               field="title"
@@ -188,7 +232,7 @@ export function RecipeCard({
           {/* Ingredients */}
           <div className="mb-5 text-left">
             <p className="text-[11px] uppercase tracking-wider text-[#8b7355] mb-2.5">Ingredients</p>
-            <ul className="m-0 pl-4.5 text-[#5c4033] text-[15px] leading-relaxed text-left">
+            <ul className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-disc">
               {(expandedIngredients ? recipe.ingredients : recipe.ingredients?.slice(0, 6))?.map((ing, i) => (
                 <li key={i}>
                   <EditableText
@@ -242,7 +286,7 @@ export function RecipeCard({
               </p>
             </div>
             {!instructionsCollapsed && (
-              <ol className="m-0 pl-4.5 text-[#5c4033] text-[15px] leading-relaxed text-left">
+              <ol className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-decimal">
                 {recipe.instructions && recipe.instructions.length > 0 ? (
                   (expandedInstructions ? recipe.instructions : recipe.instructions?.slice(0, 4))?.map((inst, i) => (
                     <li key={i} className="mb-1">
