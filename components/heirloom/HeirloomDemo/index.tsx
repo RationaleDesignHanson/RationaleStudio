@@ -591,10 +591,10 @@ export function HeirloomDemo({
                 {/* Scanned - proceed to fork */}
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
-                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-4 mb-5">
+                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl py-2 px-3 mb-5">
                       <button
                         onClick={() => setShowConfidenceDetails(!showConfidenceDetails)}
-                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-3"
+                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-2"
                       >
                         <div className="text-base text-[#5c4033] flex items-center justify-center gap-2">
                           Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono text-lg">{overallScore}%</span>
@@ -795,10 +795,10 @@ export function HeirloomDemo({
                 {/* Scanned - proceed to fork */}
                 {step === 'scanned' && (
                   <div className="fade-in text-center">
-                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-2 mb-3 md:p-3 md:mb-4">
+                    <div className="bg-[rgba(45,90,39,0.08)] rounded-xl py-1.5 px-2.5 mb-3 md:py-2 md:px-3 md:mb-4">
                       <button
                         onClick={() => setShowConfidenceDetails(!showConfidenceDetails)}
-                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-2"
+                        className="w-full text-center cursor-pointer bg-transparent border-none p-0 mb-1.5"
                       >
                         <div className="text-[13px] md:text-base text-[#5c4033] flex items-center justify-center gap-2">
                           Overall Confidence: <span className="font-bold text-[#2d5a27] font-mono text-[15px] md:text-lg">{overallScore}%</span>
