@@ -121,39 +121,25 @@ export default function RecipeSelector({
           })}
         </div>
 
-        {/* Mobile: Numbered Dot Markers */}
+        {/* Mobile: Directional Overlay */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none md:hidden">
-          {detectedRecipes.map((recipe, index) => {
-            const centerX = recipe.boundingBox.x + recipe.boundingBox.width / 2;
-            const centerY = recipe.boundingBox.y + recipe.boundingBox.height / 2;
-            const isHovered = hoveredId === recipe.id;
-
-            return (
-              <button
-                key={recipe.id}
-                onClick={() => scrollToListItem(recipe.id)}
-                onTouchStart={() => setHoveredId(recipe.id)}
-                className="absolute pointer-events-auto transition-all duration-200 p-2 -m-2"
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.15)' }}
+          >
+            <div className="text-center">
+              <div
+                className="text-sm font-semibold px-4 py-2 rounded-lg shadow-lg"
                 style={{
-                  left: `${centerX}%`,
-                  top: `${centerY}%`,
-                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: COLORS.primary,
+                  color: '#fff',
                 }}
-                aria-label={`Scroll to recipe: ${recipe.title}`}
               >
-                <div
-                  className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm shadow-lg transition-all duration-200"
-                  style={{
-                    backgroundColor: isHovered ? COLORS.primaryDark : COLORS.primary,
-                    color: '#fff',
-                    transform: isHovered ? 'scale(1.2)' : 'scale(1)',
-                  }}
-                >
-                  {index + 1}
-                </div>
-              </button>
-            );
-          })}
+                Choose a recipe below
+              </div>
+              <div className="text-white text-2xl mt-2 animate-bounce">↓</div>
+            </div>
+          </div>
         </div>
       </div>
 
