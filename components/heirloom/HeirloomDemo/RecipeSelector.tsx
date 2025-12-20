@@ -105,49 +105,43 @@ export default function RecipeSelector({
                     `,
                   }}
                 />
+                {/* Confidence Badge Overlay */}
+                <div
+                  className="absolute bottom-1 right-1 text-[10px] font-semibold px-1.5 py-0.5 rounded"
+                  style={{
+                    backgroundColor: COLORS.badgeMom,
+                    color: COLORS.badgeMomText,
+                  }}
+                >
+                  {confidenceToPercent(recipe.confidence)}%
+                </div>
               </div>
 
               {/* Content Area */}
-              <div className="flex-1 min-w-0 flex flex-col gap-1.5">
-                {/* First Row: Number, Title, Arrow */}
-                <div className="flex items-start gap-2">
-                  <span
-                    className="text-sm font-bold flex-shrink-0 leading-snug pt-0.5"
-                    style={{ color: COLORS.primary }}
-                  >
-                    {index + 1}.
-                  </span>
-                  <h4 className="font-semibold text-sm flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
-                    {recipe.title}
-                  </h4>
-                  <svg
-                    className="w-5 h-5 flex-shrink-0 mt-0.5"
-                    style={{ color: COLORS.primary }}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-
-                {/* Second Row: Confidence Badge */}
-                <div className="ml-5 text-left">
-                  <span
-                    className="text-xs px-2 py-0.5 rounded font-medium inline-block"
-                    style={{
-                      backgroundColor: COLORS.badgeMom,
-                      color: COLORS.badgeMomText,
-                    }}
-                  >
-                    {confidenceToPercent(recipe.confidence)}% confidence
-                  </span>
-                </div>
+              <div className="flex-1 min-w-0 flex items-start gap-2">
+                <span
+                  className="text-sm font-bold flex-shrink-0 leading-snug pt-0.5"
+                  style={{ color: COLORS.primary }}
+                >
+                  {index + 1}.
+                </span>
+                <h4 className="font-semibold text-sm flex-1 m-0 leading-snug" style={{ color: COLORS.primaryDark }}>
+                  {recipe.title}
+                </h4>
+                <svg
+                  className="w-5 h-5 flex-shrink-0 mt-0.5"
+                  style={{ color: COLORS.primary }}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </div>
           </button>
         ))}</div>
