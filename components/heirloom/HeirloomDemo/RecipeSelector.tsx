@@ -128,6 +128,9 @@ export default function RecipeSelector({
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
           WebkitOverflowScrolling: 'touch',
+          scrollSnapType: 'x mandatory',
+          scrollPaddingLeft: '24px',
+          scrollPaddingRight: '24px',
         }}
       >
         {detectedRecipes.map((recipe, index) => {
@@ -143,6 +146,8 @@ export default function RecipeSelector({
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: '12px',
+                scrollSnapAlign: 'center',
+                scrollSnapStop: 'always',
               }}
               onTouchStart={() => setHoveredId(recipe.id)}
               onTouchEnd={() => setHoveredId(null)}
