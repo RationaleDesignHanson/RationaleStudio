@@ -1186,6 +1186,10 @@ export function HeirloomDemo({
         .sticker-on-card:hover .sticker-tooltip-card {
           opacity: 1;
         }
+
+        .instructions-list::marker {
+          color: #a89880;
+        }
       `}</style>
     </div>
   );

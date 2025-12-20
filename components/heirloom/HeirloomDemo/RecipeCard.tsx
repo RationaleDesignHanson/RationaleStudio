@@ -286,7 +286,7 @@ export function RecipeCard({
               </p>
             </div>
             {!instructionsCollapsed && (
-              <ol className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-decimal">
+              <ol className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-decimal instructions-list">
                 {recipe.instructions && recipe.instructions.length > 0 ? (
                   (expandedInstructions ? recipe.instructions : recipe.instructions?.slice(0, 4))?.map((inst, i) => (
                     <li key={i} className="mb-1">
