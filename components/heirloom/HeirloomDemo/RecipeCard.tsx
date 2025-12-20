@@ -168,8 +168,8 @@ export function RecipeCard({
 
           {/* Title */}
           <h2
-            className="mb-5 border-b-2 border-[#f0ebe3] pb-4"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif', fontSize: '28px', color: COLORS.primaryDarkest, paddingLeft: '50px' }}
+            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-3 md:pl-[50px]"
+            style={{ fontFamily: '"Playfair Display", Georgia, serif', fontSize: '28px', color: COLORS.primaryDarkest }}
           >
             <EditableText
               field="title"
@@ -184,34 +184,6 @@ export function RecipeCard({
               isEditable={isEditable}
             />
           </h2>
-
-          {/* Confidence indicator - only on scanned step */}
-          {step === 'scanned' && recipe.confidence && scores && (
-            <div className="flex gap-2 mb-3 flex-wrap">
-              {(['title', 'ingredients', 'instructions'] as const).map((field) => {
-                const confidence = recipe.confidence?.[field];
-                return (
-                  <div
-                    key={field}
-                    className="flex items-center gap-1 bg-[rgba(45,90,39,0.08)] px-2.5 py-1 rounded-xl text-xs"
-                  >
-                    <span className="text-[#5c4033] capitalize">{field}</span>
-                    <span
-                      className="font-semibold font-mono"
-                      style={{ color: confidence ? confidenceToColor?.(confidence) : undefined }}
-                    >
-                      {scores[field]}%
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Edit hint */}
-          {isEditable && (
-            <div className="text-[11px] text-[#b8a890] mb-4">Modify the recipe to your tastes</div>
-          )}
 
           {/* Ingredients */}
           <div className="mb-5 text-left">

@@ -431,7 +431,7 @@ export function HeirloomDemo({
     switch (step) {
       case 'upload':
         return {
-          title: 'Start with a Recipe Card',
+          title: 'Start with a Photo',
           description: 'Select or upload a recipe photo',
         };
       case 'processing':
@@ -474,26 +474,35 @@ export function HeirloomDemo({
   return (
     <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-2 pb-6 px-3 md:pt-8 md:pb-16 md:px-5 ${className}`}>
       {/* Header */}
-      <div className="text-center mb-3 mt-0">
-        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight">
+      <div className="mb-3 mt-0 flex flex-col items-center">
+        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight text-center">
           {stepContent.title}
         </h1>
-        <p className="text-sm md:text-base text-[#8b7355] leading-normal max-w-[280px] md:max-w-md mx-auto">
+        <div className="text-sm md:text-base text-[#8b7355] leading-normal text-center max-w-xs md:max-w-md flex items-center gap-1.5 justify-center">
           {step === 'upload' && showSampleSelector ? (
             <>
-              Select or{' '}
+              <span>Select or upload a recipe photo</span>
               <button
                 onClick={() => setShowSampleSelector(false)}
-                className="underline hover:text-[#8b5a2b] transition-colors cursor-pointer"
+                className="p-2 -m-2 flex-shrink-0"
+                aria-label="Upload your own photo"
               >
-                upload
-              </button>{' '}
-              a recipe photo
+                <div className="w-[14px] h-[14px] rounded-full bg-[#8b7355] hover:bg-[#8b5a2b] flex items-center justify-center transition-all opacity-70 hover:opacity-100">
+                  <svg className="w-2.5 h-2.5 text-[#faf8f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                </div>
+              </button>
             </>
           ) : (
             stepContent.description
           )}
-        </p>
+        </div>
+        {step === 'scanned' && (
+          <div className="text-xs text-[#b8a890] mt-1 text-center">
+            Tweak the ingredients to make it yours
+          </div>
+        )}
       </div>
 
       {/* Main Content */}
@@ -583,7 +592,29 @@ export function HeirloomDemo({
                   <div className="fade-in text-center">
                     <div className="bg-[rgba(45,90,39,0.08)] rounded-xl p-4 mb-5">
                       <div className="text-3xl font-bold text-[#2d5a27] font-mono">{overallScore}%</div>
-                      <div className="text-xs text-[#5c4033]">Overall Confidence</div>
+                      <div className="text-xs text-[#5c4033] mb-3">Overall Confidence</div>
+                      {/* Confidence tags */}
+                      {recipe?.confidence && scores && (
+                        <div className="flex gap-2 justify-center flex-wrap mt-3">
+                          {(['title', 'ingredients', 'instructions'] as const).map((field) => {
+                            const confidence = recipe.confidence?.[field];
+                            return (
+                              <div
+                                key={field}
+                                className="flex items-center gap-1 bg-[rgba(45,90,39,0.08)] px-2.5 py-1 rounded-xl text-xs"
+                              >
+                                <span className="text-[#5c4033] capitalize">{field}</span>
+                                <span
+                                  className="font-semibold font-mono"
+                                  style={{ color: confidence ? confidenceToColor?.(confidence) : undefined }}
+                                >
+                                  {scores[field]}%
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                     <button
                       onClick={() => updateStep('fork1')}
@@ -711,12 +742,10 @@ export function HeirloomDemo({
               </div>
             </div>
 
-            {/* Mobile: Side-by-side layout */}
-            <div className="md:hidden flex flex-row items-start gap-1">
-              <div className="flex-shrink-0">
-                <Timeline step={step} />
-              </div>
-              <div className="flex-1 min-w-0">
+            {/* Mobile: Timeline above card */}
+            <div className="md:hidden flex flex-col items-center">
+              <Timeline step={step} />
+              <div className="w-full">
               <RecipeCard
                 recipe={recipe}
                 isFlipped={isFlipped}
@@ -758,6 +787,28 @@ export function HeirloomDemo({
                         {overallScore}%
                       </div>
                       <div className="text-[10px] md:text-xs text-[#5c4033]">Overall Confidence</div>
+                      {/* Confidence tags - mobile compact version */}
+                      {recipe?.confidence && scores && (
+                        <div className="flex gap-1.5 justify-center flex-wrap mt-2">
+                          {(['title', 'ingredients', 'instructions'] as const).map((field) => {
+                            const confidence = recipe.confidence?.[field];
+                            return (
+                              <div
+                                key={field}
+                                className="flex items-center gap-1 bg-[rgba(45,90,39,0.08)] px-2 py-0.5 rounded-lg text-[10px]"
+                              >
+                                <span className="text-[#5c4033] capitalize">{field}</span>
+                                <span
+                                  className="font-semibold font-mono"
+                                  style={{ color: confidence ? confidenceToColor?.(confidence) : undefined }}
+                                >
+                                  {scores[field]}%
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                     <button
                       onClick={() => setStep('fork1')}
