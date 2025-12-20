@@ -26,7 +26,7 @@ const confidenceToPercent = (confidence: ConfidenceLevel): number => {
   return mapping[confidence];
 };
 
-// Calculate optimal image transform to center on title area
+// Calculate optimal image transform to center on recipe content
 const getImageTransform = (boundingBox: { x: number; y: number; width: number; height: number }) => {
   // Scale to fit width of container
   const scale = 100 / boundingBox.width;
@@ -36,13 +36,20 @@ const getImageTransform = (boundingBox: { x: number; y: number; width: number; h
   const containerAspect = 4 / 3;
   const visibleHeight = boundingBox.width / containerAspect;
 
-  // Focus on title area (assume title is ~30% down from top of bounding box)
-  // Adjust this ratio to show more/less content below title
-  const titleFocusRatio = 0.3;
-  const titlePosition = boundingBox.y + boundingBox.height * titleFocusRatio;
+  // Calculate the center point of the bounding box
+  const boundingBoxCenter = boundingBox.y + boundingBox.height / 2;
 
-  // Center the visible area on the title position
-  const translateY = -(titlePosition - visibleHeight / 2);
+  // If the bounding box is taller than the visible area, show upper portion (title area)
+  // Otherwise, center the visible area on the bounding box
+  let translateY;
+  if (boundingBox.height > visibleHeight) {
+    // Bounding box is tall - show top 40% to prioritize title
+    const topOffset = boundingBox.y + boundingBox.height * 0.2;
+    translateY = -(topOffset - visibleHeight / 2);
+  } else {
+    // Bounding box fits - center it in the visible area
+    translateY = -(boundingBoxCenter - visibleHeight / 2);
+  }
 
   return { translateX, translateY, scale };
 };
