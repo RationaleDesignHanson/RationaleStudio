@@ -14,13 +14,29 @@ interface SampleRecipeSelectorProps {
 }
 
 export function SampleRecipeSelector({ onSelectSample, onUploadOwn }: SampleRecipeSelectorProps) {
-  // Combine all samples and randomize selection on each render
-  const allSamples = [...SAMPLE_RECIPE_CARDS, ...SAMPLE_COOKBOOK_PAGES];
+  // Multi-recipe cookbooks that demonstrate the carousel selection flow
+  const multiRecipeCookbookIds = ['cookbook-09', 'cookbook-10', 'cookbook-11'];
 
-  // Randomize and select 12 samples
-  const displaySamples = [...allSamples]
+  // Separate multi-recipe cookbooks from other samples
+  const multiRecipeCookbooks = SAMPLE_COOKBOOK_PAGES.filter(
+    sample => multiRecipeCookbookIds.includes(sample.id)
+  );
+  const otherSamples = [
+    ...SAMPLE_RECIPE_CARDS,
+    ...SAMPLE_COOKBOOK_PAGES.filter(sample => !multiRecipeCookbookIds.includes(sample.id))
+  ];
+
+  // Always include one multi-recipe cookbook
+  const selectedMultiRecipe = multiRecipeCookbooks[Math.floor(Math.random() * multiRecipeCookbooks.length)];
+
+  // Randomize and select 11 more samples from the rest
+  const otherSelected = [...otherSamples]
     .sort(() => Math.random() - 0.5)
-    .slice(0, 12);
+    .slice(0, 11);
+
+  // Combine: guaranteed multi-recipe + 11 random others, then shuffle
+  const displaySamples = [selectedMultiRecipe, ...otherSelected]
+    .sort(() => Math.random() - 0.5);
 
   // Create card component for reuse
   const RecipeCard = ({ sample }: { sample: SampleRecipe }) => (
