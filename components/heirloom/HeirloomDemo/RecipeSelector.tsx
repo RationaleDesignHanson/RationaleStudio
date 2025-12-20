@@ -71,7 +71,7 @@ export default function RecipeSelector({
       </div>
 
       {/* Mobile: Compact List */}
-      <div className="md:hidden space-y-3">{detectedRecipes.map((recipe, index) => (
+      <div className="md:hidden space-y-3 px-3">{detectedRecipes.map((recipe, index) => (
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}

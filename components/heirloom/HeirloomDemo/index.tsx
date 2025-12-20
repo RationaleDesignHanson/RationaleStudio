@@ -535,7 +535,7 @@ export function HeirloomDemo({
 
         {/* SELECTING STEP */}
         {step === 'selecting' && imagePreview && detectedRecipes.length > 0 && (
-          <div className="fade-in">
+          <div className="fade-in -mx-3 md:mx-0">
             <RecipeSelector
               imageUrl={imagePreview}
               detectedRecipes={detectedRecipes}
