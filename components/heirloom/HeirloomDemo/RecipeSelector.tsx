@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { DetectedRecipe } from './types';
+import { DetectedRecipe, ConfidenceLevel } from './types';
 import { COLORS } from './constants';
 
 interface RecipeSelectorProps {
@@ -14,6 +14,15 @@ interface RecipeSelectorProps {
   detectedRecipes: DetectedRecipe[];
   onSelectRecipe: (recipeId: string) => void;
 }
+
+const confidenceToPercent = (confidence: ConfidenceLevel): number => {
+  const mapping = {
+    high: 95,
+    medium: 75,
+    low: 60,
+  };
+  return mapping[confidence];
+};
 
 export default function RecipeSelector({
   imageUrl,
@@ -37,7 +46,7 @@ export default function RecipeSelector({
             onClick={() => onSelectRecipe(recipe.id)}
             onMouseEnter={() => setHoveredId(recipe.id)}
             onMouseLeave={() => setHoveredId(null)}
-            className="absolute transition-all duration-200 cursor-pointer"
+            className="absolute transition-all duration-200 cursor-pointer flex items-center justify-center"
             style={{
               left: `${recipe.boundingBox.x}%`,
               top: `${recipe.boundingBox.y}%`,
@@ -49,7 +58,7 @@ export default function RecipeSelector({
             }}
           >
             <div
-              className="absolute -top-8 left-0 px-3 py-1 rounded-md text-sm font-semibold whitespace-nowrap shadow-lg"
+              className="px-4 py-2 rounded-md text-base font-semibold shadow-lg text-center"
               style={{
                 backgroundColor: COLORS.primary,
                 color: 'white',
@@ -66,53 +75,73 @@ export default function RecipeSelector({
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="w-full p-4 rounded-lg border-2 transition-all duration-200 text-left hover:shadow-md"
+            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md"
             style={{
               borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
               backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
           >
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-start gap-3">
+              {/* Thumbnail Preview */}
+              <div
+                className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0"
+                style={{
+                  border: `2px solid ${COLORS.grayLight}`,
+                }}
+              >
+                <img
+                  src={imageUrl}
+                  alt={recipe.title}
+                  className="w-full h-full object-cover"
+                  style={{
+                    objectPosition: `${recipe.boundingBox.x + recipe.boundingBox.width / 2}% ${recipe.boundingBox.y + recipe.boundingBox.height / 2}%`,
+                  }}
+                />
+              </div>
+
+              {/* Content Area */}
+              <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                {/* First Row: Number, Title, Arrow */}
+                <div className="flex items-center gap-2">
                   <span
-                    className="text-xs font-bold px-2 py-0.5 rounded"
-                    style={{
-                      backgroundColor: COLORS.primaryLight,
-                      color: COLORS.primaryDarkest,
-                    }}
+                    className="text-base font-bold flex-shrink-0"
+                    style={{ color: COLORS.primary }}
                   >
-                    {index + 1}
+                    {index + 1}.
                   </span>
+                  <h4 className="font-semibold text-base flex-1" style={{ color: COLORS.primaryDark }}>
+                    {recipe.title}
+                  </h4>
+                  <svg
+                    className="w-5 h-5 flex-shrink-0"
+                    style={{ color: COLORS.primary }}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+
+                {/* Second Row: Confidence Badge */}
+                <div className="ml-5">
                   <span
-                    className="text-sm px-2.5 py-1 rounded font-semibold"
+                    className="text-xs px-2 py-0.5 rounded font-medium inline-block"
                     style={{
                       backgroundColor: COLORS.badgeMom,
                       color: COLORS.badgeMomText,
                     }}
                   >
-                    {recipe.confidence} confidence
+                    {confidenceToPercent(recipe.confidence)}% confidence
                   </span>
                 </div>
-                <h4 className="font-semibold" style={{ color: COLORS.primaryDark }}>
-                  {recipe.title}
-                </h4>
               </div>
-              <svg
-                className="w-5 h-5 flex-shrink-0"
-                style={{ color: COLORS.primary }}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
             </div>
           </button>
         ))}</div>
