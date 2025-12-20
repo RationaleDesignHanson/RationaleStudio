@@ -75,10 +75,11 @@ export default function RecipeSelector({
           <button
             key={recipe.id}
             onClick={() => onSelectRecipe(recipe.id)}
-            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md"
+            className="w-full p-3 rounded-lg border-2 transition-all duration-200 hover:shadow-md block text-left"
             style={{
               borderColor: hoveredId === recipe.id ? COLORS.primary : COLORS.grayLight,
               backgroundColor: hoveredId === recipe.id ? COLORS.bgWarm : COLORS.bgCard,
+              textAlign: 'left',
             }}
             onTouchStart={() => setHoveredId(recipe.id)}
           >
