@@ -56,9 +56,9 @@ test.describe('Zero Demo: Page Load and Initial State', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000); // Wait for tutorial to load
 
-    // Look for email cards or tutorial modals (tutorial may be active on first visit)
-    const hasEmailContent = await page.locator('[class*="email"], .tutorial, [class*="card"]').count() > 0;
-    expect(hasEmailContent).toBe(true);
+    // Check for the demo section which contains the InteractiveDemo component
+    const demoSection = page.locator('#demo');
+    await expect(demoSection).toBeVisible({ timeout: 10000 });
   });
 
   test('should load within acceptable time', async ({ page }) => {
