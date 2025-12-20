@@ -17,7 +17,7 @@ import { useDemoAnalytics } from '@/hooks/useDemoAnalytics';
  * Tablet Full Width Demo - Optimized for tablets (768px - 1024px)
  * No phone frame, larger cards, persistent instruction bar
  */
-export default function TabletFullWidthDemo() {
+export default function TabletFullWidthDemo({ isTutorialActive = false }: { isTutorialActive?: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [archetype, setArchetype] = useState<EmailType>('mail');
   const [dismissed, setDismissed] = useState({ mail: 0, ads: 0 });
@@ -360,8 +360,8 @@ export default function TabletFullWidthDemo() {
       {/* Email Feed */}
       <div className="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-12 px-6">
         <div className="max-w-3xl w-full mx-auto">
-          {/* Background cards */}
-          {filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
+          {/* Background cards - Hidden during tutorial */}
+          {!isTutorialActive && filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
             <div
               key={`bg-${currentIndex}-${i}`}
               className="absolute left-6 right-6 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md rounded-3xl border border-white/10 shadow-xl"
@@ -376,8 +376,8 @@ export default function TabletFullWidthDemo() {
             />
           ))}
 
-          {/* Active Card */}
-          <motion.div
+          {/* Active Card - Hidden during tutorial */}
+          {!isTutorialActive && <motion.div
             key={`card-${archetype}-${currentIndex}`}
             drag
             dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
@@ -418,7 +418,7 @@ export default function TabletFullWidthDemo() {
                 />
               </div>
             </div>
-          </motion.div>
+          </motion.div>}
 
           {/* Action hints below card */}
           <div className="mt-6 flex items-center justify-center gap-6 text-white/50 text-sm">

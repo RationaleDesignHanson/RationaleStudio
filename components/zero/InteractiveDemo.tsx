@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useResponsiveLayout } from '@/hooks/useResponsiveLayout';
 import { useDemoAnalytics } from '@/hooks/useDemoAnalytics';
 import MobileNativeDemo from './layouts/MobileNativeDemo';
@@ -21,6 +21,7 @@ import GuidedTutorial from './GuidedTutorial';
 export default function InteractiveDemo() {
   const { layout } = useResponsiveLayout();
   const { trackDemoStart, trackTutorialComplete, trackTutorialSkip } = useDemoAnalytics();
+  const [isTutorialActive, setIsTutorialActive] = useState(false);
 
   // Track demo start
   useEffect(() => {
@@ -28,11 +29,17 @@ export default function InteractiveDemo() {
   }, [layout, trackDemoStart]);
 
   const handleTutorialComplete = () => {
+    setIsTutorialActive(false);
     trackTutorialComplete();
   };
 
   const handleTutorialSkip = () => {
+    setIsTutorialActive(false);
     trackTutorialSkip(0);
+  };
+
+  const handleTutorialStart = () => {
+    setIsTutorialActive(true);
   };
 
   // Render appropriate layout based on viewport
@@ -53,13 +60,14 @@ export default function InteractiveDemo() {
 
   return (
     <div className="relative overflow-visible">
-      <LayoutComponent />
+      <LayoutComponent isTutorialActive={isTutorialActive} />
 
       {/* Guided Tutorial - shows on first visit */}
       <GuidedTutorial
         enabled={true}
         onComplete={handleTutorialComplete}
         onSkip={handleTutorialSkip}
+        onStart={handleTutorialStart}
       />
     </div>
   );

@@ -18,7 +18,7 @@ import { useDemoAnalytics } from '@/hooks/useDemoAnalytics';
  * Removes phone frame, uses full viewport, optimized touch targets
  * Includes velocity detection and undo functionality
  */
-export default function MobileNativeDemo() {
+export default function MobileNativeDemo({ isTutorialActive = false }: { isTutorialActive?: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [archetype, setArchetype] = useState<EmailType>('mail');
   const [dismissed, setDismissed] = useState({ mail: 0, ads: 0 });
@@ -400,8 +400,8 @@ export default function MobileNativeDemo() {
 
       {/* Email Feed */}
       <div className="relative min-h-screen flex items-center justify-center px-4 py-4 pb-28">
-        {/* Background cards */}
-        {filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
+        {/* Background cards - Hidden during tutorial */}
+        {!isTutorialActive && filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
           <div
             key={`bg-${currentIndex}-${i}`}
             className="absolute left-4 right-4 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md rounded-3xl border border-white/10 shadow-xl"
@@ -416,8 +416,8 @@ export default function MobileNativeDemo() {
           />
         ))}
 
-        {/* Active Card */}
-        <motion.div
+        {/* Active Card - Hidden during tutorial */}
+        {!isTutorialActive && <motion.div
           key={`card-${archetype}-${currentIndex}`}
           drag
           dragConstraints={{ left: -400, right: 400, top: -400, bottom: 400 }}
@@ -458,7 +458,7 @@ export default function MobileNativeDemo() {
               />
             </div>
           </div>
-        </motion.div>
+        </motion.div>}
       </div>
 
       {/* Progress Bar */}

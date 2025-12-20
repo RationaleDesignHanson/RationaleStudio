@@ -24,7 +24,7 @@ import { useDemoAnalytics } from '@/hooks/useDemoAnalytics';
  * - Arrow Up: Show action sheet
  * - Escape: Close modals
  */
-export default function DesktopAnnotatedDemo() {
+export default function DesktopAnnotatedDemo({ isTutorialActive = false }: { isTutorialActive?: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [archetype, setArchetype] = useState<EmailType>('mail');
   const [dismissed, setDismissed] = useState({ mail: 0, ads: 0 });
@@ -312,8 +312,8 @@ export default function DesktopAnnotatedDemo() {
               </div>
             ) : (
               <div className="w-full max-w-2xl">
-                {/* Background cards */}
-                {filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
+                {/* Background cards - Hidden during tutorial */}
+                {!isTutorialActive && filteredEmails.slice(currentIndex + 1, currentIndex + 3).map((email, i) => (
                   <div
                     key={`bg-${currentIndex}-${i}`}
                     className="absolute left-0 right-0 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md rounded-3xl border border-white/10 shadow-xl"
@@ -328,8 +328,8 @@ export default function DesktopAnnotatedDemo() {
                   />
                 ))}
 
-                {/* Active Card */}
-                <motion.div
+                {/* Active Card - Hidden during tutorial */}
+                {!isTutorialActive && <motion.div
                   key={`card-${archetype}-${currentIndex}`}
                   drag
                   dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
@@ -382,7 +382,7 @@ export default function DesktopAnnotatedDemo() {
                       </motion.div>
                     )}
                   </div>
-                </motion.div>
+                </motion.div>}
 
                 {/* Action hints */}
                 <div className="mt-6 flex items-center justify-center gap-6 text-white/40 text-sm">

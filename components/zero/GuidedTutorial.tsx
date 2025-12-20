@@ -16,6 +16,7 @@ interface GuidedTutorialProps {
   enabled?: boolean;
   onComplete?: () => void;
   onSkip?: () => void;
+  onStart?: () => void;
 }
 
 const tutorialSteps: TutorialStep[] = [
@@ -75,7 +76,7 @@ const tutorialSteps: TutorialStep[] = [
  * Interactive walkthrough for first-time users
  * Shows how to use the Zero demo effectively
  */
-export default function GuidedTutorial({ enabled = true, onComplete, onSkip }: GuidedTutorialProps) {
+export default function GuidedTutorial({ enabled = true, onComplete, onSkip, onStart }: GuidedTutorialProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -84,9 +85,12 @@ export default function GuidedTutorial({ enabled = true, onComplete, onSkip }: G
     const hasSeenTutorial = localStorage.getItem('zero-tutorial-completed');
     if (enabled && !hasSeenTutorial) {
       // Delay showing tutorial slightly so demo loads first
-      setTimeout(() => setIsVisible(true), 1000);
+      setTimeout(() => {
+        setIsVisible(true);
+        if (onStart) onStart();
+      }, 1000);
     }
-  }, [enabled]);
+  }, [enabled, onStart]);
 
   const handleNext = () => {
     if (currentStep < tutorialSteps.length - 1) {
@@ -125,22 +129,22 @@ export default function GuidedTutorial({ enabled = true, onComplete, onSkip }: G
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[800] pointer-events-none"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm z-[800] pointer-events-none"
           />
 
-          {/* Tutorial Card */}
+          {/* Tutorial Card - Positioned in the card area */}
           <motion.div
             key={currentStep}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: 'spring', damping: 25 }}
-            className={`fixed z-[801] left-4 right-4 md:left-auto md:right-auto md:max-w-md md:mx-auto ${
-              currentStepData.position === 'top'
-                ? 'top-24'
-                : currentStepData.position === 'bottom'
-                ? 'bottom-24'
-                : 'top-1/2 -translate-y-1/2'
+            className={`absolute z-[801] left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:max-w-md ${
+              currentStepData.position === 'center'
+                ? 'top-1/2 -translate-y-1/2'
+                : currentStepData.position === 'top'
+                ? 'top-8'
+                : 'bottom-32'
             }`}
           >
             <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-1 shadow-2xl">
@@ -238,7 +242,7 @@ export default function GuidedTutorial({ enabled = true, onComplete, onSkip }: G
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.3, 0.6, 0.3] }}
               transition={{ repeat: Infinity, duration: 2 }}
-              className="fixed inset-0 z-[799] pointer-events-none"
+              className="absolute inset-0 z-[799] pointer-events-none"
             >
               {/* Spotlight effect would go here */}
             </motion.div>
