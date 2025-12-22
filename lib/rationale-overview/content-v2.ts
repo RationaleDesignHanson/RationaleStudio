@@ -200,7 +200,7 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'section-header-proof',
         type: 'section-header',
         headline: 'The Proof',
-        content: 'Zero went concept to App Store in 1 month',
+        content: 'We ship products people actually use',
         sectionNumber: 3
       },
       // TEMPORARILY HIDDEN - Needs refinement
@@ -218,26 +218,26 @@ export const RATIONALE_SECTIONS_V2: Record<string, Section> = {
         id: 'what-zero-proves',
         type: 'impact',
         headline: 'This Is the Proof',
-        content: 'This site. Zero. Heirloom. The case studies. The methodology docs. All of it was designed, built, and shipped by this studio—within a couple of months. We don\'t show decks about what we could build, we work in demos.',
+        content: 'Zero and Heirloom aren\'t demos or prototypes—they\'re live products solving real problems for real users. One tackles inbox overload. The other preserves family recipes. Both shipped with systematic velocity and complete technical execution.',
         visual: {
           type: 'component',
-          component: 'ZeroArchitectureDiagram'
+          component: 'ProductRangeDiagram'
         },
         deepDive: {
-          title: 'This Site IS the Pitch',
-          description: 'How studio-built products prove the methodology in production',
+          title: 'Products That Solve Real Problems',
+          description: 'How we prove capability through shipped consumer products',
           sections: [
             {
-              title: 'A Studio That Builds Its Own Products',
-              content: 'Zero shipped in weeks with 10 microservices, 182 Swift files, and AI-powered email intelligence. Heirloom launched with AI recipe scanning, iCloud sync, and a vintage-inspired design system. Both are live products with real users. This isn\'t R&D theater. It\'s systematic product conviction.'
+              title: 'Zero: Email Triage for Busy Professionals',
+              content: 'Problem: Professionals receive 200+ emails daily. Important items—flight confirmations, package tracking, meeting follow-ups—get buried in promotional noise. Users spend 45 minutes each morning just figuring out what needs attention. Solution: Zero uses AI to automatically categorize and extract actions from emails. Swipe to triage, tap to see what matters. Value: Users reduce email management from 45 minutes to 5 minutes daily. Never miss important deliveries or deadlines. Live on the App Store.'
             },
             {
-              title: 'The Artifact of a Methodology',
-              content: 'Every product we ship is proof of build-to-think in action. Zero validated multiple prototypes before writing production code—no architectural pivots during development. Heirloom tested interaction models early, shipped with zero UX surprises. The methodology isn\'t abstract. It\'s the reason these products shipped fast, worked on launch, and didn\'t require post-release redesigns. The artifacts prove the framework.'
+              title: 'Heirloom: Recipe Preservation for Families',
+              content: 'Problem: Recipes scattered everywhere—screenshots in camera rolls, bookmarks in Safari, texts from family members. Grandmother\'s handwritten recipe cards are fading. No single place to organize, preserve, or share family recipes. Solution: Heirloom scans recipes from photos using AI, organizes them in a beautiful vintage-inspired digital cookbook, syncs across devices with iCloud. Value: Preserve family recipe history. Find any recipe instantly. Share collections with loved ones. Beautiful design that honors the emotional value of recipes.'
             },
             {
-              title: 'Proof of What Happens When You Work With Us',
-              content: 'Athletes First: bottlenecks diagnosed, dozens of interactive prototypes built to bring internal teams and partners along. CREaiT: strategic roadmap with embedded system diagrams showing exactly what gets built and why. We don\'t just prototype for ourselves—we prototype to create alignment, test assumptions, and de-risk decisions before capital gets deployed. The same methodology that shipped Zero and Heirloom is what you get when we work on your product.'
+              title: 'Proof of Range: Different Problems, Same Systematic Approach',
+              content: 'We build different types of products—from productivity tools to lifestyle apps—proving our methodology works across problem spaces. Zero and Heirloom represent range: B2C vs. lifestyle, AI-powered vs. preservation-focused, time-saving vs. emotionally meaningful. Both shipped fast because we validated assumptions with prototypes before writing production code. The same systematic approach applies to client work: validate early, ship with confidence.'
             }
           ]
         }

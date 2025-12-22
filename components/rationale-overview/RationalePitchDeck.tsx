@@ -38,6 +38,7 @@ const DIAGRAM_COMPONENTS: Record<string, React.ComponentType<any>> = {
   CostComparisonChart: dynamic(() => import('./diagrams/CostComparisonChart'), { loading: () => <LoadingComponent /> }),
   DecisionPressureDiagram: dynamic(() => import('./diagrams/DecisionPressureDiagram'), { loading: () => <LoadingComponent /> }),
   ZeroArchitectureDiagram: dynamic(() => import('./diagrams/ZeroArchitectureDiagramResponsive'), { loading: () => <LoadingComponent /> }),
+  ProductRangeDiagram: dynamic(() => import('./diagrams/ProductRangeDiagram'), { loading: () => <LoadingComponent /> }),
   EngagementModelsGrid: dynamic(() => import('./diagrams/EngagementModelsGrid'), { loading: () => <LoadingComponent /> }),
   ServiceOfferingBreakdown: dynamic(() => import('./diagrams/ServiceOfferingBreakdown'), { loading: () => <LoadingComponent /> }),
   DualEngineModel: dynamic(() => import('./diagrams/DualEngineModel'), { loading: () => <LoadingComponent /> }),
@@ -61,7 +62,7 @@ export default function RationalePitchDeck() {
   const sections = getAllSectionsV2();
   const [activeSection, setActiveSection] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>('expanded-by-default');
+  const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>(null);
 
   const currentSection = sections[activeSection];
   const currentSlide = currentSection.slides[activeSlide];
@@ -138,7 +139,7 @@ export default function RationalePitchDeck() {
   const nextSlide = () => {
     if (activeSlide < totalSlides - 1) {
       setActiveSlide(activeSlide + 1);
-      setExpandedDeepDive('expanded-by-default');
+      setExpandedDeepDive(null);
     } else {
       nextSection();
     }
@@ -147,7 +148,7 @@ export default function RationalePitchDeck() {
   const previousSlide = () => {
     if (activeSlide > 0) {
       setActiveSlide(activeSlide - 1);
-      setExpandedDeepDive('expanded-by-default');
+      setExpandedDeepDive(null);
     } else {
       previousSection();
     }
@@ -157,7 +158,7 @@ export default function RationalePitchDeck() {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1);
       setActiveSlide(0);
-      setExpandedDeepDive('expanded-by-default');
+      setExpandedDeepDive(null);
     }
   };
 
@@ -165,14 +166,14 @@ export default function RationalePitchDeck() {
     if (activeSection > 0) {
       setActiveSection(activeSection - 1);
       setActiveSlide(0);
-      setExpandedDeepDive('expanded-by-default');
+      setExpandedDeepDive(null);
     }
   };
 
   const goToSection = (index: number) => {
     setActiveSection(index);
     setActiveSlide(0);
-    setExpandedDeepDive('expanded-by-default');
+    setExpandedDeepDive(null);
   };
 
   // Render diagram component
@@ -337,7 +338,7 @@ export default function RationalePitchDeck() {
                 {currentSlide.deepDive && (
                   <details
                     className="mt-8 border-t border-gray-700 pt-6"
-                    open={expandedDeepDive === 'expanded-by-default'}
+                    open={false}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <summary
