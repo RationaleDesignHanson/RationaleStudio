@@ -8,11 +8,11 @@ import { ArrowRight } from '@/lib/icons';
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* Background Grid */}
+      {/* Background Grid - 30 FPS on all devices */}
       <div className="fixed inset-0 pointer-events-none">
         <ASCIIUnifiedGrid
           opacity={0.04}
-          animated={false}
+          animated={true}
           colorTheme={watercolorThemes.terminalSubtle}
           charSet="default"
         />

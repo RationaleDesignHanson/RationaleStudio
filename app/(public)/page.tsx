@@ -20,14 +20,12 @@ import { ArrowRight, Zap, Users, TrendingUp } from '@/lib/icons';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
-import { useIsMobile } from '@/hooks/useMediaQuery';
 
 // Lazy load below-fold components for better initial page load
 const VelocityProof = lazy(() => import('@/components/home/VelocityProof').then(m => ({ default: m.VelocityProof })));
 const FitFilter = lazy(() => import('@/components/home/FitFilter').then(m => ({ default: m.FitFilter })));
 
 export default function HomePage() {
-  const isMobile = useIsMobile();
 
   const structuredData = [
     generateOrganizationStructuredData(),
@@ -42,11 +40,11 @@ export default function HomePage() {
 
         {/* 1. HERO SECTION - Product Studio Identity */}
         <section className="relative py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
-          {/* ASCII Grid Background - static on mobile, animated on desktop */}
+          {/* ASCII Grid Background - 30 FPS on all devices */}
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
-              animated={!isMobile}
+              animated={true}
               colorTheme={watercolorThemes.terminalGold}
               charSet="default"
             />
@@ -74,7 +72,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={!isMobile}
+              animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -274,7 +272,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={!isMobile}
+              animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -348,7 +346,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={!isMobile}
+              animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -392,7 +390,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={!isMobile}
+              animated={true}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
