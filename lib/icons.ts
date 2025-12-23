@@ -39,9 +39,14 @@ export {
   // Common UI Elements
   Mail,
   MessageSquare,
+  MessageCircle,
+  Bell,
   Zap,
   Users,
   TrendingUp,
+  Activity,
+  Calendar,
+  Heart,
   Lock,
   Shield,
   Key,
@@ -52,6 +57,7 @@ export {
   FileText,
   Folder,
   FolderOpen,
+  DollarSign,
 
   // Status & Alerts
   AlertCircle,
