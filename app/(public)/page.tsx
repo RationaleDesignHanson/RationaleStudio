@@ -65,10 +65,10 @@ export default function HomePage() {
 
             {/* CTA - Yellow linked text */}
             <Link
-              href="/overview"
+              href="/about"
               className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal flex items-center gap-1 transition-colors !p-0"
             >
-              Studio Overview
+              About
               <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
