@@ -785,7 +785,7 @@ export function ASCIIShaderGrid({
   opacity = 0.08,
   animated = true,
   colorTheme,
-  targetFPS = 60,
+  targetFPS = 30,
   smallSpacing = 12,
   mediumSpacing = 24,
   smallOpacity = 0.6,

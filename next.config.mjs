@@ -15,6 +15,25 @@ const nextConfig = {
   // Disable X-Powered-By header for security
   poweredByHeader: false,
 
+  // Modularize imports for better tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+      skipDefaultConversion: true,
+    },
+    'lodash': {
+      transform: 'lodash/{{member}}',
+    },
+    '@react-three/fiber': {
+      transform: '@react-three/fiber',
+      preventFullImport: false,
+    },
+    '@react-three/drei': {
+      transform: '@react-three/drei',
+      preventFullImport: false,
+    },
+  },
+
   // Exclude public assets from serverless bundle tracing (Next.js 16+)
   outputFileTracingExcludes: {
     '*': ['public/**'],

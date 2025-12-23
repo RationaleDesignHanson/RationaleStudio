@@ -20,12 +20,14 @@ import { ArrowRight, Zap, Users, TrendingUp } from '@/lib/icons';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 // Lazy load below-fold components for better initial page load
 const VelocityProof = lazy(() => import('@/components/home/VelocityProof').then(m => ({ default: m.VelocityProof })));
 const FitFilter = lazy(() => import('@/components/home/FitFilter').then(m => ({ default: m.FitFilter })));
 
 export default function HomePage() {
+  const isMobile = useIsMobile();
 
   const structuredData = [
     generateOrganizationStructuredData(),
@@ -44,7 +46,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.06}
-              animated={true}
+              animated={!isMobile}
               colorTheme={watercolorThemes.terminalGold}
               charSet="default"
             />
@@ -72,7 +74,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={true}
+              animated={!isMobile}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -112,6 +114,8 @@ export default function HomePage() {
                           sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
                           className="object-cover"
                           priority
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAGAJ9lDwgAAAABJRU5ErkJggg=="
                         />
                       </div>
                     </div>
@@ -168,6 +172,8 @@ export default function HomePage() {
                           sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
                           className="object-cover"
                           priority
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk/P+/HgAFhAJ/wlseKQAAAABJRU5ErkJggg=="
                         />
                       </div>
                     </div>
@@ -225,6 +231,7 @@ export default function HomePage() {
                         fill
                         sizes="(max-width: 768px) 48px, (max-width: 1024px) 64px, 80px"
                         className="object-cover"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -267,7 +274,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={true}
+              animated={!isMobile}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -341,7 +348,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={true}
+              animated={!isMobile}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />
@@ -385,7 +392,7 @@ export default function HomePage() {
           <div className="absolute inset-0 pointer-events-none hidden md:block">
             <ASCIIUnifiedGrid
               opacity={0.03}
-              animated={true}
+              animated={!isMobile}
               colorTheme={watercolorThemes.terminalSubtle}
               charSet="default"
             />

@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
@@ -14,7 +12,7 @@ export default function AboutPage() {
       <div className="fixed inset-0 pointer-events-none">
         <ASCIIUnifiedGrid
           opacity={0.04}
-          animated={true}
+          animated={false}
           colorTheme={watercolorThemes.terminalSubtle}
           charSet="default"
         />
@@ -286,6 +284,9 @@ export default function AboutPage() {
                 height={400}
                 className="w-full rounded-lg"
                 style={{ width: '100%', height: 'auto' }}
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM8c+Z8PQAHZAL+4SiGjgAAAABJRU5ErkJggg=="
               />
             </div>
 
