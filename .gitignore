@@ -159,3 +159,5 @@ public/optimized/
 # Trigger redeploy with updated FIREBASE_PRIVATE_KEY env var
 .firebase-credentials.json
 app/api/.firebase-credentials.json
+.DS_Store
+**/.DS_Store
