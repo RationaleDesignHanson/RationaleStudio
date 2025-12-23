@@ -27,7 +27,7 @@ export function StatementBlock({
   return (
     <div className={`max-w-3xl mx-auto ${className}`}>
       {title && (
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
           {title}
         </h2>
       )}
