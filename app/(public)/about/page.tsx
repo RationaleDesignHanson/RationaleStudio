@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+import { ArrowRight } from '@/lib/icons';
 
 export default function AboutPage() {
   return (
@@ -30,9 +31,18 @@ export default function AboutPage() {
             About Rationale
           </h1>
 
-          <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl">
+          <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mb-4">
             Most innovation dies in slide decks. At Meta, we shipped AR platforms for 400+ people by building working software first, not debating specs. Now we do the same for our studio IP and partners who trade equity for velocity.
           </p>
+
+          {/* Overview CTA */}
+          <Link
+            href="/overview"
+            className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal flex items-center gap-1 transition-colors !p-0"
+          >
+            Studio Overview
+            <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </section>
 
