@@ -53,24 +53,17 @@ export default function HomePage() {
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-0">
             {/* Main Headline - Large */}
             <div className="mb-4 md:mb-6">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight">
-                Rationale:&nbsp;<span className="font-light inline-block">Your Product Design Company</span>
-              </h1>
+              <Link href="/about" className="block">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight hover:text-white/90 transition-colors cursor-pointer">
+                  Rationale:&nbsp;<span className="font-light inline-block">Your Product Design Company</span>
+                </h1>
+              </Link>
             </div>
 
             {/* Subheadline - One Line */}
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium mb-3 md:mb-4 tracking-tight">
               We ship products. <span className="text-gray-300">Yours and ours.</span>
             </p>
-
-            {/* CTA - Yellow linked text */}
-            <Link
-              href="/about"
-              className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-normal flex items-center gap-1 transition-colors !p-0"
-            >
-              About
-              <ArrowRight className="w-3 h-3" />
-            </Link>
           </div>
         </section>
 
