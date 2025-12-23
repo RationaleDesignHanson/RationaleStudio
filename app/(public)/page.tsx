@@ -91,8 +91,15 @@ export default function HomePage() {
             {/* Row 1: Zero and Heirloom */}
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-10 px-4 sm:px-0">
               {/* Zero - Beta/Dogfooding */}
-              <Link href="/work" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-terminal-gold/30 md:border-terminal-gold/40 rounded-lg hover:border-terminal-gold/50 md:hover:border-terminal-gold/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
-                <div className="flex flex-col md:space-y-6">
+              <Link href="/work" className="group block relative p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-terminal-gold/30 md:border-terminal-gold/40 rounded-lg hover:border-terminal-gold/50 md:hover:border-terminal-gold/60 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden">
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-lg">
+                  <div className="text-center">
+                    <p className="text-white text-lg md:text-xl font-semibold mb-2">See our work</p>
+                    <ArrowRight className="w-6 h-6 text-terminal-gold mx-auto" />
+                  </div>
+                </div>
+                <div className="flex flex-col md:space-y-6 relative z-0">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
@@ -140,8 +147,15 @@ export default function HomePage() {
               </Link>
 
               {/* Heirloom - Beta/Dogfooding */}
-              <Link href="/work" className="block p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer">
-                <div className="flex flex-col md:space-y-6">
+              <Link href="/work" className="group block relative p-4 md:p-8 lg:p-10 bg-gray-900/70 border md:border-2 border-[#00D9FF]/30 md:border-[#00D9FF]/40 rounded-lg hover:border-[#00D9FF]/50 md:hover:border-[#00D9FF]/60 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden">
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-lg">
+                  <div className="text-center">
+                    <p className="text-white text-lg md:text-xl font-semibold mb-2">See our work</p>
+                    <ArrowRight className="w-6 h-6 text-[#00D9FF] mx-auto" />
+                  </div>
+                </div>
+                <div className="flex flex-col md:space-y-6 relative z-0">
                   {/* Icon, Title, and Badge Row */}
                   <div className="flex items-center gap-3 mb-3">
                     {/* Icon */}
@@ -191,8 +205,15 @@ export default function HomePage() {
 
             {/* Row 2: Pipeline (Full Width matching Zero + Heirloom) */}
             <div className="px-4 sm:px-0">
-              <Link href="/work" className="block w-full p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer">
-              <div className="flex flex-col md:space-y-6">
+              <Link href="/work" className="group block relative w-full p-4 md:p-8 lg:p-10 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden">
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 rounded-lg">
+                <div className="text-center">
+                  <p className="text-white text-lg md:text-xl font-semibold mb-2">See our work</p>
+                  <ArrowRight className="w-6 h-6 text-gray-300 mx-auto" />
+                </div>
+              </div>
+              <div className="flex flex-col md:space-y-6 relative z-0">
                 {/* Icon, Title, and Badge Row */}
                 <div className="flex items-center gap-3 mb-3">
                   {/* Icon */}
