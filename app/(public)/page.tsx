@@ -32,6 +32,9 @@ export default function HomePage() {
     generateBreadcrumbStructuredData([{ name: 'Home', url: '/' }]),
   ];
 
+  // Feature flag: Toggle "What We're Shipping" section visibility
+  const showShippingSection = process.env.NEXT_PUBLIC_SHOW_SHIPPING_SECTION === 'true';
+
   return (
     <>
       <MultipleStructuredData dataBlocks={structuredData} />
@@ -68,6 +71,7 @@ export default function HomePage() {
         </section>
 
         {/* 2. CURRENT FOCUS - Zero, Heirloom + Pipeline */}
+        {showShippingSection && (
         <section id="current-focus" className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -266,6 +270,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        )}
 
         {/* 3. THREE PATHS - Invest / Partner / Collaborate */}
         <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
