@@ -23,6 +23,8 @@ const protectedRoutes: Record<string, string[]> = {
   '/investors': ['investor', 'partner', 'team', 'owner'],
   // Client portal - accessible by clients, team, and owner
   '/clients': ['client', 'team', 'owner'],
+  // Heirloom business dashboard - owner only
+  '/heirloom': ['owner'],
 };
 
 // Role hierarchy for access control
@@ -77,5 +79,6 @@ export const config = {
     '/partners/:path*',
     '/investors/:path*',
     '/clients/:path*',
+    '/heirloom/:path*',
   ],
 };
