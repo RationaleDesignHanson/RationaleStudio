@@ -1,0 +1,44 @@
+# Node modules (1.1GB+) - MUST ignore
+node_modules/
+agents-system/node_modules/
+
+# Next.js build output (249MB)
+.next/
+out/
+
+# Archive folder - old code not needed for analysis
+_archive/
+
+# Build artifacts
+dist/
+.netlify/
+
+# Test output
+test-results/
+playwright-report/
+coverage/
+
+# Cache files
+.cache/
+*.tsbuildinfo
+
+# Large binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+*.ico
+*.svg
+*.mp4
+*.mp3
+*.wav
+*.pdf
+
+# Lock files (large and not useful for analysis)
+package-lock.json
+deno.lock
+
+
+

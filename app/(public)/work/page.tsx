@@ -92,7 +92,7 @@ export default function WorkPage() {
           <div className="grid lg:grid-cols-2 gap-4 md:gap-6">
             {/* Zero Inbox - Featured Hero */}
             {zero && (
-              <Link href={`/work/${zero.slug}`} className="group block">
+              <div className="group block">
                 <div className="h-full p-4 md:p-6 bg-gray-900/70 border border-terminal-gold/30 rounded-lg hover:border-terminal-gold/50 transition-all duration-300">
                   <div className="space-y-3 md:space-y-4">
                     {/* Title */}
@@ -151,12 +151,12 @@ export default function WorkPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             )}
 
             {/* Heirloom - Featured Hero */}
             {heirloom && (
-              <Link href={`/work/${heirloom.slug}`} className="group block">
+              <div className="group block">
                 <div className="h-full p-4 md:p-6 bg-gray-900/70 border border-[#00D9FF]/30 rounded-lg hover:border-[#00D9FF]/50 transition-all duration-300">
                   <div className="space-y-3 md:space-y-4">
                     {/* Title */}
@@ -215,7 +215,7 @@ export default function WorkPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             )}
           </div>
         </div>

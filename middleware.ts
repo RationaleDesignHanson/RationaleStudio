@@ -20,7 +20,7 @@ const protectedRoutes: Record<string, string[]> = {
   '/owner': ['owner'],
   '/team': ['team', 'owner'],
   '/partners': ['partner', 'team', 'owner'],
-  '/investors': ['investor', 'partner', 'team', 'owner'],
+  '/investors': ['investor', 'owner'], // Team does NOT have investor access
   // Client portal - accessible by clients, team, and owner
   '/clients': ['client', 'team', 'owner'],
   // Heirloom business dashboard - owner only
