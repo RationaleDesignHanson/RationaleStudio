@@ -135,7 +135,7 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Caribe Hilton", desc: "Protected cove beach", url: "https://www.hilton.com/en/hotels/sjuclhf-caribe-hilton/", suite: "Connecting rooms", searchQuery: "Caribe Hilton San Juan" }
     ],
     activities: [
-      { name: "Bio Bay Kayak Tour", url: "https://www.viator.com/tours/San-Juan/Bioluminescent-Bay-Kayaking-Tour/d911-5755BIOBAY" },
+      { name: "Bio Bay Kayak Tour", url: "https://www.getyourguide.com/fajardo-l32382/bioluminescent-bay-kayak-tour-tc24/" },
       { name: "Carnaval de Ponce 2026", url: "https://www.discoverpuertorico.com/event/ponce-carnival" },
       { name: "Old San Juan & El Morro Fort", url: "https://www.nps.gov/saju/planyourvisit/index.htm" },
       { name: "Condado Beach", url: "https://www.discoverpuertorico.com/profile/condado-beach" }
