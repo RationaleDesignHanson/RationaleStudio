@@ -553,7 +553,7 @@ export default function Sweet16Quiz() {
   const q = questions[step];
   
   return (
-    <div style={{ minHeight: '100dvh', background: pinkGradient, padding: '16px', fontFamily: 'system-ui, sans-serif', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <div style={{ minHeight: '100dvh', background: pinkGradient, padding: '16px', paddingTop: '32px', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ maxWidth: '400px', margin: '0 auto', width: '100%' }}>
         
         {/* Header */}
