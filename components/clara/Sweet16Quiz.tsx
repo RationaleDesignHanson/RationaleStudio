@@ -357,6 +357,7 @@ export default function Sweet16Quiz() {
   const [selected, setSelected] = useState<string | null>(null);
   const [tab, setTab] = useState<'why' | 'hotels' | 'todo'>('why');
   const [hotelIndex, setHotelIndex] = useState(0);
+  const [viewingAlternate, setViewingAlternate] = useState(false);
 
   const handleAnswer = useCallback((option: QuestionOption) => {
     setSelected(option.value);
@@ -385,6 +386,7 @@ export default function Sweet16Quiz() {
     setScores({ miami: 0, sanjuan: 0, sandiego: 0, hollywood: 0, delray: 0 }); 
     setTab('why'); 
     setHotelIndex(0);
+    setViewingAlternate(false);
   }, []);
 
   // ACTUALLY PINK gradient - soft blush to hot pink to deep rose
@@ -396,7 +398,10 @@ export default function Sweet16Quiz() {
 
   // Results
   if (step >= questions.length) {
-    const { primary, secondary, diff } = getWinner();
+    const { primary: originalPrimary, secondary: originalSecondary, diff } = getWinner();
+    // Allow toggling between primary and secondary
+    const primary = viewingAlternate ? originalSecondary : originalPrimary;
+    const secondary = viewingAlternate ? originalPrimary : originalSecondary;
     const d = destinations[primary];
     const d2 = destinations[secondary];
     const currentHotel = d.hotels[hotelIndex];
@@ -513,24 +518,20 @@ export default function Sweet16Quiz() {
           </div>
 
           {/* Runner Up - Clickable to swap */}
-          {diff <= 3 && (
+          {diff <= 5 && (
             <button 
               onClick={() => {
-                // Swap primary and secondary by adjusting scores
-                const newScores = { ...scores };
-                newScores[primary] = scores[secondary];
-                newScores[secondary] = scores[primary] + 1;
-                setScores(newScores);
+                setViewingAlternate(!viewingAlternate);
                 setTab('why');
                 setHotelIndex(0);
               }}
               style={{ 
                 width: '100%',
-                background: 'rgba(255,255,255,0.8)', 
+                background: 'rgba(255,255,255,0.85)', 
                 borderRadius: '12px', 
                 padding: '12px', 
                 marginBottom: '12px',
-                border: `1px solid ${d2.color}40`,
+                border: `2px solid ${d2.color}60`,
                 cursor: 'pointer',
                 textAlign: 'left',
                 transition: 'all 0.2s'
@@ -538,12 +539,14 @@ export default function Sweet16Quiz() {
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ color: textLight, fontSize: '11px', fontWeight: '600' }}>🤔 Close second: {d2.name}</div>
+                  <div style={{ color: textLight, fontSize: '11px', fontWeight: '600' }}>
+                    {viewingAlternate ? '🏆 Your #1 match:' : '🤔 Close second:'} {d2.name}
+                  </div>
                   <div style={{ color: textMed, fontSize: '11px' }}>{d2.tagline}</div>
                 </div>
-                <span style={{ color: d2.color, fontSize: '14px' }}>→</span>
+                <span style={{ color: d2.color, fontSize: '14px' }}>⇄</span>
               </div>
-              <div style={{ color: textMed, fontSize: '10px', marginTop: '6px', opacity: 0.7 }}>Tap to explore this option instead</div>
+              <div style={{ color: textMed, fontSize: '10px', marginTop: '6px', opacity: 0.7 }}>Tap to explore this option</div>
             </button>
           )}
 
@@ -563,7 +566,7 @@ export default function Sweet16Quiz() {
             ))}
           </div>
 
-          <div style={{ background: 'rgba(34,197,94,0.15)', borderRadius: '10px', padding: '10px', textAlign: 'center', marginBottom: '12px' }}>
+          <div style={{ background: 'rgba(255,255,255,0.85)', borderRadius: '12px', padding: '12px', textAlign: 'center', marginBottom: '12px' }}>
             <span style={{ color: '#15803D', fontSize: '11px', fontWeight: '500' }}>✓ All domestic — no passport needed!</span>
           </div>
 
