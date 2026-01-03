@@ -553,8 +553,8 @@ export default function Sweet16Quiz() {
   const q = questions[step];
   
   return (
-    <div style={{ minHeight: '100dvh', background: pinkGradient, padding: '16px', fontFamily: 'system-ui, sans-serif', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ maxWidth: '400px', margin: '0 auto', width: '100%', flex: 1, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100dvh', background: pinkGradient, padding: '16px', fontFamily: 'system-ui, sans-serif', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ maxWidth: '400px', margin: '0 auto', width: '100%' }}>
         
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
@@ -575,10 +575,10 @@ export default function Sweet16Quiz() {
         </div>
 
         {/* Question Card */}
-        <div style={{ background: cardBg, borderRadius: '20px', padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', boxShadow: '0 4px 20px rgba(219,39,119,0.15)' }}>
+        <div style={{ background: cardBg, borderRadius: '20px', padding: '20px', boxShadow: '0 4px 20px rgba(219,39,119,0.15)' }}>
           <h2 style={{ color: textDark, fontSize: '20px', fontWeight: '600', marginBottom: '16px', lineHeight: 1.3 }}>{q.question}</h2>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {q.options.map((opt, i) => (
               <button
                 key={i}
