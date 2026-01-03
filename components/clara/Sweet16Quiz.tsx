@@ -512,12 +512,39 @@ export default function Sweet16Quiz() {
             </div>
           </div>
 
-          {/* Runner Up */}
+          {/* Runner Up - Clickable to swap */}
           {diff <= 3 && (
-            <div style={{ background: 'rgba(255,255,255,0.8)', borderRadius: '12px', padding: '12px', marginBottom: '12px' }}>
-              <div style={{ color: textLight, fontSize: '11px', fontWeight: '600' }}>🤔 Close second: {d2.name}</div>
-              <div style={{ color: textMed, fontSize: '11px' }}>{d2.tagline}</div>
-            </div>
+            <button 
+              onClick={() => {
+                // Swap primary and secondary by adjusting scores
+                const newScores = { ...scores };
+                newScores[primary] = scores[secondary];
+                newScores[secondary] = scores[primary] + 1;
+                setScores(newScores);
+                setTab('why');
+                setHotelIndex(0);
+              }}
+              style={{ 
+                width: '100%',
+                background: 'rgba(255,255,255,0.8)', 
+                borderRadius: '12px', 
+                padding: '12px', 
+                marginBottom: '12px',
+                border: `1px solid ${d2.color}40`,
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ color: textLight, fontSize: '11px', fontWeight: '600' }}>🤔 Close second: {d2.name}</div>
+                  <div style={{ color: textMed, fontSize: '11px' }}>{d2.tagline}</div>
+                </div>
+                <span style={{ color: d2.color, fontSize: '14px' }}>→</span>
+              </div>
+              <div style={{ color: textMed, fontSize: '10px', marginTop: '6px', opacity: 0.7 }}>Tap to explore this option instead</div>
+            </button>
           )}
 
           {/* Scores */}
