@@ -108,6 +108,30 @@ export function ASCIIUnifiedGrid({
   const transitionDuration = 2; // 2 second crossfade
   const [currentOpacityMultiplier, setCurrentOpacityMultiplier] = useState(1.0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Check for mobile device and reduced motion preference
+  useEffect(() => {
+    // Check if mobile (width < 768px or touch device)
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth < 768;
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    // Check reduced motion preference
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(motionQuery.matches);
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    motionQuery.addEventListener('change', (e) => setPrefersReducedMotion(e.matches));
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   // Intersection Observer to detect when component is visible
   useEffect(() => {
@@ -129,7 +153,9 @@ export function ASCIIUnifiedGrid({
   }, []);
 
   useEffect(() => {
-    if (!animated || !isVisible) return;
+    // Skip animation on mobile devices for better performance (Lighthouse optimization)
+    // Also skip if reduced motion is preferred or animation is disabled
+    if (!animated || !isVisible || isMobile || prefersReducedMotion) return;
 
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -297,11 +323,34 @@ export function ASCIIUnifiedGrid({
       clearInterval(fnInterval);
       window.removeEventListener('resize', updateCanvasSize);
     };
-  }, [animated, isVisible, colorTheme, charSet]);
+  }, [animated, isVisible, colorTheme, charSet, isMobile, prefersReducedMotion]);
 
   // Scale opacity for better visibility (0.08 becomes 0.32, 0.12 becomes 0.48)
   // Apply pattern-specific opacity multiplier (cellular pattern is reduced)
   const scaledOpacity = Math.min(1, opacity * 4 * currentOpacityMultiplier);
+
+  // On mobile or reduced motion: render a simple static gradient instead of animated canvas
+  // This dramatically improves Lighthouse performance score
+  if (isMobile || prefersReducedMotion) {
+    return (
+      <div
+        ref={containerRef}
+        className={`absolute inset-0 pointer-events-none ${className}`}
+        style={{ opacity: scaledOpacity * 0.5 }}
+        aria-hidden="true"
+      >
+        {/* Static gradient fallback - no animation, minimal GPU usage */}
+        <div 
+          className="w-full h-full"
+          style={{
+            background: colorTheme 
+              ? `radial-gradient(ellipse at center, ${colorTheme.colors[0]}10 0%, transparent 70%)`
+              : 'radial-gradient(ellipse at center, rgba(255,215,0,0.05) 0%, transparent 70%)'
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
