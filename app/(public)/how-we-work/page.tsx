@@ -64,7 +64,104 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 2. THREE ENGAGEMENT MODELS */}
+      {/* 2. OUR PROCESS - Visual Timeline */}
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+        <div className="absolute inset-0 pointer-events-none">
+          <ASCIIUnifiedGrid
+            opacity={0.04}
+            animated={true}
+            colorTheme={watercolorThemes.terminalSubtle}
+            charSet="default"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <div className="text-center mb-6 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-4">
+              Our Process
+            </h2>
+            <p className="text-sm md:text-base text-gray-300">
+              We meet you where you are. Some engagements start with validation, others jump straight to building from proven assumptions.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {/* Phase 1 */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
+                  1
+                </div>
+                <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+              </div>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Align</h3>
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                Map your product thesis and biggest unknowns. Skip if you already know what needs to be built.
+              </p>
+            </GlassCard>
+
+            {/* Phase 2 */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
+                  2
+                </div>
+                <Rocket className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+              </div>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Prototype</h3>
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                Build functional software that tests core assumptions. Sometimes this is week 1, sometimes week 6.
+              </p>
+            </GlassCard>
+
+            {/* Phase 3 */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
+                  3
+                </div>
+                <Target className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+              </div>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Validate</h3>
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                Run real usage scenarios. User testing, technical validation. Skip if you have proven demand.
+              </p>
+            </GlassCard>
+
+            {/* Phase 4 */}
+            <GlassCard className="p-6" borderRadius="0.75rem">
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
+                  4
+                </div>
+                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
+              </div>
+              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Build</h3>
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                Scale what's working. Many engagements start here when the product direction is clear.
+              </p>
+            </GlassCard>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FIT FILTER */}
+      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+        <div className="absolute inset-0 pointer-events-none">
+          <ASCIIUnifiedGrid
+            opacity={0.04}
+            animated={true}
+            colorTheme={watercolorThemes.terminalSubtle}
+            charSet="default"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <FitFilter />
+        </div>
+      </section>
+
+      {/* 4. THREE ENGAGEMENT MODELS */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -296,7 +393,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 4. OUR PROCESS - Visual Timeline */}
+      {/* 5. HOW EQUITY WORKS (When It Makes Sense) */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -310,91 +407,10 @@ export default function HowWeWorkPage() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="text-center mb-6 md:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-4">
-              Our Process
+              How Equity Works (When It Makes Sense)
             </h2>
-            <p className="text-sm md:text-base text-gray-300">
-              We meet you where you are. Some engagements start with validation, others jump straight to building from proven assumptions.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {/* Phase 1 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  1
-                </div>
-                <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Align</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Map your product thesis and biggest unknowns. Skip if you already know what needs to be built.
-              </p>
-            </GlassCard>
-
-            {/* Phase 2 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  2
-                </div>
-                <Rocket className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Prototype</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Build functional software that tests core assumptions. Sometimes this is week 1, sometimes week 6.
-              </p>
-            </GlassCard>
-
-            {/* Phase 3 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  3
-                </div>
-                <Target className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Validate</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Run real usage scenarios. User testing, technical validation. Skip if you have proven demand.
-              </p>
-            </GlassCard>
-
-            {/* Phase 4 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  4
-                </div>
-                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Build</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Scale what's working. Many engagements start here when the product direction is clear.
-              </p>
-            </GlassCard>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. WHAT CHANGES WITH EQUITY */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="text-center mb-6 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-4">
-              Why Equity Alignment Matters
-            </h2>
-            <p className="text-sm md:text-base text-gray-300">
-              Equity changes how we think, decide, and build together.
+            <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
+              Equity isn't for everyone—and that's fine. Many of our best engagements are cash-only. But when equity is part of the structure, here's what changes (and what doesn't).
             </p>
           </div>
 
@@ -402,49 +418,49 @@ export default function HowWeWorkPage() {
             {/* What Changes */}
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-[0.65rem] md:text-xs font-bold uppercase tracking-wide text-terminal-gold mb-3 md:mb-4">
-                What Changes
+                With Equity
               </h3>
               <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-300">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We say no to bad ideas (even if billable)</span>
+                  <span>We're invested in your long-term success</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We prioritize long-term value over scope</span>
+                  <span>Reduced upfront cash preserves your runway</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We build IP, not just deliverables</span>
+                  <span>We think like co-founders, not contractors</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We care about your Series A, not just handoff</span>
+                  <span>Ongoing advisory beyond the build phase</span>
                 </li>
               </ul>
             </GlassCard>
 
-            {/* What Doesn't Change */}
+            {/* What Stays The Same */}
             <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
               <h3 className="text-[0.65rem] md:text-xs font-bold uppercase tracking-wide text-terminal-gold mb-3 md:mb-4">
-                What Doesn't Change
+                Always True (Any Structure)
               </h3>
               <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-300">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We still move fast (equity ≠ slow)</span>
+                  <span>You own your company and make the calls</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>You still own your company and roadmap</span>
+                  <span>Clear deliverables with defined timelines</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We're selective, not transactional</span>
+                  <span>We move fast regardless of payment structure</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>Clear deliverables and milestones still exist</span>
+                  <span>Same quality, same commitment, same team</span>
                 </li>
               </ul>
             </GlassCard>
@@ -452,23 +468,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 6. FIT FILTER */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <FitFilter />
-        </div>
-      </section>
-
-      {/* 7. QUICK PRICING CONTEXT */}
+      {/* 6. QUICK PRICING CONTEXT */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -535,7 +535,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 8. HOW WE SHIP FASTER - VelocityProof */}
+      {/* 7. HOW WE SHIP FASTER - VelocityProof */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
