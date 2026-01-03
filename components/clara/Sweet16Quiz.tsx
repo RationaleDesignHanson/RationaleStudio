@@ -115,10 +115,10 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Loews Miami Beach", desc: "Great for families, ocean views", url: "https://www.loewshotels.com/miami-beach", suite: "Tower suites", searchQuery: "Loews Miami Beach Hotel" }
     ],
     activities: [
-      { name: "Lincoln Road Mall", url: "https://www.lincolnroadmall.com" },
-      { name: "Wynwood Walls", url: "https://www.thewynwoodwalls.com" },
-      { name: "Rooftop Cinema Club", url: "https://rooftopcinemaclub.com/miami" },
-      { name: "Speedboat Tour", url: "https://thrillermiamiboat.com" }
+      { name: "Lincoln Road Mall", url: "https://www.miamiandbeaches.com/things-to-do/shopping/lincoln-road-mall" },
+      { name: "Wynwood Walls", url: "https://thewynwoodwalls.com" },
+      { name: "Rooftop Cinema Club", url: "https://rooftopcinemaclub.com/venue/south-beach/" },
+      { name: "Thriller Speedboat Tour", url: "https://www.viator.com/tours/Miami/Thriller-Miami-Speedboat-Adventures/d662-5161THRILLSPEEDMI" }
     ]
   },
   sanjuan: {
@@ -135,10 +135,10 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Caribe Hilton", desc: "Protected cove beach", url: "https://www.hilton.com/en/hotels/sjuclhf-caribe-hilton/", suite: "Connecting rooms", searchQuery: "Caribe Hilton San Juan" }
     ],
     activities: [
-      { name: "Bio Bay Kayak Tour", url: "https://www.biobay.com" },
-      { name: "Carnaval de Ponce", url: "https://www.discoverpuertorico.com" },
-      { name: "Old San Juan & El Morro", url: "https://www.nps.gov/saju" },
-      { name: "Isla Verde Beach", url: "https://www.discoverpuertorico.com" }
+      { name: "Bio Bay Kayak Tour", url: "https://www.viator.com/tours/San-Juan/Bioluminescent-Bay-Kayaking-Tour/d911-5755BIOBAY" },
+      { name: "Carnaval de Ponce 2026", url: "https://www.discoverpuertorico.com/event/ponce-carnival" },
+      { name: "Old San Juan & El Morro Fort", url: "https://www.nps.gov/saju/planyourvisit/index.htm" },
+      { name: "Condado Beach", url: "https://www.discoverpuertorico.com/profile/condado-beach" }
     ]
   },
   sandiego: {
@@ -155,10 +155,10 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Catamaran Resort", desc: "Mission Bay, paddleboards", url: "https://www.catamaranresort.com", suite: "Beachfront suites", searchQuery: "Catamaran Resort Hotel San Diego" }
     ],
     activities: [
-      { name: "San Diego Zoo", url: "https://zoo.sandiegozoo.org" },
-      { name: "Gaslamp Quarter", url: "https://www.gaslamp.org" },
-      { name: "La Jolla Cove", url: "https://www.sandiego.org" },
-      { name: "Balboa Park", url: "https://www.balboapark.org" }
+      { name: "San Diego Zoo", url: "https://zoo.sandiegozoo.org/tickets" },
+      { name: "Gaslamp Quarter Shopping", url: "https://www.gaslamp.org/explore/" },
+      { name: "La Jolla Cove & Seals", url: "https://www.sandiego.org/explore/things-to-do/beaches-bays/la-jolla.aspx" },
+      { name: "Balboa Park Museums", url: "https://www.balboapark.org/explore" }
     ]
   },
   hollywood: {
@@ -174,9 +174,9 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Diplomat Resort", desc: "Upscale, great pools", url: "https://www.diplomatresort.com", suite: "Ocean suites", searchQuery: "The Diplomat Beach Resort Hollywood Florida" }
     ],
     activities: [
-      { name: "Broadwalk", url: "https://visithollywoodfl.org" },
-      { name: "FlowRider", url: "https://www.margaritavillehollywoodbeachresort.com" },
-      { name: "Anne Kolb Nature Center", url: "https://www.hollywoodfl.org" }
+      { name: "Hollywood Broadwalk", url: "https://visithollywoodfl.org/hollywood-beach-broadwalk/" },
+      { name: "FlowRider at Margaritaville", url: "https://www.margaritavillehollywoodbeachresort.com/experiences/flowrider" },
+      { name: "Anne Kolb Nature Center", url: "https://www.hollywoodfl.org/Facilities/Facility/Details/Anne-Kolb-Nature-Center-4" }
     ]
   },
   delray: {
@@ -192,9 +192,9 @@ const destinations: Record<DestinationKey, Destination> = {
       { name: "Seagate Hotel & Spa", desc: "Private beach club", url: "https://www.theseagatehotel.com", suite: "Suites", searchQuery: "The Seagate Hotel Delray Beach" }
     ],
     activities: [
-      { name: "Atlantic Avenue", url: "https://downtowndelraybeach.com" },
-      { name: "Silverball Arcade", url: "https://silverballmuseum.com/delray-beach" },
-      { name: "Sandoway Discovery Center", url: "https://www.sandoway.org" }
+      { name: "Atlantic Avenue Shopping", url: "https://www.downtowndelraybeach.com/explore/shopping" },
+      { name: "Silverball Retro Arcade", url: "https://www.silverballmuseum.com/delray-beach/" },
+      { name: "Sandoway Discovery Center", url: "https://sandoway.org/visit/" }
     ]
   }
 };
