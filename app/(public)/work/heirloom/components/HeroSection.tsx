@@ -50,7 +50,7 @@ export default function HeroSection() {
             </Link>
 
             <Link
-              href="/products/heirloom#demo"
+              href="/heirloom#demo"
               className="text-[#E85D4D] hover:text-[#D84D3D] text-sm font-normal flex items-center gap-1 transition-colors"
             >
               Try Demo
@@ -105,7 +105,7 @@ export default function HeroSection() {
               </Link>
 
               <Link
-                href="/products/heirloom#demo"
+                href="/heirloom#demo"
                 className="text-[#E85D4D] hover:text-[#D84D3D] text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
               >
                 Try Interactive Demo

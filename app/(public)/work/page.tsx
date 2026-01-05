@@ -142,7 +142,7 @@ export default function WorkPage() {
                           About
                         </Link>
                         <Link
-                          href="/products/zero"
+                          href="/zero"
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-terminal-gold transition-all"
                         >
                           Demo
@@ -206,7 +206,7 @@ export default function WorkPage() {
                           About
                         </Link>
                         <Link
-                          href="/products/heirloom"
+                          href="/heirloom"
                           className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800/50 border border-gray-700 hover:border-[#00D9FF]/50 rounded-lg text-center text-xs sm:text-sm font-bold text-white hover:text-[#00D9FF] transition-all"
                         >
                           Demo

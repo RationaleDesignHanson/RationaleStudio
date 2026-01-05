@@ -104,7 +104,7 @@ export default function HeroSection() {
               </BetaSignupButton>
 
               <Link
-                href="/products/zero"
+                href="/zero"
                 className="text-terminal-gold hover:text-terminal-gold-hover text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
               >
                 Try Interactive Demo

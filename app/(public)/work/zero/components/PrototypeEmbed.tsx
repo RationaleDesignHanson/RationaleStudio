@@ -108,7 +108,7 @@ export default function PrototypeEmbed() {
               Want to see the user experience?
             </p>
             <a
-              href="/products/zero"
+              href="/zero"
               className="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold rounded-full transition-all shadow-lg shadow-purple-500/30"
             >
               Try the Swipe Demo →
