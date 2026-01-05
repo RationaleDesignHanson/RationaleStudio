@@ -184,6 +184,33 @@ const nextConfig = {
         destination: '/work/zero',
         permanent: true,
       },
+
+      // Heirloom case study consolidation - redirect sub-pages to main case study
+      {
+        source: '/work/heirloom/pitch',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      {
+        source: '/work/heirloom/technical-architecture',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      {
+        source: '/work/heirloom/design-system',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      {
+        source: '/work/heirloom/timeline-and-outcomes',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      {
+        source: '/work/heirloom/prototypes',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
     ];
   },
 

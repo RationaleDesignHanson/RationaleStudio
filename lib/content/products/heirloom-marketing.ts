@@ -29,7 +29,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
     },
     ctaSecondary: {
       text: 'Watch How It Works',
-      href: '/work/heirloom/pitch'
+      href: '/work/heirloom'
     }
   },
 
@@ -206,7 +206,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
       {
         label: 'View Product Pitch',
         description: 'See the full vision—design philosophy, UX principles, and roadmap for Heirloom.',
-        href: '/work/heirloom/pitch'
+        href: '/work/heirloom'
       },
       {
         label: 'View Case Study',
