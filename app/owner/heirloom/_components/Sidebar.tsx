@@ -18,11 +18,11 @@ import {
 } from 'lucide-react';
 
 const navigation = [
-  { name: 'Dashboard', href: '/heirloom', icon: LayoutDashboard },
-  { name: 'Launch Tracker', href: '/heirloom/roadmap', icon: ListChecks },
-  { name: 'GTM Planner', href: '/heirloom/gtm', icon: Megaphone },
-  { name: 'Financials', href: '/heirloom/financials', icon: DollarSign },
-  { name: 'Fundraising', href: '/heirloom/fundraising', icon: Users },
+  { name: 'Dashboard', href: '/owner/heirloom', icon: LayoutDashboard },
+  { name: 'Launch Tracker', href: '/owner/heirloom/roadmap', icon: ListChecks },
+  { name: 'GTM Planner', href: '/owner/heirloom/gtm', icon: Megaphone },
+  { name: 'Financials', href: '/owner/heirloom/financials', icon: DollarSign },
+  { name: 'Fundraising', href: '/owner/heirloom/fundraising', icon: Users },
 ];
 
 export function Sidebar() {

@@ -2,7 +2,7 @@
  * Heirloom Main Dashboard
  *
  * Overview page showing key metrics, recent activity, and quick links.
- * Landing page for /heirloom route.
+ * Landing page for /owner/heirloom route.
  */
 
 'use client';
@@ -119,19 +119,19 @@ export default function HeirloomDashboard() {
         <QuickLinkCard
           title="Launch Tracker"
           description="Track milestones across 5 phases from beta to full launch"
-          href="/heirloom/roadmap"
+          href="/owner/heirloom/roadmap"
           status="Phase 1: Closed Beta"
         />
         <QuickLinkCard
           title="GTM Planner"
           description="Week-by-week go-to-market tactics and budget tracking"
-          href="/heirloom/gtm"
+          href="/owner/heirloom/gtm"
           status="Week 3: Launch Week"
         />
         <QuickLinkCard
           title="Financial Model"
           description="3 scenarios with cash flow projections and break-even analysis"
-          href="/heirloom/financials"
+          href="/owner/heirloom/financials"
           status="Baseline: 100K downloads"
         />
       </div>
