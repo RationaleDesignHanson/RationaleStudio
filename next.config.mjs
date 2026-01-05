@@ -142,6 +142,48 @@ const nextConfig = {
         destination: '/investors/zero',
         permanent: true,
       },
+
+      // Zero case study consolidation - redirect sub-pages to main case study
+      {
+        source: '/work/zero/overview',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/demo',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/demo-new',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/architecture',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/metrics',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/taxonomy',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/timeline',
+        destination: '/work/zero',
+        permanent: true,
+      },
+      {
+        source: '/work/zero/stats',
+        destination: '/work/zero',
+        permanent: true,
+      },
     ];
   },
 

@@ -29,7 +29,7 @@ export const zeroMarketingContent: ProductMarketingContent = {
     },
     ctaSecondary: {
       text: 'Watch 60s Demo',
-      href: '/work/zero/demo'
+      href: '/work/zero'
     }
   },
 

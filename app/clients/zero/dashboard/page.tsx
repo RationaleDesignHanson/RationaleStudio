@@ -213,7 +213,7 @@ export default function ZeroDashboardPage() {
           <h2 className="text-xl font-bold text-white mb-4">Additional Resources</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             <Link
-              href="/work/zero/taxonomy"
+              href="/work/zero"
               className="p-4 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold rounded-lg transition-colors"
             >
               <FileText className="w-6 h-6 text-terminal-gold mb-2" />
@@ -224,7 +224,7 @@ export default function ZeroDashboardPage() {
             </Link>
 
             <Link
-              href="/work/zero/architecture"
+              href="/work/zero"
               className="p-4 bg-gray-800/50 border border-gray-700 hover:border-terminal-gold rounded-lg transition-colors"
             >
               <Zap className="w-6 h-6 text-terminal-gold mb-2" />
