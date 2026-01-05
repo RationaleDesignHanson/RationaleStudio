@@ -211,6 +211,28 @@ const nextConfig = {
         destination: '/work/heirloom',
         permanent: true,
       },
+
+      // Product route redirects - backward compatibility
+      {
+        source: '/products/zero',
+        destination: '/zero',
+        permanent: true,
+      },
+      {
+        source: '/products/heirloom',
+        destination: '/heirloom',
+        permanent: true,
+      },
+      {
+        source: '/products/fubo',
+        destination: '/thumby',
+        permanent: true,
+      },
+      {
+        source: '/products/thumby',
+        destination: '/thumby',
+        permanent: true,
+      },
     ];
   },
 
