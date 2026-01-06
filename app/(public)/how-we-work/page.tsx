@@ -22,12 +22,7 @@ import {
   Star,
   Layers,
   ArrowRight,
-  CheckCircle2,
-  Lightbulb,
-  Rocket,
-  Target,
-  Users,
-  TrendingUp
+  CheckCircle2
 } from 'lucide-react';
 import { ButtonTertiary } from '@/components/ui/ButtonHierarchy';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -59,12 +54,12 @@ export default function HowWeWorkPage() {
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            From 2-week validation sprints to multi-year equity partnerships—we structure every engagement around speed, alignment, and what you need to prove next.
+            We build our own products to stay sharp and honest. Shipping forces clarity: real users, real tradeoffs, real distribution. That's why our partner work moves faster—our methods are constantly pressure-tested in production.
           </p>
         </div>
       </section>
 
-      {/* 2. OUR PROCESS - Visual Timeline */}
+      {/* 2. METHODOLOGY - VelocityProof */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -75,72 +70,24 @@ export default function HowWeWorkPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto">
           <div className="text-center mb-6 md:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-4">
-              Our Process
+              How We Ship Faster
             </h2>
-            <p className="text-sm md:text-base text-gray-300">
-              We meet you where you are. Some engagements start with validation, others jump straight to building from proven assumptions.
+            <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
+              Design-led execution across product, systems, and GTM. Proof of craft + proof of delivery.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {/* Phase 1 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  1
-                </div>
-                <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Align</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Map your product thesis and biggest unknowns. Skip if you already know what needs to be built.
-              </p>
-            </GlassCard>
+          {/* Mobile: simplified version */}
+          <div className="block md:hidden">
+            <VelocityProof simplified={true} />
+          </div>
 
-            {/* Phase 2 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  2
-                </div>
-                <Rocket className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Prototype</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Build functional software that tests core assumptions. Sometimes this is week 1, sometimes week 6.
-              </p>
-            </GlassCard>
-
-            {/* Phase 3 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  3
-                </div>
-                <Target className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Validate</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Run real usage scenarios. User testing, technical validation. Skip if you have proven demand.
-              </p>
-            </GlassCard>
-
-            {/* Phase 4 */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold">
-                  4
-                </div>
-                <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold" />
-              </div>
-              <h3 className="text-sm md:text-base font-bold mb-1.5 md:mb-2">Build</h3>
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Scale what's working. Many engagements start here when the product direction is clear.
-              </p>
-            </GlassCard>
+          {/* Desktop: full version */}
+          <div className="hidden md:block">
+            <VelocityProof simplified={false} />
           </div>
         </div>
       </section>
@@ -393,7 +340,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 5. HOW EQUITY WORKS (When It Makes Sense) */}
+      {/* 5. ENGAGEMENT STRUCTURES */}
       <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
@@ -407,64 +354,55 @@ export default function HowWeWorkPage() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="text-center mb-6 md:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 md:mb-4">
-              How Equity Works (When It Makes Sense)
+              Flexible Structures
             </h2>
             <p className="text-sm md:text-base text-gray-300 max-w-2xl mx-auto">
-              Equity isn't for everyone—and that's fine. Many of our best engagements are cash-only. But when equity is part of the structure, here's what changes (and what doesn't).
+              Cash, equity, or hybrid—depending on fit. Details on a call.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 md:gap-4 md:gap-6 lg:gap-8">
-            {/* What Changes */}
-            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <h3 className="text-[0.65rem] md:text-xs font-bold uppercase tracking-wide text-terminal-gold mb-3 md:mb-4">
-                With Equity
-              </h3>
-              <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-300">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We're invested in your long-term success</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>Reduced upfront cash preserves your runway</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We think like co-founders, not contractors</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>Ongoing advisory beyond the build phase</span>
-                </li>
-              </ul>
-            </GlassCard>
+          <GlassCard className="p-4 md:p-6 lg:p-8" borderRadius="0.75rem">
+            <p className="text-sm md:text-base text-gray-200 leading-relaxed mb-6">
+              <span className="font-bold text-terminal-gold">We share pricing after understanding your context.</span> Every engagement is structured as cash, equity, or hybrid—and the mix depends on your stage, timeline, and goals.
+            </p>
 
-            {/* What Stays The Same */}
-            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <h3 className="text-[0.65rem] md:text-xs font-bold uppercase tracking-wide text-terminal-gold mb-3 md:mb-4">
-                Always True (Any Structure)
-              </h3>
-              <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-300">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>You own your company and make the calls</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>Clear deliverables with defined timelines</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>We move fast regardless of payment structure</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-terminal-gold mt-0.5 flex-shrink-0" />
-                  <span>Same quality, same commitment, same team</span>
-                </li>
-              </ul>
-            </GlassCard>
-          </div>
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <h3 className="text-sm font-mono text-terminal-gold uppercase tracking-wide mb-3">With Equity</h3>
+                <ul className="space-y-2 text-xs md:text-sm text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>Aligned incentives from day one</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>Reduced upfront cash preserves runway</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>Long-term partnership mindset</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-mono text-terminal-gold uppercase tracking-wide mb-3">Always True</h3>
+                <ul className="space-y-2 text-xs md:text-sm text-gray-300">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>You own your company and make the calls</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>Clear deliverables with defined timelines</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-terminal-gold mt-0.5 flex-shrink-0" />
+                    <span>Same quality, same commitment, same team</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </section>
 
@@ -535,8 +473,8 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* 7. HOW WE SHIP FASTER - VelocityProof */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+      {/* 7. FINAL CTA */}
+      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 pointer-events-none">
           <ASCIIUnifiedGrid
             opacity={0.04}
@@ -546,22 +484,28 @@ export default function HowWeWorkPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto">
-          {/* Mobile: simplified version */}
-          <div className="block md:hidden">
-            <VelocityProof simplified={true} />
-          </div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">
+            Ready to talk?
+          </h2>
+          <p className="text-base md:text-lg text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto">
+            Let's figure out if there's a fit. 30-minute call, no pitch deck required.
+          </p>
 
-          {/* Desktop: full version */}
-          <div className="hidden md:block">
-            <VelocityProof simplified={false} />
-          </div>
-
-          <div className="mt-6 md:mt-12 text-center">
-            <ButtonTertiary href="/overview" className="gap-2 text-xs md:text-sm">
-              See the full methodology
-              <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
-            </ButtonTertiary>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-base md:text-lg bg-terminal-gold hover:bg-terminal-gold-hover text-black font-semibold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30 rounded-lg"
+            >
+              Book intro call
+            </Link>
+            <Link
+              href="/work"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-base md:text-lg border border-gray-700 hover:border-terminal-gold text-white font-semibold transition-colors rounded-lg flex items-center justify-center gap-2"
+            >
+              See the work
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+            </Link>
           </div>
         </div>
       </section>

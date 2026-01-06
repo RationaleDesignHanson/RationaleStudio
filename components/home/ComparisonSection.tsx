@@ -28,7 +28,7 @@ export function ComparisonSection() {
             items={[
               '6+ months to find the right person',
               '15-25% equity for an unknown',
-              'Relationship risk if it doesn't work',
+              "Relationship risk if it doesn't work",
               'Still need to manage the build',
             ]}
             highlight={false}
@@ -62,7 +62,7 @@ export function ComparisonSection() {
             items={[
               '6+ months to find the right person',
               '15-25% equity for an unknown',
-              'Relationship risk if it doesn't work',
+              "Relationship risk if it doesn't work",
               'Still need to manage the build',
             ]}
             highlight={false}
@@ -88,6 +88,11 @@ export function ComparisonSection() {
             highlight={true}
           />
         </div>
+
+        {/* Structure note */}
+        <p className="mt-8 text-center text-sm md:text-base text-gray-400">
+          Flexible structures: cash, equity, or hybrid—depending on fit. Details on a call.
+        </p>
       </div>
     </section>
   );

@@ -109,9 +109,11 @@ export default function PrototypeEmbed() {
             </p>
             <a
               href="/zero"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold rounded-full transition-all shadow-lg shadow-purple-500/30"
             >
-              Try the Swipe Demo →
+              Product Page →
             </a>
             <p className="text-white/60 text-sm mt-3">
               Experience the swipeable card interface on our product page

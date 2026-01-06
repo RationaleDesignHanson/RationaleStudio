@@ -8,8 +8,6 @@
 
 'use client';
 
-import { GlassCard } from '@/components/visual';
-
 interface VelocityProofProps {
   simplified?: boolean; // Mobile-friendly variant
 }
@@ -18,7 +16,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
   if (simplified) {
     // Mobile-optimized version
     return (
-      <GlassCard className="p-6" borderRadius="0.75rem">
+      <div className="p-6 rounded-lg bg-gray-900/50 border border-gray-700">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-white mb-2">Velocity Proof</h2>
           <p className="text-sm text-gray-400">
@@ -52,23 +50,21 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
 
         {/* Summary */}
         <div className="mt-6 pt-4 border-t border-gray-800 text-center">
-          <div className="text-3xl font-bold text-accent">54% faster</div>
-          <div className="text-xs text-gray-400 mt-1">Time to validated launch</div>
+          <div className="text-xs text-gray-400">
+            The point: reduce risk early, then build what’s proven.
+          </div>
         </div>
-      </GlassCard>
+      </div>
     );
   }
 
   // Desktop version
   return (
-    <GlassCard className="p-8" borderRadius="0.75rem">
+    <div className="p-8 rounded-lg bg-gray-900/50 border border-gray-700">
       <div className="mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
           How We Ship Faster
         </h2>
-        <p className="text-base text-gray-400">
-          Traditional waterfall vs Rationale's validated development approach
-        </p>
       </div>
 
       {/* Traditional Timeline */}
@@ -103,7 +99,7 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
               }}
             >
               <span className="text-xs font-medium text-white text-center">
-                Production (no validation)
+                Validate in Production
               </span>
             </div>
 
@@ -204,23 +200,14 @@ export function VelocityProof({ simplified = false }: VelocityProofProps) {
         </div>
       </div>
 
-      {/* Summary metrics */}
+      {/* Summary */}
       <div className="mt-8 pt-6 border-t border-gray-800">
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <div className="text-2xl font-bold text-accent">54%</div>
-            <div className="text-xs text-gray-400 mt-1">Faster time to market</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-accent">75%</div>
-            <div className="text-xs text-gray-400 mt-1">Risk reduction</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-accent">7x</div>
-            <div className="text-xs text-gray-400 mt-1">More validation cycles</div>
-          </div>
+        <div className="text-center">
+          <p className="text-sm text-gray-400">
+            Compress decision time early. Protect engineering time. Ship what’s validated.
+          </p>
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 }

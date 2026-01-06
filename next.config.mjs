@@ -233,6 +233,11 @@ const nextConfig = {
         destination: '/thumby',
         permanent: true,
       },
+      {
+        source: '/products/sanitary-system',
+        destination: '/products/nimbus',
+        permanent: true,
+      },
     ];
   },
 

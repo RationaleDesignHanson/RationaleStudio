@@ -116,74 +116,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Proof at Scale - 3 Card Grid */}
+      {/* Proof at Scale - Condensed */}
       <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 text-center">Proof at Scale</h2>
-
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-            {/* Card 1: Spark AR */}
-            <GlassCard className="p-4 md:p-6" borderRadius="0.75rem">
-              <h3 className="text-xl font-bold text-white mb-2">Spark AR: Platform + Verticals</h3>
-              <p className="text-sm text-gray-400 mb-4">400+ person XFN org, 2B+ users</p>
-              <div className="space-y-3 text-sm text-gray-300">
-                <p>Built horizontal AR platform + multiple verticals:</p>
-                <div className="pl-4 space-y-2">
-                  <div>
-                    <span className="font-semibold text-white">Commerce:</span> Virtual try-on for Nike, Target, Sephora. 150% platform growth first year, 100x inventory volume.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-white">Entertainment:</span> World AR experiences on Instagram/Facebook.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-white">Avatars:</span> Consumer avatar systems.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-white">Other:</span> Diverse consumer experiences across Meta apps.
-                  </div>
-                </div>
-                <p className="pt-2 border-t border-gray-700">
-                  Pioneered mobile AR prototyping: <span className="text-[#00FF94] font-semibold">60% velocity increase</span>
-                </p>
-                <p>Scaled mobile AR team: <span className="text-[#00FF94] font-semibold">2→22 people</span></p>
-              </div>
-            </GlassCard>
-
-            {/* Card 2: Orion */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <h3 className="text-xl font-bold text-white mb-2">Orion AR Glasses + Quest MR</h3>
-              <p className="text-sm text-gray-400 mb-4">Never-before-built AR hardware</p>
-              <div className="space-y-3 text-sm text-gray-300">
-                <p>Led team building experiences showcasing why revolutionary AR hardware matters.</p>
-                <p>Created product vision demonstrating value proposition for next-generation wearables.</p>
-                <p>Meta leadership and board were the customer—had to prove the "why" behind the hardware investment.</p>
-                <p className="pt-2 border-t border-gray-700">
-                  15+ patents filed in AR/AI interaction systems.
-                </p>
-              </div>
-            </GlassCard>
-
-            {/* Card 3: Cross-Functional Leadership */}
-            <GlassCard className="p-6" borderRadius="0.75rem">
-              <h3 className="text-xl font-bold text-white mb-2">Cross-Functional Leadership</h3>
-              <p className="text-sm text-gray-400 mb-4">Deep understanding of all functions</p>
-              <div className="space-y-3 text-sm text-gray-300">
-                <p>Directly managed diverse disciplines:</p>
-                <ul className="pl-4 space-y-1 list-disc list-inside">
-                  <li>Product designers</li>
-                  <li>Prototypers</li>
-                  <li>Technical artists</li>
-                  <li>UX researchers</li>
-                </ul>
-                <p className="pt-2 border-t border-gray-700">
-                  Cross-functional nature of leading a 400+ person org gave deep understanding of ALL functions: engineering, PM, research, operations.
-                </p>
-                <p className="font-semibold text-white">
-                  This breadth enables Rationale's end-to-end execution from strategy to production.
-                </p>
-              </div>
-            </GlassCard>
-          </div>
+          <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">Proof at Scale</h2>
+            <div className="space-y-4 text-gray-300 leading-relaxed">
+              <p>
+                Led Product and Experience Design for Meta's AR platform—a 400+ person organization serving 2B+ users. Built horizontal AR platform and four verticals: Commerce (Nike, Target, Sephora), World AR, Avatars, and consumer experiences across Instagram/Facebook.
+              </p>
+              <p>
+                Pioneered mobile AR prototyping methodology: <span className="text-terminal-gold font-semibold">60% velocity increase</span>. Scaled mobile AR team from <span className="text-terminal-gold font-semibold">2→22 people</span> across product design, prototyping, technical art, and UX research.
+              </p>
+              <p>
+                Led experiences for Orion AR Glasses and Quest MR—never-before-built AR hardware. Created product vision demonstrating value proposition for next-generation wearables. <span className="text-terminal-gold font-semibold">15+ patents filed</span> in AR/AI interaction systems.
+              </p>
+              <p className="pt-4 border-t border-gray-700 font-semibold text-white">
+                This breadth—from 0→1 platform creation to billion-user scale—enables Rationale's end-to-end execution from strategy to production.
+              </p>
+            </div>
+          </GlassCard>
         </div>
       </section>
 
@@ -299,92 +251,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How We Work */}
-      <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+      {/* How We Work - Link to dedicated page */}
+      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-center">
-            How We Work
-          </h2>
-
-          <div className="space-y-8">
-            {/* AI Acceleration */}
-            <GlassCard className="p-8" borderRadius="0.75rem">
-              <div className="flex items-start gap-3 mb-6">
-                <div className="text-3xl">⚡</div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">AI-Accelerated Execution</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    Modern tooling fundamentally changed the economics of product development. Claude Code and Cursor mean small, disciplined teams ship faster than large teams could in 2023. Zero went from concept to App Store in 30 days. Same capital buys more validation cycles—more shots on goal before committing to full production.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-gray-700">
-                <div>
-                  <div className="text-2xl font-bold text-[#00FF94] mb-1">30 days</div>
-                  <div className="text-sm text-gray-400">Concept → App Store (Zero)</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-[#00FF94] mb-1">2-3x</div>
-                  <div className="text-sm text-gray-400">Ventures per year vs industry</div>
-                </div>
-              </div>
-            </GlassCard>
-
-            {/* Dual Engine Model */}
-            <GlassCard className="p-8" borderRadius="0.75rem">
-              <h3 className="text-xl font-bold text-white mb-3">Two Engines, Proven in Production</h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                Rationale runs two integrated engines: <span className="text-white font-semibold">Portfolio IP</span> (products we own like Zero) proves methodologies work with our own capital. <span className="text-white font-semibold">Client Partnerships</span> (fee + equity engagements) apply those same patterns to your highest-stakes product decisions. Internal products test approaches before we recommend them. Client work funds continued R&D. You get methods hardened in production, not theory.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
-                  <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 1</div>
-                  <div className="text-white font-bold mb-1">Portfolio IP</div>
-                  <div className="text-sm text-gray-400 mb-3">Zero, Compass, future products</div>
-                  <div className="text-xs text-[#00FF94]">Proves methodology with our capital</div>
-                </div>
-                <div className="bg-gray-900/50 border border-gray-700 p-4 rounded-lg">
-                  <div className="text-sm font-mono text-gray-400 mb-2">ENGINE 2</div>
-                  <div className="text-white font-bold mb-1">Client Partnerships</div>
-                  <div className="text-sm text-gray-400 mb-3">Discovery Sprint, Prototype Sprint, Build Ship Run</div>
-                  <div className="text-xs text-[#00FF94]">Applies proven patterns to your roadmap</div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-gray-700 flex gap-4">
-                <Link href="/investors/dual-engine-model" className="text-accent hover:underline font-medium text-sm">
-                  Read the full model →
-                </Link>
-                <Link href="/partnerships" className="text-accent hover:underline font-medium text-sm">
-                  View partnerships →
-                </Link>
-              </div>
-            </GlassCard>
-          </div>
+          <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">How We Work</h2>
+            <p className="text-gray-300 leading-relaxed mb-6">
+              We build our own products to stay sharp and honest. Shipping forces clarity: real users, real tradeoffs, real distribution. That's why our partner work moves faster—our methods are constantly pressure-tested in production.
+            </p>
+            <Link
+              href="/how-we-work"
+              className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
+            >
+              See our methodology
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </GlassCard>
         </div>
       </section>
 
       {/* CTA */}
       <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to build with conviction?</h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            We bring the same systematic approach to every engagement—whether it's a 3-week sprint or 12-week pilot.
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">
+            Ready to talk?
+          </h2>
+          <p className="text-base md:text-lg text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto">
+            Let's figure out if there's a fit. 30-minute call, no pitch deck required.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-base md:text-lg bg-terminal-gold hover:bg-terminal-gold-hover text-black font-semibold transition-all shadow-lg shadow-terminal-gold/20 hover:shadow-xl hover:shadow-terminal-gold/30 rounded-lg"
             >
               Book intro call
             </Link>
             <Link
-              href="/partnerships"
-              className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
+              href="/work"
+              className="px-6 py-3 sm:px-8 sm:py-4 text-base md:text-lg border border-gray-700 hover:border-terminal-gold text-white font-semibold transition-colors rounded-lg flex items-center justify-center gap-2"
             >
-              View partnerships
+              See the work
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </Link>
           </div>
         </div>

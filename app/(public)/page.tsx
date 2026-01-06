@@ -18,7 +18,7 @@ import { ArrowRight } from '@/lib/icons';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { ButtonPrimary, ButtonTertiary } from '@/components/ui/ButtonHierarchy';
-import { ProofBar } from '@/components/home/ProofBar';
+import { VelocityProof } from '@/components/home/VelocityProof';
 import { ComparisonSection } from '@/components/home/ComparisonSection';
 
 export default function HomePage() {
@@ -45,23 +45,19 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            {/* Pre-headline */}
-            <div className="mb-4 md:mb-6">
-              <p className="font-mono text-xs md:text-sm text-terminal-gold tracking-wider">
-                Led product design at Meta Reality Labs—new product categories, 2B+ users, no room for guesswork.
-              </p>
-            </div>
-
             {/* Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-tight mb-4 md:mb-6">
-              Your product co-founder.
-              <br />
-              <span className="font-normal">Without the cap table drama.</span>
+              Vision bears the burden of proof.
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 md:mb-10 max-w-3xl">
-              We design and ship production software in weeks—with skin in the game so we're aligned on outcomes, not hours.
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-4 md:mb-6 max-w-3xl">
+              Prototype fast. Validate early. Scale what works.
+            </p>
+
+            {/* Supporting copy */}
+            <p className="text-base md:text-lg text-gray-300 mb-8 md:mb-10 max-w-3xl">
+              We design and ship production software with intention and speed. When the alignment is there, we partner with founders and teams—with skin in the game—so we're aligned on outcomes, not hours.
             </p>
 
             {/* CTAs */}
@@ -76,10 +72,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 2. PROOF BAR */}
-        <ProofBar />
-
-        {/* 3. HOW IT WORKS */}
+        {/* 2. HOW WE SHIP FASTER */}
         <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -91,35 +84,47 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="text-center mb-8 md:mb-12">
+            {/* Mobile: simplified version */}
+            <div className="block md:hidden">
+              <VelocityProof simplified={true} />
+            </div>
+
+            {/* Desktop: full version */}
+            <div className="hidden md:block">
+              <VelocityProof simplified={false} />
+            </div>
+          </div>
+        </section>
+
+        {/* 3. HOW WE BUILD CONVICTION */}
+        <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
+          <div className="absolute inset-0 pointer-events-none">
+            <ASCIIUnifiedGrid
+              opacity={0.03}
+              animated={true}
+              colorTheme={watercolorThemes.terminalSubtle}
+              charSet="default"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="mb-8 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                How It Works
+                How we build conviction
               </h2>
-              <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-                You bring the vision. We bring the build.
+              <p className="text-base md:text-lg text-gray-300 max-w-2xl">
+                We turn vision into proof—then ship what’s validated.
               </p>
             </div>
 
-            {/* Three cards */}
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8">
-              <HowItWorksCard
-                title="DISCOVER"
-                description="Map your product thesis and biggest risks. Weeks, not months."
-              />
-              <HowItWorksCard
-                title="PROTOTYPE"
-                description="Working software that tests real assumptions. Not mockups. Not specs."
-              />
-              <HowItWorksCard
-                title="SCALE"
-                description="We stay involved as product partners. Aligned incentives, long-term."
-              />
-            </div>
+            <ConvictionStepper
+              steps={[
+                { title: 'DECIDE', description: 'Reduce uncertainty with working software.' },
+                { title: 'DELIVER', description: 'Ship production systems without handoffs.' },
+                { title: 'COMPOUND', description: 'Stay involved as outcomes emerge.' },
+              ]}
+            />
 
-            {/* Flexible structures note */}
-            <p className="text-center text-sm md:text-base text-gray-400">
-              Flexible structures: cash, equity, or hybrid—depending on fit. Details on a call.
-            </p>
           </div>
         </section>
 
@@ -135,12 +140,12 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="text-center mb-8 md:mb-12">
+            <div className="mb-8 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                We Ship Our Own Products
+                Products we ship and sustain
               </h2>
-              <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-                Same methodology. Our own capital. Real users.
+              <p className="text-base md:text-lg text-gray-300 max-w-2xl">
+                Built end to end, then refined through usage and feedback.
               </p>
             </div>
 
@@ -148,8 +153,7 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               <PortfolioCard
                 title="Zero"
-                description="AI email intelligence"
-                proofPoint="Concept → App Store in 30 days"
+                description="Turn email into actions—not homework."
                 href="/work/zero"
                 borderColor="terminal-gold"
                 iconSrc="/images/icons/zero-icon.avif"
@@ -157,8 +161,7 @@ export default function HomePage() {
               />
               <PortfolioCard
                 title="Heirloom"
-                description="Recipe preservation + meal planning"
-                proofPoint="In beta"
+                description="Save every recipe. Cook with confidence."
                 href="/work/heirloom"
                 borderColor="#00D9FF"
                 iconSrc="/images/icons/heirloom-icon.avif"
@@ -213,16 +216,46 @@ export default function HomePage() {
   );
 }
 
-// How It Works Card Component
-function HowItWorksCard({ title, description }: { title: string; description: string }) {
+function ConvictionStepper({
+  steps,
+}: {
+  steps: Array<{ title: string; description: string }>;
+}) {
   return (
-    <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 md:p-8 hover:border-terminal-gold/50 transition-colors">
-      <h3 className="text-lg md:text-xl font-bold text-terminal-gold mb-3 md:mb-4 font-mono tracking-wider">
-        {title}
-      </h3>
-      <p className="text-sm md:text-base text-gray-300 leading-relaxed">
-        {description}
-      </p>
+    <div className="relative max-w-5xl mx-auto mb-8">
+      {/* Desktop connector line */}
+      <div className="hidden md:block absolute left-0 right-0 top-[18px] h-px bg-gray-700/70" />
+
+      <ol className="grid gap-6 md:gap-8 md:grid-cols-3">
+        {steps.map((step, i) => (
+          <li key={step.title} className="relative">
+            <div className="flex gap-4 md:block">
+              {/* Step marker */}
+              <div className="flex-shrink-0">
+                <div className="relative z-10 w-9 h-9 rounded-full bg-gray-900 border border-terminal-gold/40 flex items-center justify-center">
+                  <span className="font-mono text-xs text-terminal-gold tracking-wider">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                {/* Mobile connector */}
+                {i !== steps.length - 1 && (
+                  <div className="md:hidden w-px h-10 bg-gray-700/70 mx-auto" />
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="pt-0.5 md:pt-6">
+                <div className="font-mono text-xs text-terminal-gold tracking-wider mb-2">
+                  {step.title}
+                </div>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -231,7 +264,6 @@ function HowItWorksCard({ title, description }: { title: string; description: st
 function PortfolioCard({
   title,
   description,
-  proofPoint,
   href,
   borderColor,
   iconSrc,
@@ -239,7 +271,6 @@ function PortfolioCard({
 }: {
   title: string;
   description: string;
-  proofPoint: string;
   href: string;
   borderColor: string;
   iconSrc: string;
@@ -272,9 +303,6 @@ function PortfolioCard({
           <p className="text-sm md:text-base text-gray-300 mb-3">
             {description}
           </p>
-          <div className="inline-block px-3 py-1 bg-gray-800/50 border border-gray-700 rounded-full text-xs md:text-sm text-gray-300">
-            {proofPoint}
-          </div>
         </div>
       </div>
       <div className="flex items-center text-terminal-gold group-hover:gap-2 transition-all">

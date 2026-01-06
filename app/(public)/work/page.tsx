@@ -327,7 +327,7 @@ export default function WorkPage() {
                 ? 'athletes-first'
                 : project.slug === 'case-study-030'
                 ? 'fubo'
-                : 'sanitary-system';
+                : 'nimbus';
               const pitchDeckPath = project.slug === 'case-study-010'
                 ? '/clients/creait/strategic-roadmap'
                 : project.slug === 'case-study-020'

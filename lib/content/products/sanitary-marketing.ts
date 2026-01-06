@@ -9,7 +9,7 @@
 import { ProductMarketingContent } from './types';
 
 export const sanitaryMarketingContent: ProductMarketingContent = {
-  slug: 'sanitary-system',
+  slug: 'nimbus',
   productName: 'Nimbus',
   category: 'physical',
 
@@ -25,7 +25,7 @@ export const sanitaryMarketingContent: ProductMarketingContent = {
     subheadline: 'Absorbent-lined pickup bags that eliminate the warmth, texture, and unpredictability—so every walk is worry-free.',
     ctaPrimary: {
       text: 'Join the Waitlist',
-      href: '/contact?product=sanitary-system'
+      href: '/contact?product=nimbus'
     },
     ctaSecondary: {
       text: 'See How It Works',

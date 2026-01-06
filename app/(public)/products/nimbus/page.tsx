@@ -4,7 +4,7 @@
  * Physical product landing page for dog waste pickup system.
  * Emphasizes eliminating the disgusting sensory experience during pickup.
  *
- * Route: /products/sanitary-system
+ * Route: /products/nimbus
  * NOTE: This page is NOT linked in navigation until ready for launch
  */
 

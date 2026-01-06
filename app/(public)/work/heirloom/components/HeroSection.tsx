@@ -51,9 +51,11 @@ export default function HeroSection() {
 
             <Link
               href="/heirloom#demo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#E85D4D] hover:text-[#D84D3D] text-sm font-normal flex items-center gap-1 transition-colors"
             >
-              Try Demo
+              Product Page
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -106,9 +108,11 @@ export default function HeroSection() {
 
               <Link
                 href="/heirloom#demo"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-[#E85D4D] hover:text-[#D84D3D] text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
               >
-                Try Interactive Demo
+                Product Page
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

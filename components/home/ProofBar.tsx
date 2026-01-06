@@ -1,60 +1,81 @@
 /**
  * Proof Bar Component
  *
- * Three-column credentials section showing Meta Reality Labs experience.
+ * Split-flap style proof ticker (train schedule vibe) shown below the homepage hero.
  * Displays immediately below hero section.
  */
 
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
+import { ASCIIUnifiedGrid } from '@/components/visual';
+import { watercolorThemes } from '@/lib/theme/watercolor-palette';
+
 export function ProofBar() {
+  const messages = useMemo(
+    () => [
+      'Reality Labs — hardened at billion-user scale (no room for guesswork)',
+      'New categories — AR Commerce · Ray-Ban AI · World AR · Avatars',
+      'Shipped to 2B+ users — clarity, quality, repeatable execution',
+    ],
+    []
+  );
+
+  const [idx, setIdx] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setIsFlipping(true);
+      window.setTimeout(() => {
+        setIdx((i) => (i + 1) % messages.length);
+        window.setTimeout(() => setIsFlipping(false), 220);
+      }, 220);
+    }, 5200);
+
+    return () => window.clearInterval(interval);
+  }, [messages.length]);
+
   return (
     <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-      <div className="max-w-6xl mx-auto">
-        {/* Desktop: Three columns */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
-          <ProofColumn
-            label="META REALITY LABS"
-            content="Led product design for 400+ person org"
-          />
-          <ProofColumn
-            label="NEW CATEGORIES TO MARKET"
-            content="AR Commerce · Ray-Ban AI · World AR · Avatars"
-          />
-          <ProofColumn
-            label="SHIPPED TO 2B+ USERS"
-            content="The discipline that comes from no room for guesswork"
-          />
-        </div>
+      <div className="absolute inset-0 pointer-events-none">
+        <ASCIIUnifiedGrid
+          opacity={0.035}
+          animated={true}
+          colorTheme={watercolorThemes.terminalSubtle}
+          charSet="default"
+        />
+      </div>
 
-        {/* Mobile: Stack vertically */}
-        <div className="md:hidden space-y-6">
-          <ProofColumn
-            label="META REALITY LABS"
-            content="Led product design for 400+ person org"
-          />
-          <ProofColumn
-            label="NEW CATEGORIES TO MARKET"
-            content="AR Commerce · Ray-Ban AI · World AR · Avatars"
-          />
-          <ProofColumn
-            label="SHIPPED TO 2B+ USERS"
-            content="The discipline that comes from no room for guesswork"
-          />
+      <div className="max-w-6xl mx-auto">
+        <div className="relative z-10 rounded-lg border border-gray-700/50 bg-black/40 backdrop-blur-sm px-4 py-4 md:px-6 md:py-5">
+          <div className="overflow-hidden">
+            <div
+              className={`font-mono tracking-wide text-center text-sm sm:text-base md:text-lg text-gray-200 ${
+                isFlipping ? 'proofFlipOut' : 'proofFlipIn'
+              }`}
+            >
+              {messages[idx]}
+            </div>
+            <div className="sr-only">{messages[idx]}</div>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .proofFlipIn {
+          transform: translateY(0px);
+          opacity: 1;
+          filter: blur(0px);
+          transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+        }
+        .proofFlipOut {
+          transform: translateY(-6px);
+          opacity: 0;
+          filter: blur(1px);
+          transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+        }
+      `}</style>
     </section>
   );
 }
-
-function ProofColumn({ label, content }: { label: string; content: string }) {
-  return (
-    <div className="border border-gray-700/50 rounded-lg p-4 md:p-6 bg-gray-900/30">
-      <div className="font-mono text-xs md:text-sm text-terminal-gold mb-2 md:mb-3 tracking-wider">
-        {label}
-      </div>
-      <div className="text-sm md:text-base text-gray-300 leading-relaxed">
-        {content}
-      </div>
-    </div>
-  );
-}
-
