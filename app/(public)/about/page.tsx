@@ -67,7 +67,7 @@ export default function AboutPage() {
               "Get the work so close to shipping that all you need is engineering resources to make it real. Anything to the left of that mark doesn't get you much value."
             </blockquote>
             <p className="text-gray-400 text-sm">
-              — Advice from a Meta Reality Labs leader that became Rationale's founding principle
+              — Advice from a Meta Reality Labs VP that became Rationale's founding principle
             </p>
           </div>
 
