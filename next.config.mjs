@@ -143,6 +143,13 @@ const nextConfig = {
         permanent: true,
       },
 
+      // Work page consolidated into homepage
+      {
+        source: '/work',
+        destination: '/',
+        permanent: true,
+      },
+
       // Zero case study consolidation - redirect sub-pages to main case study
       {
         source: '/work/zero/overview',

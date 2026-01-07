@@ -22,7 +22,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Consumer', 'AI Product', 'Live'],
     isProtected: false,
     featured: true,
-    description: 'AI email assistant that achieves Inbox Zero autonomously. Learns your preferences, handles routine responses, and keeps you focused on what matters. Built and shipped in 30 days.'
+    description: 'AI email triage that extracts actions, deadlines, and next steps—then lets you clear them fast with a swipe-first workflow. Built to turn inbox time into done time.'
   },
   {
     id: 'heirloom',
@@ -39,7 +39,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Consumer', 'iOS', 'SwiftUI', 'Product Design'],
     isProtected: false,
     featured: true,
-    description: 'Save and organize the recipes worth passing down. Import from the web, scale ingredients, create shopping lists, and cook with confidence. Native iOS app with vintage aesthetic and iCloud sync.'
+    description: 'A native iOS home for recipes: import fast (AI-assisted), store them beautifully, share with friends/family, then turn them into weekly plans and smart shopping lists.'
   },
   {
     id: 'case-study-010',
@@ -56,7 +56,7 @@ export const workProjects: WorkProject[] = [
     tags: ['B2B', 'Data Platform', 'Pilot'],
     isProtected: true,
     featured: true,
-    description: 'Enterprise platform connecting CRM data to workforce optimization with AI-powered automation.'
+    description: 'AI market-intelligence workflow that fuses CRM signals with ops data—so teams prioritize the right deals faster.'
   },
   {
     id: 'case-study-020',
@@ -73,7 +73,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Sports Tech', 'Complex Systems', 'Pilot'],
     isProtected: true,
     featured: true,
-    description: 'Sports and entertainment modernization platform with 4 integrated modules, wearables, and spatial computing.'
+    description: 'Four-module prototype suite to modernize agency operations—pitching, NIL guidance, content automation, and new surfaces.'
   },
   {
     id: 'case-study-030',
@@ -90,12 +90,12 @@ export const workProjects: WorkProject[] = [
     tags: ['Sports Tech', 'Streaming', 'Live'],
     isProtected: true,
     featured: true,
-    description: 'AI-powered thumbnail generation system for live sports streaming. Built in 2-week sprint with Google Gemini 2.5 Flash, generating brand-consistent thumbnails across 200+ teams, 8 leagues, and 24 visual styles.'
+    description: 'AI thumbnail pipeline for live sports—brand-consistent creative at scale with near real-time processing.'
   },
   {
     id: 'case-study-040',
-    title: '040',
-    subtitle: 'IP Development',
+    title: 'Nimbus',
+    subtitle: 'Sanitary Waste Systems',
     slug: 'sanitary-waste-system',
     status: 'building',
     category: 'complex-systems',
@@ -107,7 +107,7 @@ export const workProjects: WorkProject[] = [
     tags: ['Physical Product', 'IP Development', 'Partnership'],
     isProtected: true,
     featured: false,
-    description: 'Physical product in prototyping'
+    description: 'Premium pet hygiene system: absorbent-lined bags + pop-up dispensing—validated for retail pull before tooling.'
   }
 ];
 

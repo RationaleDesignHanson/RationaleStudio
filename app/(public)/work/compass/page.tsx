@@ -30,7 +30,7 @@ export default function CompassPage() {
           <div className="max-w-4xl mx-auto">
             <GlassCard theme={heroTheme} className="p-6 sm:p-8 lg:p-12">
               <div className="mb-6">
-                <Link href="/work" className="text-accent hover:underline text-sm sm:text-base">
+                <Link href="/" className="text-accent hover:underline text-sm sm:text-base">
                   ← Back to Portfolio
                 </Link>
               </div>

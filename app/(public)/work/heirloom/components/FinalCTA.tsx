@@ -32,7 +32,7 @@ export default function FinalCTA() {
             </Link>
 
             <Link
-              href="/work"
+              href="/"
               className="inline-flex items-center gap-2 rounded-full border-2 border-white px-10 py-5 text-lg font-semibold text-white transition-all hover:bg-white hover:text-[#E85D4D]"
             >
               See More Work

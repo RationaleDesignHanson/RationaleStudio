@@ -491,11 +491,10 @@ export const siteContent = {
   navigation: {
     primary: [
       { label: "Home", href: "/" },
-      { label: "Work", href: "/work" },
+      { label: "Build With Us", href: "/how-we-work" },
       { label: "Thinking", href: "/thinking" },
-      { label: "How We Work", href: "/how-we-work" },
       { label: "About", href: "/about" },
-      { label: "Clients", href: "/clients/login" },
+      { label: "Collab", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
     ]
   },
@@ -504,9 +503,8 @@ export const siteContent = {
     copyright: `© ${new Date().getFullYear()} Rationale Studio. All rights reserved.`,
     links: [
       { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      { label: "Zero", href: "/work/zero" },
-      { label: "Compass", href: "/work/compass" }
+      { label: "Build With Us", href: "/how-we-work" },
+      { label: "Contact", href: "/contact" }
     ],
     social: [
       { platform: "LinkedIn", url: "https://linkedin.com/in/matthansonstudio" },

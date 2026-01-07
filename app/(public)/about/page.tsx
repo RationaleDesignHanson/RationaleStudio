@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { GlassCard, CredentialsBar, StatementBlock } from '@/components/visual';
+import { GlassCard } from '@/components/visual';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ArrowRight } from '@/lib/icons';
+import { FitFilter } from '@/components/home/FitFilter';
+import { ComparisonSection } from '@/components/home/ComparisonSection';
 
 export default function AboutPage() {
   return (
@@ -26,7 +28,7 @@ export default function AboutPage() {
           </p>
 
           <h1 className="text-3xl md:text-2xl md:text-3xl lg:text-4xl lg:text-5xl font-bold mb-4">
-            About Rationale
+            Usage is the oxygen for ideas.
           </h1>
 
           <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mb-4">
@@ -45,13 +47,29 @@ export default function AboutPage() {
       </section>
 
       {/* Our Approach Introduction */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
-          <StatementBlock
-            title="Our Approach"
-            statement="Working software is the oxygen for ideas. We validate before we commit."
-            supporting="Build → Validate → Ship. No guesswork."
+          <ConvictionStepper
+            steps={[
+              { title: 'DECIDE', description: 'Reduce uncertainty with working software.' },
+              { title: 'DELIVER', description: 'Ship production systems without handoffs.' },
+              { title: 'COMPOUND', description: 'Stay involved as outcomes emerge.' },
+            ]}
           />
+        </div>
+      </section>
+
+      {/* What Makes a Good Fit */}
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-start gap-3 mb-4 md:mb-6">
+            <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+            <p className="text-xs md:text-sm text-gray-300">
+              <span className="font-semibold text-white">Partnerships work best when there's mutual fit.</span>{' '}
+              Here's what we look for.
+            </p>
+          </div>
+          <FitFilter />
         </div>
       </section>
 
@@ -136,6 +154,20 @@ export default function AboutPage() {
               </p>
             </div>
           </GlassCard>
+        </div>
+      </section>
+
+      {/* Why This, Not That */}
+      <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-start gap-3 mb-4 md:mb-6">
+            <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+            <p className="text-xs md:text-sm text-gray-300">
+              <span className="font-semibold text-white">Why this, not that.</span>{' '}
+              Common alternatives and how we compare.
+            </p>
+          </div>
+          <ComparisonSection />
         </div>
       </section>
 
@@ -251,24 +283,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How We Work - Link to dedicated page */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="max-w-5xl mx-auto">
-          <GlassCard className="p-6 md:p-8" borderRadius="0.75rem">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">How We Work</h2>
-            <p className="text-gray-300 leading-relaxed mb-6">
-              We build our own products to stay sharp and honest. Shipping forces clarity: real users, real tradeoffs, real distribution. That's why our partner work moves faster—our methods are constantly pressure-tested in production.
-            </p>
-            <Link
-              href="/how-we-work"
-              className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover font-medium transition-colors"
-            >
-              See our methodology
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </GlassCard>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8">
@@ -287,7 +301,7 @@ export default function AboutPage() {
               Book intro call
             </Link>
             <Link
-              href="/work"
+              href="/"
               className="px-6 py-3 sm:px-8 sm:py-4 text-base md:text-lg border border-gray-700 hover:border-terminal-gold text-white font-semibold transition-colors rounded-lg flex items-center justify-center gap-2"
             >
               See the work
@@ -297,5 +311,49 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function ConvictionStepper({
+  steps,
+}: {
+  steps: Array<{ title: string; description: string }>;
+}) {
+  return (
+    <div className="relative max-w-5xl mx-auto">
+      {/* Desktop connector line */}
+      <div className="hidden md:block absolute left-0 right-0 top-[18px] h-px bg-gray-700/70" />
+
+      <ol className="grid gap-6 md:gap-8 md:grid-cols-3">
+        {steps.map((step, i) => (
+          <li key={step.title} className="relative">
+            <div className="flex gap-4 md:block">
+              {/* Step marker */}
+              <div className="flex-shrink-0">
+                <div className="relative z-10 w-9 h-9 rounded-full bg-gray-900 border border-terminal-gold/40 flex items-center justify-center">
+                  <span className="font-mono text-xs text-terminal-gold tracking-wider">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                {/* Mobile connector */}
+                {i !== steps.length - 1 && (
+                  <div className="md:hidden w-px h-10 bg-gray-700/70 mx-auto" />
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="pt-0.5 md:pt-6">
+                <div className="font-mono text-xs text-terminal-gold tracking-wider mb-2">
+                  {step.title}
+                </div>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }

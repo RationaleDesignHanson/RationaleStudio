@@ -375,7 +375,7 @@ export default function CapabilitiesPage() {
               Discuss Your Project
             </Link>
             <Link
-              href="/work"
+              href="/"
               className="px-6 py-3 sm:px-4 sm:px-6 md:px-8 sm:py-4 text-sm sm:text-base border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
             >
               View Our Work

@@ -709,7 +709,7 @@ export default function SanitaryWasteSystemOverview() {
           Sanitary Waste System Overview • IP Development Project • December 2024
         </p>
         <p className="text-xs text-[#2D2D2D]/40 mt-2">
-          <Link href="/work" className="hover:text-[#E85D42] transition">
+          <Link href="/" className="hover:text-[#E85D42] transition">
             View All Projects
           </Link>
           {' • '}

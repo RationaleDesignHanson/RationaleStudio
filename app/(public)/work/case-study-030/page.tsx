@@ -66,7 +66,7 @@ export default function CaseStudy030Page() {
 
           <div className="relative z-10 max-w-5xl mx-auto">
             <Link
-              href="/work"
+              href="/"
               className="inline-flex items-center gap-2 text-sm text-terminal-gold hover:underline mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -391,7 +391,7 @@ export default function CaseStudy030Page() {
                 Book intro call
               </Link>
               <Link
-                href="/work"
+                href="/"
                 className="px-4 sm:px-6 md:px-8 py-4 border border-gray-300 hover:border-terminal-gold text-white font-semibold transition-colors"
               >
                 View more work

@@ -168,7 +168,7 @@ export default function AdminPage() {
               <Link href="/clients" className="text-gray-400 hover:text-terminal-gold transition-colors">
                 → Client Dashboard
               </Link>
-              <Link href="/work" className="text-gray-400 hover:text-terminal-gold transition-colors">
+              <Link href="/" className="text-gray-400 hover:text-terminal-gold transition-colors">
                 → Portfolio Work
               </Link>
               <Link href="/" className="text-gray-400 hover:text-terminal-gold transition-colors">

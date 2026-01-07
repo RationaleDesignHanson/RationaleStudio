@@ -1,139 +1,55 @@
 /**
  * Comparison Section Component
  *
- * "Why This, Not That" comparison showing Rationale vs alternatives.
+ * "Why This, Not That" - redesigned to match work page patterns
  */
-
-import Link from 'next/link';
-import { ArrowRight } from '@/lib/icons';
 
 export function ComparisonSection() {
   return (
-    <section className="relative py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/20 to-transparent" />
+    <div>
+      {/* Comparison Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-4">
+        {/* Option 1: Co-founder */}
+        <div className="p-4 md:p-5 bg-gray-900/50 border border-gray-700 rounded-lg">
+          <div className="font-mono text-[10px] text-gray-500 tracking-widest mb-2">
+            HIRE A CO-FOUNDER
+          </div>
+          <ul className="text-xs text-gray-400 space-y-1.5">
+            <li>→ 6+ months to find the right person</li>
+            <li>→ 15-25% equity for an unknown</li>
+            <li>→ Relationship risk if it doesn't work</li>
+          </ul>
+        </div>
+
+        {/* Option 2: Agency */}
+        <div className="p-4 md:p-5 bg-gray-900/50 border border-gray-700 rounded-lg">
+          <div className="font-mono text-[10px] text-gray-500 tracking-widest mb-2">
+            HIRE AN AGENCY
+          </div>
+          <ul className="text-xs text-gray-400 space-y-1.5">
+            <li>→ No skin in the game</li>
+            <li>→ Optimizes for billable hours</li>
+            <li>→ Hands off after delivery</li>
+          </ul>
+        </div>
+
+        {/* Option 3: Rationale (highlighted) */}
+        <div className="p-4 md:p-5 bg-gray-900/50 border border-terminal-gold/40 rounded-lg">
+          <div className="font-mono text-[10px] text-terminal-gold tracking-widest mb-2">
+            WORK WITH RATIONALE
+          </div>
+          <ul className="text-xs text-gray-300 space-y-1.5">
+            <li>→ Start in weeks, not months</li>
+            <li>→ Aligned incentives from day one</li>
+            <li>→ We stay involved through launch</li>
+          </ul>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-            Why This, Not That
-          </h2>
-        </div>
-
-        {/* Desktop: Three columns */}
-        <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6">
-          <ComparisonCard
-            title="HIRE A TECHNICAL CO-FOUNDER"
-            items={[
-              '6+ months to find the right person',
-              '15-25% equity for an unknown',
-              "Relationship risk if it doesn't work",
-              'Still need to manage the build',
-            ]}
-            highlight={false}
-          />
-          <ComparisonCard
-            title="HIRE AN AGENCY"
-            items={[
-              'No skin in the game',
-              'Optimizes for billable hours',
-              'Hands off after delivery',
-              "You're still the product person",
-            ]}
-            highlight={false}
-          />
-          <ComparisonCard
-            title="WORK WITH RATIONALE"
-            items={[
-              'Start in weeks, not months',
-              'Aligned incentives from day one',
-              'Discipline forged shipping new categories at billion-user scale',
-              'We stay involved through launch and beyond',
-            ]}
-            highlight={true}
-          />
-        </div>
-
-        {/* Mobile: Stack vertically */}
-        <div className="md:hidden space-y-6">
-          <ComparisonCard
-            title="HIRE A TECHNICAL CO-FOUNDER"
-            items={[
-              '6+ months to find the right person',
-              '15-25% equity for an unknown',
-              "Relationship risk if it doesn't work",
-              'Still need to manage the build',
-            ]}
-            highlight={false}
-          />
-          <ComparisonCard
-            title="HIRE AN AGENCY"
-            items={[
-              'No skin in the game',
-              'Optimizes for billable hours',
-              'Hands off after delivery',
-              "You're still the product person",
-            ]}
-            highlight={false}
-          />
-          <ComparisonCard
-            title="WORK WITH RATIONALE"
-            items={[
-              'Start in weeks, not months',
-              'Aligned incentives from day one',
-              'Discipline forged shipping new categories at billion-user scale',
-              'We stay involved through launch and beyond',
-            ]}
-            highlight={true}
-          />
-        </div>
-
-        {/* Structure note */}
-        <p className="mt-8 text-center text-sm md:text-base text-gray-400">
-          Flexible structures: cash, equity, or hybrid—depending on fit. Details on a call.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function ComparisonCard({
-  title,
-  items,
-  highlight,
-}: {
-  title: string;
-  items: string[];
-  highlight: boolean;
-}) {
-  return (
-    <div
-      className={`p-6 md:p-8 rounded-lg border-2 ${
-        highlight
-          ? 'border-terminal-gold bg-terminal-gold/5'
-          : 'border-gray-700 bg-gray-900/50'
-      }`}
-    >
-      <h3
-        className={`text-lg md:text-xl font-bold mb-4 md:mb-6 ${
-          highlight ? 'text-terminal-gold' : 'text-white'
-        }`}
-      >
-        {title}
-      </h3>
-      <ul className="space-y-3">
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className="text-sm md:text-base text-gray-300 flex items-start gap-2"
-          >
-            <span className="text-gray-500 mt-1">•</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      {/* Note */}
+      <p className="text-xs text-gray-500">
+        Flexible structures: cash, equity, or hybrid—depending on fit.
+      </p>
     </div>
   );
 }
-

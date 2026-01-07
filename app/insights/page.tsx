@@ -113,7 +113,7 @@ export default function InsightsPage() {
               <ButtonPrimary href="/contact" size="lg">
                 Get in Touch
               </ButtonPrimary>
-              <ButtonPrimary href="/work" size="lg" className="bg-gray-800 hover:bg-gray-700">
+              <ButtonPrimary href="/" size="lg" className="bg-gray-800 hover:bg-gray-700">
                 View Our Work
               </ButtonPrimary>
             </div>
