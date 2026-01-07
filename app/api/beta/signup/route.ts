@@ -7,8 +7,8 @@ import { logger } from '@/lib/utils/logger';
 
 // TestFlight URLs (update these with your actual TestFlight links)
 const TESTFLIGHT_URLS = {
-  zero: 'https://testflight.apple.com/join/YOUR_ZERO_CODE',
-  heirloom: 'https://testflight.apple.com/join/gs6EU81Z',
+  zero: '/contact?product=zero',
+  heirloom: '/contact?product=heirloom',
 }
 
 interface BetaSignupRequest {

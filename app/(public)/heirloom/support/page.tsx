@@ -368,7 +368,7 @@ export default function HeirloomSupportPage() {
 
         <h2>Useful Links</h2>
         <ul>
-          <li><a href="https://testflight.apple.com/join/gs6EU81Z" target="_blank" rel="noopener noreferrer">Join TestFlight Beta</a></li>
+          <li><a href="/contact?product=heirloom">Request Beta Access</a></li>
           <li><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">Get Anthropic API Key (Free $5 Credit)</a></li>
           <li><a href="https://rationale.work" target="_blank" rel="noopener noreferrer">Rationale - Built by</a></li>
         </ul>

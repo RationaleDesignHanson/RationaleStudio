@@ -25,7 +25,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
     subheadline: 'One place for all your recipes—from Instagram saves to grandma\'s handwritten cards. Import, organize, scale ingredients, and create shopping lists in seconds.',
     ctaPrimary: {
       text: 'Join Beta on TestFlight',
-      href: 'https://testflight.apple.com/join/gs6EU81Z'
+      href: '/contact?product=heirloom'
     },
     ctaSecondary: {
       text: 'Watch How It Works',

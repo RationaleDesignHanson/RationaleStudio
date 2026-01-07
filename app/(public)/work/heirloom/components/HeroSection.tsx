@@ -38,7 +38,7 @@ export default function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <Link
-              href="https://testflight.apple.com/join/gs6EU81Z"
+              href="/contact?product=heirloom"
               className="text-[#E85D4D] hover:text-[#D84D3D] text-sm font-normal flex items-center gap-1 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
@@ -95,7 +95,7 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-6">
               <Link
-                href="https://testflight.apple.com/join/gs6EU81Z"
+                href="/contact?product=heirloom"
                 className="text-[#E85D4D] hover:text-[#D84D3D] text-base md:text-lg font-normal flex items-center gap-1 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
