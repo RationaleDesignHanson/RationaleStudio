@@ -31,6 +31,14 @@ const essays: Essay[] = [
   },
   {
     id: '1',
+    title: 'Mental Models for Building Products',
+    slug: 'mental-models',
+    description: 'Four frameworks that guide how we approach product development—clarity, direction, environment design, and building to think.',
+    readTime: '6 min',
+    category: 'FRAMEWORKS'
+  },
+  {
+    id: '2',
     title: 'Vision, Proof, and the Work Between',
     slug: 'vision-proof-burden',
     description: 'The gift of vision is cursed with the burden of proof. On the responsibility of standing between what is visible and what is provable.',
@@ -38,7 +46,7 @@ const essays: Essay[] = [
     category: 'VISION'
   },
   {
-    id: '2',
+    id: '3',
     title: 'The Build-First Trap',
     slug: 'build-first-trap',
     description: 'Why most teams waste 6 months building the wrong thing—and how specs fail before you even start coding.',
@@ -46,7 +54,7 @@ const essays: Essay[] = [
     category: 'PROBLEM'
   },
   {
-    id: '3',
+    id: '4',
     title: 'Build-to-Think Methodology',
     slug: 'build-to-think',
     description: 'The systematic framework for de-risking development through rapid prototyping and validated decisions.',
@@ -54,7 +62,7 @@ const essays: Essay[] = [
     category: 'METHODOLOGY'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Spec vs Prototype',
     slug: 'spec-vs-prototype',
     description: 'Why experiencing beats describing. The fundamental difference between documentation and validation.',
@@ -62,7 +70,7 @@ const essays: Essay[] = [
     category: 'METHODOLOGY'
   },
   {
-    id: '5',
+    id: '6',
     title: 'Methodology Origins',
     slug: 'methodology-origins',
     description: '7 years at Meta Reality Labs shipping AR/AI products to billions. Where Rationale\'s approach comes from.',

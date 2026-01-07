@@ -1,95 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { aboutContent } from '@/lib/content';
-import { mentalModels } from '@/lib/content/philosophy';
 import { founderProfile } from '@/lib/content/founder';
-
-function MentalModelsSection() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
-  return (
-    <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-          <h2 className="text-xl md:text-2xl font-bold text-white">Mental Models</h2>
-        </div>
-        <p className="text-gray-400 mb-6 text-sm">
-          Four mental models that guide our work and help clients build conviction.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          {mentalModels.map((model, index) => {
-            const isExpanded = expandedIndex === index;
-            return (
-              <div key={index} className="bg-gray-900/50 border border-gray-700 rounded-lg overflow-hidden">
-                <button
-                  onClick={() => toggleExpand(index)}
-                  className="w-full p-5 md:p-6 flex items-center justify-between text-left hover:bg-gray-800/30 transition-colors"
-                >
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">{model.name}</h3>
-                    <p className="text-terminal-gold text-sm font-medium">{model.tagline}</p>
-                  </div>
-                  <ChevronDown 
-                    className={`w-5 h-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ml-4 ${
-                      isExpanded ? 'rotate-180' : ''
-                    }`} 
-                  />
-                </button>
-                
-                {isExpanded && (
-                  <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0">
-                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                      {model.description}
-                    </p>
-
-                    <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg mb-4">
-                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-2">Analogy</p>
-                      <p className="text-sm text-gray-300">{model.analogy.setup}</p>
-                    </div>
-
-                    <div>
-                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wide mb-2">In Practice</p>
-                      <ul className="space-y-1">
-                        {model.application.slice(0, 2).map((app, idx) => (
-                          <li key={idx} className="flex gap-2 text-sm">
-                            <span className="text-terminal-gold flex-shrink-0">→</span>
-                            <span className="text-gray-300">{app}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-6">
-          <Link 
-            href="/thinking" 
-            className="text-terminal-gold hover:text-terminal-gold-hover font-medium text-sm flex items-center gap-2 transition-colors"
-          >
-            Explore more thinking
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -198,8 +115,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mental Models */}
-      <MentalModelsSection />
+      {/* Mental Models - moved to /thinking/mental-models */}
 
       {/* What We Learned at Scale */}
       <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
