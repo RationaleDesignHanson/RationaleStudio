@@ -128,7 +128,7 @@ export default function HomePage() {
 
             {/* Supporting copy */}
             <p className="text-base md:text-lg text-gray-300 max-w-3xl">
-              We design and ship production software with intention and speed. When the alignment is there, we partner with founders and teams like co-founders so we're aligned on outcomes, not hours.
+              We design and ship production software with intention and speed. When the alignment is there, we partner with founders and teams - like co-founders - so we're aligned on outcomes, not hours.
             </p>
           </div>
         </section>
