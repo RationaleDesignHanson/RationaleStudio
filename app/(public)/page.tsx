@@ -133,7 +133,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 2. HOW WE BUILD CONVICTION (VelocityProof) */}
+        {/* 2. OUR PRODUCTS (Zero & Heirloom) */}
         <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -145,47 +145,6 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <div className="flex items-start gap-3 mb-8 md:mb-12">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">We turn vision into proof—then ship what's validated.</span>
-              </p>
-            </div>
-
-            {/* Velocity Proof (embedded) */}
-            <div className="mb-6">
-              <div className="block md:hidden">
-                <VelocityProof simplified={true} />
-              </div>
-              <div className="hidden md:block">
-                <VelocityProof simplified={false} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. OUR PRODUCTS (Zero & Heirloom) */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <div className="flex items-start gap-3 mb-4 md:mb-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Conviction comes from usage.</span>{' '}
-                Prototypes put ideas in people's hands, and real consumer behaviors force decisions. Operating in production keeps our
-                thinking calibrated to build better products—so when we partner, we de-risk the expensive parts and prove before you
-                commit.
-              </p>
-            </div>
-
             <div className="grid gap-4 md:gap-6">
               {zero && (
                 <Link
@@ -241,10 +200,20 @@ export default function HomePage() {
                 </Link>
               )}
             </div>
+
+            <div className="flex items-start gap-3 mt-6">
+              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
+                <span className="font-semibold text-white">Conviction comes from usage.</span>{' '}
+                Prototypes put ideas in people's hands, and real consumer behaviors force decisions. Shipping our own products keeps our
+                thinking calibrated to build better products—so when we partner, we de-risk the expensive parts and prove before you
+                commit.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* 4. PARTNERSHIP WORK */}
+        {/* 3. PARTNERSHIP WORK */}
         <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
           <div className="absolute inset-0 pointer-events-none">
             <ASCIIUnifiedGrid
@@ -256,15 +225,6 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
-            <div className="flex items-start gap-3 mb-4 md:mb-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Partnership work is selective and often confidential.</span>{' '}
-                We engage when there's strong alignment and a real problem worth proving in software. When discretion is required,
-                materials are gated for partners and clients.
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {partnerships.map((project) => {
                 const isConfidential = project.isProtected;
@@ -363,24 +323,61 @@ export default function HomePage() {
                 );
               })}
             </div>
+
+            <div className="flex items-start gap-3 mt-6">
+              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
+                <span className="font-semibold text-white">Partnership work is selective and often confidential.</span>{' '}
+                We engage when there's strong alignment and a real problem worth proving in software. When discretion is required,
+                materials are gated for partners and clients.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. HOW WE BUILD CONVICTION (VelocityProof) */}
+        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
+          <div className="absolute inset-0 pointer-events-none">
+            <ASCIIUnifiedGrid
+              opacity={0.04}
+              animated={true}
+              colorTheme={watercolorThemes.terminalSubtle}
+              charSet="default"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-5xl mx-auto">
+            {/* Velocity Proof (embedded) */}
+            <div className="mb-6">
+              <div className="block md:hidden">
+                <VelocityProof simplified={true} />
+              </div>
+              <div className="hidden md:block">
+                <VelocityProof simplified={false} />
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 mt-6">
+              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
+                <span className="font-semibold text-white">We turn vision into proof—then ship what's validated.</span>
+              </p>
+            </div>
           </div>
         </section>
 
         {/* 5. CTA (minimal) */}
         <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8">
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <div className="flex items-start gap-3">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                Interested in working together?{' '}
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-1 text-terminal-gold hover:text-terminal-gold-hover font-semibold transition-colors"
-                >
-                  Schedule a call <ArrowRight className="w-3 h-3" />
-                </Link>
-              </p>
-            </div>
+          <div className="relative z-10 max-w-5xl mx-auto text-center">
+            <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+              <span className="font-semibold text-white">Interested in working together?</span>{' '}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1 text-terminal-gold hover:text-terminal-gold-hover font-semibold transition-colors"
+              >
+                Schedule a call <ArrowRight className="w-3 h-3" />
+              </Link>
+            </p>
           </div>
         </section>
       </main>
