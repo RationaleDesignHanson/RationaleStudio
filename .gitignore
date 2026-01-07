@@ -161,3 +161,4 @@ public/optimized/
 app/api/.firebase-credentials.json
 .DS_Store
 **/.DS_Store
+files.zip
