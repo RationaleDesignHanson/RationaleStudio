@@ -13,7 +13,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { ASCIIUnifiedGrid } from '@/components/visual';
 import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ArrowRight, Lock } from 'lucide-react';
@@ -64,7 +63,6 @@ function ProductAppIcon({ product }: { product: 'zero' | 'heirloom' }) {
 
 export default function HomePage() {
   const { profile } = useAuth();
-  const router = useRouter();
   const projects = getAllProjects();
   const zero = getProjectBySlug('zero');
   const heirloom = getProjectBySlug('heirloom');
@@ -289,13 +287,6 @@ export default function HomePage() {
                   ? '/clients/work/sanitary-waste-system/full-overview'
                   : `/work/${project.slug}`;
 
-                const handleCardClick = (e: React.MouseEvent) => {
-                  if (needsBlur) {
-                    e.preventDefault();
-                    router.push(`/clients/login?redirect=${encodeURIComponent(`/work/${project.slug}`)}`);
-                  }
-                };
-
                 const cardHref = isAuthenticated && hasQuickOverview && overviewHref
                   ? overviewHref
                   : `/work/${project.slug}`;
@@ -303,11 +294,10 @@ export default function HomePage() {
                 return (
                   <Link
                     key={project.id}
-                    href={cardHref}
-                    className={`group flex flex-col h-full w-full rounded-lg border ${
+                    href={needsBlur ? '/clients/login' : cardHref}
+                    className={`group flex flex-col h-full min-h-[120px] w-full rounded-lg border ${
                       isConfidential ? 'border-amber-400/25 hover:border-amber-400/35' : 'border-gray-700 hover:border-terminal-gold/40'
-                    } bg-gray-900/35 hover:bg-gray-900/50 transition-colors p-4 md:p-5 items-start !text-left ${needsBlur ? 'cursor-pointer' : ''}`}
-                    onClick={handleCardClick}
+                    } bg-gray-900/35 hover:bg-gray-900/50 transition-colors pt-2 md:pt-2.5 pb-4 md:pb-5 px-4 md:px-5 items-start !text-left`}
                   >
                     {/* Header (stacked) */}
                     <div className="space-y-1 text-left w-full">
@@ -318,28 +308,10 @@ export default function HomePage() {
                             <div className="font-mono text-[10px] text-gray-500 tracking-widest">
                               {project.id.replace('case-study-', '').padStart(3, '0')}
                             </div>
-                            {!isAuthenticated ? (
-                              <button
-                                type="button"
-                                className="inline-flex items-center gap-2 p-0 bg-transparent border-0"
-                                title="Sign in to view"
-                                aria-label="Sign in to view"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  const redirectTo = overviewHref ?? `/work/${project.slug}`;
-                                  router.push(`/clients/login?redirect=${encodeURIComponent(redirectTo)}`);
-                                }}
-                              >
-                                <Lock className="w-3 h-3 text-amber-400" />
-                                <span className="text-[10px] font-mono text-amber-400 font-bold tracking-wide">CLASSIFIED</span>
-                              </button>
-                            ) : (
-                              <div className="inline-flex items-center gap-2">
-                                <Lock className="w-3 h-3 text-amber-400" />
-                                <span className="text-[10px] font-mono text-amber-400 font-bold tracking-wide">CLASSIFIED</span>
-                              </div>
-                            )}
+                            <div className="inline-flex items-center gap-2">
+                              <Lock className="w-3 h-3 text-amber-400" />
+                              <span className="text-[10px] font-mono text-amber-400 font-bold tracking-wide">CLASSIFIED</span>
+                            </div>
                           </div>
 
                           {/* Project title (visible even when locked) */}
@@ -391,9 +363,6 @@ export default function HomePage() {
                       >
                         {project.description}
                       </p>
-                      <div className="mt-2 text-[11px] md:text-xs font-semibold text-terminal-gold">
-                        View case study <ArrowRight className="w-4 h-4 inline ml-1" />
-                      </div>
                     </div>
                   </Link>
                 );

@@ -1,21 +1,18 @@
 /**
  * Zero Consumer Marketing Page
  *
- * JTBD-focused landing page for end-users.
- * Answers: "What does this solve for me?" not "How was this built?"
+ * Immersive, consumer-friendly landing page with spacey gradient + firefly particles.
+ * Focused on JTBD: "Turn email into actions, not homework"
  *
- * Route: /products/zero
- * NOTE: This page is NOT linked in navigation until ready for launch
+ * Route: /zero
  */
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Mail, Zap, Clock, Shield, ArrowRight, Check, X } from 'lucide-react';
-import { ASCIIUnifiedGrid } from '@/components/visual';
-import { watercolorThemes } from '@/lib/theme/watercolor-palette';
-import { ButtonPrimary, ButtonSecondary } from '@/components/ui/ButtonHierarchy';
+import { Mail, Zap, Package, Calendar, Archive, Check, X, ArrowRight } from 'lucide-react';
 import { zeroMarketingContent } from '@/lib/content/products/zero-marketing';
 import InteractiveDemo from '@/components/zero/InteractiveDemo';
+import GalaxyBackground from '@/components/zero/GalaxyBackground';
 
 export const metadata: Metadata = {
   title: zeroMarketingContent.seo.title,
@@ -28,267 +25,215 @@ export const metadata: Metadata = {
   }
 };
 
+const useCaseIcons = [
+  <Zap key="zap" className="w-6 h-6" />,
+  <Package key="package" className="w-6 h-6" />,
+  <Calendar key="calendar" className="w-6 h-6" />,
+  <Archive key="archive" className="w-6 h-6" />
+];
+
 export default function ZeroProductPage() {
   const content = zeroMarketingContent;
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <main className="min-h-screen text-white overflow-hidden">
+      {/* Global Galaxy Background */}
+      <div className="fixed inset-0">
+        <GalaxyBackground />
+      </div>
 
-      {/* SECTION 1: HERO (JTBD-FIRST) */}
-      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-16 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.08}
-            animated={true}
-            colorTheme={watercolorThemes.terminalGold}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          {/* Product Name */}
+      {/* HERO */}
+      <section className="relative min-h-[70vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8">
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          {/* Glowing Product Name */}
           <div className="mb-6">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-terminal-gold">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter bg-gradient-to-b from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent"
+              style={{
+                textShadow: '0 0 80px rgba(99, 102, 241, 0.5), 0 0 120px rgba(139, 92, 246, 0.3)'
+              }}
+            >
               ZERO
             </h1>
-          </div>
-
-          {/* Pre-headline */}
-          <div className="mb-4">
-            <span className="inline-block px-4 py-1.5 bg-terminal-gold/10 border border-terminal-gold/30 rounded-full text-sm font-semibold text-terminal-gold uppercase tracking-wide">
+            <p className="text-xs sm:text-sm font-medium tracking-[0.3em] text-indigo-300/70 uppercase mt-1">
               {content.hero.preHeadline}
-            </span>
+            </p>
           </div>
 
           {/* Main Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
             {content.hero.headline}
           </h2>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-3 leading-relaxed">
+          <p className="text-base sm:text-lg text-indigo-100/70 max-w-2xl mx-auto mb-8 leading-relaxed">
             {content.hero.subheadline}
           </p>
+
+          {/* CTA */}
+          <Link
+            href={content.hero.ctaPrimary.href}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold rounded-full shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all hover:scale-105"
+          >
+            <Mail className="w-5 h-5" />
+            {content.hero.ctaPrimary.text}
+          </Link>
         </div>
       </section>
 
-      {/* SECTION 2: THE PROBLEM */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-            {content.problem.headline}
-          </h2>
-
-          <div className="space-y-8 mb-12">
-            {content.problem.scenarios.map((scenario, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <div className="w-8 h-8 rounded-full bg-terminal-gold/20 flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-terminal-gold font-bold">{index + 1}</span>
+      {/* THE PROBLEM - Compact */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <div className="p-6 sm:p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">
+              {content.problem.headline}
+            </h2>
+            
+            <div className="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
+              {content.problem.scenarios.map((scenario, index) => (
+                <div key={index} className="flex gap-3">
+                  <span className="text-2xl font-black text-indigo-500/50">{index + 1}</span>
+                  <p className="text-sm text-indigo-100/70 leading-relaxed">
+                    {scenario.scenario}
+                  </p>
                 </div>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  {scenario.scenario}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <div className="text-center">
-            <p className="text-xl md:text-2xl text-terminal-gold font-semibold italic">
+            <p className="text-lg sm:text-xl font-semibold text-center bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent pt-4 border-t border-white/10">
               {content.problem.transition}
             </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: THE SOLUTION */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.blueTeal}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+      {/* THE SOLUTION - Compact 4-column */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">
             {content.solution.headline}
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {content.solution.useCases.map((useCase, index) => (
-              <div key={index} className="p-6 lg:p-8 bg-gray-900/70 border border-terminal-gold/30 rounded-lg">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Zap className="w-6 h-6 text-terminal-gold flex-shrink-0" />
-                    <h3 className="text-lg font-bold text-white">
-                      {useCase.trigger}
-                    </h3>
+              <div
+                key={index}
+                className="group p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-indigo-500/40 hover:bg-white/10 transition-all"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300">
+                    {useCaseIcons[index]}
                   </div>
-
-                  <div className="space-y-3 text-gray-300">
-                    <p className="flex items-start gap-2">
-                      <ArrowRight className="w-5 h-5 text-terminal-gold flex-shrink-0 mt-0.5" />
-                      <span>{useCase.action}</span>
-                    </p>
-                    <p className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                      <span className="font-semibold text-white">{useCase.outcome}</span>
-                    </p>
-                  </div>
+                  <h3 className="text-sm font-bold text-white leading-tight">
+                    {useCase.trigger}
+                  </h3>
                 </div>
+                <p className="text-xs text-emerald-300/90 font-medium">
+                  → {useCase.outcome}
+                </p>
               </div>
             ))}
-          </div>
-
-          {/* Case Study Link */}
-          <div className="text-center mt-12">
-            <Link
-              href="/work/zero"
-              className="inline-flex items-center gap-2 text-terminal-gold hover:text-terminal-gold-hover transition-colors underline underline-offset-4 font-medium text-lg"
-            >
-              See overview
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: HOW IT WORKS (Interactive Demo) */}
-      <section id="demo" className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.08}
-            animated={true}
-            colorTheme={watercolorThemes.terminalGold}
-            charSet="default"
-          />
-        </div>
-
+      {/* INTERACTIVE DEMO */}
+      <section id="demo" className="relative py-16 px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-            How It Works
-          </h2>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              Try It Yourself
+            </h2>
+            <p className="text-sm text-indigo-200/60">
+              Drag cards or use keyboard arrows
+            </p>
+          </div>
 
-          <div className="rounded-2xl border-4 border-terminal-gold/20 shadow-2xl overflow-hidden bg-black">
+          <div className="rounded-2xl border border-indigo-500/20 shadow-2xl shadow-indigo-500/10 overflow-hidden bg-black/40 backdrop-blur-sm">
             <InteractiveDemo />
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: PRIMARY CTA */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-terminal-gold/10 to-transparent border-b border-gray-800">
-        <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            {content.cta.headline}
-          </h2>
-          <p className="text-lg text-gray-300 mb-8">
-            {content.cta.subheadline}
-          </p>
-
-          <ButtonPrimary
-            href={content.hero.ctaPrimary.href}
-            size="lg"
-            className="gap-2 inline-flex items-center shadow-xl shadow-terminal-gold/30 mb-6"
-          >
-            <Mail className="w-5 h-5" />
-            {content.cta.buttonText}
-          </ButtonPrimary>
-
-          <p className="text-sm text-gray-400">
-            {content.cta.trustSignal}
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 6: WHO IT'S FOR */}
-      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.04}
-            animated={true}
-            colorTheme={watercolorThemes.terminalSubtle}
-            charSet="default"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
-            {content.whoItsFor.headline}
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Personas */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-terminal-gold mb-6">Perfect if you:</h3>
-              {content.whoItsFor.personas.map((persona, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                  <p className="text-gray-300">{persona}</p>
+      {/* CTA + WHO IT'S FOR - Combined */}
+      <section className="relative py-16 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-6">
+            {/* CTA Card - Takes 3 columns */}
+            <div className="lg:col-span-3 p-6 sm:p-8 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-xl border border-indigo-500/30 rounded-2xl">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/40 flex-shrink-0">
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
-              ))}
+                <div>
+                  <h2 className="text-2xl font-bold text-white mb-1">
+                    {content.cta.headline}
+                  </h2>
+                  <p className="text-sm text-indigo-100/70">
+                    {content.cta.subheadline}
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                href={content.hero.ctaPrimary.href}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold rounded-full shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all hover:scale-105"
+              >
+                {content.cta.buttonText}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              <p className="mt-4 text-xs text-indigo-200/40">
+                {content.cta.trustSignal}
+              </p>
             </div>
 
-            {/* Anti-personas */}
-            {content.whoItsFor.antiPersonas && (
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-400 mb-6">Not right for you if:</h3>
-                {content.whoItsFor.antiPersonas.map((antiPersona, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-gray-500 flex-shrink-0 mt-1" />
-                    <p className="text-gray-400">{antiPersona}</p>
-                  </div>
+            {/* Who it's for - Takes 2 columns */}
+            <div className="lg:col-span-2 p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl">
+              <h3 className="text-sm font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                <Check className="w-4 h-4" />
+                Perfect if you:
+              </h3>
+              <ul className="space-y-2 mb-4">
+                {content.whoItsFor.personas.slice(0, 3).map((persona, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <div className="w-1 h-1 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                    <p className="text-xs text-indigo-100/70 leading-relaxed">{persona}</p>
+                  </li>
                 ))}
-              </div>
-            )}
+              </ul>
+
+              {content.whoItsFor.antiPersonas && (
+                <>
+                  <h3 className="text-sm font-bold text-gray-500 mb-2 flex items-center gap-2">
+                    <X className="w-4 h-4" />
+                    Skip if:
+                  </h3>
+                  <ul className="space-y-1">
+                    {content.whoItsFor.antiPersonas.map((antiPersona, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <div className="w-1 h-1 rounded-full bg-gray-600 mt-1.5 flex-shrink-0" />
+                        <p className="text-xs text-gray-500">{antiPersona}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: SECONDARY CTAs */}
-      <section className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">
-            {content.secondaryCTAs.headline}
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {content.secondaryCTAs.paths.map((path, index) => (
-              <Link
-                key={index}
-                href={path.href}
-                className="group p-6 bg-gray-900/50 border border-terminal-gold/50 rounded-lg transition-all flex flex-col"
-              >
-                <h4 className="font-bold text-white mb-2 group-hover:text-terminal-gold transition-colors">
-                  {path.label}
-                </h4>
-                <p className="text-sm text-gray-400 mb-4 flex-grow">{path.description}</p>
-                <div className="flex items-center text-terminal-gold text-sm font-semibold mt-auto">
-                  Learn more
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* Footer */}
+      <footer className="relative py-8 px-4 text-center border-t border-white/5">
+        <div className="relative z-10">
+          <p className="text-xs text-indigo-200/30">
+            Zero • Built by{' '}
+            <Link href="/" className="text-indigo-300/50 hover:text-indigo-200 transition-colors">
+              Rationale
+            </Link>
+          </p>
         </div>
-      </section>
-
-      {/* Footer Note */}
-      <div className="py-8 px-4 text-center border-t border-gray-800">
-        <p className="text-sm text-gray-500">
-          Zero Email Management • Built by Rationale Studio
-        </p>
-      </div>
+      </footer>
     </main>
   );
 }

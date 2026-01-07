@@ -494,7 +494,7 @@ export const siteContent = {
       { label: "Build With Us", href: "/how-we-work" },
       { label: "Thinking", href: "/thinking" },
       { label: "About", href: "/about" },
-      { label: "Collab", href: "/clients/login" },
+      { label: "Login", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
     ]
   },

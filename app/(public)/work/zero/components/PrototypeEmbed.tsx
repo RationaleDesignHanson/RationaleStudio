@@ -67,7 +67,7 @@ export default function PrototypeEmbed() {
               <h3 className="text-2xl font-bold text-white mb-4">What the Production App Adds</h3>
 
               <p className="text-gray-300 mb-6 leading-relaxed">
-                The production app extends the prototype with real-world integrations, scalable architecture, and native iOS capabilities.
+                The production app extends the prototype with real-world integrations, scalable architecture, and universal platform support across all devices.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">

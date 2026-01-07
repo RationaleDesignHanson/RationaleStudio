@@ -5,6 +5,7 @@
 
 'use client';
 
+import { useState, useEffect, useMemo } from 'react';
 import { SAMPLE_RECIPE_CARDS, SAMPLE_COOKBOOK_PAGES, SampleRecipe } from '@/lib/heirloom/sample-recipes';
 import { MobileCarousel } from '@/components/ui/MobileCarousel';
 
@@ -17,26 +18,31 @@ export function SampleRecipeSelector({ onSelectSample, onUploadOwn }: SampleReci
   // Multi-recipe cookbooks that demonstrate the carousel selection flow
   const multiRecipeCookbookIds = ['cookbook-09', 'cookbook-10', 'cookbook-11'];
 
-  // Separate multi-recipe cookbooks from other samples
-  const multiRecipeCookbooks = SAMPLE_COOKBOOK_PAGES.filter(
-    sample => multiRecipeCookbookIds.includes(sample.id)
-  );
-  const otherSamples = [
-    ...SAMPLE_RECIPE_CARDS,
-    ...SAMPLE_COOKBOOK_PAGES.filter(sample => !multiRecipeCookbookIds.includes(sample.id))
-  ];
+  // Build deterministic initial list (same on server & client)
+  const initialSamples = useMemo(() => {
+    const multiRecipeCookbooks = SAMPLE_COOKBOOK_PAGES.filter(
+      sample => multiRecipeCookbookIds.includes(sample.id)
+    );
+    const otherSamples = [
+      ...SAMPLE_RECIPE_CARDS,
+      ...SAMPLE_COOKBOOK_PAGES.filter(sample => !multiRecipeCookbookIds.includes(sample.id))
+    ];
 
-  // Always include one multi-recipe cookbook
-  const selectedMultiRecipe = multiRecipeCookbooks[Math.floor(Math.random() * multiRecipeCookbooks.length)];
+    // Deterministic selection: first multi-recipe + first 11 others
+    const selectedMultiRecipe = multiRecipeCookbooks[0];
+    const otherSelected = otherSamples.slice(0, 11);
 
-  // Randomize and select 11 more samples from the rest
-  const otherSelected = [...otherSamples]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 11);
+    return [selectedMultiRecipe, ...otherSelected];
+  }, []);
 
-  // Combine: guaranteed multi-recipe + 11 random others, then shuffle
-  const displaySamples = [selectedMultiRecipe, ...otherSelected]
-    .sort(() => Math.random() - 0.5);
+  // State for displayed samples (shuffled client-side only)
+  const [displaySamples, setDisplaySamples] = useState<SampleRecipe[]>(initialSamples);
+
+  // Shuffle on client mount to avoid hydration mismatch
+  useEffect(() => {
+    const shuffled = [...initialSamples].sort(() => Math.random() - 0.5);
+    setDisplaySamples(shuffled);
+  }, [initialSamples]);
 
   // Create card component for reuse
   const RecipeCard = ({ sample }: { sample: SampleRecipe }) => (

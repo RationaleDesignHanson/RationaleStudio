@@ -36,10 +36,10 @@ export default function ApproachSection() {
             {/* Principle 3 */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-white">
-                Native iOS
+                Universal Platform
               </h3>
               <p className="text-sm text-gray-400 leading-relaxed">
-                Native SwiftUI app with device integrations. Add to Calendar. Save to Contacts. Add to Wallet. Works offline with synced data.
+                One codebase, every device. Phone, tablet, desktop, wearables. Expo + React Native delivers native performance with 85% shared code across all platforms.
               </p>
             </div>
           </div>

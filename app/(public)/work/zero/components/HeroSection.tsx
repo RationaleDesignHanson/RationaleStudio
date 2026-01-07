@@ -36,7 +36,7 @@ export default function HeroSection() {
           <div className="flex flex-col gap-4">
           {/* Description */}
           <p className="text-sm leading-snug text-gray-300">
-            Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards.
+            Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable action cards.
           </p>
 
           {/* CTAs */}
@@ -88,7 +88,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="text-lg leading-relaxed text-gray-300 md:text-xl">
-              Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable cards.
+              Your inbox has 47 emails. Buried inside: a bill due tomorrow, a package arriving today, and a permission slip you need to sign. Zero's AI finds these actions and puts them in swipeable action cards.
             </p>
 
             {/* CTAs */}
