@@ -313,11 +313,6 @@ export default function HomePage() {
                               <span className="text-[10px] font-mono text-amber-400 font-bold tracking-wide">CLASSIFIED</span>
                             </div>
                           </div>
-
-                          {/* Project title (visible even when locked) */}
-                          <div className="text-sm font-semibold text-white">
-                            {project.title}
-                          </div>
                         </>
                       ) : (
                         /* Unlocked: ### + Project Name (same line) */
