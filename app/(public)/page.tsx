@@ -237,6 +237,10 @@ export default function HomePage() {
 
                 const needsBlur = isConfidential && !previewUnlocked && !isInvestorOrPartner && !isClientProject;
 
+                // Always show CLASSIFIED for unauthenticated users viewing confidential projects
+                // previewUnlocked only applies to authenticated users in development
+                const showLocked = isConfidential && (!isAuthenticated || needsBlur);
+
                 const overviewHref = getConfidentialOverviewHref(project.slug);
                 const hasQuickOverview = !!overviewHref;
                 const pitchDeckPath = project.slug === 'case-study-010'
@@ -254,14 +258,14 @@ export default function HomePage() {
                 return (
                   <Link
                     key={project.id}
-                    href={needsBlur ? '/clients/login' : cardHref}
+                    href={showLocked && !isAuthenticated ? '/clients/login' : cardHref}
                     className={`group flex flex-col h-full min-h-[120px] w-full rounded-lg border ${
                       isConfidential ? 'border-amber-400/25 hover:border-amber-400/35' : 'border-gray-700 hover:border-terminal-gold/40'
                     } bg-gray-900/35 hover:bg-gray-900/50 transition-colors pt-2 md:pt-2.5 pb-4 md:pb-5 px-4 md:px-5 items-start !text-left`}
                   >
                     {/* Header (stacked) */}
                     <div className="space-y-1 text-left w-full">
-                      {isConfidential && !previewUnlocked && needsBlur ? (
+                      {showLocked ? (
                         <>
                           {/* Locked: ### + CLASSIFIED (same line, left-justified) */}
                           <div className="flex items-center justify-start gap-3 w-full">
@@ -287,7 +291,7 @@ export default function HomePage() {
                       )}
 
                       {/* Actions (quiet, directly under CLASSIFIED) */}
-                      {isConfidential && !previewUnlocked && isAuthenticated && overviewHref && (
+                      {showLocked && isAuthenticated && overviewHref && (
                         <div className="text-xs text-gray-400">
                           <div className="space-y-1">
                             <Link
@@ -313,7 +317,7 @@ export default function HomePage() {
                     <div className="mt-3 flex-1">
                       <p
                         className={`text-[11px] md:text-xs text-gray-300 leading-relaxed ${
-                          needsBlur ? 'filter blur-md select-none' : ''
+                          showLocked ? 'filter blur-md select-none' : ''
                         } line-clamp-2 md:line-clamp-3 lg:line-clamp-4`}
                       >
                         {project.description}
