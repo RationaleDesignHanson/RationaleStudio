@@ -424,6 +424,11 @@ function RestaurantReveal({ restaurant }: { restaurant: Restaurant }) {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
 
+  const mapsUrl = useMemo(() => {
+    const q = `${restaurant.name} ${restaurant.address}`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  }, [restaurant.address, restaurant.name]);
+
   const fallbackPhotos = useMemo(() => {
     const q = encodeURIComponent(restaurant.imageQuery || `${restaurant.name} restaurant interior`);
     return [
@@ -548,16 +553,24 @@ function RestaurantReveal({ restaurant }: { restaurant: Restaurant }) {
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: displayPhotos.length > 1 ? '1fr 1fr' : '1fr', gap: '12px' }}>
             {displayPhotos.slice(0, 2).map((src, idx) => (
-              <img
+              <a
                 key={idx}
-                src={src}
-                alt={`${r.name} interior ${idx + 1}`}
-                style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '12px' }}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.opacity = '0.4';
-                }}
-              />
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${r.name} in Google Maps`}
+                style={{ display: 'block', borderRadius: '12px', overflow: 'hidden' }}
+              >
+                <img
+                  src={src}
+                  alt={`${r.name} interior ${idx + 1}`}
+                  style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '12px' }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.opacity = '0.4';
+                  }}
+                />
+              </a>
             ))}
           </div>
         )}
