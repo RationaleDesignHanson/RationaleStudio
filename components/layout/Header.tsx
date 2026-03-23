@@ -117,7 +117,7 @@ export function Header() {
             }`}
           >
             <span className="font-semibold">Rationale: </span>
-            <span className="font-light">Your Product Design Company</span>
+            <span className="font-light">The Design Practice of Matt Hanson</span>
           </Link>
 
           {/* Navigation - Hidden on mobile */}

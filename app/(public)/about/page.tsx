@@ -41,7 +41,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mb-4">
-            AI has made execution cheap and fast. But speed without direction accelerates waste. The bottleneck has shifted from execution to conviction—knowing what to build is harder than ever. We help teams build that conviction before committing resources.
+            AI has made execution cheap and fast. But speed without direction accelerates waste. The bottleneck has shifted from execution to conviction—knowing what to build is harder than ever. I believe in building that conviction before committing resources.
           </p>
 
           <Link

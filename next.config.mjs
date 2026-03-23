@@ -80,6 +80,19 @@ const nextConfig = {
     ];
   },
 
+  // Rewrites (no redirect) for iOS Universal Links AASA
+  // Serve the same file from both:
+  // - /.well-known/apple-app-site-association (preferred)
+  // - /apple-app-site-association (fallback)
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/apple-app-site-association',
+        destination: '/apple-app-site-association',
+      },
+    ];
+  },
+
   // Redirects
   async redirects() {
     return [
@@ -150,45 +163,52 @@ const nextConfig = {
         permanent: true,
       },
 
-      // Zero case study consolidation - redirect sub-pages to main case study
+      // Zero - archived case study (redirect to product page)
+      {
+        source: '/work/zero',
+        destination: '/zero',
+        permanent: true,
+      },
+
+      // Zero case study consolidation - redirect old sub-pages
       {
         source: '/work/zero/overview',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/demo',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/demo-new',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/architecture',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/metrics',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/taxonomy',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/timeline',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
       {
         source: '/work/zero/stats',
-        destination: '/work/zero',
+        destination: '/zero',
         permanent: true,
       },
 

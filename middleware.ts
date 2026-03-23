@@ -15,6 +15,14 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// Public-route password protection (HTTP Basic Auth)
+const basicAuthProtectedPrefixes = [
+  '/zero',
+  '/work/zero', // legacy (now redirects)
+  '/work/heirloom',
+  '/heirloom/pitch',
+];
+
 // Define protected routes and required roles
 const protectedRoutes: Record<string, string[]> = {
   '/owner': ['owner'],
@@ -35,8 +43,46 @@ const roleHierarchy: Record<string, number> = {
   client: 1,
 };
 
+function isBasicAuthProtected(pathname: string): boolean {
+  return basicAuthProtectedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+}
+
+function parseBasicAuthHeader(authHeader: string | null): { user: string; pass: string } | null {
+  if (!authHeader) return null;
+  const [scheme, encoded] = authHeader.split(' ');
+  if (scheme !== 'Basic' || !encoded) return null;
+
+  // Edge runtime supports atob; Buffer may not exist.
+  const decoded = typeof atob === 'function' ? atob(encoded) : Buffer.from(encoded, 'base64').toString('utf-8');
+  const idx = decoded.indexOf(':');
+  if (idx === -1) return null;
+
+  return { user: decoded.slice(0, idx), pass: decoded.slice(idx + 1) };
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Basic Auth gate for select public routes (credentials set via env)
+  if (isBasicAuthProtected(pathname)) {
+    const BASIC_AUTH_USER = process.env.BASIC_AUTH_USER;
+    const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD;
+
+    // If creds aren't configured, don't accidentally lock ourselves out (especially in local dev).
+    if (BASIC_AUTH_USER && BASIC_AUTH_PASSWORD) {
+      const creds = parseBasicAuthHeader(request.headers.get('authorization'));
+      const ok = creds?.user === BASIC_AUTH_USER && creds?.pass === BASIC_AUTH_PASSWORD;
+
+      if (!ok) {
+        return new NextResponse('Authentication required.', {
+          status: 401,
+          headers: {
+            'WWW-Authenticate': 'Basic realm="Rationale", charset="UTF-8"',
+          },
+        });
+      }
+    }
+  }
 
   // Allow login pages to bypass auth checks (prevent redirect loops)
   if (pathname === '/login' || pathname === '/clients/login') {
@@ -78,6 +124,11 @@ export const config = {
     '/partners/:path*',
     '/investors/:path*',
     '/clients/:path*',
+    // Public routes protected by HTTP Basic Auth
+    '/zero/:path*',
+    '/work/zero/:path*',
+    '/work/heirloom/:path*',
+    '/heirloom/pitch/:path*',
     // Note: /owner/heirloom is covered by /owner/:path* matcher
   ],
 };
