@@ -151,17 +151,19 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
   const nextStarter = game.starter_index === 0 ? 1 : 0;
   const nextQuestion = pickQuestion(game.used_question_indices);
 
-  // If we've exhausted all questions, reset the pool
-  const usedIndices = nextQuestion
-    ? [...game.used_question_indices, nextQuestion.index]
-    : [nextQuestion ? nextQuestion.index : 0];
+  // If we've exhausted all questions, reset the pool and pick fresh
+  let questionToUse: { question: Question; index: number };
+  let finalUsedIndices: number[];
 
-  const questionToUse = nextQuestion || pickQuestion([]);
-  if (!questionToUse) throw new Error('No questions available');
-
-  const finalUsedIndices = nextQuestion
-    ? [...game.used_question_indices, questionToUse.index]
-    : [questionToUse.index]; // reset if pool was exhausted
+  if (nextQuestion) {
+    questionToUse = nextQuestion;
+    finalUsedIndices = [...game.used_question_indices, nextQuestion.index];
+  } else {
+    const fresh = pickQuestion([]);
+    if (!fresh) throw new Error('No questions available');
+    questionToUse = fresh;
+    finalUsedIndices = [fresh.index];
+  }
 
   const { data, error } = await supabase
     .from('dumb_questions_games')
