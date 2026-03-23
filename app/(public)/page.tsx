@@ -127,9 +127,19 @@ export default function HomePage() {
             </h1>
 
             {/* Supporting copy */}
-            <p className="text-base md:text-lg text-gray-300 max-w-3xl">
-              We design and ship production software with intention and speed. When the alignment is there, we partner with founders and teams - like co-founders - so we're aligned on outcomes, not hours.
+            <p className="text-base md:text-lg text-gray-300 max-w-3xl mb-6 md:mb-8">
+              I design and ship production software with intention and speed. When the alignment is there, I work like a co-founder—aligned on outcomes, not hours.
             </p>
+
+            {/* Velocity Proof (embedded) */}
+            <div className="mb-6">
+              <div className="block md:hidden">
+                <VelocityProof simplified={true} />
+              </div>
+              <div className="hidden md:block">
+                <VelocityProof simplified={false} />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -145,34 +155,19 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
+              Products in Development
+            </h2>
+            <div className="flex items-start gap-3 mb-6">
+              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
+                <span className="font-semibold text-white">Conviction comes from usage.</span>{' '}
+                Prototypes put ideas in people's hands, and real consumer behaviors force decisions. Shipping our own products keeps our
+                thinking calibrated to build better products—so when we partner, we de-risk the expensive parts and prove before you
+                commit.
+              </p>
+            </div>
             <div className="grid gap-4 md:gap-6">
-              {zero && (
-                <Link
-                  href={`/work/${zero.slug}`}
-                  className="group rounded-lg border border-[#6366F1]/25 bg-gray-900/40 hover:bg-gray-900/55 hover:border-[#6366F1]/40 transition-colors p-5 md:p-6"
-                >
-                  <div className="flex items-stretch gap-4 md:gap-5">
-                    <div className="self-stretch flex-shrink-0">
-                      <ProductAppIcon product="zero" />
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#6366F1] transition-colors">
-                          Zero Inbox <span className="text-gray-500 font-normal">· Rapid Email Triage</span>
-                        </h3>
-                      </div>
-                      <p className="text-[11px] md:text-xs text-gray-300 leading-relaxed max-w-3xl">
-                        {zero.description}
-                        <span className="ml-2 inline-flex items-center gap-1 font-semibold text-[#6366F1] group-hover:underline underline-offset-4 whitespace-nowrap">
-                          View case study <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )}
-
               {heirloom && (
                 <Link
                   href={`/work/${heirloom.slug}`}
@@ -188,6 +183,9 @@ export default function HomePage() {
                         <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#E85D4D] transition-colors">
                           Heirloom <span className="text-gray-500 font-normal">· Social Recipe Storage and Meal Planning</span>
                         </h3>
+                        <span className="text-xs font-semibold text-[#E85D4D] bg-[#E85D4D]/10 px-2 py-1 rounded border border-[#E85D4D]/30">
+                          In Beta
+                        </span>
                       </div>
                       <p className="text-[11px] md:text-xs text-gray-300 leading-relaxed max-w-3xl">
                         {heirloom.description}
@@ -199,16 +197,36 @@ export default function HomePage() {
                   </div>
                 </Link>
               )}
-            </div>
 
-            <div className="flex items-start gap-3 mt-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Conviction comes from usage.</span>{' '}
-                Prototypes put ideas in people's hands, and real consumer behaviors force decisions. Shipping our own products keeps our
-                thinking calibrated to build better products—so when we partner, we de-risk the expensive parts and prove before you
-                commit.
-              </p>
+              {zero && (
+                <Link
+                  href="/zero"
+                  className="group rounded-lg border border-[#6366F1]/25 bg-gray-900/40 hover:bg-gray-900/55 hover:border-[#6366F1]/40 transition-colors p-5 md:p-6"
+                >
+                  <div className="flex items-stretch gap-4 md:gap-5">
+                    <div className="self-stretch flex-shrink-0">
+                      <ProductAppIcon product="zero" />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#6366F1] transition-colors">
+                          Zero Inbox <span className="text-gray-500 font-normal">· Rapid Email Triage</span>
+                        </h3>
+                        <span className="text-xs font-semibold text-[#6366F1] bg-[#6366F1]/10 px-2 py-1 rounded border border-[#6366F1]/30">
+                          Coming Q2
+                        </span>
+                      </div>
+                      <p className="text-[11px] md:text-xs text-gray-300 leading-relaxed max-w-3xl">
+                        {zero.description}
+                        <span className="ml-2 inline-flex items-center gap-1 font-semibold text-[#6366F1] group-hover:underline underline-offset-4 whitespace-nowrap">
+                          View case study <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </section>
@@ -225,6 +243,17 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
+              Partner Products
+            </h2>
+            <div className="flex items-start gap-3 mb-6">
+              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
+              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
+                <span className="font-semibold text-white">Partnership work is selective and often confidential.</span>{' '}
+                We engage when there's strong alignment and a real problem worth proving in software. When discretion is required,
+                materials are gated for partners and clients.
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {partnerships.map((project) => {
                 const isConfidential = project.isProtected;
@@ -327,50 +356,10 @@ export default function HomePage() {
                 );
               })}
             </div>
-
-            <div className="flex items-start gap-3 mt-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Partnership work is selective and often confidential.</span>{' '}
-                We engage when there's strong alignment and a real problem worth proving in software. When discretion is required,
-                materials are gated for partners and clients.
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* 4. HOW WE BUILD CONVICTION (VelocityProof) */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-5xl mx-auto">
-            {/* Velocity Proof (embedded) */}
-            <div className="mb-6">
-              <div className="block md:hidden">
-                <VelocityProof simplified={true} />
-              </div>
-              <div className="hidden md:block">
-                <VelocityProof simplified={false} />
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 mt-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">We turn vision into proof—then ship what's validated.</span>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. CTA (minimal) */}
+        {/* 4. CTA (minimal) */}
         <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8">
           <div className="relative z-10 max-w-5xl mx-auto text-center">
             <p className="text-xs md:text-sm text-gray-300 leading-relaxed">

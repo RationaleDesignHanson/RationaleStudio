@@ -145,7 +145,7 @@ export const heirloomMarketingContent: ProductMarketingContent = {
     techSidebar: 'Built with SwiftUI for iOS. iCloud sync keeps your recipes private and synced across all your Apple devices.',
     deepDiveLink: {
       text: 'View technical case study',
-      href: '/work/heirloom'
+      href: '/heirloom/pitch'
     }
   },
 

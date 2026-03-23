@@ -38,6 +38,14 @@
   --heirloom-sage: #8B9F8D;
   --heirloom-cream: #F5F1E8;
   --heirloom-light-cream: #FBF8F3;
+  
+  /* Heirloom Pitch Colors */
+  --heirloom-pitch-cream: #F7F3EE;      /* Background, light surfaces */
+  --heirloom-pitch-sand: #E8E0D5;        /* Cards, secondary surfaces */
+  --heirloom-pitch-terracotta: #C4704F;  /* Primary accent, CTAs */
+  --heirloom-pitch-brown: #3D2E24;       /* Text, dark backgrounds */
+  --heirloom-pitch-warm-gray: #6B635A;   /* Body text */
+  --heirloom-pitch-soft-gray: #8A8278;   /* Muted text, captions */
 
   /* Zero Brand Colors */
   --zero-green: #00FF94;
@@ -94,6 +102,14 @@
   --color-heirloom-sage: var(--heirloom-sage);
   --color-heirloom-cream: var(--heirloom-cream);
   --color-heirloom-light-cream: var(--heirloom-light-cream);
+  
+  /* Heirloom Pitch Tokens */
+  --color-heirloom-pitch-cream: var(--heirloom-pitch-cream);
+  --color-heirloom-pitch-sand: var(--heirloom-pitch-sand);
+  --color-heirloom-pitch-terracotta: var(--heirloom-pitch-terracotta);
+  --color-heirloom-pitch-brown: var(--heirloom-pitch-brown);
+  --color-heirloom-pitch-warm-gray: var(--heirloom-pitch-warm-gray);
+  --color-heirloom-pitch-soft-gray: var(--heirloom-pitch-soft-gray);
 
   --color-zero-green: var(--zero-green);
   --color-zero-cyan: var(--zero-cyan);
@@ -1500,6 +1516,12 @@ a, button, input, select, textarea, label {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  /* Disable scroll animations for reduced motion */
+  [data-reduce-motion] {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
