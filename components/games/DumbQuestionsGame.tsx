@@ -1,0 +1,338 @@
+'use client';
+
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  type GameRow,
+  type PlayerSlot,
+  type RoundState,
+  submitAnswer,
+  advanceRound,
+  getSupabaseClient,
+} from '@/lib/games/dumb-questions-utils';
+
+interface DumbQuestionsGameProps {
+  initialGame: GameRow;
+  mySlot: PlayerSlot;
+}
+
+// ── Helpers ──────────────────────────────────────────────────
+
+function getMyName(game: GameRow, slot: PlayerSlot) {
+  return slot === 'player1' ? game.player1_name : game.player2_name ?? '';
+}
+
+function getOpponentName(game: GameRow, slot: PlayerSlot) {
+  return slot === 'player1' ? game.player2_name ?? '' : game.player1_name;
+}
+
+/** Who goes first this round? */
+function starterSlot(game: GameRow): PlayerSlot {
+  return game.starter_index === 0 ? 'player1' : 'player2';
+}
+
+/** Who goes second this round? */
+function secondSlot(game: GameRow): PlayerSlot {
+  return game.starter_index === 0 ? 'player2' : 'player1';
+}
+
+function starterName(game: GameRow): string {
+  return game.starter_index === 0 ? game.player1_name : (game.player2_name ?? '');
+}
+
+function secondName(game: GameRow): string {
+  return game.starter_index === 0 ? (game.player2_name ?? '') : game.player1_name;
+}
+
+// ── Component ────────────────────────────────────────────────
+
+export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProps) {
+  const [game, setGame] = useState<GameRow>(initialGame);
+  const [input, setInput] = useState('');
+  const [sending, setSending] = useState(false);
+  const [advancing, setAdvancing] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const myName = getMyName(game, mySlot);
+  const opponentName = getOpponentName(game, mySlot);
+
+  // ── Realtime subscription ────────────────────────────────
+  useEffect(() => {
+    const supabase = getSupabaseClient();
+
+    const channel = supabase
+      .channel(`game-${game.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'dumb_questions_games',
+          filter: `id=eq.${game.id}`,
+        },
+        (payload) => {
+          setGame(payload.new as GameRow);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [game.id]);
+
+  // ── Auto-scroll to bottom when messages change ───────────
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [game.round_state, game.answer1, game.answer2, game.current_round]);
+
+  // ── Determine what I should do ───────────────────────────
+  const isMyTurnFirst = starterSlot(game) === mySlot && game.round_state === 'waiting_for_first';
+  const isMyTurnSecond = secondSlot(game) === mySlot && game.round_state === 'waiting_for_second';
+  const isMyTurn = isMyTurnFirst || isMyTurnSecond;
+  const isRoundComplete = game.round_state === 'round_complete';
+
+  // ── Submit answer ────────────────────────────────────────
+  const handleSend = useCallback(async () => {
+    const trimmed = input.trim();
+    if (!trimmed || sending) return;
+
+    setSending(true);
+
+    try {
+      let answerSlot: 'answer1' | 'answer2';
+      let nextState: RoundState;
+
+      if (isMyTurnFirst) {
+        answerSlot = 'answer1';
+        nextState = 'waiting_for_second';
+      } else {
+        answerSlot = 'answer2';
+        nextState = 'round_complete';
+      }
+
+      await submitAnswer(game.id, answerSlot, trimmed, nextState);
+      setInput('');
+    } catch (err) {
+      console.error('Failed to send:', err);
+    } finally {
+      setSending(false);
+    }
+  }, [input, sending, isMyTurnFirst, game.id]);
+
+  // ── Next round ───────────────────────────────────────────
+  const handleNextRound = async () => {
+    if (advancing) return;
+    setAdvancing(true);
+    try {
+      await advanceRound(game);
+    } catch (err) {
+      console.error('Failed to advance:', err);
+    } finally {
+      setAdvancing(false);
+    }
+  };
+
+  // ── Who said what? Map answer1/answer2 to names ──────────
+  const firstAnswererName = starterName(game);
+  const secondAnswererName = secondName(game);
+  const firstAnswererIsMe = starterSlot(game) === mySlot;
+  const secondAnswererIsMe = secondSlot(game) === mySlot;
+
+  return (
+    <div className="min-h-dvh bg-black flex flex-col">
+      {/* ── Top bar ─────────────────────────────────────── */}
+      <div className="flex-shrink-0 bg-gray-950 border-b border-gray-800 px-4 py-3 text-center">
+        <h1 className="text-base font-semibold text-white">Dumb Questions</h1>
+        <div className="flex items-center justify-center gap-3 mt-0.5">
+          <span className="text-xs text-gray-400">Round {game.current_round}</span>
+          <span className="text-gray-700">·</span>
+          <span className="text-xs text-gray-400">
+            {starterName(game)} starts
+          </span>
+        </div>
+      </div>
+
+      {/* ── Message thread ──────────────────────────────── */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
+        {/* System question bubble */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`q-${game.current_round}`}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="self-center max-w-[85%]"
+          >
+            <div className="bg-gray-800 rounded-2xl px-4 py-3 text-center">
+              <p className="text-white text-[15px] leading-snug">
+                {game.current_question}
+              </p>
+              {game.current_category && (
+                <p className="text-gray-500 text-xs mt-1.5 uppercase tracking-wider">
+                  {game.current_category}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Answer 1 bubble (first responder) */}
+        <AnimatePresence>
+          {game.answer1 && (
+            <motion.div
+              key={`a1-${game.current_round}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className={`flex flex-col max-w-[80%] ${
+                firstAnswererIsMe ? 'self-end items-end' : 'self-start items-start'
+              }`}
+            >
+              <span className="text-[11px] text-gray-500 mb-1 px-1">
+                {firstAnswererName}
+              </span>
+              <div
+                className={`rounded-2xl px-4 py-2.5 ${
+                  firstAnswererIsMe
+                    ? 'bg-blue-500 text-white rounded-br-md'
+                    : 'bg-gray-700 text-white rounded-bl-md'
+                }`}
+              >
+                <p className="text-[15px] leading-snug">{game.answer1}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Answer 2 bubble (second responder) */}
+        <AnimatePresence>
+          {game.answer2 && (
+            <motion.div
+              key={`a2-${game.current_round}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className={`flex flex-col max-w-[80%] ${
+                secondAnswererIsMe ? 'self-end items-end' : 'self-start items-start'
+              }`}
+            >
+              <span className="text-[11px] text-gray-500 mb-1 px-1">
+                {secondAnswererName}
+              </span>
+              <div
+                className={`rounded-2xl px-4 py-2.5 ${
+                  secondAnswererIsMe
+                    ? 'bg-blue-500 text-white rounded-br-md'
+                    : 'bg-gray-700 text-white rounded-bl-md'
+                }`}
+              >
+                <p className="text-[15px] leading-snug">{game.answer2}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Waiting indicator */}
+        <AnimatePresence>
+          {!isMyTurn && !isRoundComplete && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={`flex flex-col max-w-[80%] ${
+                game.round_state === 'waiting_for_first'
+                  ? starterSlot(game) !== mySlot
+                    ? 'self-start items-start'
+                    : 'self-end items-end'
+                  : secondSlot(game) !== mySlot
+                    ? 'self-start items-start'
+                    : 'self-end items-end'
+              }`}
+            >
+              <div className="bg-gray-800 rounded-2xl px-4 py-2.5 rounded-bl-md">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-gray-400 text-sm">
+                    Waiting for {opponentName}
+                  </span>
+                  <motion.span
+                    animate={{ opacity: [0.2, 1, 0.2] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="text-gray-400"
+                  >
+                    ...
+                  </motion.span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* ── Bottom input area ───────────────────────────── */}
+      <div className="flex-shrink-0 bg-gray-950 border-t border-gray-800 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        {isRoundComplete ? (
+          /* Round complete — Next / Skip */
+          <div className="flex flex-col gap-2">
+            <button
+              onClick={handleNextRound}
+              disabled={advancing}
+              className="w-full py-3 rounded-xl bg-blue-500 text-white font-semibold text-base disabled:opacity-40 hover:bg-blue-600 active:bg-blue-700 transition-colors"
+            >
+              {advancing ? 'Loading...' : 'Next Question'}
+            </button>
+          </div>
+        ) : isMyTurn ? (
+          /* My turn — input + send */
+          <div className="flex items-center gap-2">
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              placeholder={
+                isMyTurnFirst ? 'Your answer…' : 'Reply or your answer…'
+              }
+              maxLength={280}
+              autoFocus
+              className="flex-1 px-4 py-2.5 rounded-full bg-gray-900 border border-gray-800 text-white placeholder-gray-500 text-[15px] outline-none focus:border-blue-500 transition-colors"
+            />
+            <button
+              onClick={handleSend}
+              disabled={sending || !input.trim()}
+              className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center disabled:opacity-40 hover:bg-blue-600 active:bg-blue-700 transition-colors"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="text-white"
+              >
+                <path
+                  d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        ) : (
+          /* Not my turn — disabled placeholder */
+          <div className="flex items-center gap-2">
+            <div className="flex-1 px-4 py-2.5 rounded-full bg-gray-900 border border-gray-800">
+              <span className="text-gray-600 text-[15px]">
+                Waiting for {opponentName}…
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
