@@ -83,7 +83,7 @@ export default function GameRoomPage() {
           table: 'dumb_questions_games',
           filter: `id=eq.${gameId}`,
         },
-        (payload) => {
+        (payload: { new: Record<string, unknown> }) => {
           const updated = payload.new as GameRow;
           if (updated.status === 'active') {
             setState({ kind: 'playing', game: updated, mySlot: 'player1' });
