@@ -165,37 +165,7 @@ export async function submitAnswer(
   return data as GameRow;
 }
 
-// ── Image Prompt Generation ─────────────────────────────────
-
-const ART_STYLES = [
-  'Thick impasto oil painting, visible palette knife strokes, saturated pigments, gallery-worthy',
-  'Vintage 1960s psychedelic concert poster, swirling patterns, neon colors on dark background, hand-lettered feel',
-  'Japanese ukiyo-e woodblock print, bold outlines, flat color fields, dramatic composition',
-  'Surrealist dreamscape, melting forms, impossible architecture, vivid twilight sky, Dali meets Miyazaki',
-];
-
-/** Build per-round image prompt. answer1 is the subject, question gives context. No people. */
-export function buildImagePrompt(game: GameRow): string {
-  const q = game.current_question || 'a strange scene';
-  const subject = game.answer1 || q;
-  const style = ART_STYLES[(game.current_round - 1) % ART_STYLES.length];
-  return `${subject}. ${style}. No people, no faces, no portraits.`;
-}
-
 const MAX_ROUNDS = 4;
-
-/** Build aggregated prompt: one subject per round, combined into a single scene. */
-export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[]): string {
-  if (roundHistory.length === 0) {
-    return 'Epic panoramic mural of a fantastical world. Rich detail, warm palette, studio Ghibli meets Hieronymus Bosch.';
-  }
-
-  const subjects = roundHistory
-    .map((r) => r.answer1 || r.question)
-    .filter(Boolean);
-
-  return `Epic panoramic mural of ${subjects.join(', ')} — all together in one fantastical scene. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch. No people, no faces, no portraits.`;
-}
 
 /** Store generated round image and mark round complete (pass null if image gen failed) */
 export async function storeRoundImage(
@@ -279,9 +249,7 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
 /** Complete game after round 4: append round 4, generate aggregated image, set status completed */
 export async function completeGame(game: GameRow): Promise<GameRow> {
   const fullHistory = appendRoundToHistory(game);
-  const prompt = buildAggregatedPrompt(fullHistory);
 
-  // Store round 4 in history and set status to completed (before image, so we can show "generating")
   const { data: updated, error: updateError } = await supabase
     .from('dumb_questions_games')
     .update({
@@ -302,12 +270,17 @@ export async function completeGame(game: GameRow): Promise<GameRow> {
   if (updateError) throw updateError;
 
   try {
+    const rounds = fullHistory.map((r) => ({
+      question: r.question,
+      answers: [r.answer1, r.answer2, r.answer3, r.answer4].filter(Boolean) as string[],
+    }));
+
     const res = await fetch(
       `${typeof window !== 'undefined' ? window.location.origin : ''}/api/dumbquestions/generate-image`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ aggregated: true, rounds }),
       }
     );
     const json = await res.json();

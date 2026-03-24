@@ -11,7 +11,6 @@ import {
   completeGame,
   fetchGame,
   getSupabaseClient,
-  buildImagePrompt,
   storeRoundImage,
   MAX_ROUNDS,
 } from '@/lib/games/dumb-questions-utils';
@@ -124,11 +123,14 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
       // If we just submitted answer4, trigger image generation
       if (answerSlot === 'answer4') {
         try {
-          const prompt = buildImagePrompt(updated);
           const res = await fetch('/api/dumbquestions/generate-image', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt }),
+            body: JSON.stringify({
+              question: updated.current_question,
+              answers: [updated.answer1, updated.answer2, updated.answer3, updated.answer4].filter(Boolean),
+              round: updated.current_round,
+            }),
           });
           const json = await res.json();
           if (json.url) {
