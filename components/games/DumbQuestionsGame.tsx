@@ -65,7 +65,8 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
           table: 'dumb_questions_games',
           filter: `id=eq.${game.id}`,
         },
-        (payload) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (payload: any) => {
           setGame(payload.new as GameRow);
         }
       )
