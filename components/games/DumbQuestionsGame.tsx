@@ -8,10 +8,12 @@ import {
   type RoundState,
   submitAnswer,
   advanceRound,
+  completeGame,
   fetchGame,
   getSupabaseClient,
   buildImagePrompt,
   storeRoundImage,
+  MAX_ROUNDS,
 } from '@/lib/games/dumb-questions-utils';
 
 interface DumbQuestionsGameProps {
@@ -29,32 +31,12 @@ function getOpponentName(game: GameRow, slot: PlayerSlot) {
   return slot === 'player1' ? game.player2_name ?? '' : game.player1_name;
 }
 
-/** Who goes first this round? */
+/** Alternating by round: odd rounds 1-2-1-2, even rounds 2-1-2-1 (starter_index swaps each round) */
 function starterSlot(game: GameRow): PlayerSlot {
   return game.starter_index === 0 ? 'player1' : 'player2';
 }
-
-/** Who goes second this round? */
 function secondSlot(game: GameRow): PlayerSlot {
   return game.starter_index === 0 ? 'player2' : 'player1';
-}
-
-function starterName(game: GameRow): string {
-  return game.starter_index === 0 ? game.player1_name : (game.player2_name ?? '');
-}
-
-function secondName(game: GameRow): string {
-  return game.starter_index === 0 ? (game.player2_name ?? '') : game.player1_name;
-}
-
-/** In exchange phase: who goes first (answer3)? Second person replies first. */
-function exchangeFirstSlot(game: GameRow): PlayerSlot {
-  return secondSlot(game);
-}
-
-/** In exchange phase: who goes second (answer4)? Starter gets last word. */
-function exchangeSecondSlot(game: GameRow): PlayerSlot {
-  return starterSlot(game);
 }
 
 // ── Component ────────────────────────────────────────────────
@@ -100,14 +82,15 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [game.round_state, game.answer1, game.answer2, game.answer3, game.answer4, game.round_image_url, game.current_round]);
 
-  // ── Determine what I should do ───────────────────────────
+  // ── Determine what I should do (1-2-1-2 or 2-1-2-1 based on starter_index) ───
   const isMyTurnFirst = starterSlot(game) === mySlot && game.round_state === 'waiting_for_first';
   const isMyTurnSecond = secondSlot(game) === mySlot && game.round_state === 'waiting_for_second';
-  const isMyTurnExchangeFirst = exchangeFirstSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_first';
-  const isMyTurnExchangeSecond = exchangeSecondSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_second';
+  const isMyTurnExchangeFirst = starterSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_first';
+  const isMyTurnExchangeSecond = secondSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_second';
   const isMyTurn = isMyTurnFirst || isMyTurnSecond || isMyTurnExchangeFirst || isMyTurnExchangeSecond;
   const isRoundComplete = game.round_state === 'round_complete';
   const isGeneratingImage = game.round_state === 'generating_image';
+  const isGameComplete = game.status === 'completed';
 
   // ── Submit answer ────────────────────────────────────────
   const handleSend = useCallback(async () => {
@@ -165,14 +148,20 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
     } finally {
       setSending(false);
     }
-  }, [input, sending, isMyTurnFirst, isMyTurnSecond, isMyTurnExchangeFirst, game.id, game]);
+  }, [input, sending, isMyTurnFirst, isMyTurnSecond, isMyTurnExchangeFirst, isMyTurnExchangeSecond, game.id, game]);
 
-  // ── Next round ───────────────────────────────────────────
+  // ── Next round or complete game ──────────────────────────
   const handleNextRound = async () => {
     if (advancing) return;
     setAdvancing(true);
     try {
-      await advanceRound(game);
+      if (game.current_round === MAX_ROUNDS) {
+        const updated = await completeGame(game);
+        setGame(updated);
+      } else {
+        const updated = await advanceRound(game);
+        setGame(updated);
+      }
     } catch (err) {
       console.error('Failed to advance:', err);
     } finally {
@@ -180,15 +169,46 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
     }
   };
 
-  // ── Who said what? Map answers to names ──────────────────
-  const firstAnswererName = starterName(game);
-  const secondAnswererName = secondName(game);
-  const exchangeFirstAnswererName = secondName(game);  // answer3 = second person
-  const exchangeSecondAnswererName = starterName(game); // answer4 = starter
+  // ── Who said what? Alternating: starter, second, starter, second ─────────
+  const firstAnswererName = starterSlot(game) === 'player1' ? game.player1_name : (game.player2_name ?? '');
+  const secondAnswererName = secondSlot(game) === 'player1' ? game.player1_name : (game.player2_name ?? '');
+  const exchangeFirstAnswererName = firstAnswererName;   // answer3 = starter
+  const exchangeSecondAnswererName = secondAnswererName; // answer4 = second
   const firstAnswererIsMe = starterSlot(game) === mySlot;
   const secondAnswererIsMe = secondSlot(game) === mySlot;
-  const exchangeFirstAnswererIsMe = exchangeFirstSlot(game) === mySlot;
-  const exchangeSecondAnswererIsMe = exchangeSecondSlot(game) === mySlot;
+  const exchangeFirstAnswererIsMe = starterSlot(game) === mySlot;
+  const exchangeSecondAnswererIsMe = secondSlot(game) === mySlot;
+
+  // ── Game complete view ─────────────────────────────────
+  if (isGameComplete) {
+    return (
+      <div className="min-h-dvh bg-black flex flex-col">
+        <div className="flex-shrink-0 bg-gray-950 border-b border-gray-800 px-4 py-3 text-center">
+          <h1 className="text-base font-semibold text-white">Dumb Questions</h1>
+          <p className="text-sm text-gray-400 mt-0.5">Game complete</p>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-6 flex flex-col items-center gap-4">
+          <p className="text-white text-center text-lg">
+            Your combined creation from 4 rounds
+          </p>
+          {game.aggregated_image_url ? (
+            <motion.img
+              key="aggregated"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              src={game.aggregated_image_url}
+              alt="Combined creation from all rounds"
+              className="rounded-2xl w-full max-w-md border border-gray-800 shadow-lg"
+            />
+          ) : (
+            <div className="bg-gray-800 rounded-2xl px-6 py-4">
+              <span className="text-gray-400 text-sm">Generating your combined image…</span>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-dvh bg-black flex flex-col">
@@ -196,10 +216,10 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
       <div className="flex-shrink-0 bg-gray-950 border-b border-gray-800 px-4 py-3 text-center">
         <h1 className="text-base font-semibold text-white">Dumb Questions</h1>
         <div className="flex items-center justify-center gap-3 mt-0.5">
-          <span className="text-xs text-gray-400">Round {game.current_round}</span>
+          <span className="text-xs text-gray-400">Round {game.current_round}/{MAX_ROUNDS}</span>
           <span className="text-gray-700">·</span>
           <span className="text-xs text-gray-400">
-            {starterName(game)} starts
+            {firstAnswererName} starts
           </span>
         </div>
       </div>
@@ -286,7 +306,7 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
           )}
         </AnimatePresence>
 
-        {/* Answer 3 bubble (exchange — second person replies) */}
+        {/* Answer 3 bubble (exchange — starter again, 1-2-1-2) */}
         <AnimatePresence>
           {game.answer3 && (
             <motion.div
@@ -315,7 +335,7 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
           )}
         </AnimatePresence>
 
-        {/* Answer 4 bubble (exchange — starter gets last word) */}
+        {/* Answer 4 bubble (exchange — second person again) */}
         <AnimatePresence>
           {game.answer4 && (
             <motion.div
@@ -380,10 +400,10 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
                       ? 'self-start items-start'
                       : 'self-end items-end'
                     : game.round_state === 'waiting_for_exchange_first'
-                      ? exchangeFirstSlot(game) !== mySlot
+                      ? starterSlot(game) !== mySlot
                         ? 'self-start items-start'
                         : 'self-end items-end'
-                      : exchangeSecondSlot(game) !== mySlot
+                      : secondSlot(game) !== mySlot
                         ? 'self-start items-start'
                         : 'self-end items-end'
               }`}
@@ -439,7 +459,11 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
               disabled={advancing}
               className="w-full py-3 rounded-xl bg-blue-500 text-white font-semibold text-base disabled:opacity-40 hover:bg-blue-600 active:bg-blue-700 transition-colors"
             >
-              {advancing ? 'Loading...' : 'Next Question'}
+              {advancing
+                ? (game.current_round === MAX_ROUNDS ? 'Creating combined image…' : 'Loading...')
+                : game.current_round === MAX_ROUNDS
+                  ? 'See combined creation'
+                  : 'Next Question'}
             </button>
           </div>
         ) : isMyTurn ? (

@@ -36,11 +36,22 @@ export interface GameRow {
   round_image_url: string | null;
   used_question_indices: number[];
   round_state: RoundState;
+  round_history: RoundHistoryEntry[];
+  aggregated_image_url: string | null;
   created_at: string;
   updated_at: string;
 }
 
 export type PlayerSlot = 'player1' | 'player2';
+
+export interface RoundHistoryEntry {
+  question: string;
+  answer1: string | null;
+  answer2: string | null;
+  answer3: string | null;
+  answer4: string | null;
+  round_image_url: string | null;
+}
 
 // ── ID Generation ────────────────────────────────────────────
 
@@ -154,18 +165,43 @@ export async function submitAnswer(
   return data as GameRow;
 }
 
-/** Generate image prompt from question + conversation */
-export function buildImagePrompt(game: GameRow): string {
-  const parts: string[] = [
-    `Question: ${game.current_question || 'A silly debate'}`,
-    game.answer1 && `First response: ${game.answer1}`,
-    game.answer2 && `Second response: ${game.answer2}`,
-    game.answer3 && `Reply: ${game.answer3}`,
-    game.answer4 && `Final reply: ${game.answer4}`,
-  ].filter(Boolean) as string[];
+// ── Image Prompt Generation ─────────────────────────────────
 
-  const conversation = parts.join('. ');
-  return `Whimsical illustration, two friends having a funny debate. ${conversation}. Colorful, cartoon style, lighthearted, iMessage chat bubble aesthetic.`;
+const ART_STYLES = [
+  'Thick impasto oil painting, visible palette knife strokes, saturated pigments, gallery-worthy',
+  'Vintage 1960s psychedelic concert poster, swirling patterns, neon colors on dark background, hand-lettered feel',
+  'Japanese ukiyo-e woodblock print, bold outlines, flat color fields, dramatic composition',
+  'Surrealist dreamscape, melting forms, impossible architecture, vivid twilight sky, Dali meets Miyazaki',
+];
+
+/** Build per-round image prompt. Question = scene concept, answers = elements, style rotates. */
+export function buildImagePrompt(game: GameRow): string {
+  const q = game.current_question || 'a strange debate between two friends';
+  const answers = [game.answer1, game.answer2, game.answer3, game.answer4]
+    .filter(Boolean) as string[];
+  const answerScene = answers.length > 0
+    ? ` Featuring: ${answers.join(', ')}.`
+    : '';
+  const style = ART_STYLES[(game.current_round - 1) % ART_STYLES.length];
+  return `${q}${answerScene} ${style}.`;
+}
+
+const MAX_ROUNDS = 4;
+
+/** Build aggregated prompt combining all 4 rounds into one unified scene. */
+export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[]): string {
+  if (roundHistory.length === 0) {
+    return 'Epic panoramic mural of a fantastical world. Rich detail, warm palette, studio Ghibli meets Hieronymus Bosch.';
+  }
+
+  const themes = roundHistory.map((r) => {
+    const answers = [r.answer1, r.answer2, r.answer3, r.answer4]
+      .filter(Boolean) as string[];
+    const elements = answers.length > 0 ? `: ${answers.join(', ')}` : '';
+    return `${r.question}${elements}`;
+  });
+
+  return `Epic panoramic mural combining four scenes into one unified world. ${themes.join(' — ')} — All elements woven together in the same fantastical landscape. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch.`;
 }
 
 /** Store generated round image and mark round complete (pass null if image gen failed) */
@@ -188,13 +224,27 @@ export async function storeRoundImage(
   return data as GameRow;
 }
 
-/** Advance to next round: pick new question, swap starter, clear answers */
+/** Append current round to history. Returns the new history array. */
+function appendRoundToHistory(game: GameRow): RoundHistoryEntry[] {
+  const history = (game.round_history ?? []) as RoundHistoryEntry[];
+  history.push({
+    question: game.current_question ?? '',
+    answer1: game.answer1,
+    answer2: game.answer2,
+    answer3: game.answer3,
+    answer4: game.answer4,
+    round_image_url: game.round_image_url,
+  });
+  return history;
+}
+
+/** Advance to next round: append current to history, pick new question, swap starter, clear answers */
 export async function advanceRound(game: GameRow): Promise<GameRow> {
+  const updatedHistory = appendRoundToHistory(game);
   const nextRound = game.current_round + 1;
   const nextStarter = game.starter_index === 0 ? 1 : 0;
   const nextQuestion = pickQuestion(game.used_question_indices);
 
-  // If we've exhausted all questions, reset the pool and pick fresh
   let questionToUse: { question: Question; index: number };
   let finalUsedIndices: number[];
 
@@ -211,6 +261,7 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
   const { data, error } = await supabase
     .from('dumb_questions_games')
     .update({
+      round_history: updatedHistory,
       current_round: nextRound,
       starter_index: nextStarter,
       current_question: questionToUse.question.text,
@@ -231,6 +282,63 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
   if (error) throw error;
   return data as GameRow;
 }
+
+/** Complete game after round 4: append round 4, generate aggregated image, set status completed */
+export async function completeGame(game: GameRow): Promise<GameRow> {
+  const fullHistory = appendRoundToHistory(game);
+  const prompt = buildAggregatedPrompt(fullHistory);
+
+  // Store round 4 in history and set status to completed (before image, so we can show "generating")
+  const { data: updated, error: updateError } = await supabase
+    .from('dumb_questions_games')
+    .update({
+      round_history: fullHistory,
+      status: 'completed' as GameStatus,
+      answer1: null,
+      answer2: null,
+      answer3: null,
+      answer4: null,
+      round_image_url: null,
+      round_state: 'round_complete' as RoundState,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', game.id)
+    .select()
+    .single();
+
+  if (updateError) throw updateError;
+
+  try {
+    const res = await fetch(
+      `${typeof window !== 'undefined' ? window.location.origin : ''}/api/dumbquestions/generate-image`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      }
+    );
+    const json = await res.json();
+    if (json.url) {
+      const { data: final, error: finalError } = await supabase
+        .from('dumb_questions_games')
+        .update({
+          aggregated_image_url: json.url,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', game.id)
+        .select()
+        .single();
+      if (finalError) throw finalError;
+      return final as GameRow;
+    }
+  } catch (err) {
+    console.error('Aggregated image generation failed:', err);
+  }
+
+  return updated as GameRow;
+}
+
+export { MAX_ROUNDS };
 
 /** Get the Supabase client (for realtime subscriptions in components) */
 export function getSupabaseClient() {
