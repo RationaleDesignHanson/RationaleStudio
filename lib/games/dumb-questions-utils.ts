@@ -174,37 +174,27 @@ const ART_STYLES = [
   'Surrealist dreamscape, melting forms, impossible architecture, vivid twilight sky, Dali meets Miyazaki',
 ];
 
-/** Build per-round image prompt. Question = scene concept, answer1+answer2 = the two real answers. */
+/** Build per-round image prompt. answer1 is the subject, question gives context. No people. */
 export function buildImagePrompt(game: GameRow): string {
-  const q = game.current_question || 'a strange debate between two friends';
-  const a1 = game.answer1;
-  const a2 = game.answer2;
-  const featuring = a1 && a2
-    ? ` Featuring: ${a1} vs ${a2}.`
-    : a1
-      ? ` Featuring: ${a1}.`
-      : '';
+  const q = game.current_question || 'a strange scene';
+  const subject = game.answer1 || q;
   const style = ART_STYLES[(game.current_round - 1) % ART_STYLES.length];
-  return `${q}${featuring} ${style}.`;
+  return `${subject}. ${style}. No people, no faces, no portraits.`;
 }
 
 const MAX_ROUNDS = 4;
 
-/** Build aggregated prompt: use each round's question + the two real answers (not banter). */
+/** Build aggregated prompt: one subject per round, combined into a single scene. */
 export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[]): string {
   if (roundHistory.length === 0) {
     return 'Epic panoramic mural of a fantastical world. Rich detail, warm palette, studio Ghibli meets Hieronymus Bosch.';
   }
 
-  const scenes = roundHistory.map((r) => {
-    const a1 = r.answer1;
-    const a2 = r.answer2;
-    if (a1 && a2) return `${a1} vs ${a2}`;
-    if (a1) return a1;
-    return r.question;
-  });
+  const subjects = roundHistory
+    .map((r) => r.answer1 || r.question)
+    .filter(Boolean);
 
-  return `Epic panoramic mural: ${scenes.join(', ')} — all coexisting in one fantastical scene together. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch.`;
+  return `Epic panoramic mural of ${subjects.join(', ')} — all together in one fantastical scene. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch. No people, no faces, no portraits.`;
 }
 
 /** Store generated round image and mark round complete (pass null if image gen failed) */
