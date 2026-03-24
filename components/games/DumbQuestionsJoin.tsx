@@ -33,8 +33,12 @@ export function DumbQuestionsJoin({ game, onJoined }: DumbQuestionsJoinProps) {
     try {
       const updated = await joinGame(game.id, trimmed);
       // Store that we're player2 for this game
-      localStorage.setItem(`dq-role-${game.id}`, 'player2');
-      localStorage.setItem(`dq-name-${game.id}`, trimmed);
+      try {
+        localStorage.setItem(`dq-role-${game.id}`, 'player2');
+        localStorage.setItem(`dq-name-${game.id}`, trimmed);
+      } catch {
+        // localStorage can throw on iOS private browsing, etc.
+      }
       onJoined(updated);
     } catch (err) {
       console.error('Failed to join game:', err);

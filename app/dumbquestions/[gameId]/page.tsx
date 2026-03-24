@@ -30,30 +30,37 @@ export default function GameRoomPage() {
     if (!gameId) return;
 
     async function load() {
-      const game = await fetchGame(gameId);
-      if (!game) {
-        setState({ kind: 'not_found' });
-        return;
-      }
-
-      const savedRole = localStorage.getItem(`dq-role-${gameId}`) as PlayerSlot | null;
-
-      if (game.status === 'waiting') {
-        if (savedRole === 'player1') {
-          // I created this game — wait for player 2
-          setState({ kind: 'waiting', game });
-        } else {
-          // I'm a newcomer — show join screen
-          setState({ kind: 'join', game });
+      try {
+        const game = await fetchGame(gameId);
+        if (!game) {
+          setState({ kind: 'not_found' });
+          return;
         }
-      } else if (game.status === 'active') {
-        if (savedRole) {
-          setState({ kind: 'playing', game, mySlot: savedRole });
+
+        let savedRole: PlayerSlot | null = null;
+        try {
+          savedRole = localStorage.getItem(`dq-role-${gameId}`) as PlayerSlot | null;
+        } catch {
+          // localStorage can throw on iOS private browsing, cross-origin iframes, etc.
+        }
+
+        if (game.status === 'waiting') {
+          if (savedRole === 'player1') {
+            setState({ kind: 'waiting', game });
+          } else {
+            setState({ kind: 'join', game });
+          }
+        } else if (game.status === 'active') {
+          if (savedRole) {
+            setState({ kind: 'playing', game, mySlot: savedRole });
+          } else {
+            setState({ kind: 'not_found' });
+          }
         } else {
-          // Someone opened the link but the game already started
           setState({ kind: 'not_found' });
         }
-      } else {
+      } catch (err) {
+        console.error('[DumbQuestions] Load failed:', err);
         setState({ kind: 'not_found' });
       }
     }
