@@ -83,7 +83,8 @@ export default function GameRoomPage() {
           table: 'dumb_questions_games',
           filter: `id=eq.${gameId}`,
         },
-        (payload: { new: Record<string, unknown> }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (payload: any) => {
           const updated = payload.new as GameRow;
           if (updated.status === 'active') {
             setState({ kind: 'playing', game: updated, mySlot: 'player1' });
