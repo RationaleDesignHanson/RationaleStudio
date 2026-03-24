@@ -1,10 +1,8 @@
 /**
  * Utility functions for the Unhinged Text Game
  *
- * - Game ID generation
- * - Question selection with repeat prevention
- * - Supabase game helpers
- * - Image prompt generation (concept extraction + surreal art styles)
+ * 4 rounds, 4 turns each: starter→second→starter→second
+ * starter_index flips each round so turns alternate who goes first
  */
 
 import { createClient } from '@/lib/supabase/client';
@@ -14,8 +12,10 @@ import { QUESTIONS, type Question } from './dumb-questions-data';
 
 export type GameStatus = 'waiting' | 'active' | 'completed';
 export type RoundState =
-  | 'waiting_for_first'
-  | 'waiting_for_second'
+  | 'waiting_for_turn1'
+  | 'waiting_for_turn2'
+  | 'waiting_for_turn3'
+  | 'waiting_for_turn4'
   | 'generating_image'
   | 'round_complete';
 
@@ -30,6 +30,8 @@ export interface GameRow {
   current_category: string | null;
   answer1: string | null;
   answer2: string | null;
+  answer3: string | null;
+  answer4: string | null;
   round_image_url: string | null;
   last_prompt: string | null;
   used_question_indices: number[];
@@ -48,6 +50,8 @@ export interface RoundHistoryEntry {
   question: string;
   answer1: string | null;
   answer2: string | null;
+  answer3: string | null;
+  answer4: string | null;
   round_image_url: string | null;
   prompt: string;
 }
@@ -55,6 +59,16 @@ export interface RoundHistoryEntry {
 // ── Constants ────────────────────────────────────────────────
 
 export const MAX_ROUNDS = 4;
+
+/**
+ * Turn order within a round (4 turns): starter, second, starter, second
+ * Returns the PlayerSlot for a given turn number (1-4) based on starter_index.
+ */
+export function whosTurn(game: GameRow, turnNum: 1 | 2 | 3 | 4): PlayerSlot {
+  const starter: PlayerSlot = game.starter_index === 0 ? 'player1' : 'player2';
+  const second: PlayerSlot = game.starter_index === 0 ? 'player2' : 'player1';
+  return turnNum % 2 === 1 ? starter : second;
+}
 
 // ── ID Generation ────────────────────────────────────────────
 
@@ -127,7 +141,6 @@ const ART_STYLES = [
 
 const PROMPT_SUFFIX = 'no text, no letters, no speech bubbles, no dialogue, no captions, photorealistic details mixed with surrealism, award-winning composition';
 
-/** Deterministic style selection based on game ID + round so both players get the same style */
 function pickStyle(gameId: string, round: number): string {
   let hash = 0;
   const key = `${gameId}-${round}`;
@@ -141,7 +154,7 @@ function pickStyle(gameId: string, round: number): string {
 
 export function buildImagePrompt(game: GameRow): string {
   const question = game.current_question || 'a silly debate';
-  const answers = [game.answer1, game.answer2].filter(Boolean) as string[];
+  const answers = [game.answer1, game.answer2, game.answer3, game.answer4].filter(Boolean) as string[];
   const concepts = extractConcepts(answers);
   const style = pickStyle(game.id, game.current_round);
   const conceptStr = concepts.length > 0 ? concepts.join(', ') : 'absurdity';
@@ -151,7 +164,7 @@ export function buildImagePrompt(game: GameRow): string {
 
 export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[], gameId: string): string {
   const allConcepts = roundHistory.flatMap((r) => {
-    const answers = [r.answer1, r.answer2].filter(Boolean) as string[];
+    const answers = [r.answer1, r.answer2, r.answer3, r.answer4].filter(Boolean) as string[];
     return extractConcepts(answers);
   });
   const uniqueConcepts = [...new Set(allConcepts)].slice(0, 12);
@@ -178,6 +191,7 @@ export async function createGame(player1Name: string): Promise<GameRow> {
       current_question: firstQuestion.question.text,
       current_category: firstQuestion.question.category,
       used_question_indices: [firstQuestion.index],
+      round_state: 'waiting_for_turn1',
     })
     .select()
     .single();
@@ -219,7 +233,7 @@ export async function joinGame(gameId: string, player2Name: string): Promise<Gam
 
 export async function submitAnswer(
   gameId: string,
-  answerSlot: 'answer1' | 'answer2',
+  answerSlot: 'answer1' | 'answer2' | 'answer3' | 'answer4',
   answer: string,
   nextRoundState: RoundState
 ): Promise<GameRow> {
@@ -241,7 +255,6 @@ export async function submitAnswer(
   return data as GameRow;
 }
 
-/** Store generated round image, the prompt used, and mark round complete */
 export async function storeRoundImage(
   gameId: string,
   imageUrl: string | null,
@@ -269,6 +282,8 @@ function appendRoundToHistory(game: GameRow, prompt: string): RoundHistoryEntry[
     question: game.current_question ?? '',
     answer1: game.answer1,
     answer2: game.answer2,
+    answer3: game.answer3,
+    answer4: game.answer4,
     round_image_url: game.round_image_url,
     prompt,
   });
@@ -304,9 +319,11 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
       current_category: questionToUse.question.category,
       answer1: null,
       answer2: null,
+      answer3: null,
+      answer4: null,
       round_image_url: null,
       last_prompt: null,
-      round_state: 'waiting_for_first' as RoundState,
+      round_state: 'waiting_for_turn1' as RoundState,
       used_question_indices: finalUsedIndices,
       updated_at: new Date().toISOString(),
     })
@@ -329,6 +346,8 @@ export async function completeGame(game: GameRow): Promise<GameRow> {
       status: 'completed' as GameStatus,
       answer1: null,
       answer2: null,
+      answer3: null,
+      answer4: null,
       round_image_url: null,
       last_prompt: null,
       round_state: 'round_complete' as RoundState,
@@ -370,11 +389,10 @@ export async function completeGame(game: GameRow): Promise<GameRow> {
   return updated as GameRow;
 }
 
-/** First player of a round can pass once per game to get a new question */
 export async function passQuestion(game: GameRow, playerSlot: PlayerSlot): Promise<GameRow> {
   const passField = playerSlot === 'player1' ? 'player1_has_passed' : 'player2_has_passed';
   if (game[passField]) throw new Error('Already used pass');
-  if (game.round_state !== 'waiting_for_first') throw new Error('Can only pass on first turn');
+  if (game.round_state !== 'waiting_for_turn1') throw new Error('Can only pass on first turn');
 
   const next = pickQuestion(game.used_question_indices);
   let questionToUse: { question: Question; index: number };
