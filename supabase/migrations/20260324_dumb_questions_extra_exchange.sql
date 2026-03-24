@@ -1,20 +1,20 @@
--- Dumb Questions: simplify to 2 turns per round + image generation
--- Removes exchange phase (answer3/answer4). Adds round_image_url, last_prompt,
--- round_history, aggregated_image_url. Updates round_state constraint.
+-- Dumb Questions: 4 turns per round (starter→second→starter→second)
+-- 4 rounds total, starter alternates each round.
+-- Adds image gen columns, pass tracking, round history.
 
--- 1. Add columns needed for image generation and round history
+-- 1. Ensure answer columns exist
+ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS answer3 TEXT;
+ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS answer4 TEXT;
+
+-- 2. Add image + history columns
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS round_image_url TEXT;
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS last_prompt TEXT;
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS round_history JSONB NOT NULL DEFAULT '[]';
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS aggregated_image_url TEXT;
 
--- 2. Add pass tracking (one pass per player per game)
+-- 3. Add pass tracking
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS player1_has_passed BOOLEAN NOT NULL DEFAULT FALSE;
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS player2_has_passed BOOLEAN NOT NULL DEFAULT FALSE;
-
--- 3. Drop answer3/answer4 if they exist (leftover from exchange phase)
-ALTER TABLE dumb_questions_games DROP COLUMN IF EXISTS answer3;
-ALTER TABLE dumb_questions_games DROP COLUMN IF EXISTS answer4;
 
 -- 4. Drop all round_state CHECK constraints (handles auto-generated names)
 DO $$
@@ -33,12 +33,19 @@ BEGIN
   END LOOP;
 END $$;
 
--- 5. Add clean round_state constraint: 4 states only
+-- 5. Add clean round_state constraint
 ALTER TABLE dumb_questions_games
   ADD CONSTRAINT dumb_questions_games_round_state_check
   CHECK (round_state IN (
     'waiting_for_first',
     'waiting_for_second',
+    'waiting_for_turn1',
+    'waiting_for_turn2',
+    'waiting_for_turn3',
+    'waiting_for_turn4',
     'generating_image',
     'round_complete'
   ));
+
+-- 6. Update default to new turn1 state
+ALTER TABLE dumb_questions_games ALTER COLUMN round_state SET DEFAULT 'waiting_for_turn1';
