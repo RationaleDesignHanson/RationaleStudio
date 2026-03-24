@@ -54,7 +54,7 @@ export function DumbQuestionsLobby() {
             Dumb Questions
           </h1>
           <p className="text-gray-400 text-sm mt-2">
-            A game that makes two people argue about dumb things
+            A game that makes two people laugh about dumb things
           </p>
         </div>
 

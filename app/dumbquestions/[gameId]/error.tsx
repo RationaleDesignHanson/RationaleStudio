@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function GameRoomError({
   error,
@@ -9,6 +9,8 @@ export default function GameRoomError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const [showDetails, setShowDetails] = useState(false);
+
   useEffect(() => {
     console.error('[DumbQuestions] Game room error:', error);
   }, [error]);
@@ -21,19 +23,32 @@ export default function GameRoomError({
           Try refreshing the page or start a new game.
         </p>
       </div>
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <div className="flex gap-3">
+          <button
+            onClick={reset}
+            className="flex-1 py-2.5 rounded-xl bg-blue-500 text-white font-semibold text-sm hover:bg-blue-600"
+          >
+            Try again
+          </button>
+          <a
+            href="/dumbquestions"
+            className="flex-1 py-2.5 rounded-xl bg-gray-800 text-white font-semibold text-sm hover:bg-gray-700 border border-gray-700 text-center"
+          >
+            New game
+          </a>
+        </div>
         <button
-          onClick={reset}
-          className="px-4 py-2.5 rounded-xl bg-blue-500 text-white font-semibold text-sm hover:bg-blue-600"
+          onClick={() => setShowDetails(!showDetails)}
+          className="text-gray-500 text-xs"
         >
-          Try again
+          {showDetails ? 'Hide' : 'Show'} error details
         </button>
-        <a
-          href="/dumbquestions"
-          className="px-4 py-2.5 rounded-xl bg-gray-800 text-white font-semibold text-sm hover:bg-gray-700 border border-gray-700"
-        >
-          New game
-        </a>
+        {showDetails && (
+          <p className="text-red-400 text-xs font-mono break-all bg-gray-900 p-3 rounded">
+            {error.message}
+          </p>
+        }
       </div>
     </div>
   );
