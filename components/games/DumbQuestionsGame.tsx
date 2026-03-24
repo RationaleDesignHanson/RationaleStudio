@@ -8,7 +8,10 @@ import {
   type RoundState,
   submitAnswer,
   advanceRound,
+  fetchGame,
   getSupabaseClient,
+  buildImagePrompt,
+  storeRoundImage,
 } from '@/lib/games/dumb-questions-utils';
 
 interface DumbQuestionsGameProps {
@@ -42,6 +45,16 @@ function starterName(game: GameRow): string {
 
 function secondName(game: GameRow): string {
   return game.starter_index === 0 ? (game.player2_name ?? '') : game.player1_name;
+}
+
+/** In exchange phase: who goes first (answer3)? Second person replies first. */
+function exchangeFirstSlot(game: GameRow): PlayerSlot {
+  return secondSlot(game);
+}
+
+/** In exchange phase: who goes second (answer4)? Starter gets last word. */
+function exchangeSecondSlot(game: GameRow): PlayerSlot {
+  return starterSlot(game);
 }
 
 // ── Component ────────────────────────────────────────────────
@@ -85,13 +98,16 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
   // ── Auto-scroll to bottom when messages change ───────────
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [game.round_state, game.answer1, game.answer2, game.current_round]);
+  }, [game.round_state, game.answer1, game.answer2, game.answer3, game.answer4, game.round_image_url, game.current_round]);
 
   // ── Determine what I should do ───────────────────────────
   const isMyTurnFirst = starterSlot(game) === mySlot && game.round_state === 'waiting_for_first';
   const isMyTurnSecond = secondSlot(game) === mySlot && game.round_state === 'waiting_for_second';
-  const isMyTurn = isMyTurnFirst || isMyTurnSecond;
+  const isMyTurnExchangeFirst = exchangeFirstSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_first';
+  const isMyTurnExchangeSecond = exchangeSecondSlot(game) === mySlot && game.round_state === 'waiting_for_exchange_second';
+  const isMyTurn = isMyTurnFirst || isMyTurnSecond || isMyTurnExchangeFirst || isMyTurnExchangeSecond;
   const isRoundComplete = game.round_state === 'round_complete';
+  const isGeneratingImage = game.round_state === 'generating_image';
 
   // ── Submit answer ────────────────────────────────────────
   const handleSend = useCallback(async () => {
@@ -101,25 +117,55 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
     setSending(true);
 
     try {
-      let answerSlot: 'answer1' | 'answer2';
+      let answerSlot: 'answer1' | 'answer2' | 'answer3' | 'answer4';
       let nextState: RoundState;
 
       if (isMyTurnFirst) {
         answerSlot = 'answer1';
         nextState = 'waiting_for_second';
-      } else {
+      } else if (isMyTurnSecond) {
         answerSlot = 'answer2';
-        nextState = 'round_complete';
+        nextState = 'waiting_for_exchange_first';
+      } else if (isMyTurnExchangeFirst) {
+        answerSlot = 'answer3';
+        nextState = 'waiting_for_exchange_second';
+      } else {
+        answerSlot = 'answer4';
+        nextState = 'generating_image';
       }
 
-      await submitAnswer(game.id, answerSlot, trimmed, nextState);
+      const updated = await submitAnswer(game.id, answerSlot, trimmed, nextState);
+      setGame(updated);
       setInput('');
+
+      // If we just submitted answer4, trigger image generation
+      if (answerSlot === 'answer4') {
+        try {
+          const prompt = buildImagePrompt(updated);
+          const res = await fetch('/api/dumbquestions/generate-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt }),
+          });
+          const json = await res.json();
+          if (json.url) {
+            await storeRoundImage(game.id, json.url);
+          } else {
+            await storeRoundImage(game.id, null);
+          }
+        } catch (err) {
+          console.error('Image generation failed:', err);
+          await storeRoundImage(game.id, null);
+        }
+        const fresh = await fetchGame(game.id);
+        if (fresh) setGame(fresh);
+      }
     } catch (err) {
       console.error('Failed to send:', err);
     } finally {
       setSending(false);
     }
-  }, [input, sending, isMyTurnFirst, game.id]);
+  }, [input, sending, isMyTurnFirst, isMyTurnSecond, isMyTurnExchangeFirst, game.id, game]);
 
   // ── Next round ───────────────────────────────────────────
   const handleNextRound = async () => {
@@ -134,11 +180,15 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
     }
   };
 
-  // ── Who said what? Map answer1/answer2 to names ──────────
+  // ── Who said what? Map answers to names ──────────────────
   const firstAnswererName = starterName(game);
   const secondAnswererName = secondName(game);
+  const exchangeFirstAnswererName = secondName(game);  // answer3 = second person
+  const exchangeSecondAnswererName = starterName(game); // answer4 = starter
   const firstAnswererIsMe = starterSlot(game) === mySlot;
   const secondAnswererIsMe = secondSlot(game) === mySlot;
+  const exchangeFirstAnswererIsMe = exchangeFirstSlot(game) === mySlot;
+  const exchangeSecondAnswererIsMe = exchangeSecondSlot(game) === mySlot;
 
   return (
     <div className="min-h-dvh bg-black flex flex-col">
@@ -236,9 +286,86 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
           )}
         </AnimatePresence>
 
-        {/* Waiting indicator */}
+        {/* Answer 3 bubble (exchange — second person replies) */}
         <AnimatePresence>
-          {!isMyTurn && !isRoundComplete && (
+          {game.answer3 && (
+            <motion.div
+              key={`a3-${game.current_round}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className={`flex flex-col max-w-[80%] ${
+                exchangeFirstAnswererIsMe ? 'self-end items-end' : 'self-start items-start'
+              }`}
+            >
+              <span className="text-[11px] text-gray-500 mb-1 px-1">
+                {exchangeFirstAnswererName}
+              </span>
+              <div
+                className={`rounded-2xl px-4 py-2.5 ${
+                  exchangeFirstAnswererIsMe
+                    ? 'bg-blue-500 text-white rounded-br-md'
+                    : 'bg-gray-700 text-white rounded-bl-md'
+                }`}
+              >
+                <p className="text-[15px] leading-snug">{game.answer3}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Answer 4 bubble (exchange — starter gets last word) */}
+        <AnimatePresence>
+          {game.answer4 && (
+            <motion.div
+              key={`a4-${game.current_round}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className={`flex flex-col max-w-[80%] ${
+                exchangeSecondAnswererIsMe ? 'self-end items-end' : 'self-start items-start'
+              }`}
+            >
+              <span className="text-[11px] text-gray-500 mb-1 px-1">
+                {exchangeSecondAnswererName}
+              </span>
+              <div
+                className={`rounded-2xl px-4 py-2.5 ${
+                  exchangeSecondAnswererIsMe
+                    ? 'bg-blue-500 text-white rounded-br-md'
+                    : 'bg-gray-700 text-white rounded-bl-md'
+                }`}
+              >
+                <p className="text-[15px] leading-snug">{game.answer4}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Round image (when complete) */}
+        <AnimatePresence>
+          {game.round_image_url && (
+            <motion.div
+              key={`img-${game.current_round}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="self-center max-w-[90%]"
+            >
+              <img
+                src={game.round_image_url}
+                alt="Generated round illustration"
+                className="rounded-2xl w-full border border-gray-800 shadow-lg"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Waiting indicator (hide when generating image) */}
+        <AnimatePresence>
+          {!isMyTurn && !isRoundComplete && !isGeneratingImage && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -248,9 +375,17 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
                   ? starterSlot(game) !== mySlot
                     ? 'self-start items-start'
                     : 'self-end items-end'
-                  : secondSlot(game) !== mySlot
-                    ? 'self-start items-start'
-                    : 'self-end items-end'
+                  : game.round_state === 'waiting_for_second'
+                    ? secondSlot(game) !== mySlot
+                      ? 'self-start items-start'
+                      : 'self-end items-end'
+                    : game.round_state === 'waiting_for_exchange_first'
+                      ? exchangeFirstSlot(game) !== mySlot
+                        ? 'self-start items-start'
+                        : 'self-end items-end'
+                      : exchangeSecondSlot(game) !== mySlot
+                        ? 'self-start items-start'
+                        : 'self-end items-end'
               }`}
             >
               <div className="bg-gray-800 rounded-2xl px-4 py-2.5 rounded-bl-md">
@@ -271,12 +406,32 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
           )}
         </AnimatePresence>
 
+        {/* Generating image indicator */}
+        <AnimatePresence>
+          {isGeneratingImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="self-center"
+            >
+              <div className="bg-gray-800 rounded-2xl px-4 py-2.5">
+                <span className="text-gray-400 text-sm">Generating image…</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div ref={messagesEndRef} />
       </div>
 
       {/* ── Bottom input area ───────────────────────────── */}
       <div className="flex-shrink-0 bg-gray-950 border-t border-gray-800 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        {isRoundComplete ? (
+        {isGeneratingImage ? (
+          <div className="flex items-center justify-center gap-2 py-2">
+            <span className="text-gray-400 text-sm">Generating image…</span>
+          </div>
+        ) : isRoundComplete ? (
           /* Round complete — Next / Skip */
           <div className="flex flex-col gap-2">
             <button
@@ -297,7 +452,11 @@ export function DumbQuestionsGame({ initialGame, mySlot }: DumbQuestionsGameProp
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder={
-                isMyTurnFirst ? 'Your answer…' : 'Reply or your answer…'
+                isMyTurnFirst
+                  ? 'Your answer…'
+                  : isMyTurnExchangeSecond
+                    ? 'Last word…'
+                    : 'Reply…'
               }
               maxLength={280}
               autoFocus

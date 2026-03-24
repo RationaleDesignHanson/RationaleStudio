@@ -12,7 +12,13 @@ import { QUESTIONS, type Question } from './dumb-questions-data';
 // ── Types ────────────────────────────────────────────────────
 
 export type GameStatus = 'waiting' | 'active' | 'completed';
-export type RoundState = 'waiting_for_first' | 'waiting_for_second' | 'round_complete';
+export type RoundState =
+  | 'waiting_for_first'
+  | 'waiting_for_second'
+  | 'waiting_for_exchange_first'
+  | 'waiting_for_exchange_second'
+  | 'generating_image'
+  | 'round_complete';
 
 export interface GameRow {
   id: string;
@@ -25,6 +31,9 @@ export interface GameRow {
   current_category: string | null;
   answer1: string | null;
   answer2: string | null;
+  answer3: string | null;
+  answer4: string | null;
+  round_image_url: string | null;
   used_question_indices: number[];
   round_state: RoundState;
   created_at: string;
@@ -123,10 +132,10 @@ export async function joinGame(gameId: string, player2Name: string): Promise<Gam
   return data as GameRow;
 }
 
-/** Submit an answer (answer1 = first responder, answer2 = second responder) */
+/** Submit an answer (answer1–4) */
 export async function submitAnswer(
   gameId: string,
-  answerSlot: 'answer1' | 'answer2',
+  answerSlot: 'answer1' | 'answer2' | 'answer3' | 'answer4',
   answer: string,
   nextRoundState: RoundState
 ): Promise<GameRow> {
@@ -135,6 +144,40 @@ export async function submitAnswer(
     .update({
       [answerSlot]: answer,
       round_state: nextRoundState,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', gameId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as GameRow;
+}
+
+/** Generate image prompt from question + conversation */
+export function buildImagePrompt(game: GameRow): string {
+  const parts: string[] = [
+    `Question: ${game.current_question || 'A silly debate'}`,
+    game.answer1 && `First response: ${game.answer1}`,
+    game.answer2 && `Second response: ${game.answer2}`,
+    game.answer3 && `Reply: ${game.answer3}`,
+    game.answer4 && `Final reply: ${game.answer4}`,
+  ].filter(Boolean) as string[];
+
+  const conversation = parts.join('. ');
+  return `Whimsical illustration, two friends having a funny debate. ${conversation}. Colorful, cartoon style, lighthearted, iMessage chat bubble aesthetic.`;
+}
+
+/** Store generated round image and mark round complete (pass null if image gen failed) */
+export async function storeRoundImage(
+  gameId: string,
+  imageUrl: string | null
+): Promise<GameRow> {
+  const { data, error } = await supabase
+    .from('dumb_questions_games')
+    .update({
+      round_image_url: imageUrl || null,
+      round_state: 'round_complete' as RoundState,
       updated_at: new Date().toISOString(),
     })
     .eq('id', gameId)
@@ -174,6 +217,9 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
       current_category: questionToUse.question.category,
       answer1: null,
       answer2: null,
+      answer3: null,
+      answer4: null,
+      round_image_url: null,
       round_state: 'waiting_for_first' as RoundState,
       used_question_indices: finalUsedIndices,
       updated_at: new Date().toISOString(),
