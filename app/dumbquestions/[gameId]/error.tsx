@@ -44,11 +44,11 @@ export default function GameRoomError({
         >
           {showDetails ? 'Hide' : 'Show'} error details
         </button>
-        {showDetails && (
+        {showDetails ? (
           <p className="text-red-400 text-xs font-mono break-all bg-gray-900 p-3 rounded">
             {error.message}
           </p>
-        }
+        ) : null}
       </div>
     </div>
   );
