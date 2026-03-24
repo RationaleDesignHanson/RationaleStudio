@@ -1,8 +1,9 @@
 /**
  * Utility functions for the Unhinged Text Game
  *
- * 4 rounds, 4 turns each: starter→second→starter→second
- * starter_index flips each round so turns alternate who goes first
+ * - Game ID generation
+ * - Question selection with repeat prevention
+ * - Supabase game helpers
  */
 
 import { createClient } from '@/lib/supabase/client';
@@ -12,10 +13,10 @@ import { QUESTIONS, type Question } from './dumb-questions-data';
 
 export type GameStatus = 'waiting' | 'active' | 'completed';
 export type RoundState =
-  | 'waiting_for_turn1'
-  | 'waiting_for_turn2'
-  | 'waiting_for_turn3'
-  | 'waiting_for_turn4'
+  | 'waiting_for_first'
+  | 'waiting_for_second'
+  | 'waiting_for_exchange_first'
+  | 'waiting_for_exchange_second'
   | 'generating_image'
   | 'round_complete';
 
@@ -33,13 +34,10 @@ export interface GameRow {
   answer3: string | null;
   answer4: string | null;
   round_image_url: string | null;
-  last_prompt: string | null;
   used_question_indices: number[];
   round_state: RoundState;
   round_history: RoundHistoryEntry[];
   aggregated_image_url: string | null;
-  player1_has_passed: boolean;
-  player2_has_passed: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -53,26 +51,11 @@ export interface RoundHistoryEntry {
   answer3: string | null;
   answer4: string | null;
   round_image_url: string | null;
-  prompt: string;
-}
-
-// ── Constants ────────────────────────────────────────────────
-
-export const MAX_ROUNDS = 4;
-
-/**
- * Turn order within a round (4 turns): starter, second, starter, second
- * Returns the PlayerSlot for a given turn number (1-4) based on starter_index.
- */
-export function whosTurn(game: GameRow, turnNum: 1 | 2 | 3 | 4): PlayerSlot {
-  const starter: PlayerSlot = game.starter_index === 0 ? 'player1' : 'player2';
-  const second: PlayerSlot = game.starter_index === 0 ? 'player2' : 'player1';
-  return turnNum % 2 === 1 ? starter : second;
 }
 
 // ── ID Generation ────────────────────────────────────────────
 
-const ID_CHARS = 'abcdefghjkmnpqrstuvwxyz23456789';
+const ID_CHARS = 'abcdefghjkmnpqrstuvwxyz23456789'; // no ambiguous chars
 const ID_LENGTH = 6;
 
 export function generateGameId(): string {
@@ -85,98 +68,26 @@ export function generateGameId(): string {
 
 // ── Question Selection ───────────────────────────────────────
 
+/**
+ * Pick a random question that hasn't been used yet.
+ * Returns the question and its index in the QUESTIONS array.
+ */
 export function pickQuestion(usedIndices: number[]): { question: Question; index: number } | null {
   const available = QUESTIONS
     .map((q, i) => ({ question: q, index: i }))
     .filter(({ index }) => !usedIndices.includes(index));
 
   if (available.length === 0) return null;
-  return available[Math.floor(Math.random() * available.length)];
-}
 
-// ── Image Prompt: Concept Extraction ─────────────────────────
-
-const FILLER = new Set([
-  'i', 'the', 'a', 'an', 'is', 'are', 'was', 'were', 'it', 'its',
-  'that', 'this', 'but', 'and', 'or', 'so', 'like', 'just', 'really',
-  'definitely', 'probably', 'maybe', 'nah', 'yeah', 'yes', 'no',
-  'think', 'would', 'could', 'should', 'for', 'sure', 'way', 'because',
-  'they', 'them', 'their', 'you', 'your', 'me', 'my', 'we', 'our',
-  'to', 'of', 'in', 'on', 'at', 'be', 'do', 'does', 'did', 'has', 'have',
-  'not', 'dont', "don't", 'one', 'got', 'get', 'know', 'about', 'with',
-  'its', 'than', 'been', 'who', 'what', 'when', 'where', 'how', 'which',
-  'will', 'can', 'all', 'each', 'every', 'both', 'few', 'more', 'most',
-  'some', 'any', 'much', 'many', 'too', 'also', 'only', 'own', 'same',
-  'very', 'even', 'still', 'back', 'well', 'then', 'here', 'there',
-  'why', 'lol', 'lmao', 'haha', 'omg', 'idk',
-]);
-
-function extractConcepts(answers: string[]): string[] {
-  const words = answers.join(' ').toLowerCase()
-    .replace(/[^a-z\s]/g, '')
-    .split(/\s+/)
-    .filter(w => w.length > 2 && !FILLER.has(w));
-
-  const freq = new Map<string, number>();
-  for (const w of words) freq.set(w, (freq.get(w) || 0) + 1);
-
-  return [...freq.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .map(([w]) => w);
-}
-
-// ── Image Prompt: Art Styles ─────────────────────────────────
-
-const ART_STYLES = [
-  'retrofuturist oil painting',
-  '80s airbrush concert poster',
-  'Dutch Golden Age still life with anachronistic objects',
-  'Japanese woodblock print meets vaporwave',
-  'Soviet propaganda poster reimagined as a fever dream',
-  'macro nature photography of impossible miniature worlds',
-  '1970s Italian horror movie poster',
-  'Hieronymus Bosch triptych detail',
-];
-
-const PROMPT_SUFFIX = 'no text, no letters, no speech bubbles, no dialogue, no captions, photorealistic details mixed with surrealism, award-winning composition';
-
-function pickStyle(gameId: string, round: number): string {
-  let hash = 0;
-  const key = `${gameId}-${round}`;
-  for (let i = 0; i < key.length; i++) {
-    hash = ((hash << 5) - hash + key.charCodeAt(i)) | 0;
-  }
-  return ART_STYLES[Math.abs(hash) % ART_STYLES.length];
-}
-
-// ── Image Prompt Builders ────────────────────────────────────
-
-export function buildImagePrompt(game: GameRow): string {
-  const question = game.current_question || 'a silly debate';
-  const answers = [game.answer1, game.answer2, game.answer3, game.answer4].filter(Boolean) as string[];
-  const concepts = extractConcepts(answers);
-  const style = pickStyle(game.id, game.current_round);
-  const conceptStr = concepts.length > 0 ? concepts.join(', ') : 'absurdity';
-
-  return `Surreal scene depicting the essence of "${question}", featuring ${conceptStr}, rendered as ${style}, dramatic cinematic lighting, highly detailed, ${PROMPT_SUFFIX}`;
-}
-
-export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[], gameId: string): string {
-  const allConcepts = roundHistory.flatMap((r) => {
-    const answers = [r.answer1, r.answer2, r.answer3, r.answer4].filter(Boolean) as string[];
-    return extractConcepts(answers);
-  });
-  const uniqueConcepts = [...new Set(allConcepts)].slice(0, 12);
-  const themes = roundHistory.map(r => r.question).join('; ');
-
-  return `A single sprawling surreal panorama combining: ${themes}. Key elements: ${uniqueConcepts.join(', ')}. Hieronymus Bosch triptych reimagined as a modern fever dream, every element interacts with the others, richly detailed, impossible architecture, dramatic scale shifts, cinematic lighting, ${PROMPT_SUFFIX}`;
+  const pick = available[Math.floor(Math.random() * available.length)];
+  return pick;
 }
 
 // ── Supabase Game Helpers ────────────────────────────────────
 
 const supabase = createClient();
 
+/** Create a new game and return the row */
 export async function createGame(player1Name: string): Promise<GameRow> {
   const id = generateGameId();
   const firstQuestion = pickQuestion([]);
@@ -191,7 +102,6 @@ export async function createGame(player1Name: string): Promise<GameRow> {
       current_question: firstQuestion.question.text,
       current_category: firstQuestion.question.category,
       used_question_indices: [firstQuestion.index],
-      round_state: 'waiting_for_turn1',
     })
     .select()
     .single();
@@ -200,6 +110,7 @@ export async function createGame(player1Name: string): Promise<GameRow> {
   return data as GameRow;
 }
 
+/** Fetch a game by ID */
 export async function fetchGame(gameId: string): Promise<GameRow | null> {
   const { data, error } = await supabase
     .from('dumb_questions_games')
@@ -208,12 +119,13 @@ export async function fetchGame(gameId: string): Promise<GameRow | null> {
     .single();
 
   if (error) {
-    if (error.code === 'PGRST116') return null;
+    if (error.code === 'PGRST116') return null; // not found
     throw error;
   }
   return data as GameRow;
 }
 
+/** Player 2 joins a game */
 export async function joinGame(gameId: string, player2Name: string): Promise<GameRow> {
   const { data, error } = await supabase
     .from('dumb_questions_games')
@@ -231,6 +143,7 @@ export async function joinGame(gameId: string, player2Name: string): Promise<Gam
   return data as GameRow;
 }
 
+/** Submit an answer (answer1–4) */
 export async function submitAnswer(
   gameId: string,
   answerSlot: 'answer1' | 'answer2' | 'answer3' | 'answer4',
@@ -248,23 +161,58 @@ export async function submitAnswer(
     .select()
     .single();
 
-  if (error) {
-    console.error('[dumbquestions] submitAnswer failed:', error);
-    throw error;
-  }
+  if (error) throw error;
   return data as GameRow;
 }
 
+// ── Image Prompt Generation ─────────────────────────────────
+
+const ART_STYLES = [
+  'Thick impasto oil painting, visible palette knife strokes, saturated pigments, gallery-worthy',
+  'Vintage 1960s psychedelic concert poster, swirling patterns, neon colors on dark background, hand-lettered feel',
+  'Japanese ukiyo-e woodblock print, bold outlines, flat color fields, dramatic composition',
+  'Surrealist dreamscape, melting forms, impossible architecture, vivid twilight sky, Dali meets Miyazaki',
+];
+
+/** Build per-round image prompt. Question = scene concept, answers = elements, style rotates. */
+export function buildImagePrompt(game: GameRow): string {
+  const q = game.current_question || 'a strange debate between two friends';
+  const answers = [game.answer1, game.answer2, game.answer3, game.answer4]
+    .filter(Boolean) as string[];
+  const answerScene = answers.length > 0
+    ? ` Featuring: ${answers.join(', ')}.`
+    : '';
+  const style = ART_STYLES[(game.current_round - 1) % ART_STYLES.length];
+  return `${q}${answerScene} ${style}.`;
+}
+
+const MAX_ROUNDS = 4;
+
+/** Build aggregated prompt combining all 4 rounds into one unified scene. */
+export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[]): string {
+  if (roundHistory.length === 0) {
+    return 'Epic panoramic mural of a fantastical world. Rich detail, warm palette, studio Ghibli meets Hieronymus Bosch.';
+  }
+
+  const themes = roundHistory.map((r) => {
+    const answers = [r.answer1, r.answer2, r.answer3, r.answer4]
+      .filter(Boolean) as string[];
+    const elements = answers.length > 0 ? `: ${answers.join(', ')}` : '';
+    return `${r.question}${elements}`;
+  });
+
+  return `Epic panoramic mural combining four scenes into one unified world. ${themes.join(' — ')} — All elements woven together in the same fantastical landscape. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch.`;
+}
+
+/** Store generated round image and mark round complete (pass null if image gen failed) */
 export async function storeRoundImage(
   gameId: string,
-  imageUrl: string | null,
-  prompt: string
+  imageUrl: string | null
 ): Promise<GameRow> {
   const { data, error } = await supabase
     .from('dumb_questions_games')
     .update({
       round_image_url: imageUrl || null,
-      last_prompt: prompt,
       round_state: 'round_complete' as RoundState,
       updated_at: new Date().toISOString(),
     })
@@ -276,8 +224,9 @@ export async function storeRoundImage(
   return data as GameRow;
 }
 
-function appendRoundToHistory(game: GameRow, prompt: string): RoundHistoryEntry[] {
-  const history = [...(game.round_history ?? [])] as RoundHistoryEntry[];
+/** Append current round to history. Returns the new history array. */
+function appendRoundToHistory(game: GameRow): RoundHistoryEntry[] {
+  const history = (game.round_history ?? []) as RoundHistoryEntry[];
   history.push({
     question: game.current_question ?? '',
     answer1: game.answer1,
@@ -285,13 +234,13 @@ function appendRoundToHistory(game: GameRow, prompt: string): RoundHistoryEntry[
     answer3: game.answer3,
     answer4: game.answer4,
     round_image_url: game.round_image_url,
-    prompt,
   });
   return history;
 }
 
+/** Advance to next round: append current to history, pick new question, swap starter, clear answers */
 export async function advanceRound(game: GameRow): Promise<GameRow> {
-  const updatedHistory = appendRoundToHistory(game, game.last_prompt ?? '');
+  const updatedHistory = appendRoundToHistory(game);
   const nextRound = game.current_round + 1;
   const nextStarter = game.starter_index === 0 ? 1 : 0;
   const nextQuestion = pickQuestion(game.used_question_indices);
@@ -322,8 +271,7 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
       answer3: null,
       answer4: null,
       round_image_url: null,
-      last_prompt: null,
-      round_state: 'waiting_for_turn1' as RoundState,
+      round_state: 'waiting_for_first' as RoundState,
       used_question_indices: finalUsedIndices,
       updated_at: new Date().toISOString(),
     })
@@ -335,10 +283,12 @@ export async function advanceRound(game: GameRow): Promise<GameRow> {
   return data as GameRow;
 }
 
+/** Complete game after round 4: append round 4, generate aggregated image, set status completed */
 export async function completeGame(game: GameRow): Promise<GameRow> {
-  const fullHistory = appendRoundToHistory(game, game.last_prompt ?? '');
-  const prompt = buildAggregatedPrompt(fullHistory, game.id);
+  const fullHistory = appendRoundToHistory(game);
+  const prompt = buildAggregatedPrompt(fullHistory);
 
+  // Store round 4 in history and set status to completed (before image, so we can show "generating")
   const { data: updated, error: updateError } = await supabase
     .from('dumb_questions_games')
     .update({
@@ -349,7 +299,6 @@ export async function completeGame(game: GameRow): Promise<GameRow> {
       answer3: null,
       answer4: null,
       round_image_url: null,
-      last_prompt: null,
       round_state: 'round_complete' as RoundState,
       updated_at: new Date().toISOString(),
     })
@@ -389,42 +338,9 @@ export async function completeGame(game: GameRow): Promise<GameRow> {
   return updated as GameRow;
 }
 
-export async function passQuestion(game: GameRow, playerSlot: PlayerSlot): Promise<GameRow> {
-  const passField = playerSlot === 'player1' ? 'player1_has_passed' : 'player2_has_passed';
-  if (game[passField]) throw new Error('Already used pass');
-  if (game.round_state !== 'waiting_for_turn1') throw new Error('Can only pass on first turn');
+export { MAX_ROUNDS };
 
-  const next = pickQuestion(game.used_question_indices);
-  let questionToUse: { question: Question; index: number };
-  let finalUsedIndices: number[];
-
-  if (next) {
-    questionToUse = next;
-    finalUsedIndices = [...game.used_question_indices, next.index];
-  } else {
-    const fresh = pickQuestion([]);
-    if (!fresh) throw new Error('No questions available');
-    questionToUse = fresh;
-    finalUsedIndices = [fresh.index];
-  }
-
-  const { data, error } = await supabase
-    .from('dumb_questions_games')
-    .update({
-      [passField]: true,
-      current_question: questionToUse.question.text,
-      current_category: questionToUse.question.category,
-      used_question_indices: finalUsedIndices,
-      updated_at: new Date().toISOString(),
-    })
-    .eq('id', game.id)
-    .select()
-    .single();
-
-  if (error) throw error;
-  return data as GameRow;
-}
-
+/** Get the Supabase client (for realtime subscriptions in components) */
 export function getSupabaseClient() {
   return supabase;
 }

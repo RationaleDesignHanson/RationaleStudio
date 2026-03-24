@@ -1,22 +1,21 @@
--- Dumb Questions: 4 turns per round (starter→second→starter→second)
--- 4 rounds total, starter alternates each round.
--- Adds image gen columns, pass tracking, round history.
+-- Add extra exchange (answer3, answer4) and round image for Dumb Questions game
+-- Flow: answer1 → answer2 → answer3 (exchange) → answer4 (exchange) → generate image → next question
+--
+-- IMPORTANT: Run this in the Supabase SQL Editor.
+-- If the constraint step (block 2/3) fails, run the diagnostic below first:
+--
+--   SELECT conname, pg_get_constraintdef(oid)
+--   FROM pg_constraint
+--   WHERE conrelid = 'dumb_questions_games'::regclass AND contype = 'c';
+--
+-- Then drop whichever constraint name appears for round_state manually.
 
--- 1. Ensure answer columns exist
+-- 1. Add columns
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS answer3 TEXT;
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS answer4 TEXT;
-
--- 2. Add image + history columns
 ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS round_image_url TEXT;
-ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS last_prompt TEXT;
-ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS round_history JSONB NOT NULL DEFAULT '[]';
-ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS aggregated_image_url TEXT;
 
--- 3. Add pass tracking
-ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS player1_has_passed BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE dumb_questions_games ADD COLUMN IF NOT EXISTS player2_has_passed BOOLEAN NOT NULL DEFAULT FALSE;
-
--- 4. Drop all round_state CHECK constraints (handles auto-generated names)
+-- 2. Drop ALL check constraints on round_state (handles any auto-generated name)
 DO $$
 DECLARE
   con RECORD;
@@ -29,23 +28,18 @@ BEGIN
       AND c.contype = 'c'
       AND pg_get_constraintdef(c.oid) LIKE '%round_state%'
   LOOP
-    EXECUTE format('ALTER TABLE dumb_questions_games DROP CONSTRAINT IF EXISTS %I', con.conname);
+    EXECUTE format('ALTER TABLE dumb_questions_games DROP CONSTRAINT %I', con.conname);
   END LOOP;
 END $$;
 
--- 5. Add clean round_state constraint
+-- 3. Add new round_state check with all required states
 ALTER TABLE dumb_questions_games
   ADD CONSTRAINT dumb_questions_games_round_state_check
   CHECK (round_state IN (
     'waiting_for_first',
     'waiting_for_second',
-    'waiting_for_turn1',
-    'waiting_for_turn2',
-    'waiting_for_turn3',
-    'waiting_for_turn4',
+    'waiting_for_exchange_first',
+    'waiting_for_exchange_second',
     'generating_image',
     'round_complete'
   ));
-
--- 6. Update default to new turn1 state
-ALTER TABLE dumb_questions_games ALTER COLUMN round_state SET DEFAULT 'waiting_for_turn1';
