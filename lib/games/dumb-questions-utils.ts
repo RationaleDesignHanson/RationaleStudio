@@ -174,34 +174,37 @@ const ART_STYLES = [
   'Surrealist dreamscape, melting forms, impossible architecture, vivid twilight sky, Dali meets Miyazaki',
 ];
 
-/** Build per-round image prompt. Question = scene concept, answers = elements, style rotates. */
+/** Build per-round image prompt. Question = scene concept, answer1+answer2 = the two real answers. */
 export function buildImagePrompt(game: GameRow): string {
   const q = game.current_question || 'a strange debate between two friends';
-  const answers = [game.answer1, game.answer2, game.answer3, game.answer4]
-    .filter(Boolean) as string[];
-  const answerScene = answers.length > 0
-    ? ` Featuring: ${answers.join(', ')}.`
-    : '';
+  const a1 = game.answer1;
+  const a2 = game.answer2;
+  const featuring = a1 && a2
+    ? ` Featuring: ${a1} vs ${a2}.`
+    : a1
+      ? ` Featuring: ${a1}.`
+      : '';
   const style = ART_STYLES[(game.current_round - 1) % ART_STYLES.length];
-  return `${q}${answerScene} ${style}.`;
+  return `${q}${featuring} ${style}.`;
 }
 
 const MAX_ROUNDS = 4;
 
-/** Build aggregated prompt combining all 4 rounds into one unified scene. */
+/** Build aggregated prompt: use each round's question + the two real answers (not banter). */
 export function buildAggregatedPrompt(roundHistory: RoundHistoryEntry[]): string {
   if (roundHistory.length === 0) {
     return 'Epic panoramic mural of a fantastical world. Rich detail, warm palette, studio Ghibli meets Hieronymus Bosch.';
   }
 
-  const themes = roundHistory.map((r) => {
-    const answers = [r.answer1, r.answer2, r.answer3, r.answer4]
-      .filter(Boolean) as string[];
-    const elements = answers.length > 0 ? `: ${answers.join(', ')}` : '';
-    return `${r.question}${elements}`;
+  const scenes = roundHistory.map((r) => {
+    const a1 = r.answer1;
+    const a2 = r.answer2;
+    if (a1 && a2) return `${a1} vs ${a2}`;
+    if (a1) return a1;
+    return r.question;
   });
 
-  return `Epic panoramic mural combining four scenes into one unified world. ${themes.join(' — ')} — All elements woven together in the same fantastical landscape. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch.`;
+  return `Epic panoramic mural: ${scenes.join(', ')} — all coexisting in one fantastical scene together. Rich detail, warm palette, cohesive composition, studio Ghibli meets Hieronymus Bosch.`;
 }
 
 /** Store generated round image and mark round complete (pass null if image gen failed) */
