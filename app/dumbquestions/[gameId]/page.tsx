@@ -50,7 +50,7 @@ export default function GameRoomPage() {
           } else {
             setState({ kind: 'join', game });
           }
-        } else if (game.status === 'active') {
+        } else if (game.status === 'active' || game.status === 'completed') {
           if (savedRole) {
             setState({ kind: 'playing', game, mySlot: savedRole });
           } else {
