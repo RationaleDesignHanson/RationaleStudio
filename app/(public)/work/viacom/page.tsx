@@ -111,91 +111,117 @@ export default function ViacomPage() {
           </div>
 
           {/* CONCEPT */}
-          <div className="mt-8 md:mt-10">
+          <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The concept · State 1
             </p>
-            <Figure figNumber="FIG. 02" caption="VIACOM: PAST. PRESENT. FUTURE. · proposal showing the 6-row exploded timeline">
-              <Image src="/images/work/viacom/ppf-concept-state-1.jpg" alt="Past Present and Future · concept slide" width={1800} height={1013} className="w-full h-auto rounded-md" />
+            <Figure figNumber="FIG. 03" caption="VIACOM: PAST. PRESENT. FUTURE. · proposal showing the 6-row exploded timeline">
+              <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
+                <Image src="/images/work/viacom/ppf-concept-state-1.jpg" alt="Past Present and Future · concept slide" width={1800} height={1013} className="w-full h-full object-cover" />
+              </div>
             </Figure>
           </div>
 
-          {/* SYSTEM */}
-          <div className="mt-8 md:mt-10">
+          {/* SYSTEM — uniform 16:9 triptych so the three frames read as one row */}
+          <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The system · empty wall, chapter taxonomy, color sets
             </p>
             <Plate variant="triptych">
-              <Figure figNumber="FIG. 03" caption="The wall before content · 84-inch shelving render">
-                <Image src="/images/work/viacom/ppf-render-empty-wall.jpg" alt="Empty Past Present and Future wall render" width={1600} height={900} className="w-full h-auto" />
+              <Figure figNumber="FIG. 04" caption="The wall before content · 84-inch shelving render">
+                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-render-empty-wall.jpg" alt="Empty Past Present and Future wall render" width={1600} height={900} className="w-full h-full object-cover" />
+                </div>
               </Figure>
-              <Figure figNumber="FIG. 04" caption="Chapter taxonomy · acquisitions, launches, hits, awards, fandom, achievements, pro social">
-                <Image src="/images/work/viacom/ppf-chapter-taxonomy.jpg" alt="Chapter taxonomy storyboard" width={1600} height={1067} className="w-full h-auto" />
+              <Figure figNumber="FIG. 05" caption="Chapter taxonomy · acquisitions, launches, hits, awards, fandom, achievements, pro social">
+                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-chapter-taxonomy.jpg" alt="Chapter taxonomy storyboard" width={1600} height={1067} className="w-full h-full object-cover" />
+                </div>
               </Figure>
-              <Figure figNumber="FIG. 05" caption="Color-set palettes · five sets mapping to grid positions">
-                <Image src="/images/work/viacom/ppf-color-sets.jpg" alt="Color set palettes" width={1600} height={1326} className="w-full h-auto" />
+              <Figure figNumber="FIG. 06" caption="Color-set palettes · five sets mapping to grid positions">
+                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-color-sets.jpg" alt="Color set palettes" width={1600} height={1326} className="w-full h-full object-cover object-top" />
+                </div>
               </Figure>
             </Plate>
           </div>
 
-          {/* PRODUCTION */}
-          <div className="mt-8 md:mt-10">
+          {/* PRODUCTION — lead 4:3 with two 4:3 asides */}
+          <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The production · physical maquettes feeding the digital build
             </p>
             <Plate variant="lead-2">
               <Plate.Lead>
-                <Figure figNumber="FIG. 06" caption="Production wall · master guide + 24+ chapter design briefs">
-                  <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1800} height={1350} className="w-full h-auto" />
+                <Figure figNumber="FIG. 07" caption="Production wall · master guide + 24+ chapter design briefs">
+                  <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                    <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1800} height={1350} className="w-full h-full object-cover" />
+                  </div>
                 </Figure>
               </Plate.Lead>
               <Plate.Aside>
                 <div className="space-y-4 md:space-y-6">
-                  <Figure figNumber="FIG. 07" caption="Maquettes · cardboard chamber prototypes">
-                    <Image src="/images/work/viacom/ppf-maquettes-desk.jpg" alt="Cardboard maquettes on a desk" width={1600} height={1200} className="w-full h-auto" />
+                  <Figure figNumber="FIG. 08" caption="Maquettes · cardboard chamber prototypes">
+                    <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                      <Image src="/images/work/viacom/ppf-maquettes-desk.jpg" alt="Cardboard maquettes on a desk" width={1600} height={1200} className="w-full h-full object-cover" />
+                    </div>
                   </Figure>
-                  <Figure figNumber="FIG. 08" caption="Save The Music · physical horn maquette">
-                    <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-auto" />
+                  <Figure figNumber="FIG. 09" caption="Save The Music · physical horn maquette">
+                    <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                      <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
+                    </div>
                   </Figure>
                 </div>
               </Plate.Aside>
             </Plate>
           </div>
 
-          {/* PHYSICAL TO DIGITAL — Save The Music walkthrough */}
-          <div className="mt-8 md:mt-10">
+          {/* PHYSICAL TO DIGITAL — Save The Music walkthrough · 4:3 split */}
+          <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Physical &rarr; digital · the Save The Music chamber
             </p>
             <Plate variant="split">
-              <Figure figNumber="FIG. 09" caption="Design doc · Top view, model notes, design ref, animation brief">
-                <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-auto" />
+              <Figure figNumber="FIG. 10" caption="Design doc · top view, model notes, design ref, animation brief">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-full object-cover" />
+                </div>
               </Figure>
-              <Figure figNumber="FIG. 10" caption="Final render · chrome music sculpture in a pink chamber">
-                <Image src="/images/work/viacom/ppf-savemusic-render.jpg" alt="Save The Music final render" width={1400} height={1400} className="w-full h-auto" />
+              <Figure figNumber="FIG. 11" caption="Final render · chrome music sculpture in a pink chamber">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-savemusic-render.jpg" alt="Save The Music final render" width={1400} height={1400} className="w-full h-full object-cover" />
+                </div>
               </Figure>
             </Plate>
           </div>
 
-          {/* FINISHED */}
-          <div className="mt-8 md:mt-10">
+          {/* FINISHED · 16:9 hero + 16:9 triptych */}
+          <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The finished install
             </p>
-            <Figure figNumber="FIG. 11" caption="THE HISTORY OF VIACOM · finished render with content populated">
-              <Image src="/images/work/viacom/ppf-render-finished.jpg" alt="Past Present and Future finished render with content" width={1800} height={1200} className="w-full h-auto rounded-md" />
+            <Figure figNumber="FIG. 12" caption="THE HISTORY OF VIACOM · finished render with content populated">
+              <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
+                <Image src="/images/work/viacom/ppf-render-finished.jpg" alt="Past Present and Future finished render with content" width={1800} height={1200} className="w-full h-full object-cover" />
+              </div>
             </Figure>
 
             <div className="mt-6 md:mt-8">
               <Plate variant="triptych">
-                <Figure figNumber="FIG. 12" caption="Installation · dusk lighting state">
-                  <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-auto" />
+                <Figure figNumber="FIG. 13" caption="Installation · dusk lighting state">
+                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                    <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
+                  </div>
                 </Figure>
-                <Figure figNumber="FIG. 13" caption="Pepper&rsquo;s-ghost diorama detail">
-                  <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-auto" />
+                <Figure figNumber="FIG. 14" caption="Pepper&rsquo;s-ghost diorama detail">
+                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                    <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-full object-cover" />
+                  </div>
                 </Figure>
-                <Figure figNumber="FIG. 14" caption="Magic-moment chapter activation">
-                  <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-auto" />
+                <Figure figNumber="FIG. 15" caption="Magic-moment chapter activation">
+                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                    <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-full object-cover" />
+                  </div>
                 </Figure>
               </Plate>
             </div>
@@ -211,8 +237,10 @@ export default function ViacomPage() {
             Live data drove dynamic visual treatments at street scale &mdash; the largest canvases I&rsquo;ve ever shipped to.
           </p>
           <div className="mt-4 max-w-3xl">
-            <Figure figNumber="FIG. 08" caption="Outrage Machine on Viacom's Times Square billboards">
-              <Image src="/images/work/viacom/outrage-machine.jpg" alt="Outrage Machine billboards" width={1600} height={1067} className="w-full h-auto rounded-md" />
+            <Figure figNumber="FIG. 16" caption="Outrage Machine on Viacom&rsquo;s Times Square billboards">
+              <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
+                <Image src="/images/work/viacom/outrage-machine.jpg" alt="Outrage Machine billboards" width={1600} height={1067} className="w-full h-full object-cover" />
+              </div>
             </Figure>
           </div>
         </ChapterRow>
