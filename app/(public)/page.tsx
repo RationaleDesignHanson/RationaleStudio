@@ -112,10 +112,8 @@ function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
       <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8">
         <div className="hidden md:block md:col-span-2" aria-hidden />
         <div className="md:col-span-10 border-b pb-5" style={{ borderColor: 'var(--era-ink)' }}>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight" style={{ color: 'var(--era-ink)' }}>
-            <span className="font-semibold not-italic">Rationale:</span>
-            <br />
-            <em className="italic font-normal">The Design Practice of Matt Hanson</em>
+          <h2 className="font-display italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight" style={{ color: 'var(--era-ink)' }}>
+            Vision bears the burden of proof
           </h2>
           {tagline && (
             <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
@@ -294,7 +292,7 @@ const homeBlocks: EraBlockData[] = [
     theme: 'now',
     label: 'NOW',
     era: 'ERA · NOW',
-    years: 'Product Founder · Designer · Developer',
+    years: 'Matt Hanson · Product Founder · Designer · Developer',
     renderHeader: (theme, era, years, tagline) => (
       <EraHeader theme={theme} era={era} years={years} tagline={tagline} />
     ),

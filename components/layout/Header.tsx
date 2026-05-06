@@ -52,10 +52,10 @@ export function Header() {
             {/* Wordmark — underline sweeps in on hover */}
             <Link
               href="/"
-              className="group inline-block font-display italic text-base md:text-lg leading-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
+              className="group inline-block font-display text-base md:text-lg leading-tight tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
             >
               <span className="relative inline-block">
-                Vision bears the burden of proof
+                Rationale
                 <span
                   aria-hidden
                   className="pointer-events-none absolute left-0 right-0 -bottom-0.5 h-px origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
