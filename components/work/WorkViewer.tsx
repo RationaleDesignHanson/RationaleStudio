@@ -62,7 +62,7 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
     <section
       ref={sectionRef}
       className="relative bg-paper"
-      style={{ height: `${total * 110}vh` }}
+      style={{ height: `${total * 160}vh` }}
     >
       {/* Sticky stage — pins below the page Header (~3.25rem mobile /
           3.75rem desktop) so cards don't render behind it. */}
@@ -103,17 +103,17 @@ function EraCard({ block, index, total, scrollYProgress }: EraCardProps) {
   // anchors at scroll end (no visible exit) — boundary cards are at
   // rest when the user arrives / leaves the section.
   const slot = 1 / total;
-  // Wide transition windows so the handoff is gradual and spread —
-  // each layer fades on its own scale, but all over a generous
-  // share of the slot. Combined with section height = 110vh per
-  // card, transitions occupy a real portion of the visible scroll.
-  //   bg     70% of slot → long atmospheric crossfade
-  //   header 50% of slot → mid-rate
-  //   rows   28% of slot → still the snappiest, but spread enough
-  //                        to read smooth, not jumpy
-  const twBg = slot * 0.7;
-  const twHeader = slot * 0.5;
-  const twRows = slot * 0.28;
+  // Transition windows are kept tight so each card has a real
+  // "fully visible" dwell zone. With section height = 160vh per
+  // card, the math works out to ~96vh of stable scroll between
+  // boundaries — plenty of time to read each era before the
+  // next one starts crossfading in.
+  //   bg     40% of slot → atmospheric crossfade, half the slot
+  //   header 32% of slot → mid-rate
+  //   rows   20% of slot → snappy handoff
+  const twBg = slot * 0.4;
+  const twHeader = slot * 0.32;
+  const twRows = slot * 0.2;
   const isFirst = index === 0;
   const isLast = index === total - 1;
 
