@@ -325,9 +325,9 @@ const workBlocks: EraBlockData[] = [
     ),
     rows: (
       <>
-        <WorkRow theme="meta" href="/work/fair-embodied-ai" index="04" title="FAIR Embodied AI" blurb="SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments." meta="Embodied AI · 2023–2025" />
-        <WorkRow theme="meta" href="/work/orion" index="05" title="Orion" blurb="UX for Meta&rsquo;s first true AR glasses, in a regular glasses form factor. Senior Design Manager across Day-1 use cases." meta="Sr. Design Manager · 2023–2025" />
-        <WorkRow theme="meta" href="/work/spark-ar" index="06" title="Spark AR" blurb="Built and led the Experiences team that turned Spark from a few flagship effects into a creator platform across Facebook, Instagram, and Messenger. Scope spanned design, prototyping, education, and the F8 stage." meta="Experiences team lead · 2017–2023" />
+        <WorkRow theme="meta" href="/work/fair-embodied-ai" index="04" title="FAIR Embodied AI" blurb="SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments." meta="Senior Product Design Manager · 2023–2025" />
+        <WorkRow theme="meta" href="/work/orion" index="05" title="Orion" blurb="UX for Meta&rsquo;s first true AR glasses, in a regular glasses form factor. Senior Product Design Manager across Day-1 use cases." meta="Senior Product Design Manager · 2023–2025" />
+        <WorkRow theme="meta" href="/work/spark-ar" index="06" title="Spark AR" blurb="Built and led the Experiences team that turned Spark from a few flagship effects into a creator platform across Facebook, Instagram, and Messenger. Scope spanned design, prototyping, education, and the F8 stage." meta="Senior Product Design Manager · 2017–2023" />
       </>
     ),
   },

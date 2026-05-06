@@ -105,31 +105,27 @@ function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
     );
   }
 
-  // NOW — Studio Monograph paper. Aligned with the work-row title column
-  // so the headline sits where row titles begin (col 3 of the 12-col grid).
+  // NOW — Studio Monograph paper. Headline + byline both start at the
+  // page's left edge (col 1) so the era header reads with the same
+  // left-aligned anchor as LEADER and DIRECTOR.
   return (
     <div className="mb-10 md:mb-14">
-      <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8">
-        <div className="hidden md:block md:col-span-2" aria-hidden />
-        <div className="md:col-span-10 border-b pb-5" style={{ borderColor: 'var(--era-ink)' }}>
-          <h2 className="font-display italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight" style={{ color: 'var(--era-ink)' }}>
-            Vision bears the burden of proof
-          </h2>
-          {tagline && (
-            <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
-              {tagline}
-            </p>
-          )}
-        </div>
-        {/* Role line sits BELOW the horizontal rule — reads as a quiet
-            byline for the section, not a subtitle of the headline. */}
-        <p
-          className="md:col-span-10 md:col-start-3 mt-3 font-mono text-sm md:text-base tracking-wide"
-          style={{ color: 'var(--era-ink-muted)' }}
-        >
-          {years}
-        </p>
+      <div className="border-b pb-5" style={{ borderColor: 'var(--era-ink)' }}>
+        <h2 className="font-display italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight" style={{ color: 'var(--era-ink)' }}>
+          Vision bears the burden of proof
+        </h2>
+        {tagline && (
+          <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
+            {tagline}
+          </p>
+        )}
       </div>
+      <p
+        className="mt-3 font-mono text-sm md:text-base tracking-wide"
+        style={{ color: 'var(--era-ink-muted)' }}
+      >
+        {years}
+      </p>
     </div>
   );
 }
@@ -316,9 +312,9 @@ const homeBlocks: EraBlockData[] = [
     ),
     rows: (
       <>
-        <WorkRow staggerIndex={0} theme="meta" href="/work/fair-embodied-ai" index="04" title="FAIR Embodied AI" blurb="SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments." meta="Embodied AI · 2023–2025" />
-        <WorkRow staggerIndex={1} theme="meta" href="/work/orion" index="05" title="Orion" blurb="UX for Meta's first true AR glasses, in a regular glasses form factor. Senior Design Manager across Day-1 use cases." meta="Sr. Design Manager · 2023–2025" />
-        <WorkRow staggerIndex={2} theme="meta" href="/work/spark-ar" index="06" title="Spark AR" blurb="Built and led the Experiences team that turned Spark from a few flagship effects into a creator platform across Facebook, Instagram, and Messenger. Scope spanned design, prototyping, education, and the F8 stage." meta="Experiences team lead · 2017–2023" />
+        <WorkRow staggerIndex={0} theme="meta" href="/work/fair-embodied-ai" index="04" title="FAIR Embodied AI" blurb="SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments." meta="Senior Product Design Manager · 2023–2025" />
+        <WorkRow staggerIndex={1} theme="meta" href="/work/orion" index="05" title="Orion" blurb="UX for Meta's first true AR glasses, in a regular glasses form factor. Senior Product Design Manager across Day-1 use cases." meta="Senior Product Design Manager · 2023–2025" />
+        <WorkRow staggerIndex={2} theme="meta" href="/work/spark-ar" index="06" title="Spark AR" blurb="Built and led the Experiences team that turned Spark from a few flagship effects into a creator platform across Facebook, Instagram, and Messenger. Scope spanned design, prototyping, education, and the F8 stage." meta="Senior Product Design Manager · 2017–2023" />
       </>
     ),
   },
