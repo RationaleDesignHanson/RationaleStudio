@@ -23,7 +23,7 @@ export default function AdminPage() {
     if (!loading) {
       if (!profile) {
         // Not authenticated, redirect to login
-        router.push('/clients/login?redirect=/admin');
+        router.push('/login?redirect=/admin');
       } else if (profile.role !== 'owner') {
         // Not authorized, redirect to home
         router.push('/');

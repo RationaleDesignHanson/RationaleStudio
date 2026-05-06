@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matt's 2025 New Year's Pottery Giveaway</title>
+  <link rel="icon" href="/prototypes/pottery-gifts/assets/favicon-BuuqUtaw.ico" />
+  <style>
+    :root {
+      --paper: #fffbf5;
+      --paper-2: #f7efe2;
+      --ink: #3d2914;
+      --ink-2: #5c4033;
+      --ink-3: #8b7355;
+      --rule: #e7ddc9;
+      --accent: #8b5a2b;
+      --green: #2d5a27;
+      --red: #a83232;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink-2); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 16px 18px 64px; }
+    header.banner { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4/1; background: var(--paper-2); }
+    header.banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    header.banner .overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15)); }
+    header.banner h1 { color: white; font-size: clamp(20px, 3.6vw, 34px); font-weight: 700; text-align: center; margin: 0; padding: 0 20px; text-shadow: 0 2px 12px rgba(0,0,0,0.4); font-family: 'Georgia', 'Playfair Display', serif; }
+    .subhead { text-align: center; margin: 24px auto 8px; max-width: 560px; }
+    .subhead p { font-size: 16px; line-height: 1.5; color: var(--ink); font-weight: 300; margin: 0; }
+    .stats { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; font-size: 11px; color: var(--ink-3); letter-spacing: 0.2em; text-transform: uppercase; margin: 12px 0 28px; font-family: ui-monospace, 'IBM Plex Mono', monospace; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+    .card { background: white; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; cursor: pointer; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(60, 40, 20, 0.12); border-color: var(--accent); }
+    .card.taken { opacity: 0.55; }
+    .card.taken:hover { transform: none; box-shadow: none; border-color: var(--rule); }
+    .card .img { aspect-ratio: 1; background: var(--paper-2); position: relative; overflow: hidden; }
+    .card .img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 300ms ease; }
+    .card:hover .img img { transform: scale(1.05); }
+    .card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .card .num { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-3); text-transform: uppercase; font-family: ui-monospace, 'IBM Plex Mono', monospace; }
+    .card .desc { font-size: 13px; line-height: 1.35; color: var(--ink); }
+    .card .row { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
+    .card .dim { font-size: 10px; color: var(--ink-3); font-family: ui-monospace, 'IBM Plex Mono', monospace; }
+    .badge { font-size: 10px; padding: 2px 7px; border-radius: 999px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge.taken { background: rgba(168, 50, 50, 0.10); color: var(--red); }
+    .badge.available { background: rgba(45, 90, 39, 0.12); color: var(--green); }
+    .empty { text-align: center; padding: 60px 20px; color: var(--ink-3); }
+    dialog#detail { border: none; border-radius: 14px; padding: 0; background: white; max-width: 540px; width: calc(100% - 32px); box-shadow: 0 12px 48px rgba(0,0,0,0.25); }
+    dialog#detail::backdrop { background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); }
+    .modal-body { padding: 20px; }
+    .modal-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .modal-imgs figure { margin: 0; text-align: center; }
+    .modal-imgs img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; background: var(--paper-2); }
+    .modal-imgs figcaption { font-size: 10px; color: var(--ink-3); margin-top: 4px; letter-spacing: 0.15em; text-transform: uppercase; font-family: ui-monospace, monospace; }
+    .modal-body h3 { margin: 0 0 4px; font-size: 14px; font-family: ui-monospace, monospace; letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; font-weight: 500; }
+    .modal-body .desc { font-size: 18px; color: var(--ink); margin-bottom: 14px; line-height: 1.4; font-family: 'Georgia', 'Playfair Display', serif; }
+    .modal-meta { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); margin-bottom: 16px; padding: 0; }
+    .modal-meta div { min-width: 70px; }
+    .modal-meta dt { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); font-family: ui-monospace, monospace; margin: 0 0 2px; }
+    .modal-meta dd { margin: 0; font-family: ui-monospace, monospace; }
+    .modal-close { background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px; font-size: 12px; cursor: pointer; color: var(--ink-2); }
+    .modal-close:hover { background: var(--paper-2); }
+    /* Claim form */
+    .claimed-by { padding: 10px 12px; background: rgba(168, 50, 50, 0.07); border: 1px solid rgba(168, 50, 50, 0.20); border-radius: 8px; font-size: 13px; color: var(--ink-2); margin-bottom: 14px; }
+    .claimed-by strong { color: var(--red); font-weight: 600; }
+    .claim-form { border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 6px; display: flex; flex-direction: column; gap: 10px; }
+    .claim-form .form-head { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); font-family: ui-monospace, monospace; }
+    .claim-form label { font-size: 11px; color: var(--ink-3); display: flex; flex-direction: column; gap: 4px; }
+    .claim-form input { font-family: inherit; font-size: 13px; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); outline: none; transition: border-color 120ms; }
+    .claim-form input:focus { border-color: var(--accent); }
+    .claim-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px; align-items: center; }
+    .btn-primary { background: var(--accent); color: white; border: none; border-radius: 999px; padding: 8px 16px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 150ms; letter-spacing: 0.04em; }
+    .btn-primary:hover:not(:disabled) { background: var(--ink); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .demo-note { font-size: 10px; color: var(--ink-3); font-style: italic; margin-right: auto; }
+    .claim-success { padding: 16px; background: rgba(45, 90, 39, 0.08); border: 1px solid rgba(45, 90, 39, 0.25); border-radius: 8px; text-align: center; }
+    .claim-success .check { width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 8px; }
+    .claim-success p { margin: 4px 0; font-size: 13px; color: var(--ink); }
+    .claim-success .archive-note { font-size: 10px; color: var(--ink-3); letter-spacing: 0.15em; text-transform: uppercase; font-family: ui-monospace, monospace; margin-top: 8px; }
+    .footer-note { text-align: center; margin-top: 32px; font-size: 11px; color: var(--ink-3); letter-spacing: 0.15em; text-transform: uppercase; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="banner">
+      <img src="/prototypes/pottery-gifts/assets/banner-B5dIyV42.jpg" alt="" />
+      <div class="overlay">
+        <h1>Matt's 2025 New Year's Pottery Giveaway</h1>
+      </div>
+    </header>
+
+    <section class="subhead">
+      <p>2024 wasn't perfect, and neither are these pots.<br />Here's to embracing life's imperfections in 2025!</p>
+    </section>
+
+    <div class="stats" id="stats"></div>
+    <div class="grid" id="grid">
+      <div class="empty">loading…</div>
+    </div>
+
+    <p class="footer-note">Archived snapshot · giveaway closed</p>
+  </div>
+
+  <dialog id="detail">
+    <div class="modal-body" id="modal-body"></div>
+  </dialog>
+
+  <script>
+    (async function () {
+      const grid = document.getElementById('grid');
+      const stats = document.getElementById('stats');
+      const dialog = document.getElementById('detail');
+      const modalBody = document.getElementById('modal-body');
+
+      let manifest;
+      try {
+        manifest = await (await fetch('items.json', { cache: 'no-cache' })).json();
+      } catch (err) {
+        grid.innerHTML = '<div class="empty">manifest missing</div>';
+        return;
+      }
+
+      const items = manifest.items || [];
+      const taken = items.filter((i) => i.status === 'taken').length;
+      stats.innerHTML =
+        '<span>' + items.length + ' pieces</span>' +
+        '<span>·</span>' +
+        '<span>' + taken + ' claimed</span>' +
+        '<span>·</span>' +
+        '<span>' + (items.length - taken) + ' available at the time</span>';
+
+      grid.innerHTML = items
+        .map(function (item) {
+          return (
+            '<div class="card ' + item.status + '" data-id="' + item.id + '">' +
+              '<div class="img"><img src="' + item.sideImage + '" alt="Pot ' + item.id + '" loading="lazy" onerror="this.style.opacity=0.3" /></div>' +
+              '<div class="body">' +
+                '<div class="num">№ ' + item.id + '</div>' +
+                '<div class="desc">' + (item.description || 'Untitled') + '</div>' +
+                '<div class="row">' +
+                  '<div class="dim">' + item.dimensions.length + '″ × ' + item.dimensions.width + '″ × ' + item.dimensions.height + '″</div>' +
+                  '<span class="badge ' + item.status + '">' + item.status + '</span>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          );
+        })
+        .join('');
+
+      function renderModal(item) {
+        const baseTop =
+          '<div class="modal-imgs">' +
+            '<figure><img src="' + item.sideImage + '" alt="" /><figcaption>Side</figcaption></figure>' +
+            '<figure><img src="' + (item.topImage || item.sideImage) + '" alt="" /><figcaption>Top</figcaption></figure>' +
+          '</div>' +
+          '<h3>№ ' + item.id + '</h3>' +
+          '<div class="desc">' + (item.description || 'Untitled') + '</div>' +
+          '<dl class="modal-meta">' +
+            '<div><dt>Length</dt><dd>' + item.dimensions.length + '″</dd></div>' +
+            '<div><dt>Width</dt><dd>' + item.dimensions.width + '″</dd></div>' +
+            '<div><dt>Height</dt><dd>' + item.dimensions.height + '″</dd></div>' +
+            '<div><dt>Glaze (out · in)</dt><dd>' + (item.glaze.outside || '—') + ' · ' + (item.glaze.inside || '—') + '</dd></div>' +
+          '</dl>';
+
+        if (item.status === 'taken') {
+          const claimer = item.claimedBy
+            ? 'Claimed by <strong>' + item.claimedBy + '</strong>'
+            : 'Claimed';
+          modalBody.innerHTML =
+            baseTop +
+            '<div class="claimed-by">' + claimer + '</div>' +
+            '<div style="text-align:right;"><button class="modal-close" data-action="close">Close</button></div>';
+        } else {
+          modalBody.innerHTML =
+            baseTop +
+            '<form class="claim-form" data-action="claim">' +
+              '<div class="form-head">Claim this pot</div>' +
+              '<label>Name<input type="text" name="name" required autocomplete="name" /></label>' +
+              '<label>Email<input type="email" name="email" required autocomplete="email" /></label>' +
+              '<label>Shipping address<input type="text" name="address" required autocomplete="street-address" /></label>' +
+              '<div class="claim-actions">' +
+                '<span class="demo-note">Archived demo · no email is sent</span>' +
+                '<button type="button" class="modal-close" data-action="close">Cancel</button>' +
+                '<button type="submit" class="btn-primary">Claim →</button>' +
+              '</div>' +
+            '</form>';
+        }
+      }
+
+      grid.addEventListener('click', function (e) {
+        const card = e.target.closest('.card');
+        if (!card) return;
+        const id = card.dataset.id;
+        const item = items.find(function (i) { return i.id === id; });
+        if (!item) return;
+        renderModal(item);
+        dialog.showModal();
+      });
+
+      // Single delegated handler for modal interactions
+      modalBody.addEventListener('click', function (e) {
+        if (e.target.matches('[data-action="close"]')) {
+          dialog.close();
+        }
+      });
+
+      modalBody.addEventListener('submit', function (e) {
+        const form = e.target.closest('form[data-action="claim"]');
+        if (!form) return;
+        e.preventDefault();
+        const data = new FormData(form);
+        const name = (data.get('name') || '').toString().trim();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting…';
+        }
+        // Synthetic delay so it feels real
+        setTimeout(function () {
+          modalBody.innerHTML =
+            '<div class="claim-success">' +
+              '<div class="check">✓</div>' +
+              '<p><strong>Claim recorded</strong></p>' +
+              '<p>Thanks ' + (name || 'friend') + '. In the live giveaway you\'d get a confirmation email and the pot would be marked taken.</p>' +
+              '<div class="archive-note">archived demo</div>' +
+              '<div style="margin-top:12px;"><button class="modal-close" data-action="close">Close</button></div>' +
+            '</div>';
+        }, 700);
+      });
+
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+    })();
+  </script>
+</body>
+</html>

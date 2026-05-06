@@ -60,18 +60,6 @@ export interface ChangeHistory {
   [fieldName: string]: FieldChange[];
 }
 
-export interface Sticker {
-  id: string;
-  label: string;
-  imagePath: string;
-  fallbackEmoji: string;
-}
-
-export interface StickerOnCard extends Sticker {
-  by: string;
-  year: string;
-}
-
 export interface EditableTextProps {
   field: string;
   value: string;

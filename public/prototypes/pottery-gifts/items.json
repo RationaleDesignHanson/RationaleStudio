@@ -1,0 +1,674 @@
+{
+  "generatedAt": "2026-05-04T17:14:14.497Z",
+  "source": "sheet 11Z6kV9s-XKGsUcNxrrBm8oT9HMbUiaqnHoJbHdjxkUQ",
+  "total": 37,
+  "taken": 31,
+  "items": [
+    {
+      "id": "001",
+      "description": "Strawberry Peach Run Out // Matte White In",
+      "status": "taken",
+      "claimedBy": "Jason Holland",
+      "sideImage": "https://i.postimg.cc/kMxp0wSt/1-side.jpg",
+      "topImage": "https://i.postimg.cc/BQpw66MS/1-top.jpg",
+      "gif": "https://i.postimg.cc/Rhd54TW9/1.gif",
+      "dimensions": {
+        "length": "2.5",
+        "width": "2.5",
+        "height": "2.25"
+      },
+      "glaze": {
+        "outside": "071",
+        "inside": "088"
+      }
+    },
+    {
+      "id": "002",
+      "description": "Lavender Mango Run",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/L62b2fkQ/2-side.jpg",
+      "topImage": "https://i.postimg.cc/BnwYTVrR/2-top.jpg",
+      "gif": "https://i.postimg.cc/CMsVGwmt/2.gif",
+      "dimensions": {
+        "length": "3.5",
+        "width": "3.5",
+        "height": "2.75"
+      },
+      "glaze": {
+        "outside": "073",
+        "inside": "073"
+      }
+    },
+    {
+      "id": "003",
+      "description": "Cotton Candy Mango Out // Matte White In",
+      "status": "taken",
+      "claimedBy": "Michelle Chan",
+      "sideImage": "https://i.postimg.cc/KYk9J5Fj/3-side.jpg",
+      "topImage": "https://i.postimg.cc/MGC94jKD/3-top.jpg",
+      "gif": "https://i.postimg.cc/X7N6xtPv/3.gif",
+      "dimensions": {
+        "length": "2.5",
+        "width": "2.5",
+        "height": "2.5"
+      },
+      "glaze": {
+        "outside": "088",
+        "inside": "034"
+      }
+    },
+    {
+      "id": "004",
+      "description": "Seaweed Out // Matte Off White In",
+      "status": "taken",
+      "claimedBy": "Ryan Winstead",
+      "sideImage": "https://i.postimg.cc/dts4zFvz/4-side.jpg",
+      "topImage": "https://i.postimg.cc/pL7Chn8H/4-top.jpg",
+      "gif": "https://i.postimg.cc/y8k4Ccs4/4.gif",
+      "dimensions": {
+        "length": "4.5",
+        "width": "4.5",
+        "height": "2.5"
+      },
+      "glaze": {
+        "outside": "021",
+        "inside": "085"
+      }
+    },
+    {
+      "id": "005",
+      "description": "Frosty Black and Blue Out // Matte White In",
+      "status": "taken",
+      "claimedBy": "William Ngan",
+      "sideImage": "https://i.postimg.cc/R0HRcVQn/5-side.jpg",
+      "topImage": "https://i.postimg.cc/B65BVYzS/5-top.jpg",
+      "gif": "https://i.postimg.cc/ZKftQVkx/5.gif",
+      "dimensions": {
+        "length": "4",
+        "width": "4",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "005",
+        "inside": "088"
+      }
+    },
+    {
+      "id": "006",
+      "description": "Brown Speckled Egg",
+      "status": "taken",
+      "claimedBy": "Yael Yungster",
+      "sideImage": "https://i.postimg.cc/PJ2ztLh0/6-side.jpg",
+      "topImage": "https://i.postimg.cc/bwK0NfcY/6-top.jpg",
+      "gif": "https://i.postimg.cc/qvSfJqvt/6.gif",
+      "dimensions": {
+        "length": "4.5",
+        "width": "4.5",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "063",
+        "inside": "063"
+      }
+    },
+    {
+      "id": "007",
+      "description": "Frosty Drip Blue Out // Green speckled Egg In",
+      "status": "taken",
+      "claimedBy": "James Valori",
+      "sideImage": "https://i.postimg.cc/BQ7ck1mK/7-side.jpg",
+      "topImage": "https://i.postimg.cc/Njy7cfnP/7-top.jpg",
+      "gif": "https://i.postimg.cc/1t1LFd6s/7.gif",
+      "dimensions": {
+        "length": "4.75",
+        "width": "4.75",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "078",
+        "inside": "054"
+      }
+    },
+    {
+      "id": "008",
+      "description": "Sky Blue Run",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/8CMR7XNR/8-side.jpg",
+      "topImage": "https://i.postimg.cc/xCQKMG1W/8-top.jpg",
+      "gif": "https://i.postimg.cc/439DmGYW/8.gif",
+      "dimensions": {
+        "length": "4",
+        "width": "4",
+        "height": "1.25"
+      },
+      "glaze": {
+        "outside": "019s",
+        "inside": "019s"
+      }
+    },
+    {
+      "id": "009",
+      "description": "Green Crackle Out // Layered Cyan In",
+      "status": "taken",
+      "claimedBy": "Dead stock",
+      "sideImage": "https://i.postimg.cc/Hxtb2JJj/9-side.jpg",
+      "topImage": "https://i.postimg.cc/tJCWmXPk/9-top.jpg",
+      "gif": "https://i.postimg.cc/vB7CtvL9/9.gif",
+      "dimensions": {
+        "length": "3.25",
+        "width": "3.25",
+        "height": "1.25"
+      },
+      "glaze": {
+        "outside": "200",
+        "inside": "201"
+      }
+    },
+    {
+      "id": "010",
+      "description": "Spotted Sky blue Run Out // Matte White In",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/HsnbwkTs/10-side.jpg",
+      "topImage": "https://i.postimg.cc/wjsJr4tC/10-top.jpg",
+      "gif": "https://i.postimg.cc/dQBz740c/10.gif",
+      "dimensions": {
+        "length": "4.75",
+        "width": "4.75",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "012",
+        "inside": "058"
+      }
+    },
+    {
+      "id": "011",
+      "description": "Matte black Out // Onyx Swirl In",
+      "status": "taken",
+      "claimedBy": "Nate",
+      "sideImage": "https://i.postimg.cc/j5105hKr/11-side.jpg",
+      "topImage": "https://i.postimg.cc/hjKdfSCn/11-top.jpg",
+      "gif": "https://i.postimg.cc/Y0bVJqPC/11.gif",
+      "dimensions": {
+        "length": "4.5",
+        "width": "4.5",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "096",
+        "inside": "014"
+      }
+    },
+    {
+      "id": "012",
+      "description": "Brown Speckled Egg with Pink Run",
+      "status": "taken",
+      "claimedBy": "Matt doodoo",
+      "sideImage": "https://i.postimg.cc/436cfKQw/12-side.jpg",
+      "topImage": "https://i.postimg.cc/JnKBX9gk/12-top.jpg",
+      "gif": "https://i.postimg.cc/jjqh10fM/12.gif",
+      "dimensions": {
+        "length": "3.5",
+        "width": "3.5",
+        "height": "2.5"
+      },
+      "glaze": {
+        "outside": "050",
+        "inside": "050"
+      }
+    },
+    {
+      "id": "013",
+      "description": "Brown Speckled Egg with Red Run",
+      "status": "taken",
+      "claimedBy": "Claire Roberts",
+      "sideImage": "https://i.postimg.cc/7h6JnK8Q/13-side.jpg",
+      "topImage": "https://i.postimg.cc/NfKryCxK/13-top.jpg",
+      "gif": "https://i.postimg.cc/BbqkY1Mz/13.gif",
+      "dimensions": {
+        "length": "4.75",
+        "width": "4.75",
+        "height": "1"
+      },
+      "glaze": {
+        "outside": "059",
+        "inside": "059"
+      }
+    },
+    {
+      "id": "014",
+      "description": "Brown speckled with Cyan Run",
+      "status": "taken",
+      "claimedBy": "Meeree",
+      "sideImage": "https://i.postimg.cc/YCgGR4Zk/14-side.jpg",
+      "topImage": "https://i.postimg.cc/W4vDHNcZ/14-top.jpg",
+      "gif": "https://i.postimg.cc/nhs5PxGn/14.gif",
+      "dimensions": {
+        "length": "4.25",
+        "width": "4.25",
+        "height": "1.75"
+      },
+      "glaze": {
+        "outside": "051",
+        "inside": "051"
+      }
+    },
+    {
+      "id": "015",
+      "description": "Turquoise Out // Matte White In",
+      "status": "taken",
+      "claimedBy": "Paulo Coelho",
+      "sideImage": "https://i.postimg.cc/YSz4c5ts/15-side.jpg",
+      "topImage": "https://i.postimg.cc/85k7TZ5P/15-top.jpg",
+      "gif": "https://i.postimg.cc/VLk2XnSr/15.gif",
+      "dimensions": {
+        "length": "4.5",
+        "width": "4.5",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "099",
+        "inside": "054"
+      }
+    },
+    {
+      "id": "016",
+      "description": "Pinky Out // White In",
+      "status": "taken",
+      "claimedBy": "Clara",
+      "sideImage": "https://i.postimg.cc/PJ9JzhMP/16-side.jpg",
+      "topImage": "",
+      "gif": "",
+      "dimensions": {
+        "length": "4.75",
+        "width": "4.75",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "083",
+        "inside": "058"
+      }
+    },
+    {
+      "id": "017",
+      "description": "Lavender Mango Run",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/J4HG7D1J/17-side.jpg",
+      "topImage": "https://i.postimg.cc/cLq6vxHz/17-top.jpg",
+      "gif": "https://i.postimg.cc/yYptjx9f/17.gif",
+      "dimensions": {
+        "length": "5",
+        "width": "5",
+        "height": "2.25"
+      },
+      "glaze": {
+        "outside": "073",
+        "inside": "073"
+      }
+    },
+    {
+      "id": "018",
+      "description": "Antique Blue Drip (lil chip on bottom)",
+      "status": "taken",
+      "claimedBy": "Brian Ellis",
+      "sideImage": "https://i.postimg.cc/9fCMBLyt/18-side.jpg",
+      "topImage": "https://i.postimg.cc/wB2B4DVK/18-top.jpg",
+      "gif": "https://i.postimg.cc/htHwFY2T/18.gif",
+      "dimensions": {
+        "length": "3.75",
+        "width": "3.75",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "062",
+        "inside": "062"
+      }
+    },
+    {
+      "id": "019",
+      "description": "Bubbly Oil Spill Out // Matte Gray In",
+      "status": "taken",
+      "claimedBy": "Deadstock",
+      "sideImage": "https://i.postimg.cc/MTGpCXPn/19-side.jpg",
+      "topImage": "https://i.postimg.cc/hvzPG6qg/19-top.jpg",
+      "gif": "https://i.postimg.cc/R0KYvTY8/19.gif",
+      "dimensions": {
+        "length": "3.5",
+        "width": "3.5",
+        "height": "2.25"
+      },
+      "glaze": {
+        "outside": "092",
+        "inside": "096"
+      }
+    },
+    {
+      "id": "020",
+      "description": "Bronzer Out // Melon In",
+      "status": "taken",
+      "claimedBy": "Deadstock",
+      "sideImage": "https://i.postimg.cc/GtW3TKcD/20-side.jpg",
+      "topImage": "https://i.postimg.cc/G3VmfLkp/20-top.jpg",
+      "gif": "https://i.postimg.cc/FRvBzL5K/20.gif",
+      "dimensions": {
+        "length": "2.5",
+        "width": "2.5",
+        "height": "1.75"
+      },
+      "glaze": {
+        "outside": "094",
+        "inside": "097"
+      }
+    },
+    {
+      "id": "021",
+      "description": "Coral Out // Grey Green In",
+      "status": "taken",
+      "claimedBy": "Roberts",
+      "sideImage": "https://i.postimg.cc/sg9f15bB/21-side.jpg",
+      "topImage": "https://i.postimg.cc/1tTsbBVd/21-top.jpg",
+      "gif": "https://i.postimg.cc/Xq71c6vS/21.gif",
+      "dimensions": {
+        "length": "3.25",
+        "width": "3.25",
+        "height": "1.25"
+      },
+      "glaze": {
+        "outside": "098",
+        "inside": "002"
+      }
+    },
+    {
+      "id": "022",
+      "description": "Indigo Out // Matte White In (planter)",
+      "status": "taken",
+      "claimedBy": "Alice Rakotoarison",
+      "sideImage": "https://i.postimg.cc/s2TV4sjs/22-side.jpg",
+      "topImage": "https://i.postimg.cc/fLkMHpyX/22-top.jpg",
+      "gif": "https://i.postimg.cc/XJgDCY4k/22.gif",
+      "dimensions": {
+        "length": "5",
+        "width": "5",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "010s",
+        "inside": "058"
+      }
+    },
+    {
+      "id": "023",
+      "description": "Lavender Mango Run",
+      "status": "taken",
+      "claimedBy": "Meryl",
+      "sideImage": "https://i.postimg.cc/1XqsSFp3/23-side.jpg",
+      "topImage": "",
+      "gif": "https://i.postimg.cc/1XCCv7gg/23.gif",
+      "dimensions": {
+        "length": "5",
+        "width": "5",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "065",
+        "inside": "065"
+      }
+    },
+    {
+      "id": "024",
+      "description": "Honey Alabaster Out // Seafoam Wine In",
+      "status": "taken",
+      "claimedBy": "Caley Drooff",
+      "sideImage": "https://i.postimg.cc/4479yFPm/24-side.jpg",
+      "topImage": "https://i.postimg.cc/7YSJMGp4/24-top.jpg",
+      "gif": "https://i.postimg.cc/2j2KjyHz/24.gif",
+      "dimensions": {
+        "length": "4",
+        "width": "4",
+        "height": "1.5"
+      },
+      "glaze": {
+        "outside": "081",
+        "inside": "034"
+      }
+    },
+    {
+      "id": "025",
+      "description": "Sky Blue Honey Run Out // Matte White In",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/pLxh0VHF/25-side.jpg",
+      "topImage": "https://i.postimg.cc/N0CKf1r6/25-top.jpg",
+      "gif": "https://i.postimg.cc/7L8Bt2LN/25.gif",
+      "dimensions": {
+        "length": "3.75",
+        "width": "3.75",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "012",
+        "inside": "088"
+      }
+    },
+    {
+      "id": "026",
+      "description": "Canary Out // Light Blue In",
+      "status": "taken",
+      "claimedBy": "Colette",
+      "sideImage": "https://i.postimg.cc/cLmKPqx5/26-side.jpg",
+      "topImage": "",
+      "gif": "",
+      "dimensions": {
+        "length": "5",
+        "width": "5",
+        "height": "2.5"
+      },
+      "glaze": {
+        "outside": "002",
+        "inside": "087"
+      }
+    },
+    {
+      "id": "027",
+      "description": "Spotted Sky Blue Run Out // Matte White In",
+      "status": "taken",
+      "claimedBy": "Eddie LeBreton",
+      "sideImage": "https://i.postimg.cc/wMLMVZ42/27-side.jpg",
+      "topImage": "https://i.postimg.cc/J7ksMH7X/27-top.jpg",
+      "gif": "https://i.postimg.cc/4N02tMkq/27.gif",
+      "dimensions": {
+        "length": "4.25",
+        "width": "4.25",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "104",
+        "inside": "103"
+      }
+    },
+    {
+      "id": "028",
+      "description": "Alert Orange Out // Indigo In",
+      "status": "taken",
+      "claimedBy": "Qinzi Tan",
+      "sideImage": "https://i.postimg.cc/gkbnJcrT/28-side.jpg",
+      "topImage": "https://i.postimg.cc/Hs0j7Gys/28-top.jpg",
+      "gif": "https://i.postimg.cc/ZKnDWmg6/28.gif",
+      "dimensions": {
+        "length": "4.75",
+        "width": "5.25",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "109",
+        "inside": "110"
+      }
+    },
+    {
+      "id": "029",
+      "description": "Brown Speckled Egg Sky Blue Run",
+      "status": "available",
+      "claimedBy": null,
+      "sideImage": "https://i.postimg.cc/VkD6Djgx/29-side.jpg",
+      "topImage": "https://i.postimg.cc/3wNw6dbd/29-top.jpg",
+      "gif": "https://i.postimg.cc/W1JW7ns3/29.gif",
+      "dimensions": {
+        "length": "3.25",
+        "width": "3.25",
+        "height": "2"
+      },
+      "glaze": {
+        "outside": "062",
+        "inside": "062"
+      }
+    },
+    {
+      "id": "030",
+      "description": "Bright Green Out // Green Speckled Egg In",
+      "status": "taken",
+      "claimedBy": "James Tichenor",
+      "sideImage": "https://i.postimg.cc/rpHpLMvg/30-side.jpg",
+      "topImage": "https://i.postimg.cc/ZRy5bXmm/30-top.jpg",
+      "gif": "https://i.postimg.cc/vmr0JZgw/30.gif",
+      "dimensions": {
+        "length": "4.25",
+        "width": "4.25",
+        "height": "1.75"
+      },
+      "glaze": {
+        "outside": "111",
+        "inside": "112"
+      }
+    },
+    {
+      "id": "031",
+      "description": "Bronze Mango Run Out // Bronze Matte White Run In",
+      "status": "taken",
+      "claimedBy": "Sasha Mitts",
+      "sideImage": "https://i.postimg.cc/WzGprrtf/31-side.jpg",
+      "topImage": "https://i.postimg.cc/bNPwP6BX/31-top.jpg",
+      "gif": "https://i.postimg.cc/d1J5wcrk/31.gif",
+      "dimensions": {
+        "length": "4.25",
+        "width": "4.25",
+        "height": "2.75"
+      },
+      "glaze": {
+        "outside": "113",
+        "inside": "114"
+      }
+    },
+    {
+      "id": "032",
+      "description": "Matte White Out // Mango In",
+      "status": "taken",
+      "claimedBy": "Campbell Orme",
+      "sideImage": "https://i.postimg.cc/CxLMBR0m/32-side.jpg",
+      "topImage": "https://i.postimg.cc/DzS26R8G/32-top.jpg",
+      "gif": "https://i.postimg.cc/k4wf5Yvj/32.gif",
+      "dimensions": {
+        "length": "4.75",
+        "width": "4.75",
+        "height": "1"
+      },
+      "glaze": {
+        "outside": "103",
+        "inside": "115"
+      }
+    },
+    {
+      "id": "033",
+      "description": "Frosty Royal Blue Run",
+      "status": "taken",
+      "claimedBy": "Erin Yang",
+      "sideImage": "https://i.postimg.cc/KYCmHQMH/33-side.jpg",
+      "topImage": "https://i.postimg.cc/PJjTtxKb/33-top.jpg",
+      "gif": "https://i.postimg.cc/NFMb28NQ/33.gif",
+      "dimensions": {
+        "length": "2.75",
+        "width": "2.75",
+        "height": "3.5"
+      },
+      "glaze": {
+        "outside": "104",
+        "inside": "103"
+      }
+    },
+    {
+      "id": "034",
+      "description": "Bronzer",
+      "status": "taken",
+      "claimedBy": "Matt brushes big",
+      "sideImage": "https://i.postimg.cc/vTtMDsSJ/34-side.jpg",
+      "topImage": "https://i.postimg.cc/1RGyvG5v/34-top.jpg",
+      "gif": "https://i.postimg.cc/SRvd6X5C/34.gif",
+      "dimensions": {
+        "length": "3.75",
+        "width": "3.75",
+        "height": "3"
+      },
+      "glaze": {
+        "outside": "100",
+        "inside": "103"
+      }
+    },
+    {
+      "id": "035",
+      "description": "Crackly Blue In // Raw Out",
+      "status": "taken",
+      "claimedBy": "Matt",
+      "sideImage": "https://i.postimg.cc/X7n4mrr4/35-side.jpg",
+      "topImage": "https://i.postimg.cc/P5RHCK25/35-top.jpg",
+      "gif": "https://i.postimg.cc/sf6Td8Xx/35.gif",
+      "dimensions": {
+        "length": "2",
+        "width": "2",
+        "height": "0.5"
+      },
+      "glaze": {
+        "outside": "202",
+        "inside": "202"
+      }
+    },
+    {
+      "id": "036",
+      "description": "Runny Blue Seaweed",
+      "status": "taken",
+      "claimedBy": "Andrew Mercando",
+      "sideImage": "https://i.postimg.cc/fbSNmXrj/36-side.jpg",
+      "topImage": "https://i.postimg.cc/50cM3ycc/36-top.jpg",
+      "gif": "https://i.postimg.cc/jSNcfShn/36.gif",
+      "dimensions": {
+        "length": "3.25",
+        "width": "3.25",
+        "height": "3"
+      },
+      "glaze": {
+        "outside": "",
+        "inside": ""
+      }
+    },
+    {
+      "id": "037",
+      "description": "Iron Drip Out// Light Blue Honey Drip In",
+      "status": "taken",
+      "claimedBy": "Maria Ruiz",
+      "sideImage": "https://i.postimg.cc/GtdwWfhq/37-side.jpg",
+      "topImage": "https://i.postimg.cc/B6xfw3sj/37-top.jpg",
+      "gif": "https://i.postimg.cc/8Pxws6LV/37.gif",
+      "dimensions": {
+        "length": "4",
+        "width": "4",
+        "height": "2.5"
+      },
+      "glaze": {
+        "outside": "",
+        "inside": ""
+      }
+    }
+  ]
+}

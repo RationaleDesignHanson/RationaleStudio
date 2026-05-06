@@ -7,7 +7,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { EditableText } from './EditableText';
-import { Recipe, FieldChange, StickerOnCard } from './types';
+import { LineageDropdown } from './LineageDropdown';
+import { Recipe, FieldChange } from './types';
 import { COLORS } from './constants';
 import Image from 'next/image';
 
@@ -30,9 +31,6 @@ interface RecipeCardProps {
   setExpandedInstructions: (v: boolean) => void;
   instructionsCollapsed: boolean;
   setInstructionsCollapsed: (v: boolean) => void;
-  allStickers: StickerOnCard[];
-  savedMomNote: string;
-  savedYourNote: string;
   changes: Record<string, FieldChange[]>;
   getGenerationCount: () => number;
   getGenerationLabel: () => string;
@@ -61,9 +59,6 @@ export function RecipeCard({
   setExpandedInstructions,
   instructionsCollapsed,
   setInstructionsCollapsed,
-  allStickers,
-  savedMomNote,
-  savedYourNote,
   changes,
   getGenerationCount,
   getGenerationLabel,
@@ -71,8 +66,6 @@ export function RecipeCard({
   confidenceToColor,
   scores,
 }: RecipeCardProps) {
-  const hasNotes = savedMomNote || savedYourNote;
-  const hasStickers = allStickers.length > 0;
   const [showImageModal, setShowImageModal] = useState(false);
   const [titleIsLong, setTitleIsLong] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -122,33 +115,26 @@ export function RecipeCard({
       >
         {/* FRONT OF CARD */}
         <div
-          className="card-front bg-white p-4 md:p-8 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#ece6dc] rounded-xl"
+          className="card-front bg-white p-4 md:p-6 shadow-[0_8px_40px_rgba(92,64,51,0.18)] border border-[#ece6dc] rounded-xl"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          {/* Generation Badge */}
+          {/* Lineage chip + dropdown (replaces static generation badge) */}
           <div
             className={step === 'scanned' ? 'badge-pop' : ''}
             style={{
               position: 'absolute',
               top: '-12px',
               right: '-12px',
-              backgroundColor:
-                getGenerationCount() === 1
-                  ? COLORS.green
-                  : getGenerationCount() === 2
-                  ? '#6b5b2d'
-                  : COLORS.primary,
-              color: 'white',
-              fontSize: '11px',
-              padding: '6px 14px',
-              borderRadius: '20px',
-              fontWeight: 600,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              zIndex: 10,
+              zIndex: 20,
               display: isFlipped ? 'none' : 'block',
             }}
           >
-            {getGenerationLabel()}
+            <LineageDropdown
+              step={step}
+              changes={changes}
+              generationCount={getGenerationCount()}
+              generationLabel={getGenerationLabel()}
+            />
           </div>
 
           {/* Original image thumbnail */}
@@ -208,10 +194,10 @@ export function RecipeCard({
           {/* Title */}
           <h2
             ref={titleRef}
-            className="mb-5 border-b-2 border-[#f0ebe3] pb-4 pl-[50px] transition-[font-size] duration-200"
+            className="mb-4 border-b-2 border-[#f0ebe3] pb-3 pl-[50px] transition-[font-size] duration-200"
             style={{
               fontFamily: '"Playfair Display", Georgia, serif',
-              fontSize: isMobile ? (titleIsLong ? '18px' : '24px') : '28px',
+              fontSize: isMobile ? (titleIsLong ? '18px' : '22px') : '24px',
               color: COLORS.primaryDarkest
             }}
           >
@@ -230,9 +216,9 @@ export function RecipeCard({
           </h2>
 
           {/* Ingredients */}
-          <div className="mb-5 text-left">
-            <p className="text-[11px] uppercase tracking-wider text-[#8b7355] mb-2.5">Ingredients</p>
-            <ul className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-disc">
+          <div className="mb-4 text-left">
+            <p className="text-[11px] uppercase tracking-wider text-[#8b7355] mb-2">Ingredients</p>
+            <ul className="m-0 pl-5 text-[#5c4033] text-[14px] leading-relaxed text-left list-disc">
               {(expandedIngredients ? recipe.ingredients : recipe.ingredients?.slice(0, 6))?.map((ing, i) => (
                 <li key={i}>
                   <EditableText
@@ -264,6 +250,22 @@ export function RecipeCard({
                 </li>
               )}
             </ul>
+            {isEditable && (
+              <button
+                type="button"
+                onClick={() => {
+                  const nextIdx = recipe.ingredients?.length ?? 0;
+                  // Append an empty slot, then drop into edit mode.
+                  onEdit(`ingredient-${nextIdx}`, '');
+                  setExpandedIngredients(true);
+                  // Defer focus to next tick so the new <li> exists.
+                  requestAnimationFrame(() => onStartEdit(`ingredient-${nextIdx}`));
+                }}
+                className="mt-1.5 ml-1 inline-flex items-center gap-1 text-[12px] text-[#8b5a2b] hover:text-[#5c4033] transition-colors"
+              >
+                <span className="text-[14px] leading-none">+</span> Add ingredient
+              </button>
+            )}
           </div>
 
           {/* Instructions */}
@@ -286,7 +288,7 @@ export function RecipeCard({
               </p>
             </div>
             {!instructionsCollapsed && (
-              <ol className="m-0 pl-5 text-[#5c4033] text-[15px] leading-relaxed text-left list-decimal instructions-list">
+              <ol className="m-0 pl-5 text-[#5c4033] text-[14px] leading-relaxed text-left list-decimal instructions-list">
                 {recipe.instructions && recipe.instructions.length > 0 ? (
                   (expandedInstructions ? recipe.instructions : recipe.instructions?.slice(0, 4))?.map((inst, i) => (
                     <li key={i} className="mb-1">
@@ -347,8 +349,8 @@ export function RecipeCard({
             )}
           </div>
 
-          {/* Flip hint - show when there are notes, changes, or stickers */}
-          {(hasNotes || hasStickers || Object.keys(changes).length > 0) && step === 'lineage' && (
+          {/* Flip hint - show when there are changes */}
+          {Object.keys(changes).length > 0 && step === 'lineage' && (
             <div
               className="flip-hint mt-6 p-3 bg-[rgba(139,90,43,0.06)] rounded-lg text-center flex items-center justify-center gap-2 cursor-pointer hover:scale-105 transition-transform"
               onClick={onFlip}
@@ -389,44 +391,9 @@ export function RecipeCard({
             backfaceVisibility: 'hidden',
           }}
         >
-          {/* Stickers scattered on card */}
-          {allStickers.map((sticker, idx) => {
-            const positions = [
-              { top: '10px', right: '10px', rotate: '12deg' },
-              { top: '60px', right: '40px', rotate: '-8deg' },
-              { bottom: '60px', left: '10px', rotate: '5deg' },
-              { bottom: '20px', right: '20px', rotate: '-15deg' },
-              { top: '40px', left: '15px', rotate: '8deg' },
-              { bottom: '100px', right: '10px', rotate: '-5deg' },
-            ];
-            const pos = positions[idx % positions.length];
-            return (
-              <div
-                key={`${sticker.id}-${sticker.by}`}
-                className="sticker-on-card absolute"
-                style={{
-                  ...pos,
-                  transform: `rotate(${pos.rotate})`,
-                  width: '40px',
-                  height: '40px',
-                  padding: '4px',
-                }}
-              >
-                <img
-                  src={sticker.imagePath}
-                  alt={sticker.label}
-                  className="w-full h-full object-contain drop-shadow-md"
-                />
-                <span className="sticker-tooltip-card">
-                  {sticker.by} · {sticker.year}
-                </span>
-              </div>
-            );
-          })}
-
           {/* Header */}
-          <div className="text-center mb-6 pb-4 border-b-2 border-[#e0d5c5]">
-            <div className="text-[11px] text-[#8b7355] uppercase tracking-wide mb-1">Family Notes</div>
+          <div className="text-center mb-5 pb-4 border-b-2 border-[#e0d5c5]">
+            <div className="text-[11px] text-[#8b7355] uppercase tracking-wide mb-1">Recipe Changes</div>
             <div
               className="text-xl text-[#3d2914]"
               style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
@@ -435,12 +402,9 @@ export function RecipeCard({
             </div>
           </div>
 
-          {/* Notes */}
-          <div className="flex flex-col gap-5">
-            {/* Recipe Changes */}
-            {Object.keys(changes).length > 0 && (
+          <div className="flex flex-col gap-4">
+            {Object.keys(changes).length > 0 ? (
               <div className="bg-white p-4 rounded-lg border border-[#e8e0d5]">
-                <div className="text-[11px] text-[#8b7355] uppercase tracking-wider mb-3">Recipe Changes</div>
                 {Object.entries(changes).map(([field, fieldChanges]) => (
                   <div key={field} className="mb-2">
                     {fieldChanges.map((change, idx) => (
@@ -464,38 +428,9 @@ export function RecipeCard({
                   </div>
                 ))}
               </div>
-            )}
-
-            {/* Mom's note */}
-            {savedMomNote && (
-              <div className="bg-[#fff8dc] p-5 rounded shadow-md transform -rotate-1">
-                <div className="flex justify-between items-center mb-2.5">
-                  <span className="text-xs text-[#8b7355] font-semibold">Mom</span>
-                  <span className="text-[11px] text-[#a89880]">2015</span>
-                </div>
-                <div className="text-[15px] text-[#5c4033] italic leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
-                  &quot;{savedMomNote}&quot;
-                </div>
-              </div>
-            )}
-
-            {/* Your note */}
-            {savedYourNote && (
-              <div className="bg-[#e8f4e8] p-5 rounded shadow-md transform rotate-[0.5deg]">
-                <div className="flex justify-between items-center mb-2.5">
-                  <span className="text-xs text-[#2d5a27] font-semibold">You</span>
-                  <span className="text-[11px] text-[#6b8b6b]">2025</span>
-                </div>
-                <div className="text-[15px] text-[#3d5a3d] italic leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
-                  &quot;{savedYourNote}&quot;
-                </div>
-              </div>
-            )}
-
-            {/* Empty state */}
-            {!savedMomNote && !savedYourNote && Object.keys(changes).length === 0 && !hasStickers && (
-              <div className="text-center py-10 px-5 text-[#a89880]">
-                <div className="text-sm italic">Notes, stickers & changes will appear here...</div>
+            ) : (
+              <div className="text-center py-8 px-5 text-[#a89880]">
+                <div className="text-sm italic">Edit the front to see changes here.</div>
               </div>
             )}
           </div>

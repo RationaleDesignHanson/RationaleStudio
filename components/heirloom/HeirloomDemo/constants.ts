@@ -3,9 +3,6 @@
  */
 
 import { Generation } from './types';
-import { DEMO_STICKERS } from '@/lib/heirloom/demo-stickers';
-
-export { DEMO_STICKERS };
 
 export const GENERATIONS: Generation[] = [
   { name: 'Grandma Kay', initials: 'GK', year: '1987' },

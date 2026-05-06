@@ -1,376 +1,417 @@
 /**
- * Rationale Homepage (Combined with Work)
+ * Homepage — Studio Monograph chrome with era-themed sections.
  *
- * Single destination showing:
- * - Hero positioning
- * - VelocityProof (how we build conviction)
- * - Our products (Zero, Heirloom)
- * - Partnership work (confidential projects)
- * - CTA
+ * Each era is art-directed in its period's idiom:
+ *   MAKER (2000–2017)   Designer's Republic / Tomato — black + neon
+ *   META  (2017–2025)   Flat-modern, light, Family-of-Apps gradient
+ *   NOW   (2024–)       Studio Monograph (paper + serif)
+ *
+ * Site chrome (hero, writing, contact, /about) stays paper-monograph.
  */
 
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { ASCIIUnifiedGrid } from '@/components/visual';
-import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ArrowRight, Lock } from 'lucide-react';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
-import { generateOrganizationStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
-import { VelocityProof } from '@/components/home/VelocityProof';
-import { getAllProjects, getProjectBySlug } from '@/lib/content/work-projects';
-import { useAuth } from '@/lib/auth/AuthContext';
+import {
+  generateOrganizationStructuredData,
+  generateBreadcrumbStructuredData,
+} from '@/lib/seo/metadata';
+import { WorkViewer, type EraBlockData } from '@/components/work/WorkViewer';
 
-// Map clientId to project slugs for client-specific access
-const CLIENT_PROJECT_MAPPING: Record<string, string[]> = {
-  'creait': ['case-study-010', 'case-study-030'],
-  'athletes-first': ['case-study-020', 'case-study-030'],
-};
+// =============================================================
+// PRIMITIVES — themed wrappers
+// =============================================================
 
-function ProductAppIcon({ product }: { product: 'zero' | 'heirloom' }) {
-  const heirloomIconSrc = '/heirloom/AppIcon-1024mask.png';
-  const zeroIconSrc = '/zero/app-mockup-hero.png';
-  const src = product === 'zero' ? zeroIconSrc : heirloomIconSrc;
-  const alt = product === 'zero' ? 'Zero app icon' : 'Heirloom app icon';
+type EraTheme = 'now' | 'meta' | 'maker';
 
-  const frameClass =
-    product === 'zero'
-      ? 'rounded-xl overflow-hidden border border-[#6366F1]/25 bg-black/30 shadow-[0_0_0_1px_rgba(99,102,241,0.08)]'
-      : 'rounded-xl overflow-hidden border border-[#E85D4D]/60 ring-1 ring-[#E85D4D]/35 bg-[#FBF8F3] shadow-[0_0_0_1px_rgba(232,93,77,0.10)]';
+interface EraHeaderProps {
+  theme: EraTheme;
+  era: string;
+  years: string;
+  tagline?: string;
+}
 
-  const imgClass =
-    product === 'heirloom'
-      ? 'object-contain p-1 md:p-1.5 scale-[1.30]'
-      : 'object-contain p-2 md:p-2.5 scale-[1.16]';
-
-  return (
-    <div className="h-full w-24 md:w-28 flex flex-col">
-      <div className={`relative w-full aspect-square ${frameClass}`}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 768px) 96px, 112px"
-          className={imgClass}
-          priority={false}
-        />
+function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
+  if (theme === 'maker') {
+    // DR-style: large mono kicker numerals, neon labels.
+    // Tuned DOWN from 9xl so it doesn't out-shout NOW + META.
+    return (
+      <div className="mb-10 md:mb-14 relative">
+        <div className="grid md:grid-cols-12 md:gap-6 items-end">
+          <div className="md:col-span-8">
+            <h2
+              className="font-mono text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none tracking-tighter"
+              style={{ color: 'var(--era-ink)' }}
+            >
+              DIRECTOR
+            </h2>
+            <p
+              className="mt-2 font-mono text-sm md:text-base tracking-widest"
+              style={{ color: 'var(--era-accent-alt)' }}
+            >
+              {years}
+            </p>
+          </div>
+          {tagline && (
+            <aside
+              className="md:col-span-4 mt-4 md:mt-0 md:text-right text-sm"
+              style={{ color: 'var(--era-ink-body)' }}
+            >
+              <p className="italic">{tagline}</p>
+            </aside>
+          )}
+        </div>
+        <div className="mt-6 h-px" style={{ backgroundColor: 'var(--era-accent)' }} />
       </div>
-      <div className="flex-1" />
+    );
+  }
+
+  if (theme === 'meta') {
+    // Flat-modern: clean sans, large headline word, supporting year line.
+    return (
+      <div className="mb-10 md:mb-14">
+        <div
+          className="flex items-end justify-between gap-4 pb-5 border-b-2"
+          style={{ borderColor: 'var(--era-accent)' }}
+        >
+          <div>
+            <h2
+              className="font-sans font-light text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none tracking-tight"
+              style={{ color: 'var(--era-ink)' }}
+            >
+              LEADER
+            </h2>
+            <p
+              className="mt-2 font-sans text-sm md:text-base tracking-wide"
+              style={{ color: 'var(--era-accent-alt)' }}
+            >
+              {years}
+            </p>
+          </div>
+          {tagline && (
+            <p className="hidden md:block text-sm max-w-md text-right pb-2" style={{ color: 'var(--era-ink-muted)' }}>
+              {tagline}
+            </p>
+          )}
+        </div>
+        {tagline && (
+          <p className="md:hidden text-sm mt-3" style={{ color: 'var(--era-ink-muted)' }}>
+            {tagline}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  // NOW — Studio Monograph paper. Aligned with the work-row title column
+  // so the headline sits where row titles begin (col 3 of the 12-col grid).
+  return (
+    <div className="mb-10 md:mb-14">
+      <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8">
+        <div className="hidden md:block md:col-span-2" aria-hidden />
+        <div className="md:col-span-10 border-b pb-5" style={{ borderColor: 'var(--era-ink)' }}>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight" style={{ color: 'var(--era-ink)' }}>
+            <span className="font-semibold not-italic">Rationale:</span>
+            <br />
+            <em className="italic font-normal">The Design Practice of Matt Hanson</em>
+          </h2>
+          {tagline && (
+            <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
+              {tagline}
+            </p>
+          )}
+        </div>
+        {/* Role line sits BELOW the horizontal rule — reads as a quiet
+            byline for the section, not a subtitle of the headline. */}
+        <p
+          className="md:col-span-10 md:col-start-3 mt-3 font-mono text-sm md:text-base tracking-wide"
+          style={{ color: 'var(--era-ink-muted)' }}
+        >
+          {years}
+        </p>
+      </div>
     </div>
   );
 }
 
+// =============================================================
+// WORK ROWS — three styles, one per era
+// =============================================================
+
+interface WorkRowProps {
+  theme: EraTheme;
+  href: string;
+  index: string;
+  title: string;
+  blurb: string;
+  meta?: string;
+  gated?: boolean;
+  accentVar?: string;
+  /**
+   * Position within the row's *era block* (0-based). When set, drives the
+   * per-era glint stagger so each era's first row fires at 0s instead of
+   * cascading from the global numeral. Falls back to (index - 1) when omitted.
+   */
+  staggerIndex?: number;
+}
+
+function WorkRow(props: WorkRowProps) {
+  if (props.theme === 'maker') return <MakerRow {...props} />;
+  if (props.theme === 'meta') return <MetaRow {...props} />;
+  return <NowRow {...props} />;
+}
+
+// Standard row dimensions used across all three eras.
+// Per-era distinctness comes from font, case, and color — not size.
+const ROW_PAD = 'block py-6 md:py-7 px-4 md:px-5';
+const ROW_GRID = 'grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start';
+const ROW_NUMERAL = 'font-mono text-base sm:text-lg md:text-xl tracking-wider tabular-nums leading-none';
+const ROW_TITLE = 'text-xl md:text-2xl leading-tight mb-2 transition-colors flex items-baseline gap-2';
+const ROW_BLURB = 'text-sm md:text-base leading-relaxed max-w-2xl';
+
+function glintStyle(index: string, staggerIndex?: number): React.CSSProperties {
+  const n = staggerIndex ?? (parseInt(index, 10) || 1) - 1;
+  return { ['--glint-delay' as string]: `${n * 0.6}s` };
+}
+
+function NowRow({ href, index, title, blurb, meta, gated, accentVar, staggerIndex }: WorkRowProps) {
+  const accent = accentVar ?? 'var(--era-ink-muted)';
+  return (
+    <div
+      className="group relative border-t first:border-t-0 row-glint"
+      style={{ borderColor: 'var(--era-hairline)', ...glintStyle(index, staggerIndex) }}
+    >
+      <Link href={href} className={`${ROW_PAD} -mx-4 md:-mx-5 transition-colors hover:bg-[var(--era-bg-deep)]`}>
+        <div className={ROW_GRID}>
+          <div className="md:col-span-2 flex items-baseline gap-3 md:gap-4 mb-2 md:mb-0">
+            <span className="block w-[3px] self-stretch min-h-[2.25rem] md:min-h-[2.5rem]" style={{ backgroundColor: accent }} aria-hidden />
+            <span className={ROW_NUMERAL} style={{ color: accent }}>{index}</span>
+            {gated && <Lock className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--era-ink-muted)' }} aria-label="confidential" />}
+          </div>
+          <div className="md:col-span-7">
+            {meta && <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-2" style={{ color: accent }}>{meta}</p>}
+            <h3 className={`font-display ${ROW_TITLE} group-hover:text-[var(--era-accent)]`} style={{ color: 'var(--era-ink)' }}>
+              {title}
+            </h3>
+            <p className={ROW_BLURB} style={{ color: 'var(--era-ink-body)' }}>{blurb}</p>
+          </div>
+          <div className="md:col-span-3 hidden md:flex md:justify-end pt-2">
+            <ArrowRight className="w-4 h-4 transition-all duration-300 group-hover:text-[var(--era-accent)] group-hover:translate-x-1" style={{ color: 'var(--era-ink-muted)' }} />
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+function MakerRow({ href, index, title, blurb, meta, gated, staggerIndex }: WorkRowProps) {
+  return (
+    <div
+      className="group relative border-t first:border-t-0 row-glint"
+      style={{ borderColor: 'var(--era-hairline)', ...glintStyle(index, staggerIndex) }}
+    >
+      <Link href={href} className={`${ROW_PAD} -mx-4 md:-mx-5 transition-colors hover:bg-[var(--era-bg-deep)]`}>
+        <div className={ROW_GRID}>
+          <div className="md:col-span-2 flex items-baseline gap-3 md:gap-4 mb-2 md:mb-0">
+            <span className={ROW_NUMERAL} style={{ color: 'var(--era-accent)' }}>{index}</span>
+            {gated && (
+              <span className="font-mono text-[10px] tracking-widest uppercase" style={{ color: 'var(--era-accent-alt)' }}>
+                ◊ NDA
+              </span>
+            )}
+          </div>
+          <div className="md:col-span-7">
+            {meta && (
+              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-2" style={{ color: 'var(--era-accent-alt)' }}>
+                {meta}
+              </p>
+            )}
+            <h3 className={`font-mono font-bold uppercase tracking-tight ${ROW_TITLE} group-hover:text-[var(--era-accent)]`} style={{ color: 'var(--era-ink)' }}>
+              {title}
+            </h3>
+            <p className={`${ROW_BLURB} font-mono`} style={{ color: 'var(--era-ink-body)' }}>{blurb}</p>
+          </div>
+          <div className="md:col-span-3 hidden md:flex md:justify-end pt-2">
+            <span className="font-mono text-xs tracking-widest transition-transform duration-300 group-hover:translate-x-1" style={{ color: 'var(--era-accent)' }}>►</span>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+function MetaRow({ href, index, title, blurb, meta, gated, staggerIndex }: WorkRowProps) {
+  return (
+    <div
+      className="group relative border-t first:border-t-0 row-glint"
+      style={{ borderColor: 'var(--era-hairline)', ...glintStyle(index, staggerIndex) }}
+    >
+      <Link href={href} className={`${ROW_PAD} -mx-4 md:-mx-5 transition-colors hover:bg-[var(--era-bg-deep)]`}>
+        <div className={ROW_GRID}>
+          <div className="md:col-span-2 flex items-baseline gap-3 md:gap-4 mb-2 md:mb-0">
+            <span className={`font-sans font-semibold ${ROW_NUMERAL.replace('font-mono ', '')}`} style={{ color: 'var(--era-accent)' }}>
+              {index}
+            </span>
+            {gated && <Lock className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--era-ink-muted)' }} aria-label="confidential" />}
+          </div>
+          <div className="md:col-span-7">
+            {meta && (
+              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-2" style={{ color: 'var(--era-accent-alt)' }}>
+                {meta}
+              </p>
+            )}
+            <h3 className={`font-sans font-semibold ${ROW_TITLE} group-hover:text-[var(--era-accent)]`} style={{ color: 'var(--era-ink)' }}>
+              {title}
+            </h3>
+            <p className={ROW_BLURB} style={{ color: 'var(--era-ink-body)' }}>{blurb}</p>
+          </div>
+          <div className="md:col-span-3 hidden md:flex md:justify-end pt-2">
+            <span
+              className="rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:translate-x-1"
+              style={{
+                background: `linear-gradient(135deg, var(--era-accent), var(--era-accent-alt))`,
+                color: 'white',
+              }}
+            >
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+// =============================================================
+// ERA BLOCK DATA — fed into <WorkViewer />.
+// renderHeader uses the same EraHeader component above.
+// =============================================================
+
+const homeBlocks: EraBlockData[] = [
+  {
+    theme: 'now',
+    label: 'NOW',
+    era: 'ERA · NOW',
+    years: 'Product Founder · Designer · Developer',
+    renderHeader: (theme, era, years, tagline) => (
+      <EraHeader theme={theme} era={era} years={years} tagline={tagline} />
+    ),
+    rows: (
+      <>
+        <WorkRow staggerIndex={0} theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo." meta="iOS · live · 2024 — present" accentVar="var(--project-heirloom)" />
+        <WorkRow staggerIndex={1} theme="now" href="/work/silly-questions" index="02" title="Silly Questions" blurb="A 2-player AI art party game. Live on iOS and the web. Eight art styles, no app download required." meta="Web + iOS · live · 2025" accentVar="var(--project-silly)" />
+        <WorkRow staggerIndex={2} theme="now" href="/work/zero" index="03" title="Zero" blurb="A working email-triage prototype that didn&rsquo;t ship — read why." meta="Prototype · 2024" />
+        <WorkRow staggerIndex={3} theme="now" href="/work/vault" index="✱" gated title="Vault" blurb="Confidential client work and concept ventures — Athletes First, Fubo, Rumi, Nimbus, and the rest of the in-flight bets." meta="Confidential · client + concept" accentVar="var(--project-vault)" />
+      </>
+    ),
+  },
+  {
+    theme: 'meta',
+    label: 'LEADER',
+    era: 'ERA · LEADER',
+    years: '2017 — 2025',
+    tagline: 'AR platform leadership. Spark, Orion, FAIR Embodied AI.',
+    renderHeader: (theme, era, years, tagline) => (
+      <EraHeader theme={theme} era={era} years={years} tagline={tagline} />
+    ),
+    rows: (
+      <>
+        <WorkRow staggerIndex={0} theme="meta" href="/work/fair-embodied-ai" index="04" title="FAIR Embodied AI" blurb="SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments." meta="Embodied AI · 2023–2025" />
+        <WorkRow staggerIndex={1} theme="meta" href="/work/orion" index="05" title="Orion" blurb="UX for Meta's first true AR glasses, in a regular glasses form factor. Senior Design Manager across Day-1 use cases." meta="Sr. Design Manager · 2023–2025" />
+        <WorkRow staggerIndex={2} theme="meta" href="/work/spark-ar" index="06" title="Spark AR" blurb="From four flagship effects at F8 2018 to a platform used by billions across Facebook, Instagram, and Messenger. 400+ XFN org, 150% YoY growth." meta="Experiences team lead · 2017–2023" />
+      </>
+    ),
+  },
+  {
+    theme: 'maker',
+    label: 'DIRECTOR',
+    era: 'ERA · DIRECTOR',
+    years: '2000 — 2017',
+    tagline: 'Animation, creative direction, mixed-reality installations.',
+    renderHeader: (theme, era, years, tagline) => (
+      <EraHeader theme={theme} era={era} years={years} tagline={tagline} />
+    ),
+    rows: (
+      <>
+        <WorkRow staggerIndex={0} theme="maker" href="/work/framestore" index="07" gated title="Framestore VR" blurb="Creative Director · 2017. VR/AR pitch portfolio &mdash; the bridge into Meta." meta="CONFIDENTIAL · 2017" />
+        <WorkRow staggerIndex={1} theme="maker" href="/work/viacom" index="08" title="Viacom" blurb="Director, Screen Content. The Past Present and Future room, Outrage Machine billboards, MTV Open Your Eyes Tilt Brush at the White House." meta="DIRECTOR · 2015–2017" />
+        <WorkRow staggerIndex={2} theme="maker" href="/work/studio-era" index="09" title="Studio Era" blurb="Psyop, Imaginary Forces, Buck, own studio, Hush. Animation, creative direction, mixed-reality installations." meta="MULTI-STUDIO · 2000–2015" />
+      </>
+    ),
+  },
+];
+
+// =============================================================
+// PAGE
+// =============================================================
+
 export default function HomePage() {
-  const { profile } = useAuth();
-  const projects = getAllProjects();
-  const zero = getProjectBySlug('zero');
-  const heirloom = getProjectBySlug('heirloom');
-
-  // Local/Cursor preview helper: show confidential cards in their "unlocked" state during development.
-  const previewUnlocked = process.env.NODE_ENV !== 'production';
-
-  // Separate our products from partnerships
-  const partnerships = projects.filter(p => p.category !== 'consumer' || p.isProtected);
-
   const structuredData = [
     generateOrganizationStructuredData(),
     generateBreadcrumbStructuredData([{ name: 'Home', url: '/' }]),
   ];
 
-  const getConfidentialOverviewHref = (projectSlug: string): string | null => {
-    switch (projectSlug) {
-      case 'case-study-010':
-        return '/clients/creait/strategic-roadmap';
-      case 'case-study-020':
-        return '/clients/athletes-first/pitch-deck';
-      case 'case-study-030':
-        return '/clients/work/fubo';
-      case 'sanitary-waste-system':
-        return '/clients/work/sanitary-waste-system/quick-overview';
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <MultipleStructuredData dataBlocks={structuredData} />
 
-      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-        {/* 1. HERO SECTION */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.08}
-              animated={true}
-              colorTheme={watercolorThemes.terminalGold}
-              charSet="default"
-            />
-          </div>
+      <main className="min-h-screen bg-paper text-ink-body">
+        {/* WORK VIEWER — sticky NavStrip + parallax-merge era cards.
+            The big "Vision bears the burden of proof" hero is now
+            the wordmark in the global header; the page jumps
+            straight into the work after the strip. */}
+        <WorkViewer blocks={homeBlocks} />
 
-          <div className="relative z-10 max-w-5xl mx-auto">
-            {/* Kicker */}
-            <p className="text-xs font-mono text-terminal-gold tracking-widest mb-3">
-              PROTOTYPE FAST. VALIDATE EARLY. SCALE WHAT WORKS.
-            </p>
-
-            {/* Headline */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight mb-4 md:mb-6">
-              <Link
-                href="/thinking"
-                aria-label="Read: Vision bears the burden of proof"
-                className="inline-block"
-              >
-                Vision bears the burden of proof.
-              </Link>
-            </h1>
-
-            {/* Supporting copy */}
-            <p className="text-base md:text-lg text-gray-300 max-w-3xl mb-6 md:mb-8">
-              I design and ship production software with intention and speed. When the alignment is there, I work like a co-founder—aligned on outcomes, not hours.
-            </p>
-
-            {/* Velocity Proof (embedded) */}
-            <div className="mb-6">
-              <div className="block md:hidden">
-                <VelocityProof simplified={true} />
-              </div>
-              <div className="hidden md:block">
-                <VelocityProof simplified={false} />
+        {/* WRITING — back to paper */}
+        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper border-t border-hairline">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-12 md:gap-8">
+              <div className="md:col-span-8">
+                <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
+                  WRITING · LAUNCHING MAY
+                </p>
+                <h2 className="font-display text-3xl md:text-5xl text-ink leading-tight mb-6 max-w-3xl">
+                  Notes on building.
+                </h2>
+                <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-3">
+                  Substack launches in May with <em className="text-ink">When to Hire AI: the longer version</em> &mdash; a paired companion to a Sendfull interview on the trust ceiling, hat consolidation, and why I shipped Heirloom instead of Zero.
+                </p>
+                <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-8">
+                  Twice a month after that. On building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters.
+                </p>
+                <Link
+                  href="/writing"
+                  className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
+                >
+                  See the launch plan and archive <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. OUR PRODUCTS (Zero & Heirloom) */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
-              Products in Development
-            </h2>
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Conviction comes from usage.</span>{' '}
-                Prototypes put ideas in people's hands, and real consumer behaviors force decisions. Shipping our own products keeps our
-                thinking calibrated to build better products—so when we partner, we de-risk the expensive parts and prove before you
-                commit.
-              </p>
-            </div>
-            <div className="grid gap-4 md:gap-6">
-              {heirloom && (
-                <Link
-                  href={`/work/${heirloom.slug}`}
-                  className="group rounded-lg border border-[#E85D4D]/25 bg-gray-900/40 hover:bg-gray-900/55 hover:border-[#E85D4D]/40 transition-colors p-5 md:p-6"
-                >
-                  <div className="flex items-stretch gap-4 md:gap-5">
-                    <div className="self-stretch flex-shrink-0">
-                      <ProductAppIcon product="heirloom" />
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#E85D4D] transition-colors">
-                          Heirloom <span className="text-gray-500 font-normal">· Social Recipe Storage and Meal Planning</span>
-                        </h3>
-                        <span className="text-xs font-semibold text-[#E85D4D] bg-[#E85D4D]/10 px-2 py-1 rounded border border-[#E85D4D]/30">
-                          In Beta
-                        </span>
-                      </div>
-                      <p className="text-[11px] md:text-xs text-gray-300 leading-relaxed max-w-3xl">
-                        {heirloom.description}
-                        <span className="ml-2 inline-flex items-center gap-1 font-semibold text-[#E85D4D] group-hover:underline underline-offset-4 whitespace-nowrap">
-                          View case study <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )}
-
-              {zero && (
-                <Link
-                  href="/zero"
-                  className="group rounded-lg border border-[#6366F1]/25 bg-gray-900/40 hover:bg-gray-900/55 hover:border-[#6366F1]/40 transition-colors p-5 md:p-6"
-                >
-                  <div className="flex items-stretch gap-4 md:gap-5">
-                    <div className="self-stretch flex-shrink-0">
-                      <ProductAppIcon product="zero" />
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#6366F1] transition-colors">
-                          Zero Inbox <span className="text-gray-500 font-normal">· Rapid Email Triage</span>
-                        </h3>
-                        <span className="text-xs font-semibold text-[#6366F1] bg-[#6366F1]/10 px-2 py-1 rounded border border-[#6366F1]/30">
-                          Coming Q2
-                        </span>
-                      </div>
-                      <p className="text-[11px] md:text-xs text-gray-300 leading-relaxed max-w-3xl">
-                        {zero.description}
-                        <span className="ml-2 inline-flex items-center gap-1 font-semibold text-[#6366F1] group-hover:underline underline-offset-4 whitespace-nowrap">
-                          View case study <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* 3. PARTNERSHIP WORK */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-          <div className="absolute inset-0 pointer-events-none">
-            <ASCIIUnifiedGrid
-              opacity={0.04}
-              animated={true}
-              colorTheme={watercolorThemes.terminalSubtle}
-              charSet="default"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-5xl mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
-              Partner Products
-            </h2>
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-2 h-2 rounded-full bg-terminal-gold flex-shrink-0 mt-1.5" />
-              <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-5xl">
-                <span className="font-semibold text-white">Partnership work is selective and often confidential.</span>{' '}
-                We engage when there's strong alignment and a real problem worth proving in software. When discretion is required,
-                materials are gated for partners and clients.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              {partnerships.map((project) => {
-                const isConfidential = project.isProtected;
-                const isAuthenticated = !!profile;
-
-                const isInvestorOrPartner = profile && (profile.role === 'investor' || profile.role === 'partner' || profile.role === 'team' || profile.role === 'owner');
-                const isClient = profile && profile.role === 'client';
-                const clientProjectSlugs = isClient && profile.clientId ? CLIENT_PROJECT_MAPPING[profile.clientId] : null;
-                const isClientProject = isClient && clientProjectSlugs && clientProjectSlugs.includes(project.slug);
-
-                const needsBlur = isConfidential && !previewUnlocked && !isInvestorOrPartner && !isClientProject;
-
-                // Always show CLASSIFIED for unauthenticated users viewing confidential projects
-                // previewUnlocked only applies to authenticated users in development
-                const showLocked = isConfidential && (!isAuthenticated || needsBlur);
-
-                const overviewHref = getConfidentialOverviewHref(project.slug);
-                const hasQuickOverview = !!overviewHref;
-                const pitchDeckPath = project.slug === 'case-study-010'
-                  ? '/clients/creait/strategic-roadmap'
-                  : project.slug === 'case-study-020'
-                  ? '/clients/athletes-first/pitch-deck'
-                  : project.slug === 'sanitary-waste-system'
-                  ? '/clients/work/sanitary-waste-system/full-overview'
-                  : `/work/${project.slug}`;
-
-                const cardHref = isAuthenticated && hasQuickOverview && overviewHref
-                  ? overviewHref
-                  : `/work/${project.slug}`;
-
-                return (
-                  <Link
-                    key={project.id}
-                    href={showLocked && !isAuthenticated ? '/clients/login' : cardHref}
-                    className={`group flex flex-col h-full min-h-[120px] w-full rounded-lg border ${
-                      isConfidential ? 'border-amber-400/25 hover:border-amber-400/35' : 'border-gray-700 hover:border-terminal-gold/40'
-                    } bg-gray-900/35 hover:bg-gray-900/50 transition-colors pt-2 md:pt-2.5 pb-4 md:pb-5 px-4 md:px-5 items-start !text-left`}
-                  >
-                    {/* Header (stacked) */}
-                    <div className="space-y-1 text-left w-full">
-                      {showLocked ? (
-                        <>
-                          {/* Locked: ### + CLASSIFIED (same line, left-justified) */}
-                          <div className="flex items-center justify-start gap-3 w-full">
-                            <div className="font-mono text-[10px] text-gray-500 tracking-widest">
-                              {project.id.replace('case-study-', '').padStart(3, '0')}
-                            </div>
-                            <div className="inline-flex items-center gap-2">
-                              <Lock className="w-3 h-3 text-amber-400" />
-                              <span className="text-[10px] font-mono text-amber-400 font-bold tracking-wide">CLASSIFIED</span>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        /* Unlocked: ### + Project Name (same line) */
-                        <div className="flex items-baseline justify-start gap-2 w-full min-w-0 font-mono text-[10px] text-gray-200 tracking-widest">
-                          <span className="flex-shrink-0">
-                            {project.id.replace('case-study-', '').padStart(3, '0')}
-                          </span>
-                          <span className="truncate">
-                            · {project.title}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Actions (quiet, directly under CLASSIFIED) */}
-                      {showLocked && isAuthenticated && overviewHref && (
-                        <div className="text-xs text-gray-400">
-                          <div className="space-y-1">
-                            <Link
-                              href={overviewHref}
-                              onClick={(e) => e.stopPropagation()}
-                              className="block text-terminal-gold hover:text-terminal-gold-hover transition-colors"
-                            >
-                              Overview
-                            </Link>
-                            <Link
-                              href={pitchDeckPath}
-                              onClick={(e) => e.stopPropagation()}
-                              className="block text-terminal-gold hover:text-terminal-gold-hover transition-colors"
-                            >
-                              Materials
-                            </Link>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Body */}
-                    <div className="mt-3 flex-1">
-                      <p
-                        className={`text-[11px] md:text-xs text-gray-300 leading-relaxed ${
-                          showLocked ? 'filter blur-md select-none' : ''
-                        } line-clamp-2 md:line-clamp-3 lg:line-clamp-4`}
-                      >
-                        {project.description}
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* 4. CTA (minimal) */}
-        <section className="relative py-6 md:py-10 px-4 sm:px-6 md:px-8">
-          <div className="relative z-10 max-w-5xl mx-auto text-center">
-            <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-              <span className="font-semibold text-white">Interested in working together?</span>{' '}
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1 text-terminal-gold hover:text-terminal-gold-hover font-semibold transition-colors"
-              >
-                Schedule a call <ArrowRight className="w-3 h-3" />
-              </Link>
+        {/* CONTACT */}
+        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 border-t border-hairline bg-paper-deep/40">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
+              GET IN TOUCH
             </p>
+            <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-6">
+              Available for very selective partnership work.
+            </p>
+            <a
+              href="mailto:hanson@rationale.work"
+              className="font-display text-2xl md:text-4xl text-ink hover:text-[var(--accent-ink)] transition-colors inline-block mb-6 break-all"
+            >
+              hanson@rationale.work
+            </a>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
+              <a href="https://www.linkedin.com/in/thematthanson" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors">LinkedIn</a>
+              <a href="https://matthanson.substack.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors">Substack</a>
+              <a href="https://github.com/RationaleDesignHanson" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors">GitHub</a>
+            </div>
           </div>
         </section>
       </main>

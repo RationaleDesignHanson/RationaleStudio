@@ -1,6 +1,36 @@
 @import "tailwindcss";
 
 :root {
+  /* Studio Monograph palette — neutral off-white paper, ink, hairlines.
+     (Was yellow-cream; shifted cooler to read as "paper" not "creamy".) */
+  --paper: #F6F5F2;          /* near-neutral off-white background */
+  --paper-deep: #EAE8E3;     /* slightly deeper for inset blocks */
+  --ink: #1A1A1C;            /* clean near-black for display */
+  --ink-body: #45464A;       /* neutral dark gray for body text */
+  --ink-muted: #8A8B8E;      /* neutral mid gray for metadata */
+  --hairline: #DAD9D3;       /* near-neutral dividers */
+  --accent-ink: #A85A40;     /* terracotta — site default editorial accent */
+
+  /* Per-project accent inks — overridden inside <ProjectScope>.
+     These tones are tuned for paper backgrounds; muted complementary
+     character that punctuates without shouting. */
+  --project-heirloom: #A85A40;     /* rust */
+  --project-spark-ar: #1F6F66;     /* teal */
+  --project-orion: #2E5C8A;        /* Meta-blue */
+  --project-viacom: #6E3F84;       /* dusk purple */
+  --project-maker: #846430;        /* sepia */
+  --project-silly: #A8456E;        /* warm pink */
+  --project-rumi: #5C3FA8;         /* violet */
+  --project-fair: #4F7A3F;         /* moss */
+  --project-fubo: #B07025;         /* streaming amber */
+  --project-zero: #4A6172;         /* slate */
+  --project-vault: #6B6B6B;        /* archival graphite — concepts and pitches */
+
+  /* =============================================================
+     ERA THEMES — each era is art-directed in its period's idiom.
+     Scoped via .era-maker / .era-meta / .era-now classes.
+     ============================================================= */
+
   --background: #ffffff;
   --foreground: #1a1a1a;
   --accent: #6A54F6;
@@ -241,8 +271,10 @@
   }
 }
 
+/* No global smooth-scroll — fights WorkViewer's scroll-tied parallax. Use
+   per-link `behavior: 'smooth'` on jumps where it actually helps. */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -1203,10 +1235,10 @@ select:focus-visible {
   }
 }
 
-/* Enhanced touch scrolling */
+/* Enhanced touch scrolling — but no global smooth-scroll, the parallax stage
+   reads scroll position directly and stutters with smoothed scroll. */
 * {
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
 }
 
 /* Prevent text selection during touch interactions */
@@ -1591,4 +1623,341 @@ a, button, input, select, textarea, label {
 /* Handwriting font for Heirloom demos */
 .font-handwriting {
   font-family: var(--font-caveat), cursive;
+}
+
+/* =============================================================
+   ERA THEME SCOPES
+   ============================================================= */
+
+/* ERA · MAKER — Designer's Republic / Tomato / black + neon */
+.era-maker {
+  --era-bg: #0A0A0B;
+  --era-bg-deep: #161618;
+  --era-ink: #F2F0EA;
+  --era-ink-body: #C8C4BC;
+  --era-ink-muted: #6F6B66;
+  --era-hairline: #2A2A2D;
+  --era-accent: #FF2DBA;
+  --era-accent-alt: #00E0FF;
+  --glint-color: rgba(255, 255, 255, 0.09);
+  background-color: var(--era-bg);
+  color: var(--era-ink-body);
+}
+
+/* ERA · META — flat-modern, light, Family-of-Apps */
+.era-meta {
+  --era-bg: #F0EFEC;
+  --era-bg-deep: #E5E3DD;
+  --era-ink: #1A1A1F;
+  --era-ink-body: #44444C;
+  --era-ink-muted: #888893;
+  --era-hairline: #D6D4CC;
+  --era-accent: #5C3FA8;
+  --era-accent-alt: #2E5C8A;
+  --glint-color: rgba(92, 63, 168, 0.07);
+  background-color: var(--era-bg);
+  color: var(--era-ink-body);
+}
+
+/* ERA · NOW — Studio Monograph (paper-monograph continuation) */
+.era-now {
+  --era-bg: var(--paper);
+  --era-bg-deep: var(--paper-deep);
+  --era-ink: var(--ink);
+  --era-ink-body: var(--ink-body);
+  --era-ink-muted: var(--ink-muted);
+  --era-hairline: var(--hairline);
+  --era-accent: var(--accent-ink);
+  --era-accent-alt: var(--accent-ink);
+  --glint-color: rgba(168, 90, 64, 0.07);
+  background-color: var(--era-bg);
+  color: var(--era-ink-body);
+}
+
+/* Re-declare glint colors for the .era-meta and .era-maker scopes
+   (added inline to existing definitions further below). */
+
+/* =============================================================
+   HOLOGRAPHIC HEADLINE — monotone iridescent sheen + ASCII edge
+   Used on the NOW era header. Keeps paper monograph chrome
+   while giving the present moment a quietly futuristic shimmer.
+   ============================================================= */
+
+.holo-headline {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.holo-text {
+  /* Monotone holographic — neutral pearls and lilacs, no rainbow.
+     Ink stays dominant; sheen passes through as a single window. */
+  background-image: linear-gradient(
+    100deg,
+    var(--ink) 0%,
+    var(--ink) 38%,
+    rgba(196, 188, 210, 0.85) 46%,
+    rgba(168, 158, 188, 0.95) 50%,
+    rgba(150, 152, 170, 0.85) 54%,
+    var(--ink) 62%,
+    var(--ink) 100%
+  );
+  background-size: 260% 100%;
+  background-position: 110% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: holo-sweep 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  display: inline-block;
+}
+
+@keyframes holo-sweep {
+  0%, 8% { background-position: 110% 0; }
+  50% { background-position: 50% 0; }
+  92%, 100% { background-position: -10% 0; }
+}
+
+/* ASCII edge mask — a thin band of dithered chars that travels with
+   the sheen and is clipped by the same window so only the leading
+   edge is visible. Reads as an 8-bit pixel-edge to the wipe. */
+.holo-ascii {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.05em;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.18em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 36%,
+    var(--accent-ink) 44%,
+    var(--accent-ink) 46%,
+    rgba(168, 90, 64, 0.4) 48%,
+    rgba(168, 90, 64, 0.4) 52%,
+    var(--accent-ink) 54%,
+    var(--accent-ink) 56%,
+    transparent 64%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  background-position: 110% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: holo-sweep 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holo-text,
+  .holo-ascii {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+
+/* =============================================================
+   TILE MOTION — ambient signs of life on each era's row tiles
+   Each tile gets a slow traveling sheen tuned to its era's idiom.
+   Stagger via inline `--tile-delay` so they don't pulse in unison.
+   ============================================================= */
+
+/* NOW — section-level WebGL ASCII shader runs behind all tiles
+   (rendered via <ASCIIShaderGrid />). Per-tile motion comes from
+   the shader; tiles themselves stay plain so the texture reads
+   continuously across the section. */
+.tile-now {
+  position: relative;
+  isolation: isolate;
+}
+.tile-now > * { position: relative; z-index: 1; }
+
+/* MAKER — fine CRT scan-line texture + traveling scanbar */
+.tile-maker {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.tile-maker > * { position: relative; z-index: 1; }
+.tile-maker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(255, 45, 186, 0.05) 2px,
+    rgba(255, 45, 186, 0.05) 3px
+  );
+  animation: tile-scan 6s linear infinite;
+  animation-delay: var(--tile-delay, 0s);
+  z-index: 0;
+}
+.tile-maker::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 224, 255, 0.07) 50%,
+    transparent 100%
+  );
+  background-size: 100% 35%;
+  background-repeat: no-repeat;
+  background-position: 0 -50%;
+  animation: tile-scanbar 11s linear infinite;
+  animation-delay: var(--tile-delay, 0s);
+  z-index: 0;
+}
+
+/* META — soft flat-modern gradient sheen (Family-of-Apps polish) */
+.tile-meta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.tile-meta > * { position: relative; z-index: 1; }
+.tile-meta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 110% 0;
+  animation: tile-sheen 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--tile-delay, 0s);
+  z-index: 0;
+}
+
+@keyframes tile-sheen {
+  0%, 6% { background-position: 110% 0; }
+  50% { background-position: 50% 0; }
+  94%, 100% { background-position: -10% 0; }
+}
+
+@keyframes tile-scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 6px; }
+}
+
+@keyframes tile-scanbar {
+  0% { background-position: 0 -50%; }
+  100% { background-position: 0 150%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-now::before,
+  .tile-maker::before,
+  .tile-maker::after,
+  .tile-meta::before {
+    animation: none;
+  }
+  .tile-now::before {
+    -webkit-mask-position: 50% 0;
+    mask-position: 50% 0;
+  }
+}
+
+/* =============================================================
+   ROW GLINT — subtle highlight that sweeps across each row.
+   Stagger the delay (via inline --glint-delay) so rows fire one
+   after another in a logical sequence rather than all at once.
+   Color comes from the era scope's --glint-color.
+   ============================================================= */
+
+.row-glint {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.row-glint > * { position: relative; z-index: 1; }
+
+.row-glint::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    var(--glint-color, rgba(255, 255, 255, 0.06)) 50%,
+    transparent 65%
+  );
+  transform: translateX(-110%);
+  will-change: transform;
+}
+
+/* One-shot sweep — triggered when an era card becomes active
+   (data-glinted="true" set by WorkViewer once rowsOpacity > 0.5).
+   Stagger via --glint-delay so each era's rows cascade. */
+[data-glinted="true"] .row-glint::after {
+  animation: row-glint-sweep-once 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--glint-delay, 0s);
+}
+
+@keyframes row-glint-sweep-once {
+  0%   { transform: translateX(-110%); }
+  100% { transform: translateX(110%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-glinted="true"] .row-glint::after { animation: none; }
+}
+
+/* Case-study hero numeral stack — staggered entrance.
+   The container fades the stripe in; each child line lifts + fades
+   into place behind its predecessor for a "settling" cascade. */
+.hero-stack {
+  animation: hero-stack-fade 540ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+.hero-stack > .flex.items-stretch > [aria-hidden] {
+  animation: hero-stack-stripe 720ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+  transform-origin: top;
+}
+.hero-stack > .flex.items-stretch > .flex.flex-col > * {
+  animation: hero-stack-line 560ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+.hero-stack > .flex.items-stretch > .flex.flex-col > *:nth-child(1) { animation-delay: 80ms; }
+.hero-stack > .flex.items-stretch > .flex.flex-col > *:nth-child(2) { animation-delay: 180ms; }
+.hero-stack > .flex.items-stretch > .flex.flex-col > *:nth-child(3) { animation-delay: 260ms; }
+.hero-stack > .flex.items-stretch > .flex.flex-col > *:nth-child(4) { animation-delay: 320ms; }
+
+@keyframes hero-stack-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes hero-stack-stripe {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+@keyframes hero-stack-line {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stack,
+  .hero-stack > .flex.items-stretch > [aria-hidden],
+  .hero-stack > .flex.items-stretch > .flex.flex-col > * { animation: none; }
 }

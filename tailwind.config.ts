@@ -11,16 +11,51 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        accent: "var(--accent)",
         border: "var(--border)",
         muted: "var(--muted)",
-        // Terminal Gold Design Tokens (Phase 4.1)
+        // Terminal Gold — utility-page primary accent (used sparingly).
+        // For the Studio Monograph aesthetic, prefer `paper` / `ink` / `accent-ink`.
         'terminal-gold': {
           DEFAULT: '#FFD700',
           hover: '#FFE34D',
           dark: '#E5C100',
           light: '#FFF5CC',
         },
+        // Studio Monograph palette — paper, ink, hairlines
+        paper: {
+          DEFAULT: '#F5F1E8',
+          deep: '#ECE5D6',
+        },
+        ink: {
+          DEFAULT: '#1F1B17',
+          body: '#4A4540',
+          muted: '#8A8278',
+        },
+        hairline: '#D9D2C3',
+        // Site default accent (terracotta). Inside <ProjectScope>, `accent`
+        // resolves to the per-project ink via the --accent CSS variable.
+        accent: 'var(--accent, #A85A40)',
+        'accent-ink': '#A85A40',
+        // Per-project accent tokens — applied to kicker text, hairlines,
+        // small detail elements only. Never large fills. Each is tuned
+        // for muted complementarity against the dark monochrome base.
+        project: {
+          heirloom:  '#C97A4F',  // muted rust (replaces the bright cream/amber)
+          'spark-ar':'#5FBFB0',  // muted teal
+          orion:     '#7FA9D4',  // muted Meta-blue
+          viacom:    '#A87FB8',  // dusk purple
+          maker:     '#B89D6E',  // warm sepia
+          silly:     '#D67FA8',  // muted pink
+          rumi:      '#9B7FD4',  // violet
+          fair:      '#7AB87A',  // muted moss
+          fubo:      '#D49F4F',  // streaming amber
+        },
+      },
+      // Type families (B+C system: editorial display + sans body + mono ledger)
+      fontFamily: {
+        display: ['var(--font-newsreader)', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       // Fluid Typography Tokens (Phase P1)
       fontSize: {
@@ -29,6 +64,9 @@ const config: Config = {
         'h3': 'var(--font-size-h3)',      // clamp(1.25rem, 1rem + 0.5vw, 1.875rem)
         'body': 'var(--font-size-body)',  // clamp(0.9375rem, 0.875rem + 0.2vw, 1.125rem)
         'caption': 'var(--font-size-caption)', // clamp(0.8125rem, 0.75rem + 0.15vw, 0.9375rem)
+        // B+C 5-step type scale (display, h1, h2, body, small)
+        'display': ['clamp(2rem, 1.25rem + 4vw, 5.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display-sm': ['clamp(1.75rem, 1.25rem + 2.5vw, 4rem)', { lineHeight: '1.1', letterSpacing: '-0.015em' }],
       },
       // Measure constraints for optimal reading
       maxWidth: {

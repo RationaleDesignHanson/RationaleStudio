@@ -490,25 +490,24 @@ export const siteContent = {
 
   navigation: {
     primary: [
-      { label: "Home", href: "/" },
-      { label: "Build With Us", href: "/how-we-work" },
-      { label: "Thinking", href: "/thinking" },
+      { label: "Work", href: "/work" },
+      { label: "Writing", href: "/writing" },
       { label: "About", href: "/about" },
-      { label: "Login", href: "/clients/login" },
       { label: "Contact", href: "/contact" }
     ]
   },
 
   footer: {
-    copyright: `© ${new Date().getFullYear()} Rationale Studio. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Matt Hanson · NYC`,
     links: [
+      { label: "Work", href: "/work" },
+      { label: "Writing", href: "/writing" },
       { label: "About", href: "/about" },
-      { label: "Build With Us", href: "/how-we-work" },
       { label: "Contact", href: "/contact" }
     ],
     social: [
-      { platform: "LinkedIn", url: "https://linkedin.com/in/matthansonstudio" },
-      { platform: "Twitter", url: "https://twitter.com/rationale_studio" }
+      { platform: "LinkedIn", url: "https://www.linkedin.com/in/thematthanson" },
+      { platform: "Substack", url: "https://matthanson.substack.com" }
     ]
   }
 };

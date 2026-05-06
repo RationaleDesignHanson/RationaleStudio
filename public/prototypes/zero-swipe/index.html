@@ -1,1 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#000000"/><meta name="description" content="Email Short Form - Swipe-based email management"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="apple-mobile-web-app-title" content="zero"/><link rel="manifest" href="/manifest.json"/><title>zero - Smart Email</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{animation:{pulse:"pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"}}}}</script><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}#root{height:100vh;width:100vw}</style><script defer="defer" src="/static/js/main.b7c4f55e.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#000000"/><meta name="description" content="Email Short Form - Swipe-based email management"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="apple-mobile-web-app-title" content="zero"/><link rel="manifest" href="/prototypes/zero-swipe/manifest.json"/><title>zero - Smart Email</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{animation:{pulse:"pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"}}}}</script><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}#root{height:100vh;width:100vw}</style><script defer="defer" src="/prototypes/zero-swipe/static/js/main.94e9257b.js"></script><style>
+/* Card-polish overrides — tones down shadow heaviness, blur intensity, dark gradients, and translucency saturation */
+.shadow-2xl{box-shadow:0 8px 22px -10px rgba(0,0,0,.28),0 2px 4px -2px rgba(0,0,0,.14)!important}
+.shadow-xl {box-shadow:0 6px 18px -8px rgba(0,0,0,.22),0 2px 4px -2px rgba(0,0,0,.10)!important}
+.shadow-lg {box-shadow:0 3px 12px -4px rgba(0,0,0,.16)!important}
+.backdrop-blur-xl{backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important}
+.backdrop-blur-md{backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}
+.backdrop-blur-sm{backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important}
+.bg-white\/30{background-color:rgba(255,255,255,.18)!important}
+.bg-white\/20{background-color:rgba(255,255,255,.12)!important}
+.bg-white\/15{background-color:rgba(255,255,255,.10)!important}
+.bg-white\/10{background-color:rgba(255,255,255,.07)!important}
+.border-white\/40{border-color:rgba(255,255,255,.22)!important}
+.border-white\/30{border-color:rgba(255,255,255,.16)!important}
+.border-white\/20{border-color:rgba(255,255,255,.12)!important}
+/* Lighten heavy dark backdrops and gradient stops that show through stacked card peek */
+.bg-black\/80{background-color:rgba(0,0,0,.45)!important}
+.bg-black\/50{background-color:rgba(0,0,0,.30)!important}
+.bg-black\/20{background-color:rgba(0,0,0,.15)!important}
+/* Inline-style dark backdrop overlay used behind the card stack — beats inline rgba via !important */
+.backdrop-blur-3xl{backdrop-filter:blur(20px) saturate(110%)!important;-webkit-backdrop-filter:blur(20px) saturate(110%)!important}
+div.absolute.inset-0.backdrop-blur-3xl{background-color:rgba(0,0,0,.18)!important;border-radius:inherit!important}
+/* Catch-all: any inset-0 absolute layer follows its parent's rounding so backdrops match card shape */
+.absolute.inset-0{border-radius:inherit}
+.from-slate-900{--tw-gradient-from:#475569 var(--tw-gradient-from-position)!important;--tw-gradient-to:rgb(71 85 105 / 0)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+.to-slate-800{--tw-gradient-to:#64748b var(--tw-gradient-to-position)!important}
+.from-slate-900\/95{--tw-gradient-from:rgb(71 85 105 / .85)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+.to-slate-800\/95{--tw-gradient-to:rgb(100 116 139 / .85)!important}
+.from-purple-900{--tw-gradient-from:#7e22ce!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+.from-indigo-900{--tw-gradient-from:#4338ca!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+</style></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>

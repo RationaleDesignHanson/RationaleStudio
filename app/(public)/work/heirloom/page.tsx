@@ -1,201 +1,218 @@
 /**
- * Heirloom Case Study - Consolidated Single Page
- *
- * Portfolio piece for investors, potential acqui-hirers, and prospective clients.
- * Streamlined to 6 sections: Hero, At a Glance, The Work, Demo, Results, CTA
+ * Heirloom — case study, NOW era. Consumer-facing rewrite: what it does,
+ * how it feels to use, no stack-trivia or thesis chapters.
  */
 
 'use client';
 
 import './print.css';
-import HeroSection from './components/HeroSection';
-import AtAGlance from './components/AtAGlance';
-import PrototypeEmbed from './components/PrototypeEmbed';
+import { lazy, Suspense } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from '@/lib/icons';
+import Image from 'next/image';
+import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { ChapterRow } from '@/components/case-study/ChapterRow';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+
+const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
+
+const APP_STORE_URL = 'https://apps.apple.com/app/id6759019723';
+const MARKETING_URL = 'https://heirloomrecipebox.app';
+
+const FEATURES = [
+  { src: 'feature-AIGeneration.mp4', title: 'AI Generation', blurb: 'Ask for variations grounded in the recipes you already have. Half the butter, no dairy, doubled for a party.' },
+  { src: 'feature-CookbookScan.mp4', title: 'Cookbook Scan', blurb: 'Capture a whole cookbook page by page. Heirloom reads each spread and files everything as separate cards.' },
+  { src: 'feature-VideoImport.mp4', title: 'Video Import', blurb: 'Paste a TikTok or Instagram Reels link. The audio and on-screen steps become a structured card.' },
+  { src: 'feature-KitchenTable.mp4', title: 'Kitchen Table', blurb: 'A shared cookbook for your family. Everyone adds, edits, and cooks from the same set in real time.' },
+  { src: 'feature-VersionTracking.mp4', title: 'Version Tracking', blurb: 'Every change is preserved. The recipe Mom wrote stays the recipe Mom wrote, and your version sits beside it.' },
+  { src: 'feature-DiscoverFeed.mp4', title: 'Discover', blurb: 'Themed packs and curated cookbooks for when you don&rsquo;t know what to cook tonight.' },
+];
 
 export default function HeirloomCaseStudy() {
   return (
-    <main className="heirloom-case-study">
-      {/* 1. Hero */}
-      <HeroSection />
+    <ProjectScope project="heirloom">
+      <main
+        className="era-now min-h-screen"
+        style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
+      >
+        {/* HERO */}
+        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
+          <div className="max-w-5xl mx-auto">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
+            </Link>
 
-      {/* 2. At a Glance */}
-      <section className="bg-gray-50 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <AtAGlance />
-          </div>
-        </div>
-      </section>
-
-      {/* 3. The Work: Technical Approach + Key Decisions */}
-      <section className="bg-white py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="mb-6 text-xl md:text-2xl font-bold text-[#2D2D2D]">
-              Technical Approach
-            </h2>
-            
-            {/* Architecture Overview */}
-            <div className="rounded-xl border-2 border-[#E85D4D]/30 bg-[#FBF8F3] p-5 md:p-6 mb-6">
-              <div className="grid md:grid-cols-4 gap-4">
-                <TechCard
-                  title="Native iOS"
-                  description="SwiftUI + SwiftData for responsive, premium UX"
-                  highlight="Sub-2s launch"
-                />
-                <TechCard
-                  title="AI Extraction"
-                  description="Claude 3.5 parses ingredients; vision models scan cookbooks"
-                  highlight="No typing"
-                />
-                <TechCard
-                  title="Cloud Sync"
-                  description="CloudKit enables seamless iCloud sync across devices"
-                  highlight="0.8s sync"
-                />
-                <TechCard
-                  title="Native APIs"
-                  description="EventKit + Reminders for smart shopping lists"
-                  highlight="iOS-first"
-                />
-              </div>
-            </div>
-
-            {/* Key Decisions */}
-            <h2 className="mb-4 text-xl md:text-2xl font-bold text-[#2D2D2D]">
-              Key Decisions
-            </h2>
-            <div className="grid md:grid-cols-3 gap-4">
-              <DecisionCard
-                title="Vintage Card Design"
-                description="Recipes as artifacts, not data. 50+ stickers, handwriting fonts, customizable aesthetics preserve personality."
-              />
-              <DecisionCard
-                title="Recipe-LD + AI Parsing"
-                description="500+ sites via structured data, plus Claude-powered extraction for messy text and cookbook photos."
-              />
-              <DecisionCard
-                title="iOS-First, Expand Later"
-                description="Native performance > cross-platform compromise. SwiftUI Previews enabled rapid daily iteration cycles."
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Demo - PRESERVED EXACTLY */}
-      <PrototypeEmbed />
-
-      {/* 5. Results */}
-      <section className="bg-gray-50 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="mb-6 text-xl md:text-2xl font-bold text-[#2D2D2D]">
-              Results & Learnings
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Results */}
-              <div className="rounded-xl border border-[#E85D4D]/30 bg-white p-5">
-                <h3 className="text-lg font-bold text-[#E85D4D] mb-4">Beta Metrics</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#E85D4D]">✓</span>
-                    <span><strong className="text-[#2D2D2D]">150+ beta users</strong> on TestFlight</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#E85D4D]">✓</span>
-                    <span><strong className="text-[#2D2D2D]">2,400+ recipes</strong> captured via AI</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#E85D4D]">✓</span>
-                    <span><strong className="text-[#2D2D2D]">4.8/5 rating</strong> from beta testers</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#E85D4D]">✓</span>
-                    <span><strong className="text-[#2D2D2D]">500+ sites</strong> supported for import</span>
-                  </li>
-                </ul>
+            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
+              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
+                <div className="flex items-stretch gap-3">
+                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
+                  <div className="flex flex-col leading-none">
+                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>01</span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>iOS · live</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Learnings */}
-              <div className="rounded-xl border border-gray-300 bg-white p-5">
-                <h3 className="text-lg font-bold text-[#2D2D2D] mb-4">What We Learned</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-400">•</span>
-                    <span><strong className="text-[#2D2D2D]">AI should assist, not replace</strong> — users want control over recipe editing</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-400">•</span>
-                    <span><strong className="text-[#2D2D2D]">Workflow integration is critical</strong> — iOS Reminders beat in-app lists</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-400">•</span>
-                    <span><strong className="text-[#2D2D2D]">Personalization beats automation</strong> — meal planning needs user control</span>
-                  </li>
-                </ul>
+              <div className="md:col-span-10 max-w-3xl">
+                <div className="flex items-start gap-4 md:gap-5 mb-3">
+                  <Image
+                    src="/images/work/heirloom/brand/app-icon.png"
+                    alt="Heirloom app icon"
+                    width={96}
+                    height={96}
+                    className="flex-shrink-0 rounded-2xl border border-[var(--era-hairline)] w-[64px] h-[64px] md:w-[88px] md:h-[88px]"
+                    priority
+                  />
+                  <h1 className="font-display text-display text-[var(--era-ink)] leading-[0.92]">
+                    Heirloom
+                  </h1>
+                </div>
+                <p className="font-display italic text-lg md:text-xl text-[var(--era-ink-body)] leading-snug max-w-2xl">
+                  Preserve your family&rsquo;s recipes. Grandma&rsquo;s handwriting, Mom&rsquo;s voice notes, the videos from Sunday dinner — Heirloom keeps every dish, and the person who first made it.
+                </p>
+                <p className="text-base md:text-lg text-[var(--era-ink-body)] leading-relaxed max-w-2xl mt-4">
+                  The best recipes are rarely written down. They live in a grandparent&rsquo;s head, a parent&rsquo;s muscle memory, a handwritten card stained from forty years of Sunday sauces. One move, one memory fading, one cousin cleaning out a drawer &mdash; and they&rsquo;re gone. Heirloom is the place to put them before that happens.
+                </p>
+                <p className="font-display italic text-base md:text-lg mt-4 max-w-2xl" style={{ color: 'var(--accent)' }}>
+                  Your grandmother&rsquo;s Bolognese is not a Google Doc.
+                </p>
+                <div className="flex flex-wrap gap-3 mt-6">
+                  <a
+                    href={APP_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-mono uppercase tracking-wider transition-colors"
+                    style={{ backgroundColor: 'var(--accent)', color: 'var(--era-bg)' }}
+                  >
+                    Download on the App Store <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={MARKETING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-mono uppercase tracking-wider border border-[var(--era-hairline)] text-[var(--era-ink)] hover:border-[var(--accent)] transition-colors"
+                  >
+                    heirloomrecipebox.app <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <Link
+                    href="/work/heirloom/evolution"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-mono uppercase tracking-wider border border-[var(--era-hairline)] text-[var(--era-ink)] hover:border-[var(--accent)] transition-colors"
+                  >
+                    The build journey <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 6. CTA */}
-      <section className="bg-gradient-to-br from-[#FBF8F3] to-white py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-4 text-xl md:text-2xl font-bold text-[#2D2D2D]">
-              Try Heirloom or Work With Us
-            </h2>
-            <p className="mb-8 text-gray-700">
-              Join the TestFlight beta, or let's build your next product together.
-            </p>
+        {/* CHAPTER 01 — WHAT IT DOES */}
+        <ChapterRow index="01" kicker="WHAT IT DOES" title="One box for every recipe you care about">
+          <p>
+            Heirloom is a recipe box. Photograph your grandmother&rsquo;s handwritten card, screenshot a recipe from a website, scan a whole cookbook page by page, paste a TikTok link, or read a recipe out loud while your hands are floury. Heirloom captures it, fills in a structured card, and files it where you can find it again.
+          </p>
+          <p>
+            Every recipe has lineage. The card Mom wrote in 1985 stays the card Mom wrote in 1985. When you change something &mdash; less butter, a different oven temperature, a tweak from a friend &mdash; your version sits beside hers, and so does the diff: who changed what, and when.
+          </p>
+        </ChapterRow>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/heirloom"
-                className="inline-flex items-center gap-2 rounded-full bg-[#E85D4D] px-6 py-3 font-semibold text-white shadow-xl transition-all hover:bg-[#d54d3d] hover:scale-105"
-              >
-                Join Beta
-                <ArrowRight className="w-4 h-4" />
+        {/* CHAPTER 02 — IMPORT */}
+        <ChapterRow index="02" kicker="HOW IT CAPTURES" title="Six ways in, one private cookbook">
+          <ul className="space-y-2.5 mt-2">
+            <li><strong className="text-[var(--era-ink)]">Speak it aloud.</strong> Tell Heirloom the recipe while you cook; it transcribes on-device with WhisperKit. Audio never leaves your phone.</li>
+            <li><strong className="text-[var(--era-ink)]">Paste a URL.</strong> Any recipe site becomes a clean card &mdash; skip the storytelling and the ads.</li>
+            <li><strong className="text-[var(--era-ink)]">Photograph a handwritten card.</strong> Even the cards with smudges, missing steps, or a hundred years of fading.</li>
+            <li><strong className="text-[var(--era-ink)]">Scan a whole cookbook.</strong> Page by page. Each spread becomes its own card.</li>
+            <li><strong className="text-[var(--era-ink)]">Save a TikTok, Reel, or YouTube video.</strong> Audio and on-screen steps both feed the recipe. Saved to your private Recipe Box, not a feed.</li>
+            <li><strong className="text-[var(--era-ink)]">Describe a dish.</strong> Type &ldquo;Grandma&rsquo;s brisket&rdquo; or &ldquo;weeknight pasta something&rdquo; and Heirloom drafts a complete recipe. You review every line before it&rsquo;s saved.</li>
+          </ul>
+          <p className="mt-4">
+            Before a card is saved, Heirloom cross-checks it. It looks up published recipes for the same dish and flags anything that doesn&rsquo;t fit &mdash; a 12-cup butter ratio, a missing step between &ldquo;marinate&rdquo; and &ldquo;plate.&rdquo; You confirm before it commits. Bad recipes don&rsquo;t quietly enter the box.
+          </p>
+        </ChapterRow>
+
+        {/* CHAPTER 03 — TRY IT */}
+        <ChapterRow index="03" kicker="TRY IT · LIVE" title="Try the import flow">
+          <p>
+            Pick a sample photo (or upload your own). Heirloom reads it, fills in a card, and shows you what changed when the next person edits it.
+          </p>
+        </ChapterRow>
+        <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-white">
+              <Suspense fallback={
+                <div className="p-12 text-center text-sm font-mono text-[var(--era-ink-muted)]">
+                  loading demo&hellip;
+                </div>
+              }>
+                <HeirloomDemo />
+              </Suspense>
+            </div>
+          </div>
+        </section>
+
+        {/* CHAPTER 04 — LIVE IN THE APP */}
+        <ChapterRow index="04" kicker="LIVE IN THE APP" title="What you can do today">
+          <p>
+            Six things, all shipping in the current build:
+          </p>
+          <div className="mt-6 md:mt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {FEATURES.map((f) => (
+                <div key={f.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
+                  <video src={`/videos/heirloom/${f.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
+                  <div className="px-4 py-3">
+                    <h3 className="text-sm font-display text-[var(--era-ink)] mb-1">{f.title}</h3>
+                    <p className="text-xs text-[var(--era-ink-muted)] leading-relaxed">{f.blurb}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ChapterRow>
+
+        {/* CHAPTER 05 — COOKBOOK SHARING */}
+        <ChapterRow index="05" kicker="SHARING" title="A cookbook, not a social graph">
+          <p>
+            Make a cookbook. Invite specific family members by username &mdash; no public feed, no algorithm, no strangers reading your grandmother&rsquo;s notes. Recipes added on one phone show up on every other phone instantly. Edits sync the same way. The argument over how much salt is in the soup gets settled in writing.
+          </p>
+          <p>
+            Every recipe carries its own version history, so you can fork from anyone&rsquo;s cookbook without losing theirs. Your mother&rsquo;s pasta stays your mother&rsquo;s pasta even after you&rsquo;ve made it your own. Three generations flow through one recipe.
+          </p>
+          <p className="font-display italic text-[var(--era-ink)] mt-4">
+            From the kitchen to forever.
+          </p>
+        </ChapterRow>
+
+        {/* FOOTER */}
+        <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">
+          <div className="max-w-5xl mx-auto flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row gap-x-5 gap-y-2 flex-wrap text-sm">
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors">
+                App Store <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              <a href={MARKETING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors">
+                heirloomrecipebox.app <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              <Link href="/work/heirloom/evolution" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors">
+                The build journey <ArrowRight className="w-3.5 h-3.5" />
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[#E85D4D] px-6 py-3 font-semibold text-[#E85D4D] transition-all hover:bg-[#E85D4D] hover:text-white"
-              >
-                Work With Us
-                <ArrowRight className="w-4 h-4" />
+            </div>
+            <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 pt-4 border-t border-[var(--era-hairline)]">
+              <p className="text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase">
+                01 / 09 &middot; END OF CHAPTER
+              </p>
+              <Link href="/work/silly-questions" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] font-display italic text-lg md:text-xl transition-colors">
+                Continue &rarr; Silly Questions <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-// Tech Card Component
-function TechCard({ title, description, highlight }: { title: string; description: string; highlight: string }) {
-  return (
-    <div className="text-center p-3">
-      <div className="text-sm font-bold text-[#E85D4D] mb-1">{title}</div>
-      <p className="text-xs text-gray-600 mb-2">{description}</p>
-      <span className="inline-block px-2 py-0.5 bg-[#E85D4D]/10 text-[10px] font-semibold text-[#E85D4D] rounded-full">
-        {highlight}
-      </span>
-    </div>
-  );
-}
-
-// Compact Decision Card
-function DecisionCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-lg border border-gray-300 bg-white p-4 hover:border-[#E85D4D]/40 transition-colors">
-      <h3 className="text-base font-bold text-[#2D2D2D] mb-2">{title}</h3>
-      <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
-    </div>
+        </section>
+      </main>
+    </ProjectScope>
   );
 }

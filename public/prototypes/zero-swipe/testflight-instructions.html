@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestFlight Beta Testing - Zero</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 20px 0 12px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        p, li {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 12px;
+        }
+
+        ol, ul {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .password-box {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 24px 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .password-box h3 {
+            color: #1a1a2e;
+            margin: 0 0 12px 0;
+        }
+
+        .password {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 8px;
+            color: #1a1a2e;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 16px 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .tip {
+            background: rgba(52, 199, 89, 0.2);
+            border-left: 4px solid #34c759;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .password {
+                font-size: 24px;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Welcome to Zero Beta!</h1>
+        <p class="subtitle">Thank you for joining our TestFlight beta program. Let's get you set up!</p>
+
+        <div class="section">
+            <h2>📱 Step 1: Install TestFlight</h2>
+            <ol>
+                <li>Download <strong>TestFlight</strong> from the App Store (if you don't have it already)</li>
+                <li>Open TestFlight on your iPhone</li>
+                <li>Tap the <span class="highlight">Zero Inbox</span> invitation link you received via email</li>
+                <li>Tap <strong>"Accept"</strong> and then <strong>"Install"</strong></li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ Important:</strong> TestFlight links expire after a certain period. If your link doesn't work, contact us for a new one.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔑 Step 2: Get Dashboard Access</h2>
+            <p>As a beta tester, you have exclusive access to the Zero Sequence Simulator and dashboard tools.</p>
+
+            <div class="password-box">
+                <h3>🔒 Your Dashboard Password</h3>
+                <div class="password">ZERO2025</div>
+                <p style="margin-top: 12px; font-size: 14px;">Save this password - you'll need it to access dashboard tools</p>
+            </div>
+
+            <p>Use this password to access:</p>
+            <ul>
+                <li><strong>Zero Sequence Simulator</strong> - See how Zero processes emails</li>
+                <li><strong>System Health Dashboard</strong> - Monitor app performance</li>
+                <li><strong>Analytics Dashboard</strong> - View usage statistics</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎮 Step 3: Try the Simulator</h2>
+            <p><strong>Before testing the iOS app</strong>, we highly recommend trying the Zero Sequence Simulator. This will help you understand how Zero works and give better feedback!</p>
+
+            <div class="tip">
+                <strong>💡 Pro Tip:</strong> The simulator shows you exactly how Zero categorizes emails and suggests actions. Understanding this will help you test the iOS app more effectively!
+            </div>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <a href="https://zero-dashboard-514014482017.us-central1.run.app/zero-sequence-live.html" class="cta-button">
+                    🚀 Launch Simulator
+                </a>
+            </div>
+
+            <p style="margin-top: 16px; text-align: center; font-size: 14px;">
+                (You'll be prompted for the password: <strong>ZERO2025</strong>)
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>✅ Step 4: Test the iOS App</h2>
+            <p>Now you're ready to test Zero on your iPhone!</p>
+
+            <h3>What to Test:</h3>
+            <ul>
+                <li><strong>Email Categorization</strong> - Does Zero correctly identify email types?</li>
+                <li><strong>Swipe Gestures</strong> - Are the interactions smooth and intuitive?</li>
+                <li><strong>Action Suggestions</strong> - Are the suggested actions helpful?</li>
+                <li><strong>Model Tuning</strong> - Try training Zero on your preferences in Settings</li>
+                <li><strong>Performance</strong> - Is the app fast and responsive?</li>
+            </ul>
+
+            <h3>Settings to Check:</h3>
+            <ul>
+                <li>Configure your <span class="highlight">OpenAI</span> or <span class="highlight">Gemini</span> API key</li>
+                <li>Enable/disable <span class="highlight">Debug Overlay</span> to see detailed info</li>
+                <li>Try the <span class="highlight">Model Tuning</span> feature to train categories and actions</li>
+            </ul>
+
+            <div class="warning">
+                <strong>⚠️ Read-Only Mode:</strong> By default, email sending is DISABLED for safety. You can enable it in Settings if you want to test the full experience.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💬 Step 5: Share Your Feedback</h2>
+            <p>Your feedback is invaluable! Please report any issues you find:</p>
+
+            <ul>
+                <li><strong>Bugs:</strong> What went wrong? Steps to reproduce?</li>
+                <li><strong>Usability:</strong> Was anything confusing or difficult?</li>
+                <li><strong>Performance:</strong> Did you notice any lag or crashes?</li>
+                <li><strong>Features:</strong> What would make Zero better for you?</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <a href="mailto:0Inboxapp@gmail.com?subject=Zero%20Beta%20Feedback" class="cta-button secondary">
+                    📧 Send Feedback
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔗 Quick Links</h2>
+            <div style="text-align: center;">
+                <a href="https://zero-dashboard-514014482017.us-central1.run.app/zero-sequence-live.html" class="cta-button secondary">
+                    Zero Sequence Simulator
+                </a>
+                <a href="https://zero-dashboard-514014482017.us-central1.run.app/system-health.html" class="cta-button secondary">
+                    System Health
+                </a>
+                <a href="/privacy.html" class="cta-button secondary">
+                    Privacy Policy
+                </a>
+            </div>
+        </div>
+
+        <div class="contact">
+            <h3>Need Help?</h3>
+            <p>Contact us anytime: <a href="mailto:0Inboxapp@gmail.com">0Inboxapp@gmail.com</a></p>
+            <p style="margin-top: 8px; font-size: 14px; color: rgba(255, 255, 255, 0.6);">
+                We typically respond within 24-48 hours
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+            <a href="/" style="color: white; text-decoration: none; font-size: 14px;">
+                ← Back to Demo
+            </a>
+        </div>
+    </div>
+</body>
+</html>

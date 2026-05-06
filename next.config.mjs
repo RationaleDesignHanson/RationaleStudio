@@ -73,7 +73,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-insights.com https://*.netlify.app https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://*.netlify.app https://*.netlify.com; connect-src 'self' https://*.vercel-insights.com https://*.supabase.co wss://*.supabase.co https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.netlify.app https://apis.google.com https://*.googleapis.com; frame-src 'self' https://vercel.live https://accounts.google.com https://apis.google.com https://*.firebaseapp.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-insights.com https://*.netlify.app https://apis.google.com https://*.googleapis.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://*.netlify.app https://*.netlify.com; connect-src 'self' https://*.vercel-insights.com https://*.supabase.co wss://*.supabase.co https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.netlify.app https://apis.google.com https://*.googleapis.com; frame-src 'self' https://vercel.live https://accounts.google.com https://apis.google.com https://*.firebaseapp.com https://silly-questions.com https://*.vercel.app https://vimeo.com https://player.vimeo.com https://www.youtube.com https://www.youtube-nocookie.com;",
           },
         ],
       },
@@ -163,12 +163,7 @@ const nextConfig = {
         permanent: true,
       },
 
-      // Zero - archived case study (redirect to product page)
-      {
-        source: '/work/zero',
-        destination: '/zero',
-        permanent: true,
-      },
+      // Zero — case study now lives at /work/zero, no redirect.
 
       // Zero case study consolidation - redirect old sub-pages
       {
@@ -247,7 +242,20 @@ const nextConfig = {
       },
       {
         source: '/products/heirloom',
-        destination: '/heirloom',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      // /heirloom landing consolidated into the case study at /work/heirloom.
+      // Sub-routes (/heirloom/privacy, /heirloom/support) stay live for App Store linking.
+      {
+        source: '/heirloom',
+        destination: '/work/heirloom',
+        permanent: true,
+      },
+      // /silly-questions landing consolidated into the case study.
+      {
+        source: '/silly-questions',
+        destination: '/work/silly-questions',
         permanent: true,
       },
       {
@@ -263,6 +271,23 @@ const nextConfig = {
       {
         source: '/products/sanitary-system',
         destination: '/products/nimbus',
+        permanent: true,
+      },
+
+      // Client-work case studies migrated under /work/* (was /clients/* — collided with portal)
+      {
+        source: '/clients/rumi',
+        destination: '/work/rumi',
+        permanent: true,
+      },
+      {
+        source: '/clients/fubo',
+        destination: '/work/fubo',
+        permanent: true,
+      },
+      {
+        source: '/clients/framestore',
+        destination: '/work/framestore',
         permanent: true,
       },
     ];

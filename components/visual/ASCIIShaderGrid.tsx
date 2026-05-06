@@ -29,6 +29,12 @@ interface ASCIIShaderGridProps {
   smallSpeed?: number;
   mediumSpeed?: number;
   characterSet?: CharacterSetName;
+  /**
+   * When true, hold the initial characterSet + noise type for the
+   * lifetime of the component (no cycling). Time still animates so
+   * the noise field still moves; the glyph palette just stays put.
+   */
+  disableCycle?: boolean;
 }
 
 // Vertex shader - simple passthrough with proper UV mapping
@@ -562,7 +568,8 @@ function ASCIIShaderMesh({
   mediumOpacity = 0.4,
   smallSpeed = 0.5,
   mediumSpeed = 1.5,
-  characterSet = 'minimal'
+  characterSet = 'minimal',
+  disableCycle = false,
 }: {
   colorTheme?: WatercolorTheme;
   animated: boolean;
@@ -574,6 +581,7 @@ function ASCIIShaderMesh({
   smallSpeed?: number;
   mediumSpeed?: number;
   characterSet?: CharacterSetName;
+  disableCycle?: boolean;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const { size } = useThree();
@@ -647,6 +655,7 @@ function ASCIIShaderMesh({
   // Cycle through noise functions and character sets with smooth transitions
   useEffect(() => {
     if (!animated) return;
+    if (disableCycle) return; // pinned: keep initial charSet + noise type for entire lifetime
 
     const stableDuration = 8000; // 8 seconds stable
     const fadeDuration = 2000;   // 2 seconds fade
@@ -753,7 +762,7 @@ function ASCIIShaderMesh({
     }, 16); // Update every ~16ms (60fps)
 
     return () => clearInterval(interval);
-  }, [animated, shaderMaterial]);
+  }, [animated, disableCycle, shaderMaterial]);
 
   // Animation loop
   useFrame((state) => {
@@ -792,7 +801,8 @@ export function ASCIIShaderGrid({
   mediumOpacity = 0.4,
   smallSpeed = 0.5,
   mediumSpeed = 1.5,
-  characterSet = 'minimal'
+  characterSet = 'minimal',
+  disableCycle = false,
 }: ASCIIShaderGridProps) {
   const [isClient, setIsClient] = useState(false);
   const [contextLost, setContextLost] = useState(false);
@@ -881,6 +891,7 @@ export function ASCIIShaderGrid({
           smallSpeed={smallSpeed}
           mediumSpeed={mediumSpeed}
           characterSet={characterSet}
+          disableCycle={disableCycle}
         />
       </Canvas>
     </div>

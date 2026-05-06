@@ -19,11 +19,10 @@ import {
   ChangeHistory,
   FieldChange,
   HeirloomDemoProps,
-  StickerOnCard,
   DetectedRecipe,
   BoundingBox,
 } from './types';
-import { DEMO_STICKERS, COLORS, API_ENDPOINT, DETECT_API_ENDPOINT } from './constants';
+import { COLORS, API_ENDPOINT, DETECT_API_ENDPOINT } from './constants';
 import type { SampleRecipe } from '@/lib/heirloom/sample-recipes';
 import Image from 'next/image';
 
@@ -45,14 +44,6 @@ export function HeirloomDemo({
   const [detectedRecipes, setDetectedRecipes] = useState<DetectedRecipe[]>([]);
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
 
-  // Notes and stickers
-  const [momNote, setMomNote] = useState('');
-  const [yourNote, setYourNote] = useState('');
-  const [savedMomNote, setSavedMomNote] = useState('');
-  const [savedYourNote, setSavedYourNote] = useState('');
-  const [momStickers, setMomStickers] = useState<string[]>([]);
-  const [yourStickers, setYourStickers] = useState<string[]>([]);
-  const [shuffledStickers, setShuffledStickers] = useState(DEMO_STICKERS);
 
   // UI state
   const [isDragging, setIsDragging] = useState(false);
@@ -68,12 +59,6 @@ export function HeirloomDemo({
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const demoContainerRef = useRef<HTMLDivElement | null>(null);
-
-  // Shuffle stickers whenever recipe changes
-  useEffect(() => {
-    const shuffled = [...DEMO_STICKERS].sort(() => Math.random() - 0.5);
-    setShuffledStickers(shuffled);
-  }, [recipe?.title]);
 
   const updateStep = useCallback(
     (newStep: DemoStep) => {
@@ -320,34 +305,10 @@ export function HeirloomDemo({
     return fieldChanges?.[fieldChanges.length - 1] || null;
   };
 
-  const toggleSticker = (stickerId: string, who: 'mom' | 'you') => {
-    if (who === 'mom') {
-      setMomStickers((prev) =>
-        prev.includes(stickerId) ? prev.filter((s) => s !== stickerId) : [...prev, stickerId]
-      );
-    } else {
-      setYourStickers((prev) =>
-        prev.includes(stickerId) ? prev.filter((s) => s !== stickerId) : [...prev, stickerId]
-      );
-    }
-  };
-
-  const handleMomSubmit = () => {
-    setSavedMomNote(momNote);
-    setIsFlipped(true);
-    setTimeout(() => {
-      updateStep('fork2');
-      setTimeout(() => setIsFlipped(false), 800);
-    }, 1200);
-  };
-
+  const handleMomSubmit = () => updateStep('fork2');
   const handleYourSubmit = () => {
-    setSavedYourNote(yourNote);
-    setIsFlipped(true);
-    setTimeout(() => {
-      updateStep('lineage');
-      onFlowComplete?.();
-    }, 800);
+    updateStep('lineage');
+    onFlowComplete?.();
   };
 
   const reset = () => {
@@ -357,14 +318,8 @@ export function HeirloomDemo({
     setImagePreview(null);
     setRecipe(null);
     setError(null);
-    setMomNote('');
-    setYourNote('');
-    setSavedMomNote('');
-    setSavedYourNote('');
     setIsFlipped(false);
     setChanges({});
-    setMomStickers([]);
-    setYourStickers([]);
     setExpandedIngredients(false);
     setExpandedInstructions(false);
     setInstructionsCollapsed(false);
@@ -410,8 +365,8 @@ export function HeirloomDemo({
       : 0;
 
   const getGenerationCount = () => {
-    if (savedYourNote || step === 'lineage') return 3;
-    if (savedMomNote || step === 'fork2') return 2;
+    if (step === 'lineage') return 3;
+    if (step === 'fork2') return 2;
     return 1;
   };
 
@@ -420,17 +375,6 @@ export function HeirloomDemo({
     if (count === 1) return 'Original';
     return `${count} Generations`;
   };
-
-  const allStickers: StickerOnCard[] = [
-    ...momStickers.map((id) => {
-      const sticker = DEMO_STICKERS.find((s) => s.id === id);
-      return { ...sticker!, by: 'Mom', year: '2015' };
-    }),
-    ...yourStickers.map((id) => {
-      const sticker = DEMO_STICKERS.find((s) => s.id === id);
-      return { ...sticker!, by: 'You', year: '2025' };
-    }),
-  ];
 
   const isEditable = step === 'scanned' || step === 'fork1' || step === 'fork2';
 
@@ -460,17 +404,17 @@ export function HeirloomDemo({
       case 'fork1':
         return {
           title: "Mom's Turn",
-          description: 'Edit the recipe or add a note on the back',
+          description: 'Edit the recipe — every change is tracked',
         };
       case 'fork2':
         return {
           title: 'Your Turn',
-          description: 'Make it yours — edit or add a note',
+          description: 'Make it yours — edit anything',
         };
       case 'lineage':
         return {
           title: 'A Living Recipe',
-          description: 'Flip the card to see its history',
+          description: 'Tap the chip to see its history',
         };
       default:
         return { title: '', description: '' };
@@ -480,31 +424,14 @@ export function HeirloomDemo({
   const stepContent = getStepContent();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans pt-1 pb-4 sm:pt-2 sm:pb-6 md:pt-8 md:pb-16 px-3 md:px-5 ${className}`}>
+    <div className={`bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#f4f0e8] font-sans py-4 md:py-6 px-3 md:px-5 ${className}`}>
       {/* Header */}
-      <div className="mb-3 mt-0 flex flex-col items-center">
-        <h1 className="text-2xl md:text-4xl font-bold text-[#3d2914] mb-0.5 leading-tight text-center">
+      <div className="mb-3 flex flex-col items-center">
+        <h1 className="text-xl md:text-2xl font-bold text-[#3d2914] mb-0.5 leading-tight text-center">
           {stepContent.title}
         </h1>
-        <div className="text-sm md:text-base text-[#8b7355] leading-normal text-center max-w-xs md:max-w-md flex items-center gap-1.5 justify-center">
-          {step === 'upload' && showSampleSelector ? (
-            <>
-              <span>Select or upload a recipe photo</span>
-              <button
-                onClick={() => setShowSampleSelector(false)}
-                className="p-2 -m-2 flex-shrink-0"
-                aria-label="Upload your own photo"
-              >
-                <div className="w-[14px] h-[14px] rounded-full bg-[#8b7355] hover:bg-[#8b5a2b] flex items-center justify-center transition-all opacity-70 hover:opacity-100">
-                  <svg className="w-2.5 h-2.5 text-[#faf8f5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                  </svg>
-                </div>
-              </button>
-            </>
-          ) : (
-            stepContent.description
-          )}
+        <div className="text-xs md:text-sm text-[#8b7355] leading-normal text-center max-w-xs md:max-w-md">
+          {stepContent.description}
         </div>
         {step === 'scanned' && (
           <div className="text-xs text-[#b8a890] mt-1 text-center">
@@ -555,12 +482,12 @@ export function HeirloomDemo({
         {(step === 'scanned' || step === 'fork1' || step === 'fork2' || step === 'lineage') && recipe && (
           <div className="fade-in">
             {/* Desktop: Card centered, timeline to the left */}
-            <div className="hidden md:flex md:justify-center md:items-start md:gap-10">
+            <div className="hidden md:flex md:justify-center md:items-start md:gap-6">
               {/* Timeline */}
               <Timeline step={step} />
 
               {/* Card and Action Area - centered */}
-              <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col items-center gap-4">
               {/* Recipe Card */}
               <RecipeCard
                 recipe={recipe}
@@ -581,9 +508,6 @@ export function HeirloomDemo({
                 setExpandedInstructions={setExpandedInstructions}
                 instructionsCollapsed={instructionsCollapsed}
                 setInstructionsCollapsed={setInstructionsCollapsed}
-                allStickers={allStickers}
-                savedMomNote={savedMomNote}
-                savedYourNote={savedYourNote}
                 changes={changes}
                 getGenerationCount={getGenerationCount}
                 getGenerationLabel={getGenerationLabel}
@@ -645,116 +569,50 @@ export function HeirloomDemo({
                   </div>
                 )}
 
-                {/* Fork 1 - Mom's note input */}
-                {step === 'fork1' && !isFlipped && (
+                {/* Fork 1 - advance to fork2 */}
+                {step === 'fork1' && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-1.5">
-                      Mom writes on the back of the card:
-                    </label>
-                    <textarea
-                      value={momNote}
-                      onChange={(e) => setMomNote(e.target.value)}
-                      placeholder="I always double the honey — our family likes it sweeter..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-3"
-                      style={{ fontFamily: 'Georgia, serif' }}
-                    />
-
-                    {/* Sticker picker */}
-                    <div className="mb-3">
-                      <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
-                      <div className="sticker-picker flex gap-2 flex-wrap justify-center">
-                        {shuffledStickers.map((sticker) => (
-                          <button
-                            key={sticker.id}
-                            className={`sticker-btn ${momStickers.includes(sticker.id) ? 'selected' : ''}`}
-                            onClick={() => toggleSticker(sticker.id, 'mom')}
-                            title={sticker.label}
-                            type="button"
-                          >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
+                    <p className="text-[13px] text-[#8b7355] mb-3 text-center">
+                      Edit the title, ingredients, or instructions inline. Every change is attributed to Mom · 2015.
+                    </p>
                     <button
                       onClick={handleMomSubmit}
-                      disabled={!momNote.trim() && momStickers.length === 0}
-                      className={`w-full ${
-                        momNote.trim() || momStickers.length > 0
-                          ? 'bg-[#8b5a2b] cursor-pointer hover:bg-[#6b4a1b]'
-                          : 'bg-[#d4c4a8] cursor-not-allowed'
-                      } text-white border-none rounded-lg py-3.5 px-4 text-[15px] font-semibold transition-colors flex items-center justify-center gap-2`}
+                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 px-4 text-[15px] font-semibold cursor-pointer hover:bg-[#6b4a1b] transition-colors"
                     >
-                      <span>↻</span> Flip & Add to Card
+                      Pass to You →
                     </button>
                   </div>
                 )}
 
-                {/* Fork 2 - Your note input */}
-                {step === 'fork2' && !isFlipped && (
+                {/* Fork 2 - advance to lineage */}
+                {step === 'fork2' && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-2">
-                      Your turn — add your note:
-                    </label>
-                    <textarea
-                      value={yourNote}
-                      onChange={(e) => setYourNote(e.target.value)}
-                      placeholder="I make it vegan with oat milk and flax eggs..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#c5dcc5] text-sm resize-y bg-[#e8f4e8] mb-4"
-                      style={{ fontFamily: 'Georgia, serif' }}
-                    />
-
-                    {/* Sticker picker */}
-                    <div className="mb-3">
-                      <label className="text-xs text-[#8b7355] block mb-1.5">Add a sticker (optional):</label>
-                      <div className="sticker-picker flex gap-2 flex-wrap justify-center">
-                        {shuffledStickers.map((sticker) => (
-                          <button
-                            key={sticker.id}
-                            className={`sticker-btn ${yourStickers.includes(sticker.id) ? 'selected' : ''}`}
-                            onClick={() => toggleSticker(sticker.id, 'you')}
-                            title={sticker.label}
-                            type="button"
-                          >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
+                    <p className="text-[13px] text-[#8b7355] mb-3 text-center">
+                      Your turn. Edit anything — your changes go on top of Mom&rsquo;s, attributed to You · 2025.
+                    </p>
                     <button
                       onClick={handleYourSubmit}
-                      disabled={!yourNote.trim() && yourStickers.length === 0}
-                      className={`w-full ${
-                        yourNote.trim() || yourStickers.length > 0
-                          ? 'bg-[#8b5a2b] cursor-pointer hover:bg-[#6b4a1b]'
-                          : 'bg-[#d4c4a8] cursor-not-allowed'
-                      } text-white border-none rounded-lg py-3.5 px-4 text-[15px] font-semibold transition-colors flex items-center justify-center gap-2`}
+                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 px-4 text-[15px] font-semibold cursor-pointer hover:bg-[#6b4a1b] transition-colors"
                     >
-                      <span>↻</span> Flip & Add to Card
+                      See Lineage →
                     </button>
                   </div>
                 )}
 
                 {/* Lineage - final state */}
                 {step === 'lineage' && (
-                  <div className="fade-in text-center">
-                    <div className="p-4 md:p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-3 md:mb-5">
-                      <p
-                        className="text-xl text-[#3d2914] italic leading-relaxed m-0"
-                        style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                      >
-                        &quot;Every recipe has a story.
-                        <br />
-                        Heirloom remembers it.&quot;
-                      </p>
-                    </div>
+                  <div className="fade-in flex items-center justify-center gap-3 flex-wrap text-center">
+                    <p
+                      className="text-[13px] text-[#5c4033] italic m-0"
+                      style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+                    >
+                      Every recipe has a story.
+                    </p>
                     <button
                       onClick={reset}
-                      className="bg-transparent text-[#8b5a2b] border-2 border-[#8b5a2b] rounded-lg py-3 px-8 text-[15px] font-semibold cursor-pointer hover:bg-[#8b5a2b] hover:text-white transition-all"
+                      className="bg-transparent text-[#8b5a2b] border border-[#8b5a2b] rounded-full py-1.5 px-4 text-[12px] font-semibold cursor-pointer hover:bg-[#8b5a2b] hover:text-white transition-all"
                     >
-                      ↺ Try Another Recipe
+                      ↺ Try another
                     </button>
                   </div>
                 )}
@@ -785,9 +643,6 @@ export function HeirloomDemo({
                 setExpandedInstructions={setExpandedInstructions}
                 instructionsCollapsed={instructionsCollapsed}
                 setInstructionsCollapsed={setInstructionsCollapsed}
-                allStickers={allStickers}
-                savedMomNote={savedMomNote}
-                savedYourNote={savedYourNote}
                 changes={changes}
                 getGenerationCount={getGenerationCount}
                 getGenerationLabel={getGenerationLabel}
@@ -849,120 +704,50 @@ export function HeirloomDemo({
                   </div>
                 )}
 
-                {/* Fork 1 - Mom's note input */}
-                {step === 'fork1' && !isFlipped && (
+                {/* Fork 1 - advance */}
+                {step === 'fork1' && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-1.5">
-                      Mom writes on the back of the card:
-                    </label>
-                    <textarea
-                      value={momNote}
-                      onChange={(e) => setMomNote(e.target.value)}
-                      placeholder="I always double the honey — our family likes it sweeter..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#e0d5c5] text-sm resize-y bg-[#fff8dc] mb-3"
-                      style={{ fontFamily: 'Georgia, serif' }}
-                    />
-
-                    {/* Sticker picker - Mom */}
-                    <div className="mb-4">
-                      <label className="text-xs text-[#8b7355] block mb-2">
-                        Add a sticker (optional):
-                      </label>
-                      <div className="flex gap-2 flex-wrap">
-                        {DEMO_STICKERS.map((sticker) => (
-                          <button
-                            key={sticker.id}
-                            onClick={() => toggleSticker(sticker.id, 'mom')}
-                            className={`w-10 h-10 rounded-lg border-2 transition-all ${
-                              momStickers.includes(sticker.id)
-                                ? 'border-[#8b5a2b] bg-[rgba(139,90,43,0.1)]'
-                                : 'border-[#e0d5c5] bg-white hover:border-[#c9a66b]'
-                            }`}
-                            title={sticker.label}
-                            type="button"
-                          >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
+                    <p className="text-[13px] text-[#8b7355] mb-3 text-center">
+                      Edit the title, ingredients, or instructions inline. Every change is attributed to Mom · 2015.
+                    </p>
                     <button
                       onClick={handleMomSubmit}
-                      disabled={!momNote.trim() && momStickers.length === 0}
-                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 text-[15px] font-semibold cursor-pointer disabled:bg-[#d4c4a8] disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 text-[15px] font-semibold cursor-pointer hover:bg-[#6b4a1b] transition-colors"
                     >
-                      <span>↻</span> Flip & Add to Card
+                      Pass to You →
                     </button>
                   </div>
                 )}
 
-                {/* Fork 2 - Your note input */}
-                {step === 'fork2' && !isFlipped && (
+                {/* Fork 2 - advance */}
+                {step === 'fork2' && (
                   <div className="fade-in">
-                    <label className="text-[13px] text-[#5c4033] font-medium block mb-2">
-                      Your turn — add your note:
-                    </label>
-                    <textarea
-                      value={yourNote}
-                      onChange={(e) => setYourNote(e.target.value)}
-                      placeholder="I make it vegan with oat milk and flax eggs..."
-                      className="w-full min-h-[80px] p-3 rounded-lg border border-[#c5dcc5] text-sm resize-y bg-[#e8f4e8] mb-4"
-                      style={{ fontFamily: 'Georgia, serif' }}
-                    />
-
-                    {/* Sticker picker - You */}
-                    <div className="mb-4">
-                      <label className="text-xs text-[#8b7355] block mb-2">
-                        Add a sticker (optional):
-                      </label>
-                      <div className="flex gap-2 flex-wrap">
-                        {DEMO_STICKERS.map((sticker) => (
-                          <button
-                            key={sticker.id}
-                            onClick={() => toggleSticker(sticker.id, 'you')}
-                            className={`w-10 h-10 rounded-lg border-2 transition-all ${
-                              yourStickers.includes(sticker.id)
-                                ? 'border-[#2d5a27] bg-[rgba(45,90,39,0.1)]'
-                                : 'border-[#e0d5c5] bg-white hover:border-[#a4c5a4]'
-                            }`}
-                            title={sticker.label}
-                            type="button"
-                          >
-                            <img src={sticker.imagePath} alt={sticker.label} className="w-full h-full object-contain" />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
+                    <p className="text-[13px] text-[#8b7355] mb-3 text-center">
+                      Your turn. Edit anything — your changes go on top of Mom&rsquo;s, attributed to You · 2025.
+                    </p>
                     <button
                       onClick={handleYourSubmit}
-                      disabled={!yourNote.trim() && yourStickers.length === 0}
-                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 text-[15px] font-semibold cursor-pointer disabled:bg-[#d4c4a8] disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full bg-[#8b5a2b] text-white border-none rounded-lg py-3.5 text-[15px] font-semibold cursor-pointer hover:bg-[#6b4a1b] transition-colors"
                     >
-                      <span>↻</span> Flip & Add to Card
+                      See Lineage →
                     </button>
                   </div>
                 )}
 
                 {/* Lineage - final state */}
                 {step === 'lineage' && (
-                  <div className="fade-in text-center">
-                    <div className="p-4 md:p-6 bg-[rgba(139,90,43,0.05)] rounded-2xl mb-3 md:mb-5">
-                      <p
-                        className="text-xl text-[#3d2914] italic leading-relaxed m-0"
-                        style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                      >
-                        &quot;Every recipe has a story.
-                        <br />
-                        Heirloom remembers it.&quot;
-                      </p>
-                    </div>
+                  <div className="fade-in flex items-center justify-center gap-3 flex-wrap text-center">
+                    <p
+                      className="text-[13px] text-[#5c4033] italic m-0"
+                      style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+                    >
+                      Every recipe has a story.
+                    </p>
                     <button
                       onClick={reset}
-                      className="bg-transparent text-[#8b5a2b] border-2 border-[#8b5a2b] rounded-lg py-3 px-8 text-[15px] font-semibold cursor-pointer hover:bg-[#8b5a2b] hover:text-white transition-all"
+                      className="bg-transparent text-[#8b5a2b] border border-[#8b5a2b] rounded-full py-1.5 px-4 text-[12px] font-semibold cursor-pointer hover:bg-[#8b5a2b] hover:text-white transition-all"
                     >
-                      ↺ Try Another Recipe
+                      ↺ Try another
                     </button>
                   </div>
                 )}
@@ -1060,38 +845,6 @@ export function HeirloomDemo({
           height: 14px;
         }
 
-        .sticker-picker {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .sticker-btn {
-          width: 44px;
-          height: 44px;
-          padding: 3px;
-          border-radius: 12px;
-          border: 2px solid #e8e0d5;
-          background: white;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-
-        .sticker-btn:hover {
-          border-color: #c9a66b;
-          transform: scale(1.1);
-        }
-
-        .sticker-btn.selected {
-          border-color: #8b5a2b;
-          background-color: #fef9e7;
-        }
-
         .editable-text {
           cursor: text;
           border-radius: 4px;
@@ -1180,41 +933,6 @@ export function HeirloomDemo({
           transform: translateX(-50%);
           border: 5px solid transparent;
           border-top-color: #3d2914;
-        }
-
-        .sticker-on-card {
-          position: absolute;
-          filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.15));
-          cursor: help;
-          transition: transform 0.2s ease;
-        }
-
-        .sticker-on-card:hover {
-          transform: scale(1.1) rotate(0deg) !important;
-          filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.25));
-          z-index: 10;
-        }
-
-        .sticker-tooltip-card {
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #3d2914;
-          color: #fff;
-          padding: 4px 8px;
-          border-radius: 4px;
-          font-size: 10px;
-          white-space: nowrap;
-          z-index: 100;
-          margin-top: 4px;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.2s ease;
-        }
-
-        .sticker-on-card:hover .sticker-tooltip-card {
-          opacity: 1;
         }
 
         .instructions-list::marker {

@@ -1,321 +1,289 @@
+/**
+ * About — Studio Monograph treatment
+ */
+
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ASCIIUnifiedGrid } from '@/components/visual';
-import { watercolorThemes } from '@/lib/theme/watercolor-palette';
 import { ArrowRight } from 'lucide-react';
-import { aboutContent } from '@/lib/content';
-import { founderProfile } from '@/lib/content/founder';
+import { Marginalia } from '@/components/case-study/EditorialLayout';
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* Background Grid */}
-      <div className="fixed inset-0 pointer-events-none">
-        <ASCIIUnifiedGrid
-          opacity={0.04}
-          animated={true}
-          colorTheme={watercolorThemes.terminalSubtle}
-          charSet="default"
-        />
-      </div>
-
-      {/* Hero Section */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="absolute inset-0 pointer-events-none">
-          <ASCIIUnifiedGrid
-            opacity={0.08}
-            animated={true}
-            colorTheme={watercolorThemes.terminalGold}
-            charSet="default"
-          />
-        </div>
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <p className="text-xs font-mono text-terminal-gold tracking-widest mb-3">
-            CONVICTION-FIRST EXECUTION
+    <main className="min-h-screen bg-paper text-ink-body">
+      {/* HERO */}
+      <section className="px-4 sm:px-6 md:px-8 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-hairline">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
+            ABOUT · MATT HANSON
           </p>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            About Rationale
+          <h1 className="font-display text-display text-ink mb-6 max-w-3xl">
+            I build bridges.
           </h1>
-
-          <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mb-4">
-            AI has made execution cheap and fast. But speed without direction accelerates waste. The bottleneck has shifted from execution to conviction—knowing what to build is harder than ever. I believe in building that conviction before committing resources.
+          <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl">
+            Between people, disciplines, technologies, and ideas. Designer-engineer for over two decades, leading creative direction, AR platforms at Meta scale, and consumer software shipped solo with AI.
           </p>
-
-          <Link
-            href="/overview"
-            className="text-terminal-gold hover:text-terminal-gold-hover text-sm font-medium flex items-center gap-2 transition-colors"
-          >
-            Studio Overview
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Origin Story - Featured Quote Callout */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-xl md:text-2xl font-bold text-white">The Whiteboard Moment</h2>
-          </div>
-
-          <div className="border-l-4 border-terminal-gold pl-6 py-4 bg-gray-900/30 rounded-r-lg mb-6">
-            <blockquote className="text-lg md:text-xl text-white italic mb-3">
-              "Get the work so close to shipping that all you need is engineering resources to make it real. Anything to the left of that mark doesn't get you much value."
-            </blockquote>
-            <p className="text-gray-400 text-sm">
-              — Advice from a Meta Reality Labs VP that became Rationale's founding principle
-            </p>
-          </div>
-
-          <p className="text-gray-300 leading-relaxed mb-4">
-            At Meta, right after the Oculus acquisition, a designer wanted to create a vision video for the AR platform. A senior leader stopped them and drew something on a whiteboard: a lightbulb on the left, a ship on the right, connected by a line. That conversation changed everything—it's why Rationale exists.
-          </p>
-
-          <Link 
-            href="/thinking/methodology-origins" 
-            className="text-terminal-gold hover:text-terminal-gold-hover font-medium text-sm flex items-center gap-2 transition-colors"
-          >
-            Read the full origin story
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Core Principles */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-xl md:text-2xl font-bold text-white">Core Principles</h2>
-          </div>
-          
-          <div className="space-y-4">
-            {aboutContent.principles.items.map((principle, index) => (
-              <div key={index} className="p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg hover:border-gray-600 transition-colors">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-terminal-gold text-black flex items-center justify-center font-bold text-lg flex-shrink-0">
-                    {principle.number}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">
-                      {principle.title}
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                      {principle.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="mt-8 md:mt-10">
+            <figure className="rounded-md overflow-hidden border border-hairline">
+              <Image src="/images/work/about/decks/career-collage.jpg" alt="Career collage spanning Studio Era, Meta, and now" width={1600} height={900} className="w-full h-auto" />
+              <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
+                The journey · animation, mixed reality, AR platforms, consumer software shipped solo
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* Mental Models - moved to /thinking/mental-models */}
-
-      {/* What We Learned at Scale */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-xl md:text-2xl font-bold text-white">What We Learned at 2B+ User Scale</h2>
-          </div>
-          <p className="text-gray-400 mb-6 text-sm">
-            Production necessity at scale. Not theory. Not academic research.
-          </p>
-
-          <div className="space-y-4 md:space-y-6">
-            {/* Card 1: Specs Failed */}
-            <div className="p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-lg font-bold text-white mb-2">Specs Failed in Predictable Ways</h3>
-              <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                Detailed specs described interactions clearly. But they couldn't predict how users would actually behave. AR interactions are physical—they require body movement, spatial awareness, gesture memory.
+      {/* MAKER ERA */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+            <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Maker</p>
+              <Marginalia.Field label="Years">2000 — 2017</Marginalia.Field>
+              <Marginalia.Field label="Studios">Psyop · Imaginary Forces · Buck · Hush · Framestore</Marginalia.Field>
+              <Marginalia.Field label="Highlights">Past Present and Future · Outrage Machine · MTV / White House</Marginalia.Field>
+            </aside>
+            <div className="md:col-span-8 md:order-2">
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                Before Meta, the work landed in mixed-reality installations at Viacom &mdash; the Past Present and Future room, Outrage Machine on Times Square, the MTV Open Your Eyes Tilt Brush show at the White House &mdash; and a Framestore VR studio after that.
               </p>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Proof at Scale</p>
-                  <p className="text-sm text-gray-300">
-                    At <span className="text-white font-medium">Meta Spark AR</span>, prototyping led to <span className="text-[#00FF94] font-medium">60% velocity increase</span>.
-                  </p>
-                </div>
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Why This Matters</p>
-                  <p className="text-sm text-gray-300">
-                    We prototype before committing to production. Working software reveals truth that documents can't.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Prototypes Revealed Truth */}
-            <div className="p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-lg font-bold text-white mb-2">Prototypes Revealed Truth</h3>
-              <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                Put a prototype in someone's hands and their behavior tells you everything. They reach for the wrong gesture. They expect feedback at different timing. All discoverable in hours, not months.
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-6">
+                The path there ran through creative direction and visual effects at Psyop, Imaginary Forces, Buck, and my own studio. AR took over from there.
               </p>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Proof at Scale</p>
-                  <p className="text-sm text-gray-300">
-                    Led UX for <span className="text-white font-medium">Meta's Orion AR Glasses day 1 launch slate</span>. Working prototypes resulted in <span className="text-[#00FF94] font-medium">15+ patents</span>.
-                  </p>
-                </div>
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Why This Matters</p>
-                  <p className="text-sm text-gray-300">
-                    We validate with working software. When you know what you're building, engineering becomes execution.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3: Scale Amplified Mistakes */}
-            <div className="p-5 md:p-6 bg-gray-900/50 border border-gray-700 rounded-lg">
-              <h3 className="text-lg font-bold text-white mb-2">Scale Amplified Mistakes</h3>
-              <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                When you ship to billions, small UX issues become massive problems. 0.1% of users is still millions of people. The cost of mistakes was measured in millions.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Proof at Scale</p>
-                  <p className="text-sm text-gray-300">
-                    Managed a <span className="text-white font-medium">400+ person organization</span> serving 2B+ users. Validation became essential, not optional.
-                  </p>
-                </div>
-                <div className="bg-gray-800/50 border border-gray-700 p-4 rounded-lg">
-                  <p className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-2">Why This Matters</p>
-                  <p className="text-sm text-gray-300">
-                    Startups face higher stakes: limited runway. Validate early. Pivot cheap. Ship with conviction.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Synthesis */}
-          <div className="mt-6 p-5 md:p-6 bg-gray-900/50 border border-terminal-gold/30 rounded-lg">
-            <h3 className="text-base font-bold text-white mb-3">Every Engagement Applies Patterns Proven at Scale</h3>
-            <div className="grid sm:grid-cols-2 gap-3">
-              <div className="flex items-start gap-2">
-                <span className="text-terminal-gold flex-shrink-0">→</span>
-                <p className="text-sm text-gray-300">Rapid prototyping before production commitment</p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-terminal-gold flex-shrink-0">→</span>
-                <p className="text-sm text-gray-300">Systematic testing with real users</p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-terminal-gold flex-shrink-0">→</span>
-                <p className="text-sm text-gray-300">Clear pass/fail criteria for each prototype</p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-terminal-gold flex-shrink-0">→</span>
-                <p className="text-sm text-gray-300">Pivot-friendly development</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder */}
-      <section className="relative py-8 md:py-12 px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-terminal-gold" />
-            <h2 className="text-xl md:text-2xl font-bold text-white">Meet the Founder</h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-6">
-            {/* Left: Bio */}
-            <div className="lg:col-span-2">
-              <h3 className="text-2xl font-bold text-white mb-1">{founderProfile.name}</h3>
-              <p className="text-terminal-gold font-medium mb-4">{founderProfile.tagline}</p>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                {founderProfile.bio}
-              </p>
-
-              {/* Timeline Image */}
-              <div className="mb-6">
-                <Image
-                  src="/images/work/hanson/background-timeline.png"
-                  alt="Career timeline from 2000-2024"
-                  width={1200}
-                  height={400}
-                  className="w-full rounded-lg border border-gray-700"
-                  style={{ width: '100%', height: 'auto' }}
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mM8c+Z8PQAHZAL+4SiGjgAAAABJRU5ErkJggg=="
+              <figure className="rounded-md overflow-hidden border border-hairline bg-paper-deep/30">
+                <video
+                  src="/videos/maker-era/demo-reel.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto"
                 />
-              </div>
-
-              <Link href="/thinking/methodology-origins" className="text-terminal-gold hover:text-terminal-gold-hover font-medium text-sm">
-                Read the methodology origins →
-              </Link>
+                <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
+                  Maker-era demo reel &middot; mixed reality, motion, installations
+                </figcaption>
+              </figure>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right: Track Record & Capabilities */}
-            <div className="space-y-6">
-              <div className="p-5 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <h4 className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-3">
-                  Track Record
-                </h4>
-                <ul className="space-y-2">
-                  {founderProfile.trackRecord.slice(0, 4).map((item, index) => (
-                    <li key={index} className="flex gap-2 text-sm">
-                      <span className="text-terminal-gold flex-shrink-0">•</span>
-                      <span className="text-gray-300">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="p-5 bg-gray-900/50 border border-gray-700 rounded-lg">
-                <h4 className="text-xs font-mono text-terminal-gold uppercase tracking-wide mb-3">
-                  Capabilities
-                </h4>
-                <ul className="space-y-2">
-                  {founderProfile.capabilities.slice(0, 4).map((capability, index) => (
-                    <li key={index} className="flex gap-2 text-sm">
-                      <span className="text-terminal-gold flex-shrink-0">•</span>
-                      <span className="text-gray-300">{capability}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {/* META */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+            <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Meta</p>
+              <Marginalia.Field label="Years">2017 — 2025</Marginalia.Field>
+              <Marginalia.Field label="Roles">Art Director → PD Manager → Experience Lead</Marginalia.Field>
+              <Marginalia.Field label="Org">Reality Labs · 400+ XFN</Marginalia.Field>
+              <Marginalia.Field label="Team">Experiences · 2 → 22</Marginalia.Field>
+              <Marginalia.Field label="Growth">150% YoY</Marginalia.Field>
+              <Marginalia.Field label="AR Commerce">10+ retailers · 100×+ inventory</Marginalia.Field>
+              <Marginalia.Field label="FAIR (2023–25)">Embodied AI · 4+ teams · SIRo · Motivo</Marginalia.Field>
+              <Marginalia.Rule />
+              <Marginalia.Field label="Patent">
+                <a
+                  href="https://patents.google.com/patent/US11295503B1/en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent)] hover:text-ink"
+                >
+                  US11295503B1 →
+                </a>
+              </Marginalia.Field>
+            </aside>
+            <div className="md:col-span-8 md:order-2">
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                I joined Meta in 2017 as an Art Director on Messenger AR. In early 2018 the AR product team recruited me, and the role shifted on the fly from creative direction to product design management.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                Over the next five years (2018&ndash;2023, Reality Labs), a small team building camera effects grew into <strong className="text-ink">Spark AR</strong> &mdash; Meta&rsquo;s AR platform of runtime, capabilities, and creator tooling within a 400+ person XFN organization, used across Facebook, Instagram, and Messenger by billions and extended from mobile to headsets.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                The <strong className="text-ink">Experiences team</strong> scaled from 2 to 22 under my lead, took <strong className="text-ink">AR Commerce</strong> from prototype to launch across Instagram and the Family of Apps with 10+ retail partners, and introduced the Product Design Prototyper role that lifted prototype velocity by 60+% &mdash; all in close partnership with the London-based creator-tooling team.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                The Orion chapter followed as <strong className="text-ink">Experience Lead</strong>, driving progress across multiple use cases and teams toward{' '}
+                <a
+                  href="https://about.fb.com/news/2024/09/introducing-orion-our-first-true-augmented-reality-glasses/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent)] hover:text-ink underline"
+                >
+                  Orion AR Glasses
+                </a>{' '}
+                Day-1 experiences, alongside Quest MR Mode.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed">
+                From 2023 to 2025 the focus moved to <strong className="text-ink">FAIR</strong>, where I led 4+ teams on the <strong className="text-ink">Embodied AI</strong> program &mdash; strategy and prototyping for AI agents across glasses, headsets, and robotics, including SIRo (socially intelligent robots) and Motivo (behavioral foundation models). My team across these chapters contributed to 15+ patents in AR/AI.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NOW */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+            <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Now</p>
+              <Marginalia.Field label="Years">2024 —</Marginalia.Field>
+              <Marginalia.Field label="Mode">Solo · AI as a coding partner</Marginalia.Field>
+              <Marginalia.Rule />
+              <Marginalia.Field label="Heirloom">iOS · live</Marginalia.Field>
+              <Marginalia.Field label="Silly Questions">Live · web + iOS</Marginalia.Field>
+              <Marginalia.Field label="Zero">Working prototype · didn&rsquo;t ship</Marginalia.Field>
+              <Marginalia.Note>
+                The bet: consumer software a single builder can credibly own end-to-end.
+              </Marginalia.Note>
+            </aside>
+            <div className="md:col-span-8 md:order-2">
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                From Meta until now, the shape of design and product leadership has been shifting &mdash; and rather than try to manage the shift, I went back to building. With AI as a coding partner.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                The progression has been deliberate: tools for my own ceramics hobby, then design at startups, prototypes for partners, and the work that&rsquo;s followed. Each project builds on the last in complexity and quality.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                <strong className="text-ink">Heirloom</strong> (recipe preservation, social cookbooks) is the headline now &mdash; a native iOS app with AI-assisted import across five formats, shared cookbooks with real-time sync, and push notifications. Built solo. Meal planning and a Watch experience are queued for after the core lands.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                <strong className="text-ink">Silly Questions</strong> (a 2-player AI art party game) shipped earlier in the year as a smaller test of the method.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
+                Not everything ships: <strong className="text-ink">Zero</strong> stayed at prototype because email demands near-perfect accuracy and too many third-party dependencies for a one-person studio.
+              </p>
+              <p className="font-display italic text-xl md:text-2xl text-ink leading-snug">
+                The bet now is consumer software a single builder can credibly own end-to-end.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WRITING + CONTACT */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+            <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Reach</p>
+              <Marginalia.Field label="Email">
+                <a href="mailto:hanson@rationale.work" className="text-[var(--accent)] hover:text-ink">
+                  hanson@rationale.work
+                </a>
+              </Marginalia.Field>
+              <Marginalia.Field label="LinkedIn">
+                <a
+                  href="https://www.linkedin.com/in/thematthanson"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent)] hover:text-ink"
+                >
+                  thematthanson →
+                </a>
+              </Marginalia.Field>
+              <Marginalia.Field label="Substack">
+                <a
+                  href="https://matthanson.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent)] hover:text-ink"
+                >
+                  matthanson →
+                </a>
+              </Marginalia.Field>
+              <Marginalia.Rule />
+              <Marginalia.Note>
+                NYC area. Three daughters. Cooking, Peloton (because of the cooking),{' '}
+                <a href="/prototypes/pottery-gifts/index.html" className="text-[var(--accent)] hover:text-ink underline">
+                  ceramics
+                </a>
+                , New York sports.
+              </Marginalia.Note>
+            </aside>
+            <div className="md:col-span-8 md:order-2">
+              <p className="text-base md:text-lg text-ink-body leading-relaxed mb-3">
+                I write about the method at{' '}
+                <a
+                  href="https://matthanson.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent)] hover:text-ink underline"
+                >
+                  matthanson.substack.com
+                </a>.
+              </p>
+              <p className="text-base md:text-lg text-ink-body leading-relaxed">
+                Available for very selective partnership work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LEADERSHIP CREDO */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3 font-mono">How I work</p>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
+            <figure className="rounded-md overflow-hidden border border-hairline">
+              <Image src="/images/work/about/decks/leadership-credo.jpg" alt="Self-Expectations and Team-Expectations" width={1600} height={900} className="w-full h-auto" />
+              <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
+                Self-Expectations / Team-Expectations · the credo
+              </figcaption>
+            </figure>
+            <figure className="rounded-md overflow-hidden border border-hairline">
+              <Image src="/images/work/about/decks/lift-framing.jpg" alt="LIFT framing — Lead by Example, Inspire to drive Impact, Function Agnostic, Trust as two way street" width={1600} height={900} className="w-full h-auto" />
+              <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
+                LIFT &middot; Lead by Example · Inspire to drive Impact · Function Agnostic · Trust as two-way street
+              </figcaption>
+            </figure>
+          </div>
+          <div className="mt-8 md:mt-10">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-ink-muted mb-3 font-mono">Deeper reading · gated</p>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/work/decks/portfolio-flash-2024" className="text-[var(--accent)] hover:text-ink font-display italic text-base md:text-lg underline">
+                  Portfolio Flash · October 2024 (104 pages)
+                </Link>
+                <span className="text-sm text-ink-muted ml-2">— FAIR, Spark AR, AR Commerce, AR Ads</span>
+              </li>
+              <li>
+                <Link href="/work/decks/portfolio-2022" className="text-[var(--accent)] hover:text-ink font-display italic text-base md:text-lg underline">
+                  Portfolio · Spring 2022 (29 pages)
+                </Link>
+                <span className="text-sm text-ink-muted ml-2">— Spark on Wearables, Camera AR Platform case study, Hanson Scope</span>
+              </li>
+              <li>
+                <Link href="/work/decks/world-ar-avatars" className="text-[var(--accent)] hover:text-ink font-display italic text-base md:text-lg underline">
+                  World AR Avatars · Q2 2021 (26 pages)
+                </Link>
+                <span className="text-sm text-ink-muted ml-2">— the strategic source for the world-locked-avatars patent</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="relative py-12 md:py-16 px-4 sm:px-6 md:px-8">
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to build with conviction?</h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            We bring the same systematic approach to every engagement—whether it's a 3-week sprint or 12-week pilot.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="px-6 py-3 md:px-8 md:py-4 text-sm md:text-base bg-terminal-gold hover:bg-[#FFE34D] text-black font-semibold rounded-lg transition-all shadow-[0_0_17px_rgba(255,215,0,0.17)] hover:shadow-[0_0_25px_rgba(255,215,0,0.25)]"
-            >
-              Book intro call
-            </Link>
-            <Link
-              href="/partnerships"
-              className="px-6 py-3 md:px-8 md:py-4 text-sm md:text-base border border-gray-600 hover:border-terminal-gold text-white font-semibold rounded-lg transition-colors"
-            >
-              View partnerships
-            </Link>
-          </div>
+      <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 bg-paper-deep/40">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
+          >
+            See the work, organized chronologically <ArrowRight className="w-4 h-4" />
+          </Link>
+          <a
+            href="mailto:hanson@rationale.work"
+            className="text-sm font-mono text-ink-muted hover:text-ink transition-colors"
+          >
+            hanson@rationale.work
+          </a>
         </div>
       </section>
     </main>

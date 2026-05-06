@@ -1,35 +1,21 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Heirloom: iOS Recipe App Case Study | Rationale Studios',
-  description: 'How we built Heirloom, a native iOS app that preserves family recipes as beautiful, shareable artifacts. Complete product design and development in 5 weeks.',
-  keywords: ['iOS app development', 'recipe app', 'SwiftUI', 'product design', 'native app', 'CloudKit', 'Rationale Studios'],
+  title: 'Heirloom',
+  description: 'Recipe preservation, social cookbooks. iOS, live on the App Store. Built solo with AI as a coding partner. 24 SPM packages, Swift 6, AI-assisted import across five formats.',
   openGraph: {
-    title: 'Heirloom: Recipes Worth Passing Down',
-    description: 'Native iOS recipe app with smart shopping lists, card personalization, and dinner party mode. Built by Rationale Studios.',
-    images: [
-      {
-        url: '/images/work/heirloom/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Heirloom iOS App',
-      },
-    ],
+    title: 'Heirloom — Matt Hanson',
+    description: 'Recipe preservation, social cookbooks, AI-assisted import. Built solo, with AI as a coding partner.',
     url: 'https://rationale.work/work/heirloom',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Heirloom Case Study | Rationale Studios',
-    description: 'How we built a native iOS recipe app in 5 weeks with SwiftUI, CloudKit, and OCR.',
-    images: ['/images/work/heirloom/twitter-card.png'],
+    title: 'Heirloom — Matt Hanson',
+    description: 'Native iOS recipe app, built solo. The validator before the features.',
   },
-}
+};
 
-export default function HeirloomLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return <>{children}</>
+export default function HeirloomLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

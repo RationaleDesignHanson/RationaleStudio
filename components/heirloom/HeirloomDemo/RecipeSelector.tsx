@@ -99,13 +99,14 @@ export default function RecipeSelector({
   }, [detectedRecipes.length]);
 
   return (
-    <div className="w-full md:max-w-4xl md:mx-auto">
+    <div className="w-full md:max-w-md md:mx-auto">
       {/* Desktop: Image with Bounding Box Overlays */}
-      <div className="hidden md:block relative">
+      <div className="hidden md:block relative" style={{ maxHeight: '420px' }}>
         <img
           src={imageUrl}
           alt="Recipe card with multiple recipes"
           className="w-full h-auto rounded-lg"
+          style={{ maxHeight: '420px', objectFit: 'contain' }}
         />
         {detectedRecipes.map((recipe) => (
           <button
@@ -119,16 +120,17 @@ export default function RecipeSelector({
               top: `${recipe.boundingBox.y}%`,
               width: `${recipe.boundingBox.width}%`,
               height: `${recipe.boundingBox.height}%`,
-              border: `3px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.primaryLight}`,
+              border: `2px solid ${hoveredId === recipe.id ? COLORS.primary : COLORS.primaryLight}`,
               backgroundColor: hoveredId === recipe.id ? 'rgba(139, 90, 43, 0.15)' : 'rgba(139, 90, 43, 0.08)',
-              borderRadius: '8px',
+              borderRadius: '6px',
             }}
           >
             <div
-              className="px-4 py-2 rounded-md text-base font-semibold shadow-lg text-center"
+              className="px-2.5 py-1 rounded-md text-xs font-semibold shadow-md text-center"
               style={{
                 backgroundColor: COLORS.primary,
                 color: 'white',
+                maxWidth: '90%',
               }}
             >
               {recipe.title}

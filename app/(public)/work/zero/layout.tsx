@@ -1,19 +1,20 @@
-import type { Metadata } from 'next'
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Zero — AI Inbox Management | Rationale',
-  description: 'Zero intelligently processes your inbox, surfacing what matters and handling routine tasks automatically. Built by Rationale to demonstrate AI-powered email management at scale.',
+  title: 'Zero',
+  description: "A working email-triage prototype that didn't ship. Why self-selection is part of the method.",
   openGraph: {
-    title: 'Zero — AI Inbox Management | Rationale',
-    description: 'Zero intelligently processes your inbox, surfacing what matters and handling routine tasks automatically.',
+    title: 'Zero — Matt Hanson',
+    description: "A working email-triage prototype that didn't ship. Trust ceiling, dependencies, and the method behind not shipping.",
     type: 'website',
   },
-}
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zero — Matt Hanson',
+    description: "A working prototype that didn't ship. Why self-selection is part of the method.",
+  },
+};
 
-export default function ZeroLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return <>{children}</>
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

@@ -874,11 +874,23 @@
                 const editGenreBtn = document.getElementById('edit-genre-btn');
                 editGenreBtn.addEventListener('click', () => {
                     this.openEditGenreSubmenu();
+                    try { window.parent.postMessage({ type: 'rumi:step', name: 'edit-genre-opened' }, '*'); } catch (e) {}
                 });
+
+                // Genre selection (notify parent walkthrough)
+                const genreSelectSub = document.getElementById('genre-select-submenu');
+                if (genreSelectSub) {
+                    genreSelectSub.addEventListener('change', () => {
+                        if (genreSelectSub.value) {
+                            try { window.parent.postMessage({ type: 'rumi:step', name: 'genre-selected', genre: genreSelectSub.value }, '*'); } catch (e) {}
+                        }
+                    });
+                }
 
                 // Submenu button handlers
                 document.getElementById('auto-populate-btn').addEventListener('click', () => {
                     this.autoPopulateFromSubmenu();
+                    try { window.parent.postMessage({ type: 'rumi:step', name: 'auto-populated' }, '*'); } catch (e) {}
                 });
 
                 document.getElementById('cancel-genre-btn').addEventListener('click', () => {

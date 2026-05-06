@@ -1,212 +1,205 @@
 /**
- * Zero Case Study - Consolidated Single Page
- *
- * Portfolio piece for investors, potential acqui-hirers, and prospective clients.
- * Streamlined to 6 sections: Hero, At a Glance, The Work, Demo, Results, CTA
+ * Zero — case study formatted as work-row chapters, NOW era styling.
+ * The post-mortem of a working prototype that didn't ship.
  */
 
 'use client';
 
-import HeroSection from './components/HeroSection';
-import AtAGlance from './components/AtAGlance';
-import OmnirepoArchitecture from './components/OmnirepoArchitecture';
-import PrototypeEmbed from './components/PrototypeEmbed';
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from '@/lib/icons';
+import Image from 'next/image';
+import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { ChapterRow } from '@/components/case-study/ChapterRow';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
-export default function ZeroCaseStudy() {
+interface PrototypeEntry {
+  label: string;
+  href: string;
+  note?: string;
+}
+
+const PROTOTYPES: PrototypeEntry[] = [
+  {
+    label: 'shortform email · full build',
+    href: '/prototypes/zero-swipe/index.html',
+    note: 'the working triage app · internal beta',
+  },
+  {
+    label: 'intent + action explorer',
+    href: '/prototypes/zero-intent/index.html',
+    note: 'pre-app validation — corpus of intents mapped to actions',
+  },
+];
+
+const SHOTS = [
+  { file: '01-splash-glassmorphic.png', label: 'Splash · glassmorphic' },
+  { file: '02-splash-dark-glass.png', label: 'Splash · dark glass' },
+  { file: '03-diverse-actions.png', label: 'Action diversity' },
+  { file: '04-settings-screen.png', label: 'Settings' },
+];
+
+function PrototypeChapter() {
+  const [active, setActive] = useState(0);
+  const p = PROTOTYPES[active];
   return (
-    <main className="zero-case-study">
-      {/* 1. Hero */}
-      <HeroSection />
+    <>
+      <ChapterRow index="02" kicker="TRY IT · WORKING PROTOTYPES" title="The work that came before the post-mortem">
+        <p>
+          Two surfaces from the build, in order: an intent + action explorer that validated the classification space before the app, and the swipe-first triage prototype it grew into. Internal beta, never in the App Store.
+        </p>
+      </ChapterRow>
+      <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-12">
+        <div className="max-w-5xl mx-auto">
+          {PROTOTYPES.length > 1 && (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {PROTOTYPES.map((entry, i) => (
+                <button
+                  key={entry.href}
+                  onClick={() => setActive(i)}
+                  className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                    i === active
+                      ? 'bg-[var(--era-ink)] text-[var(--era-bg)] border-[var(--era-ink)]'
+                      : 'bg-[var(--era-bg)] text-[var(--era-ink-body)] border-[var(--era-hairline)] hover:border-[var(--era-ink)]'
+                  }`}
+                >
+                  {entry.label}
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="flex flex-wrap items-center gap-3 mb-3 text-xs font-mono text-[var(--era-ink-muted)]">
+            <span>iframe &rarr; {p.href}</span>
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors"
+            >
+              open standalone <ExternalLink className="w-3 h-3" />
+            </a>
+            {p.note && <span className="italic">· {p.note}</span>}
+          </div>
+          <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-white" style={{ height: 'min(900px, 88vh)' }}>
+            <iframe
+              key={p.href}
+              src={p.href}
+              title={`Zero · ${p.label}`}
+              className="w-full h-full"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
 
-      {/* 2. Value Prop - The Elevator Pitch */}
-      <section className="bg-gradient-to-b from-gray-900 to-black py-10 md:py-14">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            {/* Main Pitch */}
-            <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                Turn Email Into Actions, Not Homework
-              </h2>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                For busy professionals drowning in 50+ daily emails—AI extracts the bills, packages, RSVPs, and forms you need to act on. Swipe to complete. Done.
+export default function ZeroPage() {
+  return (
+    <ProjectScope project="zero">
+      <main
+        className="era-now min-h-screen"
+        style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
+      >
+        {/* HERO */}
+        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
+          <div className="max-w-5xl mx-auto">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
+            </Link>
+
+            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
+              {/* INDEX COLUMN — matches ChapterRow shape: stripe + big numeral */}
+              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
+                <div className="flex items-stretch gap-3">
+                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
+                  <div className="flex flex-col leading-none">
+                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>03</span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">
+                      / 09
+                    </span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">
+                      ERA · NOW
+                    </span>
+                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
+                      2024
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* CONTENT COLUMN */}
+              <div className="md:col-span-10 max-w-3xl">
+                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
+                  Zero
+                </h1>
+                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
+                  Shortform email. Swipe-first triage with AI-extracted action items. Built solo, internal beta &mdash; the trust ceiling kept it from market.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CHAPTER 01 — WHAT IT WAS */}
+        <ChapterRow index="01" kicker="WHAT IT WAS" title="Shortform email · swipe-first triage">
+          <p>
+            Zero is a shortform email app. Swipe-first triage, AI-extracted action items and deadlines, fast inbox processing. Built solo, iOS, working build, internal beta.
+          </p>
+          <p>
+            In parallel, I was building Heirloom &mdash; a recipe app to solve a personal frustration I called <em>cooking math</em>. Both apps were live for a stretch. After several rounds of feedback, Zero got sunset and Heirloom went all-in.
+          </p>
+          <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl">
+            {SHOTS.map((s) => (
+              <div key={s.file} className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
+                <Image src={`/images/work/zero/screenshots/${s.file}`} alt={`Zero · ${s.label}`} width={400} height={865} className="w-full h-auto" />
+                <p className="text-xs text-[var(--era-ink-muted)] px-2 py-1.5 italic">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </ChapterRow>
+
+        {/* CHAPTER 02 — TRY IT */}
+        <PrototypeChapter />
+
+
+        {/* CHAPTER 03 — WHY IT DIDN'T SHIP */}
+        <ChapterRow index="03" kicker="POST-MORTEM · TRUST CEILING" title="Why Zero didn't ship">
+          <p>The decision came down to three questions:</p>
+          <ol className="space-y-2 list-decimal pl-6">
+            <li>What are the consequences if the app fails?</li>
+            <li>How much trust does the domain require before users will adopt it?</li>
+            <li>Can a new product reach that bar?</li>
+          </ol>
+          <p>
+            Email failed all three. If an AI email tool misses a bill payment notification, someone could lose their mortgage. High stakes raise the trust ceiling, and a high trust ceiling means near-perfect reliability &mdash; a bar a solo studio can&rsquo;t credibly hit.
+          </p>
+          <p>
+            So Heirloom got the green light. Recipes have a different equation: two testable pieces (ingredients and instructions), a low trust ceiling, and a personal connection that justified the build.
+          </p>
+        </ChapterRow>
+
+        {/* FOOTER */}
+        <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">
+          <div className="max-w-5xl mx-auto flex flex-col gap-6">
+            <a href="https://matthanson.substack.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors text-sm">
+              Read on Substack &mdash; When to Hire AI <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 pt-4 border-t border-[var(--era-hairline)]">
+              <p className="text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase">
+                03 / 09 &middot; END OF CHAPTER
               </p>
-            </div>
-
-            {/* Value Props Grid */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-8">
-              <ValueCard
-                metric="2-3 hours"
-                label="saved per week"
-                detail="Stop reading 200+ emails. Act on the 12 that matter."
-              />
-              <ValueCard
-                metric="Zero"
-                label="missed deadlines"
-                detail="Bills, RSVPs, forms surface automatically."
-              />
-              <ValueCard
-                metric="< 5 min"
-                label="to inbox zero"
-                detail="Swipe through actions, archive the rest."
-              />
-            </div>
-
-            {/* Transition */}
-            <p className="text-center text-lg text-terminal-gold font-medium">
-              What if your inbox only showed you what needed action?
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. At a Glance */}
-      <section className="bg-gray-900 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <AtAGlance />
-          </div>
-        </div>
-      </section>
-
-      {/* 4. The Work: Architecture + Key Decisions */}
-      <OmnirepoArchitecture />
-      
-      {/* Key Decisions */}
-      <section className="bg-gray-900 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="mb-6 text-xl md:text-2xl font-bold text-white">
-              Key Decisions
-            </h2>
-            <div className="grid md:grid-cols-3 gap-4">
-              <DecisionCard
-                title="Swipe Interface"
-                description="Card-based triage makes actions immediate—no tap-to-open. Users complete tasks 3x faster."
-              />
-              <DecisionCard
-                title="43 Intent Categories"
-                description="Specific enough to be useful, broad enough to cover 95% of inbox actions. Our core differentiator."
-              />
-              <DecisionCard
-                title="Universal Platform"
-                description="Expo + React Native: single codebase, 85% code shared across iOS, Android, web, wearables."
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Demo */}
-      <PrototypeEmbed />
-
-      {/* 6. Results */}
-      <section className="bg-gray-900 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="mb-6 text-xl md:text-2xl font-bold text-white">
-              Results & Learnings
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Results */}
-              <div className="rounded-xl border border-terminal-gold/30 bg-gray-800/50 p-5">
-                <h3 className="text-lg font-bold text-terminal-gold mb-4">Outcomes</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-start gap-2">
-                    <span className="text-terminal-gold">✓</span>
-                    <span><strong className="text-white">30 days</strong> concept to TestFlight beta</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-terminal-gold">✓</span>
-                    <span><strong className="text-white">91.7%</strong> baseline classification accuracy</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-terminal-gold">✓</span>
-                    <span><strong className="text-white">43 categories</strong> covering 95% of inbox actions</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-terminal-gold">✓</span>
-                    <span><strong className="text-white">Production-ready</strong> architecture for 10k+ users</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Learnings */}
-              <div className="rounded-xl border border-gray-700 bg-gray-800/50 p-5">
-                <h3 className="text-lg font-bold text-white mb-4">What We'd Do Differently</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-500">•</span>
-                    <span><strong className="text-white">Earlier user testing</strong> — intuition was right but validation saves cycles</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-500">•</span>
-                    <span><strong className="text-white">Corpus building from day one</strong> — classification improves with examples</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-gray-500">•</span>
-                    <span><strong className="text-white">Multi-account architecture</strong> — design for it early, not after MVP</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. CTA */}
-      <section className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-10 md:py-12">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-4 text-xl md:text-2xl font-bold text-white">
-              Try Zero or Work With Us
-            </h2>
-            <p className="mb-8 text-gray-300">
-              Experience the product yourself, or let's build your next product together.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/zero"
-                className="inline-flex items-center gap-2 rounded-full bg-terminal-gold px-6 py-3 font-semibold text-black shadow-xl transition-all hover:bg-[#FFE34D] hover:scale-105"
-              >
-                Try Zero
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-terminal-gold px-6 py-3 font-semibold text-terminal-gold transition-all hover:bg-terminal-gold hover:text-black"
-              >
-                Work With Us
-                <ArrowRight className="w-4 h-4" />
+              <Link href="/work/fair-embodied-ai" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] font-display italic text-lg md:text-xl transition-colors">
+                Continue &rarr; FAIR Embodied AI (Leader era) <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-// Value Prop Card
-function ValueCard({ metric, label, detail }: { metric: string; label: string; detail: string }) {
-  return (
-    <div className="rounded-xl border border-terminal-gold/30 bg-gray-800/30 p-5 text-center">
-      <div className="text-3xl md:text-4xl font-bold text-terminal-gold mb-1">{metric}</div>
-      <div className="text-sm font-medium text-white mb-2">{label}</div>
-      <p className="text-xs text-gray-400">{detail}</p>
-    </div>
-  );
-}
-
-// Compact Decision Card
-function DecisionCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-lg border border-gray-700 bg-gray-800/50 p-4 hover:border-terminal-gold/40 transition-colors">
-      <h3 className="text-base font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-gray-400 leading-relaxed">{description}</p>
-    </div>
+        </section>
+      </main>
+    </ProjectScope>
   );
 }

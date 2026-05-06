@@ -285,7 +285,7 @@ export default function HeirloomSupportPage() {
 
         <div className="faq-item">
           <p className="faq-question">Is Heirloom free?</p>
-          <p>Heirloom is currently in beta testing via TestFlight. Final pricing will be announced before the App Store release. AI features include 100 free imports per day.</p>
+          <p>Heirloom is live on the App Store. The core app is free; AI-assisted import includes 100 free imports per day.</p>
         </div>
 
         <div className="faq-item">

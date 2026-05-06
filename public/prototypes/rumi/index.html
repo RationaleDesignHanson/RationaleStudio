@@ -2046,6 +2046,207 @@
         
 </head>
 <body>
+    <!-- Step-by-step walkthrough strip (consumer-friendly orientation) -->
+    <style id="rumi-walkthrough-styles">
+      #rumi-walkthrough {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 99999;
+        background: linear-gradient(0deg, #0d0d0d 0%, #161616 100%);
+        border-top: 1px solid #2a2a2a; box-shadow: 0 -8px 32px rgba(0,0,0,0.6);
+        font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+        color: #d8d8d8; padding: 14px 20px 16px;
+        transform: translateY(0); transition: transform 220ms ease;
+      }
+      #rumi-walkthrough.collapsed { transform: translateY(calc(100% - 36px)); }
+      .rwz-row { max-width: 920px; margin: 0 auto; }
+      .rwz-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+      .rwz-brand { color: #00ffd1; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+      .rwz-tag { color: #888; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+      .rwz-controls { margin-left: auto; display: flex; gap: 14px; align-items: center; }
+      .rwz-link { background: transparent; border: none; color: #888; font: inherit; font-size: 11px; cursor: pointer; letter-spacing: 0.04em; padding: 0; }
+      .rwz-link:hover { color: #00ffd1; }
+      .rwz-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 10px; }
+      .rwz-step { display: flex; flex-direction: column; gap: 4px; padding: 6px 0 0; border-top: 2px solid #2a2a2a; transition: border-color 200ms, color 200ms; }
+      .rwz-step.done { border-color: #2d5a27; }
+      .rwz-step.active { border-color: #00ffd1; }
+      .rwz-step .rwz-num { font-size: 9px; color: #555; letter-spacing: 0.18em; }
+      .rwz-step.active .rwz-num { color: #00ffd1; }
+      .rwz-step.done .rwz-num { color: #2d5a27; }
+      .rwz-step .rwz-label { font-size: 11px; color: #888; line-height: 1.25; }
+      .rwz-step.active .rwz-label { color: #fff; }
+      .rwz-step.done .rwz-label { color: #6b8b6b; }
+      .rwz-detail { display: flex; align-items: flex-start; gap: 14px; }
+      .rwz-detail .rwz-explainer { flex: 1; min-width: 0; }
+      .rwz-active-title { font-size: 13px; color: #fff; line-height: 1.4; margin: 0 0 2px; }
+      .rwz-active-body { font-size: 11px; color: #b3b3b3; line-height: 1.5; margin: 0; }
+      .rwz-active-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 11px; color: #00ffd1; }
+      .rwz-active-hint::before { content: '↗'; }
+      .rwz-collapse {
+        position: absolute; top: -28px; right: 14px; height: 28px;
+        background: #161616; border: 1px solid #2a2a2a; border-bottom: none;
+        border-radius: 8px 8px 0 0; padding: 4px 12px; color: #888; font: inherit;
+        font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
+      }
+      .rwz-collapse:hover { color: #00ffd1; border-color: #2d4f4f; }
+      @media (max-width: 640px) {
+        .rwz-steps { grid-template-columns: repeat(5, 1fr); gap: 3px; }
+        .rwz-step .rwz-label { display: none; }
+        .rwz-active-title { font-size: 12px; }
+      }
+    </style>
+    <div id="rumi-walkthrough" role="region" aria-label="Walkthrough">
+      <button class="rwz-collapse" id="rwz-collapse" aria-label="Collapse walkthrough">▾ hide</button>
+      <div class="rwz-row">
+        <div class="rwz-top">
+          <span class="rwz-brand">RUMI · Beta v0</span>
+          <span class="rwz-tag">Anonymous viewing fingerprints · dynamic cable · 2024</span>
+          <div class="rwz-controls">
+            <button class="rwz-link" id="rwz-restart">↺ replay</button>
+            <button class="rwz-link" id="rwz-skip">skip walkthrough</button>
+          </div>
+        </div>
+        <div class="rwz-steps" id="rwz-steps"></div>
+        <div class="rwz-detail">
+          <div class="rwz-explainer">
+            <p class="rwz-active-title" id="rwz-title"></p>
+            <p class="rwz-active-body" id="rwz-body"></p>
+            <span class="rwz-active-hint" id="rwz-hint" style="display:none;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var KEY = 'rumi-walkthrough-skipped-v1';
+        var STEPS = [
+          {
+            num: '01',
+            label: 'Turn it on',
+            title: 'A new method for tracking viewing history — anonymously.',
+            body: 'RUMI is a browser extension that fingerprints what you watch across Netflix, HBO, Hulu, Disney+, Apple TV, and more. Anonymous by design. The fingerprints become training signal for AI; you stay opted-in by choice and rewarded for the contribution.',
+            hint: 'Click the green dot in the top-left to enable the extension.',
+          },
+          {
+            num: '02',
+            label: 'Pick a mode',
+            title: 'Detection passively indexes. Automode programs the channel.',
+            body: 'Detection rides along while you watch — invisibly indexing the show, building the fingerprint. Automode flips the model: RUMI programs a dynamic, cross-service channel for you. A new kind of cable distribution, built from the entire streaming catalog instead of one app.',
+            hint: 'Choose an entry point in the popup to continue.',
+          },
+          {
+            num: '03',
+            label: 'Edit the genre',
+            title: 'The channel is yours to tune.',
+            body: 'Genre selection drives the channel’s programming. RUMI’s catalog spans every major service, so changing genre means re-routing the lineup across the whole streaming landscape — not just within one library.',
+            hint: 'In the channel, click EDIT GENRE.',
+          },
+          {
+            num: '04',
+            label: 'Choose',
+            title: 'Pick a mood. RUMI rebuilds the lineup.',
+            body: 'Every genre is a different programmed channel — drawn from real catalog data across Netflix, HBO Max, Hulu, Peacock, Amazon Prime, Disney+, and Apple TV+. Pick one and watch the dynamic cable form.',
+            hint: 'Select a genre from the dropdown.',
+          },
+          {
+            num: '05',
+            label: 'Watch + earn',
+            title: 'Dynamic cable distribution, paid back to the viewer.',
+            body: 'RUMI fills the channel with curated, back-to-back picks across services — the new bundle. As you watch, anonymous viewing fingerprints flow back as AI training signal, and you earn points for the contribution. Multipliers stack at 30, 60, and 90 minutes. Lean back, let it run.',
+            hint: 'Click AUTO-POPULATE to fill the channel.',
+          },
+        ];
+
+        var root = document.getElementById('rumi-walkthrough');
+        var stepsEl = document.getElementById('rwz-steps');
+        var titleEl = document.getElementById('rwz-title');
+        var bodyEl = document.getElementById('rwz-body');
+        var hintEl = document.getElementById('rwz-hint');
+        var skipBtn = document.getElementById('rwz-skip');
+        var restartBtn = document.getElementById('rwz-restart');
+        var collapseBtn = document.getElementById('rwz-collapse');
+        if (!root || !stepsEl) return;
+
+        // If user previously skipped, start collapsed but still keep it dismissable.
+        try {
+          if (localStorage.getItem(KEY)) root.classList.add('collapsed');
+        } catch (e) {}
+
+        var current = 0;
+
+        function render() {
+          stepsEl.innerHTML = '';
+          STEPS.forEach(function (s, i) {
+            var d = document.createElement('div');
+            d.className = 'rwz-step ' + (i < current ? 'done' : i === current ? 'active' : '');
+            d.innerHTML =
+              '<span class="rwz-num">' + s.num + '</span>' +
+              '<span class="rwz-label">' + s.label + '</span>';
+            stepsEl.appendChild(d);
+          });
+          var step = STEPS[current];
+          if (current >= STEPS.length) {
+            titleEl.textContent = 'That’s the loop.';
+            bodyEl.textContent = 'Anonymous viewing fingerprints across every major streaming service, fueling AI training. Dynamic cable distribution, programmed by genre and paid back to the viewer in points.';
+            hintEl.style.display = 'none';
+          } else {
+            titleEl.textContent = step.title;
+            bodyEl.textContent = step.body;
+            hintEl.textContent = step.hint;
+            hintEl.style.display = 'inline-flex';
+          }
+        }
+
+        function advance(toIndex) {
+          var n = typeof toIndex === 'number' ? toIndex : current + 1;
+          if (n <= current) return; // never go backwards from auto-advance
+          current = Math.min(n, STEPS.length);
+          render();
+        }
+        // Expose for cross-frame messages
+        window.__rumiAdvance = advance;
+
+        // Auto-advance hooks for outer-frame steps
+        var activation = document.getElementById('activation-circle');
+        if (activation) {
+          activation.addEventListener('click', function () {
+            if (current === 0) advance(1);
+          }, { capture: true });
+        }
+        // Step 2 → 3 watcher: any click on entry-point buttons
+        document.addEventListener('click', function (e) {
+          if (current !== 1) return;
+          var t = e.target.closest('[data-entry-point], .entry-point-btn, .entry-point, [onclick*="entryPoint"]');
+          if (t) advance(2);
+        }, true);
+
+        // postMessage hooks for in-iframe steps (3, 4, 5)
+        window.addEventListener('message', function (evt) {
+          if (!evt.data || typeof evt.data !== 'object') return;
+          if (evt.data.type === 'rumi:step') {
+            if (evt.data.name === 'edit-genre-opened' && current < 3) advance(3);
+            else if (evt.data.name === 'genre-selected' && current < 4) advance(4);
+            else if (evt.data.name === 'auto-populated') advance(STEPS.length);
+          }
+        });
+
+        skipBtn.addEventListener('click', function () {
+          root.classList.add('collapsed');
+          try { localStorage.setItem(KEY, '1'); } catch (e) {}
+        });
+        restartBtn.addEventListener('click', function () {
+          current = 0;
+          root.classList.remove('collapsed');
+          try { localStorage.removeItem(KEY); } catch (e) {}
+          render();
+        });
+        collapseBtn.addEventListener('click', function () {
+          var collapsed = root.classList.toggle('collapsed');
+          collapseBtn.textContent = collapsed ? '▴ show' : '▾ hide';
+        });
+
+        render();
+      })();
+    </script>
+
     <!-- Activation Circle (completely outside the popup) -->
     <div class="activation-circle" id="activation-circle" onclick="activateExtension()">
         <div style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 8px; white-space: nowrap; color: #ccc; font-size: 12px; text-align: center;">

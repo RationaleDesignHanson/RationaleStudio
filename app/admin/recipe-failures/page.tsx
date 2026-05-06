@@ -35,7 +35,7 @@ export default function RecipeFailuresPage() {
   useEffect(() => {
     if (!loading) {
       if (!profile) {
-        router.push('/clients/login?redirect=/admin/recipe-failures');
+        router.push('/login?redirect=/admin/recipe-failures');
       } else if (profile.role !== 'owner') {
         router.push('/');
       }

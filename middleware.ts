@@ -1,134 +1,52 @@
 /**
- * Next.js Middleware for Route Protection
+ * Next.js Middleware — login gate for the two real portals.
  *
- * Implements 4-tier RBAC:
- * - /owner/* - Owner only (Matt)
- * - /team/* - Team + Owner
- * - /partners/* - Partner + Team + Owner
- * - /investors/* - Investor + Partner + Team + Owner
+ * - /owner/*    Firebase RBAC, owner only
+ * - /clients/*  Firebase RBAC, client/team/owner
  *
- * SECURITY: Uses Firebase Admin SDK to verify session cookies and enforce role-based access.
- * Middleware runs in Edge Runtime, but we need Node.js runtime for Firebase Admin SDK verification.
- * To support this, we use a custom API route for verification.
+ * Public confidential case studies use the in-page <UnlockGate> primitive
+ * (cookie-based password unlock), not middleware. This file only handles
+ * routes that require an actual login session.
  */
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Public-route password protection (HTTP Basic Auth)
-const basicAuthProtectedPrefixes = [
-  '/zero',
-  '/work/zero', // legacy (now redirects)
-  '/work/heirloom',
-  '/heirloom/pitch',
-];
-
-// Define protected routes and required roles
 const protectedRoutes: Record<string, string[]> = {
   '/owner': ['owner'],
-  '/team': ['team', 'owner'],
-  '/partners': ['partner', 'team', 'owner'],
-  '/investors': ['investor', 'owner'], // Team does NOT have investor access
-  // Client portal - accessible by clients, team, and owner
+  '/admin': ['owner'],
   '/clients': ['client', 'team', 'owner'],
-  // Note: /owner/heirloom is protected by /owner route above
 };
-
-// Role hierarchy for access control
-const roleHierarchy: Record<string, number> = {
-  owner: 5,
-  team: 4,
-  partner: 3,
-  investor: 2,
-  client: 1,
-};
-
-function isBasicAuthProtected(pathname: string): boolean {
-  return basicAuthProtectedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
-}
-
-function parseBasicAuthHeader(authHeader: string | null): { user: string; pass: string } | null {
-  if (!authHeader) return null;
-  const [scheme, encoded] = authHeader.split(' ');
-  if (scheme !== 'Basic' || !encoded) return null;
-
-  // Edge runtime supports atob; Buffer may not exist.
-  const decoded = typeof atob === 'function' ? atob(encoded) : Buffer.from(encoded, 'base64').toString('utf-8');
-  const idx = decoded.indexOf(':');
-  if (idx === -1) return null;
-
-  return { user: decoded.slice(0, idx), pass: decoded.slice(idx + 1) };
-}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  // Basic Auth gate for select public routes (credentials set via env)
-  if (isBasicAuthProtected(pathname)) {
-    const BASIC_AUTH_USER = process.env.BASIC_AUTH_USER;
-    const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD;
-
-    // If creds aren't configured, don't accidentally lock ourselves out (especially in local dev).
-    if (BASIC_AUTH_USER && BASIC_AUTH_PASSWORD) {
-      const creds = parseBasicAuthHeader(request.headers.get('authorization'));
-      const ok = creds?.user === BASIC_AUTH_USER && creds?.pass === BASIC_AUTH_PASSWORD;
-
-      if (!ok) {
-        return new NextResponse('Authentication required.', {
-          status: 401,
-          headers: {
-            'WWW-Authenticate': 'Basic realm="Rationale", charset="UTF-8"',
-          },
-        });
-      }
-    }
-  }
 
   // Allow login pages to bypass auth checks (prevent redirect loops)
   if (pathname === '/login' || pathname === '/clients/login') {
     return NextResponse.next();
   }
 
-  // Check if route is protected
   const protectedRoute = Object.keys(protectedRoutes).find((route) =>
     pathname.startsWith(route)
   );
 
   if (!protectedRoute) {
-    // Public route, allow access
     return NextResponse.next();
   }
 
-  // Get session cookie
   const sessionCookie = request.cookies.get('session')?.value;
 
   if (!sessionCookie) {
-    // No session, redirect to appropriate login page
     const loginPath = pathname.startsWith('/clients') ? '/clients/login' : '/login';
     const loginUrl = new URL(loginPath, request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Session cookie exists, allow through
-  // Pages/API routes will verify the actual session validity and role using Firebase Admin SDK
-  // Middleware only checks for presence of session cookie (authentication, not authorization)
+  // Pages/API routes verify the actual session + role using Firebase Admin SDK.
   return NextResponse.next();
 }
 
-// Configure which routes the middleware should run on
 export const config = {
-  matcher: [
-    '/owner/:path*',
-    '/team/:path*',
-    '/partners/:path*',
-    '/investors/:path*',
-    '/clients/:path*',
-    // Public routes protected by HTTP Basic Auth
-    '/zero/:path*',
-    '/work/zero/:path*',
-    '/work/heirloom/:path*',
-    '/heirloom/pitch/:path*',
-    // Note: /owner/heirloom is covered by /owner/:path* matcher
-  ],
+  matcher: ['/owner/:path*', '/admin/:path*', '/clients/:path*'],
 };
