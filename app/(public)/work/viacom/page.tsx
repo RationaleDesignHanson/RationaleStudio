@@ -162,23 +162,41 @@ export default function ViacomPage() {
           <p>
             Six chapters and twenty &ldquo;magic moments&rdquo; of Viacom&rsquo;s company history, acquisitions, and cultural touchpoints. The build pulled together video pipeline, lighting design, fabrication, and touch UI &mdash; a complete physical-plus-digital experience at one piece of furniture&rsquo;s scale.
           </p>
-          <div className="mt-2">
-            <a
-              href="https://motionographer.com/2016/10/18/making-mixed-reality-behind-the-scenes-of-the-history-of-viacom-installation/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors"
-            >
-              Behind-the-scenes · Motionographer <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+          {/* CASE-STUDY FILM · the Motionographer documentary cut */}
+          <div className="mt-8 md:mt-10">
+            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+              FIG. 04 &middot; THE HISTORY OF VIACOM &middot; case-study film
+            </p>
+            <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
+              <iframe
+                src="https://player.vimeo.com/video/187781302?dnt=1"
+                title="Viacom: Past, Present &amp; Future"
+                className="w-full h-full"
+                loading="lazy"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                allowFullScreen
+              />
+            </div>
+            <p className="mt-2 text-xs text-[var(--era-ink-muted)] italic">
+              Featured in&nbsp;
+              <a
+                href="https://motionographer.com/2016/10/18/making-mixed-reality-behind-the-scenes-of-the-history-of-viacom-installation/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1"
+              >
+                Motionographer &middot; making mixed reality, behind the scenes
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
           </div>
 
-          {/* FINISHED · the install as it shipped — leads the chapter */}
+          {/* FINISHED · the install as it shipped */}
           <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The finished install
             </p>
-            <Figure figNumber="FIG. 04" caption="THE HISTORY OF VIACOM · finished render with content populated">
+            <Figure figNumber="FIG. 05" caption="THE HISTORY OF VIACOM · finished render with content populated">
               <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
                 <Image src="/images/work/viacom/ppf-render-finished.jpg" alt="Past Present and Future finished render with content" width={1800} height={1200} className="w-full h-full object-cover" />
               </div>
@@ -191,17 +209,17 @@ export default function ViacomPage() {
               The system · empty wall, chapter taxonomy, color sets
             </p>
             <Plate variant="triptych">
-              <Figure figNumber="FIG. 05" caption="The wall before content · 84-inch shelving render">
+              <Figure figNumber="FIG. 06" caption="The wall before content · 84-inch shelving render">
                 <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-render-empty-wall.jpg" alt="Empty Past Present and Future wall render" width={1600} height={900} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 06" caption="Chapter taxonomy · acquisitions, launches, hits, awards, fandom, achievements, pro social">
+              <Figure figNumber="FIG. 07" caption="Chapter taxonomy · acquisitions, launches, hits, awards, fandom, achievements, pro social">
                 <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-chapter-taxonomy.jpg" alt="Chapter taxonomy storyboard" width={1600} height={1067} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 07" caption="Color-set palettes · five sets mapping to grid positions">
+              <Figure figNumber="FIG. 08" caption="Color-set palettes · five sets mapping to grid positions">
                 <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-color-sets.jpg" alt="Color set palettes" width={1600} height={1326} className="w-full h-full object-cover object-top" />
                 </div>
@@ -216,7 +234,7 @@ export default function ViacomPage() {
             </p>
             <Plate variant="lead-2">
               <Plate.Lead>
-                <Figure figNumber="FIG. 08" caption="Production wall · master guide + 24+ chapter design briefs">
+                <Figure figNumber="FIG. 09" caption="Production wall · master guide + 24+ chapter design briefs">
                   <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                     <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1800} height={1350} className="w-full h-full object-cover" />
                   </div>
@@ -224,17 +242,17 @@ export default function ViacomPage() {
               </Plate.Lead>
               <Plate.Aside>
                 <div className="space-y-4 md:space-y-6">
-                  <Figure figNumber="FIG. 09" caption="Maquettes · cardboard chamber prototypes">
+                  <Figure figNumber="FIG. 10" caption="Maquettes · cardboard chamber prototypes">
                     <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                       <Image src="/images/work/viacom/ppf-maquettes-desk.jpg" alt="Cardboard maquettes on a desk" width={1600} height={1200} className="w-full h-full object-cover" />
                     </div>
                   </Figure>
-                  <Figure figNumber="FIG. 10" caption="Save The Music · physical horn maquette">
+                  <Figure figNumber="FIG. 11" caption="Save The Music · physical horn maquette">
                     <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                       <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
                     </div>
                   </Figure>
-                  <Figure figNumber="FIG. 11" caption="Single Ladies maquette · 3D-printed Beyonc&eacute; figure for the BET / VMA chapter">
+                  <Figure figNumber="FIG. 12" caption="Single Ladies maquette · 3D-printed Beyonc&eacute; figure for the BET / VMA chapter">
                     <div className="aspect-[3/4] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                       <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="Single Ladies Beyoncé 3D-printed maquette" width={900} height={1200} className="w-full h-full object-cover" />
                     </div>
@@ -250,12 +268,12 @@ export default function ViacomPage() {
               Physical &rarr; digital · the Save The Music chamber
             </p>
             <Plate variant="split">
-              <Figure figNumber="FIG. 12" caption="Design doc · top view, model notes, design ref, animation brief">
+              <Figure figNumber="FIG. 13" caption="Design doc · top view, model notes, design ref, animation brief">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 13" caption="Final render · chrome music sculpture in a pink chamber">
+              <Figure figNumber="FIG. 14" caption="Final render · chrome music sculpture in a pink chamber">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-render.jpg" alt="Save The Music final render" width={1400} height={1400} className="w-full h-full object-cover" />
                 </div>
@@ -269,17 +287,17 @@ export default function ViacomPage() {
               The install at scale
             </p>
             <Plate variant="triptych">
-              <Figure figNumber="FIG. 14" caption="Installation · dusk lighting state">
+              <Figure figNumber="FIG. 15" caption="Installation · dusk lighting state">
                 <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 15" caption="Pepper&rsquo;s-ghost diorama detail">
+              <Figure figNumber="FIG. 16" caption="Pepper&rsquo;s-ghost diorama detail">
                 <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 16" caption="Magic-moment chapter activation">
+              <Figure figNumber="FIG. 17" caption="Magic-moment chapter activation">
                 <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-full object-cover" />
                 </div>
@@ -297,7 +315,7 @@ export default function ViacomPage() {
             Live data drove dynamic visual treatments at street scale &mdash; the largest canvases I&rsquo;ve ever shipped to.
           </p>
           <div className="mt-4 max-w-3xl">
-            <Figure figNumber="FIG. 17" caption="Outrage Machine on Viacom&rsquo;s Times Square billboards">
+            <Figure figNumber="FIG. 18" caption="Outrage Machine on Viacom&rsquo;s Times Square billboards">
               <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
                 <Image src="/images/work/viacom/outrage-machine.jpg" alt="Outrage Machine billboards" width={1600} height={1067} className="w-full h-full object-cover" />
               </div>
@@ -311,7 +329,7 @@ export default function ViacomPage() {
             A Tilt Brush VR art show staged at the White House South by South Lawn (2016). Worked with artists creating in VR; their work was displayed alongside lenticular-print companion pieces created from the VR captures.
           </p>
           <div className="mt-6">
-            <Figure figNumber="FIG. 18" caption="South by South Lawn · painting on the South Lawn of the White House in Tilt Brush">
+            <Figure figNumber="FIG. 19" caption="South by South Lawn · painting on the South Lawn of the White House in Tilt Brush">
               <div className="aspect-[3/4] md:aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden max-w-2xl">
                 <Image src="/images/work/viacom/sxsl-tiltbrush-whitehouse.jpg" alt="Painting in Tilt Brush at the White House South by South Lawn" width={1600} height={1200} className="w-full h-full object-cover" />
               </div>
@@ -319,7 +337,7 @@ export default function ViacomPage() {
           </div>
           <div className="mt-6 md:mt-8">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              FIG. 19 &middot; SXSL artist captures · Tilt Brush · live playlist
+              FIG. 20 &middot; SXSL artist captures · Tilt Brush · live playlist
             </p>
             <VideoPlayer
               basePath="/videos/sxsl"
