@@ -362,33 +362,8 @@ export default function HomePage() {
             straight into the work after the strip. */}
         <WorkViewer blocks={homeBlocks} />
 
-        {/* WRITING — back to paper */}
-        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper border-t border-hairline">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-12 md:gap-8">
-              <div className="md:col-span-8">
-                <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
-                  WRITING · LAUNCHING MAY
-                </p>
-                <h2 className="font-display text-3xl md:text-5xl text-ink leading-tight mb-6 max-w-3xl">
-                  Notes on building.
-                </h2>
-                <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-3">
-                  Substack launches in May with <em className="text-ink">When to Hire AI: the longer version</em> &mdash; a paired companion to a Sendfull interview on the trust ceiling, hat consolidation, and why I shipped Heirloom instead of Zero.
-                </p>
-                <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-8">
-                  Twice a month after that. On building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters.
-                </p>
-                <Link
-                  href="/writing"
-                  className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
-                >
-                  See the launch plan and archive <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* WRITING — hidden until Substack launches. Section block + nav
+            link both gated below; restore both together when ready. */}
 
         {/* CONTACT */}
         <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 border-t border-hairline bg-paper-deep/40">
