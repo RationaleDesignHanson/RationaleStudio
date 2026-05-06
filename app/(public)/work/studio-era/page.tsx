@@ -10,7 +10,37 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { VideoPlayer } from '@/components/video-player/VideoPlayer';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+
+const STUDIO_REEL_PLAYLISTS = [
+  {
+    name: 'ALL',
+    videos: [
+      'reel.mp4', 'fanta.mp4', 'prod2.mp4',
+      'verizon_redpen_v1.mp4',
+      'puma_pumaspeedup_1ebook_v1.mp4', 'puma_untitled_01_v1.mp4', 'puma_untitled_02_v1.mp4',
+      '09_cherryebook_v1.mp4', '11_psst_lucidfinalebook_v1.mp4',
+      'audiebook_v1.mp4', 'cortalebook_v1.mp4',
+    ],
+  },
+  {
+    name: 'AGENCY ERA',
+    videos: ['reel.mp4', 'fanta.mp4', 'prod2.mp4'],
+  },
+  {
+    name: 'PUMA NIKEID',
+    videos: ['puma_pumaspeedup_1ebook_v1.mp4', 'puma_untitled_01_v1.mp4', 'puma_untitled_02_v1.mp4'],
+  },
+  {
+    name: 'VERIZON FIOS',
+    videos: ['verizon_redpen_v1.mp4'],
+  },
+  {
+    name: 'EBOOK COVERS',
+    videos: ['09_cherryebook_v1.mp4', '11_psst_lucidfinalebook_v1.mp4', 'audiebook_v1.mp4', 'cortalebook_v1.mp4'],
+  },
+];
 
 export default function StudioEraPage() {
   return (
@@ -125,12 +155,21 @@ export default function StudioEraPage() {
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 07 · Verizon RedPen · pitch reel</p>
             </div>
           </div>
+
+          {/* Studio reel — live playlist of agency, Puma NikeID,
+              Verizon, and ebook-cover work from this stretch. */}
+          <div className="mt-8 md:mt-10">
+            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+              FIG. 08 &middot; Studio reel · click to cycle categories
+            </p>
+            <VideoPlayer basePath="/videos/studio-reel" playlists={STUDIO_REEL_PLAYLISTS} />
+          </div>
         </ChapterRow>
 
         {/* CHAPTER 04 — HUSH */}
         <ChapterRow index="04" kicker="HUSH · 2012 — 2014 · BROOKLYN" title="Out of post-production, into physical space">
           <p>
-            Lead Animation and Experiential Designer at Hush in Brooklyn. The shop&rsquo;s appeal was that it didn&rsquo;t separate the screen from the room &mdash; projects mixed projection, fabrication, motion graphics, and software in whatever combination the brief called for. Under Armour activations, a Niketown installation for the Super Bowl, an iPad/Unity app where users could deconstruct a 3D car layer by layer.
+            Lead Animation and Experiential Designer at Hush in Brooklyn. The shop&rsquo;s appeal was that it didn&rsquo;t separate the screen from the room &mdash; projects mixed projection, fabrication, motion graphics, and software in whatever combination the brief called for. <a href="https://www.heyhush.com/work/12-taking-under-armour-to-new-lands" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Under Armour activations<ExternalLink className="w-3.5 h-3.5" /></a>, a <a href="https://thisisjodi.com/Niketown-Super-Bowl-Installation" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Niketown installation for the Super Bowl<ExternalLink className="w-3.5 h-3.5" /></a>, an iPad/Unity app where users could deconstruct a 3D car layer by layer.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             After more than a decade in post-production, the move into physical space mattered most for what came after. Once you&rsquo;ve watched a stranger&rsquo;s body figure out a gesture you designed, you can&rsquo;t go back to designing for an editor.

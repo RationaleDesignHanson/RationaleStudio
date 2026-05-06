@@ -11,7 +11,61 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { Plate } from '@/components/case-study/Plate';
+import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+
+const VIACOM_SCREENS_PLAYLISTS = [
+  {
+    name: 'ALL',
+    videos: [
+      'viacom_logo.mp4', 'viacom_surfer.mp4', 'viacom_colored_lines.mp4',
+      'viacom_times_square.mp4', 'viacomaroundtheworld.mp4', 'deconstructedlogos.mp4',
+      'terra100.mp4', 'terra300.mp4', 'terra500.mp4',
+      'cat_quote_beyonce001.mp4', 'cat_quote_coolj001.mp4', 'cat_quote_franklin001.mp4',
+      'cat_quote_fuller001.mp4', 'cat_quote_gandhi001.mp4', 'cat_quote_lee001.mp4',
+      'cat_quote_pasteur001.mp4',
+      'creativequote_yokoono.mp4', 'creativequotes_coddington.mp4', 'creativequotes_davidlynch.mp4',
+      'clockwork_atlas_and_the_weight_of_time.mp4', 'elevators.mp4',
+      'mcclintock_elevator_series_-_monday.mp4', 'morning_messaging.mp4',
+      'iansummer.mp4', 'forty_five_seven_part_1.mp4',
+      'testpattern_1_1.mp4', '1515.mp4', 'box_1_1.mp4',
+    ],
+  },
+  {
+    name: 'BRAND IDS',
+    videos: [
+      'viacom_logo.mp4', 'viacom_surfer.mp4', 'viacom_colored_lines.mp4',
+      'viacom_times_square.mp4', 'viacomaroundtheworld.mp4', 'deconstructedlogos.mp4',
+      'terra100.mp4', 'terra300.mp4', 'terra500.mp4',
+    ],
+  },
+  {
+    name: 'CATEGORICAL QUOTES',
+    videos: [
+      'cat_quote_beyonce001.mp4', 'cat_quote_coolj001.mp4', 'cat_quote_franklin001.mp4',
+      'cat_quote_fuller001.mp4', 'cat_quote_gandhi001.mp4', 'cat_quote_lee001.mp4',
+      'cat_quote_pasteur001.mp4',
+    ],
+  },
+  {
+    name: 'CREATIVE QUOTES',
+    videos: [
+      'creativequote_yokoono.mp4', 'creativequotes_coddington.mp4', 'creativequotes_davidlynch.mp4',
+    ],
+  },
+  {
+    name: 'CONCEPT',
+    videos: [
+      'clockwork_atlas_and_the_weight_of_time.mp4', 'elevators.mp4',
+      'mcclintock_elevator_series_-_monday.mp4', 'morning_messaging.mp4',
+      'iansummer.mp4', 'forty_five_seven_part_1.mp4',
+    ],
+  },
+  {
+    name: 'TEST PATTERNS',
+    videos: ['testpattern_1_1.mp4', '1515.mp4', 'box_1_1.mp4'],
+  },
+];
 
 export default function ViacomPage() {
   return (
@@ -74,20 +128,12 @@ export default function ViacomPage() {
           <p>
             Designed and architected the playback system together &mdash; software, content tooling, and physical install &mdash; so the system was authored by the brand teams who would use it, not engineered around their inability to.
           </p>
+          {/* Live playlist — click to cycle categories. Random within. */}
           <div className="mt-6 md:mt-8">
-            <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-              <video
-                src="/images/work/viacom/screens-reel.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              />
-              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
-                FIG. 02 &middot; The Screens reel · brand IDs · live data routing across HQ
-              </p>
-            </div>
+            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+              FIG. 02 &middot; The Screens · live playlist · click to cycle categories
+            </p>
+            <VideoPlayer basePath="/videos/viacom-screens" playlists={VIACOM_SCREENS_PLAYLISTS} />
           </div>
         </ChapterRow>
 
@@ -110,14 +156,14 @@ export default function ViacomPage() {
             </a>
           </div>
 
-          {/* CONCEPT */}
+          {/* FINISHED · the install as it shipped — leads the chapter */}
           <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              The concept · State 1
+              The finished install
             </p>
-            <Figure figNumber="FIG. 03" caption="VIACOM: PAST. PRESENT. FUTURE. · proposal showing the 6-row exploded timeline">
+            <Figure figNumber="FIG. 03" caption="THE HISTORY OF VIACOM · finished render with content populated">
               <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
-                <Image src="/images/work/viacom/ppf-concept-state-1.jpg" alt="Past Present and Future · concept slide" width={1800} height={1013} className="w-full h-full object-cover" />
+                <Image src="/images/work/viacom/ppf-render-finished.jpg" alt="Past Present and Future finished render with content" width={1800} height={1200} className="w-full h-full object-cover" />
               </div>
             </Figure>
           </div>
@@ -171,6 +217,11 @@ export default function ViacomPage() {
                       <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
                     </div>
                   </Figure>
+                  <Figure figNumber="FIG. 10" caption="Single Ladies maquette · 3D-printed Beyonc&eacute; figure for the BET / VMA chapter">
+                    <div className="aspect-[3/4] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                      <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="Single Ladies Beyoncé 3D-printed maquette" width={900} height={1200} className="w-full h-full object-cover" />
+                    </div>
+                  </Figure>
                 </div>
               </Plate.Aside>
             </Plate>
@@ -182,12 +233,12 @@ export default function ViacomPage() {
               Physical &rarr; digital · the Save The Music chamber
             </p>
             <Plate variant="split">
-              <Figure figNumber="FIG. 10" caption="Design doc · top view, model notes, design ref, animation brief">
+              <Figure figNumber="FIG. 11" caption="Design doc · top view, model notes, design ref, animation brief">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-              <Figure figNumber="FIG. 11" caption="Final render · chrome music sculpture in a pink chamber">
+              <Figure figNumber="FIG. 12" caption="Final render · chrome music sculpture in a pink chamber">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-render.jpg" alt="Save The Music final render" width={1400} height={1400} className="w-full h-full object-cover" />
                 </div>
@@ -195,36 +246,28 @@ export default function ViacomPage() {
             </Plate>
           </div>
 
-          {/* FINISHED · 16:9 hero + 16:9 triptych */}
+          {/* INSTALLATION DETAILS · 16:9 triptych at scale */}
           <div className="mt-10 md:mt-14">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              The finished install
+              The install at scale
             </p>
-            <Figure figNumber="FIG. 12" caption="THE HISTORY OF VIACOM · finished render with content populated">
-              <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden">
-                <Image src="/images/work/viacom/ppf-render-finished.jpg" alt="Past Present and Future finished render with content" width={1800} height={1200} className="w-full h-full object-cover" />
-              </div>
-            </Figure>
-
-            <div className="mt-6 md:mt-8">
-              <Plate variant="triptych">
-                <Figure figNumber="FIG. 13" caption="Installation · dusk lighting state">
-                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                    <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
-                  </div>
-                </Figure>
-                <Figure figNumber="FIG. 14" caption="Pepper&rsquo;s-ghost diorama detail">
-                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                    <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-full object-cover" />
-                  </div>
-                </Figure>
-                <Figure figNumber="FIG. 15" caption="Magic-moment chapter activation">
-                  <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                    <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-full object-cover" />
-                  </div>
-                </Figure>
-              </Plate>
-            </div>
+            <Plate variant="triptych">
+              <Figure figNumber="FIG. 13" caption="Installation · dusk lighting state">
+                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
+                </div>
+              </Figure>
+              <Figure figNumber="FIG. 14" caption="Pepper&rsquo;s-ghost diorama detail">
+                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-full object-cover" />
+                </div>
+              </Figure>
+              <Figure figNumber="FIG. 15" caption="Magic-moment chapter activation">
+                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-full object-cover" />
+                </div>
+              </Figure>
+            </Plate>
           </div>
         </ChapterRow>
 
@@ -250,6 +293,22 @@ export default function ViacomPage() {
           <p>
             A Tilt Brush VR art show staged at the White House South by South Lawn (2016). Worked with artists creating in VR; their work was displayed alongside lenticular-print companion pieces created from the VR captures.
           </p>
+          <div className="mt-6">
+            <Figure figNumber="FIG. 17" caption="South by South Lawn · painting on the South Lawn of the White House in Tilt Brush">
+              <div className="aspect-[3/4] md:aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 rounded-md overflow-hidden max-w-2xl">
+                <Image src="/images/work/viacom/sxsl-tiltbrush-whitehouse.jpg" alt="Painting in Tilt Brush at the White House South by South Lawn" width={1600} height={1200} className="w-full h-full object-cover" />
+              </div>
+            </Figure>
+          </div>
+          <div className="mt-6 md:mt-8">
+            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+              FIG. 18 &middot; SXSL artist captures · Tilt Brush · live playlist
+            </p>
+            <VideoPlayer
+              basePath="/videos/sxsl"
+              playlists={[{ name: 'SXSL', videos: ['gumshoe_v1.mp4', 'persue_v1.mp4', 'thankyoux_v1.mp4', 'wanecod_v1.mp4'] }]}
+            />
+          </div>
         </ChapterRow>
 
         {/* CHAPTER 06 — COMPOSITION VI */}
