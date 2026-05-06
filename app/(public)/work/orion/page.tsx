@@ -110,18 +110,9 @@ export default function OrionPage() {
 
           <div className="mt-8 md:mt-10">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              Team allocation · multiple disciplines, multiple cities
-            </p>
-            <Figure figNumber="FIG. 04" caption="8 Product Designers · 6 Design Prototypers · 6 Technical Artists across NYC + SEA + SF">
-              <Image src="/images/work/orion/decks/orion-team-allocation.jpg" alt="Orion team allocation diagram" width={1400} height={900} className="w-full h-auto rounded-md" />
-            </Figure>
-          </div>
-
-          <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Mobile groundwork · the location-anchored AR work that fed Day-1 use cases
             </p>
-            <Figure figNumber="FIG. 05" caption="World AR on Mobile (2020 — 2021) · Tate Britain, Universal Studios Japan, Disney character placement, Lucky Dalmatian · location-based work that contributed to the pattern">
+            <Figure figNumber="FIG. 04" caption="World AR on Mobile (2020 — 2021) · Tate Britain, Universal Studios Japan, Disney character placement, Lucky Dalmatian · location-based work that contributed to the pattern">
               <Image src="/images/work/orion/decks/world-ar-on-mobile.jpg" alt="World AR on Mobile · seven phones" width={1600} height={1067} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
@@ -220,7 +211,10 @@ export default function OrionPage() {
           title="The teams I managed"
         >
           <p>
-            Each Day-1 app had its own multidisciplinary team &mdash; product, design, engineering, research &mdash; and the Senior Design Manager role meant holding direction across all of them at once. Direct teams covered <strong className="text-[var(--era-ink)]">Experience Design</strong>, <strong className="text-[var(--era-ink)]">Production Design</strong>, and <strong className="text-[var(--era-ink)]">UX Research</strong>. Partner teams spanned hardware engineering, software platform, and AI research.
+            Each Day-1 app had its own multidisciplinary team &mdash; product, design, prototyping, engineering, research &mdash; and the Senior Design Manager role meant holding direction across all of them at once. Direct teams covered <strong className="text-[var(--era-ink)]">Experience Design</strong>, <strong className="text-[var(--era-ink)]">Design Prototyping</strong>, <strong className="text-[var(--era-ink)]">Production Design</strong>, and <strong className="text-[var(--era-ink)]">UX Research</strong>. Partner teams spanned hardware engineering, software platform, and AI research.
+          </p>
+          <p>
+            Prototyping was where most of the questions actually got answered. AR glasses had no precedent UI, no muscle memory, no &ldquo;use the iOS pattern.&rdquo; Every Day-1 use case had to be built in code, worn on the head, lived with for a few weeks, and then redesigned. The Prototypers were the ones turning hypotheses into something a person could try and react to &mdash; and that loop drove almost every meaningful decision in the program.
           </p>
           <p>
             The split looked roughly like this:
@@ -228,6 +222,7 @@ export default function OrionPage() {
           <div className="mt-4 space-y-3">
             {[
               ['Experience Design', 'Use-case verticals — recipe, multi-screen, calls, augments. One design lead per vertical, dotted-line into the Senior Design Manager.'],
+              ['Design Prototyping', 'The team that actually built the experiences in code, on-device. Wearable prototypes, simulator builds, and end-to-end use-case integrations — most Day-1 design decisions came out of what worked when you put it on your head, not what looked right in Figma.'],
               ['Production Design', 'The render-and-ship layer turning concept work into demoable, photographable, recordable experiences for the unveil.'],
               ['UX Research', 'Field studies in real homes, ethnographic work on hands-busy moments, usability runs against the EMG wristband and voice loop.'],
               ['Quest MR partnership', 'Cross-team work integrating MR Mode and the Augments system so the persistent-object language stayed consistent across glasses and headset.'],

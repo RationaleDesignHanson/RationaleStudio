@@ -180,22 +180,6 @@ export default function FAIREmbodiedAIPage() {
           <p>
             Today&rsquo;s AI is in a cave. It&rsquo;s trained on images, text, audio, video &mdash; flat data, with no body, no consequences, no reward function tied to physical reality. An agent that drops a glass and watches it shatter learns something a chatbot never can. Embodiment isn&rsquo;t a moral upgrade to current AI. It&rsquo;s an architectural requirement.
           </p>
-          <p>
-            That&rsquo;s the whole reason I left research design at FAIR with strong opinions about <em>where</em> AI fails and where it can earn trust. Heirloom is the consumer-grade expression of those opinions; FAIR was the lab where they were tested.
-          </p>
-          <p>
-            A patent filed during this work &mdash;{' '}
-            <a
-              href="https://patents.google.com/patent/US11295503B1/en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1"
-            >
-              world-locked interactive avatars
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            {' '}&mdash; describes the architectural pattern that came out of it: AI agents pinned to physical context that act on the wearer&rsquo;s behalf without active control.
-          </p>
         </ChapterRow>
 
         {/* FOOTER */}
