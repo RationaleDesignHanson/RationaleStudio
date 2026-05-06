@@ -97,12 +97,15 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
           />
         ))}
 
-        {/* Era rail · right-edge index showing where we are in the
-            three-era sequence. Click any label to jump to that era.
-            Lives at z-40 so it floats above the era cards. */}
+        {/* Era rail · index showing where we are in the three-era
+            sequence. Mobile: chunky ticks pinned to the LEFT edge,
+            no labels (left-side keeps the rail out of the row arrow's
+            way and gives lefty thumbs an easier tap target). Desktop:
+            labels return on the right edge with a wider tick. */}
         <nav
           aria-label="Era index"
-          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 pointer-events-auto"
+          className="absolute top-1/2 -translate-y-1/2 z-40 flex flex-col gap-5 md:gap-4 pointer-events-auto
+                     left-1.5 md:left-auto md:right-6"
         >
           {blocks.map((block, i) => {
             const isActive = i === activeIdx;
@@ -111,20 +114,25 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
                 key={block.theme}
                 type="button"
                 onClick={() => jumpToEra(i)}
-                className="group flex items-center gap-2.5 cursor-pointer"
+                className="group flex items-center gap-2.5 cursor-pointer
+                           min-h-[28px] md:min-h-0 px-1 md:px-0"
                 aria-label={`Jump to ${block.label}`}
                 aria-current={isActive ? 'true' : undefined}
               >
+                {/* Tick — chunkier on mobile so it reads on small screens
+                    against any era background. */}
                 <span
-                  className="block h-px transition-all duration-300"
+                  className="block transition-all duration-300"
                   style={{
-                    width: isActive ? '28px' : '10px',
+                    width: isActive ? '20px' : '8px',
+                    height: '2px',
                     backgroundColor: isActive ? 'var(--era-accent, currentColor)' : 'currentColor',
-                    opacity: isActive ? 1 : 0.3,
+                    opacity: isActive ? 1 : 0.35,
                   }}
                 />
+                {/* Label — hidden on mobile, present on desktop. */}
                 <span
-                  className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase transition-opacity"
+                  className="hidden md:inline-block font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase transition-opacity"
                   style={{
                     color: isActive ? 'var(--era-ink, currentColor)' : 'currentColor',
                     opacity: isActive ? 1 : 0.45,
