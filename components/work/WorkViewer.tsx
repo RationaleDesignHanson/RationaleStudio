@@ -214,24 +214,25 @@ function EraCard({ block, index, total, scrollYProgress }: EraCardProps) {
   // anchors at scroll end (no visible exit) — boundary cards are at
   // rest when the user arrives / leaves the section.
   const slot = 1 / total;
-  // Transition windows are kept tight so each card has a real
-  // "fully visible" dwell zone. With section height = 160vh per
-  // card, the math works out to ~96vh of stable scroll between
-  // boundaries — plenty of time to read each era before the
-  // next one starts crossfading in.
-  //   bg     40% of slot → atmospheric crossfade, half the slot
-  //   header 32% of slot → mid-rate
-  //   rows   20% of slot → snappy handoff
+  // Transition tuning. Bg keeps the long atmospheric crossfade
+  // (mood-handoff). Rows + header use SEQUENTIAL windows: the
+  // current era's content fully fades out BEFORE the next era's
+  // fades in, so two stacks of body copy never co-render. There's
+  // a brief moment at the slot boundary where only the bg is
+  // visible — that's intentional, it's the "page turn."
+  //   bg     40% of slot, centered on boundary (smooth merge)
+  //   header 12% of slot, sequential (out before in)
+  //   rows   10% of slot, sequential, slightly snappier
   const twBg = slot * 0.4;
-  const twHeader = slot * 0.32;
-  const twRows = slot * 0.2;
+  const twHeader = slot * 0.12;
+  const twRows = slot * 0.1;
   const isFirst = index === 0;
   const isLast = index === total - 1;
 
   const slotStart = index * slot;
   const slotEnd = (index + 1) * slot;
 
-  // Outer range (bg-wide) — also used for translate keyframes.
+  // Bg outer range — bg is centered on the slot boundary as before.
   const outerStart = isFirst ? -slot : slotStart - twBg / 2;
   const outerEnd = isLast ? 1 + slot : slotEnd + twBg / 2;
   const bgEnterEnd = isFirst ? 0 : slotStart + twBg / 2;
@@ -261,10 +262,13 @@ function EraCard({ block, index, total, scrollYProgress }: EraCardProps) {
     { ease: [SMOOTH, SMOOTH, SMOOTH] },
   );
 
-  const headerEnterStart = isFirst ? outerStart : slotStart - twHeader / 2;
-  const headerEnterEnd = isFirst ? 0 : slotStart + twHeader / 2;
-  const headerExitStart = isLast ? 1 : slotEnd - twHeader / 2;
-  const headerExitEnd = isLast ? outerEnd : slotEnd + twHeader / 2;
+  // SEQUENTIAL header window — current era's header is fully gone
+  // by the slot boundary; next era's header starts entering AT the
+  // slot boundary. Eliminates body-text overlap in the merge zone.
+  const headerEnterStart = isFirst ? outerStart : slotStart;
+  const headerEnterEnd = isFirst ? 0 : slotStart + twHeader;
+  const headerExitStart = isLast ? 1 : slotEnd - twHeader;
+  const headerExitEnd = isLast ? outerEnd : slotEnd;
   const headerOpacity = useTransform(
     scrollYProgress,
     [headerEnterStart, headerEnterEnd, headerExitStart, headerExitEnd],
@@ -272,10 +276,13 @@ function EraCard({ block, index, total, scrollYProgress }: EraCardProps) {
     { ease: [SMOOTH, SMOOTH, SMOOTH] },
   );
 
-  const rowsEnterStart = isFirst ? outerStart : slotStart - twRows / 2;
-  const rowsEnterEnd = isFirst ? 0 : slotStart + twRows / 2;
-  const rowsExitStart = isLast ? 1 : slotEnd - twRows / 2;
-  const rowsExitEnd = isLast ? outerEnd : slotEnd + twRows / 2;
+  // SEQUENTIAL rows window — same idea, even tighter. Rows snap
+  // out / in over a small window so the rotating body copy is
+  // always cleanly readable, never crossfading on top of itself.
+  const rowsEnterStart = isFirst ? outerStart : slotStart;
+  const rowsEnterEnd = isFirst ? 0 : slotStart + twRows;
+  const rowsExitStart = isLast ? 1 : slotEnd - twRows;
+  const rowsExitEnd = isLast ? outerEnd : slotEnd;
   const rowsOpacity = useTransform(
     scrollYProgress,
     [rowsEnterStart, rowsEnterEnd, rowsExitStart, rowsExitEnd],
