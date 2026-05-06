@@ -229,20 +229,12 @@ export default function AboutPage() {
       <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
           <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3 font-mono">How I work</p>
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
-            <figure className="rounded-md overflow-hidden border border-hairline">
-              <Image src="/images/work/about/decks/leadership-credo.jpg" alt="Self-Expectations and Team-Expectations" width={1600} height={900} className="w-full h-auto" />
-              <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
-                Self-Expectations / Team-Expectations · the credo
-              </figcaption>
-            </figure>
-            <figure className="rounded-md overflow-hidden border border-hairline">
-              <Image src="/images/work/about/decks/lift-framing.jpg" alt="LIFT framing — Lead by Example, Inspire to drive Impact, Function Agnostic, Trust as two way street" width={1600} height={900} className="w-full h-auto" />
-              <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
-                LIFT &middot; Lead by Example · Inspire to drive Impact · Function Agnostic · Trust as two-way street
-              </figcaption>
-            </figure>
-          </div>
+          <figure className="rounded-md overflow-hidden border border-hairline max-w-3xl">
+            <Image src="/images/work/about/decks/leadership-credo.jpg" alt="Self-Expectations and Team-Expectations" width={1600} height={900} className="w-full h-auto" />
+            <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
+              Self-Expectations / Team-Expectations · the credo
+            </figcaption>
+          </figure>
           <div className="mt-8 md:mt-10">
             <p className="text-[11px] tracking-[0.3em] uppercase text-ink-muted mb-3 font-mono">Deeper reading · gated</p>
             <ul className="space-y-2">
