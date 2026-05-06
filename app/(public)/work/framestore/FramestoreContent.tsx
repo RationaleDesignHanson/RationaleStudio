@@ -75,8 +75,24 @@ export function FramestoreContent() {
           </div>
         </ChapterRow>
 
-        {/* CHAPTER 02 — THE BRIDGE */}
-        <ChapterRow index="02" kicker="THE BRIDGE · INTO META" title="The year before Spark AR">
+        {/* CHAPTER 02 — APEX ASSEMBLY */}
+        <ChapterRow index="02" kicker="PITCH · VR HAPTIC PUZZLE · 2017" title="Apex Assembly">
+          <p>
+            A VR haptic puzzle game pitched out of Framestore Labs. Players slap on work gloves and find a place on the line, assembling increasingly complex doodads from foam blocks moving down a conveyor belt. Motion capture renders the blocks and the player&rsquo;s hands in headset; the connectors are real-world haptic shapes. The displays fritz out, oil drips, the conveyor breaks &mdash; all the things that make assembly comedy in person become game mechanics in VR.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href="/work/decks/framestore-apex-assembly"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-mono uppercase tracking-wider border-2 transition-colors"
+              style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
+            >
+              Read the Apex Assembly deck · 16 pages, gated <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </ChapterRow>
+
+        {/* CHAPTER 03 — THE BRIDGE */}
+        <ChapterRow index="03" kicker="THE BRIDGE · INTO META" title="The year before Spark AR">
           <p>
             One year, by design. The pitch portfolio became the argument that walked into the Facebook campus interview in May 2017, and three months later started at Meta as Art Director on Messenger AR.
           </p>

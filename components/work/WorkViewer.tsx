@@ -64,9 +64,10 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
       className="relative bg-paper"
       style={{ height: `${total * 160}vh` }}
     >
-      {/* Sticky stage — pins below the page Header (~3.25rem mobile /
-          3.75rem desktop) so cards don't render behind it. */}
-      <div className="sticky top-[3.25rem] md:top-[3.75rem] h-[calc(100vh-3.25rem)] md:h-[calc(100vh-3.75rem)] overflow-hidden">
+      {/* Sticky stage — pins below the page Header. Mobile chrome
+          is two lines tall (wordmark + nav stacked), so the offset
+          is bigger there. Desktop is one line side-by-side. */}
+      <div className="sticky top-[4.5rem] md:top-16 h-[calc(100vh-4.5rem)] md:h-[calc(100vh-4rem)] overflow-hidden">
         {blocks.map((block, i) => (
           <EraCard
             key={block.theme}

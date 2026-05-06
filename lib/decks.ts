@@ -23,19 +23,13 @@ export const DECKS: Record<string, Deck> = {
     slug: 'spark-ar-design-guidelines',
     title: 'Spark AR Design Guidelines',
     subtitle:
-      'Public-facing design guidelines we shipped at Meta. Covers getting started, designing for the camera and the world, and considered interaction. (The original sparkar.facebook.com blog went dark when Meta sunset Spark in January 2025; rehosted here.)',
+      'Public-facing design guidelines we shipped at Meta — full 56-page edition. Covers getting started, designing virtual experiences for the real world, UI and user controls, and AR terminology. (The original sparkar.facebook.com blog went dark when Meta sunset Spark in January 2025; rehosted here.)',
     meta: 'Meta · public',
     era: 'meta',
-    totalSourcePages: 21,
-    publishedPages: [
-      '01_intro.jpg', '02_getting-started.jpg', '03_match-effort.jpg', '04_minimize-wait.jpg',
-      '05_design-spatially.jpg', '06_dynamic-environment.jpg', '07_camera-fov.jpg', '08_real-world.jpg',
-      '09_right-info.jpg', '10_match-scale.jpg', '11_visual-cues.jpg', '12_clear-language.jpg',
-      '13_ff-camera-ar.jpg',
-      '14_control-comfort.jpg', '15_limit-onscreen-ui.jpg', '16_user-behaviors.jpg',
-      '17_object-manipulation-1.jpg', '18_object-manipulation-2.jpg', '19_effective-feedback.jpg',
-      '20_3d-illusion.jpg', '21_thank-you.jpg',
-    ],
+    totalSourcePages: 56,
+    publishedPages: Array.from({ length: 56 }, (_, i) =>
+      `page-${String(i + 1).padStart(2, '0')}.jpg`,
+    ),
     gated: false,
   },
   'world-ar-avatars': {
@@ -53,6 +47,18 @@ export const DECKS: Record<string, Deck> = {
       '11','12','13','14','15','16','17','18','19',
       '21','22','23','24','26','27','28',
     ].map((n) => `page-${n}.jpg`),
+  },
+  'framestore-apex-assembly': {
+    slug: 'framestore-apex-assembly',
+    title: 'Apex Assembly · Framestore Pitch',
+    subtitle:
+      'A VR haptic puzzle game pitch from Framestore Labs — assemble doodads on a moving conveyor belt with motion-captured hands and foam blocks. 2017 pitch deck, Adobe InDesign.',
+    meta: 'Framestore · 2017',
+    era: 'maker',
+    totalSourcePages: 16,
+    publishedPages: Array.from({ length: 16 }, (_, i) =>
+      `page-${String(i + 1).padStart(2, '0')}.jpg`,
+    ),
   },
   'motivo-case-study': {
     slug: 'motivo-case-study',

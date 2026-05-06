@@ -67,9 +67,9 @@ export default function ViacomPage() {
         </ChapterRow>
 
         {/* CHAPTER 02 — SCREENS */}
-        <ChapterRow index="02" kicker="SCREENS · REAL-TIME PLAYBACK · CATALYST" title="The system that powered the building">
+        <ChapterRow index="02" kicker="THE SCREENS · REAL-TIME PLAYBACK" title="The system that powered the building">
           <p>
-            <strong className="text-[var(--era-ink)]">Catalyst</strong> &mdash; a real-time dynamic playback system that powered the brand IDs throughout Viacom&rsquo;s Times Square HQ. Tag-based content routing fed live social feeds into the displays alongside curated brand content, refreshing in real time across the building&rsquo;s lobby, conference rooms, and floor edges.
+            <strong className="text-[var(--era-ink)]">The Screens</strong> &mdash; a real-time dynamic playback system that powered the brand IDs throughout Viacom&rsquo;s Times Square HQ. Tag-based content routing fed live social feeds into the displays alongside curated brand content, refreshing in real time across the building&rsquo;s lobby, conference rooms, and floor edges.
           </p>
           <p>
             Designed and architected the playback system together &mdash; software, content tooling, and physical install &mdash; so the system was authored by the brand teams who would use it, not engineered around their inability to.
@@ -85,7 +85,7 @@ export default function ViacomPage() {
                 className="w-full h-auto"
               />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
-                FIG. 02 &middot; Catalyst Screens reel · brand IDs · live data routing across HQ
+                FIG. 02 &middot; The Screens reel · brand IDs · live data routing across HQ
               </p>
             </div>
           </div>

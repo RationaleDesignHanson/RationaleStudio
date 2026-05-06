@@ -49,10 +49,12 @@ export function Header() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-3 md:py-4">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4">
-            {/* Wordmark — underline sweeps in on hover */}
+            {/* Wordmark — underline sweeps in on hover. Tightened to
+                leading-none so a heavier, bigger size doesn't push
+                the chrome taller. */}
             <Link
               href="/"
-              className="group inline-block font-display text-base md:text-lg leading-tight tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
+              className="group inline-block font-display font-semibold text-xl md:text-2xl leading-none tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
             >
               <span className="relative inline-block">
                 Rationale
