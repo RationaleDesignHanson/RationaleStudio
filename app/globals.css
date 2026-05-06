@@ -1961,3 +1961,14 @@ a, button, input, select, textarea, label {
   .hero-stack > .flex.items-stretch > [aria-hidden],
   .hero-stack > .flex.items-stretch > .flex.flex-col > * { animation: none; }
 }
+
+/* Scroll-hint bounce — small downward nudge to draw the eye toward
+   the more-content-below indicator on the homepage WorkViewer. */
+@keyframes scroll-hint-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="scroll-hint-bounce"] { animation: none !important; }
+}

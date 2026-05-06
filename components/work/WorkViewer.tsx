@@ -58,6 +58,25 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
     offset: ['start start', 'end end'],
   });
 
+  // Track which era is dominant for the side rail + scroll hint.
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const idx = Math.min(Math.max(Math.floor(v * total), 0), total - 1);
+    if (idx !== activeIdx) setActiveIdx(idx);
+    if (!hasScrolled && v > 0.01) setHasScrolled(true);
+  });
+
+  // Click an era rail label → smooth-scroll to its mid-slot.
+  const jumpToEra = (i: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const sectionTop = el.getBoundingClientRect().top + window.scrollY;
+    const sectionHeight = el.offsetHeight;
+    const target = sectionTop + sectionHeight * ((i + 0.5) / total) - window.innerHeight * 0.5;
+    window.scrollTo({ top: target, behavior: 'smooth' });
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -77,6 +96,68 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
             scrollYProgress={scrollYProgress}
           />
         ))}
+
+        {/* Era rail · right-edge index showing where we are in the
+            three-era sequence. Click any label to jump to that era.
+            Lives at z-40 so it floats above the era cards. */}
+        <nav
+          aria-label="Era index"
+          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 pointer-events-auto"
+        >
+          {blocks.map((block, i) => {
+            const isActive = i === activeIdx;
+            return (
+              <button
+                key={block.theme}
+                type="button"
+                onClick={() => jumpToEra(i)}
+                className="group flex items-center gap-2.5 cursor-pointer"
+                aria-label={`Jump to ${block.label}`}
+                aria-current={isActive ? 'true' : undefined}
+              >
+                <span
+                  className="block h-px transition-all duration-300"
+                  style={{
+                    width: isActive ? '28px' : '10px',
+                    backgroundColor: isActive ? 'var(--era-accent, currentColor)' : 'currentColor',
+                    opacity: isActive ? 1 : 0.3,
+                  }}
+                />
+                <span
+                  className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase transition-opacity"
+                  style={{
+                    color: isActive ? 'var(--era-ink, currentColor)' : 'currentColor',
+                    opacity: isActive ? 1 : 0.45,
+                  }}
+                >
+                  {block.label}
+                </span>
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Initial scroll hint — visible until the user starts scrolling,
+            then fades out. Tells first-time visitors there are more
+            eras below the NOW card. */}
+        <div
+          aria-hidden
+          className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1 transition-opacity duration-500 pointer-events-none"
+          style={{ opacity: hasScrolled ? 0 : 1 }}
+        >
+          <span
+            className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase"
+            style={{ color: 'var(--era-ink-muted, currentColor)', opacity: 0.85 }}
+          >
+            Two more eras below
+          </span>
+          <span
+            className="font-mono text-base md:text-lg leading-none"
+            style={{ color: 'var(--era-ink-muted, currentColor)', opacity: 0.7, animation: 'scroll-hint-bounce 1.6s ease-in-out infinite' }}
+          >
+            ↓
+          </span>
+        </div>
       </div>
     </section>
   );
