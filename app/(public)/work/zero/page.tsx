@@ -1,6 +1,7 @@
 /**
  * Zero — case study formatted as work-row chapters, NOW era styling.
- * The post-mortem of a working prototype that didn't ship.
+ * The post-mortem of an iOS app that hit internal beta then got pulled
+ * before public launch.
  */
 
 'use client';
@@ -43,9 +44,9 @@ function PrototypeChapter() {
   const p = PROTOTYPES[active];
   return (
     <>
-      <ChapterRow index="02" kicker="TRY IT · WORKING PROTOTYPES" title="The work that came before the post-mortem">
+      <ChapterRow index="02" kicker="TRY IT · LIVE BUILDS" title="The work that came before the post-mortem">
         <p>
-          Two surfaces from the build, in order: an intent + action explorer that validated the classification space before the app, and the swipe-first triage prototype it grew into. Internal beta, never in the App Store.
+          Two surfaces from the build, in order: an intent + action explorer that validated the classification space before the app, and the swipe-first triage build it grew into. iOS internal beta, then I pulled it — never reached the App Store.
         </p>
       </ChapterRow>
       <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-12">

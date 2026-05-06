@@ -307,9 +307,9 @@ const workBlocks: EraBlockData[] = [
     ),
     rows: (
       <>
-        <WorkRow theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="iOS recipe preservation, social cookbooks. Live on the App Store. 24 SPM packages, AI-assisted import across five formats." meta="iOS · live · 2024 — present" accentVar="var(--project-heirloom)" />
+        <WorkRow theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="iOS recipe preservation, social cookbooks. Live on the App Store. 24 SPM packages, AI-assisted import across five formats." meta="iOS · live" accentVar="var(--project-heirloom)" />
         <WorkRow theme="now" href="/work/silly-questions" index="02" title="Silly Questions" blurb="A 2-player AI art party game. Live now on iOS and the web. Eight art styles, no app download required." meta="Web + iOS · live" accentVar="var(--project-silly)" />
-        <WorkRow theme="now" href="/work/zero" index="03" title="Zero" blurb="A working email-triage prototype that didn&rsquo;t ship — read why." meta="Prototype · didn&rsquo;t ship" />
+        <WorkRow theme="now" href="/work/zero" index="03" title="Zero" blurb="Shortform email. Swipe-first triage with AI-extracted action items. Shipped to internal beta on iOS, then I pulled it — read why." meta="iOS · beta · pulled" />
         <WorkRow theme="now" href="/work/vault" index="✱" gated title="Vault" blurb="Confidential client work and concept ventures — Athletes First, Fubo, Rumi, Nimbus, and the rest of the in-flight bets." meta="Confidential · client + concept" accentVar="var(--project-vault)" />
       </>
     ),

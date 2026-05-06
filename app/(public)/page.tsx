@@ -294,9 +294,9 @@ const homeBlocks: EraBlockData[] = [
     ),
     rows: (
       <>
-        <WorkRow staggerIndex={0} theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo." meta="iOS · live · 2024 — present" accentVar="var(--project-heirloom)" />
-        <WorkRow staggerIndex={1} theme="now" href="/work/silly-questions" index="02" title="Silly Questions" blurb="A 2-player AI art party game. Live on iOS and the web. Eight art styles, no app download required." meta="Web + iOS · live · 2025" accentVar="var(--project-silly)" />
-        <WorkRow staggerIndex={2} theme="now" href="/work/zero" index="03" title="Zero" blurb="A working email-triage prototype that didn&rsquo;t ship — read why." meta="Prototype · 2024" />
+        <WorkRow staggerIndex={0} theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo." meta="iOS · live" accentVar="var(--project-heirloom)" />
+        <WorkRow staggerIndex={1} theme="now" href="/work/silly-questions" index="02" title="Silly Questions" blurb="A 2-player AI art party game. Live on iOS and the web. Eight art styles, no app download required." meta="Web + iOS · live" accentVar="var(--project-silly)" />
+        <WorkRow staggerIndex={2} theme="now" href="/work/zero" index="03" title="Zero" blurb="Shortform email. Swipe-first triage with AI-extracted action items. Shipped to internal beta on iOS, then I pulled it — read why." meta="iOS · beta · pulled" />
         <WorkRow staggerIndex={3} theme="now" href="/work/vault" index="✱" gated title="Vault" blurb="Confidential client work and concept ventures — Athletes First, Fubo, Rumi, Nimbus, and the rest of the in-flight bets." meta="Confidential · client + concept" accentVar="var(--project-vault)" />
       </>
     ),
