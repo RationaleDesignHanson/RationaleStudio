@@ -124,10 +124,40 @@ export default function StudioEraPage() {
               <Image src="/images/work/maker-era/adidas-yao-ming.jpg" alt="Adidas Yao Ming basketball hero" width={1600} height={1067} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
+
+          {/* Adidas Hu Jia · 2008 Beijing Olympics · lead compositor */}
+          <div className="mt-6">
+            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+              FIG. 04 &middot; Adidas &middot; Hu Jia &middot; 2008 Beijing Olympics &middot; lead compositor
+            </p>
+            <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
+              <iframe
+                src="https://www.youtube.com/embed/WLTiriBKSuI?rel=0"
+                title="Adidas — Hu Jia (2008, China)"
+                className="w-full h-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <p className="mt-2 text-xs text-[var(--era-ink-muted)] italic">
+              Psyop / TBWA &middot; directed by Marie Hyon and Marco Spier &middot;{' '}
+              <a
+                href="https://www.commarts.com/project/5298/adidas-2008-beijing-olympics-games-hu-jia-tv-spot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1"
+              >
+                Communication Arts feature
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </p>
+          </div>
+
           <div className="mt-6 grid md:grid-cols-2 gap-3">
             {[
-              { src: 'fanta.mp4', label: 'FIG. 04 · Fanta · animation + comp' },
-              { src: 'deconstructed-logos.mp4', label: 'FIG. 05 · Deconstructed Logos · motion identity' },
+              { src: 'fanta.mp4', label: 'FIG. 05 · Fanta · animation + comp' },
+              { src: 'deconstructed-logos.mp4', label: 'FIG. 06 · Deconstructed Logos · motion identity' },
             ].map((v) => (
               <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                 <video src={`/videos/maker-era/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
@@ -148,11 +178,11 @@ export default function StudioEraPage() {
           <div className="mt-6 grid md:grid-cols-2 gap-3">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
               <Image src="/images/work/maker-era/verizon-fios-set.jpg" alt="Verizon Fios storefront SET render" width={1400} height={875} className="w-full h-auto" />
-              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 06 · Verizon Fios · storefront SET render for McCann</p>
+              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 07 · Verizon Fios · storefront SET render for McCann</p>
             </div>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
               <video src="/videos/maker-era/verizon-redpen.mp4" autoPlay loop muted playsInline className="w-full h-auto" />
-              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 07 · Verizon RedPen · pitch reel</p>
+              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 08 · Verizon RedPen · pitch reel</p>
             </div>
           </div>
 
@@ -160,7 +190,7 @@ export default function StudioEraPage() {
               Verizon, and ebook-cover work from this stretch. */}
           <div className="mt-8 md:mt-10">
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              FIG. 08 &middot; Studio reel · click to cycle categories
+              FIG. 09 &middot; Studio reel · click to cycle categories
             </p>
             <VideoPlayer basePath="/videos/studio-reel" playlists={STUDIO_REEL_PLAYLISTS} />
           </div>
@@ -175,18 +205,18 @@ export default function StudioEraPage() {
             After more than a decade in post-production, the move into physical space mattered most for what came after. Once you&rsquo;ve watched a stranger&rsquo;s body figure out a gesture you designed, you can&rsquo;t go back to designing for an editor.
           </p>
           <div className="mt-6">
-            <Figure figNumber="FIG. 08" caption="Hush · early chambered-shelving maquette · the form that returned three years later as Past Present and Future">
+            <Figure figNumber="FIG. 10" caption="Hush · early chambered-shelving maquette · the form that returned three years later as Past Present and Future">
               <Image src="/images/work/maker-era/hush-maquette.jpg" alt="Hush studio maquette" width={1800} height={1013} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
           <div className="mt-6 grid md:grid-cols-2 gap-3">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
               <video src="/videos/maker-era/hush-social.mp4" autoPlay loop muted playsInline className="w-full h-auto" />
-              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 09 · Hush social · activations reel</p>
+              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 11 · Hush social · activations reel</p>
             </div>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
               <Image src="/images/work/maker-era/holorama-bowling.jpg" alt="Holorama Optical Theatre bowling alley scene" width={1600} height={1067} className="w-full h-auto" />
-              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 10 · Holorama Optical Theatre · Pepper&rsquo;s-ghost technique applied to a bowling-alley scene · the optical pattern Past Present and Future would later use at scale</p>
+              <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 12 · Holorama Optical Theatre · Pepper&rsquo;s-ghost technique applied to a bowling-alley scene · the optical pattern Past Present and Future would later use at scale</p>
             </div>
           </div>
         </ChapterRow>
