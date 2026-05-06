@@ -18,7 +18,7 @@
 
 'use client';
 
-import { useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   motion,
   useScroll,
@@ -64,8 +64,29 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     const idx = Math.min(Math.max(Math.floor(v * total), 0), total - 1);
     if (idx !== activeIdx) setActiveIdx(idx);
-    if (!hasScrolled && v > 0.01) setHasScrolled(true);
+    if (!hasScrolled && v > 0.005) setHasScrolled(true);
   });
+
+  // Peek-bounce on first arrival — direct affordance that the page
+  // scrolls. We wait ~1.4s, scroll down ~140px smoothly, then snap
+  // back. Once per session (sessionStorage), skipped for users who
+  // already started scrolling, and skipped under reduced-motion.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.sessionStorage.getItem('rationale_peeked') === '1') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const peekTimer = window.setTimeout(() => {
+      if (window.scrollY > 4) return; // user already started scrolling
+      window.sessionStorage.setItem('rationale_peeked', '1');
+      window.scrollBy({ top: 140, behavior: 'smooth' });
+      window.setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 850);
+    }, 1400);
+
+    return () => window.clearTimeout(peekTimer);
+  }, []);
 
   // Click an era rail label → smooth-scroll to its mid-slot.
   const jumpToEra = (i: number) => {

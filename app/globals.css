@@ -1962,11 +1962,12 @@ a, button, input, select, textarea, label {
   .hero-stack > .flex.items-stretch > .flex.flex-col > * { animation: none; }
 }
 
-/* Scroll-hint bounce — small downward nudge to draw the eye toward
-   the more-content-below indicator on the homepage WorkViewer. */
+/* Scroll-hint bounce — chunkier nudge with an opacity pulse so the
+   "more below" indicator on the homepage WorkViewer reads from
+   across the page, not just up close. */
 @keyframes scroll-hint-bounce {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(4px); }
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(10px); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
