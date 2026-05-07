@@ -190,7 +190,7 @@ export default function ZeroPage() {
         {/* CHAPTER 01 — WHAT IT WAS */}
         <ChapterRow index="01" kicker="WHAT IT WAS" title="Shortform email · swipe-first triage">
           <p>
-            Zero is a shortform email app. Swipe-first triage, AI-extracted action items and deadlines, fast inbox processing. Built solo, iOS, working build, internal beta.
+            Zero is a shortform email app. Swipe-first triage, AI-extracted action items and deadlines, fast inbox processing. Built solo, shipped cross-platform to the App Store.
           </p>
           <p>
             In parallel, I was building Heirloom &mdash; a recipe app to solve a personal frustration I called <em>cooking math</em>. Both apps were live for a stretch. After several rounds of feedback, Zero got sunset and Heirloom went all-in.

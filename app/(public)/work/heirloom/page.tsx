@@ -18,13 +18,52 @@ const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
 const APP_STORE_URL = 'https://apps.apple.com/app/id6759019723';
 const MARKETING_URL = 'https://heirloomrecipebox.app';
 
+// Five canonical feature blocks lifted directly from the heirloom-marketing
+// homepage (HomepageRedesign.tsx, Section 4). Composite assets are copied
+// from heirloom-marketing/public/assets/lifestyle/composite/ — keep the two
+// in sync if marketing updates them.
+const FEATURE_PATH = '/images/work/heirloom/composite';
 const FEATURES = [
-  { src: 'feature-AIGeneration.mp4', title: 'AI Generation', blurb: 'Ask for variations grounded in the recipes you already have. Half the butter, no dairy, doubled for a party.' },
-  { src: 'feature-CookbookScan.mp4', title: 'Cookbook Scan', blurb: 'Capture a whole cookbook page by page. Heirloom reads each spread and files everything as separate cards.' },
-  { src: 'feature-VideoImport.mp4', title: 'Video Import', blurb: 'Paste a TikTok or Instagram Reels link. The audio and on-screen steps become a structured card.' },
-  { src: 'feature-KitchenTable.mp4', title: 'Kitchen Table', blurb: 'A shared cookbook for your family. Everyone adds, edits, and cooks from the same set in real time.' },
-  { src: 'feature-VersionTracking.mp4', title: 'Version Tracking', blurb: 'Every change is preserved. The recipe Mom wrote stays the recipe Mom wrote, and your version sits beside it.' },
-  { src: 'feature-DiscoverFeed.mp4', title: 'Discover', blurb: 'Themed packs and curated cookbooks for when you don&rsquo;t know what to cook tonight.' },
+  {
+    align: 'left' as const,
+    media: { src: `${FEATURE_PATH}/spark-capture.mp4`, poster: `${FEATURE_PATH}/spark-capture-poster.jpg`, video: true },
+    alt: 'The Heirloom Spark capture flow',
+    eyebrow: 'Spark',
+    headline: 'Start from a spark.',
+    body: 'A name. A craving. A half-remembered Sunday. Type whatever you&rsquo;ve got &mdash; &ldquo;Grandma&rsquo;s brisket,&rdquo; &ldquo;the lemon chicken thing,&rdquo; &ldquo;weeknight pasta something&rdquo; &mdash; and Heirloom fills in the rest. You review every line before it&rsquo;s saved. The spark was always yours; we just helped you write it down.',
+  },
+  {
+    align: 'right' as const,
+    media: { src: `${FEATURE_PATH}/scanning-handwritten.mp4`, poster: `${FEATURE_PATH}/scanning-handwritten-poster.jpg`, video: true },
+    alt: 'Hands holding a phone over a stack of handwritten recipe cards',
+    eyebrow: 'Capture',
+    headline: 'Handwritten cards deserve more than a shoebox.',
+    body: 'Point your camera at a handwritten recipe card &mdash; Heirloom reads the cursive, pulls out the ingredients and instructions, and turns a faded heirloom into a recipe your kids can scale, cook, and pass on. Forty years of Sundays, digitized while you drink coffee.',
+  },
+  {
+    align: 'left' as const,
+    media: { src: `${FEATURE_PATH}/two-phones-share.png`, video: false },
+    alt: 'Two phones on a wooden table, sender and recipient lineage view',
+    eyebrow: 'Private',
+    headline: 'No public feed. No follower count. No algorithm.',
+    body: 'Your cookbook is a book, not a social graph. You invite specific family members. You see who added what. If someone leaves the family, you pull the share. No discover tab. No trending. No strangers reading your grandmother&rsquo;s notes.',
+  },
+  {
+    align: 'right' as const,
+    media: { src: `${FEATURE_PATH}/seasonal-lineage.mp4`, poster: `${FEATURE_PATH}/seasonal-lineage-poster.jpg`, video: true },
+    alt: 'Three generations of one recipe in Heirloom — the lineage view',
+    eyebrow: 'Preserve',
+    headline: 'Lineage on every recipe.',
+    body: 'When you save your mother&rsquo;s version of Grandma&rsquo;s Bolognese, Heirloom remembers: whose original, who changed what, when. Three generations flow through one recipe. Your kids will know exactly whose hand wrote it down &mdash; and whose kitchen made it theirs.',
+  },
+  {
+    align: 'left' as const,
+    media: { src: `${FEATURE_PATH}/table-cookbooks.png`, video: false },
+    alt: 'A phone on a wood table showing the Heirloom cookbooks library',
+    eyebrow: 'Own',
+    headline: 'Private by default. Export anytime.',
+    body: 'Every recipe is private until you invite someone specific. No account required to start. Export your entire cookbook as a PDF any time. No lock-in, no dark patterns, no &ldquo;upgrade to export.&rdquo; A heirloom you own, not rent.',
+  },
 ];
 
 export default function HeirloomCaseStudy() {
@@ -158,22 +197,59 @@ export default function HeirloomCaseStudy() {
         {/* CHAPTER 04 — LIVE IN THE APP */}
         <ChapterRow index="04" kicker="LIVE IN THE APP" title="What you can do today">
           <p>
-            Six things, all shipping in the current build:
+            The five canonical feature blocks from the heirloom marketing site, shipping in the current build.
           </p>
-          <div className="mt-6 md:mt-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {FEATURES.map((f) => (
-                <div key={f.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                  <video src={`/videos/heirloom/${f.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
-                  <div className="px-4 py-3">
-                    <h3 className="text-sm font-display text-[var(--era-ink)] mb-1">{f.title}</h3>
-                    <p className="text-xs text-[var(--era-ink-muted)] leading-relaxed">{f.blurb}</p>
+        </ChapterRow>
+        <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-14">
+          <div className="max-w-5xl mx-auto flex flex-col gap-6 md:gap-8">
+            {FEATURES.map((f) => (
+              <div
+                key={f.eyebrow}
+                className="relative rounded-3xl border border-[var(--era-hairline)] bg-white/85 backdrop-blur-md shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] ring-1 ring-inset ring-white/40"
+              >
+                <div className={`grid gap-8 lg:gap-14 lg:grid-cols-2 items-center p-6 sm:p-8 lg:p-12 ${f.align === 'right' ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+                  <div className="flex justify-center">
+                    <div className="w-full max-w-[440px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10">
+                      {f.media.video ? (
+                        <video
+                          src={f.media.src}
+                          poster={f.media.poster}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          aria-label={f.alt}
+                          className="w-full h-auto block"
+                        />
+                      ) : (
+                        <Image
+                          src={f.media.src}
+                          alt={f.alt}
+                          width={880}
+                          height={660}
+                          className="w-full h-auto block"
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div className="max-w-[44ch]">
+                    <p className="text-[11px] font-mono font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: 'var(--accent)' }}>
+                      {f.eyebrow}
+                    </p>
+                    <h3
+                      className="text-2xl sm:text-3xl lg:text-[2rem] font-display font-semibold tracking-[-0.02em] leading-[1.12] text-[var(--era-ink)]"
+                      dangerouslySetInnerHTML={{ __html: f.headline }}
+                    />
+                    <p
+                      className="mt-4 sm:mt-5 text-sm sm:text-base leading-[1.6] text-[var(--era-ink-body)]"
+                      dangerouslySetInnerHTML={{ __html: f.body }}
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </ChapterRow>
+        </section>
 
         {/* CHAPTER 05 — COOKBOOK SHARING */}
         <ChapterRow index="05" kicker="SHARING" title="A cookbook, not a social graph">

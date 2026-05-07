@@ -19,6 +19,7 @@ import {
   generateBreadcrumbStructuredData,
 } from '@/lib/seo/metadata';
 import { WorkViewer, type EraBlockData } from '@/components/work/WorkViewer';
+import { WorkViewerMobile } from '@/components/work/WorkViewerMobile';
 
 // =============================================================
 // PRIMITIVES — themed wrappers
@@ -38,7 +39,7 @@ function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
     // DR-style: large mono kicker numerals, neon labels.
     // Tuned DOWN from 9xl so it doesn't out-shout NOW + META.
     return (
-      <div className="mb-10 md:mb-14 relative">
+      <div className="mb-4 md:mb-14 relative">
         <div className="grid md:grid-cols-12 md:gap-6 items-end">
           <div className="md:col-span-8">
             <h2
@@ -71,7 +72,7 @@ function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
   if (theme === 'meta') {
     // Flat-modern: clean sans, large headline word, supporting year line.
     return (
-      <div className="mb-10 md:mb-14">
+      <div className="mb-4 md:mb-14">
         <div
           className="flex items-end justify-between gap-4 pb-5 border-b-2"
           style={{ borderColor: 'var(--era-accent)' }}
@@ -105,27 +106,30 @@ function EraHeader({ theme, era, years, tagline }: EraHeaderProps) {
     );
   }
 
-  // NOW — Studio Monograph paper. Headline + byline both start at the
-  // page's left edge (col 1) so the era header reads with the same
-  // left-aligned anchor as LEADER and DIRECTOR.
+  // NOW — Studio Monograph paper. Era word + role line, structurally
+  // parallel to LEADER and DIRECTOR. The manifesto lives above the
+  // WorkViewer as a hero so it isn't tied to a single era.
   return (
-    <div className="mb-10 md:mb-14">
+    <div className="mb-4 md:mb-14">
       <div className="border-b pb-5" style={{ borderColor: 'var(--era-ink)' }}>
-        <h2 className="font-display italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight" style={{ color: 'var(--era-ink)' }}>
-          Vision bears the burden of proof
+        <h2
+          className="font-display italic text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-none tracking-tight"
+          style={{ color: 'var(--era-ink)' }}
+        >
+          NOW
         </h2>
-        {tagline && (
-          <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
-            {tagline}
-          </p>
-        )}
+        <p
+          className="mt-2 font-mono whitespace-nowrap tracking-wide text-[clamp(0.625rem,2.8vw,1rem)]"
+          style={{ color: 'var(--era-ink-muted)' }}
+        >
+          {years}
+        </p>
       </div>
-      <p
-        className="mt-3 font-mono text-sm md:text-base tracking-wide"
-        style={{ color: 'var(--era-ink-muted)' }}
-      >
-        {years}
-      </p>
+      {tagline && (
+        <p className="mt-3 text-sm italic" style={{ color: 'var(--era-ink-muted)' }}>
+          {tagline}
+        </p>
+      )}
     </div>
   );
 }
@@ -296,8 +300,8 @@ const homeBlocks: EraBlockData[] = [
       <>
         <WorkRow staggerIndex={0} theme="now" href="/work/heirloom" index="01" title="Heirloom" blurb="Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo." meta="iOS · live" accentVar="var(--project-heirloom)" />
         <WorkRow staggerIndex={1} theme="now" href="/work/silly-questions" index="02" title="Silly Questions" blurb="A 2-player AI art party game. Live on iOS and the web. Eight art styles, no app download required." meta="Web + iOS · live" accentVar="var(--project-silly)" />
-        <WorkRow staggerIndex={2} theme="now" href="/work/zero" index="03" title="Zero" blurb="Shortform email. Swipe-first triage with AI-extracted action items. Shipped to internal beta on iOS, then I pulled it — read why." meta="iOS · beta · pulled" />
-        <WorkRow staggerIndex={3} theme="now" href="/work/vault" index="✱" gated title="Vault" blurb="Confidential client work and concept ventures — Athletes First, Fubo, Rumi, Nimbus, and the rest of the in-flight bets." meta="Confidential · client + concept" accentVar="var(--project-vault)" />
+        <WorkRow staggerIndex={2} theme="now" href="/work/zero" index="03" title="Zero" blurb="Shortform email. Swipe-first triage with AI-extracted action items. Shipped cross-platform, then deprioritized — read why." meta="Cross-platform · deprioritized" />
+        <WorkRow staggerIndex={3} theme="now" href="/work/vault" index="✱" gated title="Vault" blurb="Confidential client work and concept ventures. Locked — request access." meta="Confidential · client + concept" accentVar="var(--project-vault)" />
       </>
     ),
   },
@@ -352,11 +356,25 @@ export default function HomePage() {
       <MultipleStructuredData dataBlocks={structuredData} />
 
       <main className="min-h-screen bg-paper text-ink-body">
-        {/* WORK VIEWER — sticky NavStrip + parallax-merge era cards.
-            The big "Vision bears the burden of proof" hero is now
-            the wordmark in the global header; the page jumps
-            straight into the work after the strip. */}
-        <WorkViewer blocks={homeBlocks} />
+        {/* DESKTOP-ONLY brand hero — mobile shows the rotating tagline
+            in the global header instead. */}
+        <section className="hidden md:block px-4 sm:px-6 md:px-8 md:pt-16 md:pb-14 border-b border-hairline">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="font-display font-normal text-ink text-[clamp(28px,3.5vw,42px)] leading-[1.2] tracking-tight">
+              The design practice of Matt Hanson.
+            </h1>
+            <p className="mt-3 font-display italic font-normal text-ink text-[clamp(28px,3.5vw,42px)] leading-[1.2] tracking-tight">
+              Vision bears the burden of proof.
+            </p>
+          </div>
+        </section>
+
+        {/* WORK VIEWER — desktop is parallax-merge; mobile is straight
+            vertical scroll. Two implementations, same data. */}
+        <div className="hidden md:block">
+          <WorkViewer blocks={homeBlocks} />
+        </div>
+        <WorkViewerMobile blocks={homeBlocks} />
 
         {/* WRITING · live first post + Sendfull interview */}
         <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper border-t border-hairline">

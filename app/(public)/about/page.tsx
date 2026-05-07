@@ -136,7 +136,7 @@ export default function AboutPage() {
               <Marginalia.Rule />
               <Marginalia.Field label="Heirloom">iOS · live</Marginalia.Field>
               <Marginalia.Field label="Silly Questions">Live · web + iOS</Marginalia.Field>
-              <Marginalia.Field label="Zero">iOS · beta · pulled</Marginalia.Field>
+              <Marginalia.Field label="Zero">Cross-platform · App Store · deprioritized</Marginalia.Field>
               <Marginalia.Note>
                 The bet: consumer software a single builder can credibly own end-to-end.
               </Marginalia.Note>
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 <strong className="text-ink">Silly Questions</strong> (a 2-player AI art party game) shipped earlier in the year as a smaller test of the method.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                Not everything ships: <strong className="text-ink">Zero</strong> reached internal beta on iOS and I pulled it before public launch &mdash; the trust ceiling for AI in email triage was higher than the build could clear, and a one-person studio couldn&rsquo;t carry the third-party-dependency surface required to close the gap.
+                Not everything sticks: <strong className="text-ink">Zero</strong> shipped cross-platform to the App Store and I deprioritized it &mdash; the trust ceiling for AI in email triage was higher than the build could clear, and a one-person studio couldn&rsquo;t carry the third-party-dependency surface required to close the gap.
               </p>
               <p className="font-display italic text-xl md:text-2xl text-ink leading-snug">
                 The bet now is consumer software a single builder can credibly own end-to-end.

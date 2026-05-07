@@ -125,8 +125,7 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
             labels return on the right edge with a wider tick. */}
         <nav
           aria-label="Era index"
-          className="absolute top-1/2 -translate-y-1/2 z-40 flex flex-col gap-5 md:gap-4 pointer-events-auto
-                     left-1.5 md:left-auto md:right-6"
+          className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-40 flex-col gap-4 pointer-events-auto right-6"
         >
           {blocks.map((block, i) => {
             const isActive = i === activeIdx;
@@ -135,24 +134,10 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
                 key={block.theme}
                 type="button"
                 onClick={() => jumpToEra(i)}
-                className="group flex items-center gap-2 md:gap-2.5 cursor-pointer
-                           min-h-[28px] md:min-h-0 px-1 md:px-0"
+                className="group flex items-center gap-2.5 cursor-pointer"
                 aria-label={`Jump to ${block.label}`}
                 aria-current={isActive ? 'true' : undefined}
               >
-                {/* Numeral — mobile only. Tiny mono digit so the rail
-                    reads unmistakably as navigation, not a stray dash. */}
-                <span
-                  className="md:hidden font-mono text-[9px] tracking-[0.15em] tabular-nums transition-opacity"
-                  style={{
-                    color: isActive ? 'var(--era-accent, currentColor)' : 'currentColor',
-                    opacity: isActive ? 1 : 0.4,
-                  }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                {/* Tick — chunkier on mobile so it reads on small screens
-                    against any era background. */}
                 <span
                   className="block transition-all duration-300"
                   style={{
@@ -162,9 +147,8 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
                     opacity: isActive ? 1 : 0.35,
                   }}
                 />
-                {/* Label — hidden on mobile, present on desktop. */}
                 <span
-                  className="hidden md:inline-block font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase transition-opacity"
+                  className="font-mono text-[10px] tracking-[0.3em] uppercase transition-opacity"
                   style={{
                     color: isActive ? 'var(--era-ink, currentColor)' : 'currentColor',
                     opacity: isActive ? 1 : 0.45,
@@ -362,7 +346,7 @@ function EraCard({ block, index, total, scrollYProgress }: EraCardProps) {
           Bg forced transparent so this wrapper doesn't cover other
           cards' bg layers (the era class sets bg-color by default). */}
       <div
-        className={`era-${block.theme} absolute inset-0 z-20 px-4 sm:px-6 md:px-8 pt-4 md:pt-6 pb-6 md:pb-10 pointer-events-none`}
+        className={`era-${block.theme} absolute inset-0 z-20 px-4 sm:px-6 md:px-8 pt-6 pb-10 pointer-events-none`}
         style={{ backgroundColor: 'transparent' }}
         data-era={block.theme}
       >

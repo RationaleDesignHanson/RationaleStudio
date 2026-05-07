@@ -10,7 +10,6 @@
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink } from 'lucide-react';
-import { Marginalia } from '@/components/case-study/EditorialLayout';
 
 const SUBSTACK_LATEST = {
   title: 'When to Hire AI: the longer version',
@@ -30,68 +29,8 @@ const SENDFULL_INTERVIEW = {
 export default function WritingPage() {
   return (
     <main className="min-h-screen bg-paper text-ink-body">
-      {/* HERO */}
-      <section className="px-4 sm:px-6 md:px-8 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-hairline">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
-            <div className="md:col-span-8">
-              <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
-                WRITING · IN FLIGHT
-              </p>
-              <h1 className="font-display text-display text-ink mb-6 max-w-3xl">
-                Notes on building.
-              </h1>
-              <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-3">
-                Twice a month on Mondays. Notes on building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters of the work. Three rails: methodology, build log, career memoir.
-              </p>
-              <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-8">
-                The first post landed alongside a{' '}
-                <a
-                  href={SENDFULL_INTERVIEW.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--accent-ink)] hover:text-ink underline"
-                >
-                  Sendfull conversation with Stef Hutka
-                </a>{' '}
-                &mdash; the long-form companion to that interview.
-              </p>
-              <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-6">
-                <a
-                  href="https://rationaledesign.substack.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
-                >
-                  Subscribe on Substack <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-            <aside className="hidden md:block md:col-span-4 md:col-start-9 text-xs font-mono text-ink-muted leading-relaxed pt-2">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Cadence</p>
-              <Marginalia.Field label="Day">Mondays</Marginalia.Field>
-              <Marginalia.Field label="Frequency">Twice a month</Marginalia.Field>
-              <Marginalia.Field label="Platform">
-                <a
-                  href="https://rationaledesign.substack.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--accent-ink)] hover:text-ink"
-                >
-                  rationaledesign.substack.com →
-                </a>
-              </Marginalia.Field>
-              <Marginalia.Rule />
-              <Marginalia.Note>
-                Three rails: methodology, build log, career memoir.
-              </Marginalia.Note>
-            </aside>
-          </div>
-        </div>
-      </section>
-
       {/* LATEST · the live Substack post */}
-      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+      <section className="px-4 sm:px-6 md:px-8 pt-12 md:pt-20 pb-10 md:pb-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
           <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
             Latest
