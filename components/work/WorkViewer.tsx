@@ -135,11 +135,22 @@ export function WorkViewer({ blocks }: WorkViewerProps) {
                 key={block.theme}
                 type="button"
                 onClick={() => jumpToEra(i)}
-                className="group flex items-center gap-2.5 cursor-pointer
+                className="group flex items-center gap-2 md:gap-2.5 cursor-pointer
                            min-h-[28px] md:min-h-0 px-1 md:px-0"
                 aria-label={`Jump to ${block.label}`}
                 aria-current={isActive ? 'true' : undefined}
               >
+                {/* Numeral — mobile only. Tiny mono digit so the rail
+                    reads unmistakably as navigation, not a stray dash. */}
+                <span
+                  className="md:hidden font-mono text-[9px] tracking-[0.15em] tabular-nums transition-opacity"
+                  style={{
+                    color: isActive ? 'var(--era-accent, currentColor)' : 'currentColor',
+                    opacity: isActive ? 1 : 0.4,
+                  }}
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 {/* Tick — chunkier on mobile so it reads on small screens
                     against any era background. */}
                 <span
