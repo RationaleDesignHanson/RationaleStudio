@@ -101,8 +101,8 @@ export default function HeirloomCaseStudy() {
                   <Image
                     src="/images/work/heirloom/brand/app-icon.png"
                     alt="Heirloom app icon"
-                    width={96}
-                    height={96}
+                    width={320}
+                    height={320}
                     className="flex-shrink-0 rounded-2xl border border-[var(--era-hairline)] w-[64px] h-[64px] md:w-[88px] md:h-[88px]"
                     priority
                   />

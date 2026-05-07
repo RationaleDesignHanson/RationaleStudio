@@ -115,7 +115,7 @@ export default function ViacomPage() {
           </p>
           <div className="mt-4">
             <Figure figNumber="FIG. 01" caption="Past Present and Future · 84-inch transparent touch display, mixed-reality lighting, and a Pepper&rsquo;s-ghost diorama">
-              <Image src="/images/work/viacom/ppf-installation-1.jpg" alt="Viacom · Past Present and Future installation" width={2400} height={1600} className="w-full h-auto rounded-md" priority />
+              <Image src="/images/work/viacom/ppf-installation-1.jpg" alt="Viacom · Past Present and Future installation" width={1920} height={1080} className="w-full h-auto rounded-md" priority />
             </Figure>
           </div>
         </ChapterRow>
@@ -236,7 +236,7 @@ export default function ViacomPage() {
               <Plate.Lead>
                 <Figure figNumber="FIG. 09" caption="Production wall · master guide + 24+ chapter design briefs">
                   <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                    <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1800} height={1350} className="w-full h-full object-cover" />
+                    <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1600} height={1200} className="w-full h-full object-cover" />
                   </div>
                 </Figure>
               </Plate.Lead>

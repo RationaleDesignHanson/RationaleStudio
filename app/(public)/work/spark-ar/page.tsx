@@ -204,10 +204,10 @@ export default function SparkARPage() {
           <div className="mt-6 md:mt-8">
             <Plate variant="split">
               <Figure figNumber="FIG. 13" caption="Design review — before-state interaction model">
-                <Image src="/assets/spark-ar/chapter-c/02-before.jpg" alt="Before-state design review" width={1200} height={900} className="w-full h-auto" />
+                <Image src="/assets/spark-ar/chapter-c/02-before.jpg" alt="Before-state design review" width={739} height={1600} className="w-full h-auto" />
               </Figure>
               <Figure figNumber="FIG. 14" caption="Design review — after, with hint and education states">
-                <Image src="/assets/spark-ar/chapter-c/03-after.jpg" alt="After-state design review with hints" width={1200} height={900} className="w-full h-auto" />
+                <Image src="/assets/spark-ar/chapter-c/03-after.jpg" alt="After-state design review with hints" width={739} height={1600} className="w-full h-auto" />
               </Figure>
             </Plate>
           </div>
