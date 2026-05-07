@@ -230,9 +230,12 @@ function RotatingTagline() {
   }, []);
 
   return (
-    <span className="inline-grid min-w-0 flex-1 whitespace-nowrap align-baseline">
+    <span className="relative inline-block whitespace-nowrap font-normal text-ink-muted align-middle">
+      {/* The first phrase sets the wrapper's natural size (width +
+          baseline). The second phrase is absolutely positioned over it
+          so the wrapper baseline-aligns predictably with sibling text. */}
       <span
-        className={`col-start-1 row-start-1 font-normal text-ink-muted transition-opacity duration-700 ${
+        className={`transition-opacity duration-700 ${
           showQuote ? 'opacity-0' : 'opacity-100'
         }`}
         aria-hidden={showQuote}
@@ -240,7 +243,7 @@ function RotatingTagline() {
         The Design Practice of Matt Hanson
       </span>
       <span
-        className={`col-start-1 row-start-1 italic font-normal text-ink-muted transition-opacity duration-700 ${
+        className={`absolute inset-0 italic transition-opacity duration-700 ${
           showQuote ? 'opacity-100' : 'opacity-0'
         }`}
         aria-hidden={!showQuote}
