@@ -110,10 +110,10 @@ export default function SparkARPage() {
           <div className="mt-6 md:mt-8">
             <Plate variant="split">
               <Figure figNumber="FIG. 02" caption="Platform overview — surfaces, runtime, creator tooling">
-                <Image src="/images/work/spark-ar/figma/spark-overview.png" alt="Spark AR platform overview" width={1200} height={900} className="w-full h-auto" />
+                <Image src="/images/work/spark-ar/figma/spark-overview.jpg" alt="Spark AR platform overview" width={1200} height={900} className="w-full h-auto" />
               </Figure>
               <Figure figNumber="FIG. 03" caption="Team growth — 2 → 22 ICs across Mobile and AR/MR">
-                <Image src="/images/work/spark-ar/figma/team-growth.png" alt="Experiences team growth" width={1200} height={900} className="w-full h-auto" />
+                <Image src="/images/work/spark-ar/figma/team-growth.jpg" alt="Experiences team growth" width={1200} height={900} className="w-full h-auto" />
               </Figure>
             </Plate>
           </div>
@@ -159,16 +159,16 @@ export default function SparkARPage() {
             <Plate variant="lead-2">
               <Plate.Lead>
                 <Figure figNumber="FIG. 06" caption="Container Effects System — 3 pillars, 7 components">
-                  <Image src="/images/work/spark-ar/figma/container-effects.png" alt="Container Effects System diagram" width={1600} height={1200} className="w-full h-auto" />
+                  <Image src="/images/work/spark-ar/figma/container-effects.jpg" alt="Container Effects System diagram" width={1600} height={1200} className="w-full h-auto" />
                 </Figure>
               </Plate.Lead>
               <Plate.Aside>
                 <div className="space-y-4 md:space-y-6">
                   <Figure figNumber="FIG. 07" caption="Funnel — entry strategies by user intent">
-                    <Image src="/images/work/spark-ar/figma/funnel-analysis.png" alt="AR Commerce funnel analysis" width={800} height={900} className="w-full h-auto" />
+                    <Image src="/images/work/spark-ar/figma/funnel-analysis.jpg" alt="AR Commerce funnel analysis" width={800} height={900} className="w-full h-auto" />
                   </Figure>
                   <Figure figNumber="FIG. 08" caption="Three Success Pillars — consumer · platform · business">
-                    <Image src="/images/work/spark-ar/figma/three-success-pillars.png" alt="Three success pillars framework" width={800} height={900} className="w-full h-auto" />
+                    <Image src="/images/work/spark-ar/figma/three-success-pillars.jpg" alt="Three success pillars framework" width={800} height={900} className="w-full h-auto" />
                   </Figure>
                 </div>
               </Plate.Aside>
@@ -327,7 +327,7 @@ export default function SparkARPage() {
 
           <div className="mt-6 md:mt-8 max-w-2xl">
             <Figure figNumber="FIG. 13" caption="Industry influence — Spark AR's reach into the AR creator community">
-              <Image src="/images/work/spark-ar/figma/industry-influence.png" alt="Industry influence diagram" width={1200} height={900} className="w-full h-auto" />
+              <Image src="/images/work/spark-ar/figma/industry-influence.jpg" alt="Industry influence diagram" width={1200} height={900} className="w-full h-auto" />
             </Figure>
           </div>
 

@@ -66,7 +66,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         visual: {
           type: 'image',
           data: {
-            src: '/images/sanitary-waste-system/imagecover.png',
+            src: '/images/sanitary-waste-system/imagecover.jpg',
             alt: 'Premium sanitary waste system hero shot',
             caption: 'Turning a hated moment into a premium hygiene system'
           }
@@ -120,7 +120,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           component: 'DisgustBarrierDiagram',
           data: {
             supplementaryImage: {
-              src: '/images/sanitary-waste-system/image6.png',
+              src: '/images/sanitary-waste-system/image6.jpg',
               alt: 'Hand holding thick absorbent liner material showing texture and thickness',
               caption: 'The airlaid liner is 40-60x thicker than standard film, creating tactile insulation'
             }
@@ -176,7 +176,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         visual: {
           type: 'image',
           data: {
-            src: '/images/sanitary-waste-system/image1.png',
+            src: '/images/sanitary-waste-system/image1.jpg',
             alt: 'Cross-section showing airlaid liner, compostable film, and zone bonding',
             caption: 'Three-layer construction: 600-1000 micron absorbent liner eliminates heat transfer',
             description: 'Product cross-section showing material layers'
@@ -223,7 +223,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         visual: {
           type: 'image',
           data: {
-            src: '/images/sanitary-waste-system/image9.png',
+            src: '/images/sanitary-waste-system/image9.jpg',
             alt: 'Side-by-side comparison showing interfolded flat pack versus rolled bag format with visible thickness difference',
             caption: 'Interfolded format eliminates roll geometry constraints and enables thick absorbent liner',
             description: 'Product comparison: interfolded vs rolled format'
@@ -272,7 +272,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             sku2: { name: 'Refills', price: '$15-18/box', role: 'Subscription' },
             sku3: { name: 'Dispenser', price: '$24.99', role: 'Acquisition' },
             productImage: {
-              src: '/images/sanitary-waste-system/image4.png',
+              src: '/images/sanitary-waste-system/image4.jpg',
               alt: 'Product flat lay showing complete ecosystem: dispenser, refill packs, and absorbent-lined bags',
               caption: 'The complete three-SKU system: format lock-in creates recurring revenue'
             }
@@ -301,19 +301,19 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
           data: {
             gallery: [
               {
-                src: '/images/sanitary-waste-system/image5.png',
+                src: '/images/sanitary-waste-system/image5.jpg',
                 alt: 'Woman walking golden retriever at sunset using sanitary waste system dispenser',
                 caption: 'Real-world use case: One-handed access during walks',
                 description: 'Lifestyle shot showing product in use'
               },
               {
-                src: '/images/sanitary-waste-system/image7.png',
+                src: '/images/sanitary-waste-system/image7.jpg',
                 alt: 'Close-up of dispenser hanging mechanism showing one-handed thumb-pull access',
                 caption: 'Pop-up dispens ing: Next bag auto-presents after pull',
                 description: 'Detail shot of dispenser mechanism'
               },
               {
-                src: '/images/sanitary-waste-system/image3.png',
+                src: '/images/sanitary-waste-system/image3.jpg',
                 alt: 'Premium leash-mounted dispenser with soft-touch neoprene and leather strap',
                 caption: 'Premium materials: Soft-touch neoprene with secondary pocket',
                 description: 'Product hero shot'
@@ -353,7 +353,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             process: ['Airlaid + PBAT webs', 'Cut & Place', 'Hot Melt Bonding', 'Interfolding', 'Pocket Pack'],
             partners: ['China/Turkey (cost)', 'USA (speed/quality)'],
             productImage: {
-              src: '/images/sanitary-waste-system/image8.png',
+              src: '/images/sanitary-waste-system/image8.jpg',
               alt: 'Hand holding interfolded pack of absorbent-lined bags showing pop-up format',
               caption: 'Interfolded format is the key manufacturing output: enables pop-up dispensing'
             }
@@ -409,7 +409,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
             phase2: { weeks: '5-12', milestone: '5k-10k pilot + retail beta + provisional patent' },
             phase3: { months: '4-9', milestone: 'Automated interfold production + certification + scale' },
             retailImage: {
-              src: '/images/sanitary-waste-system/image10.png',
+              src: '/images/sanitary-waste-system/image10.jpg',
               alt: 'Boutique retail display mockup showing premium product placement on warm wood shelving',
               caption: 'Retail beta target: 25-50 flagship boutiques with in-store demo and staff training'
             }
@@ -643,7 +643,7 @@ export const sanitaryWasteSections: SanitaryWasteSection[] = [
         visual: {
           type: 'image',
           data: {
-            src: '/images/sanitary-waste-system/image11.png',
+            src: '/images/sanitary-waste-system/image11.jpg',
             alt: 'Dog owner with pet - emotional connection and premium care',
             caption: 'Premium sanitary experience for modern pet owners'
           }

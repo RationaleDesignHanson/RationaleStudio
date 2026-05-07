@@ -1,56 +1,31 @@
 /**
- * Writing — Studio Monograph treatment
+ * Writing — Studio Monograph treatment.
+ * The archive list intentionally lives empty for now — the older slugs
+ * describe pieces that will *become* future Substack posts, not historical
+ * essays already published. Restore the array (with real Substack URLs)
+ * as each one ships.
  */
 
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Marginalia } from '@/components/case-study/EditorialLayout';
 
-interface ArchiveEssay {
-  title: string;
-  slug: string;
-  blurb: string;
-}
+const SUBSTACK_LATEST = {
+  title: 'When to Hire AI: the longer version',
+  blurb:
+    'A year of building solo, and the parts that didn’t fit in the 30-minute Sendfull conversation — the dependency map I drew the day I pulled Zero, what “the cave” means for product decisions, and why the preservation gap is bigger than recipes.',
+  href: 'https://rationaledesign.substack.com/p/when-to-hire-ai-the-longer-version',
+  publishedAt: 'May 2026',
+};
 
-const archive: ArchiveEssay[] = [
-  {
-    title: 'Two Engines, Proven in Production',
-    slug: 'dual-engine-model',
-    blurb: 'How Rationale operated two integrated engines that reinforced each other.',
-  },
-  {
-    title: 'Mental Models for Building Products',
-    slug: 'mental-models',
-    blurb: 'Four frameworks: clarity, direction, environment design, and building to think.',
-  },
-  {
-    title: 'Vision, Proof, and the Work Between',
-    slug: 'vision-proof-burden',
-    blurb: 'On the responsibility of standing between what is visible and what is provable.',
-  },
-  {
-    title: 'The Build-First Trap',
-    slug: 'build-first-trap',
-    blurb: 'Why most teams waste 6 months building the wrong thing.',
-  },
-  {
-    title: 'Build-to-Think Methodology',
-    slug: 'build-to-think',
-    blurb: 'A systematic framework for de-risking development through rapid prototyping.',
-  },
-  {
-    title: 'Spec vs Prototype',
-    slug: 'spec-vs-prototype',
-    blurb: 'Why experiencing beats describing.',
-  },
-  {
-    title: 'Methodology Origins',
-    slug: 'methodology-origins',
-    blurb: 'Seven years at Meta Reality Labs. Where the approach comes from.',
-  },
-];
+const SENDFULL_INTERVIEW = {
+  title: 'How a Design-Leader-Turned-Founder Decides When to Hire AI',
+  publication: 'Sendfull',
+  byline: 'Stef Hutka',
+  href: 'https://sendfull.substack.com/p/ep-92-how-a-design-leader-turned',
+};
 
 export default function WritingPage() {
   return (
@@ -67,34 +42,43 @@ export default function WritingPage() {
                 Notes on building.
               </h1>
               <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-3">
-                A{' '}
+                Twice a month on Mondays. Notes on building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters of the work. Three rails: methodology, build log, career memoir.
+              </p>
+              <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-8">
+                The first post landed alongside a{' '}
                 <a
-                  href="https://sendfull.com"
+                  href={SENDFULL_INTERVIEW.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--accent-ink)] hover:text-ink underline"
                 >
-                  Sendfull
+                  Sendfull conversation with Stef Hutka
                 </a>{' '}
-                interview drops tomorrow &mdash; on the trust ceiling, hat consolidation, and why I shipped Heirloom instead of Zero. A longer companion piece follows on Substack soon.
+                &mdash; the long-form companion to that interview.
               </p>
-              <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-6">
-                After that, twice a month, on Mondays. Notes on building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters of the work.
-              </p>
-              <a
-                href="mailto:hanson@rationale.work?subject=Substack%20launch%20notification"
-                className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
-              >
-                Tell me when the first post drops <ArrowRight className="w-4 h-4" />
-              </a>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-6">
+                <a
+                  href="https://rationaledesign.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
+                >
+                  Subscribe on Substack <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
             <aside className="hidden md:block md:col-span-4 md:col-start-9 text-xs font-mono text-ink-muted leading-relaxed pt-2">
               <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Cadence</p>
               <Marginalia.Field label="Day">Mondays</Marginalia.Field>
               <Marginalia.Field label="Frequency">Twice a month</Marginalia.Field>
               <Marginalia.Field label="Platform">
-                <a href="https://matthanson.substack.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-ink)] hover:text-ink">
-                  matthanson.substack.com →
+                <a
+                  href="https://rationaledesign.substack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent-ink)] hover:text-ink"
+                >
+                  rationaledesign.substack.com →
                 </a>
               </Marginalia.Field>
               <Marginalia.Rule />
@@ -106,45 +90,77 @@ export default function WritingPage() {
         </div>
       </section>
 
-      {/* ARCHIVE */}
+      {/* LATEST · the live Substack post */}
       <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8 md:mb-10">
-            <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
-              Archive
-            </p>
-            <p className="text-sm text-ink-muted">
-              Older essays from 2024&ndash;25, written under the Rationale Studio framing.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
-            <div className="md:col-span-9">
-              <div className="space-y-0">
-                {archive.map((essay, i) => (
-                  <Link
-                    key={essay.slug}
-                    href={`/thinking/${essay.slug}`}
-                    className="group block py-5 md:py-6 border-t border-hairline hover:bg-paper-deep/40 transition-colors"
-                  >
-                    <div className="flex items-baseline gap-4 md:gap-6">
-                      <span className="font-mono text-sm text-ink-muted tabular-nums">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <div className="flex-1">
-                        <h3 className="font-display text-xl md:text-2xl text-ink leading-tight mb-1.5 group-hover:text-[var(--accent-ink)] transition-colors">
-                          {essay.title}
-                        </h3>
-                        <p className="text-sm text-ink-body leading-relaxed">
-                          {essay.blurb}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+            Latest
+          </p>
+          <a
+            href={SUBSTACK_LATEST.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block border-t border-hairline pt-6 md:pt-8 hover:bg-paper-deep/30 transition-colors -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 pb-6 md:pb-8"
+          >
+            <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+              <div className="md:col-span-2">
+                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted mb-1">
+                  Substack
+                </p>
+                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted">
+                  {SUBSTACK_LATEST.publishedAt}
+                </p>
+              </div>
+              <div className="md:col-span-9">
+                <h2 className="font-display text-2xl md:text-4xl text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
+                  {SUBSTACK_LATEST.title}
+                </h2>
+                <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-4">
+                  {SUBSTACK_LATEST.blurb}
+                </p>
+                <p className="inline-flex items-center gap-2 text-sm font-mono text-[var(--accent-ink)] tracking-wide">
+                  Read on Substack <ExternalLink className="w-3 h-3" />
+                </p>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+      </section>
+
+      {/* FEATURED IN · Stef's interview as press */}
+      <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+            Featured In
+          </p>
+          <a
+            href={SENDFULL_INTERVIEW.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block border-t border-hairline pt-6 md:pt-8 hover:bg-paper-deep/30 transition-colors -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 pb-6 md:pb-8"
+          >
+            <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+              <div className="md:col-span-2">
+                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted mb-1">
+                  {SENDFULL_INTERVIEW.publication}
+                </p>
+                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted">
+                  Interview
+                </p>
+              </div>
+              <div className="md:col-span-9">
+                <h2 className="font-display text-2xl md:text-4xl text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
+                  {SENDFULL_INTERVIEW.title}
+                </h2>
+                <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-4">
+                  Stef Hutka and I talked through hat consolidation, the trust ceiling for AI in consumer products, why I pulled Zero out of beta and shipped Heirloom instead, and why today&rsquo;s AI is still &ldquo;in a cave.&rdquo;
+                </p>
+                <p className="inline-flex items-center gap-2 text-sm font-mono text-[var(--accent-ink)] tracking-wide">
+                  Read at Sendfull <ExternalLink className="w-3 h-3" />
+                </p>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
 

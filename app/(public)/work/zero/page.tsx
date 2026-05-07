@@ -228,7 +228,7 @@ export default function ZeroPage() {
         {/* FOOTER */}
         <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">
           <div className="max-w-5xl mx-auto flex flex-col gap-6">
-            <a href="https://matthanson.substack.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors text-sm">
+            <a href="https://rationaledesign.substack.com/p/when-to-hire-ai-the-longer-version" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors text-sm">
               Read on Substack &mdash; When to Hire AI <ExternalLink className="w-3.5 h-3.5" />
             </a>
             <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-3 pt-4 border-t border-[var(--era-hairline)]">

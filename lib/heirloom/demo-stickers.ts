@@ -15,13 +15,13 @@ export const DEMO_STICKERS: DemoSticker[] = [
   {
     id: 'heart',
     label: 'Love it',
-    imagePath: '/images/heirloom/stickers/emotions/sticker_emotion_heart.png',
+    imagePath: '/images/heirloom/stickers/emotions/sticker_emotion_heart.jpg',
     fallbackEmoji: '❤️',
   },
   {
     id: 'star',
     label: 'Family favorite',
-    imagePath: '/images/heirloom/stickers/emotions/sticker_emotion_star.png',
+    imagePath: '/images/heirloom/stickers/emotions/sticker_emotion_star.jpg',
     fallbackEmoji: '⭐',
   },
   {
@@ -39,7 +39,7 @@ export const DEMO_STICKERS: DemoSticker[] = [
   {
     id: 'chef',
     label: 'Pro tip',
-    imagePath: '/images/heirloom/stickers/tools/sticker_tools_apron.png',
+    imagePath: '/images/heirloom/stickers/tools/sticker_tools_apron.jpg',
     fallbackEmoji: '👨‍🍳',
   },
   {

@@ -106,7 +106,7 @@ export default function StudioEraPage() {
           </div>
           <div className="mt-6">
             <Figure figNumber="FIG. 02" caption="Career timeline · 2000 — 2025">
-              <Image src="/images/work/maker-era/career-timeline.png" alt="Career timeline 2000–2025" width={1600} height={900} className="w-full h-auto rounded-md" />
+              <Image src="/images/work/maker-era/career-timeline.jpg" alt="Career timeline 2000–2025" width={1600} height={900} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
         </ChapterRow>

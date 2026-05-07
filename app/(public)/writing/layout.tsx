@@ -2,16 +2,16 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Writing',
-  description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at matthanson.substack.com.",
+  description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at rationaledesign.substack.com.",
   openGraph: {
     title: 'Writing — Matt Hanson',
-    description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at matthanson.substack.com.",
+    description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at rationaledesign.substack.com.",
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Writing — Matt Hanson',
-    description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at matthanson.substack.com.",
+    description: "Notes on building solo, AI as a coding partner, and what I've learned across the work. Twice a month at rationaledesign.substack.com.",
   },
 };
 

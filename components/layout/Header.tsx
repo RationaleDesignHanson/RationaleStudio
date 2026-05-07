@@ -21,9 +21,7 @@ import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
   { label: 'Work', href: '/work' },
-  // Writing hidden until Substack launches. Restore alongside the
-  // homepage Writing block.
-  // { label: 'Writing', href: '/writing' },
+  { label: 'Writing', href: '/writing' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];

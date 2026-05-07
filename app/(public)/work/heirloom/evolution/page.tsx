@@ -226,7 +226,7 @@ export default function HeirloomEvolutionPage() {
         <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">
           <div className="max-w-5xl mx-auto flex flex-col gap-6">
             <div className="flex flex-col sm:flex-row gap-x-5 gap-y-2 flex-wrap text-sm">
-              <a href="https://matthanson.substack.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors">
+              <a href="https://rationaledesign.substack.com/p/when-to-hire-ai-the-longer-version" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors">
                 Read on Substack &mdash; When to Hire AI <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

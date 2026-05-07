@@ -188,7 +188,7 @@ export default function AboutPage() {
               </Marginalia.Field>
               <Marginalia.Field label="Substack">
                 <a
-                  href="https://matthanson.substack.com"
+                  href="https://rationaledesign.substack.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--accent)] hover:text-ink"
@@ -209,12 +209,12 @@ export default function AboutPage() {
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-3">
                 I write about the method at{' '}
                 <a
-                  href="https://matthanson.substack.com"
+                  href="https://rationaledesign.substack.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--accent)] hover:text-ink underline"
                 >
-                  matthanson.substack.com
+                  rationaledesign.substack.com
                 </a>.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed">

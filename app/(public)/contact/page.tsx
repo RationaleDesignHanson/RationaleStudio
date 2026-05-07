@@ -62,7 +62,7 @@ export default function ContactPage() {
               </Marginalia.Field>
               <Marginalia.Field label="Substack">
                 <a
-                  href="https://matthanson.substack.com"
+                  href="https://rationaledesign.substack.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--accent-ink)] hover:text-ink"

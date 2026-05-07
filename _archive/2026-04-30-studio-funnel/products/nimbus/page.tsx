@@ -91,7 +91,7 @@ export default function SanitarySystemProductPage() {
           <div className="relative max-w-4xl mx-auto">
             <div className="relative aspect-video bg-white/50 border-2 border-[#E85D42]/30 rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/images/sanitary-waste-system/image1.png"
+                src="/images/sanitary-waste-system/image1.jpg"
                 alt="Cross-section showing airlaid liner, compostable film, and zone bonding"
                 fill
                 className="object-cover"
