@@ -72,26 +72,30 @@ export function Header() {
         Skip to main content
       </a>
 
-      {/* DESKTOP CHROME — sticky 1-line, ≥ md only. */}
+      {/* DESKTOP CHROME — sticky 1-line, ≥ md only. Wordmark + rotating
+          tagline (matches mobile behavior) on the left, nav on the right. */}
       <header
         className="hidden md:block sticky top-0 z-50 border-b border-hairline"
         style={{ backgroundColor: 'var(--paper)' }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-6">
             <Link
               href="/"
-              className="group inline-block font-display font-semibold text-2xl leading-none tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
+              className="group inline-flex items-baseline gap-3 min-w-0 font-display leading-none tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
             >
-              <span className="relative inline-block">
-                Rationale
+              <span className="relative inline-block text-2xl font-semibold shrink-0">
+                Rationale:
                 <span
                   aria-hidden
                   className="pointer-events-none absolute left-0 right-0 -bottom-0.5 h-px origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
                 />
               </span>
+              <span className="flex min-w-0 text-lg lg:text-xl">
+                <RotatingTagline />
+              </span>
             </Link>
-            <nav className="flex gap-7 text-base font-display tracking-tight">
+            <nav className="flex shrink-0 gap-7 text-base font-display tracking-tight">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -120,7 +124,10 @@ export function Header() {
             href="/"
             className="group min-w-0 flex-1 -ml-1 font-display text-ink hover:text-[var(--accent-ink)] transition-colors"
           >
-            <RotatingTagline />
+            <span className="flex items-baseline gap-1.5 w-full text-[clamp(13px,3.6vw,17px)] leading-none tracking-tight whitespace-nowrap">
+              <span className="font-medium shrink-0">Rationale:</span>
+              <RotatingTagline />
+            </span>
           </Link>
         </div>
       </div>
@@ -207,6 +214,11 @@ export function Header() {
   );
 }
 
+/**
+ * Just the rotating phrase part (no "Rationale:" prefix). Caller is
+ * responsible for rendering the wordmark separately so each viewport
+ * can size it independently.
+ */
 function RotatingTagline() {
   const [showQuote, setShowQuote] = useState(false);
 
@@ -218,25 +230,22 @@ function RotatingTagline() {
   }, []);
 
   return (
-    <span className="flex items-baseline gap-1.5 w-full text-[clamp(13px,3.6vw,17px)] leading-none tracking-tight whitespace-nowrap">
-      <span className="font-medium shrink-0">Rationale:</span>
-      <span className="grid min-w-0 flex-1">
-        <span
-          className={`col-start-1 row-start-1 font-normal text-ink-muted transition-opacity duration-700 ${
-            showQuote ? 'opacity-0' : 'opacity-100'
-          }`}
-          aria-hidden={showQuote}
-        >
-          The Design Practice of Matt Hanson
-        </span>
-        <span
-          className={`col-start-1 row-start-1 italic font-normal text-ink-muted transition-opacity duration-700 ${
-            showQuote ? 'opacity-100' : 'opacity-0'
-          }`}
-          aria-hidden={!showQuote}
-        >
-          Vision bears the burden of proof.
-        </span>
+    <span className="grid min-w-0 flex-1 whitespace-nowrap">
+      <span
+        className={`col-start-1 row-start-1 font-normal text-ink-muted transition-opacity duration-700 ${
+          showQuote ? 'opacity-0' : 'opacity-100'
+        }`}
+        aria-hidden={showQuote}
+      >
+        The Design Practice of Matt Hanson
+      </span>
+      <span
+        className={`col-start-1 row-start-1 italic font-normal text-ink-muted transition-opacity duration-700 ${
+          showQuote ? 'opacity-100' : 'opacity-0'
+        }`}
+        aria-hidden={!showQuote}
+      >
+        Vision bears the burden of proof.
       </span>
     </span>
   );

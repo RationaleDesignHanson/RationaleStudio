@@ -356,19 +356,6 @@ export default function HomePage() {
       <MultipleStructuredData dataBlocks={structuredData} />
 
       <main className="min-h-screen bg-paper text-ink-body">
-        {/* DESKTOP-ONLY brand hero — mobile shows the rotating tagline
-            in the global header instead. */}
-        <section className="hidden md:block px-4 sm:px-6 md:px-8 md:pt-16 md:pb-14 border-b border-hairline">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="font-display font-normal text-ink text-[clamp(28px,3.5vw,42px)] leading-[1.2] tracking-tight">
-              The design practice of Matt Hanson.
-            </h1>
-            <p className="mt-3 font-display italic font-normal text-ink text-[clamp(28px,3.5vw,42px)] leading-[1.2] tracking-tight">
-              Vision bears the burden of proof.
-            </p>
-          </div>
-        </section>
-
         {/* WORK VIEWER — desktop is parallax-merge; mobile is straight
             vertical scroll. Two implementations, same data. */}
         <div className="hidden md:block">
