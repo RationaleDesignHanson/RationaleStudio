@@ -82,7 +82,7 @@ export function Header() {
           <div className="flex items-center justify-between gap-6">
             <Link
               href="/"
-              className="group inline-flex items-baseline gap-3 min-w-0 font-display leading-none tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
+              className="group inline-flex items-center gap-3 min-w-0 font-display leading-none tracking-tight text-ink hover:text-[var(--accent-ink)] transition-colors"
             >
               <span className="relative inline-block text-2xl font-semibold shrink-0">
                 Rationale:
@@ -91,7 +91,7 @@ export function Header() {
                   className="pointer-events-none absolute left-0 right-0 -bottom-0.5 h-px origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
                 />
               </span>
-              <span className="flex min-w-0 text-lg lg:text-xl">
+              <span className="min-w-0 text-lg lg:text-xl leading-none">
                 <RotatingTagline />
               </span>
             </Link>
@@ -230,7 +230,7 @@ function RotatingTagline() {
   }, []);
 
   return (
-    <span className="grid min-w-0 flex-1 whitespace-nowrap">
+    <span className="inline-grid min-w-0 flex-1 whitespace-nowrap align-baseline">
       <span
         className={`col-start-1 row-start-1 font-normal text-ink-muted transition-opacity duration-700 ${
           showQuote ? 'opacity-0' : 'opacity-100'
