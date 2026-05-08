@@ -21,6 +21,8 @@ import {
   fetchTopDevices,
   fetchTopReferrers,
   fetchReturnStats,
+  fetchVaultUnlockStats,
+  fetchOutboundClicks,
 } from '@/lib/posthog/queries';
 import { isPostHogConfigured } from '@/lib/posthog/client';
 import { BUCKET_DEFS, type Bucket } from '@/lib/posthog/buckets';
@@ -57,6 +59,8 @@ export default async function EngagementPage() {
     devices,
     referrers,
     returns,
+    vaultUnlocks,
+    outbound,
   ] = await Promise.all([
     fetchHeadlineCounts().catch(() => null),
     fetchTopPages(7, 20).catch(() => []),
@@ -68,6 +72,8 @@ export default async function EngagementPage() {
     fetchTopDevices(30).catch(() => []),
     fetchTopReferrers(30, 15).catch(() => []),
     fetchReturnStats(30).catch(() => null),
+    fetchVaultUnlockStats(30).catch(() => []),
+    fetchOutboundClicks(30, 25).catch(() => []),
   ]);
 
   const bucketByKey = new Map(buckets.map((b) => [b.bucket, b]));
@@ -175,6 +181,48 @@ export default async function EngagementPage() {
         <Section title="Referrers · 30d" inline>
           {referrers.length === 0 ? <Empty /> : (
             <SimpleTable headers={['Source', 'Hits']} rows={referrers.map((r) => [r.label, NUM.format(r.count)])} />
+          )}
+        </Section>
+      </div>
+
+      {/* VAULT UNLOCKS + OUTBOUND */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+        <Section
+          title="Vault unlock attempts · 30d"
+          subtitle="Who's knocking, where, and how often they get in. Per-scope so you can spot demand for specific gated work."
+          inline
+        >
+          {vaultUnlocks.length === 0 ? (
+            <Empty hint="No unlock attempts yet — the form fires events from /work/{vault,rumi,fubo,nimbus}." />
+          ) : (
+            <SimpleTable
+              headers={['Scope', 'Attempts', 'Successes', 'Failures']}
+              rows={vaultUnlocks.map((v) => [
+                v.scope,
+                NUM.format(v.attempts),
+                NUM.format(v.successes),
+                NUM.format(v.failures),
+              ])}
+            />
+          )}
+        </Section>
+        <Section
+          title="Outbound clicks · 30d"
+          subtitle="Mailtos, external links, App Store hits. Where attention exits to."
+          inline
+        >
+          {outbound.length === 0 ? (
+            <Empty hint="No outbound clicks yet." />
+          ) : (
+            <SimpleTable
+              headers={['Kind', 'Destination', 'Clicks', 'People']}
+              rows={outbound.map((o) => [
+                o.kind,
+                o.destination,
+                NUM.format(o.clicks),
+                NUM.format(o.visitors),
+              ])}
+            />
           )}
         </Section>
       </div>

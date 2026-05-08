@@ -228,6 +228,68 @@ export interface ReturnStats {
   return_rate: number;
 }
 
+// ---------------- Vault unlock funnel ----------------
+
+export interface VaultUnlockRow {
+  scope: string;
+  attempts: number;
+  successes: number;
+  failures: number;
+}
+
+export async function fetchVaultUnlockStats(days = 30): Promise<VaultUnlockRow[]> {
+  const q = `
+    SELECT
+      properties.scope AS scope,
+      countIf(event = 'vault_unlock_attempted') AS attempts,
+      countIf(event = 'vault_unlock_succeeded') AS successes,
+      countIf(event = 'vault_unlock_failed') AS failures
+    FROM events
+    WHERE event IN ('vault_unlock_attempted', 'vault_unlock_succeeded', 'vault_unlock_failed')
+      AND timestamp > now() - INTERVAL ${days} DAY
+      AND properties.scope IS NOT NULL
+    GROUP BY scope
+    ORDER BY attempts DESC
+  `;
+  const { results } = await hogql<readonly [string, number, number, number]>(q);
+  return results.map(([scope, attempts, successes, failures]) => ({
+    scope,
+    attempts,
+    successes,
+    failures,
+  }));
+}
+
+// ---------------- Outbound clicks ----------------
+
+export interface OutboundRow {
+  kind: 'mailto' | 'tel' | 'external';
+  destination: string;
+  clicks: number;
+  visitors: number;
+}
+
+export async function fetchOutboundClicks(days = 30, limit = 20): Promise<OutboundRow[]> {
+  const q = `
+    SELECT
+      properties.kind AS kind,
+      properties.destination AS destination,
+      count() AS clicks,
+      uniq(person_id) AS visitors
+    FROM events
+    WHERE event = 'outbound_click'
+      AND timestamp > now() - INTERVAL ${days} DAY
+      AND properties.destination IS NOT NULL
+    GROUP BY kind, destination
+    ORDER BY clicks DESC
+    LIMIT ${limit}
+  `;
+  const { results } = await hogql<readonly ['mailto' | 'tel' | 'external', string, number, number]>(q);
+  return results.map(([kind, destination, clicks, visitors]) => ({ kind, destination, clicks, visitors }));
+}
+
+// ---------------- Return visitors ----------------
+
 export async function fetchReturnStats(days = 30): Promise<ReturnStats> {
   const q = `
     WITH person_sessions AS (

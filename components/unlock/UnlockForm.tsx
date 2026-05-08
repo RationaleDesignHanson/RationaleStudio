@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { Lock, Loader2 } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 interface Props {
   scope: string;
@@ -17,6 +18,7 @@ export function UnlockForm({ scope }: Props) {
     if (submitting) return;
     setError(null);
     setSubmitting(true);
+    trackEvent('vault_unlock_attempted', { scope });
     try {
       const res = await fetch('/api/unlock', {
         method: 'POST',
@@ -24,13 +26,17 @@ export function UnlockForm({ scope }: Props) {
         body: JSON.stringify({ password: pw, scope }),
       });
       if (res.ok) {
+        trackEvent('vault_unlock_succeeded', { scope });
         // Reload so the server component re-renders with the unlocked cookie.
         window.location.reload();
         return;
       }
       const data = await res.json().catch(() => ({}));
-      setError(typeof data.error === 'string' ? data.error : 'Could not unlock');
+      const errMsg = typeof data.error === 'string' ? data.error : 'Could not unlock';
+      trackEvent('vault_unlock_failed', { scope, reason: errMsg });
+      setError(errMsg);
     } catch {
+      trackEvent('vault_unlock_failed', { scope, reason: 'network_error' });
       setError('Network error');
     } finally {
       setSubmitting(false);

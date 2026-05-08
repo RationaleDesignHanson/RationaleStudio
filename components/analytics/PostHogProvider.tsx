@@ -61,6 +61,68 @@ function PageviewTracker() {
   return null;
 }
 
+/**
+ * Global outbound-click delegate. Captures clicks on any anchor whose
+ * href is mailto:/tel:/external-origin and fires a named `outbound_click`
+ * event with destination + kind + source path. Lets us build top-of-funnel
+ * insights (which case studies drive contact) without per-link wiring.
+ *
+ * Autocapture already records the raw click; this just adds a queryable
+ * event with structured props.
+ */
+function OutboundClickTracker() {
+  useEffect(() => {
+    if (!POSTHOG_KEY || typeof window === 'undefined') return;
+
+    const onClick = (e: MouseEvent) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const anchor = target.closest('a');
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+
+      let kind: 'mailto' | 'tel' | 'external' | null = null;
+      let destination = href;
+
+      if (href.startsWith('mailto:')) {
+        kind = 'mailto';
+        destination = href.slice('mailto:'.length).split('?')[0];
+      } else if (href.startsWith('tel:')) {
+        kind = 'tel';
+        destination = href.slice('tel:'.length);
+      } else if (/^https?:\/\//i.test(href)) {
+        try {
+          const url = new URL(href, window.location.href);
+          if (url.origin !== window.location.origin) {
+            kind = 'external';
+            destination = url.hostname;
+          }
+        } catch {
+          // malformed href — ignore
+        }
+      }
+
+      if (!kind) return;
+
+      posthog.capture('outbound_click', {
+        kind,
+        destination,
+        href,
+        text: (anchor.textContent ?? '').trim().slice(0, 120),
+        source_path: window.location.pathname,
+        target: anchor.getAttribute('target') ?? null,
+      });
+    };
+
+    document.addEventListener('click', onClick, { capture: true });
+    return () => document.removeEventListener('click', onClick, { capture: true });
+  }, []);
+
+  return null;
+}
+
 export function PostHogProvider({ children }: { children: ReactNode }) {
   if (!POSTHOG_KEY) return <>{children}</>;
   return (
@@ -68,6 +130,7 @@ export function PostHogProvider({ children }: { children: ReactNode }) {
       <Suspense fallback={null}>
         <PageviewTracker />
       </Suspense>
+      <OutboundClickTracker />
       {children}
     </PostHogReactProvider>
   );
