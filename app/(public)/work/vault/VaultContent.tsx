@@ -46,6 +46,7 @@ const ITEMS: VaultItem[] = [
     title: 'Nimbus',
     subtitle: 'Sanitary-waste system · venture in flight',
     blurb: 'A reimagined household waste system that separates organic, sanitary, and recyclable streams at the bin instead of at the curb. Hardware + software, currently in concept-prototype.',
+    href: '/work/nimbus',
   },
   {
     slug: 'world-ar-avatars-deck',

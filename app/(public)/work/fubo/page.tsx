@@ -1,5 +1,9 @@
+import dynamic from 'next/dynamic';
 import { UnlockGate } from '@/components/unlock/UnlockGate';
-import { FuboContent } from './FuboContent';
+
+const FuboContent = dynamic(() =>
+  import('./FuboContent').then((m) => m.FuboContent),
+);
 
 export default function FuboPage() {
   return (

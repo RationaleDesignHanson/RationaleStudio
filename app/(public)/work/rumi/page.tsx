@@ -1,5 +1,9 @@
+import dynamic from 'next/dynamic';
 import { UnlockGate } from '@/components/unlock/UnlockGate';
-import { RumiContent } from './RumiContent';
+
+const RumiContent = dynamic(() =>
+  import('./RumiContent').then((m) => m.RumiContent),
+);
 
 export default function RumiPage() {
   return (

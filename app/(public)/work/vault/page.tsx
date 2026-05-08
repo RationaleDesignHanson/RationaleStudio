@@ -1,5 +1,9 @@
+import dynamic from 'next/dynamic';
 import { UnlockGate } from '@/components/unlock/UnlockGate';
-import { VaultContent } from './VaultContent';
+
+const VaultContent = dynamic(() =>
+  import('./VaultContent').then((m) => m.VaultContent),
+);
 
 export default function VaultPage() {
   return (

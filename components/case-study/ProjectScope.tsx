@@ -24,7 +24,8 @@ export type ProjectKey =
   | 'fair'
   | 'fubo'
   | 'zero'
-  | 'vault';
+  | 'vault'
+  | 'nimbus';
 
 interface ProjectScopeProps {
   project: ProjectKey;
