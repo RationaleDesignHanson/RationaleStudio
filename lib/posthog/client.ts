@@ -37,12 +37,13 @@ export class PostHogQueryError extends Error {
  *
  * @param hogql Plain HogQL string. Use ${} interpolation only for values
  *              you control (no user input). Quote strings with single quotes.
- * @param revalidate Seconds to cache the response (default 300 = 5 min).
- *              Set to 0 for live queries.
+ * @param revalidate Seconds to cache the response (default 30s — feels live
+ *              for a low-traffic site). Bump per-call for expensive queries.
+ *              Set to 0 to disable caching entirely.
  */
 export async function hogql<T extends readonly unknown[] = readonly unknown[]>(
   hogql: string,
-  revalidate = 300,
+  revalidate = 30,
 ): Promise<HogQLResult<T>> {
   if (!POSTHOG_PROJECT_ID || !POSTHOG_PERSONAL_API_KEY) {
     throw new PostHogQueryError(

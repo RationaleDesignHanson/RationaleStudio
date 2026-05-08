@@ -28,7 +28,7 @@ import { isPostHogConfigured } from '@/lib/posthog/client';
 import { BUCKET_DEFS, type Bucket } from '@/lib/posthog/buckets';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 300;
+export const revalidate = 30;
 
 const NUM = new Intl.NumberFormat('en-US');
 const PCT = new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 0 });
@@ -86,7 +86,7 @@ export default async function EngagementPage() {
         </p>
         <h2 className="text-3xl font-bold text-white mb-1">Who&rsquo;s here, what they&rsquo;re looking at</h2>
         <p className="text-sm text-gray-400">
-          Cached 5 min per query. Buckets edit at <code className="text-gray-300">lib/posthog/buckets.ts</code>.
+          Cached 30s per query. Buckets edit at <code className="text-gray-300">lib/posthog/buckets.ts</code>.
           Reach for PostHog directly (<a className="underline hover:text-terminal-gold" href="https://us.posthog.com" target="_blank" rel="noopener">us.posthog.com</a>) for replays, funnels, cohorts.
         </p>
       </header>
