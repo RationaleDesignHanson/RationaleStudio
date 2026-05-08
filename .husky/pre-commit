@@ -26,18 +26,22 @@ for pattern in "${BLOCKED_FILES[@]}"; do
   fi
 done
 
-# Patterns to search for in file contents (common credential formats)
-# Note: Using simpler patterns that work with basic grep
+# Patterns to search for in file contents (common credential formats).
+# Token bodies require enough trailing length (>=20) so substrings inside
+# ordinary identifiers (e.g. captu*re_p*ageview) don't trip the hook.
+# (Word-boundary \b is unreliable across BSD/GNU grep, so length is the
+# discriminator instead.)
 CREDENTIAL_PATTERNS=(
-  # API Keys - simplified patterns
-  "ghp_[a-zA-Z0-9]"                       # GitHub Personal Access Token
-  "figd_[a-zA-Z0-9_-]"                    # Figma Access Token
-  "ntn_[a-zA-Z0-9]"                       # Notion API Key
-  "lin_api_[a-zA-Z0-9]"                   # Linear API Key
-  "re_[a-zA-Z0-9]"                        # Resend API Key
-  "AIza[a-zA-Z0-9_-]"                     # Google API Key (Firebase/Gemini)
-  "sk-[a-zA-Z0-9]"                        # OpenAI API Key
-  "sk-proj-"                              # OpenAI Project Key
+  # API Keys
+  "ghp_[a-zA-Z0-9]{20,}"                  # GitHub Personal Access Token
+  "figd_[a-zA-Z0-9_-]{20,}"               # Figma Access Token
+  "ntn_[a-zA-Z0-9]{20,}"                  # Notion API Key
+  "lin_api_[a-zA-Z0-9]{20,}"              # Linear API Key
+  "re_[a-zA-Z0-9]{20,}"                   # Resend API Key
+  "AIza[a-zA-Z0-9_-]{20,}"                # Google API Key (Firebase/Gemini)
+  "sk-[a-zA-Z0-9]{20,}"                   # OpenAI API Key
+  "sk-proj-[a-zA-Z0-9]{20,}"              # OpenAI Project Key
+  "phx_[a-zA-Z0-9]{20,}"                  # PostHog Personal API Key (phc_ project keys are public, not blocked)
 
   # Private Keys
   "BEGIN.*PRIVATE KEY"                    # PEM format private keys
@@ -45,17 +49,17 @@ CREDENTIAL_PATTERNS=(
   "BEGIN EC PRIVATE KEY"                  # EC private keys
 
   # AWS Credentials
-  "AKIA[0-9A-Z]"                          # AWS Access Key ID
+  "AKIA[0-9A-Z]{16,}"                     # AWS Access Key ID
   "aws_secret_access_key"                 # AWS secret
 
-  # Generic Secrets (simplified)
-  "API_KEY.*=.*[a-zA-Z0-9]"
-  "SECRET.*=.*[a-zA-Z0-9]"
-  "TOKEN.*=.*[a-zA-Z0-9]"
+  # Generic Secrets — only flag actual assignments with token-length values.
+  "API_KEY[[:space:]]*=[[:space:]]*[\"']?[a-zA-Z0-9_-]{20,}"
+  "SECRET[[:space:]]*=[[:space:]]*[\"']?[a-zA-Z0-9_-]{20,}"
+  "TOKEN[[:space:]]*=[[:space:]]*[\"']?[a-zA-Z0-9_-]{20,}"
 )
 
 # Get list of staged files (excluding package-lock.json and example files which can have false positives)
-STAGED_FILES=$(git diff --cached --name-only | grep -vE '(package-lock\.json|\.lock$|\.svg$|\.example$|\.sample$|\.template$)')
+STAGED_FILES=$(git diff --cached --name-only | grep -vE '(package-lock\.json|\.lock$|\.svg$|\.example$|\.sample$|\.template$|^\.husky/)')
 
 # Skip check if no files to check
 if [ -z "$STAGED_FILES" ]; then

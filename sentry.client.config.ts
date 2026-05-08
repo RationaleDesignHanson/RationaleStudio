@@ -24,9 +24,11 @@ if (SENTRY_DSN) {
     // Performance monitoring
     tracesSampleRate: ENVIRONMENT === 'production' ? 0.1 : 1.0,
 
-    // Session replay for debugging
-    replaysSessionSampleRate: ENVIRONMENT === 'production' ? 0.1 : 0,
-    replaysOnErrorSampleRate: 1.0, // Always capture replays on errors
+    // Session replay — PostHog owns ambient session replay (see PostHogProvider).
+    // Sentry only captures replays when there's an actual error so we can debug
+    // the failure without paying for two replay buckets.
+    replaysSessionSampleRate: 0,
+    replaysOnErrorSampleRate: 1.0,
 
     // Integrations
     integrations: [

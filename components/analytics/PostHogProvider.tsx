@@ -1,0 +1,74 @@
+/**
+ * PostHogProvider — initializes posthog-js once on the client and emits a
+ * `$pageview` on every App Router pathname change. Wraps the whole app.
+ *
+ * Inert when NEXT_PUBLIC_POSTHOG_KEY is unset (local dev without a key,
+ * preview builds without env, etc.) so nothing breaks if the var is missing.
+ *
+ * Configuration choices:
+ *   - autocapture        on   (clicks / inputs / form submits)
+ *   - session_recording  on   (full replay; mask sensitive inputs by default)
+ *   - capture_pageview   off  (we emit manually on route change for SPA accuracy)
+ *   - capture_pageleave  on   (so duration / bounce metrics are accurate)
+ */
+
+'use client';
+
+import { Suspense, useEffect, type ReactNode } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import posthog from 'posthog-js';
+import { PostHogProvider as PostHogReactProvider } from 'posthog-js/react';
+
+const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
+
+// ui_host is the dashboard URL (us.posthog.com) — distinct from the ingest URL (us.i.posthog.com).
+// Derive by stripping the `i.` subdomain so the toolbar links to the right place.
+const POSTHOG_UI_HOST = POSTHOG_HOST.replace('://us.i.posthog.com', '://us.posthog.com')
+                                    .replace('://eu.i.posthog.com', '://eu.posthog.com');
+
+if (typeof window !== 'undefined' && POSTHOG_KEY && !posthog.__loaded) {
+  posthog.init(POSTHOG_KEY, {
+    api_host: '/ingest',
+    ui_host: POSTHOG_UI_HOST,
+    capture_pageview: false,
+    capture_pageleave: true,
+    autocapture: true,
+    session_recording: {
+      maskAllInputs: true,
+      maskInputOptions: {
+        password: true,
+        email: false,
+      },
+    },
+    loaded: (ph) => {
+      if (process.env.NODE_ENV === 'development') ph.debug(false);
+    },
+  });
+}
+
+function PageviewTracker() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (!POSTHOG_KEY || typeof window === 'undefined') return;
+    const search = searchParams?.toString();
+    const url = search ? `${pathname}?${search}` : pathname;
+    posthog.capture('$pageview', { $current_url: window.location.origin + url });
+  }, [pathname, searchParams]);
+
+  return null;
+}
+
+export function PostHogProvider({ children }: { children: ReactNode }) {
+  if (!POSTHOG_KEY) return <>{children}</>;
+  return (
+    <PostHogReactProvider client={posthog}>
+      <Suspense fallback={null}>
+        <PageviewTracker />
+      </Suspense>
+      {children}
+    </PostHogReactProvider>
+  );
+}

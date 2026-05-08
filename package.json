@@ -57,6 +57,7 @@
     "lucide-react": "^0.555.0",
     "mermaid": "^11.12.2",
     "next": "^16.0.10",
+    "posthog-js": "^1.372.10",
     "react": "^19.2.3",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.2.3",

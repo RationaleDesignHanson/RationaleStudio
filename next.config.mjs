@@ -73,22 +73,34 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-insights.com https://*.netlify.app https://apis.google.com https://*.googleapis.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://*.netlify.app https://*.netlify.com; connect-src 'self' https://*.vercel-insights.com https://*.supabase.co wss://*.supabase.co https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.netlify.app https://apis.google.com https://*.googleapis.com; frame-src 'self' https://vercel.live https://accounts.google.com https://apis.google.com https://*.firebaseapp.com https://silly-questions.com https://*.vercel.app https://vimeo.com https://player.vimeo.com https://www.youtube.com https://www.youtube-nocookie.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-insights.com https://*.netlify.app https://apis.google.com https://*.googleapis.com https://cdn.tailwindcss.com https://*.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://*.netlify.app https://*.netlify.com; connect-src 'self' https://*.vercel-insights.com https://*.supabase.co wss://*.supabase.co https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.netlify.app https://apis.google.com https://*.googleapis.com https://*.posthog.com; worker-src 'self' blob:; frame-src 'self' https://vercel.live https://accounts.google.com https://apis.google.com https://*.firebaseapp.com https://silly-questions.com https://*.vercel.app https://vimeo.com https://player.vimeo.com https://www.youtube.com https://www.youtube-nocookie.com;",
           },
         ],
       },
     ];
   },
 
-  // Rewrites (no redirect) for iOS Universal Links AASA
-  // Serve the same file from both:
-  // - /.well-known/apple-app-site-association (preferred)
-  // - /apple-app-site-association (fallback)
+  // PostHog reverse-proxy needs no trailing-slash redirect (otherwise the
+  // /ingest/decide POST gets bounced and events drop on the floor).
+  skipTrailingSlashRedirect: true,
+
+  // Rewrites (no redirect) for iOS Universal Links AASA + PostHog reverse proxy.
+  // The PostHog rewrites route SDK traffic through our origin (/ingest/*) so
+  // ad-blockers that target *.posthog.com don't drop pageviews.
   async rewrites() {
     return [
       {
         source: '/.well-known/apple-app-site-association',
         destination: '/apple-app-site-association',
+      },
+      // Order matters: the more specific /static/ rule must come before the catch-all.
+      {
+        source: '/ingest/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*',
+      },
+      {
+        source: '/ingest/:path*',
+        destination: 'https://us.i.posthog.com/:path*',
       },
     ];
   },
