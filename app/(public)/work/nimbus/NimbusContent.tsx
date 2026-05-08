@@ -8,7 +8,7 @@
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
 
 export function NimbusContent() {
   return (
@@ -90,9 +90,18 @@ export function NimbusContent() {
           <p>
             Material spec, dispensing format, and brand are locked. Pre-seed deck and IP strategy are written. Beta testing is queued with a small panel of dog owners through Q2 2026; a pre-seed raise is open in parallel. The longer arc &mdash; full household source-separation &mdash; is sequenced behind the pet-waste wedge.
           </p>
-          <p className="text-sm text-[var(--era-ink-muted)] italic">
-            Full deck and material/manufacturing breakdown live in the gated client area; reach out for access if you&rsquo;re a partner or investor.
-          </p>
+          <div className="mt-4">
+            <Link
+              href="/work/nimbus/deck"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-md text-xs font-mono uppercase tracking-wider border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--era-bg)] transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Open the deck <span aria-hidden>→</span>
+            </Link>
+            <p className="text-xs text-[var(--era-ink-muted)] mt-2 italic">
+              Same vault password unlocks the deck. Investor / partner level — material science, dispenser flow, razor-blade economics, manufacturing plan, retail beta.
+            </p>
+          </div>
         </ChapterRow>
 
         {/* FOOTER */}

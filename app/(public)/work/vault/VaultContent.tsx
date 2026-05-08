@@ -11,8 +11,12 @@ interface VaultItem {
   title: string;
   subtitle: string;
   blurb: string;
-  /** Optional deeper link if a sub-page exists */
+  /** Optional primary case-study / overview link */
   href?: string;
+  /** Optional deck link, surfaced as a second CTA on the card */
+  deckHref?: string;
+  /** Override the primary CTA label (default: "Open") */
+  primaryLabel?: string;
 }
 
 const ITEMS: VaultItem[] = [
@@ -47,6 +51,8 @@ const ITEMS: VaultItem[] = [
     subtitle: 'Sanitary-waste system · venture in flight',
     blurb: 'A reimagined household waste system that separates organic, sanitary, and recyclable streams at the bin instead of at the curb. Hardware + software, currently in concept-prototype.',
     href: '/work/nimbus',
+    primaryLabel: 'Case study',
+    deckHref: '/work/nimbus/deck',
   },
   {
     slug: 'world-ar-avatars-deck',
@@ -177,13 +183,25 @@ export function VaultContent() {
                     <p className="text-base md:text-lg leading-relaxed text-[var(--era-ink-body)] max-w-3xl">
                       {item.blurb}
                     </p>
-                    {item.href && (
-                      <Link
-                        href={item.href}
-                        className="inline-flex items-center gap-2 mt-4 px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider border border-[var(--era-hairline)] text-[var(--era-ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-                      >
-                        Open <span aria-hidden>→</span>
-                      </Link>
+                    {(item.href || item.deckHref) && (
+                      <div className="flex flex-wrap items-center gap-2 mt-4">
+                        {item.href && (
+                          <Link
+                            href={item.href}
+                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider border border-[var(--era-hairline)] text-[var(--era-ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                          >
+                            {item.primaryLabel ?? 'Open'} <span aria-hidden>→</span>
+                          </Link>
+                        )}
+                        {item.deckHref && (
+                          <Link
+                            href={item.deckHref}
+                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--era-bg)] transition-colors"
+                          >
+                            Deck <span aria-hidden>→</span>
+                          </Link>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
