@@ -50,6 +50,12 @@ export default function OwnerLayout({
                 Content Library
               </a>
               <a
+                href="/owner/engagement"
+                className="text-gray-400 hover:text-terminal-gold transition-colors"
+              >
+                Engagement
+              </a>
+              <a
                 href="/owner/reference"
                 className="text-gray-400 hover:text-terminal-gold transition-colors"
               >
