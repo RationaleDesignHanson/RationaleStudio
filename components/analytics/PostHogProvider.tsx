@@ -27,13 +27,19 @@ const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posth
 const POSTHOG_UI_HOST = POSTHOG_HOST.replace('://us.i.posthog.com', '://us.posthog.com')
                                     .replace('://eu.i.posthog.com', '://eu.posthog.com');
 
-if (typeof window !== 'undefined' && POSTHOG_KEY && !posthog.__loaded) {
+function initPostHog() {
+  if (typeof window === 'undefined' || !POSTHOG_KEY || posthog.__loaded) return;
   posthog.init(POSTHOG_KEY, {
     api_host: '/ingest',
     ui_host: POSTHOG_UI_HOST,
     capture_pageview: false,
     capture_pageleave: true,
     autocapture: true,
+    // Netlify's rewrite proxy does not preserve gzip-encoded bodies cleanly,
+    // so capture requests came back as 400 from the upstream PostHog server.
+    // Sending uncompressed JSON costs us a few bytes per event but the proxy
+    // (and ad-blocker bypass) is more valuable than the compression saving.
+    disable_compression: true,
     session_recording: {
       maskAllInputs: true,
       maskInputOptions: {
@@ -41,8 +47,10 @@ if (typeof window !== 'undefined' && POSTHOG_KEY && !posthog.__loaded) {
         email: false,
       },
     },
-    loaded: (ph) => {
-      if (process.env.NODE_ENV === 'development') ph.debug(false);
+    loaded: () => {
+      // Expose the singleton on window so debugging from the console
+      // works without needing to import the module.
+      (window as unknown as { posthog: unknown }).posthog = posthog;
     },
   });
 }
@@ -124,6 +132,10 @@ function OutboundClickTracker() {
 }
 
 export function PostHogProvider({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    initPostHog();
+  }, []);
+
   if (!POSTHOG_KEY) return <>{children}</>;
   return (
     <PostHogReactProvider client={posthog}>
