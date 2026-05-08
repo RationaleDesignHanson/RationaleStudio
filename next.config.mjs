@@ -80,27 +80,15 @@ const nextConfig = {
     ];
   },
 
-  // PostHog reverse-proxy needs no trailing-slash redirect (otherwise the
-  // /ingest/decide POST gets bounced and events drop on the floor).
-  skipTrailingSlashRedirect: true,
-
-  // Rewrites (no redirect) for iOS Universal Links AASA + PostHog reverse proxy.
-  // The PostHog rewrites route SDK traffic through our origin (/ingest/*) so
-  // ad-blockers that target *.posthog.com don't drop pageviews.
+  // Rewrites (no redirect) for iOS Universal Links AASA.
+  // PostHog proxying lives at app/ingest/[[...path]]/route.ts as a route
+  // handler — Netlify's rewrite layer mangles gzipped POST bodies, breaking
+  // the SDK's compression=gzip-js round-trip.
   async rewrites() {
     return [
       {
         source: '/.well-known/apple-app-site-association',
         destination: '/apple-app-site-association',
-      },
-      // Order matters: the more specific /static/ rule must come before the catch-all.
-      {
-        source: '/ingest/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
-      },
-      {
-        source: '/ingest/:path*',
-        destination: 'https://us.i.posthog.com/:path*',
       },
     ];
   },

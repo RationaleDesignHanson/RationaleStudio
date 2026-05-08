@@ -35,11 +35,6 @@ function initPostHog() {
     capture_pageview: false,
     capture_pageleave: true,
     autocapture: true,
-    // Netlify's rewrite proxy does not preserve gzip-encoded bodies cleanly,
-    // so capture requests came back as 400 from the upstream PostHog server.
-    // Sending uncompressed JSON costs us a few bytes per event but the proxy
-    // (and ad-blocker bypass) is more valuable than the compression saving.
-    disable_compression: true,
     session_recording: {
       maskAllInputs: true,
       maskInputOptions: {
