@@ -35,6 +35,11 @@ function initPostHog() {
     capture_pageview: false,
     capture_pageleave: true,
     autocapture: true,
+    // SDK still appends ?compression=gzip-js to the URL even with this flag
+    // set, but at least the body stays plain JSON. The /ingest route handler
+    // strips that URL param before forwarding so the upstream PostHog server
+    // doesn't try to decode plain JSON as gzip.
+    disable_compression: true,
     session_recording: {
       maskAllInputs: true,
       maskInputOptions: {

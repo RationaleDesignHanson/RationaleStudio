@@ -37,17 +37,23 @@ function upstreamFor(pathSegments: string[]): string {
 async function proxy(req: NextRequest, pathSegments: string[]): Promise<Response> {
   const targetBase = upstreamFor(pathSegments);
   const url = new URL(req.url);
+
+  // Strip the SDK's `compression=gzip-js` URL flag. PostHog's server reads
+  // this and tries to gunzip the body — but Next.js parses the body before
+  // arrayBuffer() returns, so what we forward is plain JSON regardless of
+  // what the SDK intended. Without this strip, every capture POST 400s with
+  // "invalid GZIP data" against a perfectly-valid JSON body.
+  url.searchParams.delete('compression');
   const target = `${targetBase}${url.search}`;
 
-  // Forward every header except hop-by-hop ones. Specifically preserve
-  // content-encoding so gzipped bodies carry through to PostHog.
+  // Forward every header except hop-by-hop ones plus content-encoding /
+  // content-length, which we re-derive based on the actual body we send.
   const headers = new Headers();
   req.headers.forEach((value, key) => {
-    if (['host', 'connection', 'content-length'].includes(key.toLowerCase())) return;
+    const k = key.toLowerCase();
+    if (['host', 'connection', 'content-length', 'content-encoding'].includes(k)) return;
     headers.set(key, value);
   });
-  // PostHog uses the host header to route to the right project — overwrite it
-  // so we hit the upstream domain rather than passing rationale.work through.
   headers.set('host', new URL(targetBase).host);
 
   const init: RequestInit = {
@@ -57,7 +63,6 @@ async function proxy(req: NextRequest, pathSegments: string[]): Promise<Response
   };
 
   if (req.method !== 'GET' && req.method !== 'HEAD') {
-    // Stream raw bytes through — no parse, no re-serialize, no compression mangling.
     init.body = await req.arrayBuffer();
     // @ts-expect-error - duplex required when piping a body in undici
     init.duplex = 'half';
@@ -65,9 +70,15 @@ async function proxy(req: NextRequest, pathSegments: string[]): Promise<Response
 
   const upstream = await fetch(target, init);
 
+  // Node's fetch auto-decompresses gzip/br responses. If we forward the
+  // upstream Content-Encoding header verbatim, the browser then tries to
+  // decompress the already-decompressed body and fails with
+  // ERR_CONTENT_DECODING_FAILED. Strip both encoding + length so the
+  // browser treats what we send as the canonical body.
   const respHeaders = new Headers();
   upstream.headers.forEach((value, key) => {
-    if (['transfer-encoding', 'connection'].includes(key.toLowerCase())) return;
+    const k = key.toLowerCase();
+    if (['transfer-encoding', 'connection', 'content-encoding', 'content-length'].includes(k)) return;
     respHeaders.set(key, value);
   });
 
