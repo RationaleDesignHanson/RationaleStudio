@@ -80,6 +80,12 @@ const nextConfig = {
     ];
   },
 
+  // PostHog SDK posts to /ingest/e/ with trailing slash — Next.js's default
+  // trailing-slash normalization 308s that to /ingest/e, dropping the body
+  // on the floor on real-world clients before our route handler ever sees it.
+  // Disable the auto-redirect so the handler runs as-is.
+  skipTrailingSlashRedirect: true,
+
   // Rewrites (no redirect) for iOS Universal Links AASA.
   // PostHog proxying lives at app/ingest/[[...path]]/route.ts as a route
   // handler — Netlify's rewrite layer mangles gzipped POST bodies, breaking
