@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
+import { TrackedIframe } from '@/components/analytics/TrackedIframe';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export function RumiContent() {
@@ -128,7 +129,8 @@ export function RumiContent() {
               </a>
             </div>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ height: '780px' }}>
-              <iframe
+              <TrackedIframe
+                prototype="rumi"
                 src="/prototypes/rumi/index.html"
                 title="RUMI · dynamic-channel prototype"
                 className="w-full h-full"

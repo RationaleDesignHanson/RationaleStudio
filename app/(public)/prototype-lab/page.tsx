@@ -8,6 +8,7 @@
 import { useState, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { ExternalLink, AlertTriangle, CheckCircle2, AlertCircle } from 'lucide-react';
+import { TrackedIframe } from '@/components/analytics/TrackedIframe';
 
 const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
 
@@ -170,8 +171,9 @@ function IframeEmbed({ proto }: { proto: Prototype }) {
       </div>
 
       <div className="rounded-md overflow-hidden border border-hairline bg-white" style={{ height: '720px' }}>
-        <iframe
+        <TrackedIframe
           key={active.href}
+          prototype={`lab-${active.href.split('/')[2] ?? 'unknown'}`}
           src={active.href}
           title={active.label}
           className="w-full h-full"

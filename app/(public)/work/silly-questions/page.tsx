@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
+import { TrackedIframe } from '@/components/analytics/TrackedIframe';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 const PLAY_URL = 'https://silly-questions.com';
@@ -46,7 +47,8 @@ function PrototypeChapter() {
             </a>
           </div>
           <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-white" style={{ height: 'min(900px, 88vh)' }}>
-            <iframe
+            <TrackedIframe
+              prototype="silly-questions"
               src={PLAY_URL}
               title="Silly Questions"
               className="w-full h-full"

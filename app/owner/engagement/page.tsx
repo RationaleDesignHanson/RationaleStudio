@@ -23,6 +23,7 @@ import {
   fetchReturnStats,
   fetchVaultUnlockStats,
   fetchOutboundClicks,
+  fetchPrototypeEngagement,
 } from '@/lib/posthog/queries';
 import { isPostHogConfigured } from '@/lib/posthog/client';
 import { BUCKET_DEFS, type Bucket } from '@/lib/posthog/buckets';
@@ -61,6 +62,7 @@ export default async function EngagementPage() {
     returns,
     vaultUnlocks,
     outbound,
+    prototypes,
   ] = await Promise.all([
     fetchHeadlineCounts().catch(() => null),
     fetchTopPages(7, 20).catch(() => []),
@@ -74,6 +76,7 @@ export default async function EngagementPage() {
     fetchReturnStats(30).catch(() => null),
     fetchVaultUnlockStats(30).catch(() => []),
     fetchOutboundClicks(30, 25).catch(() => []),
+    fetchPrototypeEngagement(30).catch(() => []),
   ]);
 
   const bucketByKey = new Map(buckets.map((b) => [b.bucket, b]));
@@ -226,6 +229,28 @@ export default async function EngagementPage() {
           )}
         </Section>
       </div>
+
+      {/* PROTOTYPE ENGAGEMENT */}
+      <Section
+        title="Prototype engagement · 30d"
+        subtitle="Per embedded prototype: who loaded the iframe, who stuck around long enough to actually use it (5s in-view), who clicked into it. Engagement-rate column = engaged / loaded — the share of visitors who didn't just scroll past."
+      >
+        {prototypes.length === 0 ? (
+          <Empty hint="No prototype views yet. Embedded iframes are tracked in /work/{zero,rumi,silly-questions} + /prototype-lab." />
+        ) : (
+          <SimpleTable
+            headers={['Prototype', 'Loaded', 'Engaged', 'Clicks', 'People', 'Engagement']}
+            rows={prototypes.map((p) => [
+              p.prototype,
+              NUM.format(p.loaded),
+              NUM.format(p.engaged),
+              NUM.format(p.clicks),
+              NUM.format(p.visitors),
+              p.loaded ? PCT.format(p.engaged / p.loaded) : '—',
+            ])}
+          />
+        )}
+      </Section>
 
       {/* RECENT ACTIVITY */}
       <Section

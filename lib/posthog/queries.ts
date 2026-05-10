@@ -260,6 +260,41 @@ export async function fetchVaultUnlockStats(days = 30): Promise<VaultUnlockRow[]
   }));
 }
 
+// ---------------- Prototype engagement ----------------
+
+export interface PrototypeRow {
+  prototype: string;
+  loaded: number;
+  engaged: number;
+  clicks: number;
+  visitors: number;
+}
+
+export async function fetchPrototypeEngagement(days = 30): Promise<PrototypeRow[]> {
+  const q = `
+    SELECT
+      properties.prototype AS prototype,
+      countIf(event = 'prototype_loaded') AS loaded,
+      countIf(event = 'prototype_engaged') AS engaged,
+      countIf(event = 'prototype_clicked') AS clicks,
+      uniq(person_id) AS visitors
+    FROM events
+    WHERE event IN ('prototype_loaded', 'prototype_engaged', 'prototype_clicked')
+      AND timestamp > now() - INTERVAL ${days} DAY
+      AND properties.prototype IS NOT NULL
+    GROUP BY prototype
+    ORDER BY engaged DESC
+  `;
+  const { results } = await hogql<readonly [string, number, number, number, number]>(q);
+  return results.map(([prototype, loaded, engaged, clicks, visitors]) => ({
+    prototype,
+    loaded,
+    engaged,
+    clicks,
+    visitors,
+  }));
+}
+
 // ---------------- Outbound clicks ----------------
 
 export interface OutboundRow {
