@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { LayoutContent } from "@/components/layout";
 import { AuthProvider } from "@/lib/auth/AuthContext";
 import { PostHogProvider } from "@/components/analytics/PostHogProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { generatePersonJsonLd, generateWebSiteJsonLd } from "@/lib/seo/jsonld";
+import { generateOrganizationStructuredData } from "@/lib/seo/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -108,6 +111,21 @@ export default function RootLayout({
   // Note: We can't use usePathname in server components, so we handle archive page layout removal in the client
   return (
     <html lang="en">
+      <head>
+        {/*
+          Site-wide JSON-LD. Person + WebSite + Organization render here
+          so they appear on every route in the initial HTML response —
+          per-route Article / BreadcrumbList schemas are mounted by each
+          page individually and reference these via @id.
+        */}
+        <JsonLd
+          dataBlocks={[
+            generatePersonJsonLd(),
+            generateWebSiteJsonLd(),
+            generateOrganizationStructuredData(),
+          ]}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}>
         <PostHogProvider>
           <AuthProvider>

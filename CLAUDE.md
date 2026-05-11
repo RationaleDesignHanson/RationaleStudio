@@ -52,6 +52,22 @@ The `/ingest/*` proxy is a **Route Handler** (`app/ingest/[[...path]]/route.ts`)
 
 `.husky/pre-commit` greps staged diffs for credential prefixes. The patterns now require ≥20 alphanumeric chars after each prefix (e.g. `re_[a-zA-Z0-9]{20,}`) so substrings inside ordinary identifiers (`captu*re_p*ageview`) don't trip them. `.husky/*` is excluded from the self-check so the hook doesn't match its own pattern strings. macOS BSD grep doesn't support `\b` reliably — use length anchors instead of word boundaries.
 
+## SEO + organic-discovery surface
+
+The full SEO play sits across several files, all touched 2026-05-11. Highlights:
+
+- **JSON-LD schemas** — `lib/seo/jsonld.ts` exports maximalist `Person` + `WebSite` generators (mounted globally on `app/layout.tsx`) and `Article` + `Breadcrumb` generators consumed by case-study pages via `lib/seo/case-studies.ts:caseStudySchemas('<slug>')`. Use `components/seo/JsonLd.tsx` (server) for site-wide schemas and `components/seo/StructuredData.tsx` (client) inside case-study `'use client'` pages.
+- **Per-route OG images** — `app/opengraph-image.tsx` (root) + 9 per-case-study `opengraph-image.tsx` files use the shared `lib/seo/og-image.tsx:renderOgImage()` helper. Add a new one by creating `app/(public)/work/<slug>/opengraph-image.tsx` with a one-line `renderOgImage({ eyebrow, title, tagline, accent })` call.
+- **Canonical entity description** — `PERSON_DESCRIPTION` in `lib/seo/jsonld.ts` is the single source of truth used by JSON-LD, llms.txt, and the about page hero. Synced verbatim to LinkedIn / Substack / GitHub / Are.na via `docs/seo/identity-alignment.md`. *Don't* edit it in only one place — the consistency IS the disambiguation signal.
+- **Bucket classifier** (analytics — separate surface) still in `lib/posthog/buckets.ts`.
+- **AI crawler allowlist** in `app/robots.ts` explicitly lists GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended, CCBot, Applebot-Extended. Disallow patterns are shared. `public/llms.txt` is the LLM-targeted summary.
+- **Canonical writing** — `app/(public)/writing/[slug]/page.tsx` resolves essays from `content/writing/posts.ts` (TypeScript, not MDX — keeps the build dep-free). Each post auto-publishes into sitemap + OG image. Cross-post to Substack with `rel="canonical"` block per `docs/seo/substack-canonical-workflow.md`.
+- **Manual off-site checklist** at `docs/seo/launch-checklist.md` lists the actions Matt has to execute himself (Search Console, GitHub profile, Maggie Appleton list, Show HN, Product Hunt, Are.na, Wikidata).
+
+### Known gotcha: HogQL `match()` is anchored
+
+(Repeating because it caught us in both analytics and SEO.) HogQL's `match()` is `RE2::FullMatch`-anchored; JS `.test()` is unanchored. When mirroring regex patterns across the two — buckets.ts has this paired layout — use `^...(/.*)?$` so both engines agree. Caught sub-routes silently mis-classifying on the dashboard.
+
 ## Env vars worth knowing
 
 All in `.env.example`. The four that drive analytics:

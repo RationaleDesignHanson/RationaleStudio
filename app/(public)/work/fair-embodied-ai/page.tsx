@@ -11,11 +11,14 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function FAIREmbodiedAIPage() {
   return (
     <ProjectScope project="fair">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('fair-embodied-ai')} />
       <main
         className="era-meta min-h-screen"
         style={{

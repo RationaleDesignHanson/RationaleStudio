@@ -11,6 +11,8 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 const STUDIO_REEL_PLAYLISTS = [
@@ -45,6 +47,7 @@ const STUDIO_REEL_PLAYLISTS = [
 export default function StudioEraPage() {
   return (
     <ProjectScope project="maker">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('studio-era')} />
       <main
         className="era-maker min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}

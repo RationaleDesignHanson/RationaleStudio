@@ -346,8 +346,9 @@ const homeBlocks: EraBlockData[] = [
 // =============================================================
 
 export default function HomePage() {
+  // Person + WebSite + Organization now render at the root layout for
+  // every page, so we only need the page-specific Breadcrumb here.
   const structuredData = [
-    generateOrganizationStructuredData(),
     generateBreadcrumbStructuredData([{ name: 'Home', url: '/' }]),
   ];
 
@@ -356,6 +357,23 @@ export default function HomePage() {
       <MultipleStructuredData dataBlocks={structuredData} />
 
       <main className="min-h-screen bg-paper text-ink-body">
+        {/*
+          Visually-hidden h1 — the visual design lets era headers (NOW /
+          LEADER / DIRECTOR) carry visual weight as h2, but search engines
+          want a single semantic h1 that summarizes the page. This is the
+          full positioning sentence so both human screen-reader users and
+          crawlers get the same disambiguation context.
+        */}
+        <h1 className="sr-only">
+          Matt Hanson — designer-engineer working across AR, AI, and experiential
+          systems for 25 years. Animation and creative direction at Psyop,
+          Imaginary Forces, Buck, and Hush; VR/AR pitchwork at Framestore;
+          screen content direction at Viacom and MTV; eight years at Meta
+          leading product design across Spark AR, Orion, and FAIR Embodied AI;
+          now shipping consumer iOS apps solo with AI as coding partner —
+          Heirloom, Silly Questions, Zero, Nimbus.
+        </h1>
+
         {/* WORK VIEWER — desktop is parallax-merge; mobile is straight
             vertical scroll. Two implementations, same data. */}
         <div className="hidden md:block">

@@ -10,11 +10,14 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function OrionPage() {
   return (
     <ProjectScope project="orion">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('orion')} />
       <main
         className="era-meta min-h-screen"
         style={{

@@ -12,6 +12,8 @@ import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { Plate } from '@/components/case-study/Plate';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 const VIACOM_SCREENS_PLAYLISTS = [
@@ -70,6 +72,7 @@ const VIACOM_SCREENS_PLAYLISTS = [
 export default function ViacomPage() {
   return (
     <ProjectScope project="viacom">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('viacom')} />
       <main
         className="era-maker min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}

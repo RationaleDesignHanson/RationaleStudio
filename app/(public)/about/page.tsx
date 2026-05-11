@@ -262,6 +262,84 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
+      {/* PATENTS + PRESS — disambiguation co-citation surface.
+          Authoritative external pages mentioning "Matt Hanson" + Meta + AR
+          are the strongest signal for owning the name in search. List them
+          so crawlers + LLMs walk the graph back here.
+       */}
+      <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 border-t border-hairline">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+            Patents &amp; press
+          </p>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+            <div>
+              <h2 className="font-display text-xl md:text-2xl text-ink mb-3">Patents</h2>
+              <ul className="space-y-3 text-sm md:text-base text-ink-body">
+                <li>
+                  <a
+                    href="https://patents.google.com/patent/US11295503B1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-ink)] hover:text-ink underline-offset-4 hover:underline"
+                    data-cta-location="about-patents"
+                    data-cta-type="patent"
+                  >
+                    US11295503B1
+                  </a>{' '}
+                  &mdash; &ldquo;Interactive avatars in artificial reality&rdquo;
+                  <span className="text-ink-muted"> · Meta Platforms · 2022 · co-inventor</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="font-display text-xl md:text-2xl text-ink mb-3">Selected coverage</h2>
+              <ul className="space-y-3 text-sm md:text-base text-ink-body">
+                <li>
+                  <a
+                    href="https://about.fb.com/news/2024/09/introducing-orion-our-first-true-augmented-reality-glasses/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-ink)] hover:text-ink underline-offset-4 hover:underline"
+                    data-cta-location="about-press"
+                    data-cta-type="press"
+                  >
+                    Meta Newsroom &mdash; Introducing Orion
+                  </a>
+                  <span className="text-ink-muted"> · Sept 2024</span>
+                </li>
+                <li>
+                  <a
+                    href="https://ai.meta.com/research/publications/motivo/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-ink)] hover:text-ink underline-offset-4 hover:underline"
+                    data-cta-location="about-press"
+                    data-cta-type="press"
+                  >
+                    Meta AI Research &mdash; Motivo (FAIR)
+                  </a>
+                  <span className="text-ink-muted"> · Dec 2024</span>
+                </li>
+                <li>
+                  <a
+                    href="https://sendfull.substack.com/p/ep-92-how-a-design-leader-turned"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-ink)] hover:text-ink underline-offset-4 hover:underline"
+                    data-cta-location="about-press"
+                    data-cta-type="podcast"
+                  >
+                    Sendfull podcast &mdash; ep. 92
+                  </a>
+                  <span className="text-ink-muted"> · How a design leader turned solo iOS founder</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 bg-paper-deep/40">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
           <Link
@@ -273,6 +351,8 @@ export default function AboutPage() {
           <a
             href="mailto:hanson@rationale.work"
             className="text-sm font-mono text-ink-muted hover:text-ink transition-colors"
+            data-cta-location="about-footer"
+            data-cta-type="email"
           >
             hanson@rationale.work
           </a>

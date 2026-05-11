@@ -19,13 +19,16 @@ interface PageMetadataOptions {
   tags?: string[];
 }
 
+// Personal portfolio. The earlier "product studio" framing (Atlas / Amplify
+// / equity-for-cash partnerships) was deprecated 2026-04-27 when the site
+// shifted to Matt's personal brand.
 const SITE_CONFIG = {
-  name: 'Rationale',
-  title: 'Rationale — Product Studio Building AI-Powered Ventures',
-  description: 'Product studio building AI-powered ventures: Zero (email AI), Atlas (CRE intelligence), Amplify (NIL platform). We build our own products and partner with companies for equity + cash.',
+  name: 'Matt Hanson',
+  title: 'Matt Hanson — designer-engineer (AR, AI, experiential)',
+  description: 'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark AR, Orion, FAIR Embodied AI at Meta), and AI. Now solo: Heirloom, Silly Questions, Zero.',
   url: 'https://rationale.work',
   ogImage: '/og.png',
-  twitter: '@RationaleStudio',
+  twitter: '@thematthanson',
 };
 
 /**
@@ -44,7 +47,7 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     tags = [],
   } = options;
 
-  const fullTitle = title.includes('Rationale') ? title : `${title} — Rationale`;
+  const fullTitle = title.includes('Matt Hanson') ? title : `${title} — Matt Hanson`;
   const url = `${SITE_CONFIG.url}${path}`;
   const imageUrl = image.startsWith('http') ? image : `${SITE_CONFIG.url}${image}`;
 
@@ -54,12 +57,18 @@ export function generatePageMetadata(options: PageMetadataOptions): Metadata {
     applicationName: SITE_CONFIG.name,
     authors: authors.map(name => ({ name })),
     keywords: [
-      'product studio',
-      'AI ventures',
-      'email AI',
-      'Zero',
-      'product development',
-      'startup studio',
+      'Matt Hanson',
+      'designer-engineer',
+      'AR design',
+      'Spark AR',
+      'Orion AR glasses',
+      'FAIR Embodied AI',
+      'Meta',
+      'experiential design',
+      'consumer iOS',
+      'Heirloom Recipe Box',
+      'Silly Questions',
+      'AI coding partner',
       ...tags,
     ],
     openGraph: {
@@ -148,24 +157,25 @@ export function generateOrganizationStructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Rationale',
-    alternateName: 'Rationale Studio',
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
-    description: SITE_CONFIG.description,
-    foundingDate: '2024',
+    description: 'Personal practice / studio name behind rationale.work — Matt Hanson, designer-engineer.',
     founders: [
       {
         '@type': 'Person',
         name: 'Matt Hanson',
+        url: SITE_CONFIG.url,
       },
     ],
     sameAs: [
-      'https://linkedin.com/company/rationale-studio',
-      'https://twitter.com/RationaleStudio',
+      'https://www.linkedin.com/in/thematthanson',
+      'https://github.com/RationaleDesignHanson',
+      'https://rationaledesign.substack.com',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'Business Inquiries',
+      contactType: 'Inquiries',
+      email: 'hanson@rationale.work',
       url: `${SITE_CONFIG.url}/contact`,
     },
   };

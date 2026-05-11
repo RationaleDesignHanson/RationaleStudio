@@ -10,6 +10,8 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { TrackedIframe } from '@/components/analytics/TrackedIframe';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 const PLAY_URL = 'https://silly-questions.com';
@@ -65,6 +67,7 @@ function PrototypeChapter() {
 export default function SillyQuestionsPage() {
   return (
     <ProjectScope project="silly">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('silly-questions')} />
       <main
         className="era-now min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}

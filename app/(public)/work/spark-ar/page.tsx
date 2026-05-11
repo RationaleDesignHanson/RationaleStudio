@@ -14,11 +14,14 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { Plate } from '@/components/case-study/Plate';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function SparkARPage() {
   return (
     <ProjectScope project="spark-ar">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('spark-ar')} />
       <main
         className="era-meta min-h-screen"
         style={{

@@ -11,6 +11,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
@@ -69,6 +71,7 @@ const FEATURES = [
 export default function HeirloomCaseStudy() {
   return (
     <ProjectScope project="heirloom">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('heirloom')} />
       <main
         className="era-now min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}

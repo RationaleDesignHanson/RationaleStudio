@@ -12,6 +12,8 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { TrackedIframe } from '@/components/analytics/TrackedIframe';
+import { MultipleStructuredData } from '@/components/seo/StructuredData';
+import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface PrototypeEntry {
@@ -142,6 +144,7 @@ function PrototypeChapter() {
 export default function ZeroPage() {
   return (
     <ProjectScope project="zero">
+      <MultipleStructuredData dataBlocks={caseStudySchemas('zero')} />
       <main
         className="era-now min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
