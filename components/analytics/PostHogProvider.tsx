@@ -55,6 +55,41 @@ function initPostHog() {
   });
 }
 
+// Common referrer-domain → canonical-source mapping. Add entries here as
+// you notice new short-link or social aggregator domains in the dashboard.
+// Anything not in this table passes through as-is.
+const TRAFFIC_SOURCE_ALIASES: Record<string, string> = {
+  't.co': 'twitter',
+  'x.com': 'twitter',
+  'twitter.com': 'twitter',
+  'lnkd.in': 'linkedin',
+  'linkedin.com': 'linkedin',
+  'l.linkedin.com': 'linkedin',
+  'news.ycombinator.com': 'hn',
+  'hn.algolia.com': 'hn',
+  'reddit.com': 'reddit',
+  'old.reddit.com': 'reddit',
+  'm.reddit.com': 'reddit',
+  'out.reddit.com': 'reddit',
+  'google.com': 'google',
+  'www.google.com': 'google',
+  'bing.com': 'bing',
+  'duckduckgo.com': 'duckduckgo',
+  'substack.com': 'substack',
+  'open.substack.com': 'substack',
+  'mail.google.com': 'gmail',
+  'outlook.live.com': 'outlook',
+  'outlook.office.com': 'outlook',
+};
+
+function normalizeTrafficSource(referrerDomain: string | null | undefined): string | null {
+  if (!referrerDomain) return null;
+  const d = referrerDomain.toLowerCase().replace(/^www\./, '');
+  return TRAFFIC_SOURCE_ALIASES[d] ?? d;
+}
+
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const;
+
 function PageviewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -63,7 +98,38 @@ function PageviewTracker() {
     if (!POSTHOG_KEY || typeof window === 'undefined') return;
     const search = searchParams?.toString();
     const url = search ? `${pathname}?${search}` : pathname;
-    posthog.capture('$pageview', { $current_url: window.location.origin + url });
+
+    // UTM extraction + session-level registration. Once registered via
+    // posthog.register, these props stick to every subsequent event in the
+    // session — so the conversion ($outbound_click, vault_unlock_*) carries
+    // the source it came from without needing to re-parse.
+    const utmProps: Record<string, string> = {};
+    for (const key of UTM_KEYS) {
+      const v = searchParams?.get(key);
+      if (v) utmProps[key] = v;
+    }
+    if (Object.keys(utmProps).length > 0) {
+      posthog.register(utmProps);
+    }
+
+    // Normalize the referrer domain into a coarse "traffic_source" so the
+    // dashboard isn't fragmented across t.co / x.com / twitter.com etc.
+    // posthog's $referring_domain is set automatically; we just label it.
+    let referrer_domain: string | null = null;
+    try {
+      if (document.referrer) {
+        referrer_domain = new URL(document.referrer).hostname;
+      }
+    } catch {
+      // bad referrer; ignore
+    }
+    const traffic_source = normalizeTrafficSource(referrer_domain);
+
+    posthog.capture('$pageview', {
+      $current_url: window.location.origin + url,
+      ...(traffic_source ? { traffic_source } : {}),
+      ...utmProps,
+    });
   }, [pathname, searchParams]);
 
   return null;
@@ -78,6 +144,53 @@ function PageviewTracker() {
  * Autocapture already records the raw click; this just adds a queryable
  * event with structured props.
  */
+// Walk up the DOM from a clicked anchor looking for the nearest ancestor
+// that carries `data-cta-location` / `data-cta-type` attributes. Falls back
+// to inferring `cta_location` from the nearest semantic element (header,
+// footer, nav, article, section) so we get useful labels for free.
+function ctaContext(anchor: HTMLAnchorElement): { cta_location: string; cta_type: string | null } {
+  let node: HTMLElement | null = anchor;
+  let cta_location: string | null = null;
+  let cta_type: string | null = null;
+
+  while (node && node !== document.body) {
+    const loc = node.dataset.ctaLocation;
+    const type = node.dataset.ctaType;
+    if (!cta_location && loc) cta_location = loc;
+    if (!cta_type && type) cta_type = type;
+    if (cta_location && cta_type) break;
+    node = node.parentElement;
+  }
+
+  if (!cta_location) {
+    // Fall back to semantic ancestor — header/footer/nav give 80% of the
+    // signal even without explicit data attributes.
+    const semantic = anchor.closest('header, footer, nav, article, section, aside, main');
+    if (semantic) {
+      cta_location = semantic.tagName.toLowerCase();
+    } else {
+      cta_location = 'unknown';
+    }
+  }
+
+  return { cta_location, cta_type };
+}
+
+function inferCtaType(kind: 'mailto' | 'tel' | 'external', destination: string): string {
+  if (kind === 'mailto') return 'email';
+  if (kind === 'tel') return 'phone';
+  const d = destination.toLowerCase();
+  if (d.includes('apps.apple.com')) return 'app_store';
+  if (d.includes('play.google.com')) return 'play_store';
+  if (d.includes('github.com')) return 'github';
+  if (d.includes('substack.com')) return 'substack';
+  if (d.includes('linkedin.com') || d === 'lnkd.in') return 'linkedin';
+  if (d.includes('twitter.com') || d === 'x.com' || d === 't.co') return 'twitter';
+  if (d.includes('vimeo.com')) return 'vimeo';
+  if (d.includes('youtube.com') || d === 'youtu.be') return 'youtube';
+  return 'external_link';
+}
+
 function OutboundClickTracker() {
   useEffect(() => {
     if (!POSTHOG_KEY || typeof window === 'undefined') return;
@@ -114,6 +227,9 @@ function OutboundClickTracker() {
 
       if (!kind) return;
 
+      const { cta_location, cta_type: explicitType } = ctaContext(anchor as HTMLAnchorElement);
+      const cta_type = explicitType ?? inferCtaType(kind, destination);
+
       posthog.capture('outbound_click', {
         kind,
         destination,
@@ -121,6 +237,8 @@ function OutboundClickTracker() {
         text: (anchor.textContent ?? '').trim().slice(0, 120),
         source_path: window.location.pathname,
         target: anchor.getAttribute('target') ?? null,
+        cta_location,
+        cta_type,
       });
     };
 

@@ -25,6 +25,8 @@ export default function ContactPage() {
           <a
             href="mailto:hanson@rationale.work"
             className="font-display text-3xl md:text-5xl lg:text-6xl text-ink hover:text-[var(--accent-ink)] transition-colors inline-block break-all leading-tight"
+            data-cta-location="contact-hero"
+            data-cta-type="email"
           >
             hanson@rationale.work
           </a>

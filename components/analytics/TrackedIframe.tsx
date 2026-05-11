@@ -36,9 +36,13 @@ export function TrackedIframe({ prototype, engagementThreshold = 5000, ...iframe
     const el = ref.current;
     if (!el || typeof window === 'undefined') return;
 
-    const ph = (window as unknown as { posthog?: typeof posthog }).posthog;
+    // Call the imported singleton directly — reaching for window.posthog
+    // grabs whatever's there at effect-time, which is `undefined` if the
+    // SDK's `loaded` callback hasn't fired yet. The result is captures
+    // silently no-op forever (caught this bug 2026-05-11 via audit).
+    // posthog.capture() itself queues pre-init events and flushes after.
     const capture = (event: string, props: Record<string, unknown>) => {
-      ph?.capture(event, { prototype, source_path: window.location.pathname, ...props });
+      posthog.capture(event, { prototype, source_path: window.location.pathname, ...props });
     };
 
     let loaded = false;

@@ -43,6 +43,37 @@ export async function fetchHeadlineCounts(): Promise<HeadlineCounts> {
   };
 }
 
+// ---------------- Bounce rate ----------------
+
+export interface BounceStats {
+  sessions: number;
+  single_page: number;
+  bounce_rate: number;
+}
+
+export async function fetchBounceRate(days = 30): Promise<BounceStats> {
+  const q = `
+    SELECT
+      count() AS sessions,
+      countIf(pv = 1) AS single_page
+    FROM (
+      SELECT properties.$session_id AS sid, count() AS pv
+      FROM events
+      WHERE event = '$pageview'
+        AND timestamp > now() - INTERVAL ${days} DAY
+        AND properties.$session_id IS NOT NULL
+      GROUP BY sid
+    )
+  `;
+  const { results } = await hogql<readonly [number, number]>(q);
+  const [sessions = 0, single = 0] = results[0] ?? [];
+  return {
+    sessions,
+    single_page: single,
+    bounce_rate: sessions ? single / sessions : 0,
+  };
+}
+
 // ---------------- Top pages ----------------
 
 export interface TopPage {
@@ -128,7 +159,9 @@ export async function fetchInterestProfiles(days = 30, limit = 20): Promise<Inte
 
   const profileCounts = new Map<string, number>();
   for (const buckets of sessionBuckets.values()) {
-    const meaningful = Array.from(buckets).filter((b) => b !== 'home' && b !== 'other').sort();
+    const meaningful = Array.from(buckets)
+      .filter((b) => b !== 'home' && b !== 'other' && b !== 'lab')
+      .sort();
     const profile = meaningful.length === 0 ? 'home only' : meaningful.join(' + ');
     profileCounts.set(profile, (profileCounts.get(profile) ?? 0) + 1);
   }
@@ -321,6 +354,65 @@ export async function fetchOutboundClicks(days = 30, limit = 20): Promise<Outbou
   `;
   const { results } = await hogql<readonly ['mailto' | 'tel' | 'external', string, number, number]>(q);
   return results.map(([kind, destination, clicks, visitors]) => ({ kind, destination, clicks, visitors }));
+}
+
+// ---------------- Real-interest 4-stage funnel ----------------
+
+/**
+ * Builds a session-level funnel:
+ *   1. Sessions     — anyone landed (1+ pageview)
+ *   2. Engaged      — 2+ pageviews OR fired prototype_engaged OR scroll_depth >= 0.5
+ *   3. Considered   — visited at least one case-study page (now/leader/director/decks)
+ *   4. Converted    — fired outbound_click (mailto) OR vault_unlock_attempted
+ *
+ * Each row carries the session count + conversion rate to the next stage.
+ */
+
+export interface FunnelStage {
+  stage: 'sessions' | 'engaged' | 'considered' | 'converted';
+  label: string;
+  sessions: number;
+  conversion_to_next: number | null;
+}
+
+export async function fetchRealInterestFunnel(days = 30): Promise<FunnelStage[]> {
+  // One pass over events; aggregate per-session flags then count rollups.
+  const q = `
+    WITH per_session AS (
+      SELECT
+        properties.$session_id AS sid,
+        count() AS event_count,
+        countIf(event = '$pageview') AS pageviews,
+        countIf(event = 'prototype_engaged') AS prototype_engaged,
+        countIf(event = 'scroll_depth' AND toFloat(properties.depth) >= 0.5) AS deep_scroll,
+        countIf(event = '$pageview' AND match(properties.$pathname, '^/work/(heirloom|silly-questions|zero|vault|nimbus|spark-ar|orion|fair-embodied-ai|framestore|viacom|studio-era)(/.*)?$')) AS case_study_views,
+        countIf(event = '$pageview' AND match(properties.$pathname, '^/work/decks(/.*)?$')) AS deck_views,
+        countIf(event = 'outbound_click' AND properties.kind = 'mailto') AS mailto_clicks,
+        countIf(event = 'vault_unlock_attempted') AS vault_attempts
+      FROM events
+      WHERE timestamp > now() - INTERVAL ${days} DAY
+        AND properties.$session_id IS NOT NULL
+      GROUP BY sid
+    )
+    SELECT
+      count() AS sessions,
+      countIf(pageviews >= 2 OR prototype_engaged > 0 OR deep_scroll > 0) AS engaged,
+      countIf(case_study_views > 0 OR deck_views > 0) AS considered,
+      countIf(mailto_clicks > 0 OR vault_attempts > 0) AS converted
+    FROM per_session
+    WHERE pageviews > 0
+  `;
+  const { results } = await hogql<readonly [number, number, number, number]>(q);
+  const [sessions = 0, engaged = 0, considered = 0, converted = 0] = results[0] ?? [];
+
+  const rate = (a: number, b: number) => (b ? a / b : null);
+
+  return [
+    { stage: 'sessions',   label: 'Sessions',   sessions, conversion_to_next: rate(engaged, sessions) },
+    { stage: 'engaged',    label: 'Engaged',    sessions: engaged,    conversion_to_next: rate(considered, engaged) },
+    { stage: 'considered', label: 'Considered', sessions: considered, conversion_to_next: rate(converted, considered) },
+    { stage: 'converted',  label: 'Converted',  sessions: converted,  conversion_to_next: null },
+  ];
 }
 
 // ---------------- Return visitors ----------------

@@ -22,7 +22,16 @@ When a vault visitor needs to reach a deck, the deck route must be in the public
 
 - Public client: `components/analytics/PostHogProvider.tsx` (wraps the whole app in `app/layout.tsx`). Inits posthog-js inside `useEffect`, captures `$pageview` on App Router pathname change, autocapture + replay + heatmaps on, custom outbound-click delegate, vault-unlock events fired from `UnlockForm.tsx`.
 - Server queries: `lib/posthog/client.ts` + `lib/posthog/queries.ts`. Personal API key (`POSTHOG_PERSONAL_API_KEY`) drives them; the file imports `'server-only'` to keep the key out of any client bundle.
-- Internal dashboard: **`/owner/engagement`** — server-rendered, Firebase-RBAC gated, 30s cache per query. Bucket classifier in `lib/posthog/buckets.ts` mirrors the public IA — *update both the HogQL `BUCKET_CASE_HOGQL` and the JS `classifyPath()` together when adding routes.*
+- Internal dashboard: **`/owner/engagement`** — server-rendered, Firebase-RBAC gated, 30s cache per query. Bucket classifier in `lib/posthog/buckets.ts` mirrors the public IA — *update both the HogQL `BUCKET_CASE_HOGQL` and the JS `classifyPath()` together when adding routes.* Scroll-depth tracking (`scroll_depth` event with `depth: 0.25 | 0.5 | 0.75 | 1`) is mounted globally via `app/(public)/layout.tsx` — applies to every public route.
+- Tracked events beyond pageviews + autocapture: `vault_unlock_{attempted,succeeded,failed}` (UnlockForm), `outbound_click` (PostHogProvider, includes `cta_location` + `cta_type` from `data-cta-*` ancestors), `prototype_{loaded,engaged,clicked}` (TrackedIframe), `scroll_depth` (ScrollDepthTracker). UTM params + normalized `traffic_source` are registered session-wide on first pageview.
+
+### Known gotcha: HogQL `match()` is anchored, JS regex isn't
+
+`lib/posthog/buckets.ts` keeps two mirrored classifiers. The HogQL `match()` function uses re2 with `RE2::FullMatch` semantics — fully anchored. JS `.test()` is unanchored. If you ever write `^/work/heirloom(/|$)` it'll match `/work/heirloom/evolution` in JS but NOT in HogQL. Always use `^...(/.*)?$` (or equivalent fully-matched pattern) when writing HogQL match patterns. Caught 2026-05-11 — sub-route pageviews were silently classifying as "other" on the dashboard.
+
+### Known gotcha: don't reach for `window.posthog` from your own code
+
+The SDK sets `window.posthog` only inside its `loaded` callback (async, after init). If you grab `window.posthog` at `useEffect`-time you might capture `undefined` and your captures silently no-op forever. Import `posthog from 'posthog-js'` and use the singleton directly — it queues pre-init events and flushes them later. Caught 2026-05-11 in `TrackedIframe.tsx`.
 
 ### Known gotcha: PostHog through Netlify ≠ rewrite
 

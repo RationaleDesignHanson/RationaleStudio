@@ -381,7 +381,12 @@ export default function WorkIndexPage() {
           <p className="text-xs md:text-sm text-ink-muted leading-relaxed flex items-center gap-2">
             <Lock className="w-3 h-3 text-ink-muted" />
             Gated items are password-protected. Email{' '}
-            <a href="mailto:hanson@rationale.work" className="text-[var(--accent-ink)] hover:text-ink underline">
+            <a
+              href="mailto:hanson@rationale.work"
+              className="text-[var(--accent-ink)] hover:text-ink underline"
+              data-cta-location="work-vault-footer"
+              data-cta-type="email"
+            >
               hanson@rationale.work
             </a>{' '}
             for access.

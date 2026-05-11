@@ -24,6 +24,8 @@ import {
   fetchVaultUnlockStats,
   fetchOutboundClicks,
   fetchPrototypeEngagement,
+  fetchBounceRate,
+  fetchRealInterestFunnel,
 } from '@/lib/posthog/queries';
 import { isPostHogConfigured } from '@/lib/posthog/client';
 import { BUCKET_DEFS, type Bucket } from '@/lib/posthog/buckets';
@@ -63,6 +65,8 @@ export default async function EngagementPage() {
     vaultUnlocks,
     outbound,
     prototypes,
+    bounce,
+    funnel,
   ] = await Promise.all([
     fetchHeadlineCounts().catch(() => null),
     fetchTopPages(7, 20).catch(() => []),
@@ -77,6 +81,8 @@ export default async function EngagementPage() {
     fetchVaultUnlockStats(30).catch(() => []),
     fetchOutboundClicks(30, 25).catch(() => []),
     fetchPrototypeEngagement(30).catch(() => []),
+    fetchBounceRate(30).catch(() => null),
+    fetchRealInterestFunnel(30).catch(() => []),
   ]);
 
   const bucketByKey = new Map(buckets.map((b) => [b.bucket, b]));
@@ -96,17 +102,57 @@ export default async function EngagementPage() {
 
       {/* HEADLINE TILES */}
       {headline ? (
-        <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+        <section className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
           <Tile label="Pageviews · 24h" value={NUM.format(headline.pageviews_24h)} />
           <Tile label="Pageviews · 7d"  value={NUM.format(headline.pageviews_7d)} />
           <Tile label="Pageviews · 30d" value={NUM.format(headline.pageviews_30d)} />
           <Tile label="Visitors · 7d"   value={NUM.format(headline.visitors_7d)} />
           <Tile label="Sessions · 7d"   value={NUM.format(headline.sessions_7d)} />
           <Tile label="Pages / session" value={DEC.format(headline.pages_per_session_7d)} />
+          <Tile label="Bounce rate · 30d" value={bounce ? PCT.format(bounce.bounce_rate) : '—'} />
         </section>
       ) : (
         <ErrorTile label="Headline counts unavailable — check POSTHOG_PERSONAL_API_KEY scope." />
       )}
+
+      {/* REAL-INTEREST FUNNEL */}
+      <Section
+        title="Real-interest funnel · 30d"
+        subtitle="Sessions → Engaged (2+ pages OR prototype OR deep scroll) → Considered (case-study view) → Converted (mailto OR vault unlock). Percentages are stage-to-next conversion rates."
+      >
+        {funnel.length === 0 ? (
+          <Empty hint="Funnel needs at least one session in the window." />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs font-mono">
+              <thead>
+                <tr className="text-gray-500 text-left border-b border-gray-800">
+                  <th className="py-2 pr-4 font-normal">Stage</th>
+                  <th className="py-2 pr-4 font-normal">Sessions</th>
+                  <th className="py-2 pr-4 font-normal">% of total</th>
+                  <th className="py-2 pr-4 font-normal">Conversion to next</th>
+                </tr>
+              </thead>
+              <tbody>
+                {funnel.map((s) => {
+                  const total = funnel[0]?.sessions ?? 0;
+                  const pct = total ? s.sessions / total : 0;
+                  return (
+                    <tr key={s.stage} className="border-b border-gray-900 text-gray-300">
+                      <td className="py-2 pr-4 text-white">{s.label}</td>
+                      <td className="py-2 pr-4">{NUM.format(s.sessions)}</td>
+                      <td className="py-2 pr-4 text-gray-400">{PCT.format(pct)}</td>
+                      <td className="py-2 pr-4 text-terminal-gold">
+                        {s.conversion_to_next === null ? '—' : PCT.format(s.conversion_to_next)}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Section>
 
       {/* BUCKETS */}
       <Section title="Buckets of interest · 30d" subtitle="What surfaces visitors are exploring. Sessions counted once per bucket touched.">
@@ -161,10 +207,11 @@ export default async function EngagementPage() {
       </div>
 
       {/* RETURN VISITORS / GEO / DEVICE / REFERRERS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      {/* RETURN + COUNTRIES — keep tighter pair */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <Section title="Return rate · 30d" inline>
           {returns ? (
-            <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3">
               <Tile label="Total persons" value={NUM.format(returns.total_persons)} dense />
               <Tile label="Returning" value={NUM.format(returns.returning_persons)} dense />
               <Tile label="Return rate" value={PCT.format(returns.return_rate)} dense />
@@ -176,12 +223,24 @@ export default async function EngagementPage() {
             <SimpleTable headers={['Country', 'Visitors']} rows={countries.map((c) => [c.label, NUM.format(c.count)])} />
           )}
         </Section>
-        <Section title="Devices · 30d" inline>
+      </div>
+
+      {/* DEVICES + REFERRERS — promoted to full sections so they're scannable */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <Section
+          title="Devices · 30d"
+          subtitle="What's the split between mobile, desktop, and tablet visitors?"
+          inline
+        >
           {devices.length === 0 ? <Empty /> : (
             <SimpleTable headers={['Device', 'Visitors']} rows={devices.map((d) => [d.label, NUM.format(d.count)])} />
           )}
         </Section>
-        <Section title="Referrers · 30d" inline>
+        <Section
+          title="Referrers · 30d"
+          subtitle="Where traffic is coming from. Short links (t.co, lnkd.in) are normalized into canonical sources via PostHogProvider."
+          inline
+        >
           {referrers.length === 0 ? <Empty /> : (
             <SimpleTable headers={['Source', 'Hits']} rows={referrers.map((r) => [r.label, NUM.format(r.count)])} />
           )}

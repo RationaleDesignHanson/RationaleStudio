@@ -18,20 +18,14 @@ import { logger } from '@/lib/utils/logger';
  * want to query as named events in PostHog Insights.
  */
 
-// Conversion-funnel + interaction events worth naming explicitly.
+// Named events with an active call site somewhere in the app. The ten old
+// studio-funnel events (HOMEPAGE_VIEW, SERVICE_EXPLORATION, PRICING_VIEW,
+// CONTACT_FORM_START/SUBMIT, EMAIL_CLICK, CASE_STUDY_DOWNLOAD,
+// ROI_CALCULATOR_USE, SERVICE_DETAIL_VIEW, FAQ_EXPAND) were removed
+// 2026-05-11 — they were defined but never fired in any code path. If
+// you need a new named event, add it here AND wire its trackEvent call.
 export const AnalyticsEvents = {
-  HOMEPAGE_VIEW: 'homepage_view',
-  SERVICE_EXPLORATION: 'service_exploration',
-  PRICING_VIEW: 'pricing_view',
-  CONTACT_FORM_START: 'contact_form_start',
-  CONTACT_FORM_SUBMIT: 'contact_form_submit',
-
-  EMAIL_CLICK: 'email_click',
-  CASE_STUDY_DOWNLOAD: 'case_study_download',
-  ROI_CALCULATOR_USE: 'roi_calculator_use',
-  SERVICE_DETAIL_VIEW: 'service_detail_view',
-  FAQ_EXPAND: 'faq_expand',
-
+  // /clients/* conversion components — fire when those gated pages render.
   EXIT_INTENT_SHOWN: 'exit_intent_shown',
   EXIT_INTENT_CONVERSION: 'exit_intent_conversion',
 
