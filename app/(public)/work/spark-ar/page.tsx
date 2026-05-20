@@ -82,7 +82,7 @@ export default function SparkARPage() {
             <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The four flagship effects
             </p>
-            <div className="grid md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
               {[
                 { src: 'nike.mp4', label: 'Nike SNKRS · footwear in the SNKRS app' },
                 { src: 'sephora.mp4', label: 'Sephora · virtual makeup try-on' },
@@ -91,7 +91,7 @@ export default function SparkARPage() {
               ].map((v) => (
                 <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                   <video src={`/videos/spark-ar/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
-                  <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
+                  <p className="text-[10px] md:text-xs text-[var(--era-ink-muted)] px-2 py-1 md:px-3 md:py-1.5 italic font-mono leading-tight">{v.label}</p>
                 </div>
               ))}
             </div>

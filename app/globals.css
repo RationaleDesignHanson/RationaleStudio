@@ -693,9 +693,16 @@ body {
    ACCESSIBILITY IMPROVEMENTS
    ========================================== */
 
-/* Touch-Friendly Targets - Minimum 44x44px per WCAG guidelines */
+/* Touch-Friendly Targets - Minimum 44x44px per WCAG guidelines.
+   Applies to <button> + form-input buttons + anything with the opt-in
+   .touch-target class. <a> was previously in this list but that forced
+   every anchor on the site to display:inline-flex with vertical+horizontal
+   centering — which broke block-level "card wrap" anchors (e.g. the Zero
+   /work/zero mobile launcher) by collapsing their paragraph children into
+   a horizontal flex row. Text anchors don't need a 44x44 minimum; they
+   inherit their parent's font metrics. Anchors that DO want the touch
+   target should add `className="touch-target"`. */
 button,
-a,
 input[type="submit"],
 input[type="button"],
 .touch-target {
