@@ -324,6 +324,9 @@ export default function ViacomPage() {
               </div>
             </Figure>
           </div>
+          <p className="mt-6">
+            Adjacent to the production work, I represented Viacom on the <strong className="text-[var(--era-ink)]">Times Square Alliance</strong> &mdash; sitting in on industry conversations about digital signage standards, content policy, and the shared rules governing one of the densest collections of programmable urban surface in the world. The day job was shipping to the canvas; the side seat was the policy layer around it.
+          </p>
         </ChapterRow>
 
         {/* CHAPTER 05 — MTV OPEN YOUR EYES */}
