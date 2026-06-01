@@ -16,9 +16,8 @@ Matt Hanson — rationale.work
 
 Designer-engineer working across AR, AI, and experiential systems.
 8 years at Meta (Spark AR, Orion AR glasses, FAIR Embodied AI).
-Now shipping consumer iOS apps solo with AI as coding partner —
-Heirloom Recipe Box (live on the App Store), Silly Questions
-(2-player AI art party game), Zero (shortform email post-mortem).
+Now applying that experience solo, shipping consumer products
+with AI as a coding partner.
 
 Writing on rationale.work/writing and rationaledesign.substack.com.
 ```
@@ -35,7 +34,7 @@ Submitting for your design-engineers list:
 
 **Matt Hanson** — [rationale.work](https://rationale.work)
 
-Designer-engineer working across AR, AI, and experiential systems. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now shipping consumer iOS apps solo with AI as coding partner — Heirloom Recipe Box (live on the App Store), Silly Questions (2-player AI art party game), Zero (shortform email post-mortem). Writing twice-monthly at [rationaledesign.substack.com](https://rationaledesign.substack.com) on building solo with AI.
+Designer-engineer working across AR, AI, and experiential systems. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now applying that experience solo, shipping consumer products with AI as a coding partner. Writing twice-monthly at [rationaledesign.substack.com](https://rationaledesign.substack.com) on building solo with AI.
 
 Happy to provide a square photo, additional links, or a shorter bio if the list format needs it.
 

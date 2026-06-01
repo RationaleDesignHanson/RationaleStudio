@@ -121,16 +121,3 @@ export const howWeWorkPageMetadata: Metadata = {
     canonical: 'https://rationale.work/how-we-work',
   },
 };
-
-export const thinkingPageMetadata: Metadata = {
-  title: 'Thinking',
-  description: 'Essays on product development, systematic execution, and building conviction-backed ventures. Insights from building Zero, Atlas, and Amplify.',
-  openGraph: {
-    title: 'Thinking — Rationale',
-    description: 'Essays on product development and systematic execution.',
-    url: 'https://rationale.work/thinking',
-  },
-  alternates: {
-    canonical: 'https://rationale.work/thinking',
-  },
-};

@@ -178,7 +178,7 @@ export default function WorkPage() {
                   {project.relatedInsight && (
                     <div className="pt-4 border-t border-terminal-gold/20">
                       <Link
-                        href={`/insights/${project.relatedInsight}`}
+                        href={`/clients/insights/${project.relatedInsight}`}
                         className="text-sm text-terminal-gold hover:underline inline-flex items-center gap-1"
                       >
                         Read the full story →

@@ -11,7 +11,7 @@ import { Container, Section } from '@/components/layout';
 import { Hero } from '@/components/sections/Hero';
 import { ResponsiveText, ResponsiveBox, ResponsiveButton } from '@/lib/ui/responsive';
 import { insights, getInsightBySlug, getRelatedInsights } from '@/lib/content/insights';
-import { ButtonPrimary, ButtonSecondary } from '@/components/ui';
+import { ButtonPrimary } from '@/components/ui';
 import type { Metadata } from 'next';
 
 interface InsightPageProps {
@@ -151,7 +151,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
                 {relatedArticles.map((related) => (
                   <Link
                     key={related.slug}
-                    href={`/insights/${related.slug}`}
+                    href={`/clients/insights/${related.slug}`}
                     className="group"
                   >
                     <div className="p-6 rounded-lg border border-border bg-muted hover:border-accent hover:bg-background transition-all h-full">
@@ -199,9 +199,6 @@ export default async function InsightPage({ params }: InsightPageProps) {
               <ButtonPrimary href="/contact" size="lg">
                 Get in touch
               </ButtonPrimary>
-              <ButtonSecondary href="/insights" size="lg">
-                Read more articles
-              </ButtonSecondary>
             </div>
           </div>
         </Container>

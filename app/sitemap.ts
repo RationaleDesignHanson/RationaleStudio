@@ -7,16 +7,6 @@ import {
 
 const BASE = 'https://rationale.work';
 
-const THINKING_ESSAYS = [
-  'build-first-trap',
-  'build-to-think',
-  'dual-engine-model',
-  'mental-models',
-  'methodology-origins',
-  'spec-vs-prototype',
-  'vision-proof-burden',
-] as const;
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -46,13 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Heirloom support pages (legal)
     { url: '/heirloom/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
     { url: '/heirloom/support', priority: 0.3, changeFrequency: 'yearly' as const },
-
-    // Thinking essays (existing static routes)
-    ...THINKING_ESSAYS.map((slug) => ({
-      url: `/thinking/${slug}`,
-      priority: 0.7,
-      changeFrequency: 'monthly' as const,
-    })),
   ];
 
   // Canonical writing essays — sourced from content/writing/posts.ts so

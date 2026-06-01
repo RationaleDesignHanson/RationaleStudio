@@ -76,7 +76,7 @@ export default function OwnerDashboardPage() {
             >
               <div className="font-semibold text-white mb-1">Blog Posts</div>
               <div className="text-xs text-gray-400">
-                Drafts ready for /thinking section
+                Drafts ready for /writing section
               </div>
             </Link>
 
@@ -180,7 +180,7 @@ export default function OwnerDashboardPage() {
           <h4 className="text-sm font-bold text-white">Publishing Tools</h4>
         </div>
         <p className="text-xs text-gray-400 mb-4">
-          One-click publish to /thinking, export social variants, copy to clipboard.
+          One-click publish to /writing, export social variants, copy to clipboard.
           Full workflow coming in later phase.
         </p>
         <div className="flex gap-3">

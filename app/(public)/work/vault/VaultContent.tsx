@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
-import { ArrowLeft, Lock } from 'lucide-react';
+import { ArrowLeft, Lock, ArrowRight } from 'lucide-react';
+import { listVaultEssays } from '@/lib/content/vault-writing';
 
 interface VaultItem {
   slug: string;
@@ -209,6 +210,52 @@ export function VaultContent() {
             </section>
           );
         })}
+
+        {/* WRITING */}
+        {listVaultEssays().length > 0 && (
+          <>
+            <ChapterRow index="02" kicker="WRITING" title="In vetting">
+              <p>
+                Essays staged for Substack, kept here while I vet them with partners. First-person, principle-first. Not yet public.
+              </p>
+            </ChapterRow>
+            {listVaultEssays().map((essay) => (
+              <section
+                key={essay.slug}
+                className="px-4 sm:px-6 md:px-8 py-8 md:py-10 border-t"
+                style={{ borderColor: 'var(--era-hairline)' }}
+              >
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
+                    <div className="md:col-span-2 flex items-baseline gap-3 md:gap-4 mb-3 md:mb-0">
+                      <span className="block w-[3px] self-stretch min-h-[2.5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
+                      <span className="font-mono text-base sm:text-lg md:text-xl tracking-wider leading-none" style={{ color: 'var(--accent)' }}>
+                        ✱
+                      </span>
+                    </div>
+                    <div className="md:col-span-10">
+                      <p className="text-[11px] font-mono tracking-[0.25em] uppercase mb-2 text-[var(--era-ink-muted)]">
+                        {essay.category} · {essay.readTime}
+                      </p>
+                      <h2 className="font-display text-2xl md:text-3xl leading-tight mb-1" style={{ color: 'var(--era-ink)' }}>
+                        {essay.title}
+                      </h2>
+                      <p className="text-base md:text-lg leading-relaxed text-[var(--era-ink-body)] max-w-3xl mb-4">
+                        {essay.subtitle}
+                      </p>
+                      <Link
+                        href={`/work/vault/writing/${essay.slug}`}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider border border-[var(--era-hairline)] text-[var(--era-ink)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                      >
+                        Read <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ))}
+          </>
+        )}
 
         {/* FOOTER */}
         <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">

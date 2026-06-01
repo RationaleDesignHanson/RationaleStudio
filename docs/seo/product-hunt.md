@@ -10,7 +10,7 @@ Two product launches plus a maker profile. Launch on a **Tuesday** for highest v
 
 **Headline:** Designer-engineer · ex-Meta (Spark AR, Orion, FAIR Embodied AI) · now solo
 
-**Bio:** Designer-engineer working across AR, AI, and experiential systems. Eight years at Meta leading product design across Spark AR, Orion, and FAIR Embodied AI. Now shipping consumer iOS apps solo with AI as coding partner — Heirloom Recipe Box, Silly Questions, Zero. Twice-monthly notes on building solo at rationaledesign.substack.com.
+**Bio:** Designer-engineer working across AR, AI, and experiential systems. Eight years at Meta leading product design across Spark AR, Orion, and FAIR Embodied AI. Now applying that experience solo, shipping consumer products with AI as a coding partner. Twice-monthly notes on building solo at rationaledesign.substack.com.
 
 **Links:**
 - Website: https://rationale.work

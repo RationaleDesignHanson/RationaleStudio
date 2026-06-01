@@ -10,19 +10,19 @@ Below: drafted copy for each profile, plus a one-time audit checklist.
 
 Use on: LinkedIn About section, Substack About page, GitHub README, rationale.work `/about` page, any guest-author bylines.
 
-> Matt Hanson — designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now shipping consumer iOS apps solo with AI as coding partner — Heirloom, Silly Questions, Zero, Nimbus.
+> Matt Hanson — designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now applying that experience solo, shipping consumer products with AI as a coding partner.
 
 ## Master bio (short — 145 chars)
 
 Use on: Twitter/X bio, LinkedIn headline, Product Hunt tagline, Are.na bio, any 160-char-limited surface.
 
-> Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo: Heirloom, Silly Questions, Zero.
+> Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo, shipping consumer products with AI as a coding partner.
 
 ## Master bio (tiny — 80 chars)
 
 Use where even the short bio doesn't fit.
 
-> Designer-engineer · ex-Meta (Spark AR, Orion, FAIR) · now solo: Heirloom, Silly Q.
+> Designer-engineer · ex-Meta (Spark AR, Orion, FAIR) · now building solo with AI.
 
 ---
 
@@ -30,7 +30,7 @@ Use where even the short bio doesn't fit.
 
 ### LinkedIn — linkedin.com/in/thematthanson
 
-- **Headline:** Designer-engineer · ex-Meta (Spark AR, Orion, FAIR) · now solo: Heirloom, Silly Questions, Zero
+- **Headline:** Designer-engineer · ex-Meta (Spark AR, Orion, FAIR) · now solo, shipping consumer products with AI as a coding partner
 - **About:** Master bio (long)
 - **Experience entries:** verify each is titled in a way the canonical bio matches — e.g., "Senior Product Design Manager · Spark AR · Meta · 2017-2023" not just "Designer · Meta"
 - **Featured section** (top of profile): pin rationale.work, Heirloom (App Store link or marketing site), the Sendfull podcast episode, Substack

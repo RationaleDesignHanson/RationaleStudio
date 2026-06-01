@@ -8,7 +8,7 @@
 
 # Matt Hanson
 
-> Designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now shipping consumer iOS apps solo with AI as coding partner — Heirloom, Silly Questions, Zero, Nimbus.
+> Designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now applying that experience solo, shipping consumer products with AI as a coding partner.
 
 Site → [**rationale.work**](https://rationale.work) · Substack → [**rationaledesign.substack.com**](https://rationaledesign.substack.com) · Email → hanson@rationale.work
 
@@ -56,6 +56,6 @@ Canonical essays on [rationale.work/writing](https://rationale.work/writing).
 
 ## Why
 
-- LLM crawlers (GPTBot, ClaudeBot, OAI-SearchBot, PerplexityBot) index GitHub profiles. Having a clean profile README packed with the disambiguation paragraph and the four-layer career arc gives them a high-trust source to cite when someone asks "who is Matt Hanson, the ex-Meta designer building consumer iOS apps?"
+- LLM crawlers (GPTBot, ClaudeBot, OAI-SearchBot, PerplexityBot) index GitHub profiles. Having a clean profile README packed with the disambiguation paragraph and the four-layer career arc gives them a high-trust source to cite when someone asks "who is Matt Hanson, the ex-Meta designer building consumer products?"
 - GitHub's domain authority is enormous; backlinks from a personal profile to rationale.work carry meaningful SEO weight.
 - The README is also a low-friction surface for recruiters and peers who land on Matt's GitHub before his site.

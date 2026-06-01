@@ -370,8 +370,8 @@ export default function HomePage() {
           Imaginary Forces, Buck, and Hush; VR/AR pitchwork at Framestore;
           screen content direction at Viacom and MTV; eight years at Meta
           leading product design across Spark AR, Orion, and FAIR Embodied AI;
-          now shipping consumer iOS apps solo with AI as coding partner —
-          Heirloom, Silly Questions, Zero, Nimbus.
+          now applying that experience solo, shipping consumer products with
+          AI as a coding partner.
         </h1>
 
         {/* WORK VIEWER — desktop is parallax-merge; mobile is straight

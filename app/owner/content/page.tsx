@@ -2,7 +2,7 @@
  * Content Library Index
  *
  * All content ready to publish or export:
- * - Blog posts for /thinking
+ * - Blog posts for /writing
  * - Case studies in multiple formats
  * - Social media content variants
  */
@@ -37,7 +37,7 @@ export default function ContentLibraryPage() {
           <FileText className="w-8 h-8 text-terminal-gold mb-4" />
           <h3 className="text-lg font-bold text-white mb-2">Blog Posts</h3>
           <p className="text-sm text-gray-400 mb-4">
-            Drafts ready for /thinking section. One-click publish workflow.
+            Drafts ready for /writing section. One-click publish workflow.
           </p>
           <div className="text-xs text-gray-500">3 drafts</div>
         </Link>
