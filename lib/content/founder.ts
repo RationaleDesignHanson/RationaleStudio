@@ -182,7 +182,7 @@ export const pastExperience: PastProject[] = [
       'Built entire commerce ecosystem from 0→1'
     ],
     skills: ['AR/VR Platform Design', '0-1 Product Development', 'Commerce UX', 'Developer Tools', 'Partnership Strategy'],
-    relatedInsight: 'building-ar-commerce-at-scale'
+    relatedInsight: 'ar-commerce-at-scale'
   },
   {
     title: 'Spark AR Platform',
