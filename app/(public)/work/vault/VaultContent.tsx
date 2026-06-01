@@ -105,7 +105,7 @@ const STATUS_META: Record<VaultItem['status'], { label: string; color: string }>
 };
 
 export function VaultContent() {
-  const [writingOpen, setWritingOpen] = useState(true);
+  const [writingOpen, setWritingOpen] = useState(false);
   const essays = listVaultEssays();
   return (
     <ProjectScope project="vault">
