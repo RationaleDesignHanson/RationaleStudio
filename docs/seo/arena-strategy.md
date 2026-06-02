@@ -15,7 +15,7 @@ If you're connected to / referenced by the same set of channels as Andy Allen, M
 **Display name:** Matt Hanson
 
 **Bio:**
-> Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo: Heirloom, Silly Questions, Zero.
+> Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo, shipping consumer products with AI as a coding partner.
 
 **Profile link:** https://rationale.work
 

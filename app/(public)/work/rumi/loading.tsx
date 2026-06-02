@@ -1,8 +1,8 @@
-import { UnlockGateSkeleton } from '@/components/unlock/UnlockGateSkeleton';
+import { CaseStudyLoadingSkeleton } from '@/components/case-study/CaseStudyLoadingSkeleton';
 
 export default function RumiLoading() {
   return (
-    <UnlockGateSkeleton
+    <CaseStudyLoadingSkeleton
       project="rumi"
       era="now"
       title="Rumi"

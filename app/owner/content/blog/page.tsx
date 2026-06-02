@@ -1,7 +1,7 @@
 /**
  * Blog Content Library
  *
- * Repository of blog posts for /thinking section
+ * Repository of blog posts for /writing section
  */
 
 'use client';
@@ -47,7 +47,7 @@ export default function BlogContentPage() {
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Blog Posts</h1>
             <p className="text-gray-400">
-              Drafts ready for /thinking section. One-click publish workflow coming soon.
+              Drafts ready for /writing section. One-click publish workflow coming soon.
             </p>
           </div>
           <button
@@ -104,7 +104,7 @@ export default function BlogContentPage() {
                 disabled
                 className="px-4 py-2 bg-gray-800 text-gray-600 text-sm font-medium rounded-lg cursor-not-allowed"
               >
-                Publish to /thinking
+                Publish to /writing
               </button>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function BlogContentPage() {
       <div className="mt-8 p-6 bg-gray-900/30 border border-gray-800 rounded-lg">
         <h3 className="text-lg font-bold text-white mb-3">Content Workflow (Coming Soon)</h3>
         <ul className="space-y-2 text-sm text-gray-400">
-          <li>• One-click publish to /thinking section</li>
+          <li>• One-click publish to /writing section</li>
           <li>• Auto-generate social variants (LinkedIn, Twitter)</li>
           <li>• Export as markdown or PDF</li>
           <li>• Schedule publication dates</li>

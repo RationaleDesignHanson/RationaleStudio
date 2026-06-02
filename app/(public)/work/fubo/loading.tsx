@@ -1,8 +1,8 @@
-import { UnlockGateSkeleton } from '@/components/unlock/UnlockGateSkeleton';
+import { CaseStudyLoadingSkeleton } from '@/components/case-study/CaseStudyLoadingSkeleton';
 
 export default function FuboLoading() {
   return (
-    <UnlockGateSkeleton
+    <CaseStudyLoadingSkeleton
       project="fubo"
       era="now"
       title="Fubo"

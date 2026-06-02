@@ -144,12 +144,6 @@ const CLIENT_PROJECTS: ClientProject[] = [
         path: '/clients/zero/shader-test',
         description: 'Technical demo - ASCII shader'
       },
-      // Content
-      {
-        title: 'Insights',
-        path: '/clients/insights',
-        description: 'Mental models for the AI era'
-      },
       // Investor Materials
       {
         title: 'Investors Overview',

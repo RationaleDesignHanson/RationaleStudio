@@ -15,6 +15,6 @@ export default function Image() {
     eyebrow: 'rationale.work',
     title: 'Matt Hanson',
     tagline:
-      'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo: Heirloom, Silly Questions, Zero.',
+      'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo, shipping consumer products with AI as a coding partner.',
   });
 }

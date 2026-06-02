@@ -25,7 +25,7 @@ interface PageMetadataOptions {
 const SITE_CONFIG = {
   name: 'Matt Hanson',
   title: 'Matt Hanson — designer-engineer (AR, AI, experiential)',
-  description: 'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark AR, Orion, FAIR Embodied AI at Meta), and AI. Now solo: Heirloom, Silly Questions, Zero.',
+  description: 'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark AR, Orion, FAIR Embodied AI at Meta), and AI. Now solo, shipping consumer products with AI as a coding partner.',
   url: 'https://rationale.work',
   ogImage: '/og.png',
   twitter: '@thematthanson',

@@ -40,7 +40,7 @@ Step-by-step manual actions to execute after the code-side fixes (committed) lan
   - Pin the Heirloom + Silly Questions + rationale-public repos (if public) for visibility.
 
 - [ ] **LinkedIn audit** (10 min)
-  - First line of headline = the H1 canonical paragraph from the plan (Tier H1, short version): "Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo: Heirloom, Silly Questions, Zero."
+  - First line of headline = the H1 canonical paragraph from the plan (Tier H1, short version): "Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo, shipping consumer products with AI as a coding partner."
   - Featured section: add rationale.work, Substack, Heirloom App Store, Silly Questions.
   - Custom URL: confirm `linkedin.com/in/thematthanson` is taken.
 
@@ -163,7 +163,7 @@ The signals worth watching:
    - If yes (sometime in months 2-3), all the Tier H work paid off.
 
 4. **AI search**
-   - In ChatGPT, ask: "Who is Matt Hanson, the ex-Meta designer building consumer iOS apps with AI?"
+   - In ChatGPT, ask: "Who is Matt Hanson, the ex-Meta designer building consumer products with AI?"
    - Today: probably gets it wrong or refuses. Target by month 3: cites rationale.work directly with the disambiguation paragraph.
 
 5. **PostHog dashboard at /owner/engagement**

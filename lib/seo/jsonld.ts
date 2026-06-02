@@ -33,10 +33,10 @@ export const PERSON_NAME = 'Matt Hanson';
  * places with a 200-char limit.
  */
 export const PERSON_DESCRIPTION =
-  'Matt Hanson — designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now shipping consumer iOS apps solo with AI as coding partner — Heirloom, Silly Questions, Zero, Nimbus.';
+  'Matt Hanson — designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now applying that experience solo, shipping consumer products with AI as a coding partner.';
 
 export const PERSON_TAGLINE_SHORT =
-  'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo: Heirloom, Silly Questions, Zero.';
+  'Designer-engineer. 25 years across animation, mixed-reality, AR platforms (Spark/Orion/FAIR), and AI. Now solo, shipping consumer products with AI as a coding partner.';
 
 export const PERSON_SAMEAS = [
   'https://www.linkedin.com/in/thematthanson',

@@ -1,6 +1,6 @@
 # Matt Hanson
 
-> Designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now shipping consumer iOS apps solo with AI as coding partner — Heirloom, Silly Questions, Zero, Nimbus.
+> Designer-engineer working across AR, AI, and experiential systems for 25 years. Animation and creative direction at Psyop, Imaginary Forces, Buck, and Hush. VR/AR pitchwork at Framestore. Screen content direction at Viacom and MTV. Eight years at Meta leading product design across Spark AR (creator platform), Orion (consumer AR glasses), and FAIR Embodied AI (SIRo, Motivo). Now applying that experience solo, shipping consumer products with AI as a coding partner.
 
 Site: https://rationale.work — personal portfolio, work archive, writing, contact.
 
