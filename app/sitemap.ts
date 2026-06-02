@@ -24,8 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/work/heirloom/evolution', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/work/silly-questions', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/work/zero', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/work/rumi', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/work/fubo', priority: 0.7, changeFrequency: 'monthly' as const },
+    // rumi + fubo intentionally omitted: confidential, noindex (see their layout.tsx)
     { url: '/work/framestore', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/work/spark-ar', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/work/orion', priority: 0.9, changeFrequency: 'monthly' as const },
