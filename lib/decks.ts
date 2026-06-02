@@ -47,6 +47,7 @@ export const DECKS: Record<string, Deck> = {
       '11','12','13','14','15','16','17','18','19',
       '21','22','23','24','26','27','28',
     ].map((n) => `page-${n}.jpg`),
+    gated: false,
   },
   'framestore-apex-assembly': {
     slug: 'framestore-apex-assembly',
@@ -83,6 +84,7 @@ export const DECKS: Record<string, Deck> = {
     publishedPages: Array.from({ length: 104 }, (_, i) =>
       `page-${String(i + 1).padStart(3, '0')}.jpg`,
     ),
+    gated: false,
   },
   'disney-work-samples-2022': {
     slug: 'disney-work-samples-2022',
@@ -95,6 +97,7 @@ export const DECKS: Record<string, Deck> = {
     publishedPages: Array.from({ length: 19 }, (_, i) =>
       `page-${String(i + 1).padStart(2, '0')}.jpg`,
     ),
+    gated: false,
   },
   'portfolio-2022': {
     slug: 'portfolio-2022',
@@ -107,6 +110,7 @@ export const DECKS: Record<string, Deck> = {
     publishedPages: Array.from({ length: 29 }, (_, i) =>
       `page-${String(i + 1).padStart(2, '0')}.jpg`,
     ),
+    gated: false,
   },
 };
 
