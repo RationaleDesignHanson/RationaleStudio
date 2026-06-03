@@ -28,7 +28,7 @@ const ITEMS: VaultItem[] = [
     title: 'Athletes First',
     subtitle: 'NIL platform strategy · 2024',
     blurb: 'AI platform to scale personal attention across 50+ college athletes. NIL workflow, agent tooling, and the pitch-deck case for an Amplify-style product. Confidential.',
-    href: '/clients/athletes-first/pitch-deck',
+    href: '/work/athletes-first',
   },
   {
     slug: 'fubo',

@@ -242,7 +242,7 @@ const CLIENT_PROJECTS: ClientProject[] = [
     pages: [
       {
         title: 'Pitch Deck',
-        path: '/clients/athletes-first/pitch-deck',
+        path: '/work/athletes-first',
         description: 'Product vision and platform strategy'
       }
     ]
