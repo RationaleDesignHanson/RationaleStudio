@@ -8,7 +8,8 @@
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { TrackedIframe } from '@/components/analytics/TrackedIframe';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 export function FuboContent() {
   return (
@@ -61,6 +62,38 @@ export function FuboContent() {
             <li>Setting up processes, design systems, and design practices that enable faster movement while maintaining a best-in-class user experience.</li>
           </ul>
         </ChapterRow>
+
+        {/* CHAPTER 02 — PROTOTYPE */}
+        <ChapterRow index="02" kicker="PROTOTYPE · THUMBNAIL GENERATOR" title="The working tool">
+          <p>
+            An AI thumbnail generator built in a two-week sprint: pick a league and team, choose visual styles, and it generates brand-consistent sports thumbnails across 200+ teams and 8 leagues. Below is the showcase build, driven by an exported manifest so it runs with no backend.
+          </p>
+        </ChapterRow>
+        <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-3 mb-3 text-xs font-mono text-[var(--era-ink-muted)]">
+              <span>iframe &rarr; /prototypes/fubo-showcase/</span>
+              <a
+                href="/prototypes/fubo-showcase/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--era-ink)] transition-colors"
+              >
+                open standalone <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+            <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ height: '780px' }}>
+              <TrackedIframe
+                prototype="fubo-showcase"
+                src="/prototypes/fubo-showcase/index.html"
+                title="Fubo · thumbnail-generator showcase"
+                className="w-full h-full"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* FOOTER */}
         <section className="px-4 sm:px-6 md:px-8 py-10 md:py-14 border-t border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/40">

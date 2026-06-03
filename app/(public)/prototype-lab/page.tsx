@@ -66,6 +66,18 @@ const PROTOTYPES: Prototype[] = [
     expected: 'good',
     note: 'CRA build. Asset paths fixed (were absolute-from-root, now scoped to /prototypes/zero-swipe/).',
   },
+  {
+    slug: 'fubo-showcase',
+    title: 'Fubo · Thumbnail Showcase (Tier 2)',
+    era: 'NOW',
+    kind: 'iframe',
+    entries: [
+      { label: 'showcase (manifest-driven)', href: '/prototypes/fubo-showcase/index.html' },
+      { label: 'original tool (needs local Flask)', href: '/prototypes/fubo/index.html' },
+    ],
+    expected: 'warn',
+    note: 'Showcase loads from cached manifest — zero ongoing cost. To populate: run the original fubo tool locally, generate combos, click Export, then `node scripts/build-fubo-showcase.mjs`. The manifest is empty until you do this.',
+  },
 ];
 
 const STATUS_META: Record<Status, { label: string; color: string; Icon: typeof CheckCircle2 }> = {
