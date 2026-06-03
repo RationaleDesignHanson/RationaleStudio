@@ -11,8 +11,7 @@
 
 import Link from 'next/link';
 import { BaseCard, BaseCardContent, BaseCardTitle } from '@/components/ui/BaseCard';
-import { ButtonPrimary } from '@/components/ui/ButtonHierarchy';
-import { ExternalLink, Zap, Layers, Palette } from 'lucide-react';
+import { Zap, Layers, Palette } from 'lucide-react';
 
 export default function FUBOCaseStudyPage() {
   return (
@@ -272,65 +271,6 @@ generate_thumbnail(
                   <span className="font-semibold text-white">F1</span>{' '}
                   <p className="text-xs text-gray-400">10 teams</p>{' '}
                 </div>{' '}
-              </div>{' '}
-            </div>{' '}
-          </div>{' '}
-        </div>{' '}
-      </section>{' '}
-      {/* Live Demo */}{' '}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-4 sm:px-6 md:px-8 border-b border-gray-800">
-        {' '}
-        <div className="max-w-5xl mx-auto">
-          {' '}
-          <div className="text-center mb-8">
-            {' '}
-            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-              {' '}
-              Working Prototype{' '}
-            </h2>{' '}
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              {' '}
-              Fully functional thumbnail generator with 11 visual styles, 200+ teams, and real-time
-              AI generation.{' '}
-            </p>{' '}
-          </div>{' '}
-          <div className="p-8 bg-gray-900/50 border border-accent/30 rounded-lg">
-            {' '}
-            <div className="flex flex-col items-center gap-6">
-              {' '}
-              <div className="w-16 h-16 bg-accent/20 border border-accent/40 rounded-full flex items-center justify-center">
-                <ExternalLink className="w-8 h-8 text-accent" />
-              </div>{' '}
-              <div className="text-center">
-                {' '}
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {' '}
-                  FUBO Thumbnail Generator v6.0{' '}
-                </h3>{' '}
-                <p className="text-sm text-gray-400 mb-6">
-                  Launch the working prototype to generate thumbnails in real-time. Fully functional with pre-configured AI integration.
-                </p>
-              </div>
-              <ButtonPrimary
-                href="/prototypes/fubo/index.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-                className="gap-2"
-              >
-                <ExternalLink className="w-5 h-5" />
-                Launch Prototype
-              </ButtonPrimary>
-              <div className="mt-4 p-4 bg-black/30 border border-gray-800 rounded-lg text-xs text-gray-400 max-w-md">
-                <p className="mb-2">
-                  <span className="font-semibold text-white">Usage:</span>
-                </p>
-                <ol className="list-decimal list-inside space-y-1">
-                  <li>Select a league and team from the dropdowns</li>
-                  <li>Choose one or more visual styles to apply</li>
-                  <li>Click "Generate" to create styled thumbnails</li>
-                  <li>Use bulk mode to process entire rosters</li>
-                </ol>
               </div>{' '}
             </div>{' '}
           </div>{' '}
