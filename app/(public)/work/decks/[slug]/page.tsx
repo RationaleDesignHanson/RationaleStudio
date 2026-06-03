@@ -7,6 +7,16 @@ export function generateStaticParams() {
   return listDeckSlugs().map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const deck = getDeck(slug);
+  return {
+    title: deck ? `${deck.title} · Vault` : 'Vault Deck',
+    // Gated decks are confidential — keep them out of search.
+    robots: deck && deck.gated === false ? undefined : { index: false, follow: false },
+  };
+}
+
 export default async function DeckPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const deck = getDeck(slug);
@@ -19,7 +29,7 @@ export default async function DeckPage({ params }: { params: Promise<{ slug: str
 
   return (
     <UnlockGate
-      scope={`deck-${deck.slug}`}
+      scope={deck.scope ?? `deck-${deck.slug}`}
       project="vault"
       era={deck.era}
       title={deck.title}
