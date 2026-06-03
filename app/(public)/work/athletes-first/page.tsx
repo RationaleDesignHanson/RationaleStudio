@@ -1,20 +1,17 @@
 /**
- * Athletes First Pitch Deck Page
+ * Athletes First Pitch Deck — public vault route.
  *
- * Interactive, linear pitch deck for Athletes First pilot program.
- * Protected by authentication - requires A1/halloffame credentials
- *
- * Route: /clients/athletes-first/pitch-deck
- *
- * Performance: Lazy loaded (806 lines) - reduces initial bundle by ~8KB
+ * Interactive, linear pitch deck for the Athletes First pilot program.
+ * Moved out of /clients/* (Firebase RBAC + ClientAuthGuard) into the public
+ * vault tree so it opens without a login, alongside the other ungated vault
+ * projects. Linked from the Vault index. noindex via layout.tsx.
  */
 
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ClientAuthGuard } from '@/components/auth/ClientAuthGuard';
 
-// Lazy load pitch deck (806 lines, client-side only)
+// Lazy load pitch deck (806 lines, client-side only).
 const AthletesFirstPitchDeck = dynamic(
   () => import('@/components/athletes-first/AthletesFirstPitchDeck'),
   {
@@ -33,9 +30,5 @@ const AthletesFirstPitchDeck = dynamic(
 );
 
 export default function AthletesFirstPitchDeckPage() {
-  return (
-    <ClientAuthGuard requiredClient="athletes-first">
-      <AthletesFirstPitchDeck />
-    </ClientAuthGuard>
-  );
+  return <AthletesFirstPitchDeck />;
 }
