@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { UnlockGate } from '@/components/unlock/UnlockGate';
 import { getVaultEssay, listVaultEssays } from '@/lib/content/vault-writing';
 import { VaultEssayReader } from './VaultEssayReader';
 
@@ -25,5 +26,16 @@ export default async function VaultWritingPage({ params }: Props) {
   const essay = getVaultEssay(slug);
   if (!essay) notFound();
 
-  return <VaultEssayReader essay={essay} />;
+  return (
+    <UnlockGate
+      scope="vault"
+      project="vault"
+      era="now"
+      title={essay.title}
+      subtitle={essay.subtitle}
+      meta="Writing · in vetting"
+    >
+      <VaultEssayReader essay={essay} />
+    </UnlockGate>
+  );
 }

@@ -1,8 +1,8 @@
-import { CaseStudyLoadingSkeleton } from '@/components/case-study/CaseStudyLoadingSkeleton';
+import { UnlockGateSkeleton } from '@/components/unlock/UnlockGateSkeleton';
 
 export default function NimbusLoading() {
   return (
-    <CaseStudyLoadingSkeleton
+    <UnlockGateSkeleton
       project="nimbus"
       era="now"
       title="Nimbus"
