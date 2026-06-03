@@ -236,6 +236,26 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* Deck slide transitions — directional, so a swipe reads as moving between
+   slides. Forward enters from the right, back enters from the left. */
+@keyframes deckSlideInFromRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes deckSlideInFromLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.deck-slide-next { animation: deckSlideInFromRight 0.3s ease-out; }
+.deck-slide-prev { animation: deckSlideInFromLeft 0.3s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-slide-next,
+  .deck-slide-prev {
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
 /* Nudge animation for navigation hint */
 @keyframes nudge {
   0%, 100% {

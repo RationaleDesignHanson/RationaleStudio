@@ -49,6 +49,8 @@ export default function SanitaryWasteDeck() {
   const sections = sanitaryWasteSections;
   const [activeSection, setActiveSection] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
+  // +1 = moved forward, -1 = moved back. Drives the slide-in transition.
+  const [direction, setDirection] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showSectionMenu, setShowSectionMenu] = useState(false);
   const slideContainerRef = useRef<HTMLDivElement>(null);
@@ -119,47 +121,33 @@ export default function SanitaryWasteDeck() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   });
 
-  // Touch/swipe gesture support with improved detection and haptic feedback
+  // Touch/swipe gesture support. Keep this forgiving: a deliberate (and often
+  // slower) horizontal swipe should reliably flip the slide. We only require
+  // that the horizontal movement clearly dominates the vertical, so we don't
+  // hijack the page's normal vertical scroll on content-heavy slides. No
+  // swipe-speed cap and no hard vertical-pixel cap — those made the gesture
+  // feel broken and were the main source of "swipe doesn't work" confusion.
   useEffect(() => {
     let touchStartX = 0;
     let touchStartY = 0;
-    let touchStartTime = 0;
-    const minSwipeDistance = 50;
-    const maxSwipeTime = 300; // ms
-    const verticalScrollThreshold = 30; // px
+    const minSwipeDistance = 45; // px
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
       touchStartY = e.changedTouches[0].screenY;
-      touchStartTime = Date.now();
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndX = e.changedTouches[0].screenX;
-      const touchEndY = e.changedTouches[0].screenY;
-      const touchEndTime = Date.now();
+      const deltaX = e.changedTouches[0].screenX - touchStartX;
+      const deltaY = e.changedTouches[0].screenY - touchStartY;
 
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
-      const deltaTime = touchEndTime - touchStartTime;
-
-      // Only trigger if:
-      // 1. Horizontal swipe is dominant (2:1 ratio)
-      // 2. Meets distance threshold
-      // 3. Fast swipe (not slow drag)
-      // 4. Not vertical scroll attempt
-      const isHorizontalDominant = Math.abs(deltaX) > Math.abs(deltaY) * 2;
+      const isHorizontalDominant = Math.abs(deltaX) > Math.abs(deltaY) * 1.5;
       const meetsDistance = Math.abs(deltaX) > minSwipeDistance;
-      const isFastSwipe = deltaTime < maxSwipeTime;
-      const notVerticalScroll = Math.abs(deltaY) < verticalScrollThreshold;
 
-      if (isHorizontalDominant && meetsDistance && isFastSwipe && notVerticalScroll) {
-        // Haptic feedback
+      if (isHorizontalDominant && meetsDistance) {
         if ('vibrate' in navigator) {
           navigator.vibrate(10);
         }
-
-        // Trigger slide change
         if (deltaX > 0) {
           previousSlide();
         } else {
@@ -168,8 +156,8 @@ export default function SanitaryWasteDeck() {
       }
     };
 
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
@@ -177,24 +165,36 @@ export default function SanitaryWasteDeck() {
     };
   });
 
+  // Linear forward step: advance within the section, then roll into the next
+  // section's first slide. Swiping right walks the whole deck end to end.
   const nextSlide = () => {
+    setDirection(1);
     if (activeSlide < totalSlides - 1) {
       setActiveSlide(activeSlide + 1);
-    } else {
-      nextSection();
+    } else if (activeSection < sections.length - 1) {
+      setActiveSection(activeSection + 1);
+      setActiveSlide(0);
     }
   };
 
+  // Linear back step: step back within the section, then roll into the
+  // PREVIOUS section's LAST slide (not its first) so back-navigation mirrors
+  // forward-navigation and never silently skips slides.
   const previousSlide = () => {
+    setDirection(-1);
     if (activeSlide > 0) {
       setActiveSlide(activeSlide - 1);
-    } else {
-      previousSection();
+    } else if (activeSection > 0) {
+      const prevSection = activeSection - 1;
+      setActiveSection(prevSection);
+      setActiveSlide(sections[prevSection].slides.length - 1);
     }
   };
 
+  // Section jumps (Arrow Up/Down, dropdown) land on the section's first slide.
   const nextSection = () => {
     if (activeSection < sections.length - 1) {
+      setDirection(1);
       setActiveSection(activeSection + 1);
       setActiveSlide(0);
     }
@@ -202,14 +202,21 @@ export default function SanitaryWasteDeck() {
 
   const previousSection = () => {
     if (activeSection > 0) {
+      setDirection(-1);
       setActiveSection(activeSection - 1);
       setActiveSlide(0);
     }
   };
 
   const goToSection = (index: number) => {
+    setDirection(index >= activeSection ? 1 : -1);
     setActiveSection(index);
     setActiveSlide(0);
+  };
+
+  const goToSlide = (index: number) => {
+    setDirection(index >= activeSlide ? 1 : -1);
+    setActiveSlide(index);
   };
 
   // Fullscreen functionality
@@ -326,7 +333,7 @@ export default function SanitaryWasteDeck() {
                   {sections[activeSection].slides.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveSlide(index)}
+                      onClick={() => goToSlide(index)}
                       className={`transition-all ${
                         index === activeSlide
                           ? 'h-1.5 w-6 bg-[#E85D42] rounded-full'
@@ -452,8 +459,11 @@ export default function SanitaryWasteDeck() {
         </div>
 
         {/* Slide Content */}
-        <div ref={slideContainerRef} className="flex-1 pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 px-4 sm:px-8 overflow-y-auto">
-          <div className="max-w-5xl mx-auto">
+        <div ref={slideContainerRef} className="flex-1 pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 px-4 sm:px-8 overflow-y-auto overflow-x-hidden">
+          <div
+            key={`${activeSection}-${activeSlide}`}
+            className={`max-w-5xl mx-auto ${direction >= 0 ? 'deck-slide-next' : 'deck-slide-prev'}`}
+          >
             {/* Slide Header */}
             <div className={`${currentSlide.slideNumber === 1 ? 'mb-8 md:mb-12 text-center' : 'mb-6 md:mb-8'}`}>
               {/* Navigation Chevrons + Header - Hide on opening slide for cleaner look */}
