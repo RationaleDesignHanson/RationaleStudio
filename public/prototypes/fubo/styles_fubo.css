@@ -1,0 +1,1134 @@
+/* FUBO Branded Dark Theme
+ * Primary: FUBO Orange #FF6C00
+ * Background: Charcoal Grey #2D2D2D
+ * Text: White #FFFFFF
+ */
+
+:root {
+    /* FUBO Color System */
+    --fubo-orange: #FF6C00;
+    --fubo-orange-hover: #FF8534;
+    --fubo-orange-light: #FFA366;
+
+    /* Terminal Gold System (Rationale Design) */
+    --terminal-gold: #FFD700;
+    --terminal-gold-hover: #FFE34D;
+    --terminal-gold-dark: #E5C100;
+    --terminal-gold-light: #FFED4E;
+
+    /* Backgrounds (Aligned with Rationale gray scale) */
+    --bg-primary: #171717;      /* gray-900 */
+    --bg-surface: #262626;      /* gray-800 */
+    --bg-elevated: #404040;     /* gray-700 */
+    --bg-input: #353535;
+
+    /* Borders */
+    --border-primary: #4A4A4A;
+    --border-focus: var(--terminal-gold);
+    --border-glass: rgba(255, 255, 255, 0.1);
+
+    /* Text */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-tertiary: #808080;
+    --text-gold: var(--terminal-gold);
+
+    /* Status Colors */
+    --status-success: #10B981;
+    --status-warning: #F59E0B;
+    --status-error: #EF4444;
+    --status-info: #3B82F6;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-orange: 0 0 20px rgba(255, 108, 0, 0.3);
+    --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+    --shadow-gold-strong: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+/* Base Styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'IBM Plex Mono', monospace, sans-serif;
+}
+
+/* Terminal Font */
+.font-terminal {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: -0.02em;
+}
+
+/* Override Tailwind defaults for dark theme */
+.bg-gray-100 {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-white {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary) !important;
+}
+
+.bg-gray-50 {
+    background-color: var(--bg-elevated) !important;
+}
+
+.text-gray-800,
+.text-gray-700,
+.text-gray-600 {
+    color: var(--text-primary) !important;
+}
+
+.text-gray-500 {
+    color: var(--text-secondary) !important;
+}
+
+.border-gray-300,
+.border-gray-200 {
+    border-color: var(--border-primary) !important;
+}
+
+/* Headers with Fluid Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: clamp(1.75rem, 1.25rem + 1.2vw, 3rem);
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1.125rem + 0.8vw, 2.25rem);
+    line-height: 1.375;
+}
+
+h3 {
+    font-size: clamp(1.25rem, 1rem + 0.5vw, 1.875rem);
+    line-height: 1.375;
+}
+
+.section-header {
+    border-left: 4px solid var(--fubo-orange);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Step Indicators */
+.step-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--fubo-orange);
+    color: white;
+    font-weight: 700;
+    margin-right: 0.75rem;
+    box-shadow: var(--shadow-orange);
+}
+
+/* Button Hierarchy */
+/* PRIMARY BUTTON - Keep FUBO Orange for primary actions */
+.btn-primary {
+    background: linear-gradient(135deg, var(--fubo-orange), #FF8534);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(255, 108, 0, 0.5);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(255, 108, 0, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+}
+
+/* SECONDARY BUTTON - Terminal Gold accent */
+.btn-secondary {
+    background: transparent;
+    color: var(--terminal-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: 2px solid var(--terminal-gold);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    border-color: var(--terminal-gold-hover);
+    color: var(--terminal-gold-hover);
+}
+
+.btn-secondary:focus-visible {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.1);
+}
+
+/* TERTIARY BUTTON - Text only with underline */
+.btn-tertiary {
+    background: transparent;
+    color: var(--terminal-gold);
+    padding: 0.5rem 0;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.btn-tertiary:hover {
+    text-decoration: underline;
+    color: var(--terminal-gold-hover);
+}
+
+.btn-tertiary:focus-visible {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+}
+
+/* Cards */
+.card {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-primary);
+}
+
+.card-elevated {
+    background-color: var(--bg-elevated);
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--terminal-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+/* Terminal-styled inputs */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+input:read-only,
+input:disabled {
+    background-color: var(--bg-surface);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Radio & Checkbox */
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--fubo-orange);
+}
+
+/* Progress Bars */
+.progress-bar {
+    background-color: var(--bg-elevated);
+    border-radius: 9999px;
+    height: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, var(--fubo-orange), var(--terminal-gold));
+    height: 100%;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: progress-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+/* QA Badges */
+.qa-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.qa-badge-pass {
+    background-color: var(--status-success);
+    color: white;
+}
+
+.qa-badge-review {
+    background-color: var(--status-warning);
+    color: white;
+}
+
+.qa-badge-fail {
+    background-color: var(--status-error);
+    color: white;
+}
+
+/* Section Backgrounds - Override Tailwind */
+.bg-blue-50 {
+    background-color: rgba(255, 108, 0, 0.05) !important;
+    border-color: rgba(255, 108, 0, 0.2) !important;
+}
+
+.bg-green-50 {
+    background-color: rgba(16, 185, 129, 0.05) !important;
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.bg-purple-50 {
+    background-color: rgba(139, 92, 246, 0.05) !important;
+    border-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.bg-yellow-50 {
+    background-color: rgba(245, 158, 11, 0.05) !important;
+    border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.bg-orange-50 {
+    background-color: rgba(255, 108, 0, 0.05) !important;
+    border-color: rgba(255, 108, 0, 0.2) !important;
+}
+
+.bg-indigo-50 {
+    background-color: rgba(99, 102, 241, 0.05) !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Text Color Overrides for Headers in Colored Sections */
+.bg-blue-50 h3,
+.bg-blue-50 h4,
+.bg-green-50 h3,
+.bg-green-50 h4,
+.bg-purple-50 h3,
+.bg-purple-50 h4 {
+    color: var(--text-primary) !important;
+}
+
+/* Loading Spinner */
+.spinner-orange {
+    border-color: var(--fubo-orange);
+    border-right-color: transparent;
+}
+
+/* Hover Effects */
+.hover-orange:hover {
+    background-color: rgba(255, 108, 0, 0.1);
+    border-color: var(--fubo-orange-hover);
+}
+
+/* Tab System */
+.tab-button {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    color: var(--text-primary);
+}
+
+.tab-button.active {
+    border-bottom-color: var(--fubo-orange);
+    color: var(--fubo-orange);
+}
+
+/* Segmented Toggle Buttons */
+.toggle-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    flex: 1;
+    border-radius: 0.375rem;
+}
+
+.toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.toggle-btn.active {
+    background-color: var(--fubo-orange);
+    color: white;
+}
+
+/* Notifications */
+.notification {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.notification-success {
+    background-color: var(--status-success);
+    color: white;
+}
+
+.notification-error {
+    background-color: var(--status-error);
+    color: white;
+}
+
+.notification-warning {
+    background-color: var(--status-warning);
+    color: white;
+}
+
+.notification-info {
+    background-color: var(--fubo-orange);
+    color: white;
+}
+
+/* Result Cards */
+.result-card {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-primary);
+    transition: all 0.2s ease;
+}
+
+.result-card:hover {
+    border-color: var(--fubo-orange);
+    box-shadow: var(--shadow-lg), var(--shadow-orange);
+    transform: translateY(-2px);
+}
+
+/* Modal/Preview */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    background-color: var(--bg-surface);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--fubo-orange);
+}
+
+/* Collapsible Sections */
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 1rem;
+    background-color: var(--bg-elevated);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.collapsible-header:hover {
+    background-color: rgba(255, 108, 0, 0.05);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+    padding: 0;
+}
+
+.collapsible-content-expanded {
+    max-height: 5000px;
+    opacity: 1;
+    padding: 1rem;
+}
+
+/* Quick Start */
+.quick-start-card {
+    background: linear-gradient(135deg, var(--fubo-orange), var(--fubo-orange-hover));
+    padding: 2rem;
+    border-radius: 0.75rem;
+    color: white;
+    box-shadow: var(--shadow-lg), var(--shadow-orange);
+    margin-bottom: 1.5rem;
+}
+
+.quick-start-button {
+    background-color: white;
+    color: var(--fubo-orange);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s ease;
+}
+
+.quick-start-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Scrollbar Styling (for dark theme) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--fubo-orange);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+    outline: 2px solid var(--fubo-orange);
+    outline-offset: 2px;
+}
+
+/* Utility Classes */
+.text-orange {
+    color: var(--fubo-orange) !important;
+}
+
+.bg-orange {
+    background-color: var(--fubo-orange) !important;
+}
+
+.border-orange {
+    border-color: var(--fubo-orange) !important;
+}
+
+.glow-orange {
+    box-shadow: var(--shadow-orange);
+}
+
+/* Animation */
+@keyframes pulse-orange {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse-orange {
+    animation: pulse-orange 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Image Preview Enhancement */
+.image-preview-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.image-preview-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 108, 0, 0.2),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.image-preview-wrapper:hover::before {
+    left: 100%;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--bg-surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--fubo-orange);
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--fubo-orange);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Segmented Button Toggle */
+.segmented-toggle {
+    display: inline-flex;
+    background-color: var(--bg-elevated);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    border: 1px solid var(--border-primary);
+}
+
+.segmented-toggle-option {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    border: none;
+    background: transparent;
+}
+
+.segmented-toggle-option:hover {
+    color: var(--text-primary);
+}
+
+.segmented-toggle-option-active {
+    background-color: var(--fubo-orange);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========== PHASE 2: ENHANCED HOVER EFFECTS ========== */
+
+/* Segmented Toggle Enhanced Hover */
+.segmented-toggle {
+    transition: all 0.2s ease;
+}
+
+.segmented-toggle:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.segmented-toggle .toggle-btn:hover:not(.active) {
+    background-color: rgba(255, 215, 0, 0.05);
+    color: var(--terminal-gold);
+}
+
+/* Select Dropdowns Enhanced Hover */
+select:hover:not(:focus) {
+    border-color: rgba(255, 215, 0, 0.4);
+    background-color: rgba(255, 215, 0, 0.02);
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+/* Stop Button Enhanced Hover */
+#v6StopBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.5);
+}
+
+#v6StopBtn:active {
+    transform: translateY(0);
+}
+
+/* Radio & Checkbox Enhanced Hover */
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+/* Glass Card Enhanced Hover on Sidebar Sections */
+.glass-card.border.border-gray-700:hover {
+    border-color: rgba(255, 215, 0, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* Export Section Enhanced Hover */
+#v6ExportSection:hover {
+    border-color: var(--terminal-gold-hover);
+    box-shadow: var(--shadow-gold-strong);
+}
+
+/* Icon Hover Effects */
+[data-feather]:hover {
+    filter: brightness(1.2);
+}
+
+/* Top Bar Button Enhanced Hover */
+#imageInputsBtn:hover,
+#compositingBtn:hover,
+#importBtn:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* QA Filter & League Filter Enhanced Hover */
+#v6QAFilter:hover,
+#v6LeagueFilter:hover {
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+/* ========== PHASE 3: ACCESSIBILITY & ADVANCED POLISH ========== */
+
+/* Enhanced Focus Indicators (WCAG AAA) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.toggle-btn:focus-visible {
+    outline: 3px solid var(--terminal-gold) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* Focus styles for custom elements */
+.result-card:focus-within {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.15);
+}
+
+.glass-card:focus-within {
+    border-color: var(--terminal-gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Skip Link for Keyboard Navigation */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--terminal-gold);
+    color: var(--bg-primary);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: 700;
+    z-index: 100;
+    border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Keyboard Navigation Hints */
+[tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+}
+
+/* Enhanced Focus for Modal Close Buttons */
+.modal-content button[onclick*="close"]:focus-visible {
+    outline: 3px solid var(--terminal-gold);
+    outline-offset: 2px;
+    background-color: rgba(255, 215, 0, 0.2);
+}
+
+/* Focus trap visualization */
+.modal-overlay:focus-within {
+    outline: none;
+}
+
+/* Keyboard-only focus (hide focus for mouse users) */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Advanced Micro-Interactions */
+
+/* Button Press Animation */
+button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+.btn-primary:active {
+    transform: scale(0.98) translateY(0);
+}
+
+/* Select Dropdown Open Animation */
+select:focus {
+    animation: select-open 0.2s ease;
+}
+
+@keyframes select-open {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Toggle Button Ripple Effect */
+.toggle-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.toggle-btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Card Entrance Animation with Stagger */
+@keyframes card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.result-card {
+    animation: card-entrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stagger delay classes (applied via JavaScript) */
+.result-card:nth-child(1) { animation-delay: 0ms; }
+.result-card:nth-child(2) { animation-delay: 50ms; }
+.result-card:nth-child(3) { animation-delay: 100ms; }
+.result-card:nth-child(4) { animation-delay: 150ms; }
+.result-card:nth-child(5) { animation-delay: 200ms; }
+.result-card:nth-child(6) { animation-delay: 250ms; }
+.result-card:nth-child(7) { animation-delay: 300ms; }
+.result-card:nth-child(8) { animation-delay: 350ms; }
+.result-card:nth-child(n+9) { animation-delay: 400ms; }
+
+/* Glass Card Entrance */
+@keyframes glass-card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+        backdrop-filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        backdrop-filter: blur(12px);
+    }
+}
+
+.glass-card {
+    animation: glass-card-entrance 0.5s ease forwards;
+}
+
+/* Progress Bar Fill Animation */
+#v6ProgressBar {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Generate Button Pulse Enhancement */
+@keyframes button-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 6px -1px rgba(255, 108, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px -1px rgba(255, 108, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+}
+
+#v6GenerateBtn.animate-yellow-pulse {
+    animation: button-pulse 2s ease-in-out infinite;
+}
+
+/* Icon Rotation on Hover */
+button:hover [data-feather] {
+    animation: icon-wiggle 0.5s ease;
+}
+
+@keyframes icon-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+/* Loading State Animations */
+.loading-pulse {
+    animation: loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Typography & Spacing Refinements */
+
+/* Screen Reader Only Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Consistent Spacing System */
+.space-section {
+    margin-bottom: 2rem;
+}
+
+.space-group {
+    margin-bottom: 1rem;
+}
+
+/* Enhanced Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+/* Improved Readability */
+p, li, span {
+    line-height: 1.5;
+}
+
+/* Consistent Border Radius */
+.glass-card,
+button,
+select,
+input,
+textarea {
+    border-radius: 0.5rem;
+}
+
+/* Enhanced Text Contrast for Accessibility */
+.text-low-contrast {
+    color: var(--text-secondary);
+}
+
+.text-high-contrast {
+    color: var(--text-primary);
+}
+
+/* Refined Shadow System */
+.shadow-subtle {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow-card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-elevated {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-glow-gold {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3),
+                0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Refined Spacing for Glass Cards */
+.glass-card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Consistent Gap System */
+.gap-xs { gap: 0.5rem; }
+.gap-sm { gap: 0.75rem; }
+.gap-md { gap: 1rem; }
+.gap-lg { gap: 1.5rem; }
+.gap-xl { gap: 2rem; }
+
+/* Button Spacing Consistency */
+button {
+    padding: 0.625rem 1.25rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.125rem;
+}
+
+/* Form Element Consistency */
+input,
+select,
+textarea {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.875rem;
+}
+
+/* Icon Alignment */
+[data-feather] {
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+/* Improved Modal Spacing */
+.modal-content {
+    padding: 1.5rem;
+}
+
+.modal-content h2,
+.modal-content h3 {
+    margin-bottom: 1rem;
+}
+
+/* Result Card Refinements */
+.result-card {
+    padding: 0.5rem;
+}
+
+.result-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Enhanced Visual Hierarchy with Color */
+.text-terminal-gold {
+    color: var(--terminal-gold);
+    font-weight: 600;
+}
+
+.text-fubo-orange {
+    color: var(--fubo-orange);
+    font-weight: 600;
+}
+
+/* Refined Z-Index System */
+.z-base { z-index: 0; }
+.z-dropdown { z-index: 10; }
+.z-sticky { z-index: 20; }
+.z-modal-backdrop { z-index: 40; }
+.z-modal { z-index: 50; }
+.z-tooltip { z-index: 60; }
+
