@@ -1,39 +1,156 @@
 {
-  "generatedAt": "2025-12-16T00:00:00.000Z",
-  "source": "live fubo tool exports (baked)",
+  "generatedAt": "2026-06-04T20:18:08.734Z",
+  "source": "gemini gen + baked exports",
   "leagues": {
+    "Bundesliga": {
+      "Bayern Munich": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__video-game__TeamNews.jpg"
+        }
+      ]
+    },
+    "EPL": {
+      "Manchester United": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__video-game__TeamNews.jpg"
+        }
+      ]
+    },
+    "La Liga": {
+      "Real Madrid": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__video-game__TeamNews.jpg"
+        }
+      ]
+    },
+    "MLS": {
+      "Inter Miami": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__video-game__TeamNews.jpg"
+        }
+      ]
+    },
     "NBA": {
       "Atlanta Hawks": [
         {
           "style": "comic-book",
           "content": "TeamNews",
-          "url": "cache/NBA__Atlanta-Hawks__comic-book__TeamNews.jpg"
+          "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__risograph__Highlights.jpg"
         },
         {
           "style": "video-game",
           "content": "TeamNews",
-          "url": "cache/NBA__Atlanta-Hawks__video-game__TeamNews.jpg"
-        },
-        {
-          "style": "risograph",
-          "content": "Highlights",
-          "url": "cache/NBA__Atlanta-Hawks__risograph__Highlights.jpg"
-        }
-      ],
-      "Boston Celtics": [
-        {
-          "style": "risograph",
-          "content": "Highlights",
-          "url": "cache/NBA__Boston-Celtics__risograph__Highlights.jpg"
+          "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__video-game__TeamNews.jpg"
         }
       ]
     },
     "NFL": {
       "Arizona Cardinals": [
         {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__comic-book__TeamNews.jpg"
+        },
+        {
           "style": "risograph",
           "content": "Highlights",
-          "url": "cache/NFL__Arizona-Cardinals__risograph__Highlights.jpg"
+          "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__video-game__TeamNews.jpg"
+        }
+      ]
+    },
+    "NHL": {
+      "New York Rangers": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__video-game__TeamNews.jpg"
+        }
+      ]
+    },
+    "Serie A": {
+      "Juventus": [
+        {
+          "style": "comic-book",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__comic-book__TeamNews.jpg"
+        },
+        {
+          "style": "risograph",
+          "content": "Highlights",
+          "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__risograph__Highlights.jpg"
+        },
+        {
+          "style": "video-game",
+          "content": "TeamNews",
+          "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__video-game__TeamNews.jpg"
         }
       ]
     }
@@ -45,39 +162,172 @@
   ],
   "combos": [
     {
+      "league": "Bundesliga",
+      "team": "Bayern Munich",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "Bundesliga",
+      "team": "Bayern Munich",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__risograph__Highlights.jpg"
+    },
+    {
+      "league": "Bundesliga",
+      "team": "Bayern Munich",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/Bundesliga__Bayern-Munich__video-game__TeamNews.jpg"
+    },
+    {
+      "league": "EPL",
+      "team": "Manchester United",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "EPL",
+      "team": "Manchester United",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__risograph__Highlights.jpg"
+    },
+    {
+      "league": "EPL",
+      "team": "Manchester United",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/EPL__Manchester-United__video-game__TeamNews.jpg"
+    },
+    {
+      "league": "La Liga",
+      "team": "Real Madrid",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "La Liga",
+      "team": "Real Madrid",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__risograph__Highlights.jpg"
+    },
+    {
+      "league": "La Liga",
+      "team": "Real Madrid",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/La-Liga__Real-Madrid__video-game__TeamNews.jpg"
+    },
+    {
+      "league": "MLS",
+      "team": "Inter Miami",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "MLS",
+      "team": "Inter Miami",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__risograph__Highlights.jpg"
+    },
+    {
+      "league": "MLS",
+      "team": "Inter Miami",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/MLS__Inter-Miami__video-game__TeamNews.jpg"
+    },
+    {
       "league": "NBA",
       "team": "Atlanta Hawks",
       "style": "comic-book",
       "content": "TeamNews",
-      "url": "cache/NBA__Atlanta-Hawks__comic-book__TeamNews.jpg"
+      "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "NBA",
+      "team": "Atlanta Hawks",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__risograph__Highlights.jpg"
     },
     {
       "league": "NBA",
       "team": "Atlanta Hawks",
       "style": "video-game",
       "content": "TeamNews",
-      "url": "cache/NBA__Atlanta-Hawks__video-game__TeamNews.jpg"
+      "url": "/prototypes/fubo-showcase/cache/NBA__Atlanta-Hawks__video-game__TeamNews.jpg"
     },
     {
-      "league": "NBA",
-      "team": "Atlanta Hawks",
-      "style": "risograph",
-      "content": "Highlights",
-      "url": "cache/NBA__Atlanta-Hawks__risograph__Highlights.jpg"
-    },
-    {
-      "league": "NBA",
-      "team": "Boston Celtics",
-      "style": "risograph",
-      "content": "Highlights",
-      "url": "cache/NBA__Boston-Celtics__risograph__Highlights.jpg"
+      "league": "NFL",
+      "team": "Arizona Cardinals",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__comic-book__TeamNews.jpg"
     },
     {
       "league": "NFL",
       "team": "Arizona Cardinals",
       "style": "risograph",
       "content": "Highlights",
-      "url": "cache/NFL__Arizona-Cardinals__risograph__Highlights.jpg"
+      "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__risograph__Highlights.jpg"
+    },
+    {
+      "league": "NFL",
+      "team": "Arizona Cardinals",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/NFL__Arizona-Cardinals__video-game__TeamNews.jpg"
+    },
+    {
+      "league": "NHL",
+      "team": "New York Rangers",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "NHL",
+      "team": "New York Rangers",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__risograph__Highlights.jpg"
+    },
+    {
+      "league": "NHL",
+      "team": "New York Rangers",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/NHL__New-York-Rangers__video-game__TeamNews.jpg"
+    },
+    {
+      "league": "Serie A",
+      "team": "Juventus",
+      "style": "comic-book",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__comic-book__TeamNews.jpg"
+    },
+    {
+      "league": "Serie A",
+      "team": "Juventus",
+      "style": "risograph",
+      "content": "Highlights",
+      "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__risograph__Highlights.jpg"
+    },
+    {
+      "league": "Serie A",
+      "team": "Juventus",
+      "style": "video-game",
+      "content": "TeamNews",
+      "url": "/prototypes/fubo-showcase/cache/Serie-A__Juventus__video-game__TeamNews.jpg"
     }
   ]
 }
