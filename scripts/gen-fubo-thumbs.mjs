@@ -13,6 +13,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
+import { execFileSync } from 'child_process';
 import { join, resolve } from 'path';
 
 const ROOT = resolve(new URL('..', import.meta.url).pathname);
@@ -94,6 +95,16 @@ async function generate(key, prompt) {
   return Buffer.from(img.inlineData.data, 'base64');
 }
 
+// Mobile-optimize in place: cap width at 1280, JPEG quality 72 (~5x smaller).
+// Uses macOS sips; no-op if sips is unavailable so generation still succeeds.
+function optimize(dest) {
+  try {
+    execFileSync('sips', ['-s', 'format', 'jpeg', '-s', 'formatOptions', '72', '--resampleWidth', '1280', dest, '--out', dest], { stdio: 'ignore' });
+  } catch {
+    console.log('  (sips unavailable - left full-size)');
+  }
+}
+
 function rebuildManifest() {
   const files = existsSync(CACHE) ? readdirSync(CACHE).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)) : [];
   const manifest = { generatedAt: new Date().toISOString(), source: 'gemini gen + baked exports', leagues: {}, styles: new Set(), combos: [] };
@@ -132,8 +143,9 @@ async function main() {
       try {
         const buf = await generate(key, buildPrompt(league, team, style));
         writeFileSync(dest, buf);
+        optimize(dest);
         made++;
-        console.log(`ok (${Math.round(buf.length / 1024)}kb)`);
+        console.log(`ok (${Math.round(buf.length / 1024)}kb raw -> optimized)`);
       } catch (e) {
         console.log(`FAIL ${e.message}`);
       }
