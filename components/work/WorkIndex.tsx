@@ -102,7 +102,7 @@ export function WorkIndex({ eras }: WorkIndexProps) {
                     type="button"
                     onClick={() => jumpTo(era.id)}
                     aria-current={isActive ? 'true' : undefined}
-                    className="group relative flex items-baseline gap-2 py-3 transition-colors"
+                    className="group relative flex items-baseline gap-2 py-3 min-h-[44px] transition-colors"
                   >
                     <span
                       className="font-mono text-[11px] md:text-xs tracking-[0.25em] uppercase transition-colors"
