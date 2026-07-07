@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Study Date 💛 — Real Estate Practice</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>">
+<style>
+  :root{
+    --grad: linear-gradient(180deg, #FFFEF7 0%, #FFF3C4 26%, #FDE047 62%, #FACC15 100%);
+    --card: rgba(255,255,255,0.86);
+    --card2: rgba(255,255,255,0.72);
+    --ink: #6B3F0B;      /* deep amber-brown, primary text */
+    --ink-med: #854D0E;  /* amber-800 */
+    --ink-lt: #A16207;   /* amber-700 */
+    --fill: #A16207;     /* selected/active fill (white text passes contrast) */
+    --fill-soft: rgba(161,98,7,0.10);
+    --fill-line: rgba(161,98,7,0.22);
+    --sun: #EAB308;      /* bright decorative yellow (bars/dots) */
+    --good: #15803D;
+    --good-bg: rgba(21,128,61,.12);
+    --bad: #B91C1C;
+    --bad-bg: rgba(185,28,28,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+    background:var(--grad); background-attachment:fixed; color:var(--ink-med);
+    min-height:100dvh; line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:460px;margin:0 auto;padding:28px 16px 40px;width:100%}
+  .head{text-align:center;margin-bottom:18px}
+  .head .emoji{font-size:34px;line-height:1;margin-bottom:6px}
+  .head h1{color:var(--ink);font-size:20px;font-weight:800;margin:0}
+  .head p{color:var(--ink-med);font-size:12.5px;margin:5px 0 0}
+  .card{background:var(--card);border-radius:20px;padding:20px 18px;
+    box-shadow:0 6px 26px rgba(161,98,7,0.18);margin-bottom:14px;backdrop-filter:blur(6px)}
+  h2{color:var(--ink);font-size:19px;font-weight:700;margin:0 0 14px;line-height:1.3}
+  .lead{color:var(--ink-med);font-size:14px;margin:0 0 6px}
+  .small{color:var(--ink-lt);font-size:11.5px}
+  b{color:var(--ink)}
+  /* progress */
+  .prog{margin-bottom:16px}
+  .prog .row{display:flex;justify-content:space-between;color:var(--ink-med);font-size:11px;margin-bottom:6px}
+  .track{height:5px;background:rgba(255,255,255,0.6);border-radius:99px;overflow:hidden}
+  .track>i{display:block;height:100%;width:0;background:var(--sun);border-radius:99px;transition:width .35s}
+  /* option / choice buttons */
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;
+    padding:15px 15px;border-radius:14px;font-size:15px;cursor:pointer;
+    background:var(--fill-soft);border:1px solid var(--fill-line);color:var(--ink);
+    transition:transform .18s,background .18s,border-color .18s,opacity .18s}
+  .opt:hover:not(.locked){transform:translateY(-1px);border-color:var(--fill)}
+  .opt .ltr{font-weight:800;color:var(--ink-lt);flex:0 0 auto}
+  .opt.locked{cursor:default}
+  .opt.correct{background:var(--good-bg);border-color:var(--good);color:#14532d}
+  .opt.correct .ltr{color:var(--good)}
+  .opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:#7f1d1d}
+  .opt.wrong .ltr{color:var(--bad)}
+  .opt.dim{opacity:.42}
+  /* mode buttons (home) */
+  .mode{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;
+    text-align:left;padding:15px 16px;border-radius:14px;cursor:pointer;margin-bottom:10px;
+    background:var(--fill-soft);border:1px solid var(--fill-line);color:var(--ink);transition:.18s}
+  .mode:hover{transform:translateY(-1px);border-color:var(--fill);background:rgba(161,98,7,0.14)}
+  .mode .l b{display:block;font-size:15px;font-weight:700}
+  .mode .l span{font-size:12px;color:var(--ink-med)}
+  .mode .chev{color:var(--fill);font-size:20px;flex:0 0 auto}
+  /* tiles (home) */
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .tile{display:flex;flex-direction:column;gap:3px;text-align:left;padding:16px 14px;border-radius:16px;
+    cursor:pointer;background:var(--fill-soft);border:1px solid var(--fill-line);color:var(--ink);
+    transition:.18s;min-height:112px}
+  .tile:hover{transform:translateY(-2px);border-color:var(--fill);background:rgba(161,98,7,0.14)}
+  .tile .ic{font-size:22px;line-height:1}
+  .tile b{font-size:14.5px;font-weight:700;margin-top:2px}
+  .tile span{font-size:11.5px;color:var(--ink-med);line-height:1.35}
+  /* primary/ghost buttons */
+  .btn{display:inline-block;cursor:pointer;border:none;border-radius:13px;padding:14px 18px;
+    font-size:14px;font-weight:700;color:#fff;background:var(--fill);
+    box-shadow:0 6px 18px rgba(161,98,7,.28);transition:filter .15s,transform .08s}
+  .btn:hover{filter:brightness(1.07)} .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:rgba(255,255,255,0.85);color:var(--fill);border:2px solid var(--fill);box-shadow:none}
+  .btn.full{display:block;width:100%;text-align:center}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  /* nav + chips */
+  .nav{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+  .chip{cursor:pointer;border:1px solid var(--fill-line);background:rgba(255,255,255,0.7);color:var(--ink-med);
+    border-radius:99px;padding:7px 13px;font-size:12px;font-weight:600;transition:.15s}
+  .chip:hover{border-color:var(--fill);color:var(--ink)}
+  .hrow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .hrow h2{margin:0}
+  .fillin{width:100%;padding:14px 15px;border-radius:14px;border:1px solid var(--fill-line);
+    background:#fff;color:var(--ink);font-size:15px}
+  /* feedback */
+  .feedback{margin-top:14px;padding:14px 15px;border-radius:14px;border:1px solid var(--fill-line);background:rgba(255,255,255,0.7)}
+  .feedback.good{border-color:var(--good);background:var(--good-bg)}
+  .feedback.bad{border-color:var(--bad);background:var(--bad-bg)}
+  .feedback .banter{font-weight:800;font-size:15px;margin-bottom:6px;color:var(--ink)}
+  .feedback .why{color:var(--ink-med);font-size:13px}
+  .feedback .why b{color:var(--ink)}
+  /* meta row on question */
+  .qmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  .qmeta .idx{color:var(--ink-lt);font-size:11px}
+  .tag{background:rgba(234,179,8,0.22);color:var(--ink-med);border:1px solid var(--fill-line);
+    padding:3px 9px;border-radius:99px;font-size:10.5px;white-space:nowrap}
+  .qtext{color:var(--ink);font-size:16px;font-weight:400;margin:2px 0 18px;white-space:pre-wrap;line-height:1.62}
+  /* dots */
+  .dots{display:flex;justify-content:center;gap:7px;margin-top:16px;flex-wrap:wrap}
+  .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.7)}
+  .dots i.done{background:var(--sun)} .dots i.now{background:var(--fill);box-shadow:0 0 8px rgba(161,98,7,.5)}
+  /* score bars (results) */
+  .scorebar{margin-bottom:8px}
+  .scorebar .lbl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-med);margin-bottom:3px}
+  .scorebar .lbl b{color:var(--ink)}
+  .scorebar.weak .lbl b{color:var(--bad)}
+  .mini{height:5px;background:rgba(161,98,7,0.15);border-radius:99px;overflow:hidden}
+  .mini>i{display:block;height:100%;background:var(--sun);border-radius:99px}
+  .scorebar.weak .mini>i{background:var(--bad)}
+  .prize{border:2px dashed var(--fill);border-radius:16px;padding:15px;margin:14px 0 6px;background:rgba(234,179,8,0.12);text-align:left}
+  .prize .cap{color:var(--ink-lt);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .prize b{color:var(--ink);font-size:15px}
+  .prize .d{color:var(--ink-med);font-size:13px;margin-top:3px}
+  .tier{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--fill-line);font-size:13px}
+  .tier:last-child{border-bottom:none}
+  details.foldcard{background:var(--card);border-radius:20px;padding:2px 18px;margin-bottom:14px;
+    box-shadow:0 6px 26px rgba(161,98,7,0.18);backdrop-filter:blur(6px)}
+  details.foldcard>summary{list-style:none;cursor:pointer;font-size:19px;font-weight:700;color:var(--ink);
+    padding:16px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  details.foldcard>summary::-webkit-details-marker{display:none}
+  details.foldcard>summary::after{content:"▸";color:var(--fill);font-size:16px;transition:transform .2s}
+  details.foldcard[open]>summary::after{transform:rotate(90deg)}
+  details.foldcard .body{padding-bottom:10px}
+  .review{margin:10px 0;padding-bottom:10px;border-bottom:1px solid var(--fill-line)}
+  .review:last-child{border-bottom:none}
+  .review .q{font-weight:600;color:var(--ink);font-size:13.5px}
+  .review .a{color:var(--ink-med);font-size:12.5px;margin-top:4px}
+  .center{text-align:center}
+  .big{font-size:40px;font-weight:800;color:var(--ink);margin:2px 0}
+  /* silly-goose footer + easter egg */
+  .foot{text-align:center;color:var(--ink-lt);font-size:12px;margin-top:4px;padding:0 8px}
+  .foot p{margin:0 0 10px;line-height:1.5}
+  /* cursed-listing popup */
+  .modal-bg{position:fixed;inset:0;background:rgba(60,40,5,.55);display:none;align-items:center;
+    justify-content:center;padding:18px;z-index:50;backdrop-filter:blur(3px)}
+  .modal{position:relative;background:var(--card);border:1px solid var(--fill-line);border-radius:20px;
+    max-width:420px;width:100%;padding:22px 20px;box-shadow:0 24px 70px rgba(0,0,0,.4);text-align:center;
+    max-height:92dvh;overflow:auto}
+  .modal .cap{color:var(--ink-lt);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .modal .listing{color:var(--ink);font-size:20px;font-weight:800;margin:6px 0 4px;line-height:1.25}
+  .modal .riff{color:var(--ink-med);font-size:13px;font-style:italic;margin-bottom:14px}
+  .modal-x{position:absolute;top:8px;right:12px;border:none;background:transparent;color:var(--ink-lt);
+    font-size:26px;line-height:1;cursor:pointer}
+  .shot{border-radius:14px;overflow:hidden;background:var(--fill-soft);border:1px solid var(--fill-line);
+    min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    margin-bottom:14px;padding:16px}
+  .shot img{width:100%;height:auto;display:block;border-radius:10px}
+  .spin{width:30px;height:30px;border:3px solid var(--fill-line);border-top-color:var(--fill);
+    border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .modal code{background:var(--fill-soft);padding:1px 5px;border-radius:5px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* ============================================================================
+   ✦✦✦  EDIT ME — the fun personal stuff lives here  ✦✦✦
+   Everything in CONFIG is safe to change. The exam QUESTIONS further down are
+   the official PSI practice data — leave those alone.
+   ========================================================================== */
+const CONFIG = {
+  HER_NAME: "Melissa",     // put her name here
+
+  // Silly prizes unlock by % correct in a run. Swap these placeholders for the
+  // real (silly) rewards you want to promise. Keep them in ascending order.
+  PRIZE_TIERS: [
+    { minPct: 0,   label: "Participation Trophy 🥉", desc: "You showed up and looked cute doing it. Consolation prize: one very long hug. (← placeholder, edit me)" },
+    { minPct: 50,  label: "Bronze Flirt 😉",         desc: "I owe you dinner — I cook, you just show up and distract me. (← placeholder, edit me)" },
+    { minPct: 70,  label: "Silver Tease 😏",          desc: "Winner's choice of movie AND cuddle position. Non-negotiable. (← placeholder, edit me)" },
+    { minPct: 85,  label: "Gold Crush 🔥",            desc: "A no-time-limit, no-complaints back massage. Bring your A-game. (← placeholder, edit me)" },
+    { minPct: 100, label: "THE GRAND PRIZE 💛",       desc: "Perfect score. You name it. Anything. I'm dead serious. (← placeholder, edit me)" },
+  ],
+
+  // Banter shown after each answer. Warm, encouraging, a little playful —
+  // never condescending. Add/remove/reword lines freely.
+  CORRECT: [
+    "Yes — you've got this, and it's very attractive.",
+    "Correct. Smart looks good on you.",
+    "Nailed it. I knew you had this in you.",
+    "Right on — you make this look easy.",
+    "Exactly right. That brain of yours is doing it for me.",
+    "Perfect. Keep going, I'm impressed.",
+    "Sharp as ever. That's the one.",
+  ],
+  WRONG: [
+    "No worries, here's the why so it sticks:",
+    "Not that one — let's lock it in together:",
+    "All good. Here's the reasoning so it's yours next time:",
+    "Close. Here's what's actually going on:",
+    "Happens to everyone — here's the why:",
+  ],
+};
+/* ======================  END EDIT ME  ==================================== */
+
+
+/* ============================================================================
+   OFFICIAL PSI PRACTICE DATA — transcribed verbatim from PSI1.pdf ("Practice
+   Exam 1", 60 Q) and PSI4.pdf ("Practice Test 4", 80 Q). Answers & explanations
+   are taken exactly from each book's answer key. DO NOT rewrite these.
+   type: "mc" | "tf" | "fill"
+   ========================================================================== */
+const QUESTIONS = [
+/* ---------------- PRACTICE EXAM 1 (PSI1) — 60 questions ---------------- */
+{exam:1,num:1,topic:"Earnest Money & Trust Accounts",type:"mc",
+ q:`According to contract law, what amount of earnest money is required to be submitted with a contract of sale?`,
+ o:{a:"15% of the sell price",b:"At least $3,000",c:"None, because there is no earnest money required for contract formation",d:"10% of the offer"},ans:"c",
+ why:`No earnest money is required to form a binding contract. Earnest money is either offered by the buyer or requested by the seller and can be negotiated.`},
+{exam:1,num:2,topic:"Earnest Money & Trust Accounts",type:"mc",
+ q:`When a buyer gives a check to cover their earnest money to be deposited into a special account, who does that money belong to?`,
+ o:{a:"To the buyer as a rebate",b:"To the seller as part of their capital gain",c:"It belongs to no one as long as the transaction is still going on",d:"To the licensee as a commission prepayment"},ans:"c",
+ why:`As long as the transaction is ongoing, the earnest money belongs to no one.`},
+{exam:1,num:3,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`In the listing agreement, the broker will put in their best effort to find a buyer for a property. What attribute of the contract does this describe?`,
+ o:{a:"Consideration",b:"Legally competent parties",c:"Lawful purpose",d:"Mutual agreement"},ans:"a",
+ why:`A broker will do their best job when hired in order to benefit the principal the best they possibly can.`},
+{exam:1,num:4,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`There are many situations that would make a listing agreement void. Out of the following, which situation would not terminate the agreement?`,
+ o:{a:"Bankruptcy of the broker",b:"A major kitchen fire on the property",c:"Passing away of the seller",d:"Restricted access to the property"},ans:"b",
+ why:`The only way a kitchen fire would lead to a termination of an agency is if it caused significant property damage.`},
+{exam:1,num:5,topic:"Ethics & Fair Housing",type:"mc",
+ q:`A broker negotiates a deal for $300,000 on the sale of a property. The buyer has about $30,000 for a down payment, and will need to mortgage the remaining $270,000. The lending company will only approve an 80% loan-to-value mortgage, which would be about $240,000 for a loan. The buyer is about $30,000 short of what they would need. The broker wants to help the buyer, so they create a fake contract showing the purchase price of $350,000 and has both the lender and buyer sign. Is this behavior acceptable?`,
+ o:{a:"Yes, they are just looking out for the best interest of the buyer.",b:"Since the buyer and seller are just going along with the broker, they have zero liability.",c:"The broker, buyer, and seller are all committing fraud.",d:"The broker will receive a commission based on the sale price of $350,000."},ans:"c",
+ why:`All parties involved, the broker, buyer, and seller are doing something illegal by committing fraud. It does not matter if it was only the broker's idea. If the others are going along with it, they are also held accountable.`},
+{exam:1,num:6,topic:"Financing & Mortgages",type:"mc",
+ q:`A couple has decided to apply for a Federal Housing Administration, or FHA, loan. The mortgage will be:`,
+ o:{a:"Insured through the Department of Housing and Urban Development, or HUD.",b:"Backed fully by the U.S. Government.",c:"Guaranteed by the U.S. Government at no expense to the borrower.",d:"Taken care of fully by private mortgage insurance, or PMI."},ans:"a",
+ why:`When borrowers receive a loan through the FHA, they are insured through the Department of Housing and Urban Development for the protection of lenders against loss.`},
+{exam:1,num:7,topic:"Financing & Mortgages",type:"mc",
+ q:`The good faith estimate of a borrower's closing costs are to be provided to the borrower at what point according to the Real Estate Settlement Procedures Act?`,
+ o:{a:"Within 72 hours of closing.",b:"At the time of closing.",c:"Within three business days or at the time of the loan application.",d:"Within 48 hours of closing."},ans:"c",
+ why:`The lender must be prudent in providing the borrower with a good faith estimate at the time of the loan application or within three business days.`},
+{exam:1,num:8,topic:"Property, Land & Fixtures",type:"mc",
+ q:`If an individual sells his farm, which of the following will not come with the deal?`,
+ o:{a:"The built-in fences",b:"Permanent structures and buildings",c:"Farm equipment",d:"Trees that are growing"},ans:"c",
+ why:`Farm equipment is considered personal property and would go with the original owner once the property is sold. Just like if an individual bought a home, they would not be entitled to the furniture or cars in the garage.`},
+{exam:1,num:9,topic:"Property, Land & Fixtures",type:"mc",
+ q:`A young lady bought a new cottage that borders a stream. What rights does she have over that particular stream?`,
+ o:{a:"Littoral",b:"Reversionary",c:"Riparian",d:"Laches"},ans:"c",
+ why:`Riparian rights deal with the owner's rights to land bordering a river or stream.`},
+{exam:1,num:10,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Johnny was working for a broker for many years, but recently transferred to a new broker. Johnny brought five listings to the first broker he was working under. Now that he has transferred, what happens to those five listings?`,
+ o:{a:"The listings transfer over to the new broker that Johnny is working under.",b:"The listings are terminated completely and things must start over.",c:"The listings will stay with the first broker since they were started under their umbrella.",d:"The listing will get split between the two brokers."},ans:"c",
+ why:`The listing stays with the first broker since it was done under their business banner. If Johnny truly wants to benefit from these listings, he should stay with the first broker until he receives his commissions.`},
+{exam:1,num:11,topic:"Financing & Mortgages",type:"mc",
+ q:`A broker is obligated to report any cash amount deposited for greater than:`,
+ o:{a:"$10,000",b:"$15,000",c:"$20,000",d:"$5,000"},ans:"a",
+ why:`Any cash deposit greater than $10,000 must be reported to the IRS.`},
+{exam:1,num:12,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Michael has his home listed with a real estate company nearby. He signed a 120-day listing agreement. However, after 90 days, the home has not been sold and Michael decided he does not want to sell at this time. At what point is the agency relationship terminated in this situation?`,
+ o:{a:"On the 121st day, as the original contract states.",b:"After a reasonable period of time that the property does not sell.",c:"When the listing expires.",d:"On the 91st day, after Michael decides not to sell his home."},ans:"d",
+ why:`The agency can technically be terminated at any time. If the client terminates early, the agent may still be eligible for a commission based on what the agreed upon terms were.`},
+{exam:1,num:13,topic:"Earnest Money & Trust Accounts",type:"tf",
+ q:`Once an offer is received, the earnest money is accepted and deposited into a trust account:`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; The earnest money is not deposited anywhere until an offer is accepted.`},
+{exam:1,num:14,topic:"Earnest Money & Trust Accounts",type:"mc",
+ q:`In a contract of sales, it is stated that the earnest money given is to be placed in an account that earns interest and that interest will be paid out to the buyer. What is this action referred to?`,
+ o:{a:"Illegal behavior",b:"Commingling",c:"Not acceptable, and the broker on the deal needs to quit working",d:"Acceptable, because the buyer and seller are both on the same page"},ans:"d",
+ why:`This is acceptable because both the buyer and seller are on the same page. There is no required method for interest earned in a trust account to be distributed in any particular way, so the broker should follow the instructions of the client as long as everything is done legally.`},
+{exam:1,num:15,topic:"Earnest Money & Trust Accounts",type:"mc",
+ q:`Earnest money given by a buyer is put into a trust account by the broker. Unfortunately, the check is returned due to insufficient funds. How should the broker proceed from here?`,
+ o:{a:"Cover the check through personal funds",b:"File a report with the police",c:"Notify the seller immediately that the check was returned for insufficient funds.",d:"Resign the agency altogether"},ans:"c",
+ why:`Notify the seller immediately. While the brokers may have just made a mistake and could replace the funds quickly, an unfunded bank account could be seen as fraud. Brokers must avoid the appearance of impropriety.`},
+{exam:1,num:16,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`An exclusive right to sell listing is best described as:`,
+ o:{a:"The listing agent is expected to receive a commission, but only if they procure the buyer based on what their deal was.",b:"There will be many agents working on the case and the one who procures the buyer will be the one who receives compensation.",c:"The listing agent is expected to receive a commission only if the property is sold for a certain amount.",d:"Despite who procures the buyer, the original listing agent will be the one who gets paid the commission."},ans:"d",
+ why:`Despite who procures the property, the listing agent will be the one who receives the commission as long as the exclusive right to sell contract is still in effect.`},
+{exam:1,num:17,topic:"Contracts & Agreements",type:"mc",
+ q:`Tiffany, who is 17 years old and still considered a minor, buys a condo from Susan, who is an adult. Based on this situation, which statement is true?`,
+ o:{a:"Tiffany is allowed to make any portion of the contract void at any moment before the deal is closed.",b:"Either Tiffany or Susan are allowed to void the entire before the transaction is closed.",c:"Since Tiffany is a minor, she cannot enter any real estate contract on her own, so the contract is considered void right from the start.",d:"Tiffany can void the entire contract at any point before the deal is completed."},ans:"d",
+ why:`Tiffany can void the entire contract at any point prior to the transaction being complete since the law provides certain protections to minors that are not granted towards adults. Minors are permitted to enter into contracts.`},
+{exam:1,num:18,topic:"Financing & Mortgages",type:"mc",
+ q:`Which of the following statements regarding Veterans Affair Mortgage is false?`,
+ o:{a:"There are no minimum property requirements.",b:"There is no down payment required.",c:"Mortgage insurance is not required.",d:"There is no maximum debt ratio."},ans:"a",
+ why:`There are minimum property requirements with a Veterans Affair Mortgage. This ensures the property is safe, clean, and sound in every way.`},
+{exam:1,num:19,topic:"Math & Calculations",type:"mc",
+ q:`An area of land is 150 feet by 75 feet. The seller is asking for $130 per square foot. What would the asking price be in this case?`,
+ o:{a:"$1,000,000",b:"$29,250",c:"$1,462,500",d:"$1,650,000"},ans:"c",
+ why:`This is a pretty simple formula. Just multiply 75 x 150 to get the square footage of 11,250. Then, multiply 11,250 by 130 to get the total asking price of $1,462,500.`},
+{exam:1,num:20,topic:"Deeds, Title & Closing",type:"mc",
+ q:`At what point is a deed considered to be valid?`,
+ o:{a:"When it is recorded",b:"When it is delivered and accepted",c:"When it is signed",d:"When it is notarized"},ans:"b",
+ why:`Once the deed is actually delivered by the grantor and accepted by the grantee, the deed is officially valid.`},
+{exam:1,num:21,topic:"Licensing & Law",type:"mc",
+ q:`What is the purpose of real estate license laws?`,
+ o:{a:"Limit the amount of brokers and agents on the market.",b:"Fulfill the requirements of the federal government.",c:"Raise the tax and operating revenue for the state and local government.",d:"Maintain high standards and protect the public."},ans:"d",
+ why:`While the majority of brokers and agents are honest people who want to help others, there are definitely a select few who ruin it for everyone. Therefore, real estate license laws exist to protect the public from incompetent or purposely dishonest professionals in the field and to maintain high standards.`},
+{exam:1,num:22,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`When a buyer retains a broker, what does the broker owe to the prospective seller?`,
+ o:{a:"Confidentiality regarding the financial situation of the seller",b:"Treatment that is straightforward and honest",c:"Obedience to lawful instruction",d:"Loyalty that is undivided"},ans:"b",
+ why:`No matter who a broker is dealing with, they must maintain respect and integrity. Therefore, a seller should expect the buyer's agent to be honest and straightforward.`},
+{exam:1,num:23,topic:"Disclosure & Defects",type:"mc",
+ q:`Of the following options, what must the broker of a seller disclose to a potential buyer?`,
+ o:{a:"The last owner was killed while on the property",b:"The seller has a communicable disease",c:"The house is haunted",d:"The heating and air conditioning systems do not work"},ans:"d",
+ why:`Sellers must disclose defects in the property but are not required to disclose information that could create a stigma around the property, like a death or anything else. They certainly are not supposed to reveal the personal health data of their clients.`},
+{exam:1,num:24,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`John is a real estate agent who always loves to take care of his clients. One day, a seller asks him to withhold some information about their property because they feel the home will not be sold if the buyer is aware of it. John is completely confused about what to do because he does not want to upset his client. In this scenario, it is okay for John to not go along with his principal because they are asking him to break the rules.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; An agent or broker is not required or permitted to break the law for their clients.`},
+{exam:1,num:25,topic:"Financing & Mortgages",type:"mc",
+ q:`Some insurance companies are not willing to deal with borrowers directly. To avoid this, they will pay for a loan servicing and preparation fee, while also making real estate mortgage loans to purchase indirectly through:`,
+ o:{a:"Freddie Mac",b:"Federal Housing Administration or Veterans Affair",c:"Savings and loan association",d:"Mortgage companies"},ans:"d",
+ why:`Insurance companies will generally make loans through mortgage companies.`},
+{exam:1,num:26,topic:"Zoning & Government Powers",type:"mc",
+ q:`A local family has been operating a neighborhood grocery store for the past couple of decades. They are well known in the community they have been servicing. Recently, the city council passed a new law that prohibits the sale of packaged foods in the same area that the grocery store is located. With the new law, what rule is the grocery store violating?`,
+ o:{a:"Eminent domain",b:"Nonconforming use",c:"Illegal enterprise",d:"Variance of zoning laws"},ans:"b",
+ why:`Since the business was operating legally before the new zoning rules were put into place, the grocery store and its services were essentially grandfathered into the neighborhood. The business can continue to operate as before; however, if the family sells the grocery store, the new enterprise must operate within the current requirements.`},
+{exam:1,num:27,topic:"Valuation & Appraisal",type:"mc",
+ q:`The Smith family owns a home that is located in a semi-rural area. They have had the home for about five years now. Recently, new plans were announced about an airport being built nearby. The end of the runway is expected to end about one mile before the Smith's home. Will this new construction diminish the value of their home?`,
+ o:{a:"No, the new airport will bring extra value to their home because of its vicinity.",b:"Yes, due to economic obsolescence.",c:"Yes, because of functional obsolescence.",d:"No, the aircraft noise will not be a huge deal in affecting the property value."},ans:"b",
+ why:`Economic obsolescence occurs when factors outside of the owners' control diminish the value of a property. The new airport is a perfect example of this. A good way to gauge whether a property is economically sound is to assess whether the location would still be chosen as a home given the current conditions.`},
+{exam:1,num:28,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Exclusive listings are not considered valid unless they include:`,
+ o:{a:"Permission to appoint subagents by the listing broker",b:"An automatic renewal clause",c:"A forfeiture clause",d:"A definite date of expiration"},ans:"d",
+ why:`Any listing agreement must have specific dates attached to them that show the start and end dates. They must be renegotiated to continue, but may not have automatic renewal dates.`},
+{exam:1,num:29,topic:"Financing & Mortgages",type:"mc",
+ q:`What is the primary purpose of the Truth in Lending?`,
+ o:{a:"Disclose the actual costs of obtaining credit",b:"Control the costs of obtaining credit",c:"Disclose the true costs of an FHA loan only",d:"Control interest rates on behalf of the consumer"},ans:"a",
+ why:`The purpose of Truth in Lending is to get rid of deceptive financial tactics, such as hidden costs.`},
+{exam:1,num:30,topic:"Property, Land & Fixtures",type:"mc",
+ q:`When a piece of personal property is attached to real property, which is permanent, it's known in real estate as:`,
+ o:{a:"Personal",b:"A fixture",c:"An appliance",d:"An emblement"},ans:"b",
+ why:`Once any type of personal property is attached to real property to the point it cannot be removed without damaging the real property, it is known as a fixture. Also, it can be considered a fixture if its removal will lower the value of the real property. If a purchase contract lists a certain item with the sale of a property, that item becomes a fixture and needs to remain where it is.`},
+{exam:1,num:31,topic:"Property, Land & Fixtures",type:"mc",
+ q:`What is the best way to describe the physical and economic characteristics of land?`,
+ o:{a:"Depreciable, indestructible, unique",b:"Immovable, indestructible, unique, scarce",c:"Unique, immovable, abundant, indestructible",d:"Moveable, indestructible, scarce, unique"},ans:"b",
+ why:`Land is immovable because it cannot be moved from one site to another; Land is indestructible because an entire parcel cannot theoretically be destroyed; Land is considered unique because each parcel has its own distinct place on the planet; Land is considered scarce because entire new parcels of real estate cannot be manufactured.`},
+{exam:1,num:32,topic:"Zoning & Government Powers",type:"mc",
+ q:`The government of a particular county had to widen some of the highways in town due to increasing traffic from population influx. As a result, they had to demolish some of the homes that bordered the old highway. Several of the property owners refused to leave their homes, so the sheriff came in and forcibly removed them. What is the term for the governmental power used in this scenario?`,
+ o:{a:"Police power",b:"Condemnation",c:"Escheat",d:"Eminent domain"},ans:"d",
+ why:`The government has the right to take personal property for the purposes of the public. This power is known as eminent domain.`},
+{exam:1,num:33,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A seller and a real estate professional enter into a new listing agreement for a property in a well developed neighborhood. The contract includes a specific end date. The licensed real estate professional is the only hired agent on the deal and will receive a commission if they find a buyer for the home, but if the seller finds a buyer on their own, no commission will be paid. What type of listing agreement is this?`,
+ o:{a:"Exclusive right-to-sell",b:"Exclusive agency",c:"Open",d:"Exclusive right-to-buy"},ans:"b",
+ why:`With an exclusive agency listing agreement, there is only one brokerage firm that is part of the deal. The licensee will earn a commission if they find a buyer within the specified time period, but no commission if the seller finds a buyer first. Also, this is a bilateral contract which exchanges a promise for a promise. The seller promises to pay a commission if the licensee finds a seller and the licensee promises due diligence to the seller to find a buyer.`},
+{exam:1,num:34,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Jennifer decides to list her property with three different real estate companies. With each contract, Jennifer has agreed to pay the listing firm only if they find a ready and willing buyer who purchases her home. What type of listing is this known as?`,
+ o:{a:"An open listing",b:"An exclusive agency listing",c:"An MLS listing",d:"An exclusive right-to-sell"},ans:"a",
+ why:`With an open listing, any real estate licensee who has a listing agreement with the seller earns the right to a commission if they find a buyer for the home. A seller can establish several listing agreements with many different brokerage firms. While this might seem like the most advantageous route for a seller to take, the truth is that many agents will not market this type of listing as aggressively as an exclusive listing agreement since they know their efforts may lead to nothing if another agent beats them in finding a buyer.`},
+{exam:1,num:35,topic:"Contracts & Agreements",type:"mc",
+ q:`Mark is interested in buying a home from Sam, so he submits an offer to purchase the property. Sam accepts Mark's offer, but wants to keep an antique chandelier that is inside the home. So, he adds to the contract, "antique chandelier not included with the home." Sam signs the contract and returns it to Mark. Is this a binding contract?`,
+ o:{a:"Yes, since the change made by Sam is very insignificant.",b:"No, Sam is basically rejecting Mark's initial offer here and now the ball is in Mark's court. He must accept Sam's counteroffer without any further change before the contract becomes binding.",c:"No, Sam is rejecting Mark's offer outright.",d:"No, Mark must accept Sam's offer without any further change before it can become a binding construct officially."},ans:"d",
+ why:`No, Mark must accept Sam's offer without any further change before it can become a binding construct officially. A counteroffer is pretty much the same as a rejection with a change and a new offer.`},
+{exam:1,num:36,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`James is in-contract with a broker in town to sell his property. In the contract, it is stated that the broker who sells the property will be the one who gets the commission. What type of agreement does this scenario describe?`,
+ o:{a:"Net listing agreement",b:"Exclusive agency listing agreement",c:"Exclusive-right-to-sell listing agreement",d:"Open listing"},ans:"b",
+ why:`Exclusive agency listing is an agreement where the principal pays a commission to the broker who brings in the buyer.`},
+{exam:1,num:37,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Phil is a licensed real estate agent and had a written representation agreement with a buyer. He was also paid a commission of 5% of the selling price at the closing by the seller. In this situation, what was the broker acting as?`,
+ o:{a:"A buyer's agent",b:"A seller's agent",c:"A dual agent",d:"The broker actually violated real estate law and this could lead to a reprimand, which included suspension or revocation of his license."},ans:"a",
+ why:`Phil is a buyer's agent. The source where compensation comes from does not determine agency relationships. This means the broker or agent does not always represent the one who pays the commission.`},
+{exam:1,num:38,topic:"Financing & Mortgages",type:"mc",
+ q:`According to the Federal Housing Administration, which of the following statements about down payments is true and accurate?`,
+ o:{a:"Down payments are about 10%",b:"There is no down payment required",c:"Down payments can be as low as 3%",d:"Down payments are around 20%"},ans:"c",
+ why:`The FHA may allow down payments as low as 3%. The FHA is a branch of the Department of Housing and Urban Development and it insures qualified mortgages for many different types of dwellings.`},
+{exam:1,num:39,topic:"Financing & Mortgages",type:"mc",
+ q:`A bank will write a letter to a borrower stating that it will fund their mortgage loan. What is this letter known as?`,
+ o:{a:"Pre-approval letter",b:"Rate lock",c:"Pre-qualification",d:"Mortgage commitment"},ans:"d",
+ why:`Mortgage commitment is an agreement to fund a home loan and is written in the form of a mortgage or loan commitment letter.`},
+{exam:1,num:40,topic:"Math & Calculations",type:"mc",
+ q:`Jane is a licensed broker in the area. After selling a home for her client, she receives a commission of about $15,000, which is 6% of the purchase price. What was the purchase price of the home she sold?`,
+ o:{a:"$300,000",b:"$250,000",c:"$260,000",d:"$150,000"},ans:"b",
+ why:`$250,000 is the sale price of the home. To calculate the sale price, you just have to take the commission amount and divide it by the commission percentage. In this instance, the formula is $15,000/0.06. The result is $250,000.`},
+{exam:1,num:41,topic:"Math & Calculations",type:"mc",
+ q:`Michael purchased a lot across the street from his office. The size of the land was 50 feet by 125 feet and he purchased it for $455,000. Based on the purchase price, what was the price per square feet?`,
+ o:{a:"$80.25",b:"$72.80",c:"$69.50",d:"$74.00"},ans:"b",
+ why:`To calculate this result, we first need to calculate the total square footage, which in this case is 6,250 after we multiply 50 by 125. Next, we take the total square footage and divide it into the total purchase price. $455,000/6,250. The result is $72.80 per square foot.`},
+{exam:1,num:42,topic:"Valuation & Appraisal",type:"mc",
+ q:`Per Capita and household income are two major determinants of land and the value that it holds. As far as forces that affect real estate value, what category do these determinants fall under?`,
+ o:{a:"Economic-financial",b:"Political-governmental-legal",c:"Physical and environmental",d:"Sociological"},ans:"a",
+ why:`The value of land is derived from its location. The largest determinants are the industries that are nearby, interest rates, stability, and employment and unemployment rates.`},
+{exam:1,num:43,topic:"Valuation & Appraisal",type:"mc",
+ q:`What approach to real estate valuation does comparative market analysis, or CMA, resemble?`,
+ o:{a:"Sales comparison",b:"Cost",c:"Income",d:"Guesstimate"},ans:"a",
+ why:`Since comparative market analysis evaluates the recent sales of comparable properties, it closely resembles the sales comparison method.`},
+{exam:1,num:44,topic:"Deeds, Title & Closing",type:"mc",
+ q:`At the official closing, the seller will be asked by the title company to sign a document assuring that there have been zero judgments, bankruptcies, or divorces involving the seller since the title was examined. What is this particular document called?`,
+ o:{a:"Affidavit of title",b:"Abstract of title",c:"Evidence of title",d:"Title insurance policy"},ans:"a",
+ why:`An affidavit of title needs to be signed by the seller at closing. This is done to assure the title company that the seller has no judgments, divorces, or bankruptcies since the date of the title examination.`},
+{exam:1,num:45,topic:"Property Management & Leasing",type:"mc",
+ q:`For rental properties, an abstract of the existing lease for a tenant along with a description of the curb appeal for the property will be kept in the property manager's:`,
+ o:{a:"Prospectus",b:"Management agreement",c:"Market analysis",d:"Property analysis"},ans:"d",
+ why:`Property analysis done by a property manager is what takes into account the property's existing lease for each tenant and the curb appeal.`},
+{exam:1,num:46,topic:"Property, Land & Fixtures",type:"mc",
+ q:`Which of the following items is not considered a chattel?`,
+ o:{a:"Barn",b:"Curtains",c:"Trade fixture",d:"A tractor"},ans:"a",
+ why:`Chattels include personal possessions like clothing, money, refrigerators, and drapes/curtains.`},
+{exam:1,num:47,topic:"Licensing & Law",type:"mc",
+ q:`A broker is legally allowed to pay part of their real estate commission to:`,
+ o:{a:"A buyer",b:"A seller",c:"A sales agent who works under the broker",d:"A friend who referred them to the listing lead."},ans:"c",
+ why:`Brokers are allowed to share their commissions with salespersons who work for them or with other licensed brokers.`},
+{exam:1,num:48,topic:"Licensing & Law",type:"mc",
+ q:`Sherry is a licensed real estate agent who is looking to grow her customer base. She enlists the help of a friend, who is not licensed, to call homeowners to see if they are interested in selling their home. Sherry pays her friend $100 for every lead that she brings in. Does this action violate the license laws?`,
+ o:{a:"No, because the gift is less than $250.",b:"No, because Sherry's friend is not the one who is actually listing and selling the property.",c:"Yes, because Sherry is paying an unlicensed individual for services that require a license to perform.",d:"Yes, because the friend is using her own phone at home without a sign outside of the house."},ans:"c",
+ why:`Those who are not licensed cannot prospect for listings. In this case, an unlicensed individual is performing tasks that must require a license.`},
+{exam:1,num:49,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`At what point does an agent earn their commission?`,
+ o:{a:"When the buyer first makes a purchase offer.",b:"When the seller accepts the offer of the buyer without any conditions.",c:"When the lender accepts the borrower's applications and commits to funding the loan.",d:"When the title of the property is searched."},ans:"b",
+ why:`Once the seller accepts the buyer's offer without any conditions, commissions are typically earned at this point.`},
+{exam:1,num:50,topic:"Ethics & Fair Housing",type:"mc",
+ q:`James has clients that are of a particular religious faith. He declines to show them homes in a particular neighborhood because he feels they will not be accepted in that area. What is James engaging in?`,
+ o:{a:"Good faith exemption",b:"Steering",c:"Blockbusting",d:"Redlining"},ans:"b",
+ why:`Steering occurs when an agent either directs client towards or away from specific areas based on their race, religion, sex, familial status, national origin, or disability. Even if the agent believes he or she is acting in the best interest of the buyer, steering is still in violation of the Fair Housing Act. In this case, the family of a particular faith has a right to decide if they want to live in that specific area, or not, after viewing it.`},
+{exam:1,num:51,topic:"Ethics & Fair Housing",type:"mc",
+ q:`Jamie is a listing agent for one of her long time clients. The client tells her that they fixed a noticeable crack in the wall, but when Jamie actually looks at it, it was obviously just painted over. Nonetheless, Jamie goes ahead and informs a potential buyer that the problem was fixed. What is Jamie guilty of in this situation?`,
+ o:{a:"Puffing",b:"Misrepresentation",c:"Steering",d:"Obedience"},ans:"b",
+ why:`Misrepresentation occurs whenever a party makes a false claim about a contract or transaction, but they know what they are claiming is false.`},
+{exam:1,num:52,topic:"Ethics & Fair Housing",type:"mc",
+ q:`Lucy is working with a buyer who wants to buy their first home. Unfortunately, they cannot get a loan amount approved for the particular home they want. The client asks Lucy to help her manipulate her income numbers so she can get the approval amount she needs. Lucy wants to make her client happy. What should she do in this case?`,
+ o:{a:"Go ahead and help the client with their request since they will be happy with the home they get and Lucy will earn a sizable commission. It is a win-win for everybody.",b:"Politely reject the request the client has. While it is good to make clients happy, agents are not to break the law in the process. Also, educate the client about why they should not proceed forward with these actions.",c:"Help the client manipulate the number since no one will find out anyway.",d:"Turn the client in immediately."},ans:"b",
+ why:`Lucy should politely refuse the request that was made and also educate the client on why it is the wrong thing to do. If the client continues to make the unlawful request, it may be time to let them go. An agent is never required to break the law to make their clients happy.`},
+{exam:1,num:53,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Johnny is a broker and working with a demanding principal. The principal tells him that he has to do whatever he says because he is paying him. How should Johnny respond in this situation?`,
+ o:{a:"Johnny should create a boundary and reeducate the principal about what he was hired to do while providing the best service possible. He needs to let the principal know that he will provide the best service possible to get the job done, but cannot do anything illegal.",b:"Johnny should go along with whatever the principal tells him. Since he is being paid by the principal, he must be completely obedient to him.",c:"Johnny can do whatever the principal requests to a certain degree, but must make sure he does not get caught in certain situations.",d:"Johnny should leave the principal immediately without any explanation. He needs to protect his license and does not have time for the drama."},ans:"a",
+ why:`Any agent or broker should do their very best to provide exceptional service to their client and perform the jobs they were hired to do. That being said, in no way does the professional have to become completely obedient to a client, especially when they are overstepping their bounds or asking them to do something illegal.`},
+{exam:1,num:54,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Michael is a real estate agent in the middle of a transaction who is working with many different people. Ultimately, who does he have fiduciary responsibilities towards?`,
+ o:{a:"The lender who determines if the client gets a loan, or not.",b:"The listing agent, who he will likely split the commission with.",c:"The seller, whether or not they are his client.",d:"The principal, or the one who employs him."},ans:"d",
+ why:`The principal, the one who employs you is the one who you have fiduciary responsibilities towards.`},
+{exam:1,num:55,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Janelle is an agent for Nancy. She receives an offer form a prospective buyer, but based on what she has heard, she does not feel that the individual will be able to afford the offer they made. What should Janelle do with this prospective buyer's offer?`,
+ o:{a:"Ignore and pretend like it never came through. It will be a waste of time for her client, Nancy, to even look at it.",b:"Be honest with the buyer and let them know they don't feel that they are capable of paying what they offer.",c:"Still give the offer to Nancy because all offers should be presented and on the table. However, Janelle can let Nancy know about her concerns with the client.",d:"Let Nancy know they are rejecting the offer immediately."},ans:"c",
+ why:`The agent's opinion should not block a buyer from presenting their offer. Even if Janelle believes that a client will not be able to come through with the offer they made, she should still present it to her client, Nancy. Of course, Janelle can let Nancy know about her concerns.`},
+{exam:1,num:56,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A broker at a real estate firm tells one of his agents that a client of theirs is willing to sell a property for less than the asking price. After hearing this, the agent feels the need to notify the potential buyer for the property. Is this allowable?`,
+ o:{a:"No, this would not be allowable because it breaks confidentiality, which is one of the fiduciary responsibilities an agent holds.",b:"Yes, the agent is doing a favor for both the buyer and seller.",c:"Yes, since the seller is okay with a reduced price, it is acceptable for the listing agent to disclose what they heard.",d:"No, but they should encourage the client to disclose the information."},ans:"a",
+ why:`No; This would not be allowable because it breaks confidentiality, which is one of the fiduciary responsibilities an agent holds.`},
+{exam:1,num:57,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`James seeks out a professional and engages them to act for him under a contractual agreement. In this scenario, James would be considered:`,
+ o:{a:"An agent",b:"A principal",c:"A buyer",d:"A seller"},ans:"b",
+ why:`A principal is someone who hires another person to perform duties for them under a contractual agreement.`},
+{exam:1,num:58,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A licensed broker has found a client who is ready, willing, and able to buy one of the properties under contract and according to the terms of the listing. The purchase contract has been accepted and signed by both parties. At this point, the broker has:`,
+ o:{a:"Closed the deal",b:"Earned a commission",c:"Will need to do some further negotiation",d:"Will need to speak to the lender of the buyer"},ans:"b",
+ why:`The broker has earned a commission at this moment.`},
+{exam:1,num:59,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`The buyer and seller on a property, both who have their separate agents, have an agency relationship with each other.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`This is false because the principal would have an agency relationship with their own agent.`},
+{exam:1,num:60,topic:"Disclosure & Defects",type:"mc",
+ q:`A listing agent is told by her client that their home is structurally sound with no major issues. Later on, the agent discovers that the basement has significant water damage from a previous leak. What should the agent do in this circumstance?`,
+ o:{a:"Educate the client about how they should disclose the damage, but leave it up to them to decide how to move forward. If the client chooses not to disclose the damage, the listing agent should continue to work with the seller because she can't change the client's mind.",b:"Disregard the damage. Since it is in the basement, it won't be that big of a deal.",c:"Inform the seller that this issue must be reported and ensure that it does get reported to all who need to know. A client should always be educated about the importance of not breaking the rules while engaged in a real estate contract. Bottom line is, make sure the issue gets reported.",d:"Assure the seller that she won't say anything, but go behind her back later and disclose everything she knows."},ans:"c",
+ why:`An agent cannot leave information like this confidential. They must notify the appropriate parties to allow for full disclosure. Also, they must educate their own clients about the need to disclose this information. If the client refuses, the agent should still disclose and can also cut off their relationships with the seller.`},
+
+/* ---------------- PRACTICE TEST 4 (PSI4) — 80 questions ---------------- */
+{exam:4,num:1,topic:"Deeds, Title & Closing",type:"mc",
+ q:`If someone wants to record a deed, what office can they do this in?`,
+ o:{a:"Lawyer's office",b:"County courthouse",c:"Department of Licensing and regulatory affairs",d:"Secretary of State"},ans:"b",
+ why:`County courthouse.`},
+{exam:4,num:2,topic:"Valuation & Appraisal",type:"mc",
+ q:`Which entity is responsible for establishing the listing price on a home?`,
+ o:{a:"The appraiser",b:"The property owner",c:"The real estate broker",d:"The mortgage company"},ans:"b",
+ why:`The property owner will receive market data from their real estate broker and also receive the approximate value from an appraiser. However, they will be the ones who ultimately determine how much the home will be listed for.`},
+{exam:4,num:3,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`In order for a listing agreement to be valid, it must be:`,
+ o:{a:"In writing, be signed, and have an expiration date.",b:"Recorded if it was an oral agreement.",c:"In writing and contain a limit on the commission of the broker.",d:"In writing; the expiration date cannot be longer than 90 days."},ans:"a",
+ why:`In writing, be signed, and have an expiration date that is agreed upon by both parties.`},
+{exam:4,num:4,topic:"Contracts & Agreements",type:"mc",
+ q:`What is the best way to describe a bilateral contract?`,
+ o:{a:"Both parties are covered by the same broker.",b:"Only one party in the deal makes a promise.",c:"Both parties in the deal make a promise to perform.",d:"None of the above."},ans:"c",
+ why:`In a bilateral contract, both parties have an obligation to perform.`},
+{exam:4,num:5,topic:"Valuation & Appraisal",type:"tf",
+ q:`Capitalization is known as the process of determining the current value of a home based on its future income.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:6,topic:"Ownership, Insurance & Taxes",type:"mc",
+ q:`What does a homeowner need in order to protect their homes from things like natural disasters and theft?`,
+ o:{a:"Title insurance",b:"Home Warranty",c:"Homeowners' insurance",d:"None of the above"},ans:"c",
+ why:`Homeowners' insurance.`},
+{exam:4,num:7,topic:"Ethics & Fair Housing",type:"mc",
+ q:`Michael is an agent in a specific area of town. He has been servicing homes for well over a decade in this location and is very well-known and respected in the community. Michael's business has been slow and he wants to sell more homes to bring in more commission. As a result, he begins communicating with prospective clients in the area about the population changes that are occurring. Mainly, he discusses the influx of a variety of ethnic groups coming in from different countries and convinces some of the homeowners that the property values will start to decrease heavily in the neighborhood. Michael hopes that the people will panic and start selling their homes. What is this practice known as?`,
+ o:{a:"Steering",b:"Misrepresentation",c:"Blockbusting",d:"Puffing"},ans:"c",
+ why:`Blockbusting is when homeowners are persuaded to sell their homes because of the fear of people from different ethnic groups, races, and classes that will be moving in, which can severely reduce the property value in the area.`},
+{exam:4,num:8,topic:"Property, Land & Fixtures",type:"mc",
+ q:`Jim has been looking to buy an older home built before the 1970s. The home is in beautiful condition and Jim loves all of the old architecture inside of the home. However, he is worried about lead poisoning from the structures in the home. Where in the home can lead possibly be found?`,
+ o:{a:"The paint on the walls",b:"The flooring",c:"The water pipes",d:"The soil",e:"A, C, and D are correct."},ans:"e",
+ why:`Lead can be found in paint in homes built before 1978, in pipes, and in the soil.`},
+{exam:4,num:9,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`Jimmy is an agent in a small town. He gets sought out and hired by a gentleman in his town who wants his help in buying a home. Jimmy accepts the agency relationship and they proceed forward. As time progresses, Jimmy and his principal end up looking at a home that is owned by a friend of Jimmy. The listing agent on the deal is also someone who Jimmy has known for a while and has a great working relationship with. Based on this situation, who does Jimmy have fiduciary responsibilities to?`,
+ o:{a:"The listing agent",b:"The seller, since friendship comes first",c:"The buyer and seller",d:"The buyer"},ans:"d",
+ why:`The buyer since he is the one employing Jimmy.`},
+{exam:4,num:10,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`When a commission is received from the direct result of a sale, the funds are payable to?`,
+ o:{a:"The client that is represented by the agent.",b:"The broker that is affiliated with the agent who made the sale.",c:"The agent who made the sale.",d:"The seller and the agent will immediately get 50-50."},ans:"b",
+ why:`The broker who is affiliated with the agent who made the sale.`},
+{exam:4,num:11,topic:"Math & Calculations",type:"mc",
+ q:`An investor is viewing a large plot of land which she plans on using for various projects in the near future. This piece of land is 160,000 square feet. How can she find out the amount of acres it is?`,
+ o:{a:"Seek out the land owner and see if they know.",b:"Take 160,000 and divide it by 43,560.",c:"Divide 43,560 by 160,000.",d:"Take 160,000 and divide it by 5,280 feet and then multiply it by 43,560."},ans:"b",
+ why:`Since an acre is 43,560 square feet, simply take this number and divide it into 160,000.`},
+{exam:4,num:12,topic:"Property, Land & Fixtures",type:"mc",
+ q:`Sam is a contractor who was hired to replace the roof on Pam's home. After Sam completed the project, he requested payment, but could no longer get a hold of Pam. Sam learns that the client put her home up for sale. Sam is worried that she will leave and he will never get his payment for the work he did. What are Sam's options?`,
+ o:{a:`Send Pam a "cease and desist" letter.`,b:"Report the issue to Pam's agent who is selling the home.",c:"File a complaint against the agent on the deal.",d:"Place a lien on Pam's home."},ans:"d",
+ why:`The best option for Sam is to place a lien on the home.`},
+{exam:4,num:13,topic:"Financing & Mortgages",type:"mc",
+ q:`Jenny is interested in buying a new home in a brand new development. She submits a mortgage application with a local lender. Within three days of submitting her application, the mortgage broker should provide Jenny with the following:`,
+ o:{a:"Self-disclosure agreement",b:"A pre-approval letter",c:"Checklist of necessary documents to fulfill the loan",d:"Loan estimate and closing disclosure"},ans:"d",
+ why:`They should provide the loan estimate and closing disclosure within three days of the application.`},
+{exam:4,num:14,topic:"Valuation & Appraisal",type:"mc",
+ q:`Michaela is considering selling her home, but she wants to make sure she receives a decent profit from the sale. She has no idea how much the listing price would be, so she seeks out a real estate agent to help her. Which of the following is the best way to determine the listing price of this particular property?`,
+ o:{a:"The price that the property was most recently purchased for, even if it's been several years.",b:"The amount of money the seller wants to gain from the deal. Therefore, if she wants to gain $50,000, she will list the home for $50,000 greater than what she bought it for.",c:"Recent home sales of comparable properties in the same neighborhood.",d:"Recent home sales of comparable properties in adjacent neighborhoods."},ans:"c",
+ why:`The sale of comparable properties in the same neighborhood that occurred recently is the best indicator of what the listing price should be.`},
+{exam:4,num:15,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A broker has an exclusive listing on a particular property. One day, an agent from another brokerage firm receives an offer on the same property. Since the property does not belong to their firm, what should they do?`,
+ o:{a:"Get a hold of the listing broker to present the offer to them.",b:"Go ahead and present the offer to the seller, but let the listing broker know about it.",c:"One of the employees of the broker can present the offer to the seller.",d:"Since the home is not part of their listing, they should ask the buyer to discuss the offer directly with the seller."},ans:"a",
+ why:`The company should get a hold of the listing broker that has the property under contract and present the offer to them.`},
+{exam:4,num:16,topic:"Math & Calculations",type:"mc",
+ q:`A gentleman lives in a home with an HOA. His dues are $100 per month, and the payment schedule is set at $300 quarterly for the homeowners. This particular gentleman always likes to pay all of his dues at the beginning of the year to get them over with, so he made a payment of $1200 on January 1st. A month later, he decided he wanted to sell his home and the new owner took over as of May 1st. Will the new owner be responsible for the HOA fees for the year?`,
+ o:{a:"No, they were taken care of for the whole year by the previous owner.",b:"Yes, since it is still the first half of the year, he will need to pay the full year's worth.",c:"Yes, he will have to pay $800.",d:"Yes, he will pay $600."},ans:"c",
+ why:`Since the new owner is taking over on May 1st, he still has eight months left of the year, so his payments will be $800.`},
+{exam:4,num:17,topic:"Valuation & Appraisal",type:"mc",
+ q:`During the end of a particular fiscal year, there are quite a few more sellers than buyers in the real estate market. What type of market would this be known as?`,
+ o:{a:"Bull Market",b:"Seller's market",c:"Buyer's market",d:"Bear market"},ans:"c",
+ why:`Due to the supply and demand philosophy, if there are more sellers than buyers, home prices will go down, and this creates an advantage for buyers, Hence, this situation would create a buyer's market. If it was the opposite, then it would be a sellers market. The terms bull and bear market are used for the stock market.`},
+{exam:4,num:18,topic:"Financing & Mortgages",type:"mc",
+ q:`When a lender lends an amount of money expressed as a percentage of the appraised value of a home, or the purchasing price, whichever one is lower, this is known as the:`,
+ o:{a:"Loan-to-value ratio",b:"Debt to equity ratio",c:"Capitalization ratio",d:"Front-end ratio"},ans:"a",
+ why:`Loan-to-value is found by taking the amount of the first mortgage and dividing it by either the appraised value of the property or the purchase price, whichever one is lower. For instance, if the first mortgage is $160,000, and the appraised value is $200,000 and lower than the purchase price, the loan-to-value ratio would be 80%.`},
+{exam:4,num:19,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`When a broker has a net listing, she must disclose the amount of the compensation they will receive from the sale:`,
+ o:{a:"Prior to the seller accepting any type of offer.",b:"At the same time that the listing is signed.",c:"Once the purchase offer is presented.",d:"Prior to the close of escrow."},ans:"a",
+ why:`Since the broker will receive any amount greater than the number the seller must net from the sale, the disclosure must occur prior to the seller accepting any type of offer.`},
+{exam:4,num:20,topic:"Deeds, Title & Closing",type:"tf",
+ q:`Legal description in land that contains language like "the large redwood tree" or "the giant rock" would be considered metes and bounds.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:21,topic:"Disclosure & Defects",type:"mc",
+ q:`A real estate agent is showing a property that is next to a large lake. After walking by the body of water, the agent notices an abnormal amount of algae growing in a certain location. The buyer loves the home and wishes to purchase it. How should the agent proceed?`,
+ o:{a:"Go ahead with the sale because if the buyer did not notice the algae, or does not care, then it is no big deal.",b:"Since algae can grow in water, it is okay and the transaction can proceed.",c:"Discuss it with the buyer, but let her know that it is no big deal.",d:"Advise the buyer to reach out to an expert to investigate the algae growth and why it is present. The reason for the growth could influence the buyer's decision."},ans:"d",
+ why:`The real estate agent should do the right thing here and encourage the buyer to have this issue investigated. Even though it could potentially turn the buyer away from the property, the agent has a responsibility to do what's best for the client.`},
+{exam:4,num:22,topic:"Disclosure & Defects",type:"tf",
+ q:`A seller lists their home for $400,000. They tell their agent that property taxes for the home are $1,300 per year. While the homeowner is probably telling the truth, the agent should still verify this information with the county.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:23,topic:"Valuation & Appraisal",type:"mc",
+ q:`A commercial warehouse has been busy for years, but recently the customer load started going down due to a new highway built nearby that directed traffic away from the property. What is this an example of?`,
+ o:{a:"Economic obsolescence",b:"Physical obsolescence",c:"Government overreach",d:"None of the above"},ans:"a",
+ why:`Economic obsolescence is when a property loses value because of external economic factors that the property owner cannot control.`},
+{exam:4,num:24,topic:"Contracts & Agreements",type:"mc",
+ q:`Lisa is a prospective buyer for a home. She places an offer which the seller looks over. The next day, the owner places a counteroffer. While waiting for the buyer to respond, the homeowner receives an even better offer from another individual. Can the owner accept the second offer that came in?`,
+ o:{a:"No, the first transaction is already in progress and the owner must wait for a counteroffer.",b:"Yes, the owner can accept any offer at any time as long as the sale is not closed.",c:"Yes, as long as the owner withdraws the counteroffer prior to the first buyer accepting it.",d:"No, but the owner can wait for the counteroffer from the first buyer and then send another offer that is even better, with the hopes that they accept it."},ans:"c",
+ why:`As long as the owner withdraws the counteroffer before the first buyer approves, they can accept the offer of the second buyer since it is more appealing.`},
+{exam:4,num:25,topic:"Property Management & Leasing",type:"mc",
+ q:`A newly married couple is moving to a new city because of job offers. They want to buy a home soon, but also want to check out properties when they get there. They are temporarily renting an apartment while searching for a permanent home. Which of the following lease types would be best suited for this couple.`,
+ o:{a:"12-month lease so they can have plenty of time to look for a home and the rent with a longer lease is generally lower.",b:"6-month lease to give them enough time to look for a home, but they don't have to be tied down for a whole year.",c:"It is better to ask around and rent out a small room in a house until they find something they like.",d:"A month-to-month lease is ideal so they are not locked into a long contract and can leave at the end of the month when they find a home."},ans:"d",
+ why:`A month-to-month lease is ideal in this situation.`},
+{exam:4,num:26,topic:"Disclosure & Defects",type:"mc",
+ q:`A homeowner lists their home with an agent. Upon asking some detailed questions, the listing agent learns that the sellers are moving because their neighbors have loud parties several times a week, which become quite disruptive. Even after reporting the issue multiple times, nothing has been done about it. What should the agent do in this situation?`,
+ o:{a:"Contact law enforcement themself and see if they can get results.",b:"Encourage the seller to let potential buyers know this and leave it up to them to decide if they will, or not.",c:"Make note of this and ask other agents to not show the house while the neighbors are having house parties.",d:"Make sure to tell all potential buyers and their agents this information because they have the right to know. This could influence their decision to buy the home."},ans:"d",
+ why:`It is important to disclose this information. Not only is it the right thing to do, but if it's found that the listing agent knew and did not tell anyone, they could be liable, as well.`},
+{exam:4,num:27,topic:"Ownership, Insurance & Taxes",type:"mc",
+ q:`Which of the following can be considered a disadvantage to owning real estate?`,
+ o:{a:"Equity",b:"Liquidity",c:"Private property",d:"Expensive repairs",e:"B and D"},ans:"e",
+ why:`Real estate is not considered a liquid asset because it cannot be converted into cash quickly. Also, even though it is nice to own a home, expensive repairs can certainly become stressful.`},
+{exam:4,num:28,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A broker gets hired by a homeowner to sell his house. The broker begins marketing it, but before he can even have the open house, the owner sells the home to a friend who just moved into town. The seller still pays the broker that full commission that was agreed upon. What type of agreement was signed in this situation?`,
+ o:{a:"Exclusive right-to-sell",b:"Exclusive agency listing",c:"Open listing",d:"Hand-shake agreement"},ans:"a",
+ why:`This is an exclusive right-to-sell agreement where the broker will get paid whether they are the ones who procure the buyer, or not.`},
+{exam:4,num:29,topic:"Property Management & Leasing",type:"mc",
+ q:`A homeowner turns her residence into a rental property. Since she will be moving to a different state, she decides to hire a property manager to look after her home. All of the following are responsibilities of the property manager, except:`,
+ o:{a:"Collecting rent payments and making sure they are on time.",b:"Address and concerns of the tenants, including maintenance and repairs.",c:"Market the property when it is vacant.",d:"Take the profits from rental income and reinvest them into the property."},ans:"d",
+ why:`The property manager is not authorized to do anything with the rental income except collect it and make sure it gets deposited for the homeowner to access. All of the other options are responsibilities that a property manager would hold.`},
+{exam:4,num:30,topic:"Financing & Mortgages",type:"tf",
+ q:`If a borrower wants to get a loan that exceeds 80% of the property's appraised value, they will likely have to get private mortgage insurance.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; Generally, whenever a borrower puts less than a 20% down payment, the lender will require private mortgage insurance so they have some extra protection in case the borrower defaults on a loan.`},
+{exam:4,num:31,topic:"Financing & Mortgages",type:"tf",
+ q:`A lender will determine their maximum loan amount based on the purchase price or the appraised value, whichever one is lower.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:32,topic:"Ethics & Fair Housing",type:"mc",
+ q:`While working with a seller, the agent learns that she will not sell her home to a person of color, no matter what. What should the agent do at this time?`,
+ o:{a:"Continue with the transaction since the homeowner has a right to sell her home to anyone she wants.",b:"Explain to the seller that it's wrong to think that way, but continue with the listing since she hired the agent to do a job.",c:"Explain to the client that they are not allowed to discriminate based on race or color and get ready to cancel the listing.",d:"Ignore the comment because the agent cannot change another person's opinion."},ans:"c",
+ why:`The seller needs to be aware that they cannot determine who to sell the home to based on a protected class, like race or color. If the client insists on this, the agent will have to cancel the listing.`},
+{exam:4,num:33,topic:"Disclosure & Defects",type:"mc",
+ q:`The listing broker on a home for sale does a visual inspection and does not find any major issues. The seller does not mention anything to the broker and puts that there are no issues on the disclosure statement. Once the new owner moves in, he finds some long-standing problems with water leakage into the basement. Who will be held liable for this situation?`,
+ o:{a:"The seller",b:"The broker",c:"The buyer",d:"The water company"},ans:"a",
+ why:`The seller will be held responsible since the broker is not liable for latent material defects that they did not know about.`},
+{exam:4,num:34,topic:"Ethics & Fair Housing",type:"tf",
+ q:`While showing a home to a potential buyer, the agent states that this is the best house in the neighborhood. When the buyer moves in, he later finds out that it is not the best house in the neighborhood. The new owner can sue the agent.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; The agent was obviously puffing in this situation, which means stating an exaggerated opinion.`},
+{exam:4,num:35,topic:"Disclosure & Defects",type:"tf",
+ q:`While showing a property, a licensee is obligated by law to disclose any material defects that they are aware of.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:36,topic:"Disclosure & Defects",type:"mc",
+ q:`While working with a seller, the listing agent learns that the home was treated for termites five years ago. The seller assures the agent that there are no termites now. What should the listing agent advise the seller to do before listing the property?`,
+ o:{a:"Get another treatment for termites, just in case.",b:"Not advise anything since the problem was years ago and taken care of.",c:"Assess the wood in the home to make sure it is structurally sound.",d:"Make sure to disclose the termite treatment on the property disclosure so all potential buyers are aware."},ans:"d",
+ why:`The seller should disclose this information because buyers have a right to be aware of this information.`},
+{exam:4,num:37,topic:"Financing & Mortgages",type:"mc",
+ q:`A prospective buyer is a little nervous about getting an adjustable rate mortgage. What can be said to help calm their nerves about this loan type?`,
+ o:{a:"Most of the time, the rates will run lower than with a fixed-rate mortgage.",b:"If you are nervous about them, let's look at other loan options.",c:"They are not bad at all, so let's go for it.",d:"Even though the rate can go up or down based on the current market, there is a cap, which limits the amount of adjustments."},ans:"d",
+ why:`Buyers who are considering an adjustable-rate mortgage should be aware that there is a cap that limits the amount of adjustments.`},
+{exam:4,num:38,topic:"Deeds, Title & Closing",type:"tf",
+ q:`There are many types of deeds available based on the specific property and rights that are afforded to the grantor and grantee. A general warranty deed provides the most warranties and the highest amount of protection for the buyer.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; General warranty deeds are definitely advantageous for the grantee.`},
+{exam:4,num:39,topic:"Deeds, Title & Closing",type:"mc",
+ q:`Which of the following is required for a deed to be valid?`,
+ o:{a:"Words of conveyance",b:"It must be recorded",c:"Signed by the grantee",d:"Signed by the grantor",e:"A and D are correct",f:"A, C, and D are correct"},ans:"e",
+ why:`A and D are correct. The deed does not have to be signed by the grantee, only the grantor.`},
+{exam:4,num:40,topic:"Deeds, Title & Closing",type:"tf",
+ q:`The main purpose of a deed is to prove ownership of a property.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; The main purpose of a deed is to transfer title.`},
+{exam:4,num:41,topic:"Ownership, Insurance & Taxes",type:"mc",
+ q:`Johnny has lived in his current home for about 13 months and it has been his primary residence during this time. Prior to this, he bought it as a rental property for about six years and his tenants were taking care of the home. He is looking to sell the home, but does not want to get hit with capital gains taxes. He is below the profit threshold for capital gains taxes, so would he be eligible for the exclusion based on primary residence?`,
+ o:{a:"Yes, he has owned the home for over five years, so he is good.",b:"No, even though he has owned the home for a while, he has not lived there as his primary residence for two of the last five years.",c:"No, since it has been a rental property in the past, he will never be eligible for the exclusion.",d:"Yes, as long as he has been there for a year."},ans:"b",
+ why:`Johnny is not eligible for the exclusion since he has not lived in the property as his primary residence for at least two of the last five years. He has only lived there a total of 13 months in the past five years.`},
+{exam:4,num:42,topic:"Ownership, Insurance & Taxes",type:"mc",
+ q:`Which of the following items are deductible on income taxes?`,
+ o:{a:"Principal",b:"Property insurance",c:"Mortgage interest",d:"HOA dues"},ans:"c",
+ why:`Mortgage interest is the only one of these options that can be deducted from income taxes.`},
+{exam:4,num:43,topic:"Ownership, Insurance & Taxes",type:"tf",
+ q:`The premiums for title insurance are paid on an annual basis.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; These premiums are due once at closing.`},
+{exam:4,num:44,topic:"Deeds, Title & Closing",type:"tf",
+ q:`The title insurance of a property will provide protection to the loan borrower.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; Provides protection to the lender.`},
+{exam:4,num:45,topic:"Disclosure & Defects",type:"tf",
+ q:`Sam is a homeowner of a property that was built in 1989. Due to the age of the property, Sam will need to give the buyer a lead-based paint disclosure.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; These disclosures are only given for properties that were built before 1978.`},
+{exam:4,num:46,topic:"Zoning & Government Powers",type:"mc",
+ q:`Police power has the ability to control:`,
+ o:{a:"Building codes",b:"Zoning",c:"Promoting general welfare",d:"All of the above"},ans:"d",
+ why:`All of these can be managed by police power.`},
+{exam:4,num:47,topic:"Zoning & Government Powers",type:"tf",
+ q:`There is a large tire manufacturing company that has been operating in its current area for over 20 years. The zoning was recently changed to residential only. As it stands, the tire company can continue to operate as usual since it was present before the new zoning laws took effect, and if the property ever gets damaged, it will be able to rebuild and continue the same operations as before.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; Since the tire manufacturer was already there, it is operating under legal nonconforming use. If it ever needs to be rebuilt, it will unlikely get permission to reconstruct again.`},
+{exam:4,num:48,topic:"Property Management & Leasing",type:"tf",
+ q:`One of the responsibilities of a property manager is to negotiate a lease with a tenant. The tenant wants a fixed lease because he plans on staying there for several years. Due to inflation, the property manager would probably be reluctant to negotiate a fixed lease.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:49,topic:"Property Management & Leasing",type:"mc",
+ q:`Jim is a property manager who is managing multiple homes. His job is quite stressful as some of his clients are not the easiest to deal with. Out of the following clients, who can Jim legally convict under most state laws?`,
+ o:{a:"A tenant who he keeps butting heads with regarding some issues around the property.",b:"One of the tenants calls him several times a week regarding the same repairs that need to be done.",c:"The tenant in his single-family home is always late on rent, even though he has received multiple warnings.",d:"Whenever Jim speaks to one of the tenants, they are always abrupt with him and it really gets on his nerves."},ans:"c",
+ why:`This is the only option where Jim can actually start the eviction process. While the other clients may be irritating to deal with, that alone is not a cause for evicting someone.`},
+{exam:4,num:50,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`James wanted to sell his home, but is hesitant to hire a real estate agent. A friend of James told him that the most an agent can collect is 10% commission on any deal. Is his friend accurate in this statement?`,
+ o:{a:"Yes, 10% is the absolute limit for a commission charge.",b:"No, an agent can charge whatever they want based on the sales price of the home.",c:"No, commissions will be negotiated with the contract and there is no actual limit to what they can be.",d:"No, the maximum amount is 6%."},ans:"c",
+ why:`The commission rate will always be negotiated and there is no actual limit on what it can be.`},
+{exam:4,num:51,topic:"Ethics & Fair Housing",type:"mc",
+ q:`When a lender practices the refusal of giving loans that are secured by mortgages in certain neighborhoods or communities because of the crime rate or the racial/ethnic makeup of the population, this process is known as:`,
+ o:{a:"Steering",b:"Blockbusing",c:"Puffing",d:"Redlining"},ans:"d",
+ why:`This process is known as redlining and is prohibited.`},
+{exam:4,num:52,topic:"Property Management & Leasing",type:"tf",
+ q:`A tenant who is disabled can make reversible changes to a home they are renting so it becomes more convenient for them.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; It will likely be at the tenant's expense, though.`},
+{exam:4,num:53,topic:"Ethics & Fair Housing",type:"tf",
+ q:`What separates misrepresentation and fraud is the intention of the person committing either act.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; Misrepresentation is accidental, while fraud is usually purposeful.`},
+{exam:4,num:54,topic:"Valuation & Appraisal",type:"tf",
+ q:`Before a broker can offer a purchase price, they must perform a comparative market analysis.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:55,topic:"Financing & Mortgages",type:"tf",
+ q:`FHA and VA loans will likely have a prepayment penalty.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; They will not have a prepayment penalty.`},
+{exam:4,num:56,topic:"Property, Land & Fixtures",type:"tf",
+ q:`A homeowner has installed specialty faucets in all of the sinks in his home. After the execution of a contract for sale, he decided to replace these specialty faucets with regular faucets. Since the faucets are considered fixtures, the homeowner can be held liable because they were present during the contract signing.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:57,topic:"Property, Land & Fixtures",type:"tf",
+ q:`All plumbing and electrical wires that are attached will automatically transfer with the property when it is sold.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; These are considered fixtures.`},
+{exam:4,num:58,topic:"Property Management & Leasing",type:"tf",
+ q:`An example of a percentage lease is when a tenant of a commercial property pays a base rent amount, plus a certain percentage of the gross sales that come from the business.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:59,topic:"Property Management & Leasing",type:"tf",
+ q:`A landlord of a rental property signs a two-year deal with a new tenant. Unfortunately, the landlord passed away shortly after the one-year mark and the property was sold. At this point, the tenant must vacate the property immediately.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; The rights of a tenant are not terminated by the death of a landlord or sale of a home. They can continue to live in the property until the lease-term is completed.`},
+{exam:4,num:60,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`An agent has the ability to act on another person's behalf.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; In the case of a real estate agent, they have the ability to act on a seller's behalf or buyer's behalf.`},
+{exam:4,num:61,topic:"Agency, Listings & Fiduciary Duties",type:"mc",
+ q:`A broker who is representing a seller is required to:`,
+ o:{a:"Present all offers to the principal, whether they find them acceptable, or not.",b:"Disclose to the buyer that the seller is willing to accept less than what the asking price is because they are going through some issues.",c:"Exercise care, loyalty, obedience, and accounting.",d:"A and C are correct."},ans:"d",
+ why:`In this case, A and C are correct.`},
+{exam:4,num:62,topic:"Math & Calculations",type:"mc",
+ q:`Lisa bought a property about five years ago that was worth $190,000. Since then, the value has declined about 5%. What is the current value of the home?`,
+ o:{a:"$185,000",b:"$175,000",c:"$185,500",d:"None of the above"},ans:"d",
+ why:`Since the value has declined by 5%, the home is basically worth 95% of what it used to be. So, we simply take $190,000 and multiply it by 0.95, which is $180,500.`},
+{exam:4,num:63,topic:"Licensing & Law",type:"tf",
+ q:`A salesperson wants to make a major name for themselves, so she decided to not put the name of her broker on any of her marketing materials. This is allowed as long as she still pays her broker the proper dues.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; The name of the broker must always appear in advertisements.`},
+{exam:4,num:64,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`An agent has been hired by one of his neighbors and is now listing their property. This makes the salesperson a dual agent.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; He is simply the listing agent, just like for anyone else.`},
+{exam:4,num:65,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`Before a dual agent can perform his duties, he must get the approval and consent of both parties that he or she is representing.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:66,topic:"Agency, Listings & Fiduciary Duties",type:"tf",
+ q:`The owner of a home is liable for the commission of both agents involved in the deal.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True and one commission is generally split 50-50.`},
+{exam:4,num:67,topic:"Valuation & Appraisal",type:"tf",
+ q:`If the zoning regulations in a residential neighborhood change and allow certain light industries to come into the area, it would probably change the market value of the property.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:68,topic:"Valuation & Appraisal",type:"mc",
+ q:`James is a real estate agent who is working with one of his clients to sell their home. While performing a comparative market analysis, James discovers that many of the comparable properties that sold recently were in noticeably worse condition than his current client's home. What should James do in this situation?`,
+ o:{a:"Still set the price at a comparable rate to the other properties that were recently sold. A comparable property is still a comparable property and the home needs to be sold at a competitive rate.",b:"Sell the home for a slightly lower price than the comparable homes, but will still bring in a profit for the client. This will make the home very easy to sell and bring in a quick commission for the agent.",c:"Sell the home at a higher price than the comparable properties that were not in as nice of a condition.",d:"Ask the client what they prefer and go from there."},ans:"c",
+ why:`In this situation, since the client's home is in a nicer condition than the previous comparable properties, it is better to set the purchase price at a higher rate than those other properties.`},
+{exam:4,num:69,topic:"Math & Calculations",type:"tf",
+ q:`When calculating the square footage of a two-story home, the exterior dimensions will need to be measured and then multiplied by two.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:70,topic:"Valuation & Appraisal",type:"tf",
+ q:`A builder developed a subdivision where there was a high demand for the homes. The homes were literally flying off the market and, by the time he got to the last one, it sold for a much higher price than the first one did. This is a perfect example of the supply and demand principle.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:71,topic:"Valuation & Appraisal",type:"mc",
+ q:`Shannon decided to build a nice home in a neighborhood that she liked. The home was originally worth about $300,000 when built, but the value of the other homes surrounding it averaged about $150,000. About three years later, Shannon was looking to sell the home, but was surprised by how much the value decreased since she originally had it built. This is an example of:`,
+ o:{a:"Progression",b:"Regression",c:"Poor planning",d:"Economic obsolescence"},ans:"b",
+ why:`This is an example of regression.`},
+{exam:4,num:72,topic:"Math & Calculations",type:"fill",
+ q:`A property used for business purposes has a value of $200,000. In order to earn a capitalization rate of about 11% of the total investment made, what should the monthly income be? (Calculate your value and type the number below, e.g. 1833)`,
+ accept:[1833,1833.33,1834],
+ why:`To get this number, simply take $200,000 and multiply it by 11%, or 0.11. This will give you $22,000. To get the monthly income, divide this number by 12, and you will get an approximate value of: $1,833.`},
+{exam:4,num:73,topic:"Deeds, Title & Closing",type:"tf",
+ q:`When a real estate transaction closes, continuing charges for the year, like taxes and insurance, are prorated.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True; When fees are prorated, the owner will be responsible for the balance based on how much time is left in the year. For example, if there are only seven months left when the transaction closes, the new owner will pay for seven months of the annual dues.`},
+{exam:4,num:74,topic:"Deeds, Title & Closing",type:"tf",
+ q:`At the close of a real estate transaction, the purchase price is a credit to the buyer.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; It is a credit to the seller and a debit to the buyer.`},
+{exam:4,num:75,topic:"Deeds, Title & Closing",type:"tf",
+ q:`The deed of a property is delivered to the buyer once the sales contract has been signed.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; It will be delivered at the closing.`},
+{exam:4,num:76,topic:"Deeds, Title & Closing",type:"tf",
+ q:`The closing statement will thoroughly detail how much each party will either receive or be required to pay at the settlement or closing.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+{exam:4,num:77,topic:"Deeds, Title & Closing",type:"tf",
+ q:`The seller is required to take care of the recording of a deed if the buyer requests it.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; the recording of the deed is the responsibility of the buyer, if they choose to do so.`},
+{exam:4,num:78,topic:"Deeds, Title & Closing",type:"tf",
+ q:`A loan for $100,000 was recorded on a property, and another loan for $150,000 was recorded on the same property four years later. Since the second loan is larger, it will be the primary lien that needs to be taken care of first.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; The first deed is the priority because it was recorded first. Priority is not based on the amount of the loan.`},
+{exam:4,num:79,topic:"Disclosure & Defects",type:"tf",
+ q:`Since property taxes and special assessments are all public records, they do not need to be disclosed.`,
+ o:{a:"True",b:"False"},ans:"b",
+ why:`False; They must always be disclosed.`},
+{exam:4,num:80,topic:"Ethics & Fair Housing",type:"tf",
+ q:`Deed restrictions are not permitted to restrict based on race or national origin.`,
+ o:{a:"True",b:"False"},ans:"a",
+ why:`True.`},
+];
+
+/* ============================================================================
+   MATH PRACTICE GENERATORS — the ONLY made-up questions in this app.
+   Restricted to arithmetic topics so every answer is computed (never guessed),
+   mirroring the calculation questions in the real PSI exams.
+   ========================================================================== */
+const money = n => "$" + Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+function buildMC(correctText, distractTexts){
+  const set=[correctText]; distractTexts.forEach(d=>{ if(!set.includes(d)) set.push(d); });
+  while(set.length<4) set.push(money(Math.round(Math.random()*900000)+10000));
+  const four=set.slice(0,4);
+  for(let i=four.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[four[i],four[j]]=[four[j],four[i]];}
+  const letters=["a","b","c","d"]; const o={}; let ans="a";
+  four.forEach((t,i)=>{o[letters[i]]=t; if(t===correctText) ans=letters[i];});
+  return {o,ans};
+}
+const MATH_GENERATORS = [
+  function pricePerSqFt(){
+    const w=pick([50,60,75,80,100,120]), l=pick([100,125,150,175,200,250]);
+    const per=pick([65,72.5,80,95,110,130]); const sf=w*l; const total=sf*per;
+    const {o,ans}=buildMC(money(total),[money(sf*per*0.9),money((w+l)*per),money(sf*(per+10))]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`A lot is ${w} feet by ${l} feet. The seller is asking $${per} per square foot. What is the asking price?`,
+      o,ans,why:`Area = ${w} × ${l} = ${sf.toLocaleString()} sq ft. Then ${sf.toLocaleString()} × $${per} = ${money(total)}.`};
+  },
+  function costPerSqFt(){
+    const w=pick([40,50,60,75,80]), l=pick([100,120,125,150,180]); const sf=w*l;
+    const total=pick([250000,300000,375000,455000,520000]);
+    const per=Math.round((total/sf)*100)/100;
+    const {o,ans}=buildMC(money(per),[money(Math.round(total/(w+l)*100)/100),money(per+8),money(Math.round(per*0.85*100)/100)]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`A lot measuring ${w} feet by ${l} feet was purchased for ${money(total)}. What was the price per square foot?`,
+      o,ans,why:`Area = ${w} × ${l} = ${sf.toLocaleString()} sq ft. Then ${money(total)} ÷ ${sf.toLocaleString()} = ${money(per)} per sq ft.`};
+  },
+  function commissionToPrice(){
+    const price=pick([180000,220000,250000,300000,420000,540000]);
+    const rate=pick([0.03,0.04,0.05,0.06]); const comm=price*rate;
+    const {o,ans}=buildMC(money(price),[money(comm/(rate+0.01)),money(price*0.9),money(comm*10)]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`An agent earned a commission of ${money(comm)}, which was ${(rate*100)}% of the sale price. What was the sale price?`,
+      o,ans,why:`Sale price = commission ÷ rate = ${money(comm)} ÷ ${rate} = ${money(price)}.`};
+  },
+  function acres(){
+    const acresN=pick([2,3,4,5,8,10]); const sf=acresN*43560;
+    const {o,ans}=buildMC(acresN+" acres",[(acresN+1)+" acres",(acresN-1||1)+" acres",Math.round(acresN*1.5)+" acres"]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`A plot of land is ${sf.toLocaleString()} square feet. How many acres is it? (1 acre = 43,560 sq ft)`,
+      o,ans,why:`${sf.toLocaleString()} ÷ 43,560 = ${acresN} acres.`};
+  },
+  function depreciation(){
+    const val=pick([150000,190000,240000,320000]); const drop=pick([3,5,8,10]);
+    const now=Math.round(val*(1-drop/100));
+    const {o,ans}=buildMC(money(now),[money(val-drop*1000),money(Math.round(val*(1+drop/100))),money(val-drop)]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`A property was worth ${money(val)}. Since then its value declined about ${drop}%. What is the current value?`,
+      o,ans,why:`The home is worth ${100-drop}% of before: ${money(val)} × ${(1-drop/100)} = ${money(now)}.`};
+  },
+  function capRateIncome(){
+    const val=pick([180000,200000,240000,300000]); const rate=pick([8,10,11,12]);
+    const annual=val*rate/100; const monthly=Math.round(annual/12);
+    const {o,ans}=buildMC(money(monthly),[money(Math.round(annual)),money(Math.round(annual/10)),money(monthly+400)]);
+    return {topic:"Math & Calculations",type:"mc",generated:true,
+      q:`A business property is valued at ${money(val)}. To earn a capitalization rate of ${rate}%, what should the approximate MONTHLY income be?`,
+      o,ans,why:`Annual = ${money(val)} × ${rate/100} = ${money(annual)}. Monthly = ${money(annual)} ÷ 12 ≈ ${money(monthly)}.`};
+  },
+];
+function generateMathQuestions(n){ const out=[]; for(let i=0;i<n;i++){out.push(pick(MATH_GENERATORS)());} return out; }
+
+/* ============================================================================
+   APP
+   ========================================================================== */
+const app = document.getElementById("app");
+const TOPICS = [...new Set(QUESTIONS.map(q=>q.topic))];
+let state = null;
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function prizeFor(pct){ let p=CONFIG.PRIZE_TIERS[0]; CONFIG.PRIZE_TIERS.forEach(t=>{if(pct>=t.minPct)p=t;}); return p; }
+
+/* --- past-attempt history (localStorage) --- */
+const HIST_KEY="studyDateHistory";
+function loadHistory(){ try{return JSON.parse(localStorage.getItem(HIST_KEY)||"[]");}catch(e){return[];} }
+function saveAttempt(rec){ const h=loadHistory(); h.unshift(rec); localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(0,25))); }
+function clearHistory(){ localStorage.removeItem(HIST_KEY); renderHome(); }
+function fmtDate(ts){ const d=new Date(ts);
+  return d.toLocaleDateString(undefined,{month:"short",day:"numeric"})+" "+d.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"}); }
+
+function restartSet(){ if(state) startSet(state.questions, state.title); }
+function startTopic(i, retry){ const t=TOPICS[i];
+  startSet(shuffle(QUESTIONS.filter(q=>q.topic===t)), retry ? t+" — retry" : t); }
+
+/* --- 🪿 easter egg: absurd "cursed listing" generator, in the spirit of the
+       Heirloom Spark wacky-recipe generator. Purely for laughs, never scored. --- */
+const GOOSE = {
+  prefix:["Grandma's","The Infamous","Dr. Chaos's","Bank-Owned","The Legendary","Zillow's Most Haunted","Motivated Seller's","Captain","Professor Strange's","The Ultimate"],
+  adj:["Cursed","Haunted","Forbidden","Radioactive","Suspiciously Affordable","Deceptively Charming","Structurally Optimistic","Emotionally Damaged","Aggressively Beige","Legally Distinct","Vaguely Load-Bearing","Feral","Motivated","As-Is","Cozy (Tiny)","Allegedly Waterfront"],
+  noun:["Bungalow","Colonial","Split-Level","Fixer-Upper","Craftsman","Ranch","Duplex","Estate","Compound","McMansion","Lean-To","Timeshare","Studio (Generous)","Cul-de-sac Dream","Tudor","Cape Cod"],
+  suffix:["of Doom","with Great Bones","(Needs TLC)","Gone Wrong","2.0","That the HOA Warned You About","Strikes Back","with No Contingencies","of Regret","from Beyond","Redux","Unleashed"],
+  riff:[
+    "Priced to move. Allegedly.",
+    "Great bones. Questionable everything else.",
+    "Motivated seller — you'll understand why during the inspection.",
+    "'Cozy' is a real-estate word. This is very cozy.",
+    "Move-in ready, if you're flexible about the word 'ready.'",
+    "The comps do not support this price. Neither do I.",
+    "Location, location, and one thing we're legally not allowed to disclose.",
+    "Open house Sunday. Bring a flashlight and maybe a priest.",
+    "Been on the market since your last practice exam.",
+    "As-is. Aggressively as-is.",
+    "No lead paint disclosure needed. Built the year after 1978. Barely.",
+    "Riparian rights included. So is the algae.",
+  ]
+};
+let gooseCurrent = null;
+function rollListingText(){
+  const g=GOOSE, p=pick(g.prefix), a=pick(g.adj), n=pick(g.noun), s=pick(g.suffix);
+  const listing = Math.random()<0.5 ? `${p} ${a} ${n} ${s}` : `${a} ${n} ${s}`;
+  return { listing, riff: pick(g.riff) };
+}
+function openGoose(){
+  let bg=document.getElementById("goose-modal");
+  if(!bg){
+    bg=document.createElement("div"); bg.id="goose-modal"; bg.className="modal-bg";
+    document.body.appendChild(bg);
+    bg.addEventListener("click", e=>{ if(e.target===bg) closeGoose(); });
+  }
+  bg.style.display="flex";
+  rollGooseModal();
+}
+function closeGoose(){ const bg=document.getElementById("goose-modal"); if(bg) bg.style.display="none"; }
+function rollGooseModal(){
+  const bg=document.getElementById("goose-modal"); if(!bg) return;
+  gooseCurrent = rollListingText();
+  const {listing, riff} = gooseCurrent;
+  bg.innerHTML = `<div class="modal">
+    <button class="modal-x" onclick="closeGoose()" aria-label="Close">×</button>
+    <div class="cap">🏚️ Today's cursed listing</div>
+    <div class="listing">${esc(listing)}</div>
+    <div class="riff">${esc(riff)}</div>
+    <div class="shot" id="goose-shot"><div class="spin"></div><span class="small">Developing the listing photo…</span></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" onclick="rollGooseModal()">🪿 Roll again</button>
+      <button class="btn ghost" onclick="closeGoose()">Close</button>
+    </div>
+  </div>`;
+  fetchListingImage(listing, riff);
+}
+async function fetchListingImage(listing, riff){
+  const shot=document.getElementById("goose-shot"); if(!shot) return;
+  try{
+    const res=await fetch("/api/study-date/listing-image",{method:"POST",
+      headers:{"Content-Type":"application/json"}, body:JSON.stringify({listing,riff})});
+    if(!res.ok) throw new Error("bad status");
+    const data=await res.json();
+    if(!data.url) throw new Error("no url");
+    if(!gooseCurrent || gooseCurrent.listing!==listing) return; // user rerolled; ignore stale
+    shot.innerHTML = `<img src="${data.url}" alt="${esc(listing)}"/>`;
+  }catch(e){
+    if(!gooseCurrent || gooseCurrent.listing!==listing) return;
+    shot.innerHTML = `<span class="small">🖼️ The listing photo only develops on the live site (nano-banana runs server-side). Deploy, or run <code>next dev</code>, to see the render.</span>`;
+  }
+}
+function footerHTML(){
+  return `<div class="foot">
+    <p>🪿 Built with love and mild sleep deprivation. The 140 questions are 100% real PSI prep — the flirting, the prizes, and the goose are editorial.</p>
+    <button class="chip" onclick="openGoose()">🪿 Roll a cursed listing</button>
+  </div>`;
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function headerHTML(sub){
+  return `<div class="head"><div class="emoji">💛📚</div>
+    <h1>Study Date</h1><p>${sub||"Real estate practice, for "+esc(CONFIG.HER_NAME)}</p></div>`;
+}
+
+function startSet(questions, title){
+  state = { title, questions, i:0, correct:0, answered:false, missed:[], topicStats:{} };
+  window.scrollTo({top:0}); renderQuestion();
+}
+
+function renderHome(){
+  const tile=(oc,ic,b,s)=>`<button class="tile" onclick="${oc}"><span class="ic">${ic}</span><b>${b}</b><span>${s}</span></button>`;
+  app.innerHTML = headerHTML() + `
+  <div class="card">
+    <h2>Pick your poison 💛</h2>
+    <div class="tiles">
+      ${tile("startSet(shuffle(QUESTIONS).slice(0,10),'Quick Round')","⚡","Quick Round","10 shuffled. Fast &amp; replayable.")}
+      ${tile("startSet(shuffle(QUESTIONS).slice(0,25),'Warm-Up (25)')","🔥","Warm-Up","25 shuffled to get you going.")}
+      ${tile("startSet(QUESTIONS.filter(q=>q.exam===1),'PSI Practice Exam 1')","📘","Full Exam 1","All 60, in order.")}
+      ${tile("startSet(QUESTIONS.filter(q=>q.exam===4),'PSI Practice Test 4')","📗","Full Test 4","All 80, in order.")}
+      ${tile("renderTopicPicker()","🎯","Practice a Topic","Drill weak spots + math.")}
+      ${tile("startSet(shuffle(QUESTIONS),'The Full Gauntlet')","💯","The Gauntlet","All 140, shuffled.")}
+    </div>
+  </div>` + pastTriesHTML() + footerHTML();
+}
+
+function pastTriesHTML(){
+  const hist=loadHistory();
+  if(!hist.length) return "";
+  return `<div class="card">
+    <div class="hrow"><h2>📈 Your past tries</h2><button class="chip" onclick="clearHistory()">Clear</button></div>
+    ${hist.slice(0,10).map(r=>`<div class="tier">
+      <span>${esc(r.label)} <span class="small">· ${fmtDate(r.ts)}</span></span>
+      <b>${r.correct}/${r.total} · ${r.pct}%</b></div>`).join("")}
+  </div>`;
+}
+
+function renderTopicPicker(){
+  const mode=(oc,b,s)=>`<button class="mode" onclick="${oc}"><span class="l"><b>${b}</b><span>${s}</span></span><span class="chev">›</span></button>`;
+  const rows = TOPICS.map((t,i)=>{
+    const n=QUESTIONS.filter(q=>q.topic===t).length;
+    return mode(`startTopic(${i})`, esc(t), n+" question"+(n>1?"s":""));
+  }).join("");
+  app.innerHTML = headerHTML("Which subject should I grill you on?") + `
+  <div class="card"><h2>🎯 Practice a topic</h2>
+    ${mode("startSet(generateMathQuestions(10),'Math Drill (generated practice)')","🧮 Fresh Math Drill","10 brand-new calculation problems (always solvable).")}
+    ${rows}
+    <div class="row"><button class="btn ghost full" onclick="renderHome()">← Back</button></div>
+  </div>`;
+}
+
+function renderQuestion(){
+  const s=state, q=s.questions[s.i], total=s.questions.length;
+  const pct=Math.round((s.i/total)*100);
+  let zone;
+  if(q.type==="fill"){
+    zone=`<input class="fillin" id="fillin" inputmode="decimal" placeholder="Type your number..." onkeydown="if(event.key==='Enter')submitFill()"/>
+      <div class="row"><button class="btn full" onclick="submitFill()">Lock it in 💛</button></div>`;
+  } else {
+    zone=`<div class="opts">`+Object.keys(q.o).map(k=>
+      `<button class="opt" id="opt-${k}" onclick="submitMC('${k}')"><span class="ltr">${k.toUpperCase()}</span><span>${esc(q.o[k])}</span></button>`
+    ).join("")+`</div>`;
+  }
+  let dots="";
+  if(total<=14){ dots=`<div class="dots">`+s.questions.map((_,i)=>`<i class="${i<s.i?'done':i===s.i?'now':''}"></i>`).join("")+`</div>`; }
+  const src = q.exam ? `PSI ${q.exam===1?"Exam 1":"Test 4"} #${q.num}` : (q.generated?"generated practice":"");
+  app.innerHTML = headerHTML(esc(s.title)) + `
+  <div class="nav">
+    <button class="chip" onclick="renderHome()">🏠 Home</button>
+    <button class="chip" onclick="restartSet()">↻ Restart</button>
+  </div>
+  <div class="prog">
+    <div class="row"><span>${s.i+1} of ${total}</span><span>${s.correct} correct</span></div>
+    <div class="track"><i style="width:${pct}%"></i></div>
+  </div>
+  <div class="card">
+    <div class="qmeta"><span class="idx">${src}</span><span class="tag">${esc(q.topic)}</span></div>
+    <div class="qtext">${esc(q.q)}</div>
+    <div id="answerzone">${zone}</div>
+    <div id="feedback"></div>
+  </div>
+  ${dots}`;
+}
+
+function grade(correct,q){
+  const s=state; s.answered=true;
+  s.topicStats[q.topic]=s.topicStats[q.topic]||{c:0,t:0}; s.topicStats[q.topic].t++;
+  if(correct){s.correct++;s.topicStats[q.topic].c++;} else {s.missed.push(q);}
+  const banter = correct?pick(CONFIG.CORRECT):pick(CONFIG.WRONG);
+  const label = (q.type!=="fill"&&q.o)?`<b>Correct answer: ${q.ans.toUpperCase()}.</b> `:"";
+  document.getElementById("feedback").innerHTML = `
+    <div class="feedback ${correct?"good":"bad"}">
+      <div class="banter">${correct?"✅ ":"❌ "}${banter}</div>
+      <div class="why">${label}${esc(q.why)}</div>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="next()">${s.i+1>=s.questions.length?"See my results 💛":"Next →"}</button>
+      <button class="btn ghost" onclick="renderHome()">Quit</button>
+    </div>`;
+  document.getElementById("feedback").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function submitMC(k){
+  if(state.answered)return; const q=state.questions[state.i]; const correct=k===q.ans;
+  Object.keys(q.o).forEach(key=>{const el=document.getElementById("opt-"+key);el.classList.add("locked");el.onclick=null;
+    if(key===q.ans)el.classList.add("correct"); else if(key===k)el.classList.add("wrong"); else el.classList.add("dim");});
+  grade(correct,q);
+}
+function submitFill(){
+  if(state.answered)return; const q=state.questions[state.i];
+  const raw=(document.getElementById("fillin").value||"").replace(/[$,\s]/g,""); const val=parseFloat(raw);
+  const correct = !isNaN(val) && q.accept.some(a=>Math.abs(a-val)<1);
+  document.getElementById("fillin").disabled=true; grade(correct,q);
+}
+function next(){ state.answered=false;
+  if(state.i+1>=state.questions.length){renderResults();} else {state.i++;renderQuestion();window.scrollTo({top:0,behavior:"smooth"});} }
+
+function renderResults(){
+  const s=state, total=s.questions.length, pct=Math.round((s.correct/total)*100), prize=prizeFor(pct);
+  if(!s.saved){ s.saved=true; saveAttempt({ts:Date.now(),label:s.title,correct:s.correct,total:total,pct:pct}); }
+  const ladder=CONFIG.PRIZE_TIERS.map(t=>{const on=pct>=t.minPct;
+    return `<div class="tier"><span style="opacity:${on?1:.5}">${on?"🔓":"🔒"} ${esc(t.label)}</span><b>${t.minPct}%+</b></div>`;}).join("");
+  const weak=Object.keys(s.topicStats).filter(t=>{const st=s.topicStats[t];return st.t>=3&&(st.c/st.t)<0.5;});
+  const bars=Object.keys(s.topicStats).sort().map(t=>{
+    const st=s.topicStats[t], w=Math.round((st.c/st.t)*100), weakCls=(st.t>=3&&st.c/st.t<0.5)?"weak":"";
+    return `<div class="scorebar ${weakCls}"><div class="lbl"><span>${esc(t)}</span><b>${st.c}/${st.t}</b></div>
+      <div class="mini"><i style="width:${w}%"></i></div></div>`;
+  }).join("");
+
+  let weakHTML="";
+  if(weak.length){
+    weakHTML=`<div class="card"><h2>😉 Struggling a little?</h2>
+      <p class="lead">You kept slipping on <b>${weak.map(esc).join(", ")}</b>. Want some extra reps? I'm happy to keep you here longer.</p>
+      <div class="row">${weak.map(t=> t==="Math & Calculations"
+        ? `<button class="btn" onclick="startSet(generateMathQuestions(8),'Math Drill (extra practice)')">Fresh Math drill 🧮</button>`
+        : `<button class="btn" onclick="startTopic(${TOPICS.indexOf(t)},1)">Retry ${esc(t)}</button>`
+      ).join("")}</div>
+      <p class="small" style="margin-top:10px">Math practice is freshly generated (always solvable). Other topics re-serve the official PSI questions — no made-up facts.</p></div>`;
+  }
+  const missedHTML = s.missed.length
+    ? `<details class="foldcard"><summary>📝 Ones to review (${s.missed.length})</summary><div class="body">
+        ${s.missed.map(q=>`<div class="review"><div class="q">${esc(q.q)}</div>
+          <div class="a"><b>Answer${q.o?` ${q.ans.toUpperCase()}`:""}:</b> ${esc(q.why)}</div></div>`).join("")}</div></details>`
+    : `<div class="card center"><h2>🌟 Flawless</h2><p class="lead">You didn't miss a single one. That's exam-ready.</p></div>`;
+
+  app.innerHTML = headerHTML(esc(s.title)+" — results") + `
+  <div class="nav">
+    <button class="chip" onclick="renderHome()">🏠 Home</button>
+    <button class="chip" onclick="restartSet()">↻ Retake this set</button>
+  </div>
+  <div class="card center">
+    <div style="font-size:42px">${pct===100?"💯":pct>=70?"🔥":"💪"}</div>
+    <div class="big">${s.correct} / ${total}</div>
+    <p class="lead">${pct}% correct${pct>=85?` — that's a passing score. Nice work.`:pct>=70?` — almost there, keep going.`:pct>=50?` — solid progress. Review the misses and run it again.`:` — early days. The explanations below are where the learning happens.`}</p>
+    <div class="prize"><div class="cap">🎁 You unlocked</div><b>${prize.label}</b><div class="d">${esc(prize.desc)}</div></div>
+    <div class="row" style="justify-content:center"><button class="btn full" onclick="renderHome()">Play again 💛</button></div>
+  </div>
+  <div class="card"><h2>🎁 Prize ladder</h2>
+    <p class="small" style="margin-bottom:6px">Where your ${pct}% landed you:</p>${ladder}</div>
+  ${weakHTML}
+  <div class="card"><h2>📊 By topic</h2>${bars}</div>
+  ${missedHTML}` + footerHTML();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderHome();
+</script>
+</body>
+</html>
