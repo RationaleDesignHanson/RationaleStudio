@@ -1110,7 +1110,28 @@ function renderResults(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-renderHome();
+/* --- simple password gate (cosmetic; client-side only) --- */
+const GATE_PW = "12345";
+function isUnlocked(){ try{ return localStorage.getItem("sd_unlocked")==="1"; }catch(e){ return false; } }
+function tryUnlock(){
+  const v=(document.getElementById("pw").value||"").trim();
+  if(v===GATE_PW){ try{ localStorage.setItem("sd_unlocked","1"); }catch(e){} renderHome(); }
+  else { renderGate("Nope — try again."); }
+}
+function renderGate(msg){
+  app.innerHTML = headerHTML("This one's private 💛") + `
+  <div class="card center">
+    <h2>Enter the password</h2>
+    <p class="lead">${esc(CONFIG.HER_NAME)}-only zone. (It's the one I gave you.)</p>
+    <input class="fillin" id="pw" type="password" inputmode="numeric" autocomplete="off"
+      placeholder="Password" onkeydown="if(event.key==='Enter')tryUnlock()" style="text-align:center;max-width:220px;margin:4px auto 0" />
+    ${msg?`<p class="small" style="color:var(--bad);margin-top:10px">${esc(msg)}</p>`:""}
+    <div class="row" style="justify-content:center"><button class="btn" onclick="tryUnlock()">Unlock 🔓</button></div>
+  </div>`;
+  const el=document.getElementById("pw"); if(el) el.focus();
+}
+function boot(){ if(isUnlocked()) renderHome(); else renderGate(); }
+boot();
 </script>
 </body>
 </html>
