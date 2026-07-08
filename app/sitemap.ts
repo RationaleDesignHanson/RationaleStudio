@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { url: '/', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
-    { url: '/work', priority: 0.9, changeFrequency: 'weekly' as const },
+    // '/work' permanently redirects to '/' (see next.config.mjs) — not listed.
     { url: '/writing', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/contact', priority: 0.7, changeFrequency: 'monthly' as const },
 

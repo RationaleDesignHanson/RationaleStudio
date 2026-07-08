@@ -23,14 +23,18 @@ export function WorkColumns({
   eras,
   showMasthead = true,
   showBlurb = true,
+  fitViewport = true,
 }: {
   eras: WorkEra[];
   showMasthead?: boolean;
   showBlurb?: boolean;
+  /** Fill one desktop viewport (home). Set false when the columns sit inside a
+      longer scrolling page (e.g. /work has a hero above + footer below). */
+  fitViewport?: boolean;
 }) {
   return (
     <div className="era-now bg-paper text-ink-body">
-      <div className={`flex flex-col ${VIEWPORT_FILL}`}>
+      <div className={`flex flex-col ${fitViewport ? VIEWPORT_FILL : ''}`}>
         {showMasthead && <Masthead />}
 
         <div className="grid min-h-0 flex-1 grid-cols-1 md:grid-cols-3 md:gap-px md:bg-hairline">

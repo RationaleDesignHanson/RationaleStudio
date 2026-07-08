@@ -1,10 +1,10 @@
 /**
  * Homepage — Studio Monograph (paper + serif), single style throughout.
  *
- * The work index renders all three eras (NOW / LEADER / DIRECTOR) stacked
- * in one continuous scroll via <WorkIndex>. No per-era art direction, no
- * parallax-merge — each era keeps only a faint accent. A sticky jump-nav
- * lets visitors see and reach every era at once.
+ * The three eras (NOW / LEADER / DIRECTOR) render as viewport-fit columns
+ * behind a slim masthead via <WorkColumns> — see everything without
+ * scrolling. Writing + Contact follow below. Each era keeps only a faint
+ * accent; no per-era art direction.
  */
 
 import { ArrowRight } from 'lucide-react';

@@ -5,9 +5,30 @@
  * `app/(public)/home-lab/`) render the same content.
  */
 
-import type { WorkEra } from '@/components/work/WorkIndex';
+export interface WorkProject {
+  href: string;
+  /** Display numeral, e.g. "01" or "✱". */
+  index: string;
+  title: string;
+  blurb: string;
+  meta?: string;
+  gated?: boolean;
+  /** Optional per-project accent (overrides the era accent on the numeral). */
+  accentVar?: string;
+}
 
-export type { WorkEra, WorkProject } from '@/components/work/WorkIndex';
+export interface WorkEra {
+  /** Anchor id + key, e.g. "now". */
+  id: string;
+  /** Short label shown as the era heading, e.g. "NOW". */
+  label: string;
+  years: string;
+  /** Sub-line under the era heading. */
+  note?: string;
+  /** Faint accent color (CSS) for this era's label tick + numerals. */
+  accent?: string;
+  projects: WorkProject[];
+}
 
 // Faint per-era accents: LEADER purple, DIRECTOR magenta. NOW inherits the
 // default paper accent (its projects carry their own).
