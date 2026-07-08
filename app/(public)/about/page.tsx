@@ -348,6 +348,12 @@ export default function AboutPage() {
           >
             See the work, organized chronologically <ArrowRight className="w-4 h-4" />
           </Link>
+          <Link
+            href="/resume"
+            className="inline-flex items-center gap-2 text-[var(--accent)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
+          >
+            Read the résumé <ArrowRight className="w-4 h-4" />
+          </Link>
           <a
             href="mailto:hanson@rationale.work"
             className="text-sm font-mono text-ink-muted hover:text-ink transition-colors"
