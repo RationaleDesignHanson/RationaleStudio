@@ -2,9 +2,9 @@
  * VideoPlayer — Option 3 + category cycling.
  *
  * Floating monolith: zero chrome, just a video and a thin progress bar.
- * Tap/click anywhere on the video → cycle to the NEXT category, play
- * a random clip from it. When the current clip ends, we pick another
- * random clip from the SAME category and roll on.
+ * Tap/click anywhere on the video → cycle to the NEXT category, starting
+ * at its first clip. When the current clip ends, we advance to the NEXT
+ * clip in the SAME category, in order, wrapping at the end.
  *
  * The category indicator is the only visible UI — top-right of the
  * frame, mono caps, era-accent. Subtle. Tells you which crate you're
@@ -32,53 +32,41 @@ interface Props {
   className?: string;
 }
 
-function pickRandom<T>(arr: T[], avoid?: T): T {
-  if (arr.length === 0) throw new Error('VideoPlayer: empty playlist');
-  if (arr.length === 1) return arr[0];
-  let pick: T;
-  // Try a couple times to avoid replaying the same clip back-to-back.
-  for (let i = 0; i < 6; i++) {
-    pick = arr[Math.floor(Math.random() * arr.length)];
-    if (pick !== avoid) return pick;
-  }
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
 export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', className = '' }: Props) {
   const [playlistIdx, setPlaylistIdx] = useState(0);
-  // Deterministic first render so SSR and client hydration agree — picking a
-  // random clip here would mismatch (Math.random differs per environment) and
-  // React would leave the subtree un-hydrated, so autoplay + click never fire.
-  // The random pick happens on mount in the effect below.
-  const [video, setVideo] = useState<string>(() => playlists[0]?.videos[0] ?? '');
+  // Sequential position within the current category. Starts at 0 so the first
+  // render is deterministic — SSR and client hydration agree, which keeps the
+  // subtree hydrated so autoplay + click handlers fire.
+  const [videoIdx, setVideoIdx] = useState(0);
   const [progress, setProgress] = useState(0);
   const [flash, setFlash] = useState(false);
   const ref = useRef<HTMLVideoElement | null>(null);
   const mounted = useRef(false);
 
   const list = playlists[playlistIdx];
+  const video = list?.videos[videoIdx] ?? '';
 
-  // Pick a fresh random clip: once on mount (client-only), then whenever the
-  // category changes. Flash only on real category changes, not on mount.
+  // Signal-lock flash on category change — but not on the initial mount.
   useEffect(() => {
-    if (!list || list.videos.length === 0) return;
-    setVideo((prev) => pickRandom(list.videos, prev));
-    setProgress(0);
-    if (mounted.current) {
-      setFlash(true);
-      const t = window.setTimeout(() => setFlash(false), 80);
-      return () => window.clearTimeout(t);
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
     }
-    mounted.current = true;
-  }, [playlistIdx, list]);
+    setFlash(true);
+    const t = window.setTimeout(() => setFlash(false), 80);
+    return () => window.clearTimeout(t);
+  }, [playlistIdx]);
 
   const advanceCategory = () => {
     setPlaylistIdx((i) => (i + 1) % playlists.length);
+    setVideoIdx(0);
+    setProgress(0);
   };
 
+  // When the current clip ends, play the next clip in the category, in order.
   const handleEnded = () => {
-    if (!list) return;
-    setVideo((prev) => pickRandom(list.videos, prev));
+    if (!list || list.videos.length === 0) return;
+    setVideoIdx((i) => (i + 1) % list.videos.length);
     setProgress(0);
   };
 
@@ -107,7 +95,7 @@ export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', classNa
     >
       <video
         ref={ref}
-        key={`${list.name}/${video}`}
+        key={`${list.name}/${videoIdx}`}
         src={`${basePath}/${video}`}
         autoPlay
         muted
