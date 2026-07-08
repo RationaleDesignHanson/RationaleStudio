@@ -82,11 +82,6 @@ export default function ContactPage() {
                   RationaleDesignHanson →
                 </a>
               </Marginalia.Field>
-              <Marginalia.Field label="Résumé">
-                <Link href="/resume" className="text-[var(--accent-ink)] hover:text-ink">
-                  rationale.work/resume →
-                </Link>
-              </Marginalia.Field>
               <Marginalia.Rule />
               <Marginalia.Note>
                 NYC area. Three daughters. Cooking, Peloton (because of the cooking), ceramics, New York sports.
