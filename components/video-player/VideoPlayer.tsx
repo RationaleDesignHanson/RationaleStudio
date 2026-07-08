@@ -46,23 +46,30 @@ function pickRandom<T>(arr: T[], avoid?: T): T {
 
 export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', className = '' }: Props) {
   const [playlistIdx, setPlaylistIdx] = useState(0);
-  const [video, setVideo] = useState<string>(() =>
-    playlists[0]?.videos.length ? pickRandom(playlists[0].videos) : '',
-  );
+  // Deterministic first render so SSR and client hydration agree — picking a
+  // random clip here would mismatch (Math.random differs per environment) and
+  // React would leave the subtree un-hydrated, so autoplay + click never fire.
+  // The random pick happens on mount in the effect below.
+  const [video, setVideo] = useState<string>(() => playlists[0]?.videos[0] ?? '');
   const [progress, setProgress] = useState(0);
   const [flash, setFlash] = useState(false);
   const ref = useRef<HTMLVideoElement | null>(null);
+  const mounted = useRef(false);
 
   const list = playlists[playlistIdx];
 
-  // When playlistIdx changes, pick a fresh random clip from the new list.
+  // Pick a fresh random clip: once on mount (client-only), then whenever the
+  // category changes. Flash only on real category changes, not on mount.
   useEffect(() => {
     if (!list || list.videos.length === 0) return;
     setVideo((prev) => pickRandom(list.videos, prev));
     setProgress(0);
-    setFlash(true);
-    const t = window.setTimeout(() => setFlash(false), 80);
-    return () => window.clearTimeout(t);
+    if (mounted.current) {
+      setFlash(true);
+      const t = window.setTimeout(() => setFlash(false), 80);
+      return () => window.clearTimeout(t);
+    }
+    mounted.current = true;
   }, [playlistIdx, list]);
 
   const advanceCategory = () => {
@@ -107,6 +114,14 @@ export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', classNa
         playsInline
         onEnded={handleEnded}
         onTimeUpdate={handleTimeUpdate}
+        onLoadedData={(e) => {
+          // Belt-and-suspenders: the `autoPlay` attribute alone doesn't always
+          // fire when React swaps `src` on a remount. Kick playback explicitly;
+          // it's muted so browser autoplay policy allows it.
+          const v = e.currentTarget;
+          v.muted = true;
+          void v.play().catch(() => {});
+        }}
         className="absolute inset-0 w-full h-full object-cover"
       />
 

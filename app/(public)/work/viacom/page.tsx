@@ -255,9 +255,9 @@ export default function ViacomPage() {
                       <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
                     </div>
                   </Figure>
-                  <Figure figNumber="FIG. 12" caption="Single Ladies maquette · 3D-printed Beyonc&eacute; figure for the BET / VMA chapter">
+                  <Figure figNumber="FIG. 12" caption="3D-printed RuPaul figure for the logo chapter">
                     <div className="aspect-[3/4] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                      <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="Single Ladies Beyoncé 3D-printed maquette" width={900} height={1200} className="w-full h-full object-cover" />
+                      <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="3D-printed RuPaul maquette" width={900} height={1200} className="w-full h-full object-cover" />
                     </div>
                   </Figure>
                 </div>
