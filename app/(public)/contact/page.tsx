@@ -12,7 +12,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-paper text-ink-body">
       <section className="px-4 sm:px-6 md:px-8 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
             CONTACT
           </p>
           <h1 className="font-display text-display text-ink mb-6 max-w-3xl">
@@ -24,7 +24,7 @@ export default function ContactPage() {
 
           <a
             href="mailto:hanson@rationale.work"
-            className="font-display text-3xl md:text-5xl lg:text-6xl text-ink hover:text-[var(--accent-ink)] transition-colors inline-block break-all leading-tight"
+            className="font-display text-display-sm text-ink hover:text-[var(--accent-ink)] transition-colors inline-block break-words leading-tight"
             data-cta-location="contact-hero"
             data-cta-type="email"
           >
@@ -39,7 +39,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
             {/* Main */}
             <div className="md:col-span-8">
-              <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
+              <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
                 Work with me
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-6">
@@ -51,7 +51,7 @@ export default function ContactPage() {
             </div>
             {/* Aside */}
             <aside className="md:col-span-4 mt-8 md:mt-0 text-xs font-mono text-ink-muted leading-relaxed">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Elsewhere</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Elsewhere</p>
               <Marginalia.Field label="LinkedIn">
                 <a
                   href="https://www.linkedin.com/in/thematthanson"

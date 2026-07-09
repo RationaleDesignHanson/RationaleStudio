@@ -88,9 +88,9 @@ export default function SillyQuestionsPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>02</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>Web · live</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>Web · live</span>
                   </div>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function SillyQuestionsPage() {
             Two players, four rounds, one image per round. At the end you get a final composite Polaroid of the whole game &mdash; saveable, shareable, frameable. First game is free.
           </p>
           <div className="mt-6">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Final reveals from real games
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

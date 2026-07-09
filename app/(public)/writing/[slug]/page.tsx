@@ -89,7 +89,7 @@ export default async function WritingPostPage({ params }: { params: Promise<{ sl
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back to writing
             </Link>
-            <p className="text-[11px] md:text-xs font-mono tracking-[0.3em] uppercase text-[var(--era-ink-muted)] mb-3">
+            <p className="text-caption font-mono tracking-[0.3em] uppercase text-[var(--era-ink-muted)] mb-3">
               Essay &middot; {published}
             </p>
             <h1 className="font-display text-display-sm md:text-display text-[var(--era-ink)] leading-[1.05] mb-4">

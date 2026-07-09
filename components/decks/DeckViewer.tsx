@@ -64,7 +64,7 @@ export function DeckViewer({ deck }: Props) {
           </Link>
           <div className="flex items-baseline gap-3 min-w-0">
             <span className="font-display text-base md:text-lg text-[var(--era-ink)] truncate">{deck.title}</span>
-            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--era-ink-muted)] flex-shrink-0">
+            <span className="font-mono text-caption tracking-[0.2em] uppercase text-[var(--era-ink-muted)] flex-shrink-0">
               {String(i + 1).padStart(2, '0')} / {total}
             </span>
           </div>
@@ -94,7 +94,7 @@ export function DeckViewer({ deck }: Props) {
       {/* Header / metadata */}
       <section className="px-4 sm:px-6 md:px-8 pt-8 md:pt-10 pb-5">
         <div className="max-w-5xl mx-auto">
-          <p className="font-mono text-[11px] md:text-xs tracking-[0.3em] uppercase mb-2" style={{ color: 'var(--accent)' }}>
+          <p className="font-mono text-caption tracking-[0.3em] uppercase mb-2" style={{ color: 'var(--accent)' }}>
             Confidential Deck · {deck.meta}
           </p>
           <h1 className="font-display text-2xl md:text-4xl text-[var(--era-ink)] mb-3 leading-tight">
@@ -166,7 +166,7 @@ export function DeckViewer({ deck }: Props) {
 
           {/* Counter + clickable seek bar (scales to any slide count) */}
           <div className="mt-4 flex items-center gap-4">
-            <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--era-ink-muted)] shrink-0 tabular-nums">
+            <span className="font-mono text-caption tracking-[0.2em] uppercase text-[var(--era-ink-muted)] shrink-0 tabular-nums">
               {String(i + 1).padStart(2, '0')} / {total}
             </span>
             <div
@@ -190,7 +190,7 @@ export function DeckViewer({ deck }: Props) {
             </div>
           </div>
 
-          <p className="mt-3 text-[11px] font-mono text-[var(--era-ink-muted)]">
+          <p className="mt-3 text-caption font-mono text-[var(--era-ink-muted)]">
             Click the slide or use ← / → to navigate.
           </p>
         </div>

@@ -128,13 +128,13 @@ export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', classNa
           as the affordance to click. */}
       <div className="absolute top-3 right-3 md:top-4 md:right-4 flex items-baseline gap-2 pointer-events-none">
         <span
-          className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-70 group-hover:opacity-100 transition-opacity"
+          className="font-mono text-[9px] md:text-caption tracking-[0.3em] uppercase opacity-70 group-hover:opacity-100 transition-opacity"
           style={{ color: 'var(--era-accent, currentColor)' }}
         >
           {list.name}
         </span>
         <span
-          className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-30 group-hover:opacity-60 transition-opacity"
+          className="font-mono text-[9px] md:text-caption tracking-[0.3em] uppercase opacity-30 group-hover:opacity-60 transition-opacity"
           style={{ color: 'var(--era-ink-muted, currentColor)' }}
         >
           {String(playlistIdx + 1).padStart(2, '0')}/{String(playlists.length).padStart(2, '0')}
@@ -144,7 +144,7 @@ export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', classNa
       {/* Tiny "next category" hint — bottom-left, only on hover */}
       <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
         <span
-          className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase"
+          className="font-mono text-[9px] md:text-caption tracking-[0.3em] uppercase"
           style={{ color: 'var(--era-ink-muted, currentColor)' }}
         >
           ▸ click to cycle

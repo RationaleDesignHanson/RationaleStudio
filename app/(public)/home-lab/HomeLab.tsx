@@ -55,7 +55,7 @@ function VariantToggle({
             type="button"
             onClick={() => onChange(v.id)}
             aria-pressed={isActive}
-            className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-wider transition-colors ${
+            className={`rounded-full px-3 py-1 font-mono text-caption uppercase tracking-wider transition-colors ${
               isActive ? 'bg-ink text-paper' : 'text-ink-muted hover:text-ink'
             }`}
           >

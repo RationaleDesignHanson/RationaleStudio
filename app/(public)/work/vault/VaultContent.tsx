@@ -129,10 +129,10 @@ export function VaultContent() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight" style={{ color: 'var(--accent)' }}>✱</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2 inline-flex items-center gap-1">
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2 inline-flex items-center gap-1">
                       <Lock className="w-3 h-3" /> Confidential
                     </span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
                       Concepts
                     </span>
                   </div>
@@ -187,7 +187,7 @@ export function VaultContent() {
                         </span>
                       </div>
                       <div className="md:col-span-10">
-                        <p className="text-[11px] font-mono tracking-[0.25em] uppercase mb-2 text-[var(--era-ink-muted)]">
+                        <p className="text-caption font-mono tracking-[0.25em] uppercase mb-2 text-[var(--era-ink-muted)]">
                           {essay.category} · {essay.readTime}
                         </p>
                         <h2 className="font-display text-2xl md:text-3xl leading-tight mb-1" style={{ color: 'var(--era-ink)' }}>
@@ -235,7 +235,7 @@ export function VaultContent() {
                     </span>
                   </div>
                   <div className="md:col-span-10">
-                    <p className="text-[11px] font-mono tracking-[0.25em] uppercase mb-2" style={{ color: meta.color }}>
+                    <p className="text-caption font-mono tracking-[0.25em] uppercase mb-2" style={{ color: meta.color }}>
                       {meta.label}
                     </p>
                     <h2 className="font-display text-2xl md:text-3xl leading-tight mb-1" style={{ color: 'var(--era-ink)' }}>

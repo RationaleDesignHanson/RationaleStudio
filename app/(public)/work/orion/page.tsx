@@ -42,9 +42,9 @@ export default function OrionPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>05</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2023 — 2025</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2023 — 2025</span>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function OrionPage() {
           </div>
 
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The Day-0 launch slate · 2021 — 2022
             </p>
             <Figure figNumber="FIG. 02" caption="Building the Day 0 launch slate for AR Glasses · chess at a café, EMG wristband, an avatar table conversation, the form factor reveal">
@@ -104,7 +104,7 @@ export default function OrionPage() {
           </div>
 
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               AR Glasses · Experience Studios · seven verticals
             </p>
             <Figure figNumber="FIG. 03" caption="Surface taxonomy · Games / Lifestyle / Labs / Creative Tools / Media / Productivity / Discovery">
@@ -113,7 +113,7 @@ export default function OrionPage() {
           </div>
 
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Mobile groundwork · the location-anchored AR work that fed Day-1 use cases
             </p>
             <Figure figNumber="FIG. 04" caption="World AR on Mobile (2020 — 2021) · Tate Britain, Universal Studios Japan, Disney character placement, Lucky Dalmatian · location-based work that contributed to the pattern">
@@ -133,25 +133,25 @@ export default function OrionPage() {
           </p>
           <div className="mt-4 space-y-5">
             <div>
-              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Recipe assistance</p>
+              <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Recipe assistance</p>
               <p>
                 Contextual visual recognition reads what&rsquo;s in the fridge, surfaces a recipe you can make, and walks the prep step-by-step on the lens &mdash; voice in, display out, hands on the food. The kitchen is the test bed: the most hands-busy room in the house.
               </p>
             </div>
             <div>
-              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Multi-screen multitasking</p>
+              <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Multi-screen multitasking</p>
               <p>
                 Multiple floating screens arranged in physical space &mdash; mail beside calendar beside a video call &mdash; addressed at a glance while the wearer keeps doing something else. The display becomes a workspace, not a notification rail.
               </p>
             </div>
             <div>
-              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Hands-free video calls</p>
+              <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Hands-free video calls</p>
               <p>
                 Take and hold a video call without picking up a device. Presence travels with you &mdash; a glance and a tap replace pulling out a screen.
               </p>
             </div>
             <div>
-              <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Augments</p>
+              <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Augments</p>
               <p>
                 Persistent objects pinned to the wearer&rsquo;s space &mdash; clocks, weather, photos, calendars that live in physical locations across sessions. The glasses-and-headset shared layer lets a room hold ambient information without becoming a screen.
               </p>
@@ -175,7 +175,7 @@ export default function OrionPage() {
           </div>
 
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Bonus · Pong on Orion · the demo my team shipped
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
@@ -219,7 +219,7 @@ export default function OrionPage() {
               ['Hardware + AI partners', 'Coordination with the optics, EMG, and Embodied-AI teams — translating speculative capabilities into shipping experiences.'],
             ].map(([name, desc]) => (
               <div key={name} className="border-t border-[var(--era-hairline)] pt-3">
-                <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>{name}</p>
+                <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>{name}</p>
                 <p className="text-sm md:text-base text-[var(--era-ink-body)]">{desc}</p>
               </div>
             ))}

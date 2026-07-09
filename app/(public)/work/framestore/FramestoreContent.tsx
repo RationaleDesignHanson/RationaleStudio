@@ -35,14 +35,14 @@ export function FramestoreContent() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>07</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2017</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2017</span>
                   </div>
                 </div>
               </div>
               <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-mono text-display font-bold uppercase tracking-tighter text-[var(--era-ink)] mb-2 leading-[0.92]">
+                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
                   Framestore VR Studio
                 </h1>
                 <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">

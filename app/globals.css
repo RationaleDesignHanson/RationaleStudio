@@ -161,7 +161,8 @@
   /* Typography system - Fluid Responsive (Phase P1) */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-terminal: var(--font-ibm-plex-mono);
+  --font-display: var(--font-newsreader);
+  --font-terminal: var(--font-geist-mono);
 
   /* Fluid type scale using clamp() for smooth viewport-based scaling */
   /* Format: clamp(min, preferred, max) where preferred uses viewport units */
@@ -170,6 +171,8 @@
   --font-size-h3: clamp(1.25rem, 1rem + 0.5vw, 1.875rem);       /* 20px → 30px */
   --font-size-body: clamp(0.9375rem, 0.875rem + 0.2vw, 1.125rem); /* 15px → 18px */
   --font-size-caption: clamp(0.8125rem, 0.75rem + 0.15vw, 0.9375rem); /* 13px → 15px */
+  --font-size-display: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);    /* 36px → 56px (was a dead 88px config) */
+  --font-size-display-sm: clamp(2rem, 1.5rem + 2vw, 3rem);      /* 32px → 48px */
 
   /* Measure constraints for optimal reading (character-per-line) */
   --measure-narrow: 45ch;   /* UI text, captions */
@@ -332,6 +335,18 @@ body {
 .text-caption {
   font-size: var(--font-size-caption);
   line-height: var(--line-height-normal);
+}
+
+/* Display — hero titles. Serif (Newsreader) via font-display; capped ~56px. */
+.text-display {
+  font-size: var(--font-size-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.text-display-sm {
+  font-size: var(--font-size-display-sm);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
 }
 
 /* Spacing utilities - Padding */
@@ -1650,7 +1665,8 @@ a, button, input, select, textarea, label {
 
 /* Handwriting font for Heirloom demos */
 .font-handwriting {
-  font-family: var(--font-caveat), cursive;
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-style: italic;
 }
 
 /* =============================================================
@@ -1663,7 +1679,7 @@ a, button, input, select, textarea, label {
   --era-bg-deep: #161618;
   --era-ink: #F2F0EA;
   --era-ink-body: #C8C4BC;
-  --era-ink-muted: #6F6B66;
+  --era-ink-muted: #8A867F;
   --era-hairline: #2A2A2D;
   --era-accent: #FF2DBA;
   --era-accent-alt: #00E0FF;

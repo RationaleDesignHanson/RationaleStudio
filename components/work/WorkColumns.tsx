@@ -50,10 +50,10 @@ export function WorkColumns({
 function Masthead() {
   return (
     <header className="border-b border-hairline px-5 pb-4 pt-6 md:px-8">
-      <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.35em] text-ink-muted">
+      <p className="mb-2 font-mono text-caption uppercase tracking-[0.35em] text-ink-muted">
         Rationale
       </p>
-      <h2 className="max-w-4xl font-display leading-[1.08] text-ink text-[clamp(1.5rem,3.4vh,2.4rem)]">
+      <h2 className="max-w-4xl font-display leading-[1.08] text-ink text-h1">
         Vision bears the burden of proof.
       </h2>
     </header>
@@ -80,12 +80,12 @@ function EraColumn({ era, showBlurb }: { era: WorkEra; showBlurb: boolean }) {
               {era.label}
             </h2>
           </div>
-          <span className="whitespace-nowrap font-mono text-[10px] tabular-nums tracking-wide text-ink-muted">
+          <span className="whitespace-nowrap font-mono text-caption tabular-nums tracking-wide text-ink-muted">
             {era.years}
           </span>
         </div>
         {era.note && (
-          <p className="mt-2 text-[11px] leading-snug text-ink-muted">
+          <p className="mt-2 text-caption leading-snug text-ink-muted">
             {era.note}
           </p>
         )}
@@ -141,13 +141,13 @@ function ProjectItem({
         <div className="min-w-0">
           {meta && (
             <p
-              className="mb-1 text-[10px] font-mono uppercase tracking-[0.18em]"
+              className="mb-1 text-caption font-mono uppercase tracking-[0.18em]"
               style={{ color: accent }}
             >
               {meta}
             </p>
           )}
-          <h3 className="flex items-baseline gap-1.5 font-display leading-tight text-ink transition-colors group-hover:text-[var(--accent-ink)] text-[clamp(1rem,2vh,1.2rem)]">
+          <h3 className="flex items-baseline gap-1.5 font-display leading-tight text-ink transition-colors group-hover:text-[var(--accent-ink)] text-lg">
             <span className="truncate">{title}</span>
             {gated && (
               <Lock
@@ -157,7 +157,7 @@ function ProjectItem({
             )}
           </h3>
           {showBlurb && (
-            <p className="mt-1 leading-snug text-ink-body text-[clamp(0.72rem,1.5vh,0.85rem)]">
+            <p className="mt-1 leading-snug text-ink-body text-sm">
               {blurb}
             </p>
           )}
