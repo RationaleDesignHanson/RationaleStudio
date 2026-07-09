@@ -162,3 +162,6 @@ app/api/.firebase-credentials.json
 .DS_Store
 **/.DS_Store
 files.zip
+
+# Video assets served from Cloudflare R2 (see lib/media.ts) — not tracked in git.
+public/**/*.mp4
