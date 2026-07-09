@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { videoUrl } from '@/lib/media';
 
 interface LazyVideoProps {
   src: string;
@@ -43,7 +44,7 @@ export function LazyVideo({ src, className = '', poster, controls = false, loop 
   return (
     <video
       ref={ref}
-      src={load ? src : undefined}
+      src={load ? videoUrl(src) : undefined}
       poster={posterSrc}
       className={className}
       muted

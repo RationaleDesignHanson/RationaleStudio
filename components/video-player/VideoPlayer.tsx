@@ -14,6 +14,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { videoUrl } from '@/lib/media';
 
 export interface Playlist {
   /** Display name shown in the corner. e.g. "ALL", "BRAND IDS". */
@@ -96,7 +97,7 @@ export function VideoPlayer({ basePath, playlists, aspectRatio = '16/9', classNa
       <video
         ref={ref}
         key={`${list.name}/${videoIdx}`}
-        src={`${basePath}/${video}`}
+        src={videoUrl(`${basePath}/${video}`)}
         autoPlay
         muted
         playsInline
