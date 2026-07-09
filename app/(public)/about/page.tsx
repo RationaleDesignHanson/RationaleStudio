@@ -135,7 +135,7 @@ export default function AboutPage() {
               <Marginalia.Field label="Mode">Solo · AI as a coding partner</Marginalia.Field>
               <Marginalia.Rule />
               <Marginalia.Field label="Heirloom">iOS · live</Marginalia.Field>
-              <Marginalia.Field label="Silly Questions">Live · web + iOS</Marginalia.Field>
+              <Marginalia.Field label="Silly Questions">Live · web</Marginalia.Field>
               <Marginalia.Field label="Zero">Cross-platform · App Store · deprioritized</Marginalia.Field>
               <Marginalia.Note>
                 The bet: consumer software a single builder can credibly own end-to-end.

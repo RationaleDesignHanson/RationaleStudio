@@ -56,16 +56,6 @@ function Masthead() {
       <h2 className="max-w-4xl font-display leading-[1.08] text-ink text-[clamp(1.5rem,3.4vh,2.4rem)]">
         Vision bears the burden of proof.
       </h2>
-      <div className="mt-3 flex gap-3">
-        <span
-          aria-hidden
-          className="block w-[3px] shrink-0 self-stretch"
-          style={{ backgroundColor: 'var(--accent-ink)' }}
-        />
-        <p className="max-w-3xl leading-snug text-ink-body text-[clamp(0.82rem,1.6vh,0.98rem)]">
-          Anyone can have a vision. The hard part is proving it.
-        </p>
-      </div>
     </header>
   );
 }

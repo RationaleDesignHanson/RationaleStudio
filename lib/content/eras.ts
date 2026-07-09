@@ -37,12 +37,11 @@ export const ERAS: WorkEra[] = [
     id: 'now',
     label: 'NOW',
     years: '2024 —',
-    note: 'Matt Hanson · Product Founder · Designer · Developer. Shipping consumer products with AI as a coding partner.',
+    note: 'Independent consumer products, built and shipped solo with AI.',
     projects: [
       { href: '/work/heirloom', index: '01', title: 'Heirloom', blurb: 'Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo.', meta: 'iOS · live', accentVar: 'var(--project-heirloom)' },
-      { href: '/work/silly-questions', index: '02', title: 'Silly Questions', blurb: 'A 2-player AI art party game. Live on iOS and the web. Eight art styles, no app download required.', meta: 'Web + iOS · live', accentVar: 'var(--project-silly)' },
+      { href: '/work/silly-questions', index: '02', title: 'Silly Questions', blurb: 'A 2-player AI art party game. Live on the web. Eight art styles, no app download required.', meta: 'Web · live', accentVar: 'var(--project-silly)' },
       { href: '/work/zero', index: '03', title: 'Zero', blurb: 'Shortform email. Swipe-first triage with AI-extracted action items. Shipped cross-platform, then deprioritized — read why.', meta: 'Cross-platform · deprioritized' },
-      { href: '/work/vault', index: '✱', title: 'Vault', blurb: 'Confidential client work and concept ventures. Locked — request access.', meta: 'Confidential · client + concept', gated: true, accentVar: 'var(--project-vault)' },
     ],
   },
   {

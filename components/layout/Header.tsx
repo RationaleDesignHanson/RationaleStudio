@@ -26,6 +26,7 @@ const NAV_LINKS = [
   { label: 'Work', href: '/work' },
   { label: 'Writing', href: '/writing' },
   { label: 'About', href: '/about' },
+  { label: 'Vault', href: '/work/vault' },
   { label: 'Contact', href: '/contact' },
 ];
 
