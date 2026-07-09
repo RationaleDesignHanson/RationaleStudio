@@ -91,9 +91,9 @@ function EraColumn({ era, showBlurb }: { era: WorkEra; showBlurb: boolean }) {
         )}
       </header>
 
-      {/* Projects distribute to fill the column height (scale up on tall
-          screens); fluid type + clip keep them from ever scrolling. */}
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+      {/* Projects stack top-aligned with uniform spacing (no viewport-fill
+          stretch — that ballooned the gaps unevenly with few items). */}
+      <div className="flex flex-col">
         {era.projects.map((project) => (
           <ProjectItem
             key={project.href}
@@ -122,7 +122,7 @@ function ProjectItem({
   return (
     <Link
       href={href}
-      className="group flex min-h-0 flex-1 flex-col justify-center overflow-hidden border-t border-hairline py-2 transition-colors first:border-t-0 hover:bg-paper-deep"
+      className="group block border-t border-hairline py-5 transition-colors first:border-t-0 hover:bg-paper-deep"
     >
       <div className="flex gap-3">
         <div className="flex shrink-0 items-stretch gap-2 pt-0.5">
