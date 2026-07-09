@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://rationale.work',
     title: "Matt Hanson",
-    description: "Designer-engineer. Creative direction and visual effects, spatial experiences and interactive systems, AR at billion-user scale, consumer apps shipped solo with AI.",
+    description: "Designer-engineer. AR at billion-user scale, now shipping consumer apps solo with AI.",
     siteName: 'Matt Hanson',
     images: [
       {
