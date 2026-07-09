@@ -49,30 +49,29 @@ export default function HomePage() {
             wordmark already rotates in "Vision bears the burden of proof." */}
         <WorkColumns eras={ERAS} showMasthead={false} fitViewport={false} />
 
-        {/* CONTACT */}
-        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 border-t border-hairline bg-paper-deep/40">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
-              GET IN TOUCH
-            </p>
-            <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-6">
-              Available for very selective partnership work.
-            </p>
-            <a
-              href="mailto:hanson@rationale.work"
-              className="font-display text-2xl md:text-4xl text-ink hover:text-[var(--accent-ink)] transition-colors inline-block mb-6 break-all"
-              data-cta-location="homepage-footer"
-              data-cta-type="email"
-            >
-              hanson@rationale.work
-            </a>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted" data-cta-location="homepage-footer">
+        {/* CONTACT — compact footer within main */}
+        <footer className="px-4 sm:px-6 md:px-8 py-8 md:py-10 border-t border-hairline bg-paper-deep/40">
+          <div className="max-w-6xl mx-auto flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-ink-muted">
+                Get in touch
+              </span>
+              <a
+                href="mailto:hanson@rationale.work"
+                className="font-display text-xl md:text-2xl text-ink hover:text-[var(--accent-ink)] transition-colors break-all"
+                data-cta-location="homepage-footer"
+                data-cta-type="email"
+              >
+                hanson@rationale.work
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-ink-muted" data-cta-location="homepage-footer">
               <a href="https://www.linkedin.com/in/thematthanson" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors" data-cta-type="linkedin">LinkedIn</a>
               <a href="https://rationaledesign.substack.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors" data-cta-type="substack">Substack</a>
               <a href="https://github.com/RationaleDesignHanson" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-ink)] transition-colors" data-cta-type="github">GitHub</a>
             </div>
           </div>
-        </section>
+        </footer>
       </main>
     </>
   );
