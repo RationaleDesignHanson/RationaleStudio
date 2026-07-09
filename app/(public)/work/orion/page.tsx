@@ -78,7 +78,7 @@ export default function OrionPage() {
             {' '}in September 2024 &mdash; &ldquo;the most advanced pair of AR glasses ever made,&rdquo; and the first to look and feel like a regular pair of glasses. Transparent lenses, ~70&deg; field of view, EMG wristband for input, holographic displays. The form-factor breakthrough is the headline.
           </p>
           <p>
-            I was <strong className="text-[var(--era-ink)]">Senior Design Manager</strong> across a large, deliberately ambiguous scope &mdash; multiple teams, multiple managers, multiple Day-1 use cases. The work was less &ldquo;lead one thing&rdquo; than &ldquo;hold the through-line across many&rdquo; toward the experiences Meta showed publicly: asking the glasses for a recipe based on what&rsquo;s in the fridge, adjusting a family calendar while doing dishes, taking hands-free video calls.
+            I was <strong className="text-[var(--era-ink)]">Senior Design Manager</strong> across a large, deliberately ambiguous scope &mdash; multiple teams, managers, and Day-1 use cases. Less &ldquo;lead one thing&rdquo; than &ldquo;hold the through-line across many,&rdquo; toward the experiences Meta showed publicly: asking the glasses for a recipe from what&rsquo;s in the fridge, adjusting a family calendar while doing dishes, taking hands-free video calls.
           </p>
           <div className="mt-6 md:mt-8">
             <Figure figNumber="FIG. 01" caption="Meta Orion · official press photo · Meta">
@@ -128,13 +128,13 @@ export default function OrionPage() {
           title="The apps that earned the form factor"
         >
           <p>
-            The Day-1 apps Meta showed publicly were chosen to make the case that AR glasses earn their place in everyday life only when they help with hands-busy moments &mdash; useful before spectacular.
+            Meta chose the public Day-1 apps to make one case: AR glasses earn everyday life only by helping in hands-busy moments &mdash; useful before spectacular.
           </p>
           <div className="mt-4 space-y-5">
             <div>
               <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Recipe assistance</p>
               <p>
-                Contextual visual recognition reads what&rsquo;s in the fridge, surfaces a recipe you can actually make, and walks through the prep step-by-step on the lens &mdash; voice in, display out, hands stay on the food. The kitchen is the test bed because it&rsquo;s the most hands-busy room in the house.
+                Contextual visual recognition reads what&rsquo;s in the fridge, surfaces a recipe you can make, and walks the prep step-by-step on the lens &mdash; voice in, display out, hands on the food. The kitchen is the test bed: the most hands-busy room in the house.
               </p>
             </div>
             <div>
@@ -146,13 +146,13 @@ export default function OrionPage() {
             <div>
               <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Hands-free video calls</p>
               <p>
-                Take and hold a video call without picking up a device. Presence travels with you. The phone moment of pulling out a screen is replaced by a glance and a tap.
+                Take and hold a video call without picking up a device. Presence travels with you &mdash; a glance and a tap replace pulling out a screen.
               </p>
             </div>
             <div>
               <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>Augments</p>
               <p>
-                Persistent objects pinned to the wearer&rsquo;s space &mdash; clocks, weather, photos, calendars that live in physical locations across sessions. The glasses-and-headset shared layer that lets a room hold ambient information without becoming a screen.
+                Persistent objects pinned to the wearer&rsquo;s space &mdash; clocks, weather, photos, calendars that live in physical locations across sessions. The glasses-and-headset shared layer lets a room hold ambient information without becoming a screen.
               </p>
             </div>
           </div>
@@ -214,10 +214,10 @@ export default function OrionPage() {
           title="The teams I managed"
         >
           <p>
-            Each Day-1 app had its own multidisciplinary team &mdash; product, design, prototyping, engineering, research &mdash; and the Senior Design Manager role meant holding direction across all of them at once. Direct teams covered <strong className="text-[var(--era-ink)]">Experience Design</strong>, <strong className="text-[var(--era-ink)]">Design Prototyping</strong>, <strong className="text-[var(--era-ink)]">Production Design</strong>, and <strong className="text-[var(--era-ink)]">UX Research</strong>. Partner teams spanned hardware engineering, software platform, and AI research.
+            Each Day-1 app had its own multidisciplinary team &mdash; product, design, prototyping, engineering, research &mdash; and Senior Design Manager meant holding direction across all of them at once. Direct teams covered <strong className="text-[var(--era-ink)]">Experience Design</strong>, <strong className="text-[var(--era-ink)]">Design Prototyping</strong>, <strong className="text-[var(--era-ink)]">Production Design</strong>, and <strong className="text-[var(--era-ink)]">UX Research</strong>. Partner teams spanned hardware engineering, software platform, and AI research.
           </p>
           <p>
-            Prototyping was where most of the questions actually got answered. AR glasses had no precedent UI, no muscle memory, no &ldquo;use the iOS pattern.&rdquo; Every Day-1 use case had to be built in code, worn on the head, lived with for a few weeks, and then redesigned. The Prototypers were the ones turning hypotheses into something a person could try and react to &mdash; and that loop drove almost every meaningful decision in the program.
+            Prototyping answered most of the questions. AR glasses had no precedent UI, no muscle memory, no &ldquo;use the iOS pattern.&rdquo; Every Day-1 use case was built in code, worn on the head, lived with for weeks, then redesigned. Prototypers turned hypotheses into something a person could try and react to &mdash; and that loop drove nearly every meaningful decision in the program.
           </p>
           <p>
             The split looked roughly like this:
@@ -225,7 +225,7 @@ export default function OrionPage() {
           <div className="mt-4 space-y-3">
             {[
               ['Experience Design', 'Use-case verticals — recipe, multi-screen, calls, augments. One design lead per vertical, dotted-line into the Senior Design Manager.'],
-              ['Design Prototyping', 'The team that actually built the experiences in code, on-device. Wearable prototypes, simulator builds, and end-to-end use-case integrations — most Day-1 design decisions came out of what worked when you put it on your head, not what looked right in Figma.'],
+              ['Design Prototyping', 'Built the experiences in code, on-device. Wearable prototypes, simulator builds, and end-to-end use-case integrations — most Day-1 decisions came from what worked on your head, not what looked right in Figma.'],
               ['Production Design', 'The render-and-ship layer turning concept work into demoable, photographable, recordable experiences for the unveil.'],
               ['UX Research', 'Field studies in real homes, ethnographic work on hands-busy moments, usability runs against the EMG wristband and voice loop.'],
               ['Quest MR partnership', 'Cross-team work integrating MR Mode and the Augments system so the persistent-object language stayed consistent across glasses and headset.'],

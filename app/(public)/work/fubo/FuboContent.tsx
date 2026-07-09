@@ -58,7 +58,7 @@ export function FuboContent() {
             <li>Leading product design across all platforms (TV, mobile, web), with responsibility for <strong className="text-[var(--era-ink)]">growth, design systems, and new AI feature development</strong>.</li>
             <li>Defining the design vision and strategy to unify the user experience and accelerate product quality company-wide.</li>
             <li>Partnering with Product, Engineering, and Data Science leadership to align design priorities with business growth objectives.</li>
-            <li>Driving initiatives to optimize content placement, onboarding, and engagement &mdash; the foundation for improved retention and conversion.</li>
+            <li>Optimizing content placement, onboarding, and engagement &mdash; the foundation for improved retention and conversion.</li>
             <li>Setting up processes, design systems, and design practices that enable faster movement while maintaining a best-in-class user experience.</li>
           </ul>
         </ChapterRow>

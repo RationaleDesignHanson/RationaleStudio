@@ -44,7 +44,7 @@ export function NimbusContent() {
                   Nimbus
                 </h1>
                 <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  A reimagined household waste system that separates organic, sanitary, and recyclable streams at the bin instead of at the curb. Hardware and software, in concept-prototype.
+                  A household waste system that separates organic, sanitary, and recyclable streams at the bin instead of at the curb. Hardware and software, in concept-prototype.
                 </p>
               </div>
             </div>

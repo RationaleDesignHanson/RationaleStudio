@@ -56,7 +56,7 @@ export function FramestoreContent() {
         {/* CHAPTER 01 — THE WORK */}
         <ChapterRow index="01" kicker="THE WORK · ONE YEAR · MULTIPLE CATEGORIES" title="VR/AR pitches">
           <p>
-            Established artistic vision and UX definition while working closely with a multi-disciplined team throughout all aspects of the creative process. VR/AR pitches across:
+            Set artistic vision and UX definition with a multi-disciplined team across the creative process. VR/AR pitches across:
           </p>
           <ul className="space-y-2 mt-2">
             <li>&middot; Location-based games</li>
@@ -66,7 +66,7 @@ export function FramestoreContent() {
             <li>&middot; Automotive experiential work</li>
           </ul>
           <p>
-            Deliverables included creative pitches, prototypes, treatments, pre-visualization, scripts, storyboards, and motion/design tests. Most deliverables were pitches; some shipped, some didn&rsquo;t.
+            Deliverables included creative pitches, prototypes, treatments, pre-visualization, scripts, storyboards, and motion/design tests. Most were pitches; some shipped, some didn&rsquo;t.
           </p>
           <div className="mt-6 max-w-2xl">
             <Figure figNumber="FIG. 01" caption="Starbreeze location-based VR · 12&prime;&times;12&prime; active play space, motorized lazy susan, table with wheels, 7&Prime; multi-tool sized for the Vive controller">

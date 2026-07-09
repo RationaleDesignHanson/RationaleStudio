@@ -89,7 +89,7 @@ export default function StudioEraPage() {
         {/* CHAPTER 01 — THE ARC */}
         <ChapterRow index="01" kicker="THE ARC · BFA → BROOKLYN INSTALL" title="Five chapters before Meta">
           <p>
-            A BFA in Computer Art from SUNY Buffalo (2000), then into the early years of the NYC motion graphics scene and independent studio work. By the mid-2010s the work had moved out of post-production into physical space &mdash; installations at Hush in Brooklyn. Viacom and Framestore VR followed (their own entries), then Meta.
+            A BFA in Computer Art from SUNY Buffalo (2000), then the early NYC motion graphics scene and independent studio work. By the mid-2010s it had moved out of post-production into physical space &mdash; installations at Hush in Brooklyn. Viacom and Framestore VR followed (their own entries), then Meta.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             Each chapter ended pulled toward the next bleeding edge &mdash; motion into CG, post-production into physical space, installations into AR.
@@ -117,10 +117,10 @@ export default function StudioEraPage() {
         {/* CHAPTER 02 — ANIMATION + VFX */}
         <ChapterRow index="02" kicker="ANIMATION + VFX · EARLY 2000s" title="From After Effects to Psyop">
           <p>
-            Came up through After Effects and motion graphics at small NYC design shops, then through Stardust, Buck, Imaginary Forces, Trollback, and Nathan Love. Taught myself the CG pipeline &mdash; Maya, Cinema 4D, Nuke &mdash; on Fanta and Adidas spots in the evenings while doing motion graphics by day. Junior designer to compositor to 3D generalist to creative director, over about a decade.
+            Came up through After Effects and motion graphics at small NYC design shops, then Stardust, Buck, Imaginary Forces, Trollback, and Nathan Love. Taught myself the CG pipeline &mdash; Maya, Cinema 4D, Nuke &mdash; on Fanta and Adidas spots at night while doing motion graphics by day. Junior designer to compositor to 3D generalist to creative director in about a decade.
           </p>
           <p>
-            The work that pulled me through that decade was Psyop. Tracked them down in the early 2000s after seeing Company Flow&rsquo;s &ldquo;End to End Burners&rdquo; &mdash; a music video that mixed CG, live action, graffiti, and the New York subway in a way I&rsquo;d never seen before. Spent five or six years working at adjacent shops, building toward a spot on their crew. Eventually got there.
+            What pulled me through that decade was Psyop. I tracked them down in the early 2000s after Company Flow&rsquo;s &ldquo;End to End Burners&rdquo; &mdash; a music video mixing CG, live action, graffiti, and the New York subway like nothing I&rsquo;d seen. Five or six years at adjacent shops building toward a spot on their crew. Eventually got there.
           </p>
           {/* GTA Vice City · 2002 · early NYC motion-graphics work */}
           <div className="mt-6">
@@ -193,7 +193,7 @@ export default function StudioEraPage() {
         {/* CHAPTER 03 — OWN STUDIO */}
         <ChapterRow index="03" kicker="OWN STUDIO · 2009 — 2012" title="Independent shop">
           <p>
-            Ran an independent shop for three years. Verizon Fios for McCann was the longest-running engagement and the cash cow. <strong className="text-[var(--era-ink)]">Puma NikeID</strong> &mdash; a custom asset generation system for shoe customization &mdash; was the first piece of platform work I ever built: parametric design, client-facing tooling, automated rendering pipelines. Looking back, a small Spark AR before Spark AR.
+            Ran an independent shop for three years. Verizon Fios for McCann was the longest engagement and the cash cow. <strong className="text-[var(--era-ink)]">Puma NikeID</strong> &mdash; a custom asset-generation system for shoe customization &mdash; was the first platform I built: parametric design, client-facing tooling, automated rendering pipelines. A small Spark AR before Spark AR.
           </p>
           <p>
             The shop closed in 2012 when the Verizon work wound down. A brief stint back at Psyop on Mountain Dew and Fanta spots followed.
@@ -222,7 +222,7 @@ export default function StudioEraPage() {
         {/* CHAPTER 04 — HUSH */}
         <ChapterRow index="04" kicker="HUSH · 2012 — 2014 · BROOKLYN" title="Out of post-production, into physical space">
           <p>
-            Lead Animation and Experiential Designer at Hush in Brooklyn. The shop&rsquo;s appeal was that it didn&rsquo;t separate the screen from the room &mdash; projects mixed projection, fabrication, motion graphics, and software in whatever combination the brief called for. <a href="https://www.heyhush.com/work/12-taking-under-armour-to-new-lands" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Under Armour activations<ExternalLink className="w-3.5 h-3.5" /></a>, a <a href="https://thisisjodi.com/Niketown-Super-Bowl-Installation" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Niketown installation for the Super Bowl<ExternalLink className="w-3.5 h-3.5" /></a>, an iPad/Unity app where users could deconstruct a 3D car layer by layer.
+            Lead Animation and Experiential Designer at Hush in Brooklyn. The shop didn&rsquo;t separate the screen from the room &mdash; projects mixed projection, fabrication, motion graphics, and software as the brief called for. <a href="https://www.heyhush.com/work/12-taking-under-armour-to-new-lands" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Under Armour activations<ExternalLink className="w-3.5 h-3.5" /></a>, a <a href="https://thisisjodi.com/Niketown-Super-Bowl-Installation" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline inline-flex items-baseline gap-1">Niketown installation for the Super Bowl<ExternalLink className="w-3.5 h-3.5" /></a>, an iPad/Unity app where users could deconstruct a 3D car layer by layer.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             After more than a decade in post-production, the move into physical space mattered most for what came after. Once you&rsquo;ve watched a stranger&rsquo;s body figure out a gesture you designed, you can&rsquo;t go back to designing for an editor.
@@ -259,7 +259,7 @@ export default function StudioEraPage() {
         {/* CHAPTER 06 — FRAMESTORE */}
         <ChapterRow index="06" kicker="FRAMESTORE VR · 2017" title="One year of pitches">
           <p>
-            Creative Director at Framestore VR Studio and Framestore Labs. One year. VR/AR pitches for location-based games, motion simulators, educational AR, conversational AI experiences for sports stadiums, and Hyundai experiential work. Most deliverables were pitches; some shipped, some didn&rsquo;t.
+            Creative Director at Framestore VR Studio and Framestore Labs. One year. VR/AR pitches: location-based games, motion simulators, educational AR, conversational AI for sports stadiums, Hyundai experiential work. Mostly pitches &mdash; some shipped, some didn&rsquo;t.
           </p>
           <p>
             <Link href="/work/framestore" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline">

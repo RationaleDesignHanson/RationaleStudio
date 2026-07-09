@@ -47,10 +47,10 @@ export default function AboutPage() {
             </aside>
             <div className="md:col-span-8 md:order-2">
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                Before Meta, the work landed in mixed-reality installations at Viacom &mdash; the Past Present and Future room, Outrage Machine on Times Square, the MTV Open Your Eyes Tilt Brush show at the White House &mdash; and a Framestore VR studio after that.
+                Before Meta: mixed-reality installations at Viacom &mdash; the Past Present and Future room, Outrage Machine on Times Square, the MTV Open Your Eyes Tilt Brush show at the White House &mdash; then a Framestore VR studio.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-6">
-                The path there ran through creative direction and visual effects at Psyop, Imaginary Forces, Buck, and my own studio. AR took over from there.
+                It followed creative direction and visual effects at Psyop, Imaginary Forces, Buck, and my own studio, until AR took over.
               </p>
               <figure className="rounded-md overflow-hidden border border-hairline bg-paper-deep/30">
                 <video
@@ -97,13 +97,13 @@ export default function AboutPage() {
             </aside>
             <div className="md:col-span-8 md:order-2">
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                I joined Meta in 2017 as an Art Director on Messenger AR. In early 2018 the AR product team recruited me, and the role shifted on the fly from creative direction to product design management.
+                I joined Meta in 2017 as an Art Director on Messenger AR. In early 2018 the AR product team recruited me, and the role shifted from creative direction to product design management.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                Over the next five years (2018&ndash;2023, Reality Labs), a small team building camera effects grew into <strong className="text-ink">Spark AR</strong> &mdash; Meta&rsquo;s AR platform of runtime, capabilities, and creator tooling within a 400+ person XFN organization, used across Facebook, Instagram, and Messenger by billions and extended from mobile to headsets.
+                Over five years (2018&ndash;2023, Reality Labs), a small camera-effects team grew into <strong className="text-ink">Spark AR</strong> &mdash; Meta&rsquo;s AR platform of runtime, capabilities, and creator tooling within a 400+ person XFN organization, used by billions across Facebook, Instagram, and Messenger and extended from mobile to headsets.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                The <strong className="text-ink">Experiences team</strong> scaled from 2 to 22 under my lead, took <strong className="text-ink">AR Commerce</strong> from prototype to launch across Instagram and the Family of Apps with 10+ retail partners, and introduced the Product Design Prototyper role that lifted prototype velocity by 60+% &mdash; all in close partnership with the London-based creator-tooling team.
+                The <strong className="text-ink">Experiences team</strong> scaled from 2 to 22 under my lead, took <strong className="text-ink">AR Commerce</strong> from prototype to launch across Instagram and the Family of Apps with 10+ retail partners, and introduced the Product Design Prototyper role that lifted prototype velocity 60+% &mdash; all with the London-based creator-tooling team.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
                 The Orion chapter followed as <strong className="text-ink">Experience Lead</strong>, driving progress across multiple use cases and teams toward{' '}
@@ -143,7 +143,7 @@ export default function AboutPage() {
             </aside>
             <div className="md:col-span-8 md:order-2">
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                From Meta until now, the shape of design and product leadership has been shifting &mdash; and rather than try to manage the shift, I went back to building. With AI as a coding partner.
+                From Meta until now, the shape of design and product leadership has been shifting &mdash; and rather than manage it, I went back to building. With AI as a coding partner.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
                 The progression has been deliberate: tools for my own ceramics hobby, then design at startups, prototypes for partners, and the work that&rsquo;s followed. Each project builds on the last in complexity and quality.

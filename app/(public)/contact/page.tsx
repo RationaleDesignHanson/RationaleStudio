@@ -43,7 +43,7 @@ export default function ContactPage() {
                 Work with me
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-6">
-                Available for very selective partnership work &mdash; design and product strategy, prototyping, embedded work where alignment is genuine. Not taking on retainers, not running a studio.
+                Available for selective partnership work &mdash; design and product strategy, prototyping, embedded work where alignment is genuine. Not taking on retainers, not running a studio.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl">
                 Some recent partnership work is under NDA &mdash; available with login at the relevant case studies, or email me to request access.

@@ -70,10 +70,10 @@ export default function SparkARPage() {
           title="The lightning talk that started it"
         >
           <p>
-            Before Spark AR existed as a named product, the Messenger AR team shipped four flagship effects to prove AR could be commercial-grade across very different verticals: <strong className="text-[var(--era-ink)]">Sephora</strong> virtual makeup, <strong className="text-[var(--era-ink)]">KIA</strong> at vehicle scale, <strong className="text-[var(--era-ink)]">Nike SNKRS</strong> footwear, and <strong className="text-[var(--era-ink)]">ASUS Portal</strong> hardware visualization.
+            Before Spark AR was a named product, the Messenger AR team shipped four flagship effects to prove AR could be commercial-grade across verticals: <strong className="text-[var(--era-ink)]">Sephora</strong> virtual makeup, <strong className="text-[var(--era-ink)]">KIA</strong> at vehicle scale, <strong className="text-[var(--era-ink)]">Nike SNKRS</strong> footwear, and <strong className="text-[var(--era-ink)]">ASUS Portal</strong> hardware visualization.
           </p>
           <p>
-            I presented them at F8 2018 Day 2, Class 113 &mdash; thrown to by Loredana Crisan, then Head of Design at Messenger (now CDO at Figma). The room was rated for 100 and packed past capacity. The talk made the case for AR being a primary social mode, not a filter add-on.
+            I presented them at F8 2018 Day 2, Class 113 &mdash; thrown to by Loredana Crisan, then Head of Design at Messenger, now CDO at Figma. The room, rated for 100, packed past capacity. The talk made the case for AR as a primary social mode, not a filter add-on.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             That session is the inflection point for everything below.
@@ -105,10 +105,10 @@ export default function SparkARPage() {
           title="Building the platform under it"
         >
           <p>
-            What grew out of Class 113 was <strong className="text-[var(--era-ink)]">Spark AR</strong> &mdash; runtime, capabilities, and creator tooling, supported by a 400+ person XFN organization. I led the Experiences team in close partnership with the London-based creator-tooling team, scaling from 2 to 22 ICs over five years.
+            Class 113 grew into <strong className="text-[var(--era-ink)]">Spark AR</strong> &mdash; runtime, capabilities, and creator tooling, backed by a 400+ person XFN org. I led the Experiences team with the London-based creator-tooling team, scaling from 2 to 22 ICs over five years.
           </p>
           <p>
-            The org introduced the <strong className="text-[var(--era-ink)]">Product Design Prototyper</strong> role within Spark AR, lifting prototype velocity by 60+%. We also designed and shipped <strong className="text-[var(--era-ink)]">Story Time</strong> with the Portal team &mdash; a flagship AR feature for video calls that outperformed standard video on engagement and retention. The result confirmed AR could be a primary social mode, not a filter add-on.
+            The org introduced the <strong className="text-[var(--era-ink)]">Product Design Prototyper</strong> role within Spark AR, lifting prototype velocity 60+%. We designed and shipped <strong className="text-[var(--era-ink)]">Story Time</strong> with the Portal team &mdash; a flagship AR feature for video calls that outperformed standard video on engagement and retention. The result confirmed AR could be a primary social mode, not a filter add-on.
           </p>
           <div className="mt-6 md:mt-8">
             <Plate variant="split">
@@ -154,7 +154,7 @@ export default function SparkARPage() {
             Underneath sat the <strong className="text-[var(--era-ink)]">Container Effects System</strong> &mdash; an extensible substrate for portable UX across Instagram and Facebook, separating interface from content. Three pillars (<em>Bulk Asset Upload · Parameterization · Content Assembly</em>) and seven components made AR Commerce buildable at retailer scale rather than per-effect bespoke.
           </p>
           <p>
-            The work surfaced a Three-Pillar success model balancing <strong className="text-[var(--era-ink)]">consumer · platform · business</strong> outcomes, and a conversion funnel that became the template for measuring AR-driven commerce inside Meta.
+            The work surfaced a Three-Pillar success model balancing <strong className="text-[var(--era-ink)]">consumer · platform · business</strong> outcomes, plus a conversion funnel that became Meta's template for measuring AR-driven commerce.
           </p>
 
           {/* Container Effects + Funnel + Pillars plate */}
@@ -207,10 +207,10 @@ export default function SparkARPage() {
           <div className="mt-6 md:mt-8">
             <Plate variant="split">
               <Figure figNumber="FIG. 13" caption="Design review — before-state interaction model">
-                <Image src="/assets/spark-ar/chapter-c/02-before.jpg" alt="Before-state design review" width={739} height={1600} className="w-full h-auto max-w-[50%] mx-auto" />
+                <Image src="/assets/spark-ar/chapter-c/02-before.jpg" alt="Before-state design review" width={739} height={1600} className="w-full h-auto max-w-[260px] mx-auto" />
               </Figure>
               <Figure figNumber="FIG. 14" caption="Design review — after, with hint and education states">
-                <Image src="/assets/spark-ar/chapter-c/03-after.jpg" alt="After-state design review with hints" width={739} height={1600} className="w-full h-auto max-w-[50%] mx-auto" />
+                <Image src="/assets/spark-ar/chapter-c/03-after.jpg" alt="After-state design review with hints" width={739} height={1600} className="w-full h-auto max-w-[260px] mx-auto" />
               </Figure>
             </Plate>
           </div>
@@ -277,7 +277,7 @@ export default function SparkARPage() {
               Named launches
             </p>
             <p>
-              Headline collaborations that proved the platform: <strong className="text-[var(--era-ink)]">Starbucks</strong> holiday cup &mdash; an object-recognition AR experience triggered by the seasonal cup itself, animated artwork unlocking when pointed at; <strong className="text-[var(--era-ink)]">Pringles</strong> and the <em>Avatar</em> movie launch as branded AR ad formats; and dynamic try-ons across <strong className="text-[var(--era-ink)]">Adidas · Nike · Warby Parker</strong>.
+              Collaborations that proved the platform: <strong className="text-[var(--era-ink)]">Starbucks</strong> holiday cup &mdash; an object-recognition AR experience triggered by the seasonal cup itself, animated artwork unlocking when pointed at; <strong className="text-[var(--era-ink)]">Pringles</strong> and the <em>Avatar</em> movie launch as branded AR ad formats; and dynamic try-ons across <strong className="text-[var(--era-ink)]">Adidas · Nike · Warby Parker</strong>.
             </p>
             <p className="text-sm text-[var(--era-ink-muted)] leading-relaxed mt-3">
               Press evidence:{' '}
@@ -297,10 +297,10 @@ export default function SparkARPage() {
           title="Leadership through teaching"
         >
           <p>
-            Spark AR was a developer platform. The work that scaled it past flagship demos was teaching the creator community how to think about AR. I co-wrote the IC public talk track at <strong className="text-[var(--era-ink)]">F8 (multi-year)</strong> and <strong className="text-[var(--era-ink)]">Oculus Connect 6</strong>, and partnered with UX research to publish the public-facing <strong className="text-[var(--era-ink)]">Spark AR Design Guidelines</strong>.
+            Spark AR was a developer platform. What scaled it past flagship demos was teaching the creator community to think about AR. I co-wrote the IC public talk track at <strong className="text-[var(--era-ink)]">F8 (multi-year)</strong> and <strong className="text-[var(--era-ink)]">Oculus Connect 6</strong>, and partnered with UX research to publish the public-facing <strong className="text-[var(--era-ink)]">Spark AR Design Guidelines</strong>.
           </p>
           <p>
-            The core methodology was the <strong className="text-[var(--era-ink)]">AR Fundamentals</strong> &mdash; five UX Touch-Points and four North Star Beliefs distilled from running the Experiences team: hypotheses we&rsquo;d proven, hypotheses we&rsquo;d had to throw out, and the patterns that survived contact with creators and users.
+            The core methodology was the <strong className="text-[var(--era-ink)]">AR Fundamentals</strong> &mdash; five UX Touch-Points and four North Star Beliefs from running the Experiences team: what we&rsquo;d proven, what we&rsquo;d thrown out, and the patterns that survived creators and users.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             The point was to teach, not prescribe.
@@ -355,7 +355,7 @@ export default function SparkARPage() {
           title="Research bridge to glasses"
         >
           <p>
-            ARBE was a research arc inside Spark AR exploring what AR could do beyond face filters and surface placement &mdash; specifically, <strong className="text-[var(--era-ink)]">location-based AR</strong>: world-anchored content, persistent objects across sessions, multi-user shared spaces, and the consequence of AR leaving the phone screen.
+            ARBE was a research arc inside Spark AR exploring AR beyond face filters and surface placement &mdash; <strong className="text-[var(--era-ink)]">location-based AR</strong>: world-anchored content, persistent objects across sessions, multi-user shared spaces, and the consequence of AR leaving the phone screen.
           </p>
           <p>
             The work generated a public patent &mdash;{' '}
@@ -380,7 +380,7 @@ export default function SparkARPage() {
               World AR Avatars · the patent in context
             </p>
             <p className="mb-4">
-              The most concrete instance of the patent was <strong className="text-[var(--era-ink)]">World AR Avatars</strong> &mdash; a research-to-product arc that put a personal Avatar into the world-camera so people could express themselves in space, not just on their face. The hypothesis: world-anchored AR is more popular when it includes <em>people</em>. The data hook: 30% retention for content with people in it vs 12% for non-people World AR. We launched the MVP in the FB camera in Cambodia first, then iterated on inventory and location behaviours.
+              The clearest instance of the patent was <strong className="text-[var(--era-ink)]">World AR Avatars</strong> &mdash; a research-to-product arc putting a personal Avatar into the world-camera so people could express themselves in space, not just on their face. Hypothesis: world-anchored AR is more popular when it includes <em>people</em>. The data: 30% retention for content with people vs 12% without. We launched the MVP in the FB camera in Cambodia, then iterated on inventory and location behaviours.
             </p>
             <Plate variant="split">
               <Figure figNumber="FIG. 17" caption="Avatars as personal identity · the strategic case for World AR Avatars">
@@ -412,7 +412,7 @@ export default function SparkARPage() {
               Public location-based AR — Tate Britain
             </p>
             <p className="mb-4">
-              The most public expression of this research was the <strong className="text-[var(--era-ink)]">Tate Britain</strong> partnership: location-anchored AR experiences inside the museum&rsquo;s &ldquo;Augmenting Abstraction&rdquo; programme. Visitors walked through the gallery with their phones; AR works were anchored to physical artworks and triggered by location.
+              The most public expression was the <strong className="text-[var(--era-ink)]">Tate Britain</strong> partnership: location-anchored AR inside the museum&rsquo;s &ldquo;Augmenting Abstraction&rdquo; programme. Visitors walked the gallery with their phones; AR works were anchored to physical artworks and triggered by location.
             </p>
             <div className="rounded-md overflow-hidden border border-hairline bg-paper-deep/30">
               <video
@@ -443,7 +443,7 @@ export default function SparkARPage() {
           title="Telling the platform story"
         >
           <p>
-            F8 2019 was the moment Spark AR went from internal team to public platform. I gave the flagship outlook talk, and supported two team members on stage with their domain-specific deep-dives. Three angles on the same year of work.
+            F8 2019 was when Spark AR went from internal team to public platform. I gave the flagship outlook talk and supported two team members on stage with domain-specific deep-dives &mdash; three angles on one year of work.
           </p>
           <div className="mt-6 grid md:grid-cols-3 gap-4 md:gap-5">
             {[
@@ -483,7 +483,7 @@ export default function SparkARPage() {
             <Link href="/work/orion" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline">Orion AR Glasses</Link>{' '}
             Day-1 experiences, the <strong className="text-[var(--era-ink)]">Quest MR Mode</strong>, and the{' '}
             <Link href="/work/fair-embodied-ai" className="text-[var(--accent)] hover:text-[var(--era-ink)] underline">FAIR Embodied AI</Link>{' '}
-            program (2023&ndash;2025) &mdash; where, as Senior Product Design Manager, I worked across multiple teams on AI agents for glasses, headsets, and robotics.
+            program (2023&ndash;2025), where as Senior Product Design Manager I worked across teams on AI agents for glasses, headsets, and robotics.
           </p>
         </ChapterRow>
 

@@ -126,7 +126,7 @@ export default function ViacomPage() {
         {/* CHAPTER 02 — SCREENS */}
         <ChapterRow index="02" kicker="THE SCREENS · REAL-TIME PLAYBACK" title="The system that powered the building">
           <p>
-            <strong className="text-[var(--era-ink)]">The Screens</strong> &mdash; a real-time dynamic playback system that powered the brand IDs throughout Viacom&rsquo;s Times Square HQ. Tag-based content routing fed live social feeds into the displays alongside curated brand content, refreshing in real time across the building&rsquo;s lobby, conference rooms, and floor edges.
+            <strong className="text-[var(--era-ink)]">The Screens</strong> &mdash; a real-time playback system that powered the brand IDs throughout Viacom&rsquo;s Times Square HQ. Tag-based content routing fed live social feeds into the displays alongside curated brand content, refreshing in real time across the building&rsquo;s lobby, conference rooms, and floor edges.
           </p>
           <p>
             Designed and architected the playback system together &mdash; software, content tooling, and physical install &mdash; so the system was authored by the brand teams who would use it, not engineered around their inability to.
@@ -315,7 +315,7 @@ export default function ViacomPage() {
             A real-time playback system on Viacom&rsquo;s largest Times Square billboards, developed in collaboration with students at NYU&rsquo;s ITP program.
           </p>
           <p>
-            Live data drove dynamic visual treatments at street scale &mdash; the largest canvases I&rsquo;ve ever shipped to.
+            Live data drove visual treatments at street scale &mdash; the largest canvases I&rsquo;ve ever shipped to.
           </p>
           <div className="mt-4 max-w-3xl">
             <Figure figNumber="FIG. 18" caption="Outrage Machine on Viacom&rsquo;s Times Square billboards">

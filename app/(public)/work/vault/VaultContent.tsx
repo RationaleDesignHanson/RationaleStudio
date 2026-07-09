@@ -51,7 +51,7 @@ const ITEMS: VaultItem[] = [
     status: 'live',
     title: 'Nimbus',
     subtitle: 'Sanitary-waste system · venture in flight',
-    blurb: 'A reimagined household waste system that separates organic, sanitary, and recyclable streams at the bin instead of at the curb. Hardware + software, currently in concept-prototype.',
+    blurb: 'A reimagined household waste system that separates organic, sanitary, and recyclable streams at the bin, not the curb. Hardware + software, in concept-prototype.',
     href: '/work/nimbus',
     primaryLabel: 'Case study',
     deckHref: '/work/nimbus/deck',

@@ -67,10 +67,10 @@ export default function FAIREmbodiedAIPage() {
           title="Designing for agents that move through the world"
         >
           <p>
-            Embodied AI is the discipline of building agents that don&rsquo;t just talk &mdash; they move, look, reach, navigate, and act. At <strong className="text-[var(--era-ink)]">FAIR</strong> (Meta&rsquo;s research org), I led design across multiple teams working on the layer that turns research models into systems people can actually use, across <strong className="text-[var(--era-ink)]">glasses, headsets, and robotics</strong>.
+            Embodied AI builds agents that don&rsquo;t just talk &mdash; they move, look, reach, navigate, and act. At <strong className="text-[var(--era-ink)]">FAIR</strong> (Meta&rsquo;s research org), I led design across teams building the layer that turns research models into systems people can use &mdash; on <strong className="text-[var(--era-ink)]">glasses, headsets, and robotics</strong>.
           </p>
           <p>
-            The two headline projects are <strong className="text-[var(--era-ink)]">Motivo</strong> and <strong className="text-[var(--era-ink)]">SIRo</strong>. Motivo is the model that gives a humanoid character a usable repertoire of motion. SIRo is the project that gives a robot enough social intelligence to share a room with a person.
+            The two headline projects are <strong className="text-[var(--era-ink)]">Motivo</strong> and <strong className="text-[var(--era-ink)]">SIRo</strong>. Motivo is the model that gives a humanoid character a usable repertoire of motion. SIRo gives a robot enough social intelligence to share a room with a person.
           </p>
           <p className="font-display italic text-[var(--era-ink)]">
             I love robots. The whole point of this stretch of work was to make them a little more useful and a lot less weird.
@@ -89,10 +89,10 @@ export default function FAIREmbodiedAIPage() {
           title="A motion vocabulary for humanoids"
         >
           <p>
-            Most large models can describe the world. Few can <em>act</em> in it. Motivo is a behavioral foundation model for humanoid control &mdash; trained on a wide library of motion data so that a digital character (and eventually a physical one) can be prompted to walk, sit, reach, dodge, balance, recover from a stumble. Without per-task training. Without scripted animation.
+            Most large models can describe the world. Few can <em>act</em> in it. Motivo is a behavioral foundation model for humanoid control &mdash; trained on a wide library of motion data so a digital character &mdash; eventually a physical one &mdash; can be prompted to walk, sit, reach, dodge, balance, recover from a stumble. Without per-task training. Without scripted animation.
           </p>
           <p>
-            The design work sat at the seam between the research and the people who would eventually use it. Multimodal prompts (gesture, motion, reward inputs). Interaction patterns that don&rsquo;t exist yet. Visualizers and review tools so a non-PhD could sanity-check what the model was doing. The team needed product-grade UX before there was a product.
+            The design work sat between research and the people who would use it: multimodal prompts (gesture, motion, reward inputs), interaction patterns that don&rsquo;t exist yet, visualizers and review tools so a non-PhD could sanity-check the model. The team needed product-grade UX before there was a product.
           </p>
           <p>
             What it&rsquo;s for: avatars in social VR that move like people, not mannequins; humanoid simulation for training data; eventually, the motion layer that lets a real robot do real chores. The interesting part isn&rsquo;t the demo &mdash; it&rsquo;s the substrate.
@@ -127,10 +127,10 @@ export default function FAIREmbodiedAIPage() {
             Most robots fail not because they can&rsquo;t do a task, but because they can&rsquo;t share a room. They walk through a doorway you&rsquo;re standing in. They reach for an object you&rsquo;re holding. They don&rsquo;t notice a child or a pet or a person carrying something heavy. SIRo (Socially Intelligent Robots) is the long arc of getting machines past that ceiling.
           </p>
           <p>
-            The design work covered three loops: <strong className="text-[var(--era-ink)]">perception</strong> (the robot&rsquo;s sense of where humans are and what they&rsquo;re doing), <strong className="text-[var(--era-ink)]">intent</strong> (what it&rsquo;s about to do, communicated before it does it), and <strong className="text-[var(--era-ink)]">handoff</strong> (when the human takes over, when the robot offers help, when neither). Designing those loops is mostly designing for moments of mutual surprise &mdash; what does it look like when the robot and the person disagree, and how does the robot back off gracefully?
+            The design work covered three loops: <strong className="text-[var(--era-ink)]">perception</strong> (the robot&rsquo;s sense of where humans are and what they&rsquo;re doing), <strong className="text-[var(--era-ink)]">intent</strong> (what it&rsquo;s about to do, communicated before it does it), and <strong className="text-[var(--era-ink)]">handoff</strong> (when the human takes over, when the robot offers help, when neither). Designing those loops means designing for moments of mutual surprise &mdash; what happens when robot and person disagree, and how the robot backs off gracefully?
           </p>
           <p>
-            Public-facing work covered home assistance scenarios: setting a table, fetching a tool, holding a door, navigating a hallway in a house where toys, children, and laundry baskets are in motion. The point isn&rsquo;t a demo of the perfect day. It&rsquo;s a robot that doesn&rsquo;t make the messy day worse.
+            Public work covered home-assistance scenarios: setting a table, fetching a tool, holding a door, navigating a hallway where toys, children, and laundry baskets are in motion. The point isn&rsquo;t a demo of the perfect day. It&rsquo;s a robot that doesn&rsquo;t make the messy day worse.
           </p>
           <div className="mt-6">
             <Figure figNumber="FIG. 02" caption="PARTNR · the SIRo demonstration system. Built and led the AI Robotics Design team across simulation and real-world settings.">
@@ -163,7 +163,7 @@ export default function FAIREmbodiedAIPage() {
             {[
               ['Motivo · Design + UXR', 'Visualizers, motion-prompt UX, review tooling, and the eval surfaces researchers used to sanity-check the model. Designed before the product existed.'],
               ['SIRo · Design + UXR', 'Perception/intent/handoff loops for socially intelligent robots in home settings. Field study coordination + interaction prototyping with the robotics team.'],
-              ['Agent prototyping', 'Multimodal prompt systems (gesture, motion, reward) and the novel interaction patterns that weren’t yet conventions. The role was bringing UX to research outputs while the research was still moving.'],
+              ['Agent prototyping', 'Multimodal prompt systems (gesture, motion, reward) and interaction patterns that weren’t yet conventions. UX for research outputs while the research was still moving.'],
               ['Strategy + pipelines', 'Coordinated model-development pipelines across research orgs so agentic experiences could ship into product surfaces (glasses, headsets, robotics) without bottlenecking on hand-off.'],
             ].map(([name, desc]) => (
               <div key={name} className="border-t border-[var(--era-hairline)] pt-3">

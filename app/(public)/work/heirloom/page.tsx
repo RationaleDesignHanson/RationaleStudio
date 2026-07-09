@@ -32,7 +32,7 @@ const FEATURES = [
     alt: 'The Heirloom Spark capture flow',
     eyebrow: 'Spark',
     headline: 'Start from a spark.',
-    body: 'A name. A craving. A half-remembered Sunday. Type whatever you&rsquo;ve got &mdash; &ldquo;Grandma&rsquo;s brisket,&rdquo; &ldquo;the lemon chicken thing,&rdquo; &ldquo;weeknight pasta something&rdquo; &mdash; and Heirloom fills in the rest. You review every line before it&rsquo;s saved. The spark was always yours; we just helped you write it down.',
+    body: 'A name. A craving. A half-remembered Sunday. Type whatever you&rsquo;ve got &mdash; &ldquo;Grandma&rsquo;s brisket,&rdquo; &ldquo;the lemon chicken thing,&rdquo; &ldquo;weeknight pasta something&rdquo; &mdash; and Heirloom fills in the rest. You review every line before it saves. The spark was yours; we just wrote it down.',
   },
   {
     align: 'right' as const,
@@ -40,7 +40,7 @@ const FEATURES = [
     alt: 'Hands holding a phone over a stack of handwritten recipe cards',
     eyebrow: 'Capture',
     headline: 'Handwritten cards deserve more than a shoebox.',
-    body: 'Point your camera at a handwritten recipe card &mdash; Heirloom reads the cursive, pulls out the ingredients and instructions, and turns a faded heirloom into a recipe your kids can scale, cook, and pass on. Forty years of Sundays, digitized while you drink coffee.',
+    body: 'Point your camera at a handwritten card. Heirloom reads the cursive, pulls the ingredients and instructions, and turns a faded heirloom into a recipe your kids can scale, cook, and pass on. Forty years of Sundays, digitized over coffee.',
   },
   {
     align: 'left' as const,
@@ -117,7 +117,7 @@ export default function HeirloomCaseStudy() {
                   Preserve your family&rsquo;s recipes. Grandma&rsquo;s handwriting, Mom&rsquo;s voice notes, the videos from Sunday dinner — Heirloom keeps every dish, and the person who first made it.
                 </p>
                 <p className="text-base md:text-lg text-[var(--era-ink-body)] leading-relaxed max-w-2xl mt-4">
-                  The best recipes are rarely written down. They live in a grandparent&rsquo;s head, a parent&rsquo;s muscle memory, a handwritten card stained from forty years of Sunday sauces. One move, one memory fading, one cousin cleaning out a drawer &mdash; and they&rsquo;re gone. Heirloom is the place to put them before that happens.
+                  The best recipes are rarely written down. They live in a grandparent&rsquo;s head, a parent&rsquo;s muscle memory, a card stained from forty years of Sunday sauces. One move, one fading memory, one cleaned-out drawer &mdash; and they&rsquo;re gone. Heirloom is where you put them first.
                 </p>
                 <p className="font-display italic text-base md:text-lg mt-4 max-w-2xl" style={{ color: 'var(--accent)' }}>
                   Your grandmother&rsquo;s Bolognese is not a Google Doc.
@@ -155,7 +155,7 @@ export default function HeirloomCaseStudy() {
         {/* CHAPTER 01 — WHAT IT DOES */}
         <ChapterRow index="01" kicker="WHAT IT DOES" title="One box for every recipe you care about">
           <p>
-            Heirloom is a recipe box. Photograph your grandmother&rsquo;s handwritten card, screenshot a recipe from a website, scan a whole cookbook page by page, paste a TikTok link, or read a recipe out loud while your hands are floury. Heirloom captures it, fills in a structured card, and files it where you can find it again.
+            Heirloom is a recipe box. Photograph your grandmother&rsquo;s handwritten card, screenshot a recipe from a website, scan a whole cookbook page by page, paste a TikTok link, or read one aloud with floury hands. Heirloom captures it, fills in a structured card, and files it where you&rsquo;ll find it again.
           </p>
           <p>
             Every recipe has lineage. The card Mom wrote in 1985 stays the card Mom wrote in 1985. When you change something &mdash; less butter, a different oven temperature, a tweak from a friend &mdash; your version sits beside hers, and so does the diff: who changed what, and when.
@@ -173,7 +173,7 @@ export default function HeirloomCaseStudy() {
             <li><strong className="text-[var(--era-ink)]">Describe a dish.</strong> Type &ldquo;Grandma&rsquo;s brisket&rdquo; or &ldquo;weeknight pasta something&rdquo; and Heirloom drafts a complete recipe. You review every line before it&rsquo;s saved.</li>
           </ul>
           <p className="mt-4">
-            Before a card is saved, Heirloom cross-checks it. It looks up published recipes for the same dish and flags anything that doesn&rsquo;t fit &mdash; a 12-cup butter ratio, a missing step between &ldquo;marinate&rdquo; and &ldquo;plate.&rdquo; You confirm before it commits. Bad recipes don&rsquo;t quietly enter the box.
+            Before a card is saved, Heirloom cross-checks it against published recipes for the same dish and flags anything that doesn&rsquo;t fit &mdash; a 12-cup butter ratio, a missing step between &ldquo;marinate&rdquo; and &ldquo;plate.&rdquo; You confirm before it commits. Bad recipes don&rsquo;t quietly enter the box.
           </p>
         </ChapterRow>
 
@@ -257,7 +257,7 @@ export default function HeirloomCaseStudy() {
         {/* CHAPTER 05 — COOKBOOK SHARING */}
         <ChapterRow index="05" kicker="SHARING" title="A cookbook, not a social graph">
           <p>
-            Make a cookbook. Invite specific family members by username &mdash; no public feed, no algorithm, no strangers reading your grandmother&rsquo;s notes. Recipes added on one phone show up on every other phone instantly. Edits sync the same way. The argument over how much salt is in the soup gets settled in writing.
+            Make a cookbook. Invite specific family members by username &mdash; no public feed, no algorithm, no strangers reading your grandmother&rsquo;s notes. Add a recipe on one phone and it shows up on every other instantly; edits sync the same way. The argument over how much salt is in the soup gets settled in writing.
           </p>
           <p>
             Every recipe carries its own version history, so you can fork from anyone&rsquo;s cookbook without losing theirs. Your mother&rsquo;s pasta stays your mother&rsquo;s pasta even after you&rsquo;ve made it your own. Three generations flow through one recipe.

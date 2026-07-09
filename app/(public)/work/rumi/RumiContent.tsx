@@ -144,7 +144,7 @@ export function RumiContent() {
         {/* CHAPTER 05 — OUTCOME */}
         <ChapterRow index="05" kicker="OUTCOME" title="Faster decisions, calmer team">
           <p>
-            The team aligned around one real, testable surface. Product decisions got faster with less back-and-forth. Engineers shipped with confidence rather than uncertainty. Visual design no longer slowed decisions; it enabled them. The product became buildable, not theoretical.
+            The team aligned around one real, testable surface. Product decisions got faster with less back-and-forth. Engineers shipped with confidence. Visual design no longer slowed decisions; it enabled them. The product became buildable, not theoretical.
           </p>
         </ChapterRow>
 

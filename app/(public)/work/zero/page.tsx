@@ -223,7 +223,7 @@ export default function ZeroPage() {
             <li>Can a new product reach that bar?</li>
           </ol>
           <p>
-            Email failed all three. If an AI email tool misses a bill payment notification, someone could lose their mortgage. High stakes raise the trust ceiling, and a high trust ceiling means near-perfect reliability &mdash; a bar a solo studio can&rsquo;t credibly hit.
+            Email failed all three. If an AI email tool misses a bill payment notification, someone could lose their mortgage. High stakes raise the trust ceiling, and clearing it demands near-perfect reliability &mdash; a bar a solo studio can&rsquo;t credibly hit.
           </p>
           <p>
             So Heirloom got the green light. Recipes have a different equation: two testable pieces (ingredients and instructions), a low trust ceiling, and a personal connection that justified the build.

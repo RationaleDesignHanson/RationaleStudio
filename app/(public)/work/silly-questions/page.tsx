@@ -121,7 +121,7 @@ export default function SillyQuestionsPage() {
         {/* CHAPTER 01 — WHAT IT IS */}
         <ChapterRow index="01" kicker="WHAT IT IS" title="A party game where the AI does the clever part">
           <p>
-            Most party games rely on the players being clever. Silly Questions inverts that: the questions get sillier each round, and the AI takes whatever you both said and turns it into a piece of artwork that somehow represents both of you.
+            Most party games rely on the players being clever. Silly Questions inverts that: the questions get sillier each round, and the AI takes whatever you both said and turns it into artwork that somehow represents both of you.
           </p>
           <p>
             Two players, four rounds, one image per round. At the end you get a final composite Polaroid of the whole game &mdash; saveable, shareable, frameable. First game is free.
@@ -172,7 +172,7 @@ export default function SillyQuestionsPage() {
 
         {/* CHAPTER 05 — PRICING */}
         <ChapterRow index="05" kicker="PRICING · PAY-PER-GAME" title="No subscription">
-          <p>Pay-per-game, no subscription. First game free. Then:</p>
+          <p>First game free. Then:</p>
           <ul className="space-y-1.5 mt-2 font-mono text-sm md:text-base">
             <li>3 games &mdash; $0.99</li>
             <li>10 games &mdash; $2.99</li>

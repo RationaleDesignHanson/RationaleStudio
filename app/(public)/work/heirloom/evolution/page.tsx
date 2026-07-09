@@ -78,7 +78,7 @@ const PHASES = [
     body: (
       <>
         <p>
-          The hardest import format. TikTok and Instagram Reels are 45-second vertical videos that are nearly impossible to actually cook from. The goal: structured ingredients and instructions out, in 2.5–3.5 minutes, for $0.02–0.03 per video.
+          The hardest import format. TikTok and Instagram Reels are 45-second vertical videos that are nearly impossible to cook from. The goal: structured ingredients and instructions out, in 2.5–3.5 minutes, for $0.02–0.03 per video.
         </p>
         <p>
           Built the iOS pipeline as its own lab target before integrating into the app. SwiftUI + SwiftData + AVFoundation + WhisperKit (on-device transcription, free) + Vision OCR (frame analysis) + Claude (recipe structuring) + similar-recipe augmentation + user review + save.
