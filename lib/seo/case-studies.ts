@@ -113,7 +113,7 @@ export const CASE_STUDIES: Record<CaseStudySlug, CaseStudyMeta> = {
   'framestore': {
     title: 'Framestore VR Studio',
     description:
-      'Creative Director, 2017. VR/AR pitch portfolio — the bridge into Meta. Vault-gated.',
+      'Creative Director, 2017. VR/AR pitch portfolio. Vault-gated.',
     type: 'CreativeWork',
     publishedAt: '2017-12-01',
   },

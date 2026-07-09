@@ -45,9 +45,10 @@ export default function HomePage() {
           AI as a coding partner.
         </h1>
 
-        {/* WORK — eras as viewport-fit columns. Masthead off: the header
-            wordmark already rotates in "Vision bears the burden of proof." */}
-        <WorkColumns eras={ERAS} showMasthead={false} fitViewport={false} />
+        {/* WORK — eras as viewport-fit columns; cards share the height evenly
+            so dividers align across columns. Masthead off (header wordmark
+            already rotates in "Vision bears the burden of proof."). */}
+        <WorkColumns eras={ERAS} showMasthead={false} />
 
       </main>
     </>

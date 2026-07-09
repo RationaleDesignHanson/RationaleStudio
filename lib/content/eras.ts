@@ -63,7 +63,7 @@ export const ERAS: WorkEra[] = [
     note: 'Animation, creative direction, mixed-reality installations.',
     accent: '#B5179E',
     projects: [
-      { href: '/work/framestore', index: '07', title: 'Framestore VR', blurb: 'Creative Director · 2017. VR/AR pitch portfolio — the bridge into Meta.', meta: 'CONFIDENTIAL · 2017', gated: true },
+      { href: '/work/framestore', index: '07', title: 'Framestore VR', blurb: 'Creative Director · 2017. VR/AR pitch portfolio.', meta: 'CONFIDENTIAL · 2017', gated: true },
       { href: '/work/viacom', index: '08', title: 'Viacom', blurb: 'Director, Screen Content. The Past Present and Future room, Outrage Machine billboards, MTV Open Your Eyes Tilt Brush at the White House.', meta: 'DIRECTOR · 2015–2017' },
       { href: '/work/studio-era', index: '09', title: 'Studio Era', blurb: 'Psyop, Imaginary Forces, Buck, own studio, Hush. Animation, creative direction, mixed-reality installations.', meta: 'MULTI-STUDIO · 2000–2015' },
     ],

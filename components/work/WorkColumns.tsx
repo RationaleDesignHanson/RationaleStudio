@@ -85,15 +85,15 @@ function EraColumn({ era, showBlurb }: { era: WorkEra; showBlurb: boolean }) {
           </span>
         </div>
         {era.note && (
-          <p className="mt-2 line-clamp-2 text-[11px] leading-snug text-ink-muted">
+          <p className="mt-2 text-[11px] leading-snug text-ink-muted">
             {era.note}
           </p>
         )}
       </header>
 
-      {/* Projects stack top-aligned with uniform spacing (no viewport-fill
-          stretch — that ballooned the gaps unevenly with few items). */}
-      <div className="flex flex-col">
+      {/* Projects share the column height evenly (equal cards → dividers
+          align across columns, and the block expands into the vertical space). */}
+      <div className="flex min-h-0 flex-1 flex-col">
         {era.projects.map((project) => (
           <ProjectItem
             key={project.href}
@@ -122,7 +122,7 @@ function ProjectItem({
   return (
     <Link
       href={href}
-      className="group block border-t border-hairline py-5 transition-colors first:border-t-0 hover:bg-paper-deep"
+      className="group flex min-h-0 flex-1 flex-col justify-center overflow-hidden border-t border-hairline py-5 transition-colors first:border-t-0 hover:bg-paper-deep"
     >
       <div className="flex gap-3">
         <div className="flex shrink-0 items-stretch gap-2 pt-0.5">
@@ -157,7 +157,7 @@ function ProjectItem({
             )}
           </h3>
           {showBlurb && (
-            <p className="mt-1 line-clamp-2 leading-snug text-ink-body text-[clamp(0.72rem,1.5vh,0.85rem)]">
+            <p className="mt-1 leading-snug text-ink-body text-[clamp(0.72rem,1.5vh,0.85rem)]">
               {blurb}
             </p>
           )}

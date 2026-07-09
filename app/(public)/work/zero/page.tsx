@@ -38,8 +38,8 @@ const PROTOTYPES: PrototypeEntry[] = [
 const SHOTS = [
   { file: '01-splash-glassmorphic.png', label: 'Splash · glassmorphic' },
   { file: '02-splash-dark-glass.png', label: 'Splash · dark glass' },
-  { file: '03-diverse-actions.png', label: 'Action diversity' },
-  { file: '04-settings-screen.png', label: 'Settings' },
+  { file: '03-diverse-actions.jpg', label: 'Action diversity' },
+  { file: '04-settings-screen.jpg', label: 'Settings' },
 ];
 
 function PrototypeChapter() {

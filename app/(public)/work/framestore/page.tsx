@@ -8,7 +8,7 @@ export default function FramestorePage() {
       project="maker"
       era="maker"
       title="Framestore VR Studio"
-      subtitle="Creative Director · 2017. VR/AR pitch portfolio — the bridge into Meta."
+      subtitle="Creative Director · 2017. VR/AR pitch portfolio."
       meta="2017"
     >
       <FramestoreContent />
