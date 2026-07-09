@@ -14,21 +14,21 @@ export default function AtAGlance() {
       {/* Stats Grid */}
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 mb-1">Platform</div>
+          <div className="text-caption font-semibold uppercase tracking-wide text-gray-500 mb-1">Platform</div>
           <div className="text-lg md:text-xl font-bold text-terminal-gold leading-tight">All Devices</div>
-          <div className="text-[10px] text-gray-400 mt-0.5">Phone, Tablet, Watch, Web</div>
+          <div className="text-caption text-gray-400 mt-0.5">Phone, Tablet, Watch, Web</div>
         </div>
 
         <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 mb-1">AI Power</div>
+          <div className="text-caption font-semibold uppercase tracking-wide text-gray-500 mb-1">AI Power</div>
           <div className="text-lg md:text-xl font-bold text-terminal-gold leading-tight">43 / 168</div>
-          <div className="text-[10px] text-gray-400 mt-0.5">Intents / Actions</div>
+          <div className="text-caption text-gray-400 mt-0.5">Intents / Actions</div>
         </div>
 
         <div className="rounded-lg border border-terminal-gold/20 bg-gray-800/50 p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wide text-gray-500 mb-1">Status</div>
+          <div className="text-caption font-semibold uppercase tracking-wide text-gray-500 mb-1">Status</div>
           <div className="text-lg md:text-xl font-bold text-terminal-gold leading-tight">Alpha</div>
-          <div className="text-[10px] text-gray-400 mt-0.5">Invite only</div>
+          <div className="text-caption text-gray-400 mt-0.5">Invite only</div>
         </div>
       </div>
 

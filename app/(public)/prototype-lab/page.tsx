@@ -94,7 +94,7 @@ export default function PrototypeLabPage() {
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-ink-muted hover:text-accent mb-8 transition-colors">
             ← Home
           </Link>
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
             INTERNAL · PROTOTYPE EMBED TEST
           </p>
           <h1 className="font-display text-display-sm text-ink mb-3 leading-[0.95]">Prototype Lab</h1>
@@ -121,7 +121,7 @@ function PrototypeBlock({ proto }: { proto: Prototype }) {
         <div className="flex flex-wrap items-baseline gap-3 mb-2">
           <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent">{proto.era}</span>
           <h2 className="font-display text-2xl md:text-3xl text-ink leading-tight">{proto.title}</h2>
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink-muted">{proto.kind}</span>
+          <span className="font-mono text-caption tracking-[0.2em] uppercase text-ink-muted">{proto.kind}</span>
         </div>
 
         <div className={`inline-flex items-center gap-2 text-xs font-mono px-2.5 py-1 rounded-full border mb-4 ${meta.color}`}>

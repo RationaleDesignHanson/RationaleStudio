@@ -69,14 +69,14 @@ export default function StudioEraPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2000 — 2015</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2000 — 2015</span>
                   </div>
                 </div>
               </div>
               <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-mono text-display font-bold uppercase tracking-tighter text-[var(--era-ink)] mb-2 leading-[0.92]">
+                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
                   Studio Era
                 </h1>
                 <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
@@ -118,7 +118,7 @@ export default function StudioEraPage() {
           </p>
           {/* GTA Vice City · 2002 · early NYC motion-graphics work */}
           <div className="mt-6">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 03 &middot; Grand Theft Auto: Vice City &middot; US TV commercial &middot; 2002
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
@@ -144,7 +144,7 @@ export default function StudioEraPage() {
 
           {/* Adidas Hu Jia · 2008 Beijing Olympics · lead compositor */}
           <div className="mt-6">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 05 &middot; Adidas &middot; Hu Jia &middot; 2008 Beijing Olympics &middot; lead compositor
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
@@ -206,7 +206,7 @@ export default function StudioEraPage() {
           {/* Studio reel — live playlist of agency, Puma NikeID,
               Verizon, and ebook-cover work from this stretch. */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 10 &middot; Studio reel · click to cycle categories
             </p>
             <VideoPlayer basePath="/videos/studio-reel" playlists={STUDIO_REEL_PLAYLISTS} />

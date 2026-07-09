@@ -111,7 +111,7 @@ function PrototypeChapter() {
             className="md:hidden block rounded-md border-2 px-5 py-6 transition-colors active:opacity-80"
             style={{ borderColor: 'var(--accent)', backgroundColor: 'var(--era-bg-deep)' }}
           >
-            <p className="text-[10px] font-mono tracking-[0.3em] uppercase mb-3" style={{ color: 'var(--accent)' }}>
+            <p className="text-caption font-mono tracking-[0.3em] uppercase mb-3" style={{ color: 'var(--accent)' }}>
               Live build · best on mobile
             </p>
             <p className="font-display text-xl leading-snug mb-1.5" style={{ color: 'var(--era-ink)' }}>
@@ -131,7 +131,7 @@ function PrototypeChapter() {
             >
               Open prototype <ExternalLink className="w-3.5 h-3.5" />
             </span>
-            <p className="mt-3 text-[11px] font-mono text-center" style={{ color: 'var(--era-ink-muted)' }}>
+            <p className="mt-3 text-caption font-mono text-center" style={{ color: 'var(--era-ink-muted)' }}>
               ↩ Use back button to return to the case study
             </p>
           </a>
@@ -166,13 +166,13 @@ export default function ZeroPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>03</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">
                       / 09
                     </span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">
                       ERA · NOW
                     </span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
                       2024
                     </span>
                   </div>

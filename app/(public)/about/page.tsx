@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* HERO */}
       <section className="px-4 sm:px-6 md:px-8 pt-16 md:pt-24 pb-10 md:pb-16 border-b border-hairline">
         <div className="max-w-5xl mx-auto">
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
             ABOUT · MATT HANSON
           </p>
           <h1 className="font-display text-display text-ink mb-6 max-w-3xl">
@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
             <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Maker</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Era · Maker</p>
               <Marginalia.Field label="Years">2000 — 2017</Marginalia.Field>
               <Marginalia.Field label="Studios">Psyop · Imaginary Forces · Buck · Hush · Framestore</Marginalia.Field>
               <Marginalia.Field label="Highlights">Past Present and Future · Outrage Machine · MTV / White House</Marginalia.Field>
@@ -69,7 +69,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
             <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Meta</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Era · Meta</p>
               <Marginalia.Field label="Years">2017 — 2025</Marginalia.Field>
               <Marginalia.Field label="Roles">Art Director → PD Manager → Experience Lead</Marginalia.Field>
               <Marginalia.Field label="Org">Reality Labs · 400+ XFN</Marginalia.Field>
@@ -124,7 +124,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
             <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Era · Now</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Era · Now</p>
               <Marginalia.Field label="Years">2024 —</Marginalia.Field>
               <Marginalia.Field label="Mode">Solo · AI as a coding partner</Marginalia.Field>
               <Marginalia.Rule />
@@ -164,7 +164,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
             <aside className="md:col-span-4 md:order-1 mb-6 md:mb-0 text-xs font-mono text-ink-muted leading-relaxed">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3">Reach</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Reach</p>
               <Marginalia.Field label="Email">
                 <a href="mailto:hanson@rationale.work" className="text-[var(--accent)] hover:text-ink">
                   hanson@rationale.work
@@ -222,7 +222,7 @@ export default function AboutPage() {
       {/* LEADERSHIP CREDO */}
       <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-ink mb-3 font-mono">How I work</p>
+          <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3 font-mono">How I work</p>
           <figure className="rounded-md overflow-hidden border border-hairline max-w-3xl">
             <Image src="/images/work/about/decks/leadership-credo.jpg" alt="Self-Expectations and Team-Expectations" width={1600} height={900} className="w-full h-auto" />
             <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
@@ -230,7 +230,7 @@ export default function AboutPage() {
             </figcaption>
           </figure>
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-ink-muted mb-3 font-mono">Deeper reading · gated</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink-muted mb-3 font-mono">Deeper reading · gated</p>
             <ul className="space-y-2">
               <li>
                 <Link href="/work/decks/portfolio-flash-2024" className="text-[var(--accent)] hover:text-ink font-display italic text-base md:text-lg underline">
@@ -263,7 +263,7 @@ export default function AboutPage() {
        */}
       <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 border-t border-hairline">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
             Patents &amp; press
           </p>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">

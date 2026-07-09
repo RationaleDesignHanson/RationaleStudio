@@ -40,19 +40,19 @@ export default function OmnirepoArchitecture() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-500/10 border border-blue-500/30">
                       <div className="w-6 h-6 rounded bg-blue-500 flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-white">iOS</span>
+                        <span className="text-caption font-bold text-white">iOS</span>
                       </div>
                       <span className="text-sm text-gray-300">mobile/</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-green-500/10 border border-green-500/30">
                       <div className="w-6 h-6 rounded bg-green-500 flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-white">AND</span>
+                        <span className="text-caption font-bold text-white">AND</span>
                       </div>
                       <span className="text-sm text-gray-300">mobile/</span>
                     </div>
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-purple-500/10 border border-purple-500/30">
                       <div className="w-6 h-6 rounded bg-purple-500 flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-white">WEB</span>
+                        <span className="text-caption font-bold text-white">WEB</span>
                       </div>
                       <span className="text-sm text-gray-300">web/</span>
                     </div>

@@ -33,10 +33,10 @@ function LabNav() {
   return (
     <div className="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b border-hairline px-4 sm:px-6 md:px-8 py-3">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-        <p className="text-[11px] font-mono tracking-[0.3em] uppercase text-ink">
+        <p className="text-caption font-mono tracking-[0.3em] uppercase text-ink">
           HERO LAB · 5 PROPOSALS
         </p>
-        <div className="flex gap-3 sm:gap-4 text-[11px] font-mono tracking-wider">
+        <div className="flex gap-3 sm:gap-4 text-caption font-mono tracking-wider">
           <a href="#a" className="hover:text-[var(--accent-ink)] transition-colors">A · Title</a>
           <a href="#b" className="hover:text-[var(--accent-ink)] transition-colors">B · Boot</a>
           <a href="#c" className="hover:text-[var(--accent-ink)] transition-colors">C · Cinematic</a>
@@ -52,7 +52,7 @@ function Marker({ id, label, children }: { id: string; label: string; children: 
   return (
     <div id={id} className="px-4 sm:px-6 md:px-8 py-6 md:py-8 bg-paper-deep/40 border-y border-hairline scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <p className="text-[11px] font-mono tracking-[0.3em] uppercase text-[var(--accent-ink)] mb-2">
+        <p className="text-caption font-mono tracking-[0.3em] uppercase text-[var(--accent-ink)] mb-2">
           {label}
         </p>
         <p className="text-sm text-ink-muted">{children}</p>
@@ -72,18 +72,18 @@ function HeroA_TitlePage() {
         <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
           {/* Left marginalia */}
           <aside className="md:col-span-3 text-xs font-mono text-ink-muted leading-relaxed md:pr-6 md:border-r md:border-hairline">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-3">Vol. I</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Vol. I</p>
             <p>NYC</p>
             <p>2026</p>
             <hr className="my-3 border-t border-hairline" />
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">Author</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">Author</p>
             <p>Matt Hanson</p>
             <p className="italic">designer + engineer</p>
           </aside>
 
           {/* Center manifesto */}
           <div className="md:col-span-6 text-center">
-            <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
+            <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
               ON BUILDING
             </p>
             <h1 className="font-display text-display text-ink leading-[1.05]">
@@ -97,12 +97,12 @@ function HeroA_TitlePage() {
 
           {/* Right marginalia */}
           <aside className="md:col-span-3 text-xs font-mono text-ink-muted leading-relaxed md:pl-6 md:border-l md:border-hairline">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-3">Credentials</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3">Credentials</p>
             <p>ex-Meta · 2017 — 2025</p>
             <p>Spark AR · Orion · FAIR</p>
             <p>15+ AR/AI patents</p>
             <hr className="my-3 border-t border-hairline" />
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">Now</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">Now</p>
             <p>Solo. Consumer apps.</p>
             <p>AI as a coding partner.</p>
           </aside>
@@ -136,7 +136,7 @@ function HeroB_BootSequence() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Boot block */}
-        <div className="font-mono text-[11px] md:text-xs text-ink-muted leading-relaxed mb-8 md:mb-12 max-w-md md:max-w-lg space-y-1">
+        <div className="font-mono text-caption text-ink-muted leading-relaxed mb-8 md:mb-12 max-w-md md:max-w-lg space-y-1">
           <p>BOOT 03.MAY.2026 .................... OK</p>
           <p>LOC: NYC ............................ OK</p>
           <p>ROLE: designer + engineer ........... OK</p>
@@ -158,16 +158,16 @@ function HeroB_BootSequence() {
         {/* Fielded marginalia */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-12 font-mono text-xs text-ink-muted">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">era</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">era</p>
             <p>2017 — 2025 · Meta</p>
             <p>Spark AR · Orion · FAIR</p>
           </div>
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">patents</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">patents</p>
             <p>15+ AR/AI</p>
           </div>
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">now</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">now</p>
             <p>Heirloom · Silly Questions</p>
             <p>Consumer apps shipped solo</p>
           </div>
@@ -201,7 +201,7 @@ function HeroC_Cinematic() {
 
       {/* Top corner: title-card kicker */}
       <div className="relative z-10 pt-16 md:pt-20">
-        <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase">
+        <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase">
           ON BUILDING · 2000 — NOW
         </p>
       </div>
@@ -216,11 +216,11 @@ function HeroC_Cinematic() {
       {/* Bottom corners */}
       <div className="relative z-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-6 md:pb-10 text-xs font-mono text-ink-muted tracking-wider">
         <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-1">Three eras</p>
+          <p className="text-caption tracking-[0.3em] uppercase text-ink mb-1">Three eras</p>
           <p className="text-[var(--accent-ink)]">NOW · LEADER · DIRECTOR ↓</p>
         </div>
         <div className="sm:text-right">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-1">Matt Hanson</p>
+          <p className="text-caption tracking-[0.3em] uppercase text-ink mb-1">Matt Hanson</p>
           <p>NYC · designer + engineer</p>
         </div>
       </div>
@@ -238,7 +238,7 @@ function HeroD_SplitSpread() {
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         {/* Left — manifesto */}
         <div>
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-4">
             MATT HANSON · NYC · DESIGNER-ENGINEER
           </p>
           <h1 className="font-display text-display text-ink mb-6 leading-[1.05]">
@@ -254,7 +254,7 @@ function HeroD_SplitSpread() {
 
         {/* Right — currently shipping card */}
         <div className="border border-hairline rounded-xl p-6 md:p-8 bg-paper-deep/40">
-          <p className="text-[11px] md:text-xs font-mono tracking-[0.3em] uppercase text-ink-muted mb-5 flex items-center gap-2">
+          <p className="text-caption font-mono tracking-[0.3em] uppercase text-ink-muted mb-5 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--accent-ink)] animate-pulse" />
             CURRENTLY SHIPPING
           </p>
@@ -266,7 +266,7 @@ function HeroD_SplitSpread() {
             </div>
             <div className="pt-10 px-4 text-center">
               <p className="font-display text-2xl text-ink mb-1">Heirloom</p>
-              <p className="text-[10px] font-mono text-ink-muted tracking-wider uppercase mb-3">in beta</p>
+              <p className="text-caption font-mono text-ink-muted tracking-wider uppercase mb-3">in beta</p>
               <div className="space-y-1.5">
                 <div className="h-1 bg-hairline rounded-full" />
                 <div className="h-1 bg-hairline rounded-full w-3/4" />
@@ -319,10 +319,10 @@ function HeroE_Merge() {
       {/* Top frame — kicker + volume mark */}
       <div className="relative z-10 pt-12 md:pt-20">
         <div className="max-w-6xl mx-auto flex items-baseline justify-between gap-4">
-          <p className="text-[10px] sm:text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase">
+          <p className="text-caption sm:text-caption font-mono text-ink-muted tracking-[0.3em] uppercase">
             ON BUILDING · 2000 — NOW
           </p>
-          <p className="text-[10px] sm:text-[11px] md:text-xs font-mono text-ink tracking-[0.3em] uppercase">
+          <p className="text-caption sm:text-caption font-mono text-ink tracking-[0.3em] uppercase">
             VOL. I
           </p>
         </div>
@@ -334,17 +334,17 @@ function HeroE_Merge() {
           {/* Marginalia row — three fields, mono ledger */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 text-xs font-mono text-ink-muted leading-snug max-w-4xl mx-auto mb-10 md:mb-14">
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">Author</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">Author</p>
               <p>Matt Hanson</p>
               <p className="italic">designer + engineer · NYC</p>
             </div>
             <div className="md:text-center">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">Era</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">Era</p>
               <p>ex-Meta · 2017—2025</p>
               <p>Spark AR · Orion · FAIR</p>
             </div>
             <div className="text-right col-span-2 md:col-span-1">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-2">Now</p>
+              <p className="text-caption tracking-[0.3em] uppercase text-ink mb-2">Now</p>
               <p>
                 <a
                   href="https://heirloomrecipebox.app"
@@ -381,11 +381,11 @@ function HeroE_Merge() {
       <div className="relative z-10 pb-6 md:pb-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 text-xs font-mono text-ink-muted tracking-wider">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-1">Three eras</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-1">Three eras</p>
             <p className="text-[var(--accent-ink)]">NOW · LEADER · DIRECTOR ↓</p>
           </div>
           <div className="sm:text-right">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-ink mb-1">Read order</p>
+            <p className="text-caption tracking-[0.3em] uppercase text-ink mb-1">Read order</p>
             <p>Recent first · scroll the viewer</p>
           </div>
         </div>
@@ -431,7 +431,7 @@ export default function HeroLabPage() {
       {/* Trailing breather */}
       <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper-deep/40 border-t border-hairline">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-[11px] font-mono tracking-[0.3em] uppercase text-ink-muted mb-2">END OF LAB</p>
+          <p className="text-caption font-mono tracking-[0.3em] uppercase text-ink-muted mb-2">END OF LAB</p>
           <p className="text-sm text-ink-body">
             E is the merge you asked for. Confirm and I&rsquo;ll wire it into <code className="font-mono text-[var(--accent-ink)]">/</code>.
           </p>

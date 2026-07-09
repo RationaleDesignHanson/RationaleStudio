@@ -42,9 +42,9 @@ export default function FAIREmbodiedAIPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>04</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2023 — 2025</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2023 — 2025</span>
                   </div>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function FAIREmbodiedAIPage() {
               ['Strategy + pipelines', 'Coordinated model-development pipelines across research orgs so agentic experiences could ship into product surfaces (glasses, headsets, robotics) without bottlenecking on hand-off.'],
             ].map(([name, desc]) => (
               <div key={name} className="border-t border-[var(--era-hairline)] pt-3">
-                <p className="text-[11px] font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>{name}</p>
+                <p className="text-caption font-mono tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--accent)' }}>{name}</p>
                 <p className="text-sm md:text-base text-[var(--era-ink-body)]">{desc}</p>
               </div>
             ))}

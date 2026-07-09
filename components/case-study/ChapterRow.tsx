@@ -49,7 +49,7 @@ export function ChapterRow({ index, kicker, title, children }: ChapterRowProps) 
           </div>
           <div className="md:col-span-10">
             <p
-              className="text-[11px] font-mono tracking-[0.2em] uppercase mb-2"
+              className="text-caption font-mono tracking-[0.2em] uppercase mb-2"
               style={{ color: 'var(--accent)' }}
             >
               {kicker}

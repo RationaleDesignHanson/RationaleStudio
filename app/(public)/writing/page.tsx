@@ -32,7 +32,7 @@ export default function WritingPage() {
       {/* LATEST · the live Substack post */}
       <section className="px-4 sm:px-6 md:px-8 pt-12 md:pt-20 pb-10 md:pb-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
             Latest
           </p>
           <a
@@ -43,15 +43,15 @@ export default function WritingPage() {
           >
             <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
               <div className="md:col-span-2">
-                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted mb-1">
+                <p className="font-mono text-caption tracking-[0.25em] uppercase text-ink-muted mb-1">
                   Substack
                 </p>
-                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted">
+                <p className="font-mono text-caption tracking-[0.25em] uppercase text-ink-muted">
                   {SUBSTACK_LATEST.publishedAt}
                 </p>
               </div>
               <div className="md:col-span-9">
-                <h2 className="font-display text-2xl md:text-4xl text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
+                <h2 className="font-display text-h2 text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
                   {SUBSTACK_LATEST.title}
                 </h2>
                 <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-4">
@@ -69,7 +69,7 @@ export default function WritingPage() {
       {/* FEATURED IN · Stef's interview as press */}
       <section className="px-4 sm:px-6 md:px-8 py-10 md:py-16 border-b border-hairline">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+          <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
             Featured In
           </p>
           <a
@@ -80,15 +80,15 @@ export default function WritingPage() {
           >
             <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
               <div className="md:col-span-2">
-                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted mb-1">
+                <p className="font-mono text-caption tracking-[0.25em] uppercase text-ink-muted mb-1">
                   {SENDFULL_INTERVIEW.publication}
                 </p>
-                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted">
+                <p className="font-mono text-caption tracking-[0.25em] uppercase text-ink-muted">
                   Interview
                 </p>
               </div>
               <div className="md:col-span-9">
-                <h2 className="font-display text-2xl md:text-4xl text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
+                <h2 className="font-display text-h2 text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
                   {SENDFULL_INTERVIEW.title}
                 </h2>
                 <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-4">

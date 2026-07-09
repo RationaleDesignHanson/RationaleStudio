@@ -20,13 +20,13 @@ export function VaultEssayReader({ essay }: { essay: VaultEssay }) {
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Vault
             </Link>
             <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono text-[11px] tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
+              <span className="font-mono text-caption tracking-[0.25em] uppercase" style={{ color: 'var(--accent)' }}>
                 {essay.category}
               </span>
               <span className="text-[var(--era-ink-muted)]">·</span>
               <span className="text-xs text-[var(--era-ink-muted)]">{essay.readTime} read</span>
               <span className="text-[var(--era-ink-muted)]">·</span>
-              <span className="font-mono text-[10px] tracking-[0.2em] uppercase inline-flex items-center gap-1 text-[var(--era-ink-muted)]">
+              <span className="font-mono text-caption tracking-[0.2em] uppercase inline-flex items-center gap-1 text-[var(--era-ink-muted)]">
                 <Lock className="w-3 h-3" /> Confidential
               </span>
             </div>

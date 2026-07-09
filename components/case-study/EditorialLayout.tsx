@@ -83,7 +83,7 @@ interface MarginaliaHeadingProps {
 function Heading({ children, className = '' }: MarginaliaHeadingProps) {
   return (
     <p
-      className={`text-[11px] tracking-[0.3em] uppercase text-ink mb-3 ${className}`}
+      className={`text-caption tracking-[0.3em] uppercase text-ink mb-3 ${className}`}
     >
       {children}
     </p>

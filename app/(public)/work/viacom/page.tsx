@@ -94,14 +94,14 @@ export default function ViacomPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>08</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2015 — 2017</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2015 — 2017</span>
                   </div>
                 </div>
               </div>
               <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-mono text-display font-bold uppercase tracking-tighter text-[var(--era-ink)] mb-2 leading-[0.92]">
+                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
                   Viacom
                 </h1>
                 <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
@@ -134,7 +134,7 @@ export default function ViacomPage() {
           </p>
           {/* Hero clip — the signature pre-roll that announced the system */}
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 02 &middot; Screenies &middot; little animated characters fired out of a cannon · the system&rsquo;s signature pre-roll
             </p>
             <div className="aspect-[16/9] w-full overflow-hidden rounded-md bg-black">
@@ -144,7 +144,7 @@ export default function ViacomPage() {
 
           {/* Live playlist — click to cycle categories. Random within. */}
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 03 &middot; The Screens · live playlist · click to cycle categories
             </p>
             <VideoPlayer basePath="/videos/viacom-screens" playlists={VIACOM_SCREENS_PLAYLISTS} />
@@ -161,7 +161,7 @@ export default function ViacomPage() {
           </p>
           {/* CASE-STUDY FILM · the Motionographer documentary cut */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 04 &middot; THE HISTORY OF VIACOM &middot; case-study film
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
@@ -190,7 +190,7 @@ export default function ViacomPage() {
 
           {/* FINISHED · the install as it shipped */}
           <div className="mt-10 md:mt-14">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The finished install
             </p>
             <Figure figNumber="FIG. 05" caption="THE HISTORY OF VIACOM · finished render with content populated">
@@ -202,7 +202,7 @@ export default function ViacomPage() {
 
           {/* SYSTEM — uniform 16:9 triptych so the three frames read as one row */}
           <div className="mt-10 md:mt-14">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The system · empty wall, chapter taxonomy, color sets
             </p>
             <Plate variant="triptych">
@@ -226,7 +226,7 @@ export default function ViacomPage() {
 
           {/* PRODUCTION — lead 4:3 with two 4:3 asides */}
           <div className="mt-10 md:mt-14">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The production · physical maquettes feeding the digital build
             </p>
             <Plate variant="lead-2">
@@ -261,7 +261,7 @@ export default function ViacomPage() {
 
           {/* PHYSICAL TO DIGITAL — Save The Music walkthrough · 4:3 split */}
           <div className="mt-10 md:mt-14">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Physical &rarr; digital · the Save The Music chamber
             </p>
             <Plate variant="split">
@@ -280,7 +280,7 @@ export default function ViacomPage() {
 
           {/* INSTALLATION DETAILS · 16:9 triptych at scale */}
           <div className="mt-10 md:mt-14">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The install at scale
             </p>
             <Plate variant="triptych">
@@ -336,7 +336,7 @@ export default function ViacomPage() {
             </Figure>
           </div>
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               FIG. 20 &middot; SXSL artist captures · Tilt Brush · live playlist
             </p>
             <VideoPlayer

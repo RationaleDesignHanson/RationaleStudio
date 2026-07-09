@@ -93,9 +93,9 @@ export default function HeirloomCaseStudy() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>01</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>iOS · live</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>iOS · live</span>
                   </div>
                 </div>
               </div>
@@ -228,11 +228,11 @@ export default function HeirloomCaseStudy() {
                     </div>
                   </div>
                   <div className="max-w-[44ch]">
-                    <p className="text-[11px] font-mono font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: 'var(--accent)' }}>
+                    <p className="text-caption font-mono font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: 'var(--accent)' }}>
                       {f.eyebrow}
                     </p>
                     <h3
-                      className="text-2xl sm:text-3xl lg:text-[2rem] font-display font-semibold tracking-[-0.02em] leading-[1.12] text-[var(--era-ink)]"
+                      className="text-h2 font-display font-semibold tracking-[-0.02em] leading-[1.12] text-[var(--era-ink)]"
                       dangerouslySetInnerHTML={{ __html: f.headline }}
                     />
                     <p

@@ -46,9 +46,9 @@ export default function SparkARPage() {
                   <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
                     <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>06</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
-                    <span className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2017 — 2023</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
+                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2017 — 2023</span>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function SparkARPage() {
             That session is the inflection point for everything below.
           </p>
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The four flagship effects
             </p>
             <div className="grid grid-cols-2 gap-2 md:gap-3">
@@ -92,7 +92,7 @@ export default function SparkARPage() {
               ].map((v) => (
                 <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                   <LazyVideo src={`/videos/spark-ar/${v.src}`} className="w-full h-auto" />
-                  <p className="text-[10px] md:text-xs text-[var(--era-ink-muted)] px-2 py-1 md:px-3 md:py-1.5 italic font-mono leading-tight">{v.label}</p>
+                  <p className="text-caption text-[var(--era-ink-muted)] px-2 py-1 md:px-3 md:py-1.5 italic font-mono leading-tight">{v.label}</p>
                 </div>
               ))}
             </div>
@@ -181,7 +181,7 @@ export default function SparkARPage() {
 
           {/* Three-Sided Marketplace + MAC try-on flow + Pattern + Container Effects */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The marketplace · the system · the experience
             </p>
             <Figure figNumber="FIG. 09" caption="Three-Sided Marketplace · Platform Integration · Consumer Experience · Business Solutions">
@@ -218,7 +218,7 @@ export default function SparkARPage() {
 
           {/* Scaling ledger */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
               Scaling outcomes &mdash; 12 months
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 divide-y md:divide-y-0 md:divide-x divide-[var(--era-hairline)]">
@@ -230,7 +230,7 @@ export default function SparkARPage() {
           </div>
 
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
               Try-On conversion funnel
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 divide-y md:divide-y-0 md:divide-x divide-[var(--era-hairline)]">
@@ -254,7 +254,7 @@ export default function SparkARPage() {
           </div>
 
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-4">
               Four learnings carried forward
             </p>
             <div className="grid md:grid-cols-2 gap-x-6 gap-y-4">
@@ -274,7 +274,7 @@ export default function SparkARPage() {
 
           {/* Named launches — text + press */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Named launches
             </p>
             <p>
@@ -309,7 +309,7 @@ export default function SparkARPage() {
 
           <div className="grid md:grid-cols-2 gap-x-6 gap-y-5 mt-6">
             <div>
-              <p className="text-[11px] font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">Five UX Touch-Points</p>
+              <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">Five UX Touch-Points</p>
               <ul className="space-y-1.5 text-sm md:text-base text-[var(--era-ink-body)] leading-relaxed">
                 <li className="border-t border-[var(--era-hairline)] pt-2"><span className="font-mono text-[var(--era-ink-muted)] text-xs mr-3">01</span>Tracking &amp; Recognition</li>
                 <li className="border-t border-[var(--era-hairline)] pt-2"><span className="font-mono text-[var(--era-ink-muted)] text-xs mr-3">02</span>Image &amp; Visual Quality</li>
@@ -319,7 +319,7 @@ export default function SparkARPage() {
               </ul>
             </div>
             <div>
-              <p className="text-[11px] font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">Four North Star Beliefs</p>
+              <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">Four North Star Beliefs</p>
               <ul className="space-y-1.5 text-sm md:text-base text-[var(--era-ink-body)] leading-relaxed">
                 <li className="border-t border-[var(--era-hairline)] pt-2"><span className="font-mono text-[var(--era-ink-muted)] text-xs mr-3">01</span>Design for what&rsquo;s possible</li>
                 <li className="border-t border-[var(--era-hairline)] pt-2"><span className="font-mono text-[var(--era-ink-muted)] text-xs mr-3">02</span>Minimize friction</li>
@@ -377,7 +377,7 @@ export default function SparkARPage() {
 
           {/* World AR Avatars · the patent in context */}
           <div className="mt-8 md:mt-10">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               World AR Avatars · the patent in context
             </p>
             <p className="mb-4">
@@ -409,7 +409,7 @@ export default function SparkARPage() {
 
           {/* Tate Britain video */}
           <div className="mt-6 md:mt-8">
-            <p className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
+            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Public location-based AR — Tate Britain
             </p>
             <p className="mb-4">
@@ -456,7 +456,7 @@ export default function SparkARPage() {
                     allowFullScreen
                   />
                 </div>
-                <figcaption className="text-[11px] md:text-xs font-mono text-[var(--era-ink-muted)] tracking-wide pt-2 leading-snug">
+                <figcaption className="text-caption font-mono text-[var(--era-ink-muted)] tracking-wide pt-2 leading-snug">
                   <span className="uppercase tracking-[0.2em]" style={{ color: 'var(--accent)' }}>{t.kind}</span>
                   <br />
                   {t.title}
