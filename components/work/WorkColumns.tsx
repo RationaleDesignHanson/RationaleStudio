@@ -91,9 +91,9 @@ function EraColumn({ era, showBlurb }: { era: WorkEra; showBlurb: boolean }) {
         )}
       </header>
 
-      {/* Projects share the column height evenly (equal cards → dividers
-          align across columns, and the block expands into the vertical space). */}
-      <div className="flex min-h-0 flex-1 flex-col">
+      {/* Projects: uniform min-height cards so dividers align across columns,
+          with comfortable (not viewport-stretched) padding. */}
+      <div className="flex flex-col">
         {era.projects.map((project) => (
           <ProjectItem
             key={project.href}
@@ -122,7 +122,7 @@ function ProjectItem({
   return (
     <Link
       href={href}
-      className="group flex min-h-0 flex-1 flex-col justify-center overflow-hidden border-t border-hairline py-5 transition-colors first:border-t-0 hover:bg-paper-deep"
+      className="group flex min-h-[7.5rem] flex-col justify-center border-t border-hairline py-5 transition-colors first:border-t-0 hover:bg-paper-deep"
     >
       <div className="flex gap-3">
         <div className="flex shrink-0 items-stretch gap-2 pt-0.5">

@@ -39,9 +39,9 @@ export const ERAS: WorkEra[] = [
     years: '2024 —',
     note: 'Independent consumer products, built and shipped solo with AI.',
     projects: [
-      { href: '/work/heirloom', index: '01', title: 'Heirloom', blurb: 'Recipe preservation, social cookbooks, AI-assisted import. Native iOS, live on the App Store. Built solo.', meta: 'iOS · live', accentVar: 'var(--project-heirloom)' },
-      { href: '/work/silly-questions', index: '02', title: 'Silly Questions', blurb: 'A 2-player AI art party game. Live on the web. Eight art styles, no app download required.', meta: 'Web · live', accentVar: 'var(--project-silly)' },
-      { href: '/work/zero', index: '03', title: 'Zero', blurb: 'Shortform email. Swipe-first triage with AI-extracted action items. Shipped cross-platform, then deprioritized — read why.', meta: 'Cross-platform · deprioritized' },
+      { href: '/work/heirloom', index: '01', title: 'Heirloom', blurb: 'Recipe preservation and social cookbooks, AI-assisted import. Native iOS, live.', meta: 'iOS · live', accentVar: 'var(--project-heirloom)' },
+      { href: '/work/silly-questions', index: '02', title: 'Silly Questions', blurb: 'A 2-player AI art party game — eight styles, no download. Live on the web.', meta: 'Web · live', accentVar: 'var(--project-silly)' },
+      { href: '/work/zero', index: '03', title: 'Zero', blurb: 'Swipe-first shortform email with AI-extracted actions. Shipped, then deprioritized.', meta: 'Cross-platform · deprioritized' },
     ],
   },
   {
@@ -51,9 +51,9 @@ export const ERAS: WorkEra[] = [
     note: 'AR platform leadership. Spark, Orion, FAIR Embodied AI.',
     accent: '#5C3FA8',
     projects: [
-      { href: '/work/fair-embodied-ai', index: '04', title: 'FAIR Embodied AI', blurb: 'SIRo + Motivo · embodied agent UX. Built and led 4+ teams across simulation and real-world environments.', meta: 'Senior Product Design Manager · 2023–2025' },
-      { href: '/work/orion', index: '05', title: 'Orion', blurb: 'UX for Meta’s first true AR glasses, in a regular glasses form factor. Senior Product Design Manager across Day-1 use cases.', meta: 'Senior Product Design Manager · 2023–2025' },
-      { href: '/work/spark-ar', index: '06', title: 'Spark AR', blurb: 'Built and led the Experiences team that turned Spark from a few flagship effects into a creator platform across Facebook, Instagram, and Messenger. Scope spanned design, prototyping, education, and the F8 stage.', meta: 'Senior Product Design Manager · 2017–2023' },
+      { href: '/work/fair-embodied-ai', index: '04', title: 'FAIR Embodied AI', blurb: 'SIRo + Motivo · embodied agent UX. Built and led 4+ teams, sim to real-world.', meta: 'Senior Product Design Manager · 2023–2025' },
+      { href: '/work/orion', index: '05', title: 'Orion', blurb: 'UX for Meta’s first true AR glasses — Day-1 use cases, real glasses form factor.', meta: 'Senior Product Design Manager · 2023–2025' },
+      { href: '/work/spark-ar', index: '06', title: 'Spark AR', blurb: 'Grew a camera-effects team into Meta’s AR creator platform across FB, IG, and Messenger.', meta: 'Senior Product Design Manager · 2017–2023' },
     ],
   },
   {
@@ -63,9 +63,9 @@ export const ERAS: WorkEra[] = [
     note: 'Animation, creative direction, mixed-reality installations.',
     accent: '#B5179E',
     projects: [
-      { href: '/work/framestore', index: '07', title: 'Framestore VR', blurb: 'Creative Director · 2017. VR/AR pitch portfolio.', meta: 'CONFIDENTIAL · 2017', gated: true },
-      { href: '/work/viacom', index: '08', title: 'Viacom', blurb: 'Director, Screen Content. The Past Present and Future room, Outrage Machine billboards, MTV Open Your Eyes Tilt Brush at the White House.', meta: 'DIRECTOR · 2015–2017' },
-      { href: '/work/studio-era', index: '09', title: 'Studio Era', blurb: 'Psyop, Imaginary Forces, Buck, own studio, Hush. Animation, creative direction, mixed-reality installations.', meta: 'MULTI-STUDIO · 2000–2015' },
+      { href: '/work/framestore', index: '07', title: 'Framestore VR', blurb: 'VR/AR pitch portfolio and location-based experiences. Creative Director, 2017.', meta: 'CONFIDENTIAL · 2017', gated: true },
+      { href: '/work/viacom', index: '08', title: 'Viacom', blurb: 'Director, Screen Content — real-time playback and mixed reality across Viacom’s HQ.', meta: 'DIRECTOR · 2015–2017' },
+      { href: '/work/studio-era', index: '09', title: 'Studio Era', blurb: 'Psyop, Imaginary Forces, Buck, Hush — animation, creative direction, installations.', meta: 'MULTI-STUDIO · 2000–2015' },
     ],
   },
 ];

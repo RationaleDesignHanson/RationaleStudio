@@ -48,7 +48,7 @@ export default function HomePage() {
         {/* WORK — eras as viewport-fit columns; cards share the height evenly
             so dividers align across columns. Masthead off (header wordmark
             already rotates in "Vision bears the burden of proof."). */}
-        <WorkColumns eras={ERAS} showMasthead={false} />
+        <WorkColumns eras={ERAS} showMasthead={false} fitViewport={false} />
 
       </main>
     </>
