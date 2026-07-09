@@ -17,6 +17,7 @@ import { Plate } from '@/components/case-study/Plate';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 export default function SparkARPage() {
   return (
@@ -90,7 +91,7 @@ export default function SparkARPage() {
                 { src: 'asus.mp4', label: 'ASUS Portal · hardware visualization' },
               ].map((v) => (
                 <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                  <video src={`/videos/spark-ar/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
+                  <LazyVideo src={`/videos/spark-ar/${v.src}`} className="w-full h-auto" />
                   <p className="text-[10px] md:text-xs text-[var(--era-ink-muted)] px-2 py-1 md:px-3 md:py-1.5 italic font-mono leading-tight">{v.label}</p>
                 </div>
               ))}
@@ -415,14 +416,7 @@ export default function SparkARPage() {
               The most public expression was the <strong className="text-[var(--era-ink)]">Tate Britain</strong> partnership: location-anchored AR inside the museum&rsquo;s &ldquo;Augmenting Abstraction&rdquo; programme. Visitors walked the gallery with their phones; AR works were anchored to physical artworks and triggered by location.
             </p>
             <div className="rounded-md overflow-hidden border border-hairline bg-paper-deep/30">
-              <video
-                src="/assets/spark-ar/chapter-d/tate-case-study.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              />
+              <LazyVideo src="/assets/spark-ar/chapter-d/tate-case-study.mp4" className="w-full h-auto" />
             </div>
             <p className="text-xs text-[var(--era-ink-muted)] italic font-mono mt-2">
               FIG. 07 &mdash; Tate Britain · Augmenting Abstraction · location-anchored AR

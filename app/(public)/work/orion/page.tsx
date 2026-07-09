@@ -13,6 +13,7 @@ import { Figure } from '@/components/case-study/Figure';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 export default function OrionPage() {
   return (
@@ -159,27 +160,13 @@ export default function OrionPage() {
           <div className="mt-6 md:mt-8">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                <video
-                  src="/images/work/orion/public/orion-recipes.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto"
-                />
+                <LazyVideo src="/images/work/orion/public/orion-recipes.mp4" className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
                   FIG. 02 · Recipe assistance · Meta public demo
                 </p>
               </div>
               <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                <video
-                  src="/images/work/orion/public/orion-multiscreens.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto"
-                />
+                <LazyVideo src="/images/work/orion/public/orion-multiscreens.mp4" className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
                   FIG. 03 · Multi-screen multitasking · Meta public demo
                 </p>

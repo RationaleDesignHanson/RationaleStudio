@@ -15,6 +15,7 @@ import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 const VIACOM_SCREENS_PLAYLISTS = [
   {
@@ -137,14 +138,7 @@ export default function ViacomPage() {
               FIG. 02 &middot; Screenies &middot; little animated characters fired out of a cannon · the system&rsquo;s signature pre-roll
             </p>
             <div className="aspect-[16/9] w-full overflow-hidden rounded-md bg-black">
-              <video
-                src="/videos/viacom-screens/_screenies-cannon.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-              />
+              <LazyVideo src="/videos/viacom-screens/_screenies-cannon.mp4" className="w-full h-full object-cover" />
             </div>
           </div>
 
@@ -366,7 +360,7 @@ export default function ViacomPage() {
             </a>
           </div>
           <div className="mt-6 md:mt-8 rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-            <video src="/videos/viacom/composition-vi.mp4" autoPlay loop muted playsInline className="w-full h-auto" />
+            <LazyVideo src="/videos/viacom/composition-vi.mp4" className="w-full h-auto" />
             <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
               Composition VI &middot; generative multi-screen at Viacom HQ
             </p>

@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 const PHASES = [
   {
@@ -181,7 +182,7 @@ export default function HeirloomEvolutionPage() {
               <div className="mt-6 grid md:grid-cols-2 gap-3">
                 {p.videos.map((v) => (
                   <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                    <video src={`/videos/heirloom/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
+                    <LazyVideo src={`/videos/heirloom/${v.src}`} className="w-full h-auto" />
                     <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
                   </div>
                 ))}
@@ -189,7 +190,7 @@ export default function HeirloomEvolutionPage() {
             )}
             {p.introVideo && (
               <div className="mt-6 rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30 max-w-2xl">
-                <video src={`/videos/heirloom/${p.introVideo.src}`} controls playsInline className="w-full h-auto" />
+                <LazyVideo src={`/videos/heirloom/${p.introVideo.src}`} controls className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{p.introVideo.label}</p>
               </div>
             )}
@@ -199,7 +200,7 @@ export default function HeirloomEvolutionPage() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {p.featureVideos.map((v) => (
                     <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                      <video src={`/videos/heirloom/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
+                      <LazyVideo src={`/videos/heirloom/${v.src}`} className="w-full h-auto" />
                       <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
                     </div>
                   ))}

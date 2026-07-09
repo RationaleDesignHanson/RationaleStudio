@@ -14,6 +14,7 @@ import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
 
@@ -214,16 +215,7 @@ export default function HeirloomCaseStudy() {
                   <div className="flex justify-center">
                     <div className="w-full max-w-[440px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/10">
                       {f.media.video ? (
-                        <video
-                          src={f.media.src}
-                          poster={f.media.poster}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          aria-label={f.alt}
-                          className="w-full h-auto block"
-                        />
+                        <LazyVideo src={f.media.src} poster={f.media.poster} className="w-full h-auto block" />
                       ) : (
                         <Image
                           src={f.media.src}

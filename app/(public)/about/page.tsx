@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Marginalia } from '@/components/case-study/EditorialLayout';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 export default function AboutPage() {
   return (
@@ -53,14 +54,7 @@ export default function AboutPage() {
                 It followed creative direction and visual effects at Psyop, Imaginary Forces, Buck, and my own studio, until AR took over.
               </p>
               <figure className="rounded-md overflow-hidden border border-hairline bg-paper-deep/30">
-                <video
-                  src="/videos/maker-era/demo-reel.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-auto"
-                />
+                <LazyVideo src="/videos/maker-era/demo-reel.mp4" className="w-full h-auto" />
                 <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
                   Maker-era demo reel &middot; mixed reality, motion, installations
                 </figcaption>

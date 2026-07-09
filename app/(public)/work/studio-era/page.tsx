@@ -14,6 +14,7 @@ import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 const STUDIO_REEL_PLAYLISTS = [
   {
@@ -95,14 +96,7 @@ export default function StudioEraPage() {
             Each chapter ended pulled toward the next bleeding edge &mdash; motion into CG, post-production into physical space, installations into AR.
           </p>
           <div className="mt-6 rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-            <video
-              src="/videos/maker-era/demo-reel.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto"
-            />
+            <LazyVideo src="/videos/maker-era/demo-reel.mp4" className="w-full h-auto" />
             <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
               FIG. 01 &middot; Maker-era demo reel &middot; mixed reality, motion, installations
             </p>
@@ -183,7 +177,7 @@ export default function StudioEraPage() {
               { src: 'deconstructed-logos.mp4', label: 'FIG. 07 · Deconstructed Logos · motion identity' },
             ].map((v) => (
               <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-                <video src={`/videos/maker-era/${v.src}`} autoPlay loop muted playsInline className="w-full h-auto" />
+                <LazyVideo src={`/videos/maker-era/${v.src}`} className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
               </div>
             ))}
@@ -204,7 +198,7 @@ export default function StudioEraPage() {
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 08 · Verizon Fios · storefront SET render for McCann</p>
             </div>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-              <video src="/videos/maker-era/verizon-redpen.mp4" autoPlay loop muted playsInline className="w-full h-auto" />
+              <LazyVideo src="/videos/maker-era/verizon-redpen.mp4" className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 09 · Verizon RedPen · pitch reel</p>
             </div>
           </div>
@@ -234,7 +228,7 @@ export default function StudioEraPage() {
           </div>
           <div className="mt-6 grid md:grid-cols-2 gap-3">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
-              <video src="/videos/maker-era/hush-social.mp4" autoPlay loop muted playsInline className="w-full h-auto" />
+              <LazyVideo src="/videos/maker-era/hush-social.mp4" className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 12 · Hush social · activations reel</p>
             </div>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
