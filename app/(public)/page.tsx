@@ -46,8 +46,9 @@ export default function HomePage() {
           AI as a coding partner.
         </h1>
 
-        {/* WORK — eras as viewport-fit columns behind a slim masthead. */}
-        <WorkColumns eras={ERAS} />
+        {/* WORK — eras as viewport-fit columns. Masthead off: the header
+            wordmark already rotates in "Vision bears the burden of proof." */}
+        <WorkColumns eras={ERAS} showMasthead={false} />
 
         {/* WRITING · live first post + Sendfull interview */}
         <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper border-t border-hairline">
