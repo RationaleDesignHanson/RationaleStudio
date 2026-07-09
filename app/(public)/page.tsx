@@ -7,7 +7,6 @@
  * accent; no per-era art direction.
  */
 
-import { ArrowRight } from 'lucide-react';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { generateBreadcrumbStructuredData } from '@/lib/seo/metadata';
 import { WorkColumns } from '@/components/work/WorkColumns';
@@ -49,49 +48,6 @@ export default function HomePage() {
         {/* WORK — eras as viewport-fit columns. Masthead off: the header
             wordmark already rotates in "Vision bears the burden of proof." */}
         <WorkColumns eras={ERAS} showMasthead={false} fitViewport={false} />
-
-        {/* WRITING · live first post + Sendfull interview */}
-        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 bg-paper border-t border-hairline">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-12 md:gap-8">
-              <div className="md:col-span-8">
-                <p className="text-[11px] md:text-xs font-mono text-ink-muted tracking-[0.3em] uppercase mb-3">
-                  WRITING · LATEST
-                </p>
-                <h2 className="font-display text-3xl md:text-5xl text-ink leading-tight mb-3 max-w-3xl">
-                  When to Hire AI: the longer version
-                </h2>
-                <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-ink-muted mb-5">
-                  Substack &middot; Companion to the Sendfull interview
-                </p>
-                <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-3">
-                  A year of building solo, and the parts that didn&rsquo;t fit in 30 minutes &mdash; the dependency map I drew the day I pulled Zero, what &ldquo;the cave&rdquo; means for product decisions, and why the preservation gap is bigger than recipes.
-                </p>
-                <p className="text-base md:text-lg text-ink-muted leading-relaxed max-w-2xl mb-8">
-                  Twice a month after that, on Mondays. Notes on building solo, AI as a coding partner, and what I&rsquo;ve learned across the chapters.
-                </p>
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-6">
-                  <a
-                    href="https://rationaledesign.substack.com/p/when-to-hire-ai-the-longer-version"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[var(--accent-ink)] hover:text-ink font-display italic text-lg md:text-xl transition-colors"
-                  >
-                    Read the post <ArrowRight className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://sendfull.substack.com/p/ep-92-how-a-design-leader-turned"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-mono text-ink-muted hover:text-ink transition-colors"
-                  >
-                    Or start with Stef Hutka&rsquo;s interview at Sendfull &rarr;
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CONTACT */}
         <section className="px-4 sm:px-6 md:px-8 py-12 md:py-20 border-t border-hairline bg-paper-deep/40">
