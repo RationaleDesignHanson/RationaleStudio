@@ -161,7 +161,7 @@
   /* Typography system - Fluid Responsive (Phase P1) */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-newsreader);
+  --font-display: var(--font-geist-sans);
   --font-terminal: var(--font-geist-mono);
 
   /* Fluid type scale using clamp() for smooth viewport-based scaling */
@@ -337,7 +337,7 @@ body {
   line-height: var(--line-height-normal);
 }
 
-/* Display — hero titles. Serif (Newsreader) via font-display; capped ~56px. */
+/* Display — hero titles. Sans (Geist) via font-display; capped ~56px. */
 .text-display {
   font-size: var(--font-size-display);
   line-height: 1.05;

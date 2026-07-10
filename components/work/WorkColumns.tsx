@@ -141,7 +141,7 @@ function ProjectItem({
         <div className="min-w-0">
           {meta && (
             <p
-              className="mb-1 text-caption font-mono uppercase tracking-[0.18em]"
+              className="mb-1 text-caption font-mono uppercase tracking-normal"
               style={{ color: accent }}
             >
               {meta}
