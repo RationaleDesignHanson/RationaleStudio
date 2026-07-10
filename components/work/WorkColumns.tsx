@@ -139,14 +139,6 @@ function ProjectItem({
           </span>
         </div>
         <div className="min-w-0">
-          {meta && (
-            <p
-              className="mb-1 text-caption font-mono uppercase tracking-normal"
-              style={{ color: accent }}
-            >
-              {meta}
-            </p>
-          )}
           <h3 className="flex items-baseline gap-1.5 font-display leading-tight text-ink transition-colors group-hover:text-[var(--accent-ink)] text-lg">
             <span className="truncate">{title}</span>
             {gated && (
@@ -156,6 +148,14 @@ function ProjectItem({
               />
             )}
           </h3>
+          {meta && (
+            <p
+              className="mt-1 text-caption font-mono uppercase tracking-normal"
+              style={{ color: accent }}
+            >
+              {meta}
+            </p>
+          )}
           {showBlurb && (
             <p className="mt-1 leading-snug text-ink-body text-sm">
               {blurb}

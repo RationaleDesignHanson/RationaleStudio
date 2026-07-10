@@ -39,7 +39,7 @@ export const ERAS: WorkEra[] = [
     years: '2025 —',
     note: 'Independent consumer products, built and shipped solo with AI.',
     projects: [
-      { href: '/work/heirloom', index: '01', title: 'Heirloom', blurb: 'Recipe preservation and social cookbooks, AI-assisted import. Native iOS, live.', meta: 'iOS · live', accentVar: 'var(--project-heirloom)' },
+      { href: '/work/heirloom', index: '01', title: 'Heirloom', blurb: 'Recipe preservation and social cookbooks, AI-assisted import. Native iOS and Android, live.', meta: 'iOS + Android · live', accentVar: 'var(--project-heirloom)' },
       { href: '/work/silly-questions', index: '02', title: 'Silly Questions', blurb: 'A 2-player AI art party game — eight styles, no download. Live on the web.', meta: 'Web · live', accentVar: 'var(--project-silly)' },
       { href: '/work/zero', index: '03', title: 'Zero', blurb: 'Swipe-first shortform email with AI-extracted actions. Shipped, then deprioritized.', meta: 'Cross-platform · deprioritized' },
     ],
