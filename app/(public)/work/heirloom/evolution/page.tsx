@@ -60,7 +60,7 @@ const PHASES = [
           Next: getting recipes <em>in</em>. Photo or screenshot &rarr; ingredients and instructions, structured.
         </p>
         <p>
-          Built a Claude Vision pipeline that detects multiple recipes per image with bounding boxes, extracts the text, normalizes the ingredients through the same parser from Phase 1, and outputs a card you can edit. Plus card customization with 50+ stickers &mdash; the part that proved emotional attachment, not just functional.
+          Built a Claude Vision pipeline that detects multiple recipes per image with bounding boxes, extracts the text, normalizes the ingredients through the same parser from Phase 1, and outputs a card you can edit. Plus card customization with 50+ stickers, the feature that turned a functional card into something people felt attached to.
         </p>
         <p>
           This was where the <em>validator before features</em> discipline locked in. If the OCR mis-counted &ldquo;1/2 cup&rdquo; as &ldquo;12 cup,&rdquo; the trust of the entire app collapsed. So the validator runs web searches to verify proportions and check that the instructions are complete before a recipe lands in your library.

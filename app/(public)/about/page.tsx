@@ -137,7 +137,7 @@ export default function AboutPage() {
             </aside>
             <div className="md:col-span-8 md:order-2">
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
-                From Meta until now, the shape of design and product leadership has been shifting &mdash; and rather than manage it, I went back to building. With AI as a coding partner.
+                From Meta until now, the shape of design and product leadership has kept changing. My response was to go back to building, with AI as a coding partner.
               </p>
               <p className="text-base md:text-lg text-ink-body leading-relaxed mb-4">
                 The progression has been deliberate: tools for my own ceramics hobby, then design at startups, prototypes for partners, and the work that&rsquo;s followed. Each project builds on the last in complexity and quality.

@@ -260,7 +260,7 @@ export default function SparkARPage() {
             <div className="grid md:grid-cols-2 gap-x-6 gap-y-4">
               {[
                 ['01', 'Build trust through realism'],
-                ['02', 'Seamless integration'],
+                ['02', 'Fit into the shopping flow'],
                 ['03', 'Meet shoppers where they are'],
                 ['04', 'Brand education is critical'],
               ].map(([n, label]) => (
