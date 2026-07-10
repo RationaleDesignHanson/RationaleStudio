@@ -51,9 +51,9 @@ export const ERAS: WorkEra[] = [
     note: 'AR platform leadership. Spark, Orion, FAIR Embodied AI.',
     accent: '#5C3FA8',
     projects: [
-      { href: '/work/fair-embodied-ai', index: '04', title: 'FAIR Embodied AI', blurb: 'SIRo + Motivo · embodied agent UX. Built and led 4+ teams, sim to real-world.', meta: 'Product Design Manager · 2023–2025' },
-      { href: '/work/orion', index: '05', title: 'Orion', blurb: 'UX for Meta’s first true AR glasses — Day-1 use cases, real glasses form factor.', meta: 'Product Design Manager · 2023–2025' },
-      { href: '/work/spark-ar', index: '06', title: 'Spark AR', blurb: 'Grew a camera-effects team into Meta’s AR creator platform across FB, IG, and Messenger.', meta: 'Product Design Manager · 2017–2023' },
+      { href: '/work/fair-embodied-ai', index: '04', title: 'FAIR Embodied AI', blurb: 'SIRo + Motivo · embodied agent UX. Built and led 4+ teams, sim to real-world.', meta: 'Sr. Product Design Manager · 2023–2025' },
+      { href: '/work/orion', index: '05', title: 'Orion', blurb: 'UX for Meta’s first true AR glasses — Day-1 use cases, real glasses form factor.', meta: 'Sr. Product Design Manager · 2023–2025' },
+      { href: '/work/spark-ar', index: '06', title: 'Spark AR', blurb: 'Grew a camera-effects team into Meta’s AR creator platform across FB, IG, and Messenger.', meta: 'Sr. Product Design Manager · 2017–2023' },
     ],
   },
   {
