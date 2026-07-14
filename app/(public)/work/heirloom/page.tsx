@@ -89,11 +89,21 @@ export default function HeirloomCaseStudy() {
             </Link>
 
             <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
+              <div className="md:col-span-2 mb-6 md:mb-0 hero-stack">
+                {/* Mobile: compact horizontal eyebrow so the slim chapter marker
+                    doesn't stack as a tall column above the app-icon lockup. */}
+                <div className="flex md:hidden items-center gap-x-3 gap-y-1 flex-wrap">
+                  <span className="block w-[3px] h-7 rounded-full" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
+                  <span className="font-mono text-2xl tracking-tight tabular-nums leading-none" style={{ color: 'var(--accent)' }}>01</span>
+                  <span className="font-mono text-caption tracking-[0.2em] uppercase text-[var(--era-ink-muted)]">/ 09</span>
+                  <span className="font-mono text-caption tracking-[0.2em] uppercase text-[var(--era-ink-muted)]">· ERA · NOW</span>
+                  <span className="font-mono text-caption tracking-[0.2em] uppercase" style={{ color: 'var(--accent)' }}>· iOS · live</span>
+                </div>
+                {/* Desktop: vertical rail (unchanged; keeps hero-stack animation hooks). */}
+                <div className="flex items-stretch gap-3 hidden md:flex">
+                  <span className="block w-[3px] self-stretch min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
                   <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>01</span>
+                    <span className="font-mono text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>01</span>
                     <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
                     <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · NOW</span>
                     <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>iOS · live</span>
