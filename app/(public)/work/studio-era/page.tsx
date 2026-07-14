@@ -171,7 +171,7 @@ export default function StudioEraPage() {
             </p>
           </div>
 
-          <div className="mt-6 grid md:grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
             {[
               { src: 'fanta.mp4', label: 'FIG. 06 · Fanta · animation + comp' },
               { src: 'deconstructed-logos.mp4', label: 'FIG. 07 · Deconstructed Logos · motion identity' },
@@ -192,7 +192,7 @@ export default function StudioEraPage() {
           <p>
             The shop closed in 2012 when the Verizon work wound down. A brief stint back at Psyop on Mountain Dew and Fanta spots followed.
           </p>
-          <div className="mt-6 grid md:grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
               <Image src="/images/work/maker-era/verizon-fios-set.jpg" alt="Verizon Fios storefront SET render" width={1400} height={875} className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 08 · Verizon Fios · storefront SET render for McCann</p>
@@ -226,7 +226,7 @@ export default function StudioEraPage() {
               <Image src="/images/work/maker-era/hush-maquette.jpg" alt="Hush studio maquette" width={1800} height={1013} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
-          <div className="mt-6 grid md:grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
               <LazyVideo src="/videos/maker-era/hush-social.mp4" className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 12 · Hush social · activations reel</p>

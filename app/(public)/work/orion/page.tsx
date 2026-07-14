@@ -158,7 +158,7 @@ export default function OrionPage() {
             </div>
           </div>
           <div className="mt-6 md:mt-8">
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start">
               <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                 <LazyVideo src="/images/work/orion/public/orion-recipes.mp4" className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">

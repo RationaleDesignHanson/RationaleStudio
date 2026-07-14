@@ -205,7 +205,7 @@ export default function ViacomPage() {
             <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The system · empty wall, chapter taxonomy, color sets
             </p>
-            <Plate variant="triptych">
+            <Plate variant="triptych" denseMobile>
               <Figure figNumber="FIG. 06" caption="The wall before content · 84-inch shelving render">
                 <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-render-empty-wall.jpg" alt="Empty Past Present and Future wall render" width={1600} height={900} className="w-full h-full object-cover" />
@@ -264,7 +264,7 @@ export default function ViacomPage() {
             <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               Physical &rarr; digital · the Save The Music chamber
             </p>
-            <Plate variant="split">
+            <Plate variant="split" denseMobile>
               <Figure figNumber="FIG. 13" caption="Design doc · top view, model notes, design ref, animation brief">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-full object-cover" />
@@ -283,7 +283,7 @@ export default function ViacomPage() {
             <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
               The install at scale
             </p>
-            <Plate variant="triptych">
+            <Plate variant="triptych" denseMobile>
               <Figure figNumber="FIG. 15" caption="Installation · dusk lighting state">
                 <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
