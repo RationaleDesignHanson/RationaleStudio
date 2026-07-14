@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
+import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
@@ -205,11 +206,11 @@ export default function HeirloomCaseStudy() {
           </p>
         </ChapterRow>
         <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-14">
-          <div className="max-w-5xl mx-auto flex flex-col gap-6 md:gap-8">
+          <MobileCarousel className="max-w-5xl mx-auto" label="Heirloom features">
             {FEATURES.map((f) => (
               <div
                 key={f.eyebrow}
-                className="relative rounded-3xl border border-[var(--era-hairline)] bg-white/85 backdrop-blur-md shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] ring-1 ring-inset ring-white/40"
+                className="relative h-full rounded-3xl border border-[var(--era-hairline)] bg-white/85 backdrop-blur-md shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)] ring-1 ring-inset ring-white/40"
               >
                 <div className={`grid gap-8 lg:gap-14 lg:grid-cols-2 items-center p-6 sm:p-8 lg:p-12 ${f.align === 'right' ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                   <div className="flex justify-center">
@@ -243,7 +244,7 @@ export default function HeirloomCaseStudy() {
                 </div>
               </div>
             ))}
-          </div>
+          </MobileCarousel>
         </section>
 
         {/* CHAPTER 05 — COOKBOOK SHARING */}
