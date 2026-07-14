@@ -52,6 +52,14 @@ The `/ingest/*` proxy is a **Route Handler** (`app/ingest/[[...path]]/route.ts`)
 
 `.husky/pre-commit` greps staged diffs for credential prefixes. The patterns now require ≥20 alphanumeric chars after each prefix (e.g. `re_[a-zA-Z0-9]{20,}`) so substrings inside ordinary identifiers (`captu*re_p*ageview`) don't trip them. `.husky/*` is excluded from the self-check so the hook doesn't match its own pattern strings. macOS BSD grep doesn't support `\b` reliably — use length anchors instead of word boundaries.
 
+## Video/media assets (Cloudflare R2)
+
+Videos are **not** in git — they live in the `rationale-media` R2 bucket and are served via `NEXT_PUBLIC_VIDEO_CDN_BASE` (set in Netlify; currently `pub-…r2.dev`). `lib/media.ts:videoUrl()` prefixes video `<src>` with that origin when set, and falls back to `/public` when unset. Untracked from git + gitignored (`public/**/*.mp4`) as of commit `a4e9269` so deploys don't ship ~590MB. **Posters stay local** (`<name>.poster.jpg` next to each clip). Local `.mp4` copies remain in the working tree for dev. `components/video-player/{LazyVideo,VideoPlayer}.tsx` both route through `videoUrl()`.
+
+### Known gotcha: cross-origin video needs `media-src` in the CSP
+
+Because videos are served from the R2 CDN (a different origin), the CSP `media-src` directive must list it. There is no separate `media-src` fallback — `<video>` inherits `default-src 'self'`, so a missing/incomplete `media-src` silently blocks every clip and the local poster shows instead ("an image, not a movie"). Keep `media-src` in sync across **both** `netlify.toml` and `next.config.mjs` (it currently allows `https://*.r2.dev` + `https://media.rationale.work`). Invisible in local dev because the CDN env var is unset there, so videos serve from `'self'` and play. If you add another media origin (or a new CDN), update `media-src` in both files. Caught 2026-07-14 — every video site-wide was rendering as its poster in production after the R2 migration didn't touch the CSP.
+
 ## SEO + organic-discovery surface
 
 The full SEO play sits across several files, all touched 2026-05-11. Highlights:
