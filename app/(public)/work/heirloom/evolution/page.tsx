@@ -189,16 +189,18 @@ export default function HeirloomEvolutionPage() {
                 ))}
               </MobileCarousel>
             )}
-            {p.introVideo && (
-              <div className="mt-6 rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30 max-w-2xl">
-                <LazyVideo src={`/videos/heirloom/${p.introVideo.src}`} controls className="w-full h-auto" />
-                <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{p.introVideo.label}</p>
-              </div>
-            )}
             {p.featureVideos && (
               <div className="mt-6">
-                <p className="text-base md:text-lg leading-relaxed mb-4">The features people actually use:</p>
-                <MobileCarousel desktop="grid-3" label="Shipped features">
+                <p className="text-base md:text-lg leading-relaxed mb-4">The product intro and the features people actually use:</p>
+                {/* Intro video folded in as the first slide so Phase 4 has one
+                    media widget, not a standalone intro + a separate carousel. */}
+                <MobileCarousel desktop="grid-3" label="Product intro and shipped features">
+                  {p.introVideo && (
+                    <div key="intro" className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
+                      <LazyVideo src={`/videos/heirloom/${p.introVideo.src}`} controls className="w-full h-auto" />
+                      <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{p.introVideo.label}</p>
+                    </div>
+                  )}
                   {p.featureVideos.map((v) => (
                     <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                       <LazyVideo src={`/videos/heirloom/${v.src}`} className="w-full h-auto" />
