@@ -10,6 +10,7 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
+import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 
 const PHASES = [
   {
@@ -179,14 +180,14 @@ export default function HeirloomEvolutionPage() {
               </div>
             )}
             {p.videos && (
-              <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
+              <MobileCarousel className="mt-6" desktop="grid-2" label={`${p.title} clips`}>
                 {p.videos.map((v) => (
                   <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                     <LazyVideo src={`/videos/heirloom/${v.src}`} className="w-full h-auto" />
                     <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
                   </div>
                 ))}
-              </div>
+              </MobileCarousel>
             )}
             {p.introVideo && (
               <div className="mt-6 rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30 max-w-2xl">
@@ -197,14 +198,14 @@ export default function HeirloomEvolutionPage() {
             {p.featureVideos && (
               <div className="mt-6">
                 <p className="text-base md:text-lg leading-relaxed mb-4">The features people actually use:</p>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 items-start">
+                <MobileCarousel desktop="grid-3" label="Shipped features">
                   {p.featureVideos.map((v) => (
                     <div key={v.src} className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                       <LazyVideo src={`/videos/heirloom/${v.src}`} className="w-full h-auto" />
                       <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
                     </div>
                   ))}
-                </div>
+                </MobileCarousel>
               </div>
             )}
           </ChapterRow>

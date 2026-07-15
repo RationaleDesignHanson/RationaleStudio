@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
+import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
@@ -158,7 +159,7 @@ export default function OrionPage() {
             </div>
           </div>
           <div className="mt-6 md:mt-8">
-            <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start">
+            <MobileCarousel desktop="grid-2" label="Orion recipe assistance and multi-screen demos">
               <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
                 <LazyVideo src="/images/work/orion/public/orion-recipes.mp4" className="w-full h-auto" />
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">
@@ -171,7 +172,7 @@ export default function OrionPage() {
                   FIG. 03 · Multi-screen multitasking · Meta public demo
                 </p>
               </div>
-            </div>
+            </MobileCarousel>
           </div>
 
           <div className="mt-8 md:mt-10">

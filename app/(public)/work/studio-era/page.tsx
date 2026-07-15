@@ -11,6 +11,7 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
+import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
@@ -171,7 +172,7 @@ export default function StudioEraPage() {
             </p>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
+          <MobileCarousel className="mt-6" desktop="grid-2" label="Fanta and Deconstructed Logos">
             {[
               { src: 'fanta.mp4', label: 'FIG. 06 · Fanta · animation + comp' },
               { src: 'deconstructed-logos.mp4', label: 'FIG. 07 · Deconstructed Logos · motion identity' },
@@ -181,7 +182,7 @@ export default function StudioEraPage() {
                 <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">{v.label}</p>
               </div>
             ))}
-          </div>
+          </MobileCarousel>
         </ChapterRow>
 
         {/* CHAPTER 03 — OWN STUDIO */}
@@ -192,7 +193,7 @@ export default function StudioEraPage() {
           <p>
             The shop closed in 2012 when the Verizon work wound down. A brief stint back at Psyop on Mountain Dew and Fanta spots followed.
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
+          <MobileCarousel className="mt-6" desktop="grid-2" label="Verizon Fios set and RedPen reel">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)]">
               <Image src="/images/work/maker-era/verizon-fios-set.jpg" alt="Verizon Fios storefront SET render" width={1400} height={875} className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 08 · Verizon Fios · storefront SET render for McCann</p>
@@ -201,7 +202,7 @@ export default function StudioEraPage() {
               <LazyVideo src="/videos/maker-era/verizon-redpen.mp4" className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 09 · Verizon RedPen · pitch reel</p>
             </div>
-          </div>
+          </MobileCarousel>
 
           {/* Studio reel — live playlist of agency, Puma NikeID,
               Verizon, and ebook-cover work from this stretch. */}
@@ -226,7 +227,7 @@ export default function StudioEraPage() {
               <Image src="/images/work/maker-era/hush-maquette.jpg" alt="Hush studio maquette" width={1800} height={1013} className="w-full h-auto rounded-md" />
             </Figure>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-2 sm:gap-3 items-start">
+          <MobileCarousel className="mt-6" desktop="grid-2" label="Hush social reel and Holorama Optical Theatre">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-[var(--era-bg-deep)]/30">
               <LazyVideo src="/videos/maker-era/hush-social.mp4" className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 12 · Hush social · activations reel</p>
@@ -235,7 +236,7 @@ export default function StudioEraPage() {
               <Image src="/images/work/maker-era/holorama-bowling.jpg" alt="Holorama Optical Theatre bowling alley scene" width={1600} height={1067} className="w-full h-auto" />
               <p className="text-xs text-[var(--era-ink-muted)] px-3 py-1.5 italic font-mono">FIG. 13 · Holorama Optical Theatre · Pepper&rsquo;s-ghost technique applied to a bowling-alley scene · the optical pattern Past Present and Future would later use at scale</p>
             </div>
-          </div>
+          </MobileCarousel>
         </ChapterRow>
 
         {/* CHAPTER 05 — VIACOM */}
