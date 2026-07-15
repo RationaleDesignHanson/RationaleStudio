@@ -24,9 +24,12 @@ interface MobileCarouselProps {
 
 const DESKTOP_LAYOUT: Record<NonNullable<MobileCarouselProps['desktop']>, string> = {
   stack: 'md:flex-col md:gap-8',
-  'grid-2': 'md:grid md:grid-cols-2 md:gap-6',
-  'grid-3': 'md:grid md:grid-cols-3 md:gap-6',
+  'grid-2': 'md:grid md:grid-cols-2 md:gap-6 md:items-start',
+  'grid-3': 'md:grid md:grid-cols-3 md:gap-6 md:items-start',
 };
+
+// Above this many slides, a dot row gets cramped — show a compact counter.
+const DOTS_MAX = 7;
 
 /**
  * MobileCarousel — horizontal snap-scroll on mobile, reverting to a vertical
@@ -104,7 +107,20 @@ export function MobileCarousel({
         ))}
       </div>
 
-      {items.length > 1 && (
+      {items.length > DOTS_MAX && (
+        <div className="mt-3 flex justify-center md:hidden">
+          <span
+            className="font-mono text-caption tracking-[0.3em] tabular-nums"
+            style={{ color: 'var(--era-ink-muted)' }}
+            aria-live="polite"
+          >
+            {String(active + 1).padStart(2, '0')}
+            <span style={{ opacity: 0.5 }}> / {String(items.length).padStart(2, '0')}</span>
+          </span>
+        </div>
+      )}
+
+      {items.length > 1 && items.length <= DOTS_MAX && (
         <div className="mt-3 flex justify-center md:hidden">
           {items.map((_, i) => (
             // The visible dot is a small <span>; the <button> is a transparent

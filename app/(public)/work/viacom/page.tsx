@@ -10,7 +10,6 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
-import { Plate } from '@/components/case-study/Plate';
 import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
@@ -201,71 +200,51 @@ export default function ViacomPage() {
             </Figure>
           </div>
 
-          {/* SYSTEM — uniform 16:9 triptych so the three frames read as one row */}
+          {/* THE BUILD — the four PPF compositions (system, production,
+              physical→digital, install) consolidated into ONE carousel so the
+              chapter has a single swipe widget on mobile / one grid on desktop.
+              Uniform 4:3 frames so it reads as one gallery; each slide keeps
+              its own caption. */}
           <div className="mt-10 md:mt-14">
             <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              The system · empty wall, chapter taxonomy, color sets
+              The build · system, production, and install
             </p>
-            <MobileCarousel desktop="grid-3" label="The system: empty wall, chapter taxonomy, color sets">
+            <MobileCarousel desktop="grid-3" label="Past Present and Future — system, production, and install stills">
               <Figure figNumber="FIG. 06" caption="The wall before content · 84-inch shelving render">
-                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-render-empty-wall.jpg" alt="Empty Past Present and Future wall render" width={1600} height={900} className="w-full h-full object-cover" />
                 </div>
               </Figure>
               <Figure figNumber="FIG. 07" caption="Chapter taxonomy · acquisitions, launches, hits, awards, fandom, achievements, pro social">
-                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-chapter-taxonomy.jpg" alt="Chapter taxonomy storyboard" width={1600} height={1067} className="w-full h-full object-cover" />
                 </div>
               </Figure>
               <Figure figNumber="FIG. 08" caption="Color-set palettes · five sets mapping to grid positions">
-                <div className="aspect-[16/9] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-color-sets.jpg" alt="Color set palettes" width={1600} height={1326} className="w-full h-full object-cover object-top" />
                 </div>
               </Figure>
-            </MobileCarousel>
-          </div>
-
-          {/* PRODUCTION — lead 4:3 with two 4:3 asides */}
-          <div className="mt-10 md:mt-14">
-            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              The production · physical maquettes feeding the digital build
-            </p>
-            <Plate variant="lead-2">
-              <Plate.Lead>
-                <Figure figNumber="FIG. 09" caption="Production wall · master guide + 24+ chapter design briefs">
-                  <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                    <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1600} height={1200} className="w-full h-full object-cover" />
-                  </div>
-                </Figure>
-              </Plate.Lead>
-              <Plate.Aside>
-                <div className="space-y-4 md:space-y-6">
-                  <Figure figNumber="FIG. 10" caption="Maquettes · cardboard chamber prototypes">
-                    <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                      <Image src="/images/work/viacom/ppf-maquettes-desk.jpg" alt="Cardboard maquettes on a desk" width={1600} height={1200} className="w-full h-full object-cover" />
-                    </div>
-                  </Figure>
-                  <Figure figNumber="FIG. 11" caption="Save The Music · physical horn maquette">
-                    <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                      <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
-                    </div>
-                  </Figure>
-                  <Figure figNumber="FIG. 12" caption="3D-printed RuPaul figure for the logo chapter">
-                    <div className="aspect-[3/4] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
-                      <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="3D-printed RuPaul maquette" width={900} height={1200} className="w-full h-full object-cover" />
-                    </div>
-                  </Figure>
+              <Figure figNumber="FIG. 09" caption="Production wall · master guide + 24+ chapter design briefs">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-production-wall.jpg" alt="Production wall with all chapter briefs" width={1600} height={1200} className="w-full h-full object-cover" />
                 </div>
-              </Plate.Aside>
-            </Plate>
-          </div>
-
-          {/* PHYSICAL TO DIGITAL — Save The Music walkthrough · 4:3 split */}
-          <div className="mt-10 md:mt-14">
-            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              Physical &rarr; digital · the Save The Music chamber
-            </p>
-            <MobileCarousel desktop="grid-2" label="Physical to digital: the Save The Music chamber">
+              </Figure>
+              <Figure figNumber="FIG. 10" caption="Maquettes · cardboard chamber prototypes">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-maquettes-desk.jpg" alt="Cardboard maquettes on a desk" width={1600} height={1200} className="w-full h-full object-cover" />
+                </div>
+              </Figure>
+              <Figure figNumber="FIG. 11" caption="Save The Music · physical horn maquette">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-savemusic-maquette.jpg" alt="Save The Music horn maquette" width={1400} height={1050} className="w-full h-full object-cover" />
+                </div>
+              </Figure>
+              <Figure figNumber="FIG. 12" caption="3D-printed RuPaul figure for the logo chapter">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                  <Image src="/images/work/viacom/ppf-beyonce-maquette.jpg" alt="3D-printed RuPaul maquette" width={900} height={1200} className="w-full h-full object-cover object-top" />
+                </div>
+              </Figure>
               <Figure figNumber="FIG. 13" caption="Design doc · top view, model notes, design ref, animation brief">
                 <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-savemusic-design-doc.jpg" alt="Save The Music design doc" width={1400} height={1050} className="w-full h-full object-cover" />
@@ -276,27 +255,18 @@ export default function ViacomPage() {
                   <Image src="/images/work/viacom/ppf-savemusic-render.jpg" alt="Save The Music final render" width={1400} height={1400} className="w-full h-full object-cover" />
                 </div>
               </Figure>
-            </MobileCarousel>
-          </div>
-
-          {/* INSTALLATION DETAILS · 16:9 triptych at scale */}
-          <div className="mt-10 md:mt-14">
-            <p className="text-caption font-mono text-[var(--era-ink-muted)] tracking-[0.3em] uppercase mb-3">
-              The install at scale
-            </p>
-            <MobileCarousel desktop="grid-3" label="The install at scale">
               <Figure figNumber="FIG. 15" caption="Installation · dusk lighting state">
-                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-installation-2.jpg" alt="Installation dusk lighting" width={1600} height={1067} className="w-full h-full object-cover" />
                 </div>
               </Figure>
               <Figure figNumber="FIG. 16" caption="Pepper&rsquo;s-ghost diorama detail">
-                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-detail-1.jpg" alt="Diorama detail" width={850} height={638} className="w-full h-full object-cover" />
                 </div>
               </Figure>
               <Figure figNumber="FIG. 17" caption="Magic-moment chapter activation">
-                <div className="aspect-[3/2] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[var(--era-bg-deep)]/30 overflow-hidden">
                   <Image src="/images/work/viacom/ppf-detail-3.jpg" alt="Magic-moment activation" width={850} height={638} className="w-full h-full object-cover" />
                 </div>
               </Figure>
