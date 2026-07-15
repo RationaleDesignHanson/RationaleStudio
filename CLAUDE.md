@@ -60,6 +60,10 @@ Videos are **not** in git — they live in the `rationale-media` R2 bucket and a
 
 Because videos are served from the R2 CDN (a different origin), the CSP `media-src` directive must list it. There is no separate `media-src` fallback — `<video>` inherits `default-src 'self'`, so a missing/incomplete `media-src` silently blocks every clip and the local poster shows instead ("an image, not a movie"). Keep `media-src` in sync across **both** `netlify.toml` and `next.config.mjs` (it currently allows `https://*.r2.dev` + `https://media.rationale.work`). Invisible in local dev because the CDN env var is unset there, so videos serve from `'self'` and play. If you add another media origin (or a new CDN), update `media-src` in both files. Caught 2026-07-14 — every video site-wide was rendering as its poster in production after the R2 migration didn't touch the CSP.
 
+### Known gotcha: global `button` CSS is unlayered — it beats Tailwind utilities
+
+`app/globals.css` styles bare `button` (and `@media (pointer:coarse) button`) with `min-width/min-height: 44px` + `padding: 12px 16px` (WCAG tap targets). These rules are **unlayered**, and Tailwind utilities live in `@layer` — so unlayered author CSS wins over *any* utility class regardless of specificity. A small custom button styled with `h-6 min-h-0 p-0` will still render 44px with padding. The only reliable override is **inline `style={{…}}`** (inline declarations beat unlayered rules). This is why `MobileCarousel`'s pagination dots reset their box model inline, not via classes. Caught 2026-07-15 — carousel dots rendered as giant 44px circles because the utility classes silently lost to the global rule.
+
 ## SEO + organic-discovery surface
 
 The full SEO play sits across several files, all touched 2026-05-11. Highlights:

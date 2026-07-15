@@ -105,20 +105,45 @@ export function MobileCarousel({
       </div>
 
       {items.length > 1 && (
-        <div className="mt-5 flex justify-center gap-2 md:hidden">
+        <div className="mt-3 flex justify-center md:hidden">
           {items.map((_, i) => (
+            // The visible dot is a small <span>; the <button> is a transparent
+            // hit target. The box reset MUST be inline: globals.css styles
+            // `button` (min-height/min-width 44px + 12/16px padding under
+            // `@media (pointer:coarse)`) UNLAYERED, which beats any Tailwind
+            // utility class (utilities live in @layer). Only inline styles win
+            // over unlayered author CSS — so the dots can't be re-inflated.
             <button
               key={i}
               type="button"
               aria-label={`Go to item ${i + 1} of ${items.length}`}
               aria-current={active === i}
               onClick={() => goto(i)}
-              className="h-2 rounded-full transition-all duration-200"
               style={{
-                width: active === i ? '1.375rem' : '0.5rem',
-                backgroundColor: active === i ? 'var(--accent)' : 'var(--era-hairline)',
+                minWidth: 0,
+                minHeight: 0,
+                width: '1.5rem',
+                height: '1.5rem',
+                padding: 0,
+                border: 0,
+                background: 'transparent',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
               }}
-            />
+            >
+              <span
+                style={{
+                  display: 'block',
+                  height: '0.375rem',
+                  width: active === i ? '0.9375rem' : '0.375rem',
+                  borderRadius: '9999px',
+                  backgroundColor: active === i ? 'var(--accent)' : 'var(--era-hairline)',
+                  transition: 'width 200ms, background-color 200ms',
+                }}
+              />
+            </button>
           ))}
         </div>
       )}
