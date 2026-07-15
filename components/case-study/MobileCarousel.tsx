@@ -11,21 +11,34 @@ interface MobileCarouselProps {
    * silly on large phones.
    */
   slideWidth?: string;
+  /**
+   * Desktop (md+) layout the carousel reverts to. `stack` = vertical column
+   * (feature cards); `grid-2` / `grid-3` = an N-column row (image plates that
+   * read as a triptych/split on desktop but swipe one-up on mobile).
+   */
+  desktop?: 'stack' | 'grid-2' | 'grid-3';
   /** Accessible label for the scroll region. */
   label?: string;
   className?: string;
 }
 
+const DESKTOP_LAYOUT: Record<NonNullable<MobileCarouselProps['desktop']>, string> = {
+  stack: 'md:flex-col md:gap-8',
+  'grid-2': 'md:grid md:grid-cols-2 md:gap-6',
+  'grid-3': 'md:grid md:grid-cols-3 md:gap-6',
+};
+
 /**
- * MobileCarousel — horizontal snap-scroll on mobile, the original vertical
- * stack on desktop (md+). One DOM tree switched by responsive classes, so
- * there's no duplicated content and no hydration mismatch; the dots are
- * mobile-only and track scroll position. Desktop rendering is unchanged:
- * `md:` reverts to `flex-col` with the same gap the section used before.
+ * MobileCarousel — horizontal snap-scroll on mobile, reverting to a vertical
+ * stack or an N-column grid on desktop (md+). One DOM tree switched by
+ * responsive classes, so there's no duplicated content and no hydration
+ * mismatch; the dots are mobile-only and track scroll position. Each slide
+ * carries its own caption, so scrolling changes the visible caption.
  */
 export function MobileCarousel({
   children,
   slideWidth = 'min(85%, 26rem)',
+  desktop = 'stack',
   label = 'Carousel',
   className = '',
 }: MobileCarouselProps) {
@@ -79,7 +92,7 @@ export function MobileCarousel({
         ref={scroller}
         role="group"
         aria-label={label}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:flex-col md:gap-8 md:overflow-visible md:snap-none md:pb-0"
+        className={`flex gap-4 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:overflow-visible md:snap-none md:pb-0 ${DESKTOP_LAYOUT[desktop]}`}
       >
         {items.map((child, i) => (
           <div

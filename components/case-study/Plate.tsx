@@ -20,13 +20,6 @@ interface PlateProps {
   variant: 'split' | 'lead-2' | 'lead-3' | 'triptych';
   children: ReactNode;
   className?: string;
-  /**
-   * Pack the frames into a grid on mobile instead of stacking 1-up. Use for
-   * photo/screenshot compositions (a phone can hold two side-by-side); leave
-   * off for text-heavy diagram plates that need full width to stay legible.
-   * Affects `split` and `triptych` only.
-   */
-  denseMobile?: boolean;
 }
 
 interface PlateSlotProps {
@@ -42,14 +35,12 @@ function Aside({ children, className = '' }: PlateSlotProps) {
   return <div className={`plate-aside ${className}`}>{children}</div>;
 }
 
-function PlateRoot({ variant, children, className = '', denseMobile = false }: PlateProps) {
+function PlateRoot({ variant, children, className = '' }: PlateProps) {
   const layout = {
-    split: `grid ${denseMobile ? 'grid-cols-2' : 'md:grid-cols-2'} gap-3 sm:gap-4 md:gap-6`,
+    split: 'grid md:grid-cols-2 gap-4 md:gap-6',
     'lead-2': 'grid md:grid-cols-3 gap-4 md:gap-6 [&>.plate-lead]:md:col-span-2',
     'lead-3': 'flex flex-col gap-4 md:gap-6',
-    // denseMobile packs the 3 frames 2-up on mobile; the odd third frame spans
-    // the full width on its own row instead of orphaning beside empty space.
-    triptych: `grid ${denseMobile ? 'grid-cols-2 [&>*:last-child]:col-span-2 md:[&>*:last-child]:col-span-1' : 'grid-cols-1'} md:grid-cols-3 gap-3 sm:gap-4 md:gap-6`,
+    triptych: 'grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6',
   }[variant];
 
   return <div className={`${layout} ${className}`}>{children}</div>;
