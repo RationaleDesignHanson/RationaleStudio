@@ -47,7 +47,10 @@ export function ChapterRow({ index, kicker, title, children }: ChapterRowProps) 
               {index}
             </span>
           </div>
-          <div className="md:col-span-10">
+          {/* min-w-0: grid items default to min-width:auto and won't shrink
+              below content min-content — a horizontal carousel's shrink-0
+              slides would otherwise blow this cell past the viewport. */}
+          <div className="md:col-span-10 min-w-0">
             <p
               className="text-caption font-mono tracking-[0.2em] uppercase mb-2"
               style={{ color: 'var(--accent)' }}
