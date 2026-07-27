@@ -35,7 +35,20 @@ export default function HomePage() {
           full positioning sentence so both human screen-reader users and
           crawlers get the same disambiguation context.
         */}
-        <h1 className="sr-only">
+        <h1
+          className="sr-only"
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: 0,
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
           Matt Hanson — designer-engineer working across AR, AI, and experiential
           systems for 25 years. Animation and creative direction at Psyop,
           Imaginary Forces, Buck, and Hush; VR/AR pitchwork at Framestore;
