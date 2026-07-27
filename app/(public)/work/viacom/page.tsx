@@ -3,7 +3,6 @@
  * DIRECTOR era styling (black + magenta + cyan neon).
  */
 
-'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';

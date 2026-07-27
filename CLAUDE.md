@@ -56,6 +56,8 @@ The `/ingest/*` proxy is a **Route Handler** (`app/ingest/[[...path]]/route.ts`)
 
 Videos are **not** in git — they live in the `rationale-media` R2 bucket and are served via `NEXT_PUBLIC_VIDEO_CDN_BASE` (set in Netlify; currently `pub-…r2.dev`). `lib/media.ts:videoUrl()` prefixes video `<src>` with that origin when set, and falls back to `/public` when unset. Untracked from git + gitignored (`public/**/*.mp4`) as of commit `a4e9269` so deploys don't ship ~590MB. **Posters stay local** (`<name>.poster.jpg` next to each clip). Local `.mp4` copies remain in the working tree for dev. `components/video-player/{LazyVideo,VideoPlayer}.tsx` both route through `videoUrl()`.
 
+**Current action item:** `public/videos/maker-era/demo-reel.mp4` has been re-compressed from ~11 MB down to ~5.4 MB. Upload it to R2 at `videos/maker-era/demo-reel.mp4` to replace the oversized version currently served in production.
+
 ### Known gotcha: cross-origin video needs `media-src` in the CSP
 
 Because videos are served from the R2 CDN (a different origin), the CSP `media-src` directive must list it. There is no separate `media-src` fallback — `<video>` inherits `default-src 'self'`, so a missing/incomplete `media-src` silently blocks every clip and the local poster shows instead ("an image, not a movie"). Keep `media-src` in sync across **both** `netlify.toml` and `next.config.mjs` (it currently allows `https://*.r2.dev` + `https://media.rationale.work`). Invisible in local dev because the CDN env var is unset there, so videos serve from `'self'` and play. If you add another media origin (or a new CDN), update `media-src` in both files. Caught 2026-07-14 — every video site-wide was rendering as its poster in production after the R2 migration didn't touch the CSP.
@@ -90,6 +92,25 @@ All in `.env.example`. The four that drive analytics:
 - `POSTHOG_PROJECT_ID` — numeric, server-only
 
 `NEXT_PUBLIC_*` are inlined at build time. After changing one in Netlify, **clear cache and redeploy** — bumping the var alone won't update the client bundle.
+
+## Performance
+
+**Budgets (2026):**
+
+- First Load JS per public route: **≤ 160 KB gzipped** (the realistic shared React/Next.js/polyfills floor is ~155 KB; route-specific JS should stay in single digits).
+- Total transfer, cold, text-led routes: **≤ 1 MB**.
+- Hero / LCP image: **≤ 120 KB** AVIF/WebP.
+- LCP: **≤ 2.5 s** on mobile; CLS: **≤ 0.1** (aim for 0.05).
+
+**Rules:**
+
+1. **Measure before changing.** Run `npm run build` + `npm run analyze` and a Lighthouse pass before any optimization PR.
+2. **Every new `'use client'` directive needs a justification comment.** Prefer pushing the directive down to the smallest interactive leaf; don't mark whole pages client-side for one hover effect.
+3. **Images:** use `next/image`, always include `sizes` derived from the actual CSS breakpoints, and add `priority` only to the LCP image. AVIF/WebP are enabled in `next.config.mjs`.
+4. **Videos:** keep `.mp4` files out of git (`public/**/*.mp4` is gitignored). Store production videos in the R2 bucket and route through `lib/media.ts:videoUrl()`. Compress before uploading; a 2-minute silent/demo clip should not be 11 MB.
+5. **Below-the-fold media:** lazy-load it. `LazyVideo` uses a 300 px IntersectionObserver rootMargin by default; do not make it eager without a reason.
+6. **Demo/sample images:** never ship full-resolution photos as thumbnails. The Heirloom demo uses `*-thumb.jpg` (224 px wide) in `SampleRecipeSelector`; keep `thumbnailPath` and `imagePath` separate.
+7. **Don't reintroduce custom `webpack.splitChunks` unless you've proven the default chunking regresses a real metric.** The previous custom config added ~490 KB of shared JS for no user benefit.
 
 ## Build expectations
 

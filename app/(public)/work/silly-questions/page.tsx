@@ -2,7 +2,6 @@
  * Silly Questions — case study, NOW era. Consumer-facing rewrite.
  */
 
-'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';

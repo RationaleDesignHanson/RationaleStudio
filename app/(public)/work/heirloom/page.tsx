@@ -3,10 +3,7 @@
  * how it feels to use, no stack-trivia or thesis chapters.
  */
 
-'use client';
-
 import './print.css';
-import { lazy, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
@@ -16,8 +13,7 @@ import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
-
-const HeirloomDemo = lazy(() => import('@/components/heirloom/HeirloomDemo'));
+import { HeirloomDemoDynamic } from '@/components/heirloom/HeirloomDemoDynamic';
 
 const APP_STORE_URL = 'https://apps.apple.com/app/id6759019723';
 const MARKETING_URL = 'https://heirloomrecipebox.app';
@@ -120,6 +116,7 @@ export default function HeirloomCaseStudy() {
                     height={320}
                     className="flex-shrink-0 rounded-2xl border border-[var(--era-hairline)] w-[64px] h-[64px] md:w-[88px] md:h-[88px]"
                     priority
+                    sizes="(max-width: 768px) 64px, 88px"
                   />
                   <h1 className="font-display text-display text-[var(--era-ink)] leading-[0.92]">
                     Heirloom
@@ -198,13 +195,7 @@ export default function HeirloomCaseStudy() {
         <section className="px-4 sm:px-6 md:px-8 pb-8 md:pb-12">
           <div className="max-w-5xl mx-auto">
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-white">
-              <Suspense fallback={
-                <div className="p-12 text-center text-sm font-mono text-[var(--era-ink-muted)]">
-                  loading demo&hellip;
-                </div>
-              }>
-                <HeirloomDemo />
-              </Suspense>
+              <HeirloomDemoDynamic />
             </div>
           </div>
         </section>
@@ -234,6 +225,7 @@ export default function HeirloomCaseStudy() {
                           width={880}
                           height={660}
                           className="w-full h-auto block"
+                          sizes="(max-width: 768px) 85vw, 440px"
                         />
                       )}
                     </div>

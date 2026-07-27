@@ -2,7 +2,6 @@
  * Contact — Studio Monograph treatment, single email-first surface.
  */
 
-'use client';
 
 import Link from 'next/link';
 import { Marginalia } from '@/components/case-study/EditorialLayout';

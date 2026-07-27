@@ -3,7 +3,6 @@
  * Visual evidence uses Meta's publicly shipped press materials.
  */
 
-'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';

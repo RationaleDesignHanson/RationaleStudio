@@ -9,6 +9,6 @@
 const BASE = (process.env.NEXT_PUBLIC_VIDEO_CDN_BASE ?? '').replace(/\/$/, '');
 
 export function videoUrl(path: string): string {
-  if (!BASE) return path;
+  if (!BASE || path.startsWith('http')) return path;
   return BASE + (path.startsWith('/') ? path : `/${path}`);
 }

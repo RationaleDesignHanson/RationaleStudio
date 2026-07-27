@@ -6,7 +6,6 @@
  * as each one ships.
  */
 
-'use client';
 
 import Link from 'next/link';
 import { ArrowRight, ExternalLink } from 'lucide-react';

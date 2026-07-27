@@ -20,7 +20,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: "Grandma's Chocolate Chip Cookies",
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_01.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_01.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_01-thumb.jpg',
     description: 'Classic handwritten recipe card',
   },
   {
@@ -28,7 +28,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Banana Bread Recipe',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_02.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_02.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_02-thumb.jpg',
     description: 'Vintage recipe card with notes',
   },
   {
@@ -36,7 +36,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Apple Pie',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_03.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_03.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_03-thumb.jpg',
     description: 'Family favorite from 1987',
   },
   {
@@ -44,7 +44,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Chicken Casserole',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_04.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_04.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_04-thumb.jpg',
     description: 'Comfort food classic',
   },
   {
@@ -52,7 +52,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Lemon Bars',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_05.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_05.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_05-thumb.jpg',
     description: 'Tangy and sweet dessert',
   },
   {
@@ -60,7 +60,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Pot Roast',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_06.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_06.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_06-thumb.jpg',
     description: 'Sunday dinner tradition',
   },
   {
@@ -68,7 +68,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Homemade Bread',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_07.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_07.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_07-thumb.jpg',
     description: 'Fresh baked bread recipe',
   },
   {
@@ -76,7 +76,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Vegetable Soup',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_08.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_08.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_08-thumb.jpg',
     description: 'Hearty vegetable soup',
   },
   {
@@ -84,7 +84,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Blueberry Muffins',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_09.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_09.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_09-thumb.jpg',
     description: 'Fresh blueberry breakfast',
   },
   {
@@ -92,7 +92,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Beef Stew',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_10.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_10.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_10-thumb.jpg',
     description: 'Classic comfort stew',
   },
   {
@@ -100,7 +100,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Brownies',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_11.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_11.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_11-thumb.jpg',
     description: 'Fudgy chocolate brownies',
   },
   {
@@ -108,7 +108,7 @@ export const SAMPLE_RECIPE_CARDS: SampleRecipe[] = [
     name: 'Chicken Noodle Soup',
     category: 'card',
     imagePath: '/images/heirloom/demo/cards/RecipeCard_12.jpg',
-    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_12.jpg',
+    thumbnailPath: '/images/heirloom/demo/cards/RecipeCard_12-thumb.jpg',
     description: 'Comforting chicken soup',
   },
 ];
@@ -119,7 +119,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Vintage Cookbook - Roast Turkey',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_01.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_01.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_01-thumb.jpg',
     description: 'Holiday cookbook page',
   },
   {
@@ -127,7 +127,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'French Toast Recipe',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_02.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_02.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_02-thumb.jpg',
     description: 'Breakfast favorite',
   },
   {
@@ -135,7 +135,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Beef Stew',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_03.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_03.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_03-thumb.jpg',
     description: 'Hearty winter meal',
   },
   {
@@ -143,7 +143,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Chocolate Cake',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_04.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_04.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_04-thumb.jpg',
     description: 'Decadent dessert',
   },
   {
@@ -151,7 +151,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Pasta Carbonara',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_05.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_05.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_05-thumb.jpg',
     description: 'Italian classic',
   },
   {
@@ -159,7 +159,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Roasted Chicken',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_06.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_06.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_06-thumb.jpg',
     description: 'Perfect roast chicken',
   },
   {
@@ -167,7 +167,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Apple Crisp',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_07.jpg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_07.jpg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_07-thumb.jpg',
     description: 'Warm autumn dessert',
   },
   {
@@ -175,7 +175,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Lasagna',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_08.jpg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_08.jpg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_08-thumb.jpg',
     description: 'Layered Italian favorite',
   },
   {
@@ -183,7 +183,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Salmon Fillet',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_09.jpg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_09.jpg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_09-thumb.jpg',
     description: 'Pan-seared salmon',
   },
   {
@@ -191,7 +191,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Pumpkin Pie',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_10.jpeg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_10.jpeg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_10-thumb.jpg',
     description: 'Holiday dessert',
   },
   {
@@ -199,7 +199,7 @@ export const SAMPLE_COOKBOOK_PAGES: SampleRecipe[] = [
     name: 'Grilled Vegetables',
     category: 'cookbook',
     imagePath: '/images/heirloom/demo/cookbooks/Cookbook_11.jpg',
-    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_11.jpg',
+    thumbnailPath: '/images/heirloom/demo/cookbooks/Cookbook_11-thumb.jpg',
     description: 'Summer side dish',
   },
 ];

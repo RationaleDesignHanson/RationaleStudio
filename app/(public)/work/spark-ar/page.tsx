@@ -6,7 +6,6 @@
  * one visual family with the work viewer on the home page.
  */
 
-'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';

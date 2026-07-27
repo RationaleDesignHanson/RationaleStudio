@@ -3,7 +3,6 @@
  * to match /work/heirloom.
  */
 
-'use client';
 
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';

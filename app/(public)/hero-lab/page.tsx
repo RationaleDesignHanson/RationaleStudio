@@ -12,7 +12,6 @@
  *   D · Split Spread        manifesto + currently-shipping card
  */
 
-'use client';
 
 import type { ReactNode } from 'react';
 import { ASCIIShaderGrid } from '@/components/visual/ASCIIShaderGrid';

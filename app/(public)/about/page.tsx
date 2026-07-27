@@ -2,7 +2,6 @@
  * About — Studio Monograph treatment
  */
 
-'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,7 +26,15 @@ export default function AboutPage() {
           </p>
           <div className="mt-8 md:mt-10">
             <figure className="rounded-md overflow-hidden border border-hairline">
-              <Image src="/images/work/about/decks/career-collage.jpg" alt="Career collage spanning Studio Era, Meta, and now" width={1600} height={900} className="w-full h-auto" />
+              <Image
+                src="/images/work/about/decks/career-collage.jpg"
+                alt="Career collage spanning Studio Era, Meta, and now"
+                width={1600}
+                height={900}
+                className="w-full h-auto"
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+              />
               <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
                 The journey · animation, mixed reality, AR platforms, consumer software shipped solo
               </figcaption>
@@ -224,7 +231,14 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <p className="text-caption tracking-[0.3em] uppercase text-ink mb-3 font-mono">How I work</p>
           <figure className="rounded-md overflow-hidden border border-hairline max-w-3xl">
-            <Image src="/images/work/about/decks/leadership-credo.jpg" alt="Self-Expectations and Team-Expectations" width={1600} height={900} className="w-full h-auto" />
+            <Image
+              src="/images/work/about/decks/leadership-credo.jpg"
+              alt="Self-Expectations and Team-Expectations"
+              width={1600}
+              height={900}
+              className="w-full h-auto"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
             <figcaption className="text-xs font-mono text-ink-muted px-3 py-2 italic">
               Self-Expectations / Team-Expectations · the credo
             </figcaption>
