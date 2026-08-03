@@ -239,6 +239,31 @@
   animation: fadeIn 0.4s ease-out;
 }
 
+/* Rotating header tagline — server-rendered cross-fade. The primary phrase
+   is visible from first paint so the header text can be LCP-eligible; the
+   secondary phrase fades in after 15s and the cycle repeats. */
+@keyframes taglineCrossfade {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.rotating-tagline .tagline-primary {
+  animation: taglineCrossfade 30s ease-in-out infinite;
+}
+
+.rotating-tagline .tagline-secondary {
+  animation: taglineCrossfade 30s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotating-tagline .tagline-primary,
+  .rotating-tagline .tagline-secondary {
+    animation: none;
+  }
+}
+
 /* Deck slide transitions — directional, so a swipe reads as moving between
    slides. Forward enters from the right, back enters from the left. */
 @keyframes deckSlideInFromRight {

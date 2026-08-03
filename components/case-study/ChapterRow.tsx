@@ -15,8 +15,6 @@
  * project accent so the case study links visually to its work-index row.
  */
 
-'use client';
-
 import { type ReactNode } from 'react';
 
 interface ChapterRowProps {

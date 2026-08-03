@@ -7,13 +7,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
 
 const VIACOM_SCREENS_PLAYLISTS = [
@@ -78,38 +79,15 @@ export default function ViacomPage() {
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>08</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2015 — 2017</span>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  Viacom
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Mixed-reality and large-canvas interactive at Viacom&rsquo;s Times Square headquarters. Director, Screen Content.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          index="08"
+          total="09"
+          era="DIRECTOR"
+          years="2015 — 2017"
+          title="Viacom"
+        >
+          Mixed-reality and large-canvas interactive at Viacom&rsquo;s Times Square headquarters. Director, Screen Content.
+        </CaseStudyHero>
 
         {/* CHAPTER 01 — THE WORK */}
         <ChapterRow index="01" kicker="THE WORK · 4 PROJECTS · 2 YEARS" title="Mixed-reality and large-canvas interactive">

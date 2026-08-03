@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
-import { ArrowLeft, Lock, ArrowRight, ChevronDown } from 'lucide-react';
+import { Lock, ArrowRight, ChevronDown } from 'lucide-react';
 import { listVaultEssays } from '@/lib/content/vault-writing';
 
 interface VaultItem {
@@ -114,41 +115,15 @@ export function VaultContent() {
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight" style={{ color: 'var(--accent)' }}>✱</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2 inline-flex items-center gap-1">
-                      <Lock className="w-3 h-3" /> Confidential
-                    </span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
-                      Concepts
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  Vault
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Dead pitches and live ideas. Concepts that didn&rsquo;t ship, ventures in flight, side bets worth keeping warm.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          index="✱"
+          total="Vault"
+          badge={<><Lock className="w-3 h-3" /> Confidential</>}
+          years="Concepts"
+          title="Vault"
+        >
+          Dead pitches and live ideas. Concepts that didn&rsquo;t ship, ventures in flight, side bets worth keeping warm.
+        </CaseStudyHero>
 
         {/* WRITING */}
         {essays.length > 0 && (

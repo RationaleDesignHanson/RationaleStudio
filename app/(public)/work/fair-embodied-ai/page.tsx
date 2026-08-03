@@ -8,11 +8,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function FAIREmbodiedAIPage() {
   return (
@@ -26,38 +27,15 @@ export default function FAIREmbodiedAIPage() {
         }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>04</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2023 — 2025</span>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  FAIR Embodied AI
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Leading design across Meta&rsquo;s embodied-AI research &mdash; humanoid models and socially intelligent robots.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          index="04"
+          total="09"
+          era="LEADER"
+          years="2023 — 2025"
+          title="FAIR Embodied AI"
+        >
+          Leading design across Meta&rsquo;s embodied-AI research &mdash; humanoid models and socially intelligent robots.
+        </CaseStudyHero>
 
         {/* CHAPTER 01 — THE WORK */}
         <ChapterRow

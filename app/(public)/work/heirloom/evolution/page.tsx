@@ -6,6 +6,7 @@
 
 import Link from 'next/link';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
@@ -125,42 +126,16 @@ export default function HeirloomEvolutionPage() {
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work/heirloom"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to Heirloom
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight" style={{ color: 'var(--accent)' }}>↻</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">
-                      ERA · NOW
-                    </span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>
-                      Build journey
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  From a weekend pottery site to a 24-package iOS app.
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Most case studies show the polished product. This one shows the path. Heirloom didn&rsquo;t arrive in iOS finished &mdash; it crossed four prototypes and one pivot to get there. Each phase taught the next.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          backHref="/work/heirloom"
+          backLabel="Back to Heirloom"
+          index="↻"
+          era="NOW"
+          years="Build journey"
+          title="From a weekend pottery site to a 24-package iOS app."
+        >
+          Most case studies show the polished product. This one shows the path. Heirloom didn&rsquo;t arrive in iOS finished &mdash; it crossed four prototypes and one pivot to get there. Each phase taught the next.
+        </CaseStudyHero>
 
         {/* PHASES */}
         {PHASES.map((p) => (

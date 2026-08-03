@@ -7,14 +7,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { VideoPlayer } from '@/components/video-player/VideoPlayer';
 import { MobileCarousel } from '@/components/case-study/MobileCarousel';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
+import { YouTubeEmbed } from '@/components/media/YouTubeEmbed';
 
 const STUDIO_REEL_PLAYLISTS = [
   {
@@ -54,38 +56,15 @@ export default function StudioEraPage() {
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>09</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · DIRECTOR</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2000 — 2015</span>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  Studio Era
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Animation, creative direction, mixed-reality installations &mdash; the fifteen years before Meta.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          index="09"
+          total="09"
+          era="DIRECTOR"
+          years="2000 — 2015"
+          title="Studio Era"
+        >
+          Animation, creative direction, mixed-reality installations &mdash; the fifteen years before Meta.
+        </CaseStudyHero>
 
         {/* CHAPTER 01 — THE ARC */}
         <ChapterRow index="01" kicker="THE ARC · BFA → BROOKLYN INSTALL" title="Five chapters before Meta">
@@ -122,13 +101,9 @@ export default function StudioEraPage() {
               FIG. 03 &middot; Grand Theft Auto: Vice City &middot; US TV commercial &middot; 2002
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
-              <iframe
-                src="https://www.youtube.com/embed/6OgieBcMu1E?rel=0"
+              <YouTubeEmbed
+                videoId="6OgieBcMu1E"
                 title="Grand Theft Auto: Vice City — US TV commercial (2002)"
-                className="w-full h-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
               />
             </div>
             <p className="mt-2 text-xs text-[var(--era-ink-muted)] italic">
@@ -148,13 +123,9 @@ export default function StudioEraPage() {
               FIG. 05 &middot; Adidas &middot; Hu Jia &middot; 2008 Beijing Olympics &middot; lead compositor
             </p>
             <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
-              <iframe
-                src="https://www.youtube.com/embed/WLTiriBKSuI?rel=0"
+              <YouTubeEmbed
+                videoId="WLTiriBKSuI"
                 title="Adidas — Hu Jia (2008, China)"
-                className="w-full h-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
               />
             </div>
             <p className="mt-2 text-xs text-[var(--era-ink-muted)] italic">

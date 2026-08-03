@@ -10,13 +10,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
+import { CaseStudyHero } from '@/components/case-study/CaseStudyHero';
 import { ChapterRow } from '@/components/case-study/ChapterRow';
 import { Figure } from '@/components/case-study/Figure';
 import { Plate } from '@/components/case-study/Plate';
 import { MultipleStructuredData } from '@/components/seo/StructuredData';
 import { caseStudySchemas } from '@/lib/seo/case-studies';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { LazyVideo } from '@/components/video-player/LazyVideo';
+import { YouTubeEmbed } from '@/components/media/YouTubeEmbed';
 
 export default function SparkARPage() {
   return (
@@ -30,38 +32,15 @@ export default function SparkARPage() {
         }}
       >
         {/* HERO */}
-        <section className="px-4 sm:px-6 md:px-8 pt-6 md:pt-8 pb-5 md:pb-7 border-b-2" style={{ borderColor: 'var(--accent)' }}>
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm text-[var(--era-ink-muted)] hover:text-[var(--accent)] mb-5 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to work
-            </Link>
-
-            <div className="grid md:grid-cols-12 md:gap-6 lg:gap-8 items-start">
-              <div className="md:col-span-2 flex md:block items-baseline gap-3 md:gap-0 mb-3 md:mb-0 hero-stack">
-                <div className="flex items-stretch gap-3">
-                  <span className="block w-[3px] self-stretch min-h-[3.5rem] md:min-h-[5rem]" style={{ backgroundColor: 'var(--accent)' }} aria-hidden />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-mono text-4xl md:text-5xl tracking-tight tabular-nums" style={{ color: 'var(--accent)' }}>06</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-1">/ 09</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase text-[var(--era-ink-muted)] mt-2">ERA · LEADER</span>
-                    <span className="font-mono text-caption tracking-[0.25em] uppercase mt-0.5" style={{ color: 'var(--accent)' }}>2017 — 2023</span>
-                  </div>
-                </div>
-              </div>
-              <div className="md:col-span-10 max-w-3xl">
-                <h1 className="font-display text-display text-[var(--era-ink)] mb-2 leading-[0.92]">
-                  Spark AR
-                </h1>
-                <p className="font-display italic text-base md:text-lg text-[var(--era-ink-body)] leading-snug max-w-2xl">
-                  Four flagship effects to a platform used by billions across Facebook, Instagram, Messenger, Portal, and Quest. Led the Experiences team &mdash; built, scaled, and taught.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          index="06"
+          total="09"
+          era="LEADER"
+          years="2017 — 2023"
+          title="Spark AR"
+        >
+          Four flagship effects to a platform used by billions across Facebook, Instagram, Messenger, Portal, and Quest. Led the Experiences team &mdash; built, scaled, and taught.
+        </CaseStudyHero>
 
         {/* CHAPTER 01 — ORIGIN · CLASS 113 */}
         <ChapterRow
@@ -446,13 +425,9 @@ export default function SparkARPage() {
             ].map((t) => (
               <figure key={t.id}>
                 <div className="rounded-md overflow-hidden border border-[var(--era-hairline)] bg-black" style={{ aspectRatio: '16 / 9' }}>
-                  <iframe
-                    src={`https://www.youtube.com/embed/${t.id}?rel=0`}
+                  <YouTubeEmbed
+                    videoId={t.id}
                     title={`F8 2019 · ${t.title}`}
-                    className="w-full h-full"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
                   />
                 </div>
                 <figcaption className="text-caption font-mono text-[var(--era-ink-muted)] tracking-wide pt-2 leading-snug">

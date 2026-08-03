@@ -15,7 +15,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
   // Regular pages - with header/footer
   return (
     <>
-      <Header />
+      <Header pathname={pathname} />
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
