@@ -11,6 +11,9 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useLine } from '@/lib/blank/lineState';
+import { tierIndex } from '@/lib/blank/line';
+import { Loader2, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import {
   BLANKS,
@@ -120,7 +123,35 @@ function nearestExecutable(a: Analysis): { id: string; title: string; why: strin
 const dollars = (n: number) => `$${n.toFixed(2)}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
+/**
+ * Shrink to fit comfortably inside the request ceiling before upload.
+ *
+ * A phone photo is routinely 6MB+, which the server has to refuse. Downscaling
+ * to 1600px and re-encoding as JPEG puts a typical reference at a few hundred
+ * KB, so the size limit stops being something a partner ever meets. It also
+ * cuts what leaves their machine, which matters because this image is going to
+ * a third-party model.
+ */
+async function downscale(file: File, maxEdge = 1600, quality = 0.85): Promise<string> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, maxEdge / Math.max(bitmap.width, bitmap.height));
+  const w = Math.max(1, Math.round(bitmap.width * scale));
+  const h = Math.max(1, Math.round(bitmap.height * scale));
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Could not read that image.');
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  bitmap.close?.();
+  return canvas.toDataURL('image/jpeg', quality);
+}
+
 export function ReferenceUpload() {
+  const { config } = useLine();
+  const [applied, setApplied] = useState<{ imageUrl: string; cached: boolean } | null>(null);
+  const [applying, setApplying] = useState(false);
+  const [applyError, setApplyError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [busy, setBusy] = useState(false);
@@ -130,16 +161,16 @@ export function ReferenceUpload() {
   async function handleFile(file: File) {
     setError(null);
     setAnalysis(null);
-    if (file.size > 4 * 1024 * 1024) {
-      setError('Image too large — 4MB maximum.');
+    setApplied(null);
+    setApplyError(null);
+
+    let dataUrl: string;
+    try {
+      dataUrl = await downscale(file);
+    } catch {
+      setError('Could not read that image.');
       return;
     }
-    const dataUrl = await new Promise<string>((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result as string);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
     setPreview(dataUrl);
     setBusy(true);
     try {
@@ -147,7 +178,7 @@ export function ReferenceUpload() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          image: { media_type: file.type, data: dataUrl.split(',')[1] },
+          image: { media_type: 'image/jpeg', data: dataUrl.split(',')[1] },
         }),
       });
       const json = await r.json();
@@ -157,6 +188,35 @@ export function ReferenceUpload() {
       setError(e instanceof Error ? e.message : 'Analysis failed.');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function applyToGarment() {
+    if (!preview) return;
+    setApplying(true);
+    setApplyError(null);
+    try {
+      const r = await fetch('/api/blank/apply-reference', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          image: preview,
+          garment: config.garment,
+          tier: tierIndex(config.budget) + 1,
+          colorway: config.colorway || 'charcoal',
+          graphic: config.graphic ?? 'G-abstract-mark',
+          placement: config.placement || undefined,
+          scale: config.scale || undefined,
+          finish: config.finish || undefined,
+        }),
+      });
+      const json = await r.json();
+      if (!r.ok) throw new Error(json.error ?? 'Render failed.');
+      setApplied({ imageUrl: json.imageUrl, cached: json.cached });
+    } catch (e) {
+      setApplyError(e instanceof Error ? e.message : 'Render failed.');
+    } finally {
+      setApplying(false);
     }
   }
 
@@ -222,7 +282,7 @@ export function ReferenceUpload() {
           }}
         />
         <p className="mt-2 text-[11px] leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
-          Analysed once and discarded — the image is never stored. 4MB max.
+          Analysed once and discarded — the image is never stored. Large files are resized in your browser before they leave it.
         </p>
       </div>
 
@@ -244,6 +304,60 @@ export function ReferenceUpload() {
             cost model uses — technique, colour count, print size, placement — then priced against
             a real blank, with the producibility rules applied.
           </p>
+        )}
+
+        {preview && !busy && (
+          <div className="mb-4 pb-4 border-b" style={{ borderColor: 'var(--era-hairline)' }}>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={applyToGarment}
+                disabled={applying}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+                style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
+              >
+                {applying ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Sparkles className="w-3 h-3" />
+                )}
+                {applying ? 'Rendering…' : `Put it on the ${config.garment}`}
+              </button>
+              <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                Uses the garment, colourway and axes set above
+              </span>
+            </div>
+
+            {applyError && (
+              <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
+                {applyError}
+              </p>
+            )}
+
+            {applied && (
+              <figure className="mt-4 max-w-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={applied.imageUrl}
+                  alt={`Your reference applied to a ${config.garment}`}
+                  className="w-full"
+                  style={{ backgroundColor: 'var(--era-bg-deep)' }}
+                />
+                <figcaption
+                  className="mt-1.5 text-[11px] font-mono flex flex-wrap gap-x-3"
+                  style={{ color: 'var(--era-ink-muted)' }}
+                >
+                  <span>Your reference · {config.garment}</span>
+                  <span>Seedream 4</span>
+                  <span>{applied.cached ? 'cached' : 'generated'}</span>
+                  <span>AI-generated — not a photograph of product</span>
+                </figcaption>
+                <p className="mt-1.5 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+                  Your upload is never stored — only a hash of it, so the same artwork
+                  doesn&rsquo;t get charged twice.
+                </p>
+              </figure>
+            )}
+          </div>
         )}
 
         {analysis && verdict && (
