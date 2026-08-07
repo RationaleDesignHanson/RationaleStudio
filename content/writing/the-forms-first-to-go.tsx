@@ -101,7 +101,7 @@ export default function Body() {
       </p>
       <Fig src="/writing/desk-drawings.jpg" w={1600} h={1200}
         alt="A home desk with a work monitor showing chat and a full calendar, a video call to family, and a wall covered in children&rsquo;s drawings."
-        cap="The office was the kitchen. Faces on the call are blurred." />
+        cap="The office was the kitchen." />
 
       <p>
         Like many at FB I&rsquo;ve heard folks say &ldquo;working here is a marathon not
@@ -148,7 +148,7 @@ export default function Body() {
       </p>
       <Fig src="/writing/desk-child.jpg" w={1600} h={1200}
         alt="A home office with a standing desk, and a child sitting on an office chair beside it."
-        cap="And the kitchen was the school. Face blurred." />
+        cap="And the kitchen was the school." />
 
       <p>
         While we are working from home, it can be difficult to find places to slow down

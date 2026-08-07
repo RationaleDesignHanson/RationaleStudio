@@ -40,7 +40,10 @@ const ESSAY_CSS = `
 [data-essay-theme] .e-standfirst{
   font-style:italic;font-size:clamp(1.12rem,2.3vw,1.35rem);line-height:1.5;
   color:var(--e-ink);opacity:.82;margin:0 0 34px;padding-bottom:34px;
-  border-bottom:1px solid var(--e-rule);text-wrap:balance}
+  border-bottom:1px solid var(--e-rule);text-wrap:pretty;
+  /* a deck wants a shorter measure than the body it sits above: ~50 characters,
+     not the 64 it inherits from the column at this size */
+  max-width:26em}
 [data-essay-theme] .e-back{
   font-family:var(--essay-mono),monospace;font-size:13px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--e-muted);text-decoration:none;
