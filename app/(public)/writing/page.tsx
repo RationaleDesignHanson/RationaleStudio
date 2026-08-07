@@ -8,6 +8,7 @@
 
 
 import Link from 'next/link';
+import { listPosts } from '@/content/writing/posts';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 const SUBSTACK_LATEST = {
@@ -101,6 +102,47 @@ export default function WritingPage() {
           </a>
         </div>
       </section>
+
+      {/* ON THIS SITE · canonical essays from content/writing/posts */}
+      {listPosts().length > 0 && (
+        <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 border-b border-hairline">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-caption font-mono text-ink-muted tracking-[0.3em] uppercase mb-6">
+              On this site
+            </p>
+            {listPosts().map((post) => (
+              <Link
+                key={post.slug}
+                href={`/writing/${post.slug}`}
+                className="group block border-t border-hairline pt-6 md:pt-8 hover:bg-paper-deep/30 transition-colors -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 pb-6 md:pb-8"
+              >
+                <div className="grid md:grid-cols-12 md:gap-8 lg:gap-12">
+                  <div className="md:col-span-2">
+                    <p className="font-mono text-caption tracking-[0.25em] uppercase text-ink-muted">
+                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        timeZone: 'UTC',
+                      })}
+                    </p>
+                  </div>
+                  <div className="md:col-span-9">
+                    <h2 className="font-display text-h2 text-ink leading-tight mb-3 group-hover:text-[var(--accent-ink)] transition-colors">
+                      {post.title}
+                    </h2>
+                    <p className="text-base md:text-lg text-ink-body leading-relaxed max-w-2xl mb-4">
+                      {post.description}
+                    </p>
+                    <p className="inline-flex items-center gap-2 text-sm font-mono text-[var(--accent-ink)] tracking-wide">
+                      Read <ArrowRight className="w-3 h-3" />
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="px-4 sm:px-6 md:px-8 py-12 md:py-16 bg-paper-deep/40">

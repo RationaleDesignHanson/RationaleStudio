@@ -7,7 +7,9 @@
 
 'use client';
 
-import Script from 'next/script';
+// JSON-LD must be in the server-rendered HTML. next/script with
+// strategy="afterInteractive" injects only after hydration, so crawlers
+// reading the raw response never see it. Plain <script> renders into SSR.
 
 interface StructuredDataProps {
   data: Record<string, any>;
@@ -15,11 +17,9 @@ interface StructuredDataProps {
 
 export function StructuredData({ data }: StructuredDataProps) {
   return (
-    <Script
-      id="structured-data"
+    <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-      strategy="afterInteractive"
     />
   );
 }
@@ -35,12 +35,10 @@ export function MultipleStructuredData({ dataBlocks }: MultipleStructuredDataPro
   return (
     <>
       {dataBlocks.map((data, index) => (
-        <Script
+        <script
           key={index}
-          id={`structured-data-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-          strategy="afterInteractive"
         />
       ))}
     </>

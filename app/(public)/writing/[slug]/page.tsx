@@ -5,6 +5,8 @@
  */
 
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import { IBM_Plex_Serif, IBM_Plex_Mono } from 'next/font/google';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
@@ -15,6 +17,62 @@ import {
   generateBreadcrumbJsonLd,
 } from '@/lib/seo/jsonld';
 import { getPost, listPosts } from '@/content/writing/posts';
+
+// This essay ships with its own art direction rather than the site chrome.
+// Loaded here so the fonts only download on /writing/[slug].
+const ESSAY_CSS = `
+[data-essay-theme]{
+  --e-ground:#0B0B0B; --e-ink:#ECE6DB; --e-muted:#8F8A80;
+  --e-accent:#D07A38; --e-rule:#2A2622;
+  background:var(--e-ground); color:var(--e-ink);
+  font-family:var(--essay-serif),Georgia,serif; font-size:19px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+[data-essay-theme] .e-wrap{max-width:38em;margin:0 auto;padding:0 1.5em}
+[data-essay-theme] .e-eyebrow{
+  font-family:var(--essay-mono),monospace;font-weight:500;font-size:13px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--e-muted);margin:0}
+[data-essay-theme] .e-tick{width:46px;height:3px;background:var(--e-accent);margin:16px 0 30px}
+[data-essay-theme] h1{
+  font-family:var(--essay-mono),monospace;font-weight:500;
+  font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.05;letter-spacing:-.02em;
+  text-wrap:balance;margin:0 0 24px;color:#fff}
+[data-essay-theme] .e-standfirst{
+  font-style:italic;font-size:clamp(1.12rem,2.3vw,1.35rem);line-height:1.5;
+  color:var(--e-ink);opacity:.82;margin:0 0 34px;padding-bottom:34px;
+  border-bottom:1px solid var(--e-rule);text-wrap:balance}
+[data-essay-theme] .e-back{
+  font-family:var(--essay-mono),monospace;font-size:13px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--e-muted);text-decoration:none;
+  display:inline-block;margin-bottom:34px}
+[data-essay-theme] .e-back:hover{color:var(--e-accent)}
+[data-essay-theme] p{margin:0 0 1.7em;text-wrap:pretty}
+[data-essay-theme] em{font-style:italic}
+[data-essay-theme] a{color:var(--e-accent)}
+[data-essay-theme] figure{margin:2.8em 0}
+[data-essay-theme] figure img{width:100%;height:auto;display:block;border:1px solid var(--e-rule)}
+[data-essay-theme] figure.portrait{max-width:26em;margin-left:auto;margin-right:auto}
+[data-essay-theme] figcaption{
+  font-family:var(--essay-mono),monospace;font-size:12.5px;line-height:1.55;
+  color:var(--e-muted);margin-top:14px;text-align:center;text-wrap:pretty}
+[data-essay-theme] hr{border:0;border-top:1px solid var(--e-rule);margin:3.4em 0 2.4em}
+[data-essay-theme] .e-label{
+  font-family:var(--essay-mono),monospace;font-weight:500;font-size:13px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--e-muted);margin:0 0 2.2em}
+[data-essay-theme] .e-colophon{
+  font-family:var(--essay-mono),monospace;font-size:12.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--e-muted);margin-top:4em;
+  padding-top:1.8em;border-top:1px solid var(--e-rule)}
+`;
+
+const plexSerif = IBM_Plex_Serif({
+  subsets: ['latin'], weight: ['400'], style: ['normal', 'italic'],
+  variable: '--essay-serif', display: 'swap',
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'], weight: ['400', '500'],
+  variable: '--essay-mono', display: 'swap',
+});
 
 export function generateStaticParams() {
   return listPosts().map((p) => ({ slug: p.slug }));
@@ -72,7 +130,37 @@ export default async function WritingPostPage({ params }: { params: Promise<{ sl
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    // publishedAt is a bare ISO date => UTC midnight. Without this the local
+    // timezone renders it a day early west of Greenwich.
+    timeZone: 'UTC',
   });
+
+  if (post.theme) {
+    return (
+      <>
+        <MultipleStructuredData dataBlocks={schemas} />
+        <style dangerouslySetInnerHTML={{ __html: ESSAY_CSS }} />
+        <main
+          data-essay-theme={post.theme}
+          className={`${plexSerif.variable} ${plexMono.variable}`}
+          style={{ minHeight: '100vh', padding: 'clamp(2.5em,6vw,4.5em) 0 8em' }}
+        >
+          <article className="e-wrap">
+            <Link href="/writing" className="e-back">&larr; Back to writing</Link>
+            <p className="e-eyebrow">Written 2021 &middot; Reframed 2026</p>
+            <div className="e-tick" />
+            <h1>{post.title}</h1>
+            <p className="e-standfirst">{post.description}</p>
+            <div>{post.body}</div>
+            <p className="e-colophon">
+              Matt Hanson &middot; Rationale &middot; written 2021, reframed{' '}
+              {new Date(post.publishedAt).getUTCFullYear()}
+            </p>
+          </article>
+        </main>
+      </>
+    );
+  }
 
   return (
     <ProjectScope project="heirloom">

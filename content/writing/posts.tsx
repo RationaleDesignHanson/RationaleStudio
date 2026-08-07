@@ -14,6 +14,7 @@
  */
 
 import type { ReactNode } from 'react';
+import FormsFirstToGo from './the-forms-first-to-go';
 
 export interface WritingPost {
   slug: string;
@@ -30,13 +31,22 @@ export interface WritingPost {
   tags?: string[];
   /** Render-ready body. */
   body: ReactNode;
+  /** Opt this essay out of the default site chrome and into its own art direction. */
+  theme?: 'ink';
 }
 
-// No canonical posts yet. The first will be the migration of "When to Hire AI"
-// from Substack — drafted in docs/seo/substack-canonical-workflow.md. Once
-// migrated, add the entry here and the route, sitemap, and OG image all
-// resolve automatically.
-export const POSTS: WritingPost[] = [];
+export const POSTS: WritingPost[] = [
+  {
+    slug: 'the-forms-first-to-go',
+    title: "The Form's the First to Go",
+    description:
+      'Capacity used to be the scarce thing. It is not any more. A note I wrote to myself about pacing in 2021, and why the reason I needed it has inverted.',
+    publishedAt: '2026-08-07',
+    tags: ['pacing', 'ai', 'working-solo', 'burnout'],
+    theme: 'ink',
+    body: <FormsFirstToGo />,
+  },
+];
 
 export function getPost(slug: string): WritingPost | undefined {
   return POSTS.find((p) => p.slug === slug);
