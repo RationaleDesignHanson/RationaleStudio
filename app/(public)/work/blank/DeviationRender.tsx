@@ -178,10 +178,15 @@ export function DeviationRender() {
               {GRAPHIC_SPECS[graphic!]?.title} · {COLORWAYS[colorway].label} ·{' '}
               {STATES[tier - 1].label}
             </span>
-            <span>seed {result.seed}</span>
+            <span>Imagen 4</span>
             <span>{result.cached ? 'cached' : 'generated'}</span>
             <span>AI-generated — not a photograph of product</span>
           </figcaption>
+          {GRAPHIC_SPECS[graphic!]?.renderCaveat && (
+            <p className="mt-2 text-[11px]" style={{ color: '#A8456E' }}>
+              {GRAPHIC_SPECS[graphic!].renderCaveat}
+            </p>
+          )}
         </figure>
       )}
     </div>

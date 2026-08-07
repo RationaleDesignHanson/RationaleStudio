@@ -123,12 +123,17 @@ describe('seeds are deterministic and tuple-sensitive', () => {
 describe('composed prompts obey the rules the line was generated under', () => {
   const p = composePrompt({ garment: 'tee', tier: 3, graphic: 'G-tonal-emboss', colorway: 'stone' });
 
-  it('front-loads the decoration ahead of the garment', () => {
-    const deco = p.indexOf('change in surface sheen');
-    const garment = p.indexOf('FLAT-LAY PRODUCT PHOTOGRAPH');
-    expect(deco).toBeGreaterThan(-1);
-    expect(garment).toBeGreaterThan(-1);
-    expect(deco).toBeLessThan(garment);
+  it('front-loads the decoration ahead of the garment, for every graphic', () => {
+    // Anchored on the spec's own treatment string rather than a quoted phrase,
+    // so rewording a treatment can't silently retire this check.
+    for (const [id, spec] of Object.entries(GRAPHIC_SPECS)) {
+      const s = composePrompt({ garment: 'tee', tier: 3, graphic: id, colorway: 'stone' });
+      const deco = s.indexOf(spec.treatment);
+      const garment = s.indexOf('FLAT-LAY PRODUCT PHOTOGRAPH');
+      expect(deco, `${id} treatment missing from prompt`).toBeGreaterThan(-1);
+      expect(garment).toBeGreaterThan(-1);
+      expect(deco, `${id} decoration not front-loaded`).toBeLessThan(garment);
+    }
   });
 
   it('uses the colourway palette and never the muted-earth house clause', () => {

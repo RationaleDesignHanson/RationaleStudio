@@ -19,8 +19,17 @@
  *  3. THE PALETTE CLAUSE OVERRIDES THE SCENE. HOUSE_PALETTE asserting "muted
  *     earth" before the scene is what silently killed the stone-grey colourway,
  *     so the palette is a parameter here, never a constant prefix.
- *  4. A LOCKED SEED LOCKS A MISTAKE. Seeds derive from the tuple so a given
- *     combination is reproducible, but changing any field moves the seed.
+ *  4. THE MODEL IS A BIGGER LEVER THAN THE WORDING. Flux 1.1 Pro could not
+ *     render low-contrast tonal ink at all — four prompt revisions produced a
+ *     blank chest, then a full-contrast square, then a larger cream square.
+ *     Imagen 4, Flux 2 Pro and Seedream 4 each got it on the FIRST attempt with
+ *     the same text. Renders now go to Imagen 4. Check the model before
+ *     rewriting the prompt a third time.
+ *
+ * Imagen 4 exposes NO seed parameter, so identical tuples are not guaranteed to
+ * produce identical pixels. What a partner opening a shared link sees is the
+ * CACHED image, which is why the cache is a correctness feature here and not
+ * only a cost one.
  */
 
 import type { Garment } from './line';
@@ -67,6 +76,12 @@ interface GraphicSpec {
   title: string;
   /** Decoration clause, written to lead the prompt. */
   treatment: string;
+  /**
+   * Where the render is known to misrepresent the real garment. Shown in the
+   * UI next to the image — a partner should not have to guess which parts of a
+   * generated picture are trustworthy.
+   */
+  renderCaveat?: string;
   /** Producible in a 50-150 unit Stage 0 run? Drives the tuple validator. */
   stage0: boolean;
   /** Caps are a 6-panel front — a 13in chest hit is physically impossible. */
@@ -118,9 +133,10 @@ export const GRAPHIC_SPECS: Record<string, GraphicSpec> = {
   },
   'G-tonal-emboss': {
     title: 'Tonal / no-contrast',
-    // Stated as a positive surface effect. Phrased as an absence, Flux drops it.
+    // Verified on Imagen 4 in a three-model bake-off. This exact wording
+    // produced a blank chest on Flux 1.1 Pro; the wording was never the problem.
     treatment:
-      'a large mark about 9 inches wide on the chest inked in EXACTLY one shade off the garment colour, so it reads only as a change in surface sheen and nearly disappears',
+      'a large geometric mark about 9 inches wide centred on the chest, printed in ink only ONE SHADE LIGHTER than the garment — the mark and the cloth are almost the same value, so the shape is only just perceptible and reads as a change in surface sheen rather than as a bold print',
     stage0: true,
     capSafe: true,
   },
@@ -202,7 +218,9 @@ export interface RenderTuple {
   colorway: string;
 }
 
-export const ASPECT: Record<Garment, string> = { tee: '4:5', hoodie: '4:5', cap: '1:1' };
+/** Imagen 4 accepts only 1:1, 9:16, 16:9, 3:4, 4:3 — 4:5 is NOT valid and
+ *  silently falls back to square, which crops the flat-lay framing. */
+export const ASPECT: Record<Garment, string> = { tee: '3:4', hoodie: '3:4', cap: '1:1' };
 
 export type TupleError = { field: string; reason: string };
 
@@ -255,11 +273,20 @@ export function validateTuple(t: unknown): { ok: true; tuple: RenderTuple } | { 
   };
 }
 
-export const tupleKey = (t: RenderTuple) => `${t.garment}.${t.tier}.${t.graphic}.${t.colorway}`;
+/**
+ * Bump when any prompt text changes. The cache is keyed on the tuple, but the
+ * image depends on the tuple AND the wording — without this, editing a
+ * treatment serves the stale render forever and the fix looks like it failed.
+ */
+export const PROMPT_VERSION = 'v5-imagen4';
+
+export const tupleKey = (t: RenderTuple) =>
+  `${PROMPT_VERSION}.${t.garment}.${t.tier}.${t.graphic}.${t.colorway}`;
 
 /**
- * Deterministic seed — same tuple always renders the same image, so a link a
- * partner opens tomorrow shows what the sender saw. FNV-1a, not for security.
+ * Stable hash of the tuple. Imagen 4 takes no seed, so this no longer steers
+ * the image — it is kept as a compact fingerprint of the tuple for the cache
+ * row and for telling two renders apart in logs. FNV-1a, not for security.
  */
 export function derivedSeed(t: RenderTuple): number {
   const s = tupleKey(t);

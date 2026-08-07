@@ -42,6 +42,16 @@ import {
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+/**
+ * Imagen 4, not Flux. A three-model bake-off on the tonal brief: Flux 1.1 Pro
+ * failed it across four prompt revisions (blank chest, then full-contrast
+ * square, then a larger cream square), while Imagen 4, Flux 2 Pro and
+ * Seedream 4 all rendered it correctly on the first attempt with identical
+ * text. Imagen 4 won on flat-lay cleanliness; Flux 2 Pro hallucinated text on
+ * the neck label and Seedream ignored aspect_ratio.
+ */
+const RENDER_MODEL = 'google/imagen-4';
+
 /** Hard stop for paid renders in a rolling 24h, counted in Postgres. */
 const DAILY_RENDER_CEILING = 60;
 /** Per-IP renders per window. Cheap first line; the ceiling is the real one. */
@@ -74,7 +84,7 @@ async function renderWithFlux(tuple: RenderTuple, prompt: string): Promise<strin
   if (!token) throw new Error('REPLICATE_API_TOKEN not configured');
 
   const res = await fetch(
-    'https://api.replicate.com/v1/models/black-forest-labs/flux-1.1-pro/predictions',
+    `https://api.replicate.com/v1/models/${RENDER_MODEL}/predictions`,
     {
       method: 'POST',
       headers: {
@@ -88,11 +98,10 @@ async function renderWithFlux(tuple: RenderTuple, prompt: string): Promise<strin
         input: {
           prompt,
           aspect_ratio: ASPECT[tuple.garment],
-          output_format: 'webp',
-          output_quality: 90,
-          safety_tolerance: 2,
-          prompt_upsampling: false,
-          seed: derivedSeed(tuple),
+          image_size: '1K',
+          output_format: 'jpg',
+          // No seed: Imagen 4 does not accept one. The cache, not a seed, is
+          // what guarantees a shared link shows the sender's image.
         },
       }),
     },
