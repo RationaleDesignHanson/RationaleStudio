@@ -33,6 +33,15 @@
  */
 
 import type { Garment } from './line';
+import {
+  MOTIFS,
+  PLACEMENTS,
+  SCALES,
+  FINISHES,
+  PRESETS,
+  axesValid,
+  axesStage0,
+} from './axes';
 
 const HOUSE_BASE =
   'quiet-flex elevated streetwear, heavyweight garment-dyed cotton, minimal branding, matte tactile surfaces, soft diffused natural light, film-photography color, restrained Seoul-and-Tokyo minimalism, calm confident restraint';
@@ -214,8 +223,25 @@ export interface RenderTuple {
   garment: Garment;
   /** 1-5, matching the budget stops. */
   tier: number;
+  /** Preset id from the library — supplies the axis defaults. */
   graphic: string;
   colorway: string;
+  /** Axes. Default from the preset; overridable one at a time. */
+  motif: string;
+  placement: string;
+  scale: string;
+  finish: string;
+}
+
+/** Fill any axis the caller left out from the preset. */
+export function resolveAxes(graphic: string, over: Partial<RenderTuple> = {}) {
+  const preset = PRESETS[graphic];
+  return {
+    motif: over.motif ?? preset?.motif ?? 'abstract-mark',
+    placement: over.placement ?? preset?.placement ?? 'chest-centre',
+    scale: over.scale ?? preset?.scale ?? 'medium',
+    finish: over.finish ?? preset?.finish ?? 'flat-screen',
+  };
 }
 
 /** Imagen 4 accepts only 1:1, 9:16, 16:9, 3:4, 4:3 — 4:5 is NOT valid and
@@ -228,7 +254,9 @@ export type TupleError = { field: string; reason: string };
  * Validation is also the abuse filter: a tuple the business model says you
  * cannot make is rejected before it can cost anything.
  */
-export function validateTuple(t: unknown): { ok: true; tuple: RenderTuple } | { ok: false; errors: TupleError[] } {
+export function validateTuple(
+  t: unknown,
+): { ok: true; tuple: RenderTuple } | { ok: false; errors: TupleError[] } {
   const errors: TupleError[] = [];
   const o = (t ?? {}) as Record<string, unknown>;
 
@@ -243,45 +271,53 @@ export function validateTuple(t: unknown): { ok: true; tuple: RenderTuple } | { 
   }
 
   const graphic = typeof o.graphic === 'string' ? o.graphic : '';
-  const spec = GRAPHIC_SPECS[graphic];
-  if (!spec) errors.push({ field: 'graphic', reason: 'unknown graphic id' });
+  if (!PRESETS[graphic]) errors.push({ field: 'graphic', reason: 'unknown graphic id' });
 
   const colorway = typeof o.colorway === 'string' ? o.colorway : '';
   if (!COLORWAYS[colorway]) errors.push({ field: 'colorway', reason: 'unknown colourway' });
 
-  if (spec && garment === 'cap' && !spec.capSafe) {
-    errors.push({
-      field: 'graphic',
-      reason: `${spec.title} does not fit a 6-panel cap front`,
-    });
+  // Axes fall back to the preset's own values when not supplied.
+  const axes = resolveAxes(graphic, o as Partial<RenderTuple>);
+  if (!MOTIFS[axes.motif]) errors.push({ field: 'motif', reason: 'unknown motif' });
+  if (!PLACEMENTS[axes.placement]) errors.push({ field: 'placement', reason: 'unknown placement' });
+  if (!SCALES[axes.scale]) errors.push({ field: 'scale', reason: 'unknown scale' });
+  if (!FINISHES[axes.finish]) errors.push({ field: 'finish', reason: 'unknown finish' });
+
+  if (errors.length) return { ok: false, errors };
+
+  // Physical impossibility — a cap has no sleeve, an all-over has no placement.
+  for (const reason of axesValid(
+    garment as Garment,
+    axes.motif,
+    axes.placement,
+    axes.scale,
+    axes.finish,
+  )) {
+    errors.push({ field: 'axes', reason });
   }
 
-  // Non-Stage-0 decorations leave the decorated-blanks path entirely. Only the
-  // top budget could absorb one, so the rest are refused rather than rendered
-  // as something the line could never actually produce.
-  if (spec && !spec.stage0 && Number.isInteger(tier) && tier < 5) {
+  // Economic impossibility. The business model IS the abuse filter: anything
+  // off the Stage 0 rate card only survives at the top budget.
+  if (!axesStage0(axes.motif, axes.finish) && tier < 5) {
     errors.push({
-      field: 'graphic',
-      reason: `${spec.title} is not producible in a Stage 0 run — needs the full-line budget`,
+      field: 'finish',
+      reason: `${FINISHES[axes.finish].title} with ${MOTIFS[axes.motif].title.toLowerCase()} is not producible in a Stage 0 run — needs the full-line budget`,
     });
   }
 
   if (errors.length) return { ok: false, errors };
   return {
     ok: true,
-    tuple: { garment: garment as Garment, tier, graphic, colorway },
+    tuple: { garment: garment as Garment, tier, graphic, colorway, ...axes },
   };
 }
 
-/**
- * Bump when any prompt text changes. The cache is keyed on the tuple, but the
- * image depends on the tuple AND the wording — without this, editing a
- * treatment serves the stale render forever and the fix looks like it failed.
- */
-export const PROMPT_VERSION = 'v5-imagen4';
-
 export const tupleKey = (t: RenderTuple) =>
-  `${PROMPT_VERSION}.${t.garment}.${t.tier}.${t.graphic}.${t.colorway}`;
+  `${PROMPT_VERSION}.${t.garment}.${t.tier}.${t.colorway}.${t.motif}.${t.placement}.${t.scale}.${t.finish}`;
+
+export const PROMPT_VERSION = 'v6-axes';
+
+
 
 /**
  * Stable hash of the tuple. Imagen 4 takes no seed, so this no longer steers
@@ -306,14 +342,25 @@ export function derivedSeed(t: RenderTuple): number {
  */
 
 export function composePrompt(t: RenderTuple): string {
-  const spec = GRAPHIC_SPECS[t.graphic];
+  const motif = MOTIFS[t.motif];
+  const placement = PLACEMENTS[t.placement];
+  const scale = SCALES[t.scale];
+  const finish = FINISHES[t.finish];
   const { palette } = COLORWAYS[t.colorway];
   const cloth = CLOTH_BY_TIER[t.garment][t.tier - 1];
 
-  // Decoration first: Flux weights early tokens and drops a graphic described
-  // after the garment. Framing, cloth and palette follow.
+  // An all-over pattern has no size or position — describing one produces a
+  // chest print inside a repeating field, which is neither thing.
+  const decoration = motif.fullBleed
+    ? motif.clause
+    : motif.cutAndSew
+      ? motif.clause
+      : `${motif.clause} about ${scale.inches} inches wide, ${placement.clause}, ${finish.clause}`;
+
+  // Decoration first: both Flux and Imagen weight early tokens, and a graphic
+  // described after the garment gets dropped or shrunk.
   return `${HOUSE_BASE}, ${palette}.
-The single most important element: ${spec.treatment}.
+The single most important element: ${decoration}.
 
 ${GARMENT_BASES[t.garment]}
 ${cloth}

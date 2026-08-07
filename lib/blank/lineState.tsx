@@ -35,6 +35,13 @@ export type Garment = 'tee' | 'hoodie' | 'cap';
 const RUN_SIZES: RunSize[] = [25, 50, 75, 100, 150, 300];
 
 export interface LineConfig {
+  /** Colourway for deviation renders. */
+  colorway: string;
+  /** Decoration axes. Empty string = inherit from the graphic preset. */
+  motif: string;
+  placement: string;
+  scale: string;
+  finish: string;
   /** Budget stop slug — 'graphic' | 'washed' | 'tonal' | 'stitched' | 'full' */
   budget: string;
   garment: Garment;
@@ -45,6 +52,11 @@ export interface LineConfig {
 }
 
 export const LINE_DEFAULTS: LineConfig = {
+  colorway: 'charcoal',
+  motif: '',
+  placement: '',
+  scale: '',
+  finish: '',
   budget: 'graphic',
   garment: 'tee',
   graphic: null,
@@ -52,7 +64,17 @@ export const LINE_DEFAULTS: LineConfig = {
 };
 
 /** URL param names. Short — these get pasted into messages. */
-const PARAM = { budget: 'b', garment: 'g', graphic: 'p', direction: 'd' } as const;
+const PARAM = {
+  budget: 'b',
+  garment: 'g',
+  graphic: 'p',
+  direction: 'd',
+  colorway: 'c',
+  motif: 'mo',
+  placement: 'pl',
+  scale: 'sc',
+  finish: 'fi',
+} as const;
 
 interface LineContextValue {
   config: LineConfig;
@@ -106,6 +128,11 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (p) out.graphic = p;
   const d = q.get(PARAM.direction);
   if (d) out.direction = d;
+  // Axes and colourway — free-form here, validated server-side before spend.
+  for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
+    const v = q.get(PARAM[k]);
+    if (v) out[k] = v;
+  }
   return out;
 }
 
