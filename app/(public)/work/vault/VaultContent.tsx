@@ -58,6 +58,15 @@ const ITEMS: VaultItem[] = [
     deckHref: '/work/nimbus/deck',
   },
   {
+    slug: 'blank',
+    status: 'live',
+    title: 'Blank',
+    subtitle: 'Streetwear line · planned by pipeline',
+    blurb: 'A quiet-flex streetwear line planned end-to-end by an image pipeline and an agent fleet — line plan, unit economics, sourcing, and an adversarial review that argued against it. Working name. Confidential.',
+    href: '/work/blank',
+    primaryLabel: 'Case study',
+  },
+  {
     slug: 'world-ar-avatars-deck',
     status: 'live',
     title: 'World AR Avatars · the deck',

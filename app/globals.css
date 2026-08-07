@@ -26,6 +26,7 @@
   --project-zero: #4A6172;         /* slate */
   --project-vault: #6B6B6B;        /* archival graphite — concepts and pitches */
   --project-nimbus: #4A7A8C;       /* cloud-slate — sanitary waste system */
+  --project-blank: #8A5A3C;        /* clay-tobacco — the line's own hero colourway */
 
   /* =============================================================
      ERA THEMES — each era is art-directed in its period's idiom.
@@ -1742,6 +1743,28 @@ a, button, input, select, textarea, label {
   background-color: var(--era-bg);
   color: var(--era-ink-body);
 }
+
+/* ── BLANK microsite overrides ───────────────────────────────────────────────
+   Scoped to this case study only; does not touch the rest of the vault.
+   1. --ink-muted (#8A8B8E) measures 2.78:1 on --paper. It carries every
+      caption, micro-label and the closing argument on this page, so the whole
+      thing reads as grey mush. Darkened to clear WCAG AA for body text.
+   2. --font-display resolves to Geist Sans, which ships no italic — every
+      display italic on the page was a synthesised oblique. Newsreader is
+      already loaded and has real italics.
+   ────────────────────────────────────────────────────────────────────────── */
+[data-project='blank'] {
+  --era-ink-muted: #5F6165;
+}
+
+/* `font-display` is a bare token at :root, not an @theme entry, so Tailwind
+   never generates the utility — the class is inert and display type silently
+   inherits body sans. Bind it here, scoped to this page. */
+[data-project='blank'] .font-display {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
 
 /* Re-declare glint colors for the .era-meta and .era-maker scopes
    (added inline to existing definitions further below). */
