@@ -25,10 +25,27 @@ import { BrandBakeoff } from './BrandBakeoff';
 import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
+import { DeviationRender } from './DeviationRender';
 import { LineProvider } from '@/lib/blank/lineState';
 
 /** Sticky site header is 65px; 81px clears it with breathing room. */
 const SCROLL_MARGIN = 81;
+
+function Standing({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3
+        className="text-[11px] font-mono uppercase tracking-[0.2em] pb-2 mb-3 border-b"
+        style={{ color: 'var(--era-ink)', borderColor: 'var(--era-hairline)' }}
+      >
+        {title}
+      </h3>
+      <ul className="space-y-2.5 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
+        {children}
+      </ul>
+    </div>
+  );
+}
 
 function Chapter({
   n,
@@ -156,6 +173,7 @@ export function BlankContent() {
             </p>
             <ReferenceUpload />
           </div>
+          <DeviationRender />
         </Chapter>
 
         {/* Full-bleed break — one visual beat between the making and the brand */}
@@ -181,17 +199,60 @@ export function BlankContent() {
           <PlateGallery />
         </Chapter>
 
-        <section className="px-4 sm:px-6 md:px-8 py-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+        <section
+          className="px-4 sm:px-6 md:px-8 py-10 border-t snap-start"
+          style={{ borderColor: 'var(--era-hairline)', scrollMarginTop: SCROLL_MARGIN }}
+        >
           <div className="max-w-6xl mx-auto">
-            <p className="text-sm max-w-3xl" style={{ color: 'var(--era-ink-body)' }}>
-              Every quiet signifier is gated behind a fixed cost &mdash; a $70 digitizing fee, a
-              200-piece woven-tag minimum, a blank that costs 4&times; the budget one. Strip those
-              and ink is all that&rsquo;s left.{' '}
-              <span style={{ color: 'var(--era-ink-muted)' }}>
-                No inventory ordered, no tech pack, no name. Next is a $150 test: 100 woven labels,
-                numbered by hand. 37 of 44 figures here are unverified.
+            <div className="flex items-baseline gap-3 mb-6">
+              <span className="text-[11px] font-mono tracking-[0.2em]" style={{ color: 'var(--accent)' }}>
+                06
               </span>
-            </p>
+              <h2 className="font-display" style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--era-ink)' }}>
+                Where this stands
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Standing title="Settled">
+                <li>
+                  Quiet costs more to make than loud. The mechanism is fixed costs and minimums,
+                  not taste — strip them out and ink is what&rsquo;s left.
+                </li>
+                <li>
+                  Stage 0 is decorated blanks. A cut-and-sew hero needs 86 pre-orders, or 72 if the
+                  coat and trousers share one cloth.
+                </li>
+                <li>
+                  The pipeline renders garment <em>categories</em>, not garment specs. Tech packs
+                  stay text and vector.
+                </li>
+              </Standing>
+
+              <Standing title="Open">
+                <li>
+                  Which brand direction. Six are still live in 04 and none has been chosen.
+                </li>
+                <li>
+                  Retail price. It&rsquo;s the largest single margin lever in the model at 35.9
+                  points, and the tray still uses tier defaults.
+                </li>
+                <li>Nothing is named. &ldquo;Blank&rdquo; is a working title.</li>
+                <li>No inventory ordered, no tech pack, no supplier contacted.</li>
+              </Standing>
+
+              <Standing title="Unverified">
+                <li>
+                  37 of 44 load-bearing figures are single-source or derived. The confidence marks
+                  sit on the numbers themselves, not in a footnote.
+                </li>
+                <li>
+                  The relabel line may be underbudgeted 3&ndash;5&times; (SR&nbsp;T15). It is exposed
+                  as a toggle rather than buried.
+                </li>
+                <li>Every image here is generated. None is a photograph of product that exists.</li>
+              </Standing>
+            </div>
           </div>
         </section>
 
