@@ -83,6 +83,7 @@ interface LineContextValue {
   addSku: (sku: Sku) => void;
   removeSku: (index: number) => void;
   setSkuUnits: (index: number, units: RunSize) => void;
+  setSkuRetail: (index: number, retail: number | undefined) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
   /** Absolute URL encoding the current config. */
@@ -100,7 +101,7 @@ const LineContext = createContext<LineContextValue | null>(null);
  * `?s=tee.full.100.G-emblem&s=hoodie.full.50.G-emblem` survives intact.
  */
 function encodeSku(s: Sku): string {
-  const base = [s.garment, s.tier, String(s.units)];
+  const base = [s.garment, s.tier, String(s.units) + (s.retail ? `@${s.retail}` : '')];
   // Trailing separator omitted when there's no graphic — these get pasted into
   // messages and `tee.full.100.` reads like a truncation.
   return (s.graphic ? [...base, s.graphic] : base).join('.');
@@ -110,11 +111,15 @@ function decodeSku(raw: string): Sku | null {
   const [garment, tier, units, ...rest] = raw.split('.');
   if (garment !== 'tee' && garment !== 'hoodie' && garment !== 'cap') return null;
   if (!tier) return null;
-  const n = Number(units) as RunSize;
+  // units may carry a retail override as `100@120`.
+  const [unitPart, retailPart] = String(units).split('@');
+  const n = Number(unitPart) as RunSize;
   if (!RUN_SIZES.includes(n)) return null;
+  const retail = retailPart ? Number(retailPart) : undefined;
+  if (retail !== undefined && (!Number.isFinite(retail) || retail <= 0)) return null;
   // Graphic ids contain dots in no known case, but rejoin defensively.
   const graphic = rest.join('.');
-  return { garment, tier, units: n, graphic: graphic || null };
+  return { garment, tier, units: n, graphic: graphic || null, ...(retail ? { retail } : {}) };
 }
 
 function readFromSearch(search: string): Partial<LineConfig> {
@@ -201,11 +206,16 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
       setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, units } : x))),
     [],
   );
+  const setSkuRetail = useCallback(
+    (index: number, retail: number | undefined) =>
+      setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, retail } : x))),
+    [],
+  );
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, clearSkus }),
-    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, clearSkus],
+    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuRetail, clearSkus }),
+    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuRetail, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;

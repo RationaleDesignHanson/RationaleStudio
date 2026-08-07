@@ -161,3 +161,43 @@ describe('margin', () => {
     expect(t.blendedMargin).toBeLessThan(1);
   });
 });
+
+
+describe('retail override — the largest margin lever in the model', () => {
+  it('defaults to the tier price when unset', () => {
+    const s = sku();
+    const state = STATES.find((x) => x.slug === 'full')!;
+    expect(costSku(s).retail).toBe(state.retail);
+  });
+
+  it('an override changes revenue and blended margin', () => {
+    const cheap = lineTotals([sku({ retail: 60 })]);
+    const dear = lineTotals([sku({ retail: 200 })]);
+    expect(dear.totalRevenue).toBeGreaterThan(cheap.totalRevenue);
+    expect(dear.blendedMargin).toBeGreaterThan(cheap.blendedMargin);
+  });
+
+  it('never changes cost — price is not a cost lever', () => {
+    expect(lineTotals([sku({ retail: 60 })]).totalCost)
+      .toBeCloseTo(lineTotals([sku({ retail: 200 })]).totalCost, 6);
+  });
+
+  it('a price below cost reports a negative margin rather than hiding it', () => {
+    const t = lineTotals([sku({ retail: 1 })]);
+    expect(t.blendedMargin).toBeLessThan(0);
+    expect(t.items[0].margin).toBeLessThan(0);
+  });
+
+  it('ignores a zero or negative override instead of dividing by zero', () => {
+    const state = STATES.find((x) => x.slug === 'full')!;
+    expect(costSku(sku({ retail: 0 })).retail).toBe(state.retail);
+    expect(costSku(sku({ retail: -5 })).retail).toBe(state.retail);
+    expect(Number.isFinite(lineTotals([sku({ retail: 0 })]).blendedMargin)).toBe(true);
+  });
+
+  it('per-SKU margin uses full landed COGS, so it never flatters the line', () => {
+    // Single SKU: the SKU margin and the line margin must agree exactly.
+    const t = lineTotals([sku({ retail: 150 })]);
+    expect(t.items[0].margin).toBeCloseTo(t.blendedMargin, 6);
+  });
+});

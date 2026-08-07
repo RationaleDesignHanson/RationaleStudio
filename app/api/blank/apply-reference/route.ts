@@ -53,18 +53,17 @@ const DAILY_RENDER_CEILING = 60;
 const RATE_LIMIT_PER_IP = 5;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
-const ipHits = new Map<string, number[]>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const hits = (ipHits.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (hits.length >= RATE_LIMIT_PER_IP) {
-    ipHits.set(ip, hits);
-    return true;
-  }
-  hits.push(now);
-  ipHits.set(ip, hits);
-  return false;
+/**
+ * A hashed requester, so a per-IP limit can be enforced across instances
+ * without storing anyone's IP address. Salted with the service-role key, which
+ * is already secret and never leaves the server, so the hash is not reversible
+ * by anyone holding the database.
+ */
+function requesterHash(ip: string): string {
+  return createHash('sha256')
+    .update(ip + (process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''))
+    .digest('hex')
+    .slice(0, 24);
 }
 
 /** Magic-byte check: the declared MIME type must match the actual content. */
@@ -214,7 +213,19 @@ export async function POST(req: Request) {
     req.headers.get('x-nf-client-connection-ip') ??
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
-  if (rateLimited(ip)) {
+  const who = requesterHash(ip);
+  const windowStart = new Date(Date.now() - RATE_WINDOW_MS).toISOString();
+  const recent = await supabase
+    .from('blank_renders')
+    .select('tuple_key', { count: 'exact', head: true })
+    .eq('requester', who)
+    .gte('created_at', windowStart);
+
+  if (recent.error || recent.count === null) {
+    console.error('[blank/apply-reference] rate check failed', recent.error?.message ?? 'null count');
+    return NextResponse.json({ error: 'Renders are temporarily unavailable.' }, { status: 503 });
+  }
+  if (recent.count >= RATE_LIMIT_PER_IP) {
     return NextResponse.json(
       { error: `Rate limit: ${RATE_LIMIT_PER_IP} reference renders per 10 minutes.` },
       { status: 429 },
@@ -241,8 +252,18 @@ export async function POST(req: Request) {
   }
 
   // ── compose and spend ─────────────────────────────────────────────────────
+  // REVERTED from a stronger "copy every internal shape, do not simplify"
+  // variant. That was written to fix a fidelity problem that did not exist: the
+  // emblem reference is genuinely just a plain ring, so Seedream had been
+  // faithful all along and I had compared its output to the prompt that made
+  // the reference rather than to the reference itself.
+  //
+  // The stronger wording changed nothing about fidelity and introduced a real
+  // regression — it invented cream cut-and-sew side panels on the garment.
+  // Insisting harder on copying pushed the model to add construction detail.
   const prompt = `${HOUSE}, ${COLORWAYS[colorway].palette}.
 Take the artwork in the supplied reference image and reproduce it as a print on a garment. Keep the artwork's own shapes, composition and character; do not redesign it.
+The garment itself is a plain single-colour blank: no contrast panels, no pieced seams, no colour-blocking, no additional garment detail beyond the print described here.
 The print is about ${SCALES[axes.scale].inches} inches wide, ${placement.clause}, ${FINISHES[axes.finish].clause}.
 
 A FLAT-LAY PRODUCT PHOTOGRAPH: ${GARMENT_SCENE[garment]}
@@ -303,6 +324,7 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
       seed: 0, // Seedream takes no seed
       image_url: imageUrl,
       prompt,
+      requester: who,
     },
     { onConflict: 'tuple_key' },
   );

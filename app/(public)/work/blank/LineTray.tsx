@@ -36,7 +36,7 @@ const plateFor = (s: Sku) =>
   `/blank/${STATES[tierIndex(s.tier)].tierSlug.replace('{g}', s.garment)}.webp`;
 
 export function LineTray() {
-  const { config, skus, addSku, removeSku, setSkuUnits, clearSkus } = useLine();
+  const { config, skus, addSku, removeSku, setSkuUnits, setSkuRetail, clearSkus } = useLine();
 
   const totals = useMemo(() => lineTotals(skus), [skus]);
 
@@ -136,12 +136,41 @@ export function LineTray() {
                   </select>
                 </label>
 
+                {/* Retail is the largest margin lever in the model, so it's an
+                    input, not a label. Blank = fall back to the tier price. */}
+                <label className="shrink-0">
+                  <span className="sr-only">List price for {skuLabel(it.sku)}</span>
+                  <span
+                    className="inline-flex items-baseline border"
+                    style={{ borderColor: 'var(--era-hairline)' }}
+                  >
+                    <span className="pl-1.5 text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                      $
+                    </span>
+                    <input
+                      type="number"
+                      min={1}
+                      step={5}
+                      value={it.sku.retail ?? it.state.retail}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        setSkuRetail(idx, Number.isFinite(v) && v > 0 ? v : undefined);
+                      }}
+                      className="w-14 bg-transparent px-1 py-1 text-[11px] font-mono tabular-nums"
+                      style={{ color: 'var(--era-ink)' }}
+                    />
+                  </span>
+                </label>
+
                 <div className="shrink-0 w-20 text-right">
                   <div className="text-[12px] font-mono" style={{ color: 'var(--era-ink)' }}>
                     {dollars(it.variablePerUnit)}
                   </div>
-                  <div className="text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-                    per unit
+                  <div
+                    className="text-[10px] font-mono"
+                    style={{ color: it.margin >= MARGIN_FLOOR ? 'var(--era-ink-muted)' : '#A8456E' }}
+                  >
+                    {pct(it.margin)} margin
                   </div>
                 </div>
 

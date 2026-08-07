@@ -144,17 +144,28 @@ export const blankFor = (garment: Garment, tier: number): Blank =>
 
 export interface Sku {
   garment: Garment;
-  /** Budget-stop slug — decides blank, decoration, relabel and retail. */
+  /** Budget-stop slug — decides blank, decoration, relabel and the default retail. */
   tier: string;
   /** Graphic id from the library, or null if none was chosen. */
   graphic: string | null;
   units: RunSize;
+  /**
+   * List price override. Retail is the single largest margin lever in the model
+   * (35.9 points, ahead of run size and blank tier), so leaving it pinned to the
+   * tier default made the most powerful control on the page invisible.
+   * Undefined means "use the tier's own price".
+   */
+  retail?: number;
 }
 
 export interface SkuCost {
   sku: Sku;
   blank: Blank;
   state: BudgetState;
+  /** Effective list price — the override if set, otherwise the tier default. */
+  retail: number;
+  /** Per-unit margin at the effective price. */
+  margin: number;
   /** Per-unit cost EXCLUDING fixed setup — fixed is charged once at line level. */
   variablePerUnit: number;
   variableTotal: number;
@@ -201,13 +212,18 @@ export function costSku(sku: Sku): SkuCost {
   });
   // Strip the per-SKU amortised fixed cost; it's re-added once, at line level.
   const variablePerUnit = full.landedCOGS - full.amortizedFixed;
+  const retail = sku.retail && sku.retail > 0 ? sku.retail : state.retail;
   return {
     sku,
     blank,
     state,
+    retail,
+    // Uses the SKU's full landed COGS, not the variable-only figure, so a
+    // per-SKU margin can't read better than the line it belongs to.
+    margin: retail > 0 ? grossMargin(retail, full.landedCOGS) : 0,
     variablePerUnit,
     variableTotal: variablePerUnit * sku.units,
-    revenue: state.retail * sku.units,
+    revenue: retail * sku.units,
   };
 }
 

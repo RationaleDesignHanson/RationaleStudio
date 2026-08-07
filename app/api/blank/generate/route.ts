@@ -28,6 +28,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { createHash } from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import { isUnlocked } from '@/lib/unlock';
 import {
@@ -54,22 +55,26 @@ const RENDER_MODEL = 'google/imagen-4';
 
 /** Hard stop for paid renders in a rolling 24h, counted in Postgres. */
 const DAILY_RENDER_CEILING = 60;
-/** Per-IP renders per window. Cheap first line; the ceiling is the real one. */
+/**
+ * Per-IP limit on PAID renders, counted in Postgres against a hashed requester
+ * recorded on each render row. This used to be a module-scope Map, which is
+ * per-instance and resets on cold start — a speed bump described as a limit.
+ * Cache hits are deliberately not counted: they cost nothing.
+ */
 const RATE_LIMIT_PER_IP = 8;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
-const ipHits = new Map<string, number[]>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const hits = (ipHits.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (hits.length >= RATE_LIMIT_PER_IP) {
-    ipHits.set(ip, hits);
-    return true;
-  }
-  hits.push(now);
-  ipHits.set(ip, hits);
-  return false;
+/**
+ * A hashed requester, so a per-IP limit can be enforced across instances
+ * without storing anyone's IP address. Salted with the service-role key, which
+ * is already secret and never leaves the server, so the hash is not reversible
+ * by anyone holding the database.
+ */
+function requesterHash(ip: string): string {
+  return createHash('sha256')
+    .update(ip + (process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''))
+    .digest('hex')
+    .slice(0, 24);
 }
 
 function db() {
@@ -181,7 +186,20 @@ export async function POST(req: Request) {
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
 
-  if (rateLimited(ip)) {
+  const who = requesterHash(ip);
+  const windowStart = new Date(Date.now() - RATE_WINDOW_MS).toISOString();
+  const recent = await supabase
+    .from('blank_renders')
+    .select('tuple_key', { count: 'exact', head: true })
+    .eq('requester', who)
+    .gte('created_at', windowStart);
+
+  // Fail closed: an unreadable counter is an unenforced limit.
+  if (recent.error || recent.count === null) {
+    console.error('[blank/generate] rate check failed', recent.error?.message ?? 'null count');
+    return NextResponse.json({ error: 'Renders are temporarily unavailable.' }, { status: 503 });
+  }
+  if (recent.count >= RATE_LIMIT_PER_IP) {
     return NextResponse.json(
       { error: `Rate limit: ${RATE_LIMIT_PER_IP} new renders per 10 minutes.` },
       { status: 429 },
@@ -235,6 +253,7 @@ export async function POST(req: Request) {
       seed: derivedSeed(tuple),
       image_url: imageUrl,
       prompt,
+      requester: who,
     },
     { onConflict: 'tuple_key' },
   );

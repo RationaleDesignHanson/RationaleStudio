@@ -315,7 +315,7 @@ export function validateTuple(
 export const tupleKey = (t: RenderTuple) =>
   `${PROMPT_VERSION}.${t.garment}.${t.tier}.${t.colorway}.${t.motif}.${t.placement}.${t.scale}.${t.finish}`;
 
-export const PROMPT_VERSION = 'v6-axes';
+export const PROMPT_VERSION = 'v8';
 
 
 
@@ -365,5 +365,5 @@ The single most important element: ${decoration}.
 ${GARMENT_BASES[t.garment]}
 ${cloth}
 
-No text, no letters, no words, no readable lettering, no typography, no watermarks, no logos.`;
+The artwork is ONE single connected shape occupying one compact area — never a row of separate forms, never a horizontal sequence, never several small elements arranged side by side left-to-right. A left-to-right row of shapes is what reads as writing, so the composition must not be one. Purely geometric and non-representational, resembling no alphabet or character of any writing system. No text, no letters, no words, no numerals, no typography, no watermarks.`;
 }

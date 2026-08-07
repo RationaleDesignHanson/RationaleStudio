@@ -31,3 +31,17 @@ CREATE INDEX IF NOT EXISTS blank_renders_created_at_idx ON blank_renders (create
 
 ALTER TABLE blank_renders ENABLE ROW LEVEL SECURITY;
 -- No policies on purpose: service-role only.
+
+-- Per-IP rate limiting, added after the fact.
+--
+-- The limit was originally a module-scope Map, which is per-instance and resets
+-- on cold start — a speed bump documented as a guarantee. Recording a hashed
+-- requester on each PAID render makes it enforceable across instances. Cache
+-- hits are deliberately not recorded: they cost nothing, so they should not
+-- consume anyone's budget.
+--
+-- The value is sha256(ip + service-role key), truncated. No IP is stored, and
+-- the hash is not reversible by anyone holding only the database.
+ALTER TABLE blank_renders ADD COLUMN IF NOT EXISTS requester TEXT;
+CREATE INDEX IF NOT EXISTS blank_renders_requester_idx
+  ON blank_renders (requester, created_at DESC);
