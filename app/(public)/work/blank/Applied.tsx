@@ -34,7 +34,7 @@ import {
   randomConstructions,
   type Construction,
 } from '@/lib/blank/markFamily';
-import { LOCKUPS, MIN_WORDMARK_INCHES } from '@/lib/blank/identity';
+import { MIN_WORDMARK_INCHES } from '@/lib/blank/identity';
 import { Mark } from './MarkFamily';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
@@ -64,7 +64,6 @@ export function Applied() {
       ? randomConstructions(word, seed)
       : constructionsFor(word);
   const mark = pool.find((c) => c.id === config.graphic) ?? null;
-  const lockup = LOCKUPS.find((l) => l.id === config.placement) ?? LOCKUPS[0];
 
   const garment = config.garment;
   const g = GARMENTS.find((x) => x.key === garment)!;
