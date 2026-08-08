@@ -24,6 +24,16 @@ interface Direction {
   testsHypothesis?: boolean;
 }
 
+/** Slug → label, for the chapter rail's state summary. */
+export const DIRECTION_LABELS: Record<string, string> = {
+  'quiet-flex': 'Quiet flex',
+  workwear: 'Workwear utility',
+  technical: 'Technical minimal',
+  issue: 'Issue',
+  brutalist: 'Brutalist graphic',
+  naturals: 'Japanese naturals',
+};
+
 const DIRECTIONS: Direction[] = [
   {
     key: 'quiet-flex',

@@ -26,6 +26,8 @@ import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
+import { ChapterRail } from './ChapterRail';
+import { Disclosure } from './Disclosure';
 import { LineProvider } from '@/lib/blank/lineState';
 
 /** Sticky site header is 65px; 81px clears it with breathing room. */
@@ -139,6 +141,10 @@ export function BlankContent() {
           </div>
         </header>
 
+        {/* Where you are, and what the two of you have settled. Sticky, so the
+            state travels with the reader instead of living only in chapter 05. */}
+        <ChapterRail />
+
         {/* 01 — the only horizontal section on the page */}
         <section
           id="ch-01"
@@ -151,32 +157,43 @@ export function BlankContent() {
 
         <Chapter
           n="02"
-          title="Your line"
-          note="Add what you want made. Setup fees are charged once across the collection, not once per SKU — so the line costs less than the sum of its garments."
+          title="Which direction"
+          note="Six aesthetics, judged on the rack rather than on one tee. This is the first real choice — it decides what the mark has to look like. Quiet flex is the control."
         >
-          <LineTray />
+          <BrandBakeoff />
         </Chapter>
 
         <Chapter
           n="03"
-          title="What kind of graphic"
-          note="Twelve print languages on one garment. Which of them you can have is decided by the budget above — and not simply more of them as you spend more. Then bring your own."
+          title="Which mark"
+          note="Twelve print languages on one garment. Which of them you can have is decided by the budget in 01 — and not simply more of them as you spend more."
         >
           <GraphicsLibrary />
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-              Bring your own reference
-            </h3>
-            <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-              The same question in the other direction — upload something and get its cost, whether
-              we can make it, and the nearest option we can execute.
-            </p>
+          <Disclosure
+            summary="None of these? Bring your own reference"
+            hint="upload → costed, and matched to the nearest thing we can make"
+          >
             <ReferenceUpload />
-          </div>
+          </Disclosure>
+        </Chapter>
+
+        <Chapter
+          n="04"
+          title="How the mark expands"
+          note="One mark is not a brand. Move it across placements, scales and finishes to see the family — and what each application costs to execute at this budget."
+        >
           <DeviationRender />
         </Chapter>
 
-        {/* Full-bleed break — one visual beat between the making and the brand */}
+        <Chapter
+          n="05"
+          title="Your line"
+          note="What you actually want made. Setup fees are charged once across the collection, not once per SKU — so the line costs less than the sum of its garments."
+        >
+          <LineTray />
+        </Chapter>
+
+        {/* Full-bleed break — the decisions are made; what follows is evidence */}
         <div className="relative w-full h-[38vh] min-h-[240px] overflow-hidden">
           <Image
             src="/blank/E1-lookbook-seoul.webp"
@@ -187,26 +204,28 @@ export function BlankContent() {
           />
         </div>
 
-        <Chapter n="04" title="Which brand" note="Six directions, judged on the rack. Quiet flex is the control.">
-          <BrandBakeoff />
-        </Chapter>
-
         <Chapter
-          n="05"
+          n="06"
           title="Everything the pipeline made"
-          note="Twenty-two plates across five phases. The style matrix and graphics library are above."
+          note="Provenance, not a decision — collapsed so it stops competing with the choices above."
         >
-          <PlateGallery />
+          <Disclosure
+            summary="Twenty-two plates across five phases"
+            hint="the style matrix and mark library are used in 01 and 03"
+          >
+            <PlateGallery />
+          </Disclosure>
         </Chapter>
 
         <section
+          id="ch-07"
           className="px-4 sm:px-6 md:px-8 py-10 border-t snap-start"
           style={{ borderColor: 'var(--era-hairline)', scrollMarginTop: SCROLL_MARGIN }}
         >
           <div className="max-w-6xl mx-auto">
             <div className="flex items-baseline gap-3 mb-6">
               <span className="text-[11px] font-mono tracking-[0.2em]" style={{ color: 'var(--accent)' }}>
-                06
+                07
               </span>
               <h2 className="font-display" style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--era-ink)' }}>
                 Where this stands

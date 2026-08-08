@@ -15,18 +15,10 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link2, Check } from 'lucide-react';
-import { useLine, LINE_DEFAULTS } from '@/lib/blank/lineState';
-
-const BUDGET_LABEL: Record<string, string> = {
-  graphic: 'Graphic',
-  washed: 'Washed',
-  tonal: 'Tonal',
-  stitched: 'Stitched',
-  full: 'Full line',
-};
+import { useLine } from '@/lib/blank/lineState';
 
 export function ShareLine() {
-  const { config, shareUrl } = useLine();
+  const { shareUrl } = useLine();
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -56,13 +48,10 @@ export function ShareLine() {
     timer.current = setTimeout(() => setCopied(false), 2200);
   }, [shareUrl]);
 
-  // Only mention what's actually been changed from the starting state.
-  const parts = [
-    BUDGET_LABEL[config.budget] ?? config.budget,
-    config.garment,
-    config.graphic?.replace(/^G-/, '').replace(/-/g, ' '),
-    config.direction !== LINE_DEFAULTS.direction ? config.direction.replace(/-/g, ' ') : null,
-  ].filter(Boolean);
+  // The configuration summary that used to sit beside this button now lives in
+  // the chapter rail, where it is more complete (it carries SKU count and
+  // blended margin) and where it stays visible as you scroll. Repeating it here
+  // was the same four values twice, 30px apart.
 
   return (
     <div className="flex items-center gap-2 min-w-0">
@@ -78,9 +67,6 @@ export function ShareLine() {
         {copied ? <Check className="w-3 h-3" /> : <Link2 className="w-3 h-3" />}
         {copied ? 'Link copied' : 'Share this line'}
       </button>
-      <span className="hidden sm:block text-[11px] font-mono truncate" style={{ color: 'var(--era-ink-muted)' }}>
-        {parts.join(' · ')}
-      </span>
     </div>
   );
 }
