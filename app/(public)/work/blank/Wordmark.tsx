@@ -1,11 +1,11 @@
 /**
- * Wordmark — stage one: type any word, see it in six treatments, priced.
+ * Wordmark — stage one: type any word, see it in twelve treatments, priced.
  *
  * Rendered live rather than generated, which is not a shortcut. Image models
  * cannot spell: ask for a seven-letter name and it comes back misspelled,
  * differently wrong on every roll, and a wordmark you cannot spell is not
- * shippable. Set type takes
- * any word, is always correct, costs nothing, and becomes the reference image
+ * shippable. Set type takes any word, is always correct, costs nothing, and
+ * becomes the reference image
  * that stage two draws from — so the model's job is drawing, never spelling.
  *
  * What this is NOT: a finished wordmark. A wordmark has drawn letterforms —
@@ -22,8 +22,11 @@
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import {
+  ALL_TREATMENTS,
+  FUNKY,
   TREATMENTS,
   availability,
+  lineCount,
   normalise,
   producibleCount,
   PLATEN_INCHES,
@@ -62,14 +65,28 @@ export function Wordmark() {
         <p className="text-[12px] font-mono pb-1.5" style={{ color: 'var(--era-ink-muted)' }}>
           At <span style={{ color: 'var(--accent)' }}>{money(stop.budget)}</span> —{' '}
           <span style={{ color: 'var(--era-ink)' }}>
-            {makeable} of these {TREATMENTS.length}
+            {makeable} of these {ALL_TREATMENTS.length}
           </span>{' '}
           can be executed at {word.length || 0} characters.
         </p>
       </div>
 
+      {[
+        { key: 'straight', label: 'Straight', items: TREATMENTS },
+        { key: 'funky', label: 'Funky', items: FUNKY },
+      ].map((grp) => (
+      <div key={grp.key} className={grp.key === 'funky' ? 'mt-8' : ''}>
+      <h4
+        className="text-[11px] font-mono uppercase tracking-[0.2em] mb-3"
+        style={{ color: grp.key === 'funky' ? 'var(--accent)' : 'var(--era-ink-muted)' }}
+      >
+        {grp.label}
+        <span style={{ color: 'var(--era-ink-muted)' }}>
+          {grp.key === 'funky' ? ' — doing something to the type' : ' — choosing a face'}
+        </span>
+      </h4>
       <div className="grid sm:grid-cols-2 gap-x-4 gap-y-4">
-        {TREATMENTS.map((t) => {
+        {grp.items.map((t) => {
           const av = availability(word, t, tier);
           const on = config.wordmarkStyle === t.id;
           return (
@@ -81,10 +98,20 @@ export function Wordmark() {
               // `button { display: flex }`, so without it the specimen, the
               // labels and the note lay out in a ROW and overlap each other.
               // Same trap the print library guards against.
-              className="w-full min-w-0 border p-4 transition-colors flex flex-col items-stretch [&_*]:text-left"
+              className="w-full min-w-0 border p-4 transition-colors flex flex-col [&_*]:text-left"
               style={{
                 borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
                 backgroundColor: on ? 'color-mix(in srgb, var(--accent) 5%, transparent)' : 'transparent',
+                // Inline, not `items-stretch`: globals.css sets
+                // `button { display: inline-flex; align-items: center; justify-content: center }`
+                // for 44px touch targets, and it outranks the utility class. With
+                // align-items left at center, every child shrinks to its content
+                // and centres — the specimen measured 99px inside a 568px card,
+                // which reads as centred text. The other grids dodge this by
+                // putting w-full on each child; fixing the cause once is better
+                // than remembering to do that on every future child.
+                alignItems: 'stretch',
+                justifyContent: 'flex-start',
               }}
             >
               {/* The specimen. min-w-0 + truncation guard: a long word at wide
@@ -112,6 +139,7 @@ export function Wordmark() {
                 </span>
                 <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
                   ~{av.widthInches}in
+                  {lineCount(word, t) > 1 ? ` · ${lineCount(word, t)} lines` : ''}
                 </span>
                 {!av.ok && (
                   <span
@@ -131,12 +159,18 @@ export function Wordmark() {
           );
         })}
       </div>
+      </div>
+      ))}
 
       <p className="mt-5 text-[13px] max-w-3xl" style={{ color: 'var(--era-ink-body)' }}>
-        Set type, not a finished wordmark — six typographic lanes from the site&rsquo;s three
-        families, so the word is always spelled correctly and costs nothing to try. A wordmark
-        proper has drawn letterforms, and that comes next: whichever lane you pick becomes the
-        reference the letterform variants are drawn from, which is what keeps the spelling right.
+        Set type, not a finished wordmark — six faces and six things done to them, all from the
+        site&rsquo;s three families, so the word is always spelled correctly and costs nothing to
+        try. Every funky option earns its place with a production consequence rather than a look:
+        stacking halves the width, which is how a long name clears the platen at all; an outline is
+        the cheapest ink coverage here and the only one no screen can hold; a knockout block is the
+        most expensive shape in thread. A wordmark proper has drawn letterforms, and that comes
+        next — whichever lane you pick becomes the reference those variants are drawn from, which is
+        what keeps the spelling right.
         Widths are approximate at a 1.6in cap height and the {PLATEN_INCHES}in limit is the standard
         platen — larger needs jumbo frames, which Stage 0 does not budget for.
       </p>

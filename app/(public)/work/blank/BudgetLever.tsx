@@ -247,14 +247,16 @@ export function BudgetLever() {
 
               {/* The garment — identical geometry in every frame */}
               <div className="order-1 lg:order-2 mx-auto w-full lg:w-auto min-w-0">
-                {/* Stage height is the viewport REMAINDER, not a flat vh fraction, so
-                    the tier scale and caption stay in fold on a 13" laptop.
-                    Re-measured after the chapter rail was added, which costs 60px:
-                    322px above the stage (worst case, at exactly lg where the
-                    masthead wraps; 303px at 1280+) and 128px of controls below —
-                    slider, tier scale, caption. 458 = 450 worst-case chrome + 8px
-                    slack. If anything is added above the stage, re-measure this
-                    number; it is not a guess and it does not survive guessing. */}
+                {/* Stage height is the viewport REMAINDER, not a flat vh fraction.
+                    It was originally sized so the tier scale and caption cleared a
+                    13" laptop fold when the lever was the opening frame. The lever
+                    is now chapter 02 and no longer opens the page, so that fold
+                    guarantee no longer applies — but the remainder sizing is kept,
+                    because it stops the stage growing taller than a viewport and
+                    leaving the slider off-screen once you have scrolled to it. The
+                    458 came from measurement (322px of chrome above at worst case,
+                    128px of controls below) and should be re-measured, not guessed,
+                    if anything above it changes again. */}
                 <div
                   className="relative overflow-hidden mx-auto w-full lg:w-auto lg:h-[min(100vh_-_458px,700px)] max-h-[min(37vh,380px)] lg:max-h-none"
                   style={{ aspectRatio: g.ratio, backgroundColor: 'var(--era-bg-deep)' }}

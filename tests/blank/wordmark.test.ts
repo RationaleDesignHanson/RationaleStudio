@@ -7,9 +7,12 @@
 
 import { describe, it, expect } from 'vitest';
 import {
+  ALL_TREATMENTS,
+  FUNKY,
   TREATMENTS,
   availability,
   estimateWidthInches,
+  lineCount,
   normalise,
   producibleCount,
   PLATEN_INCHES,
@@ -37,7 +40,7 @@ describe('normalise', () => {
 
 describe('per-word platen gating', () => {
   it('BLANK clears the platen in every treatment', () => {
-    for (const t of TREATMENTS) {
+    for (const t of ALL_TREATMENTS) {
       expect(estimateWidthInches('BLANK', t)).toBeLessThanOrEqual(PLATEN_INCHES);
     }
   });
@@ -88,16 +91,60 @@ describe('per-method gating', () => {
   });
 
   it('count drops as the budget rises — same non-monotonicity as the marks', () => {
-    expect(producibleCount('BLANK', DTF)).toBe(TREATMENTS.length);
+    expect(producibleCount('BLANK', DTF)).toBe(ALL_TREATMENTS.length);
     expect(producibleCount('BLANK', EMB)).toBeLessThan(producibleCount('BLANK', DTF));
   });
 
   it('every unavailable treatment gives a reason', () => {
-    for (const t of TREATMENTS) {
+    for (const t of ALL_TREATMENTS) {
       for (const tier of STATES.map((_, i) => i)) {
         const av = availability('BLANK', t, tier);
         if (!av.ok) expect(av.reason && av.reason.length > 10).toBe(true);
       }
+    }
+  });
+});
+
+describe('funky treatments', () => {
+  it('there are six, and they are all tagged funky', () => {
+    expect(FUNKY).toHaveLength(6);
+    expect(FUNKY.every((t) => t.group === 'funky')).toBe(true);
+    expect(TREATMENTS.every((t) => t.group === 'straight')).toBe(true);
+  });
+
+  it('ids are unique across the whole set', () => {
+    const ids = ALL_TREATMENTS.map((t) => t.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('stacked is the answer to an over-platen name — it fits where wide does not', () => {
+    const stacked = ALL_TREATMENTS.find((t) => t.id === 'stacked')!;
+    const wide = byId('grotesque-wide');
+    expect(availability(LONG_NAME, wide, DTF).overPlaten).toBe(true);
+    expect(availability(LONG_NAME, stacked, DTF).ok).toBe(true);
+    expect(estimateWidthInches(LONG_NAME, stacked)).toBeLessThan(
+      estimateWidthInches(LONG_NAME, wide) / 2,
+    );
+  });
+
+  it('outline is DTF-only — stroke width, not colour count, is the limit', () => {
+    const outline = ALL_TREATMENTS.find((t) => t.id === 'outline')!;
+    expect(outline.methods).toEqual(['dtf']);
+    expect(availability('BLANK', outline, SCREEN2).ok).toBe(false);
+    expect(availability('BLANK', outline, SCREEN2).reason).toMatch(/stroke width/i);
+  });
+
+  it('knockout cannot be embroidered — a solid fill is the priciest shape in thread', () => {
+    const ko = ALL_TREATMENTS.find((t) => t.id === 'knockout')!;
+    expect(availability('BLANK', ko, EMB).ok).toBe(false);
+    expect(availability('BLANK', ko, EMB).reason).toMatch(/fill/i);
+  });
+
+  it('compressed and crushed are narrower than the face they derive from', () => {
+    const base = byId('heavy-display');
+    for (const id of ['compressed', 'crushed']) {
+      const t = ALL_TREATMENTS.find((x) => x.id === id)!;
+      expect(estimateWidthInches('BLANK', t)).toBeLessThan(estimateWidthInches('BLANK', base));
     }
   });
 });
@@ -125,5 +172,36 @@ describe('gateLabel direction — the bug that was written twice', () => {
     const av = availability('BLANK', byId('grotesque-wide'), EMB);
     expect(av.ok).toBe(false);
     expect(gateLabel(av.availableAt, EMB, money, BUDGETS)).toBe('up to $8k');
+  });
+});
+
+describe('wrapping treatments report honest widths', () => {
+  const stacked = ALL_TREATMENTS.find((t) => t.id === 'stacked')!;
+  const tight = byId('grotesque-tight');
+
+  it('a short word does NOT get the half-width discount — it fits one line', () => {
+    expect(lineCount('BLANK', stacked)).toBe(1);
+    // Same 5 characters, so within rounding of the unstacked face.
+    expect(estimateWidthInches('BLANK', stacked)).toBeGreaterThan(
+      estimateWidthInches('BLANK', tight) * 0.9,
+    );
+  });
+
+  it('a long word wraps, and the width is the longest LINE not the whole word', () => {
+    expect(lineCount(LONG_NAME, stacked)).toBeGreaterThan(1);
+    expect(estimateWidthInches(LONG_NAME, stacked)).toBeLessThan(
+      estimateWidthInches(LONG_NAME, tight),
+    );
+  });
+
+  it('non-wrapping treatments are always one line', () => {
+    for (const t of ALL_TREATMENTS.filter((x) => !x.maxCharsPerLine)) {
+      expect(lineCount(LONG_NAME, t)).toBe(1);
+    }
+  });
+
+  it('width never exceeds the line cap once wrapping kicks in', () => {
+    const capped = estimateWidthInches('X'.repeat(18), stacked);
+    expect(capped).toBe(estimateWidthInches('X'.repeat(6), stacked));
   });
 });

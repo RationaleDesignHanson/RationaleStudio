@@ -39,18 +39,29 @@ export const TIER_METHOD: Method[] = ['dtf', 'screen1', 'screen2', 'embroidery']
 export interface Treatment {
   id: string;
   title: string;
+  /** 'straight' reads as type; 'funky' is doing something to it. */
+  group: 'straight' | 'funky';
   /** What lane this is, in the founder's terms. */
   lane: string;
-  /** Tailwind/CSS for live rendering. */
-  css: {
-    fontFamily: string;
-    fontWeight: number;
-    letterSpacing: string;
-    fontStyle?: 'normal' | 'italic';
-    textTransform?: 'uppercase' | 'none';
-  };
+  /**
+   * Inline style for live rendering. Deliberately loose: the funky treatments
+   * need text-stroke, transforms, backgrounds and line-wrapping, not just weight
+   * and tracking, and constraining this to four properties is what would make
+   * them impossible.
+   */
+  css: Record<string, string | number>;
   /** Relative width per character, in ems, used to estimate print width. */
   emPerChar: number;
+  /**
+   * Set on treatments that WRAP. Width is then driven by the longest line, not
+   * by the total character count.
+   *
+   * Without this, a stacked treatment reported half-width for every word,
+   * including words short enough to sit on one line — BLANK displayed on a
+   * single line while claiming 2.7in against an actual ~5in. Halving the count
+   * is only true once the word is long enough to actually wrap.
+   */
+  maxCharsPerLine?: number;
   /** Methods that can execute it. */
   methods: Method[];
   /** Why the others cannot. */
@@ -60,6 +71,7 @@ export interface Treatment {
 export const TREATMENTS: Treatment[] = [
   {
     id: 'grotesque-tight',
+    group: 'straight',
     title: 'Grotesque, tight',
     lane: 'Neutral and modern. The safe default, and the most versatile to produce.',
     css: {
@@ -74,6 +86,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: 'grotesque-wide',
+    group: 'straight',
     title: 'Grotesque, wide',
     lane: 'Quiet and fashion-adjacent. Open tracking reads as restraint.',
     css: {
@@ -91,6 +104,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: 'serif-heritage',
+    group: 'straight',
     title: 'Serif',
     lane: 'Heritage and editorial. Reads older and more expensive than it costs.',
     css: {
@@ -108,6 +122,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: 'mono-technical',
+    group: 'straight',
     title: 'Mono / technical',
     lane: 'Institutional. Pairs with the lot system rather than fighting it.',
     css: {
@@ -122,6 +137,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: 'heavy-display',
+    group: 'straight',
     title: 'Heavy display',
     lane: 'The loud option, done well. Cheapest to make and the most graphic.',
     css: {
@@ -136,6 +152,7 @@ export const TREATMENTS: Treatment[] = [
   },
   {
     id: 'stencil-lot',
+    group: 'straight',
     title: 'Stamped / lot',
     lane: 'Utilitarian. The mark and the batch number are the same system.',
     css: {
@@ -152,6 +169,135 @@ export const TREATMENTS: Treatment[] = [
     },
   },
 ];
+
+/**
+ * The funky six. Each one does something TO the type rather than just choosing a
+ * face, and each earns its place by having a production consequence rather than
+ * by being decorative.
+ *
+ * The one worth arguing for is STACKED. The tool already tells you to "shorten
+ * the word, tighten the tracking, or set it on two lines" when a name blows the
+ * 14in platen — stacking is that third answer, made available instead of merely
+ * suggested. It roughly halves the width, so a long name that fits nothing else
+ * fits this. Height is not the binding constraint: the standard platen is 14x16,
+ * so there is room to go down but not across.
+ */
+export const FUNKY: Treatment[] = [
+  {
+    id: 'stacked',
+    group: 'funky',
+    title: 'Stacked',
+    lane: 'Two lines. Halves the width, which is how a long name clears the platen.',
+    css: {
+      fontFamily: 'var(--font-geist-sans), sans-serif',
+      fontWeight: 800,
+      letterSpacing: '-0.02em',
+      textTransform: 'uppercase',
+      lineHeight: 0.86,
+      whiteSpace: 'normal',
+      wordBreak: 'break-all',
+      maxWidth: '5.5ch',
+    },
+    emPerChar: 0.66,
+    maxCharsPerLine: 6,
+    methods: ['dtf', 'screen1', 'screen2', 'embroidery'],
+    because: {},
+  },
+  {
+    id: 'outline',
+    group: 'funky',
+    title: 'Outline',
+    lane: 'Hollow. Reads expensive in print and is the cheapest ink coverage there is.',
+    css: {
+      fontFamily: 'var(--font-geist-sans), sans-serif',
+      fontWeight: 800,
+      letterSpacing: '0.01em',
+      textTransform: 'uppercase',
+      color: 'transparent',
+      WebkitTextStroke: '1.5px var(--era-ink)',
+    },
+    emPerChar: 0.64,
+    methods: ['dtf'],
+    because: {
+      screen1: 'An outline is two thin strokes per letter; below ~1pt they close up through a screen on textured cotton.',
+      screen2: 'Same problem on two screens — the limit is stroke width, not colour count.',
+      embroidery: 'Outlining every letter multiplies the stitch path far past the tier budget.',
+    },
+  },
+  {
+    id: 'crushed',
+    group: 'funky',
+    title: 'Crushed',
+    lane: 'Letters touching. Aggressive, and the narrowest solid option here.',
+    css: {
+      fontFamily: 'var(--font-geist-sans), sans-serif',
+      fontWeight: 900,
+      letterSpacing: '-0.14em',
+      textTransform: 'uppercase',
+    },
+    emPerChar: 0.52,
+    methods: ['dtf', 'screen1', 'screen2', 'embroidery'],
+    because: {},
+  },
+  {
+    id: 'oblique',
+    group: 'funky',
+    title: 'Oblique',
+    lane: 'Sheared forward. Athletic, and free — no extra passes, no extra ink.',
+    css: {
+      fontFamily: 'var(--font-geist-sans), sans-serif',
+      fontWeight: 800,
+      letterSpacing: '-0.01em',
+      textTransform: 'uppercase',
+      transform: 'skewX(-13deg)',
+    },
+    emPerChar: 0.66,
+    methods: ['dtf', 'screen1', 'screen2', 'embroidery'],
+    because: {},
+  },
+  {
+    id: 'knockout',
+    group: 'funky',
+    title: 'Knockout',
+    lane: 'Reversed out of a solid block. The loudest thing on this page.',
+    css: {
+      fontFamily: 'var(--font-geist-mono), monospace',
+      fontWeight: 700,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+      backgroundColor: 'var(--era-ink)',
+      color: 'var(--era-bg)',
+      padding: '0.12em 0.3em',
+      display: 'inline-block',
+    },
+    emPerChar: 0.8,
+    methods: ['dtf', 'screen1', 'screen2'],
+    because: {
+      embroidery:
+        'A solid filled block is the most expensive shape in thread — the fill alone runs past the stitch budget before the letters start.',
+    },
+  },
+  {
+    id: 'compressed',
+    group: 'funky',
+    title: 'Compressed',
+    lane: 'Squeezed narrow. Fits a long name where nothing else will, and still solid.',
+    css: {
+      fontFamily: 'var(--font-geist-sans), sans-serif',
+      fontWeight: 900,
+      letterSpacing: '0.01em',
+      textTransform: 'uppercase',
+      transform: 'scaleX(0.58)',
+      transformOrigin: 'left center',
+    },
+    emPerChar: 0.4,
+    methods: ['dtf', 'screen1', 'screen2', 'embroidery'],
+    because: {},
+  },
+];
+
+/** Everything the grid offers, straight first. */
+export const ALL_TREATMENTS: Treatment[] = [...TREATMENTS, ...FUNKY];
 
 /**
  * Cleaned word: uppercase, no runs of space, fully trimmed, capped so a pasted
@@ -177,7 +323,17 @@ export function normalise(word: string): string {
 export function estimateWidthInches(word: string, t: Treatment, capHeightInches = 1.6): number {
   const chars = normalise(word).length;
   if (!chars) return 0;
-  return Math.round(chars * t.emPerChar * capHeightInches * 10) / 10;
+  // A wrapping treatment is as wide as its longest line, which is the character
+  // count only until the word exceeds the line, and the line length after that.
+  const effective = t.maxCharsPerLine ? Math.min(chars, t.maxCharsPerLine) : chars;
+  return Math.round(effective * t.emPerChar * capHeightInches * 10) / 10;
+}
+
+/** How many lines a treatment sets the word on. 1 unless it wraps. */
+export function lineCount(word: string, t: Treatment): number {
+  const chars = normalise(word).length;
+  if (!chars || !t.maxCharsPerLine) return 1;
+  return Math.max(1, Math.ceil(chars / t.maxCharsPerLine));
 }
 
 export interface WordmarkAvailability {
@@ -229,5 +385,5 @@ export function availability(
 }
 
 export function producibleCount(word: string, tier: number): number {
-  return TREATMENTS.filter((t) => availability(word, t, tier).ok).length;
+  return ALL_TREATMENTS.filter((t) => availability(word, t, tier).ok).length;
 }

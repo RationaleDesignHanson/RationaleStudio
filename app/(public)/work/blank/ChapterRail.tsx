@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex, lineTotals } from '@/lib/blank/line';
 import { DIRECTION_LABELS } from './BrandBakeoff';
+import { normalise, TREATMENTS } from '@/lib/blank/wordmark';
 
 export interface Chapter {
   id: string;
@@ -31,13 +32,14 @@ export interface Chapter {
 }
 
 export const CHAPTERS: Chapter[] = [
-  { id: 'ch-01', n: '01', short: 'Budget' },
-  { id: 'ch-02', n: '02', short: 'Direction' },
-  { id: 'ch-03', n: '03', short: 'Mark' },
-  { id: 'ch-04', n: '04', short: 'Expansion' },
-  { id: 'ch-05', n: '05', short: 'The line' },
-  { id: 'ch-06', n: '06', short: 'Archive' },
-  { id: 'ch-07', n: '07', short: 'Standing' },
+  { id: 'ch-01', n: '01', short: 'Wordmark' },
+  { id: 'ch-02', n: '02', short: 'Budget' },
+  { id: 'ch-03', n: '03', short: 'Direction' },
+  { id: 'ch-04', n: '04', short: 'Symbol' },
+  { id: 'ch-05', n: '05', short: 'Expansion' },
+  { id: 'ch-06', n: '06', short: 'The line' },
+  { id: 'ch-07', n: '07', short: 'Archive' },
+  { id: 'ch-08', n: '08', short: 'Standing' },
 ];
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
@@ -69,9 +71,16 @@ export function ChapterRail() {
   // it says "you have not chosen a mark yet" — but a placeholder dash would
   // read as a value, so the whole item is omitted instead.
   const decided: { label: string; value: string; alert?: boolean }[] = [
+    { label: 'Name', value: normalise(config.wordmark) || 'BLANK' },
     { label: 'Budget', value: money(stop.budget) },
     { label: 'Direction', value: DIRECTION_LABELS[config.direction] ?? config.direction },
   ];
+  if (config.wordmarkStyle) {
+    decided.push({
+      label: 'Type',
+      value: TREATMENTS.find((t) => t.id === config.wordmarkStyle)?.title ?? config.wordmarkStyle,
+    });
+  }
   if (config.graphic) {
     decided.push({ label: 'Mark', value: config.graphic.replace(/^G-/, '').replace(/-/g, ' ') });
   }
@@ -107,9 +116,9 @@ export function ChapterRail() {
               <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
             </span>
           ))}
-          {!config.graphic && (
+          {!config.graphic && !config.wordmarkStyle && (
             <span className="whitespace-nowrap" style={{ color: 'var(--accent)' }}>
-              no mark chosen
+              no mark chosen yet
             </span>
           )}
         </div>

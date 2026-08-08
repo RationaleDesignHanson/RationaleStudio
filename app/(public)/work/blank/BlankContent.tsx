@@ -6,9 +6,16 @@
  * numbered chapters, one full-bleed break. Exactly one section is horizontal:
  * the budget lever, where the five stops are a sequence with a direction.
  *
- * The masthead is deliberately short. At 1440x900 the fold previously read
- * "drag the budget" above a page whose slider sat at y~926 — the control has to
- * share the fold with the plate or the whole argument collapses to frame 1.
+ * BEAT ORDER. Naming opens the experience. It is the cheapest interaction on the
+ * page — set type, so no generation, no latency, no spend — it is what two people
+ * argue about first, and the word's LENGTH is a production constraint that gates
+ * everything below it: length x tracking is what clears the 14in platen. Naming
+ * previously sat in the second sub-block of chapter 3, about 3,000px down, under a
+ * heading beginning "Or", while the masthead hardcoded "Blank". So the page both
+ * buried the first decision and contradicted it.
+ *
+ * The lever therefore no longer needs to share the first fold — the wordmark grid
+ * is the opening frame now, and the lever is chapter 02 with its own heading.
  */
 
 'use client';
@@ -28,6 +35,7 @@ import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
 import { MarkBakeoff } from './MarkBakeoff';
 import { Wordmark } from './Wordmark';
+import { NameIt } from './NameIt';
 import { ChapterRail } from './ChapterRail';
 import { Disclosure } from './Disclosure';
 import { LineProvider } from '@/lib/blank/lineState';
@@ -108,14 +116,18 @@ export function BlankContent() {
         className="era-now min-h-screen"
         style={{ backgroundColor: 'var(--era-bg)', color: 'var(--era-ink-body)' }}
       >
-        {/* Masthead — compressed so the slider shares the fold */}
+        {/* Masthead — and the first beat. The h1 IS the naming input, because
+            naming is where the experience starts: it is the cheapest interaction
+            on the page, it is the thing two founders argue about first, and the
+            word's LENGTH is a production constraint that gates everything below
+            it. A hardcoded title here while chapter 3 invited you to type a name
+            was also simply inconsistent — name it ATLAS and the page still said
+            Blank. */}
         <header
           className="px-4 sm:px-6 md:px-8 pt-4 pb-2.5 snap-start"
           style={{ scrollMarginTop: SCROLL_MARGIN }}
         >
           <div className="max-w-6xl mx-auto">
-            {/* Utility row — the send action pairs with the way back out. Sharing
-                a row with the title keeps the lever inside a 720px-tall fold. */}
             <div className="flex items-center justify-between gap-4 mb-1">
               <Link
                 href="/work/vault"
@@ -126,67 +138,67 @@ export function BlankContent() {
               </Link>
               <ShareLine />
             </div>
-            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-0.5">
-              <h1
-                className="font-display leading-none"
-                style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)', color: 'var(--era-ink)' }}
-              >
-                Blank
-              </h1>
-              <p className="text-sm md:text-base" style={{ color: 'var(--era-ink-body)' }}>
-                Quiet is expensive to make. Loud is cheap.{' '}
-                <span style={{ color: 'var(--era-ink-muted)' }}>
-                  Drag the budget — the brand moves from a printed graphic to a stitched mark.
-                </span>
-              </p>
-            </div>
+            <NameIt />
           </div>
         </header>
 
         {/* Where you are, and what the two of you have settled. Sticky, so the
-            state travels with the reader instead of living only in chapter 05. */}
+            state travels with the reader instead of living only in the tray. */}
         <ChapterRail />
 
-        {/* 01 — the only horizontal section on the page */}
-        <section
-          id="ch-01"
-          className="px-4 sm:px-6 md:px-8 pb-10"
+        <Chapter
+          n="01"
+          title="Your wordmark"
+          note="The name, set six ways. Nothing is generated here — type is type, so it costs nothing and is always spelled correctly. Pick the lane you like; the budget below will then tell you which of them you can actually make."
         >
+          <Wordmark />
+        </Chapter>
+
+        {/* 02 — the only horizontal section on the page */}
+        <section
+          id="ch-02"
+          className="px-4 sm:px-6 md:px-8 py-10 border-t snap-start"
+          style={{ borderColor: 'var(--era-hairline)', scrollMarginTop: SCROLL_MARGIN }}
+        >
+          <div className="max-w-6xl mx-auto mb-2">
+            <div className="flex items-baseline gap-3 mb-1">
+              <span className="text-[11px] font-mono tracking-[0.2em]" style={{ color: 'var(--accent)' }}>
+                02
+              </span>
+              <h2 className="font-display" style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--era-ink)' }}>
+                The budget
+              </h2>
+            </div>
+            <p className="text-[13px]" style={{ color: 'var(--era-ink-muted)' }}>
+              Now drag it. Quiet is expensive to make and loud is cheap — and watch treatments above
+              go out of reach as you spend more, not into it.
+            </p>
+          </div>
           <div className="max-w-[1500px] mx-auto">
             <BudgetLever />
           </div>
         </section>
 
         <Chapter
-          n="02"
+          n="03"
           title="Which direction"
-          note="Six aesthetics, judged on the rack rather than on one tee. This is the first real choice — it decides what the mark has to look like. Quiet flex is the control."
+          note="Six aesthetics, judged on the rack rather than on one tee. It decides what any mark has to look like. Quiet flex is the control."
         >
           <BrandBakeoff />
         </Chapter>
 
         <Chapter
-          n="03"
-          title="Which mark"
-          note="Six candidate marks as artwork, so the mark is the only variable — then twelve print languages showing how a mark can be applied. Which of either you can have is decided by the budget in 01, and not simply more of them as you spend more."
+          n="04"
+          title="Or a symbol"
+          note="A wordmark is one answer; a symbol is the other, and plenty of lines carry both. Six candidates as artwork so the mark is the only variable, then the twelve print languages any of them gets executed in."
         >
           <MarkBakeoff />
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-              Or a wordmark
-            </h3>
-            <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-              Type anything. Which treatments you can produce depends on the budget and on how long
-              the word is — length times tracking is what clears the platen.
-            </p>
-            <Wordmark />
-          </div>
           <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
             <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
               And how a mark can be printed
             </h3>
             <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-              Twelve print languages on one garment — the vocabulary any of the six above gets
+              Twelve print languages on one garment — the vocabulary a wordmark or a symbol gets
               executed in.
             </p>
             <GraphicsLibrary />
@@ -200,7 +212,7 @@ export function BlankContent() {
         </Chapter>
 
         <Chapter
-          n="04"
+          n="05"
           title="How the mark expands"
           note="One mark is not a brand. Move it across placements, scales and finishes to see the family — and what each application costs to execute at this budget."
         >
@@ -208,7 +220,7 @@ export function BlankContent() {
         </Chapter>
 
         <Chapter
-          n="05"
+          n="06"
           title="Your line"
           note="What you actually want made. Setup fees are charged once across the collection, not once per SKU — so the line costs less than the sum of its garments."
         >
@@ -227,7 +239,7 @@ export function BlankContent() {
         </div>
 
         <Chapter
-          n="06"
+          n="07"
           title="Everything the pipeline made"
           note="Provenance, not a decision — collapsed so it stops competing with the choices above."
         >
@@ -240,14 +252,14 @@ export function BlankContent() {
         </Chapter>
 
         <section
-          id="ch-07"
+          id="ch-08"
           className="px-4 sm:px-6 md:px-8 py-10 border-t snap-start"
           style={{ borderColor: 'var(--era-hairline)', scrollMarginTop: SCROLL_MARGIN }}
         >
           <div className="max-w-6xl mx-auto">
             <div className="flex items-baseline gap-3 mb-6">
               <span className="text-[11px] font-mono tracking-[0.2em]" style={{ color: 'var(--accent)' }}>
-                07
+                08
               </span>
               <h2 className="font-display" style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--era-ink)' }}>
                 Where this stands
@@ -279,10 +291,11 @@ export function BlankContent() {
                   points, and the tray still uses tier defaults.
                 </li>
                 <li>
-                  The name is still open, but narrowed: <strong style={{ color: 'var(--era-ink)' }}>Blank</strong>{' '}
-                  is the working name and the only placeholder anyone is comfortable with. Other
-                  candidates were dropped, so the availability question nobody had checked is moot
-                  for now.
+                  The name is still open, but narrowed:{' '}
+                  <strong style={{ color: 'var(--era-ink)' }}>Blank</strong> is the working name and
+                  the only placeholder anyone is comfortable with. Other candidates were dropped, so
+                  the availability question nobody had checked is moot for now. Chapter 01 takes any
+                  word, and a longer one is constrained by the platen before it is by taste.
                 </li>
                 <li>No inventory ordered, no tech pack, no supplier contacted.</li>
               </Standing>
