@@ -34,7 +34,7 @@ import {
   type SymbolKind,
 } from '@/lib/blank/identity';
 import { gateLabel } from '@/lib/blank/producible';
-import { constructionsFor } from '@/lib/blank/markFamily';
+import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { Mark } from './MarkFamily';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
@@ -238,8 +238,15 @@ export function LockupStep() {
   const word = normalise(config.wordmark);
   const { t } = useFace();
 
-  // The chosen mark is a construction id now, not a piece of stock artwork.
-  const construction = constructionsFor(word).find((c) => c.id === config.graphic) ?? null;
+  // Resolve against the SAME pool the family grid is showing. A shuffled set uses
+  // generated ids (r-<seed>-<n>) which are not in the canonical list, so looking
+  // only there reported "no mark chosen" while a mark was visibly selected.
+  const seed = Number(config.markSeed);
+  const pool =
+    config.markSeed !== '' && Number.isFinite(seed)
+      ? randomConstructions(word, seed)
+      : constructionsFor(word);
+  const construction = pool.find((c) => c.id === config.graphic) ?? null;
   const symbolKind: SymbolKind = construction ? 'mark' : 'none';
   const lockup = LOCKUPS.find((l) => l.id === config.placement) ?? LOCKUPS[0];
   const rule = usageRule(word, t, symbolKind);
@@ -297,20 +304,25 @@ export function LockupStep() {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
+        {/* All four stay SELECTABLE. Three were disabled until a mark existed,
+            and the fourth was already selected — so on arrival every button was
+            either greyed out or a no-op, which reads as a broken control rather
+            than as a prerequisite. Choosing one that needs a mark is allowed; the
+            preview then says what is missing, which teaches the dependency
+            instead of just refusing. */}
         {LOCKUPS.map((l) => {
-          const needsMark = l.usesSymbol && symbolKind === 'none';
           const on = l.id === lockup.id;
+          const wants = l.usesSymbol && symbolKind === 'none';
           return (
             <button
               key={l.id}
-              onClick={() => !needsMark && set('placement', l.id)}
-              disabled={needsMark}
+              onClick={() => set('placement', l.id)}
               aria-pressed={on}
-              title={needsMark ? 'Pick a mark above first' : l.use}
-              className="px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-35"
+              title={l.use}
+              className="px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors"
               style={{
                 borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
-                color: on ? 'var(--accent)' : 'var(--era-ink)',
+                color: on ? 'var(--accent)' : wants ? 'var(--era-ink-muted)' : 'var(--era-ink)',
                 backgroundColor: on ? 'color-mix(in srgb, var(--accent) 6%, transparent)' : 'transparent',
                 minHeight: 0,
               }}
@@ -327,6 +339,12 @@ export function LockupStep() {
         </span>
       </div>
 
+      {lockup.usesSymbol && symbolKind === 'none' && (
+        <p className="text-[13px] mt-3 max-w-2xl" style={{ color: 'var(--accent)' }}>
+          This lockup uses a mark, and none is chosen yet — pick one from the family above and it
+          will appear here.
+        </p>
+      )}
       <p className="text-[13px] mt-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         {lockup.use}
       </p>
