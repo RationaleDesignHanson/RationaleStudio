@@ -160,7 +160,7 @@ export function BlankContent() {
         <Chapter
           n="03"
           title="What kind of graphic"
-          note="Twelve print languages on one garment — eight producible in a 50–150 unit run, four that leave the decorated-blanks path. Then bring your own."
+          note="Twelve print languages on one garment. Which of them you can have is decided by the budget above — and not simply more of them as you spend more. Then bring your own."
         >
           <GraphicsLibrary />
           <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
