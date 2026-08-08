@@ -49,6 +49,11 @@ export interface LineConfig {
   graphic: string | null;
   /** Brand direction key from the bake-off */
   direction: string;
+  /** The word the wordmark sets. Typography, so it can be anything and is
+      rendered rather than generated — no spend, and always spelled right. */
+  wordmark: string;
+  /** Chosen wordmark treatment id, or null for none. */
+  wordmarkStyle: string | null;
 }
 
 export const LINE_DEFAULTS: LineConfig = {
@@ -61,6 +66,8 @@ export const LINE_DEFAULTS: LineConfig = {
   garment: 'tee',
   graphic: null,
   direction: 'workwear',
+  wordmark: 'BLANK',
+  wordmarkStyle: null,
 };
 
 /** URL param names. Short — these get pasted into messages. */
@@ -74,6 +81,8 @@ const PARAM = {
   placement: 'pl',
   scale: 'sc',
   finish: 'fi',
+  wordmark: 'w',
+  wordmarkStyle: 'ws',
 } as const;
 
 interface LineContextValue {
@@ -133,6 +142,12 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (p) out.graphic = p;
   const d = q.get(PARAM.direction);
   if (d) out.direction = d;
+  // Wordmark. Length-capped on read as well as on input: the param arrives from
+  // a pasted link, so the input's maxLength guarantees nothing here.
+  const w = q.get(PARAM.wordmark);
+  if (w) out.wordmark = w.slice(0, 18);
+  const ws = q.get(PARAM.wordmarkStyle);
+  if (ws) out.wordmarkStyle = ws;
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);

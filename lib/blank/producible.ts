@@ -170,3 +170,28 @@ export function availabilityForSlug(graphicId: string, budgetSlug: string): Avai
 export function producibleCount(graphicIds: string[], tier: number): number {
   return graphicIds.filter((id) => availability(id, tier).ok).length;
 }
+
+/**
+ * Why an option is unavailable, in three words or fewer. SHARED, because this
+ * got written wrong twice — once in the mark grid and once in the wordmark
+ * treatments — in the same way: `needs $${min(availableAt)}` regardless of
+ * direction. An option lost by spending MORE must not say "needs $3k"; it does
+ * not need $3k, it needs at MOST $8k, and saying otherwise inverts the argument
+ * the gating exists to make. Any new gated grid must call this rather than
+ * reimplement it.
+ */
+export function gateLabel(
+  availableAt: number[],
+  tier: number,
+  fmt: (budget: number) => string,
+  budgets: number[],
+): string {
+  if (availableAt.length === 0) return 'not here';
+  const below = availableAt.filter((i) => i < tier);
+  const above = availableAt.filter((i) => i > tier);
+  if (above.length && !below.length) return `needs ${fmt(budgets[Math.min(...above)])}`;
+  if (below.length && !above.length) return `up to ${fmt(budgets[Math.max(...below)])}`;
+  // Reachable on both sides but not here — a real gap, e.g. a two-colour crest
+  // at the single-screen stop.
+  return `not at ${fmt(budgets[tier])}`;
+}

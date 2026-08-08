@@ -19,7 +19,7 @@
 import Image from 'next/image';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
-import { availability, METHOD_LABEL, producibleCount } from '@/lib/blank/producible';
+import { availability, METHOD_LABEL, producibleCount, gateLabel } from '@/lib/blank/producible';
 
 interface PrintOption {
   id: string;
@@ -30,25 +30,6 @@ interface PrintOption {
 }
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
-
-/**
- * Why a mark is unavailable, in three words or fewer.
- *
- * "needs $8k" is only right when the mark is above the current budget. A mark
- * lost by spending MORE — the numeral, the back panel — must not say "needs $3k",
- * because it does not need $3k; it needs at most $8k. Getting this backwards
- * inverts the whole argument the grid is making.
- */
-function gateLabel(availableAt: number[], tier: number): string {
-  if (availableAt.length === 0) return 'not here';
-  const below = availableAt.filter((i) => i < tier);
-  const above = availableAt.filter((i) => i > tier);
-  if (above.length && !below.length) return `needs ${money(STATES[Math.min(...above)].budget)}`;
-  if (below.length && !above.length) return `up to ${money(STATES[Math.max(...below)].budget)}`;
-  // Available on both sides but not here — a genuine gap, e.g. a two-colour
-  // crest at the single-screen stop.
-  return `not at ${money(STATES[tier].budget)}`;
-}
 
 const OPTIONS: PrintOption[] = [
   { id: 'G-abstract-mark', title: 'Abstract mark', method: 'Any method' },
@@ -138,7 +119,7 @@ export function GraphicsLibrary() {
                     className="text-[10px] font-mono uppercase tracking-wider"
                     style={{ color: av.never ? '#A8456E' : 'var(--era-ink-muted)' }}
                   >
-                    {av.never ? 'never' : gateLabel(av.availableAt, tier)}
+                    {av.never ? 'never' : gateLabel(av.availableAt, tier, money, STATES.map((s) => s.budget))}
                   </span>
                 )}
               </div>

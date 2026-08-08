@@ -26,6 +26,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
+import { gateLabel } from '@/lib/blank/producible';
 
 interface Candidate {
   id: string;
@@ -112,8 +113,6 @@ export function MarkBakeoff() {
         {CANDIDATES.map((c) => {
           const ok = c.tiers.includes(tier);
           const on = open === c.id;
-          const first = Math.min(...c.tiers);
-          const last = Math.max(...c.tiers);
           return (
             <div key={c.id}>
               <button
@@ -151,7 +150,7 @@ export function MarkBakeoff() {
                       className="text-[10px] font-mono uppercase tracking-wider"
                       style={{ color: 'var(--era-ink-muted)' }}
                     >
-                      {tier > last ? `up to ${money(STATES[last].budget)}` : `needs ${money(STATES[first].budget)}`}
+                      {gateLabel(c.tiers, tier, money, STATES.map((s) => s.budget))}
                     </span>
                   )}
                 </div>
