@@ -22,9 +22,12 @@ const BUDGETS = STATES.map((s) => s.budget);
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 const [DTF, SCREEN1, SCREEN2, EMB] = [0, 1, 2, 3];
 
+/** 14 characters. The fixture is about LENGTH, not about any candidate name. */
+const LONG_NAME = 'FOURTEEN CHARS';
+
 describe('normalise', () => {
   it('uppercases and collapses whitespace', () => {
-    expect(normalise('  bar tack ')).toBe('BAR TACK');
+    expect(normalise('  two words ')).toBe('TWO WORDS');
   });
 
   it('caps length so a pasted link cannot break layout', () => {
@@ -41,8 +44,8 @@ describe('per-word platen gating', () => {
 
   it('a long word at wide tracking does NOT clear it', () => {
     const wide = byId('grotesque-wide');
-    expect(estimateWidthInches('BARTACK SUPPLY', wide)).toBeGreaterThan(PLATEN_INCHES);
-    const av = availability('BARTACK SUPPLY', wide, DTF);
+    expect(estimateWidthInches(LONG_NAME, wide)).toBeGreaterThan(PLATEN_INCHES);
+    const av = availability(LONG_NAME, wide, DTF);
     expect(av.ok).toBe(false);
     expect(av.overPlaten).toBe(true);
     expect(av.availableAt).toEqual([]);
@@ -50,13 +53,13 @@ describe('per-word platen gating', () => {
 
   it('the same long word DOES fit in a tight treatment — the trade is real', () => {
     const tight = byId('grotesque-tight');
-    expect(availability('BARTACK SUPPLY', tight, DTF).ok).toBe(true);
+    expect(availability(LONG_NAME, tight, DTF).ok).toBe(true);
   });
 
   it('platen overrides budget: no tier buys a jumbo frame', () => {
     const wide = byId('grotesque-wide');
     for (const tier of STATES.map((_, i) => i)) {
-      expect(availability('BARTACK SUPPLY', wide, tier).ok).toBe(false);
+      expect(availability(LONG_NAME, wide, tier).ok).toBe(false);
     }
   });
 

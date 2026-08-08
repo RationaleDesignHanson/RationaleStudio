@@ -2,8 +2,9 @@
  * Wordmark — stage one: type any word, see it in six treatments, priced.
  *
  * Rendered live rather than generated, which is not a shortcut. Image models
- * cannot spell: asking one for "BARTACK" returns BARTAKC, differently wrong on
- * every roll, and a wordmark you cannot spell is not shippable. Set type takes
+ * cannot spell: ask for a seven-letter name and it comes back misspelled,
+ * differently wrong on every roll, and a wordmark you cannot spell is not
+ * shippable. Set type takes
  * any word, is always correct, costs nothing, and becomes the reference image
  * that stage two draws from — so the model's job is drawing, never spelling.
  *
@@ -12,8 +13,8 @@
  * This picks the lane and guarantees the spelling.
  *
  * The gating is per WORD, not just per treatment, which is the interesting part:
- * length x tracking decides whether it clears the 14in platen, so BLANK and
- * BARTACK genuinely do not have the same options at the same budget.
+ * length x tracking decides whether it clears the 14in platen, so a short name
+ * and a long one do not have the same options at the same budget.
  */
 
 'use client';

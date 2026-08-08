@@ -278,7 +278,12 @@ export function BlankContent() {
                   Retail price. It&rsquo;s the largest single margin lever in the model at 35.9
                   points, and the tray still uses tier defaults.
                 </li>
-                <li>Nothing is named. &ldquo;Blank&rdquo; is a working title.</li>
+                <li>
+                  The name is still open, but narrowed: <strong style={{ color: 'var(--era-ink)' }}>Blank</strong>{' '}
+                  is the working name and the only placeholder anyone is comfortable with. Other
+                  candidates were dropped, so the availability question nobody had checked is moot
+                  for now.
+                </li>
                 <li>No inventory ordered, no tech pack, no supplier contacted.</li>
               </Standing>
 

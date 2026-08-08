@@ -13,15 +13,17 @@
  * modified terminals, tightened counters, a custom ligature — character that set
  * type does not have. That has to be generated. The reason generated wordmarks
  * normally fail is that the model is asked to SPELL, and image models cannot;
- * ask for "BARTACK" and you get BARTAKC, differently wrong each roll. Passing the
- * correctly-set word as an image reference removes spelling from the model's job
- * and leaves only drawing, which it is good at.
+ * ask for a seven-letter name and it comes back misspelled, differently wrong on
+ * every roll. Passing the correctly-set word as an image reference removes
+ * spelling from the model's job and leaves only drawing, which it is good at.
  *
  * PRODUCTION GATING IS PER WORD, not just per treatment, and that is the point.
  * A wordmark's length times its tracking decides whether it clears the 14in
  * standard platen; thin strokes at display size cannot be embroidered at Stage 0
  * stitch counts; hairline serifs drop out through a screen on textured cotton.
- * So "BLANK" and "BARTACK" genuinely do not have the same options.
+ * So a five-letter name and a fourteen-character one genuinely do not have the
+ * same options. BLANK is the working name; longer candidates are constrained by
+ * the platen before they are constrained by taste.
  */
 
 import { STATES } from './line';
