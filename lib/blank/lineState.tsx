@@ -55,6 +55,15 @@ export interface LineConfig {
   /** Chosen wordmark treatment id, or null for none. */
   wordmarkStyle: string | null;
   /**
+   * Retail price override for the lever, as a string so an empty field is a
+   * distinct state from zero. Empty means "use the tier default".
+   *
+   * Retail is the largest single margin lever in the model at 35.9 points —
+   * ahead of run size and blank tier — and the lever was displaying "Margin @
+   * $35" with no way to change the $35.
+   */
+  retail: string;
+  /**
    * Which beat is on screen. View state rather than line configuration, carried
    * in the URL on purpose: the whole product is two people sending each other a
    * link, and "look at this" has to land them on the beat you were looking at.
@@ -74,6 +83,7 @@ export const LINE_DEFAULTS: LineConfig = {
   direction: 'workwear',
   wordmark: 'BLANK',
   wordmarkStyle: null,
+  retail: '',
   step: '01',
 };
 
@@ -90,6 +100,7 @@ const PARAM = {
   finish: 'fi',
   wordmark: 'w',
   wordmarkStyle: 'ws',
+  retail: 'r',
   step: 'st',
 } as const;
 
@@ -158,6 +169,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (ws) out.wordmarkStyle = ws;
   const st = q.get(PARAM.step);
   if (st) out.step = st;
+  const r = q.get(PARAM.retail);
+  if (r && /^\d{1,4}$/.test(r)) out.retail = r;
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);

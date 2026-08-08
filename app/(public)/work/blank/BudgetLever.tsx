@@ -54,10 +54,10 @@ const money = (n: number) => `$${n.toLocaleString('en-US', { maximumFractionDigi
 const dollars = (n: number) => `$${n.toFixed(2)}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
-function priceFrame(s: BudgetState, i: number, garment: Garment) {
+function priceFrame(s: BudgetState, i: number, garment: Garment, retail: number) {
   const blank: Blank = BLANKS[BLANK_BY_TIER[garment][i]];
   const cogs = stage0Cogs({ blank, decoration: s.decoration, run: s.run, relabel: s.relabel });
-  const gm = grossMargin(s.retail, cogs.landedCOGS);
+  const gm = grossMargin(retail, cogs.landedCOGS);
   return {
     blank,
     cogs,
@@ -114,6 +114,75 @@ function Row({
       <dd className="text-right" style={{ color: alert ? '#A8456E' : 'var(--era-ink)' }}>
         {value}
         {confidence && <ConfidenceDot level={confidence} />}
+      </dd>
+    </div>
+  );
+}
+
+/**
+ * Margin, with the price you can actually change.
+ *
+ * The number lives in the label rather than the value column because it is an
+ * INPUT to the margin beside it, not another output — putting it in the value
+ * column would read as a second result.
+ */
+function RetailRow({
+  retail,
+  isOverride,
+  onChange,
+  margin,
+  alert,
+}: {
+  retail: number;
+  isOverride: boolean;
+  onChange: (v: string) => void;
+  margin: number;
+  alert?: boolean;
+}) {
+  // nowrap, plus shrink-0 on the value: the input and the reset control make this
+  // dt far wider than a plain label, and without them the row wrapped and put the
+  // margin on the line ABOVE its own label.
+  return (
+    <div
+      className="flex flex-nowrap justify-between items-baseline gap-3 border-b pb-1"
+      style={{ borderColor: 'var(--era-hairline)' }}
+    >
+      <dt className="flex items-baseline gap-1 min-w-0 whitespace-nowrap" style={{ color: 'var(--era-ink-muted)' }}>
+        Margin @ $
+        <input
+          type="number"
+          min={1}
+          max={9999}
+          value={retail}
+          onChange={(e) => onChange(e.target.value)}
+          aria-label="Retail price"
+          size={1}
+          className="w-11 shrink-0 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          style={{
+            borderColor: isOverride ? 'var(--accent)' : 'var(--era-hairline)',
+            color: isOverride ? 'var(--accent)' : 'var(--era-ink)',
+          }}
+        />
+        {isOverride && (
+          <button
+            onClick={() => onChange('')}
+            className="text-[10px] uppercase tracking-wider shrink-0 leading-none"
+            style={{
+              color: 'var(--era-ink-muted)',
+              // globals.css gives every <button> a 44px touch target, which made
+              // this dt 49px tall and pushed the margin onto its own line. This is
+              // a reset affordance inside a text row, not a tap target.
+              minHeight: 0,
+              minWidth: 0,
+            }}
+            title="Back to this tier's default price"
+          >
+            ↺
+          </button>
+        )}
+      </dt>
+      <dd className="text-right shrink-0 whitespace-nowrap" style={{ color: alert ? '#A8456E' : 'var(--era-ink)' }}>
+        {pct(margin)}
       </dd>
     </div>
   );
@@ -190,9 +259,21 @@ export function BudgetLever() {
     };
   }, [i, scrollToFrame]);
 
+  // Retail is an override, not a stored price: empty means "use this tier's
+  // default", so moving the lever still changes the price unless you have said
+  // otherwise. It is the largest single margin lever in the model (35.9 points),
+  // and until now the only number on this beat you could not touch.
+  const retailFor = useCallback(
+    (s: BudgetState) => {
+      const n = Number(config.retail);
+      return config.retail !== '' && Number.isFinite(n) && n > 0 ? n : s.retail;
+    },
+    [config.retail],
+  );
+
   const frames = useMemo(
-    () => STATES.map((s, idx) => ({ s, idx, calc: priceFrame(s, idx, garment) })),
-    [garment],
+    () => STATES.map((s, idx) => ({ s, idx, calc: priceFrame(s, idx, garment, retailFor(s)) })),
+    [garment, retailFor],
   );
 
   return (
@@ -285,7 +366,13 @@ export function BudgetLever() {
                   <Row label="Treatment" value={s.treatment[garment]} />
                   <Row label="Blank" value={calc.blank.name} confidence={calc.blank.confidence} />
                   <Row label="COGS" value={dollars(calc.cogs.landedCOGS)} />
-                  <Row label={`Margin @ ${money(s.retail)}`} value={pct(calc.gm)} alert={!calc.clears} />
+                  <RetailRow
+                    retail={retailFor(s)}
+                    isOverride={config.retail !== ''}
+                    onChange={(v) => set('retail', v)}
+                    margin={calc.gm}
+                    alert={!calc.clears}
+                  />
                 </dl>
                 {!calc.clears && (
                   <p className="mt-2 text-[11px]" style={{ color: '#A8456E' }}>
@@ -378,9 +465,11 @@ export function BudgetLever() {
             <Row label="Treatment" value={STATES[i].treatment[garment]} />
             <Row label="Blank" value={frames[i].calc.blank.name} confidence={frames[i].calc.blank.confidence} />
             <Row label="COGS" value={dollars(frames[i].calc.cogs.landedCOGS)} />
-            <Row
-              label={`Margin @ ${money(STATES[i].retail)}`}
-              value={pct(frames[i].calc.gm)}
+            <RetailRow
+              retail={retailFor(STATES[i])}
+              isOverride={config.retail !== ''}
+              onChange={(v) => set('retail', v)}
+              margin={frames[i].calc.gm}
               alert={!frames[i].calc.clears}
             />
           </dl>

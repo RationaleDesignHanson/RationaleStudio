@@ -129,13 +129,37 @@ export function Identity() {
 
   return (
     <div className="my-2">
-      <p className="mb-4 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-        <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> ·{' '}
-        <span style={{ color: 'var(--era-ink)' }}>
-          {producibleCount(word, tier)} of {ALL_TREATMENTS.length}
-        </span>{' '}
-        treatments makeable at {money(STATES[tier].budget)}. Edit the name in the title above.
-      </p>
+      {/* The name field lives HERE, in the beat about naming.
+          It was only in the masthead — an h1 with a hairline under it, which does
+          not read as an input. "Edit the name in the title above" is not an
+          affordance, it is an apology for the missing one. The masthead stays
+          editable too; both drive the same state. */}
+      <div className="flex flex-wrap items-end gap-x-5 gap-y-3 mb-5">
+        <label className="block">
+          <span
+            className="block text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+            style={{ color: 'var(--era-ink-muted)' }}
+          >
+            The name
+          </span>
+          <input
+            value={config.wordmark}
+            onChange={(e) => set('wordmark', e.target.value.slice(0, 18))}
+            placeholder="BLANK"
+            aria-label="The name of the line"
+            spellCheck={false}
+            autoComplete="off"
+            className="px-3 py-2 text-[15px] font-mono uppercase tracking-widest bg-transparent border outline-none focus:border-[var(--accent)]"
+            style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', width: '14rem' }}
+          />
+        </label>
+        <p className="text-[12px] font-mono pb-2.5" style={{ color: 'var(--era-ink-muted)' }}>
+          <span style={{ color: 'var(--era-ink)' }}>
+            {producibleCount(word, tier)} of {ALL_TREATMENTS.length}
+          </span>{' '}
+          treatments makeable at {money(STATES[tier].budget)}
+        </p>
+      </div>
 
       {/* The lockup, as it would be used. */}
       <div
