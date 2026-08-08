@@ -23,10 +23,12 @@ import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { TIER_METHOD, METHOD_LABEL } from '@/lib/blank/producible';
+import { Shuffle, RotateCcw } from 'lucide-react';
 import {
   constructionAvailable,
   constructionsFor,
   lettersFor,
+  randomConstructions,
   type Construction,
 } from '@/lib/blank/markFamily';
 
@@ -132,7 +134,12 @@ export function MarkFamily() {
   const word = normalise(config.wordmark);
 
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
-  const constructions = constructionsFor(word);
+  // A seed of '' means the nine canonical constructions; any seed means a
+  // generated set. Seeded rather than Math.random so a shuffled family survives
+  // being sent to someone else — an unseeded shuffle gives them a different set.
+  const seed = Number(config.markSeed);
+  const shuffled = config.markSeed !== '' && Number.isFinite(seed);
+  const constructions = shuffled ? randomConstructions(word, seed) : constructionsFor(word);
   const makeable = constructions.filter((c) => constructionAvailable(c, method).ok).length;
   const selected = constructions.find((c) => c.id === config.graphic);
 
@@ -146,6 +153,36 @@ export function MarkFamily() {
         </span>{' '}
         can be made in {METHOD_LABEL[method]} at {money(STATES[tier].budget)}.
       </p>
+
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <button
+          onClick={() => {
+            // Date.now() only as a seed SOURCE, at the moment of a click. The seed
+            // itself is then fixed and shared, so the set is reproducible.
+            set('markSeed', String(Math.floor(Date.now() % 100000)));
+            set('graphic', null);
+          }}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors hover:border-[var(--accent)]"
+          style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
+        >
+          <Shuffle className="w-3.5 h-3.5" /> Shuffle
+        </button>
+        {shuffled && (
+          <button
+            onClick={() => {
+              set('markSeed', '');
+              set('graphic', null);
+            }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider transition-colors"
+            style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
+          >
+            <RotateCcw className="w-3.5 h-3.5" /> The named nine
+          </button>
+        )}
+        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          {shuffled ? `set ${config.markSeed}` : 'the named constructions'}
+        </span>
+      </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-x-3 gap-y-5">
         {constructions.map((c) => {

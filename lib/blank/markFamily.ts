@@ -200,3 +200,124 @@ export function constructionsFor(word: string): Construction[] {
     return true;
   });
 }
+
+/**
+ * RANDOMISED CONSTRUCTIONS.
+ *
+ * The nine canonical constructions are the ones worth naming. They are not the
+ * whole space: enclosure, letter count, stacking, mirroring, overlap, notching
+ * and rotation combine into far more marks than nine, and most of the good ones
+ * are combinations nobody would think to ask for.
+ *
+ * Seeded, never Math.random. A shuffled set is only useful if you can send your
+ * partner the exact one you were looking at, and an unseeded shuffle gives them a
+ * different set — which is the same "generated families are not families" problem
+ * that made these constructions rather than renders in the first place.
+ *
+ * mulberry32: small, fast, well-distributed enough for picking from short lists.
+ */
+function mulberry32(seed: number): () => number {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const ENCLOSURES: Enclosure[] = ['none', 'none', 'circle', 'square', 'shield'];
+
+/** Methods a generated construction can be executed in, from its own geometry. */
+function methodsFor(enclosure: Enclosure, notched: boolean): {
+  methods: Method[];
+  because: Partial<Record<Method, string>>;
+} {
+  if (enclosure === 'none') {
+    return { methods: ['dtf', 'screen1', 'screen2', 'embroidery'], because: {} };
+  }
+  if (enclosure === 'square') {
+    return {
+      methods: ['dtf', 'screen1', 'screen2'],
+      because: {
+        embroidery:
+          'A solid filled block is the most expensive shape in thread — the fill runs past the stitch budget before the letter starts.',
+      },
+    };
+  }
+  // circle or shield: the letter and the enclosure need a gap, and the gap is
+  // what closes first on one screen.
+  const base: Method[] = notched ? ['dtf', 'screen2'] : ['dtf', 'screen2', 'embroidery'];
+  return {
+    methods: base,
+    because: {
+      screen1:
+        'An enclosed mark is two elements with a gap between them; on one screen at small size the gap closes and it prints as a blob.',
+      ...(notched
+        ? {
+            embroidery:
+              'A clean interruption in a satin-stitched enclosure needs a stop and restart; at Stage 0 stitch counts it reads as a defect.',
+          }
+        : {}),
+    },
+  };
+}
+
+/**
+ * A set of constructions drawn from the parametric space, deduped against each
+ * other and against what they would actually draw for this word.
+ */
+export function randomConstructions(word: string, seed: number, count = 9): Construction[] {
+  const rnd = mulberry32(seed || 1);
+  const out: Construction[] = [];
+  const seen = new Set<string>();
+
+  // Bounded rather than while(true): a small space plus dedupe can genuinely run
+  // out of distinct marks, and a shuffle must not hang looking for a tenth.
+  for (let attempt = 0; attempt < 200 && out.length < count; attempt++) {
+    const enclosure = ENCLOSURES[Math.floor(rnd() * ENCLOSURES.length)];
+    const notched = enclosure !== 'none' && enclosure !== 'square' && rnd() < 0.35;
+    const letters: 1 | 2 | 0 = rnd() < 0.5 ? 1 : rnd() < 0.6 ? 2 : 0;
+    // Transforms only apply to two-letter marks, and only one at a time —
+    // stacked-and-mirrored-and-overlapped is noise, not a mark.
+    const roll = rnd();
+    const stacked = letters === 2 && roll < 0.34;
+    const mirrored = letters === 2 && roll >= 0.34 && roll < 0.67;
+    const overlap = letters === 2 && roll >= 0.67;
+
+    const shape: Omit<Construction, 'id' | 'title' | 'note' | 'methods' | 'because'> = {
+      letters,
+      enclosure,
+      stacked,
+      mirrored,
+      overlap,
+      notched,
+    };
+    const drawn = lettersFor(word, shape as Construction);
+    const key = `${drawn}|${enclosure}|${stacked}|${mirrored}|${overlap}|${notched}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const bits = [
+      notched ? 'Notched' : '',
+      enclosure === 'circle' ? 'roundel' : enclosure === 'square' ? 'block' : enclosure === 'shield' ? 'shield' : '',
+      stacked ? 'stack' : mirrored ? 'mirror' : overlap ? 'ligature' : '',
+    ].filter(Boolean);
+    const title = bits.length
+      ? bits.join(' ').replace(/^./, (m) => m.toUpperCase())
+      : letters === 1
+        ? 'Initial'
+        : 'Letters';
+
+    const { methods, because } = methodsFor(enclosure, notched);
+    out.push({
+      ...shape,
+      id: `r-${seed}-${attempt}`,
+      title,
+      note: `${drawn} — ${title.toLowerCase()}. Generated from the name; shuffle for another set.`,
+      methods,
+      because,
+    });
+  }
+  return out;
+}

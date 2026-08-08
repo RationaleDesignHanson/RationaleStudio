@@ -55,6 +55,12 @@ export interface LineConfig {
   /** Chosen wordmark treatment id, or null for none. */
   wordmarkStyle: string | null;
   /**
+   * Seed for the randomised mark set. In the URL because a shuffled family is
+   * only useful if you can send your partner the exact one you were looking at —
+   * an unseeded shuffle produces a different set on their screen.
+   */
+  markSeed: string;
+  /**
    * Retail price override for the lever, as a string so an empty field is a
    * distinct state from zero. Empty means "use the tier default".
    *
@@ -84,6 +90,7 @@ export const LINE_DEFAULTS: LineConfig = {
   wordmark: 'BLANK',
   wordmarkStyle: null,
   retail: '',
+  markSeed: '',
   step: '01',
 };
 
@@ -101,6 +108,7 @@ const PARAM = {
   wordmark: 'w',
   wordmarkStyle: 'ws',
   retail: 'r',
+  markSeed: 'ms',
   step: 'st',
 } as const;
 
@@ -171,6 +179,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (st) out.step = st;
   const r = q.get(PARAM.retail);
   if (r && /^\d{1,4}$/.test(r)) out.retail = r;
+  const ms = q.get(PARAM.markSeed);
+  if (ms && /^\d{1,6}$/.test(ms)) out.markSeed = ms;
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);
