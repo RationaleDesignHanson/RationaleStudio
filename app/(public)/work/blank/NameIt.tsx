@@ -34,8 +34,21 @@ export function NameIt() {
       <h1 className="sr-only">{shown} — line plan</h1>
 
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <label className="shrink-0">
+        {/* SIZING TWIN. The field grows to fit the name, and `ch` cannot do this:
+            `ch` is the width of "0", and this display serif's caps are much wider
+            than its figures, so every ch-based guess clipped the last letter
+            ("TWO WORDS" rendered as "TWO WORD"). An invisible span holding the same
+            string in the same font defines the width exactly, in the same grid
+            cell as the input. No JS, no measurement, no guessing. */}
+        <label className="shrink-0 grid max-w-full">
           <span className="sr-only">The name of the line</span>
+          <span
+            aria-hidden
+            className="font-display leading-none whitespace-pre invisible col-start-1 row-start-1 px-0.5"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)' }}
+          >
+            {config.wordmark || 'BLANK'}
+          </span>
           <input
             value={config.wordmark}
             onChange={(e) => set('wordmark', e.target.value.slice(0, 18))}
@@ -43,15 +56,12 @@ export function NameIt() {
             aria-label="Name of the line"
             spellCheck={false}
             autoComplete="off"
-            className="font-display leading-none bg-transparent border-b outline-none transition-colors focus:border-[var(--accent)] w-[min(9ch,60vw)] sm:w-auto"
+            size={1}
+            className="font-display leading-none bg-transparent border-b outline-none transition-colors focus:border-[var(--accent)] col-start-1 row-start-1 w-full min-w-0 px-0.5"
             style={{
               fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)',
               color: 'var(--era-ink)',
               borderColor: 'var(--era-hairline)',
-              // Sized to the content so the rule under it reads as an edit
-              // affordance rather than as a long empty field.
-              width: `${Math.max(5, config.wordmark.length + 1)}ch`,
-              maxWidth: '100%',
             }}
           />
         </label>

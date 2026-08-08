@@ -32,10 +32,10 @@ import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
-import { Wordmark } from './Wordmark';
+import { Identity } from './Identity';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
-import { MarkDeck, MarkExpansions } from './MarkDeck';
+import { MarkExpansions } from './MarkExpansions';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 
@@ -164,10 +164,9 @@ function Beats() {
 
   return (
     <Beat n={b.n} title={b.title} note={b.note}>
-      {i === 0 && <Wordmark />}
-      {i === 1 && (
+      {i === 0 && (
         <>
-          <MarkDeck />
+          <Identity />
           <Disclosure
             summary="How a mark gets printed"
             hint="twelve print languages — vocabulary, not a decision"
@@ -175,27 +174,27 @@ function Beats() {
             <GraphicsLibrary />
           </Disclosure>
           <Disclosure
-            summary="None of these? Bring your own reference"
+            summary="Bring your own reference"
             hint="upload → costed, and matched to the nearest thing we can make"
           >
             <ReferenceUpload />
           </Disclosure>
         </>
       )}
-      {i === 2 && <BrandBakeoff />}
-      {i === 3 && (
+      {i === 1 && <BrandBakeoff />}
+      {i === 2 && (
         <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
           <BudgetLever />
         </div>
       )}
-      {i === 4 && <LineTray />}
-      {i === 5 && (
+      {i === 3 && <LineTray />}
+      {i === 4 && (
         <>
           <MarkExpansions />
           <DeviationRender />
         </>
       )}
-      {i === 6 && <Standings />}
+      {i === 5 && <Standings />}
     </Beat>
   );
 }
