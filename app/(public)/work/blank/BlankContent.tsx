@@ -26,6 +26,7 @@ import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
+import { MarkBakeoff } from './MarkBakeoff';
 import { ChapterRail } from './ChapterRail';
 import { Disclosure } from './Disclosure';
 import { LineProvider } from '@/lib/blank/lineState';
@@ -166,9 +167,19 @@ export function BlankContent() {
         <Chapter
           n="03"
           title="Which mark"
-          note="Twelve print languages on one garment. Which of them you can have is decided by the budget in 01 — and not simply more of them as you spend more."
+          note="Six candidate marks as artwork, so the mark is the only variable — then twelve print languages showing how a mark can be applied. Which of either you can have is decided by the budget in 01, and not simply more of them as you spend more."
         >
-          <GraphicsLibrary />
+          <MarkBakeoff />
+          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
+              And how a mark can be printed
+            </h3>
+            <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
+              Twelve print languages on one garment — the vocabulary any of the six above gets
+              executed in.
+            </p>
+            <GraphicsLibrary />
+          </div>
           <Disclosure
             summary="None of these? Bring your own reference"
             hint="upload → costed, and matched to the nearest thing we can make"
