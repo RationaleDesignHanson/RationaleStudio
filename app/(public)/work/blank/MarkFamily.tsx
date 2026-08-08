@@ -32,8 +32,12 @@ import {
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 
-/** One mark, drawn from the name. */
-function Mark({
+/**
+ * One mark, drawn from the name. Exported because the lockup preview draws the
+ * same mark beside the wordmark, and two implementations of the same glyph would
+ * drift the moment either changed.
+ */
+export function Mark({
   c,
   word,
   css,

@@ -47,6 +47,12 @@ export interface Lockup {
   usesSymbol: boolean;
 }
 
+/**
+ * Plainly named on purpose. These were "Wordmark only / Symbol only / Stacked /
+ * Inline" behind a control labelled "Lockup", and the answer to "can I use the
+ * logo, the wordmark, or both" stopped being findable — the capability was there
+ * and the vocabulary hid it. Say what goes on the garment.
+ */
 export const LOCKUPS: Lockup[] = [
   {
     id: 'word',
@@ -57,22 +63,22 @@ export const LOCKUPS: Lockup[] = [
   },
   {
     id: 'symbol',
-    title: 'Symbol only',
+    title: 'Mark only',
     use: 'Left chest, sleeve, cap front — anywhere under 4in.',
     usesWord: false,
     usesSymbol: true,
   },
   {
     id: 'stacked',
-    title: 'Stacked',
-    use: 'Symbol over word. Reads as a crest; needs vertical room.',
+    title: 'Both — mark above',
+    use: 'Mark over word. Reads as a crest; needs vertical room.',
     usesWord: true,
     usesSymbol: true,
   },
   {
     id: 'inline',
-    title: 'Inline',
-    use: 'Symbol beside word. The widest option, so the first to blow the platen.',
+    title: 'Both — mark beside',
+    use: 'Mark beside word. The widest option, so the first to blow the platen.',
     usesWord: true,
     usesSymbol: true,
   },
@@ -137,11 +143,11 @@ export function usageRule(word: string, t: Treatment, symbol: SymbolKind): Usage
     return {
       small: 'nothing',
       large: 'wordmark',
-      sentence: `No symbol, so anything under ${MIN_WORDMARK_INCHES}in has nothing to carry — the left chest, the sleeve and the cap front all go blank. That is the cost of a wordmark-only identity.`,
+      sentence: `No mark, so anything under ${MIN_WORDMARK_INCHES}in has nothing to carry — the left chest, the sleeve and the cap front all go blank. That is the cost of a wordmark-only identity.`,
     };
   }
 
-  const label = symbol === 'monogram' ? 'the monogram' : 'the symbol';
+  const label = symbol === 'monogram' ? 'the monogram' : 'the mark';
   return {
     small: symbol === 'monogram' ? 'monogram' : 'symbol',
     large: 'wordmark',

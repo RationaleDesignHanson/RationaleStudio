@@ -34,6 +34,8 @@ import {
   type SymbolKind,
 } from '@/lib/blank/identity';
 import { gateLabel } from '@/lib/blank/producible';
+import { constructionsFor } from '@/lib/blank/markFamily';
+import { Mark } from './MarkFamily';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 const BUDGETS = STATES.map((s) => s.budget);
@@ -236,7 +238,9 @@ export function LockupStep() {
   const word = normalise(config.wordmark);
   const { t } = useFace();
 
-  const symbolKind: SymbolKind = config.graphic ? 'mark' : 'none';
+  // The chosen mark is a construction id now, not a piece of stock artwork.
+  const construction = constructionsFor(word).find((c) => c.id === config.graphic) ?? null;
+  const symbolKind: SymbolKind = construction ? 'mark' : 'none';
   const lockup = LOCKUPS.find((l) => l.id === config.placement) ?? LOCKUPS[0];
   const rule = usageRule(word, t, symbolKind);
   const lockupW = lockupWidthInches(word, t, lockup);
@@ -245,41 +249,82 @@ export function LockupStep() {
   return (
     <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
       <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-        And how you use them together
+        What goes on the garment
       </h3>
       <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-        The lockup is the rule for putting the word and the mark in the same place.
+        The wordmark, the mark, or both — and if both, how they sit together.
       </p>
 
-      <div className="flex flex-wrap items-end gap-4">
-        <label className="min-w-0">
-          <span
-            className="block text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
-            style={{ color: 'var(--era-ink-muted)' }}
-          >
-            Lockup
-          </span>
-          <select
-            value={lockup.id}
-            onChange={(e) => set('placement', e.target.value)}
-            aria-label="Lockup"
-            className="min-w-0 bg-transparent border px-2.5 py-1.5 text-[12px] font-mono uppercase tracking-wider outline-none focus:border-[var(--accent)]"
-            style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
-          >
-            {LOCKUPS.map((l) => (
-              <option key={l.id} value={l.id} disabled={l.usesSymbol && symbolKind === 'none'}>
-                {l.title}
-                {l.usesSymbol && symbolKind === 'none' ? ' (needs a mark)' : ''}
-              </option>
-            ))}
-          </select>
-        </label>
-        <p
-          className="text-[11px] font-mono pb-2"
+      {/* The preview. A lockup is a spatial rule, and a sentence describing where
+          two things sit relative to each other is not a substitute for showing it. */}
+      <div
+        className="flex items-center justify-center px-8 py-10 mb-4 overflow-hidden"
+        style={{
+          backgroundColor: 'var(--era-bg-deep)',
+          minHeight: 'min(26vh, 220px)',
+          outline: overPlaten ? '1px solid #A8456E' : 'none',
+          outlineOffset: '-1px',
+        }}
+      >
+        <div
+          className={`flex ${
+            lockup.id === 'stacked' ? 'flex-col items-center gap-3' : 'items-center gap-5'
+          }`}
+        >
+          {lockup.usesSymbol && construction && (
+            <Mark c={construction} word={word} css={t.css} size={lockup.id === 'symbol' ? 132 : 76} />
+          )}
+          {lockup.usesWord && (
+            <div
+              className="max-w-full overflow-hidden"
+              style={{
+                color: 'var(--era-ink)',
+                fontSize: 'clamp(1.5rem, 5vw, 3.4rem)',
+                lineHeight: 1.05,
+                whiteSpace: 'nowrap',
+                ...t.css,
+              }}
+            >
+              {word || 'BLANK'}
+            </div>
+          )}
+          {lockup.usesSymbol && !construction && (
+            <span className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+              pick a mark above
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2">
+        {LOCKUPS.map((l) => {
+          const needsMark = l.usesSymbol && symbolKind === 'none';
+          const on = l.id === lockup.id;
+          return (
+            <button
+              key={l.id}
+              onClick={() => !needsMark && set('placement', l.id)}
+              disabled={needsMark}
+              aria-pressed={on}
+              title={needsMark ? 'Pick a mark above first' : l.use}
+              className="px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-35"
+              style={{
+                borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
+                color: on ? 'var(--accent)' : 'var(--era-ink)',
+                backgroundColor: on ? 'color-mix(in srgb, var(--accent) 6%, transparent)' : 'transparent',
+                minHeight: 0,
+              }}
+            >
+              {l.title}
+            </button>
+          );
+        })}
+        <span
+          className="text-[11px] font-mono ml-1"
           style={{ color: overPlaten ? '#A8456E' : 'var(--era-ink-muted)' }}
         >
           ~{lockupW}in{overPlaten ? ` · past the ${PLATEN_INCHES}in platen` : ''}
-        </p>
+        </span>
       </div>
 
       <p className="text-[13px] mt-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
