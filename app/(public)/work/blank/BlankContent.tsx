@@ -166,12 +166,6 @@ function Beats() {
     <Beat n={b.n} title={b.title} note={b.note}>
       {i === 0 && <Wordmark />}
       {i === 1 && (
-        <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
-          <BudgetLever />
-        </div>
-      )}
-      {i === 2 && <BrandBakeoff />}
-      {i === 3 && (
         <>
           <MarkDeck />
           <Disclosure
@@ -188,8 +182,14 @@ function Beats() {
           </Disclosure>
         </>
       )}
-      {i === 4 && <DeviationRender />}
-      {i === 5 && <LineTray />}
+      {i === 2 && <BrandBakeoff />}
+      {i === 3 && (
+        <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
+          <BudgetLever />
+        </div>
+      )}
+      {i === 4 && <LineTray />}
+      {i === 5 && <DeviationRender />}
       {i === 6 && <Standings />}
     </Beat>
   );

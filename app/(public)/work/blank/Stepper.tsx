@@ -51,9 +51,9 @@ export const BEATS: Beat[] = [
   },
   {
     n: '02',
-    short: 'Budget',
-    title: 'The budget',
-    note: 'Quiet is expensive to make and loud is cheap. Drag it, and watch options go out of reach as you spend more.',
+    short: 'Symbol',
+    title: 'Or a symbol',
+    note: 'One candidate at a time. Keep it or pass.',
   },
   {
     n: '03',
@@ -63,21 +63,21 @@ export const BEATS: Beat[] = [
   },
   {
     n: '04',
-    short: 'Symbol',
-    title: 'Or a symbol',
-    note: 'One candidate at a time. Keep it or pass.',
+    short: 'Budget',
+    title: 'The budget',
+    note: 'Now the constraint. Quiet is expensive to make and loud is cheap — drag it and watch what you chose above move in and out of reach.',
   },
   {
     n: '05',
-    short: 'Expansion',
-    title: 'How it expands',
-    note: 'One mark is not a brand. This is the family, and where it breaks.',
-  },
-  {
-    n: '06',
     short: 'The line',
     title: 'Your line',
     note: 'Setup is charged once across the collection, so the line costs less than the sum of its garments.',
+  },
+  {
+    n: '06',
+    short: 'Expansion',
+    title: 'How it expands',
+    note: 'One mark is not a brand. This is the family, and where it breaks.',
   },
   {
     n: '07',

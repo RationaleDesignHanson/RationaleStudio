@@ -1,45 +1,41 @@
 /**
- * Wordmark — stage one: type any word, see it set, priced.
+ * Wordmark — one specimen at a time.
  *
- * Rendered live rather than generated, which is not a shortcut. Image models
- * cannot spell: ask for a seven-letter name and it comes back misspelled,
- * differently wrong on every roll, and a wordmark you cannot spell is not
- * shippable. Set type takes any word, is always correct, costs nothing, and
- * becomes the reference image stage two draws from — so the model's job is
- * drawing, never spelling.
+ * This was a 2-up grid of six, then twelve, and both were wrong for the same
+ * reason: a grid asks you to compare, and nobody compares twelve typefaces
+ * simultaneously. You look at one, react, move on. So it is a carousel — one
+ * specimen at the size you would actually judge it at, with a dropdown for direct
+ * access when you already know which lane you want.
  *
- * What this is NOT: a finished wordmark. A wordmark has drawn letterforms —
- * modified terminals, tightened counters, a custom ligature. That is stage two.
- * This picks the lane and guarantees the spelling.
+ * Cycling IS choosing. There is no separate "select" button, because a carousel
+ * whose current frame is not the selection needs the user to hold two ideas at
+ * once (what I am looking at vs what I have picked) for no benefit.
  *
- * SIX VISIBLE, SIX COLLAPSED. Twelve specimens at once is a survey, not a
- * judgement — nobody evaluates twelve faces simultaneously, you look at one,
- * react, move on. The six straight faces ARE the lane decision; the funky six are
- * there when you want to push, behind a disclosure so they are not competing for
- * attention while you choose.
+ * Set type, not a finished wordmark. Image models cannot spell — ask for a
+ * seven-letter name and it comes back misspelled, differently wrong on every roll
+ * — so the word is SET here, always correct and free to explore, and this becomes
+ * the reference image stage two draws letterforms from. The model's job is drawing,
+ * never spelling.
  *
- * The gating is per WORD, not just per treatment, which is the interesting part:
- * length x tracking decides whether it clears the 14in platen, so a short name
- * and a long one do not have the same options at the same budget.
+ * Gating is per WORD: length x tracking decides whether it clears the 14in platen,
+ * so a short name and a long one do not get the same options at the same budget.
  */
 
 'use client';
 
+import { useCallback } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import {
   ALL_TREATMENTS,
-  FUNKY,
-  TREATMENTS,
   availability,
   lineCount,
   normalise,
   producibleCount,
   PLATEN_INCHES,
-  type Treatment,
 } from '@/lib/blank/wordmark';
 import { gateLabel } from '@/lib/blank/producible';
-import { Disclosure } from './Disclosure';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 const BUDGETS = STATES.map((s) => s.budget);
@@ -50,48 +46,121 @@ export function Wordmark() {
   const stop = STATES[tier];
   const word = normalise(config.wordmark);
   const makeable = producibleCount(word, tier);
-  const funkyMakeable = FUNKY.filter((t) => availability(word, t, tier).ok).length;
 
-  const Card = ({ t }: { t: Treatment }) => {
-    const av = availability(word, t, tier);
-    const on = config.wordmarkStyle === t.id;
-    const lines = lineCount(word, t);
-    return (
-      <button
-        onClick={() => set('wordmarkStyle', on ? null : t.id)}
-        aria-pressed={on}
-        className="w-full min-w-0 border p-4 transition-colors flex flex-col [&_*]:text-left"
+  // The carousel cursor IS the selection. Nothing chosen yet reads as the first
+  // treatment, and the first move commits it.
+  const found = ALL_TREATMENTS.findIndex((t) => t.id === config.wordmarkStyle);
+  const idx = found < 0 ? 0 : found;
+  const t = ALL_TREATMENTS[idx];
+  const av = availability(word, t, tier);
+  const lines = lineCount(word, t);
+
+  const move = useCallback(
+    (n: number) => {
+      const next = (n + ALL_TREATMENTS.length) % ALL_TREATMENTS.length;
+      set('wordmarkStyle', ALL_TREATMENTS[next].id);
+    },
+    [set],
+  );
+
+  return (
+    <div className="my-2">
+      <p className="mb-4 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> at {word.length || 0}{' '}
+        characters —{' '}
+        <span style={{ color: 'var(--era-ink)' }}>
+          {makeable} of {ALL_TREATMENTS.length}
+        </span>{' '}
+        treatments can be made at {money(stop.budget)}. Edit the name in the title above.
+      </p>
+
+      {/* The specimen, at a size worth judging. */}
+      <div
+        className="relative flex items-center justify-center px-10 py-12 overflow-hidden"
         style={{
-          borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
-          backgroundColor: on ? 'color-mix(in srgb, var(--accent) 5%, transparent)' : 'transparent',
-          // Inline, not `items-stretch`: globals.css sets
-          // `button { display: inline-flex; align-items: center; justify-content: center }`
-          // for 44px touch targets and it outranks the utility class. Left at
-          // center, every child shrinks to its content and centres — the specimen
-          // measured 99px inside a 568px card, which reads as centred text.
-          alignItems: 'stretch',
-          justifyContent: 'flex-start',
+          backgroundColor: 'var(--era-bg-deep)',
+          minHeight: 'min(38vh, 320px)',
+          outline: av.ok ? 'none' : '1px solid #A8456E',
+          outlineOffset: '-1px',
         }}
       >
         <div
-          className="overflow-hidden whitespace-nowrap mb-3 text-left"
+          className="max-w-full overflow-hidden"
           style={{
-            opacity: av.ok ? 1 : 0.3,
+            opacity: av.ok ? 1 : 0.35,
             color: 'var(--era-ink)',
-            fontSize: 'clamp(1.1rem, 2.4vw, 1.9rem)',
-            lineHeight: 1.15,
+            fontSize: 'clamp(2rem, 7vw, 5rem)',
+            lineHeight: 1.05,
+            whiteSpace: 'nowrap',
             ...t.css,
           }}
         >
           {word || 'BLANK'}
         </div>
+      </div>
 
-        <div className="flex flex-wrap items-baseline gap-x-2 text-left">
-          <span
-            className="text-[12px]"
-            style={{ color: on ? 'var(--accent)' : av.ok ? 'var(--era-ink)' : 'var(--era-ink-muted)' }}
+      {/* Controls: arrows for browsing, a dropdown for going straight there. */}
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <button
+          onClick={() => move(idx - 1)}
+          aria-label="Previous treatment"
+          className="shrink-0 border p-1.5 transition-colors hover:border-[var(--accent)]"
+          style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          onClick={() => move(idx + 1)}
+          aria-label="Next treatment"
+          className="shrink-0 border p-1.5 transition-colors hover:border-[var(--accent)]"
+          style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+
+        <label className="min-w-0">
+          <span className="sr-only">Wordmark treatment</span>
+          <select
+            value={t.id}
+            onChange={(e) => set('wordmarkStyle', e.target.value)}
+            className="bg-transparent border px-2.5 py-1.5 text-[12px] font-mono uppercase tracking-wider outline-none focus:border-[var(--accent)]"
+            style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           >
+            <optgroup label="Straight — choosing a face">
+              {ALL_TREATMENTS.filter((x) => x.group === 'straight').map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.title}
+                  {availability(word, x, tier).ok ? '' : ' (not at this budget)'}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Funky — doing something to the type">
+              {ALL_TREATMENTS.filter((x) => x.group === 'funky').map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.title}
+                  {availability(word, x, tier).ok ? '' : ' (not at this budget)'}
+                </option>
+              ))}
+            </optgroup>
+          </select>
+        </label>
+
+        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          {idx + 1} / {ALL_TREATMENTS.length}
+        </span>
+      </div>
+
+      {/* The verdict for the one on screen. */}
+      <div className="mt-4 max-w-2xl">
+        <div className="flex flex-wrap items-baseline gap-x-2.5">
+          <h4 className="font-display text-lg" style={{ color: 'var(--era-ink)' }}>
             {t.title}
+          </h4>
+          <span
+            className="text-[10px] font-mono uppercase tracking-wider"
+            style={{ color: t.group === 'funky' ? 'var(--accent)' : 'var(--era-ink-muted)' }}
+          >
+            {t.group}
           </span>
           <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
             ~{av.widthInches}in{lines > 1 ? ` · ${lines} lines` : ''}
@@ -105,43 +174,16 @@ export function Wordmark() {
             </span>
           )}
         </div>
-        <p className="text-[11px] mt-1" style={{ color: 'var(--era-ink-muted)' }}>
+        <p className="text-[13px] mt-1.5" style={{ color: av.ok ? 'var(--era-ink-body)' : '#A8456E' }}>
           {av.ok ? t.lane : av.reason}
         </p>
-      </button>
-    );
-  };
-
-  return (
-    <div className="my-2">
-      <p className="mb-5 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-        <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> at {word.length || 0}{' '}
-        characters —{' '}
-        <span style={{ color: 'var(--era-ink)' }}>
-          {makeable} of {ALL_TREATMENTS.length}
-        </span>{' '}
-        treatments can be made at {money(stop.budget)}. Edit the name in the title above.
-      </p>
-
-      <div className="grid sm:grid-cols-2 gap-x-4 gap-y-4">
-        {TREATMENTS.map((t) => (
-          <Card key={t.id} t={t} />
-        ))}
       </div>
 
-      <Disclosure summary="Funky" hint={`${funkyMakeable} of 6 makeable — doing something to the type`}>
-        <div className="grid sm:grid-cols-2 gap-x-4 gap-y-4">
-          {FUNKY.map((t) => (
-            <Card key={t.id} t={t} />
-          ))}
-        </div>
-      </Disclosure>
-
-      <p className="mt-6 text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
-        Set type, not a finished wordmark. Every funky option earns its place with a production
-        consequence rather than a look: stacking halves the width, which is how a long name clears
-        the {PLATEN_INCHES}in platen at all; an outline is the cheapest ink coverage here and the
-        only one no screen can hold; a knockout block is the most expensive shape in thread.
+      <p className="mt-6 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+        Set type, not a finished wordmark — the drawn letterforms come next, and this specimen is
+        what they get drawn from, which is what keeps the spelling right. Widths are approximate at a
+        1.6in cap height; {PLATEN_INCHES}in is the standard platen and larger needs jumbo frames
+        Stage 0 does not budget for.
       </p>
     </div>
   );

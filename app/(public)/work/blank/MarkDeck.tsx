@@ -139,9 +139,14 @@ export function MarkDeck() {
       <div className="grid lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
         {/* The mark, large. It is the thing being judged, so it gets the room. */}
         <div>
+          {/* Capped rather than a bare aspect-square: at 320px wide plus the
+              title, profile and buttons, Keep/Pass landed below a 900px fold —
+              the primary action of the beat needed scrolling to reach. */}
           <div
-            className="relative w-full aspect-square overflow-hidden"
+            className="relative w-full aspect-square overflow-hidden mx-auto"
             style={{
+              maxHeight: 'min(32vh, 280px)',
+              maxWidth: 'min(32vh, 280px)',
               backgroundColor: 'var(--era-bg-deep)',
               opacity: ok ? 1 : 0.3,
               filter: ok ? 'none' : 'grayscale(1)',
