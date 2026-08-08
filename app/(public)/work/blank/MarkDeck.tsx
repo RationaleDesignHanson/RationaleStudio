@@ -12,9 +12,14 @@
  * what a sequence of judgements wants — one large mark, its production profile,
  * and two answers.
  *
- * The expansions come with the candidate rather than behind a second click,
- * because "is this the brand" cannot be answered from the artwork alone — a mark
- * that dies at micro scale or cannot be stitched is not a brand, it is a graphic.
+ * The garment application does NOT live here, and that was a sequencing bug: this
+ * beat showed the mark ON GARMENTS before the aesthetic direction had been chosen,
+ * so you were judging a rendering of a decision two beats away. The four-frame
+ * family moved to the expansion beat, which sits after direction.
+ *
+ * What stays is what you can judge without a direction: the artwork itself and
+ * whether the budget can execute it. `MarkExpansions` is exported for the beat
+ * that can legitimately show it.
  */
 
 'use client';
@@ -108,7 +113,7 @@ export function MarkDeck() {
   );
 
   return (
-    <div className="my-2">
+    <div className="my-2 max-w-md mx-auto">
       <div className="flex items-baseline justify-between gap-4 mb-4">
         <p className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
           <span style={{ color: 'var(--accent)' }}>{idx + 1}</span> of {CANDIDATES.length}
@@ -136,7 +141,7 @@ export function MarkDeck() {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
+      <div>
         {/* The mark, large. It is the thing being judged, so it gets the room. */}
         <div>
           {/* Capped rather than a bare aspect-square: at 320px wide plus the
@@ -208,44 +213,69 @@ export function MarkDeck() {
           </div>
         </div>
 
-        {/* The family. "Is this the brand" cannot be answered from artwork alone. */}
-        <div className="min-w-0">
-          <p className="text-[11px] font-mono uppercase tracking-[0.2em] mb-2.5" style={{ color: 'var(--era-ink-muted)' }}>
-            Across the line
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-2.5 gap-y-3">
-            {EXPANSIONS.map((x) => (
-              <figure key={x.slug} className="min-w-0">
-                <div
-                  className="relative w-full aspect-[3/4] overflow-hidden"
-                  style={{ backgroundColor: 'var(--era-bg-deep)' }}
-                >
-                  <Image
-                    src={`/blank/marks/${c.id}-${x.slug}.webp`}
-                    alt={`${c.title} — ${x.label}`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, 22vw"
-                    className="object-cover"
-                  />
-                </div>
-                <figcaption className="mt-1">
-                  <span className="text-[11px] block" style={{ color: 'var(--era-ink)' }}>
-                    {x.label}
-                  </span>
-                  <span className="text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-                    {x.gate}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <p className="text-[12px] mt-3 max-w-xl" style={{ color: 'var(--era-ink-muted)' }}>
-            Same artwork every frame — passed to the model as an image, not described in words, so
-            it is genuinely this mark rather than a redraw of it.
-          </p>
-        </div>
       </div>
     </div>
   );
 }
 
+/**
+ * The mark across the line — four applications of whichever candidate is current.
+ *
+ * Lives in the expansion beat rather than in the deck, because seeing a mark on a
+ * garment presupposes an aesthetic direction, and the deck runs before direction
+ * is chosen. Four frames chosen to span the budget rather than to look varied: the
+ * large chest print is what $3k buys, the tonal chest print is the same mark at
+ * $8k, the micro left-chest survives every tier, and the oversize back prints and
+ * cannot be stitched. The family and its limits in one row.
+ */
+export function MarkExpansions() {
+  const { config } = useLine();
+  const chosen = CANDIDATES.find((c) => c.id === config.graphic);
+  const cursor = config.motif && /^\d+$/.test(config.motif) ? Number(config.motif) : 0;
+  const c = chosen ?? CANDIDATES[Math.min(cursor, CANDIDATES.length - 1)];
+
+  return (
+    <div className="mb-10">
+      <div className="flex flex-wrap items-baseline gap-x-2.5 mb-3">
+        <h4 className="font-display text-lg" style={{ color: 'var(--era-ink)' }}>
+          {c.title} across the line
+        </h4>
+        {!chosen && (
+          <span className="text-[10px] font-mono uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+            not kept yet — previewing
+          </span>
+        )}
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-4">
+        {EXPANSIONS.map((x) => (
+          <figure key={x.slug} className="min-w-0">
+            <div
+              className="relative w-full aspect-[3/4] overflow-hidden"
+              style={{ backgroundColor: 'var(--era-bg-deep)' }}
+            >
+              <Image
+                src={`/blank/marks/${c.id}-${x.slug}.webp`}
+                alt={`${c.title} — ${x.label}`}
+                fill
+                sizes="(max-width: 640px) 50vw, 22vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-1">
+              <span className="text-[11px] block" style={{ color: 'var(--era-ink)' }}>
+                {x.label}
+              </span>
+              <span className="text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                {x.gate}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p className="text-[12px] mt-3 max-w-xl" style={{ color: 'var(--era-ink-muted)' }}>
+        Same artwork every frame — passed to the model as an image, not described in words, so it is
+        genuinely this mark rather than a redraw of it.
+      </p>
+    </div>
+  );
+}

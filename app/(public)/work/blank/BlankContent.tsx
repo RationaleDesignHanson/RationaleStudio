@@ -35,7 +35,7 @@ import { DeviationRender } from './DeviationRender';
 import { Wordmark } from './Wordmark';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
-import { MarkDeck } from './MarkDeck';
+import { MarkDeck, MarkExpansions } from './MarkDeck';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 
@@ -189,7 +189,12 @@ function Beats() {
         </div>
       )}
       {i === 4 && <LineTray />}
-      {i === 5 && <DeviationRender />}
+      {i === 5 && (
+        <>
+          <MarkExpansions />
+          <DeviationRender />
+        </>
+      )}
       {i === 6 && <Standings />}
     </Beat>
   );

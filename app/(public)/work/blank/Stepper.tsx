@@ -53,7 +53,7 @@ export const BEATS: Beat[] = [
     n: '02',
     short: 'Symbol',
     title: 'Or a symbol',
-    note: 'One candidate at a time. Keep it or pass.',
+    note: 'The artwork on its own, one candidate at a time — keep it or pass. What it looks like made comes after the direction is set.',
   },
   {
     n: '03',
@@ -77,7 +77,7 @@ export const BEATS: Beat[] = [
     n: '06',
     short: 'Expansion',
     title: 'How it expands',
-    note: 'One mark is not a brand. This is the family, and where it breaks.',
+    note: 'Now that the direction is set, here is the name and the mark applied — the family, and where it breaks.',
   },
   {
     n: '07',
@@ -137,7 +137,12 @@ export function Stepper() {
     decided.push({ label: 'Direction', value: DIRECTION_LABELS[config.direction] ?? config.direction });
   }
   if (config.graphic) {
-    decided.push({ label: 'Symbol', value: config.graphic.replace(/^G-/, '').replace(/-/g, ' ') });
+    decided.push({
+      // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
+      // reads "M seal".
+      label: 'Symbol',
+      value: config.graphic.replace(/^[GM]-/, '').replace(/-/g, ' '),
+    });
   }
   if (totals) {
     decided.push({ label: 'SKUs', value: String(skus.length) });
