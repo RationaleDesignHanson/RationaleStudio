@@ -247,8 +247,15 @@ export function BudgetLever() {
 
               {/* The garment — identical geometry in every frame */}
               <div className="order-1 lg:order-2 mx-auto w-full lg:w-auto min-w-0">
+                {/* Stage height is the viewport REMAINDER, not a flat vh fraction, so
+                    the tier scale and caption stay in fold on a 13" laptop. Measured
+                    chrome: 262px above the stage (the masthead wraps to two lines at
+                    exactly lg, the worst case; it is 243px at 1280+) and 128px of
+                    controls below it — slider, tier scale, caption. 398 = 390
+                    worst-case chrome + 8px slack. At 1440x900 this is ~20px shorter
+                    than the old 58vh; above ~1050 tall it is meaningfully taller. */}
                 <div
-                  className="relative overflow-hidden mx-auto w-full lg:w-auto lg:h-[min(58vh,700px)] max-h-[min(48vh,420px)] lg:max-h-none"
+                  className="relative overflow-hidden mx-auto w-full lg:w-auto lg:h-[min(100vh_-_398px,700px)] max-h-[min(48vh,420px)] lg:max-h-none"
                   style={{ aspectRatio: g.ratio, backgroundColor: 'var(--era-bg-deep)' }}
                 >
                   <Image
