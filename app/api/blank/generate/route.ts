@@ -39,6 +39,7 @@ import {
   validateTuple,
   type RenderTuple,
 } from '@/lib/blank/prompts';
+import { ensureDurable, persistRender } from '@/lib/blank/renderStore';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -171,13 +172,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Renders are temporarily unavailable.' }, { status: 503 });
   }
 
+  // A cache hit is only worth serving if the URL will still resolve. Rows
+  // written before renders were persisted hold an expiring Replicate URL;
+  // ensureDurable copies those into our bucket, or deletes the row if the
+  // upstream image is already gone so this request can re-render it.
   if (cached.data?.image_url) {
-    return NextResponse.json({
-      imageUrl: cached.data.image_url,
-      seed: cached.data.seed,
-      cached: true,
-      tupleKey: key,
-    });
+    const durable = await ensureDurable(supabase, key, cached.data.image_url);
+    if (durable) {
+      return NextResponse.json({
+        imageUrl: durable,
+        seed: cached.data.seed,
+        cached: true,
+        tupleKey: key,
+      });
+    }
   }
 
   // 4. Limits — only paid renders get here.
@@ -242,6 +250,13 @@ export async function POST(req: Request) {
     );
   }
 
+  // Copy the render into our own bucket before caching it. Replicate's URLs
+  // expire, so caching one poisons the tuple: the hit path would serve a 404
+  // forever and never re-render. If the copy fails we still return the image —
+  // it is paid for — but the row records the durable URL only when we have one.
+  const persisted = await persistRender(supabase, imageUrl, key);
+  const cacheUrl = persisted?.url ?? imageUrl;
+
   // upsert, not insert: two people can ask for the same new tuple at once.
   const { error: writeError } = await supabase.from('blank_renders').upsert(
     {
@@ -251,7 +266,7 @@ export async function POST(req: Request) {
       graphic: tuple.graphic,
       colorway: tuple.colorway,
       seed: derivedSeed(tuple),
-      image_url: imageUrl,
+      image_url: cacheUrl,
       prompt,
       requester: who,
     },
@@ -264,8 +279,10 @@ export async function POST(req: Request) {
     console.error('[blank/generate] cache write failed', writeError.message);
   }
 
+  // Hand back the durable URL, not Replicate's — the client may keep or share
+  // it, and it should not be holding a link that dies overnight.
   return NextResponse.json({
-    imageUrl,
+    imageUrl: cacheUrl,
     seed: derivedSeed(tuple),
     cached: false,
     tupleKey: key,

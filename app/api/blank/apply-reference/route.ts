@@ -26,6 +26,7 @@ import { createClient } from '@supabase/supabase-js';
 import { isUnlocked } from '@/lib/unlock';
 import { ASPECT, COLORWAYS, resolveAxes } from '@/lib/blank/prompts';
 import { MOTIFS, PLACEMENTS, SCALES, FINISHES, axesValid, axesStage0 } from '@/lib/blank/axes';
+import { ensureDurable, persistRender } from '@/lib/blank/renderStore';
 import type { Garment } from '@/lib/blank/line';
 
 export const runtime = 'nodejs';
@@ -204,8 +205,11 @@ export async function POST(req: Request) {
     console.error('[blank/apply-reference] cache read failed', cached.error.message);
     return NextResponse.json({ error: 'Renders are temporarily unavailable.' }, { status: 503 });
   }
+  // Same durability rule as /generate: heal a pre-persistence row into the
+  // bucket, or drop it and re-render if the upstream image has already expired.
   if (cached.data?.image_url) {
-    return NextResponse.json({ imageUrl: cached.data.image_url, cached: true });
+    const durable = await ensureDurable(supabase, key, cached.data.image_url);
+    if (durable) return NextResponse.json({ imageUrl: durable, cached: true });
   }
 
   // ── limits, only for paid renders ─────────────────────────────────────────
@@ -314,6 +318,10 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
     return NextResponse.json({ error: 'Render failed — try again.' }, { status: 502 });
   }
 
+  // Persist before caching — a Seedream URL expires exactly like an Imagen one.
+  const persisted = await persistRender(supabase, imageUrl, key);
+  const cacheUrl = persisted?.url ?? imageUrl;
+
   const { error: writeError } = await supabase.from('blank_renders').upsert(
     {
       tuple_key: key,
@@ -322,7 +330,7 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
       graphic: 'reference', // the artwork itself is deliberately not stored
       colorway,
       seed: 0, // Seedream takes no seed
-      image_url: imageUrl,
+      image_url: cacheUrl,
       prompt,
       requester: who,
     },
@@ -330,5 +338,5 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
   );
   if (writeError) console.error('[blank/apply-reference] cache write failed', writeError.message);
 
-  return NextResponse.json({ imageUrl, cached: false });
+  return NextResponse.json({ imageUrl: cacheUrl, cached: false });
 }

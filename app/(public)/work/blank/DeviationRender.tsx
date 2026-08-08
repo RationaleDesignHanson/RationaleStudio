@@ -225,8 +225,10 @@ export function DeviationRender() {
 
       {result && (
         <figure className="mt-4 max-w-sm">
-          {/* Plain <img>: a remote, short-lived Replicate URL isn't worth adding
-              to next.config remotePatterns. */}
+          {/* Plain <img>: renders are served from our own Supabase Storage
+              bucket, so the URL is durable — but it stays unoptimised rather
+              than going through next/image, because these are one-off
+              deviations that no second visitor is likely to request. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={result.imageUrl}

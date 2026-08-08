@@ -13,6 +13,15 @@
 --
 -- Everything is written with the service-role key from the API route. RLS is on
 -- with no policies, so the anon key cannot read or write it.
+--
+-- STORAGE. image_url must point at the public `blank-renders` bucket, never at
+-- Replicate. Replicate's delivery URLs expire — measured at ~17.5 hours — and
+-- because the cache-hit path returns before the render call, a row holding an
+-- expired URL served a 404 permanently and could never re-render. All twelve
+-- rows from the first session died that way. Renders are now copied into the
+-- bucket before the row is written; lib/blank/renderStore.ts heals or deletes
+-- any row that still holds an ephemeral URL. No column was needed for this:
+-- durability is readable from the URL and the object path derives from the key.
 
 CREATE TABLE IF NOT EXISTS blank_renders (
   tuple_key    TEXT PRIMARY KEY,                     -- garment.tier.graphic.colorway
