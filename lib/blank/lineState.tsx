@@ -54,6 +54,12 @@ export interface LineConfig {
   wordmark: string;
   /** Chosen wordmark treatment id, or null for none. */
   wordmarkStyle: string | null;
+  /**
+   * Which beat is on screen. View state rather than line configuration, carried
+   * in the URL on purpose: the whole product is two people sending each other a
+   * link, and "look at this" has to land them on the beat you were looking at.
+   */
+  step: string;
 }
 
 export const LINE_DEFAULTS: LineConfig = {
@@ -68,6 +74,7 @@ export const LINE_DEFAULTS: LineConfig = {
   direction: 'workwear',
   wordmark: 'BLANK',
   wordmarkStyle: null,
+  step: '01',
 };
 
 /** URL param names. Short — these get pasted into messages. */
@@ -83,6 +90,7 @@ const PARAM = {
   finish: 'fi',
   wordmark: 'w',
   wordmarkStyle: 'ws',
+  step: 'st',
 } as const;
 
 interface LineContextValue {
@@ -148,6 +156,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (w) out.wordmark = w.slice(0, 18);
   const ws = q.get(PARAM.wordmarkStyle);
   if (ws) out.wordmarkStyle = ws;
+  const st = q.get(PARAM.step);
+  if (st) out.step = st;
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);
