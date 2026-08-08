@@ -32,7 +32,8 @@ import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
-import { Identity } from './Identity';
+import { NameStep, FaceStep, LockupStep } from './Identity';
+import { MarkFamily } from './MarkFamily';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
 import { MarkExpansions } from './MarkExpansions';
@@ -164,34 +165,34 @@ function Beats() {
 
   return (
     <Beat n={b.n} title={b.title} note={b.note}>
-      {i === 0 && (
+      {i === 0 && <NameStep />}
+      {i === 1 && <FaceStep />}
+      {i === 2 && (
         <>
-          <Identity />
+          <MarkFamily />
+          <LockupStep />
+        </>
+      )}
+      {i === 3 && (
+        <>
+          <MarkExpansions />
+          <BrandBakeoff />
+        </>
+      )}
+      {i === 4 && (
+        <>
+          <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
+            <BudgetLever />
+          </div>
+          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+            <LineTray />
+          </div>
           <Disclosure
             summary="How a mark gets printed"
             hint="twelve print languages — vocabulary, not a decision"
           >
             <GraphicsLibrary />
           </Disclosure>
-          <Disclosure
-            summary="Bring your own reference"
-            hint="upload → costed, and matched to the nearest thing we can make"
-          >
-            <ReferenceUpload />
-          </Disclosure>
-        </>
-      )}
-      {i === 1 && <BrandBakeoff />}
-      {i === 2 && (
-        <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
-          <BudgetLever />
-        </div>
-      )}
-      {i === 3 && <LineTray />}
-      {i === 4 && (
-        <>
-          <MarkExpansions />
-          <DeviationRender />
         </>
       )}
       {i === 5 && <Standings />}
