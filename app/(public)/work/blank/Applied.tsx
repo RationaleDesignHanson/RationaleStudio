@@ -63,7 +63,7 @@ export function Applied() {
     config.markSeed !== '' && Number.isFinite(seed)
       ? randomConstructions(word, seed)
       : constructionsFor(word);
-  const mark = pool.find((c) => c.id === config.graphic) ?? null;
+  const mark = pool.find((c) => c.id === config.mark) ?? null;
 
   const garment = config.garment;
   const g = GARMENTS.find((x) => x.key === garment)!;

@@ -130,12 +130,12 @@ export function Stepper() {
   if (config.direction) {
     decided.push({ label: 'Direction', value: DIRECTION_LABELS[config.direction] ?? config.direction });
   }
-  if (config.graphic) {
+  if (config.mark) {
     decided.push({
       // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
       // reads "M seal".
       label: 'Symbol',
-      value: config.graphic.replace(/^[GM]-/, '').replace(/-/g, ' '),
+      value: config.mark.replace(/^[GM]-/, '').replace(/-/g, ' '),
     });
   }
   if (totals) {

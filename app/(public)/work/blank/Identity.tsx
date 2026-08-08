@@ -246,7 +246,7 @@ export function LockupStep() {
     config.markSeed !== '' && Number.isFinite(seed)
       ? randomConstructions(word, seed)
       : constructionsFor(word);
-  const construction = pool.find((c) => c.id === config.graphic) ?? null;
+  const construction = pool.find((c) => c.id === config.mark) ?? null;
   const symbolKind: SymbolKind = construction ? 'mark' : 'none';
   const lockup = LOCKUPS.find((l) => l.id === config.placement) ?? LOCKUPS[0];
   const rule = usageRule(word, t, symbolKind);

@@ -45,10 +45,23 @@ export interface LineConfig {
   /** Budget stop slug — 'graphic' | 'washed' | 'tonal' | 'stitched' | 'full' */
   budget: string;
   garment: Garment;
-  /** Graphic id from the library ('G-tonal-emboss'), or null for none selected */
+  /** Graphic id from the print library ('G-tonal-emboss'), or null for none.
+      This is a PRINT LANGUAGE and is validated server-side against PRESETS. */
   graphic: string | null;
-  /** Brand direction key from the bake-off */
+  /**
+   * Chosen mark construction id ('roundel', or 'r-<seed>-<n>' when shuffled).
+   *
+   * Its OWN field, not `graphic`. Overloading `graphic` to carry constructions
+   * broke the deviation renderer, which passes it straight into a tuple that is
+   * validated against PRESETS — a construction id is not a print language, so
+   * every render came back "unknown graphic id" with the button disabled.
+   */
+  mark: string | null;
+  /** Brand direction key from the bake-off, or 'custom' for a written one. */
   direction: string;
+  /** The user's own style prompt, when direction is 'custom'. Shared, so a
+      partner opening the link sees the direction you wrote, not a blank box. */
+  directionPrompt: string;
   /** The word the wordmark sets. Typography, so it can be anything and is
       rendered rather than generated — no spend, and always spelled right. */
   wordmark: string;
@@ -86,7 +99,9 @@ export const LINE_DEFAULTS: LineConfig = {
   budget: 'graphic',
   garment: 'tee',
   graphic: null,
+  mark: null,
   direction: 'workwear',
+  directionPrompt: '',
   wordmark: 'BLANK',
   wordmarkStyle: null,
   retail: '',
@@ -99,7 +114,9 @@ const PARAM = {
   budget: 'b',
   garment: 'g',
   graphic: 'p',
+  mark: 'mk',
   direction: 'd',
+  directionPrompt: 'dp',
   colorway: 'c',
   motif: 'mo',
   placement: 'pl',
@@ -167,6 +184,10 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (g === 'tee' || g === 'hoodie' || g === 'cap') out.garment = g;
   const p = q.get(PARAM.graphic);
   if (p) out.graphic = p;
+  const mk = q.get(PARAM.mark);
+  if (mk) out.mark = mk;
+  const dp = q.get(PARAM.directionPrompt);
+  if (dp) out.directionPrompt = dp.slice(0, 240);
   const d = q.get(PARAM.direction);
   if (d) out.direction = d;
   // Wordmark. Length-capped on read as well as on input: the param arrives from

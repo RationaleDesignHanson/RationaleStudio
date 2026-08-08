@@ -50,7 +50,11 @@ export function DeviationRender() {
   const [error, setError] = useState<string | null>(null);
 
   const tier = tierIndex(config.budget) + 1;
-  const graphic = config.graphic;
+  // Falls back to a real preset rather than sitting disabled. The button used to
+  // be dead until you had selected a print language in a grid three sections
+  // away, with nothing on screen saying so — a generative tool that refuses to
+  // generate until an unstated prerequisite is met just reads as broken.
+  const graphic = config.graphic ?? 'G-abstract-mark';
   const colorway = config.colorway || 'charcoal';
 
   // Axes default from the preset and are overridden one at a time.
@@ -185,11 +189,11 @@ export function DeviationRender() {
 
         <button
           onClick={render}
-          disabled={!graphic || !!blocked || busy}
+          disabled={!!blocked || busy}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
           style={{
-            borderColor: !graphic || blocked ? 'var(--era-hairline)' : 'var(--accent)',
-            color: !graphic || blocked ? 'var(--era-ink-muted)' : 'var(--accent)',
+            borderColor: blocked ? 'var(--era-hairline)' : 'var(--accent)',
+            color: blocked ? 'var(--era-ink-muted)' : 'var(--accent)',
           }}
         >
           {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}

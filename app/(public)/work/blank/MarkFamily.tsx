@@ -141,7 +141,7 @@ export function MarkFamily() {
   const shuffled = config.markSeed !== '' && Number.isFinite(seed);
   const constructions = shuffled ? randomConstructions(word, seed) : constructionsFor(word);
   const makeable = constructions.filter((c) => constructionAvailable(c, method).ok).length;
-  const selected = constructions.find((c) => c.id === config.graphic);
+  const selected = constructions.find((c) => c.id === config.mark);
 
   return (
     <div className="my-2">
@@ -160,7 +160,7 @@ export function MarkFamily() {
             // Date.now() only as a seed SOURCE, at the moment of a click. The seed
             // itself is then fixed and shared, so the set is reproducible.
             set('markSeed', String(Math.floor(Date.now() % 100000)));
-            set('graphic', null);
+            set('mark', null);
           }}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors hover:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
@@ -171,7 +171,7 @@ export function MarkFamily() {
           <button
             onClick={() => {
               set('markSeed', '');
-              set('graphic', null);
+              set('mark', null);
             }}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider transition-colors"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
@@ -187,11 +187,11 @@ export function MarkFamily() {
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-x-3 gap-y-5">
         {constructions.map((c) => {
           const av = constructionAvailable(c, method);
-          const on = config.graphic === c.id;
+          const on = config.mark === c.id;
           return (
             <button
               key={c.id}
-              onClick={() => set('graphic', on ? null : c.id)}
+              onClick={() => set('mark', on ? null : c.id)}
               aria-pressed={on}
               className="w-full min-w-0 flex flex-col p-2 border transition-colors [&_*]:text-left"
               style={{
