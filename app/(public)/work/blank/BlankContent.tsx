@@ -35,6 +35,8 @@ import { DeviationRender } from './DeviationRender';
 import { NameStep, FaceStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
+import { ColourBeat } from './ColourBeat';
+import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
 import { MarkExpansions } from './MarkExpansions';
@@ -172,9 +174,16 @@ function Beats() {
         <>
           <MarkFamily />
           <LockupStep />
+          <Disclosure
+            summary="Or a graphic that has nothing to do with the name"
+            hint="describe it, get six takes — seasonal, silly, one-off"
+          >
+            <GraphicBakeoff />
+          </Disclosure>
         </>
       )}
-      {i === 3 && (
+      {i === 3 && <ColourBeat />}
+      {i === 4 && (
         <>
           <Applied />
           <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
@@ -207,7 +216,7 @@ function Beats() {
           </Disclosure>
         </>
       )}
-      {i === 4 && (
+      {i === 5 && (
         <>
           <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
             <BudgetLever />
@@ -223,7 +232,7 @@ function Beats() {
           </Disclosure>
         </>
       )}
-      {i === 5 && <Standings />}
+      {i === 6 && <Standings />}
     </Beat>
   );
 }

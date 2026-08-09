@@ -49,6 +49,15 @@ export interface LineConfig {
       This is a PRINT LANGUAGE and is validated server-side against PRESETS. */
   graphic: string | null;
   /**
+   * A kept graphic from the prompt bake-off, as a durable Storage URL.
+   *
+   * Not everything on a garment is the identity — a seasonal joke or a one-off
+   * back print comes from a description, not from the letters in the name. Stored
+   * as the URL because it is generated rather than derived, so unlike the mark it
+   * cannot be reconstructed from the config.
+   */
+  customGraphic: string | null;
+  /**
    * Chosen mark construction id ('roundel', or 'r-<seed>-<n>' when shuffled).
    *
    * Its OWN field, not `graphic`. Overloading `graphic` to carry constructions
@@ -100,6 +109,7 @@ export const LINE_DEFAULTS: LineConfig = {
   garment: 'tee',
   graphic: null,
   mark: null,
+  customGraphic: null,
   direction: 'workwear',
   directionPrompt: '',
   wordmark: 'BLANK',
@@ -115,6 +125,7 @@ const PARAM = {
   garment: 'g',
   graphic: 'p',
   mark: 'mk',
+  customGraphic: 'cg',
   direction: 'd',
   directionPrompt: 'dp',
   colorway: 'c',
@@ -186,6 +197,10 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (p) out.graphic = p;
   const mk = q.get(PARAM.mark);
   if (mk) out.mark = mk;
+  // Only our own Storage host: a pasted link should not be able to point the
+  // applied views at an arbitrary remote image.
+  const cg = q.get(PARAM.customGraphic);
+  if (cg && cg.includes('/storage/v1/object/public/blank-renders/')) out.customGraphic = cg;
   const dp = q.get(PARAM.directionPrompt);
   if (dp) out.directionPrompt = dp.slice(0, 240);
   const d = q.get(PARAM.direction);
