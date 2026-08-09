@@ -36,6 +36,7 @@ import { NameStep, FaceStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
 import { ColourBeat } from './ColourBeat';
+import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
@@ -218,23 +219,7 @@ function Beats() {
       )}
       {i === 5 && (
         <>
-          {/* The constraint, as a CONTROL rather than as the argument. The full
-              lever with its five plates belongs where the argument is made; here
-              it took the whole first viewport of a beat about money and pushed
-              the line — the thing that produces the number — below the fold. */}
-          <BudgetLever compact />
-
-          <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-              Your line
-            </h3>
-            <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-              What you actually want made. Setup is charged once across the collection, not once per
-              SKU, so the line costs less than the sum of its garments.
-            </p>
-            <LineTray />
-          </div>
-
+          <CostSheet />
         </>
       )}
       {i === 6 && (

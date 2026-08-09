@@ -147,6 +147,12 @@ interface LineContextValue {
   addSku: (sku: Sku) => void;
   removeSku: (index: number) => void;
   setSkuUnits: (index: number, units: RunSize) => void;
+  /**
+   * Per-SKU decoration tier. A line is specced style by style, not by setting one
+   * global tier and having everything inherit it — a tee can be a cheap print
+   * while the hoodie carries the embroidered mark, and that is a normal line.
+   */
+  setSkuTier: (index: number, tier: string) => void;
   setSkuRetail: (index: number, retail: number | undefined) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
@@ -290,6 +296,11 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
       setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, units } : x))),
     [],
   );
+  const setSkuTier = useCallback(
+    (index: number, tier: string) =>
+      setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, tier } : x))),
+    [],
+  );
   const setSkuRetail = useCallback(
     (index: number, retail: number | undefined) =>
       setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, retail } : x))),
@@ -298,8 +309,8 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuRetail, clearSkus }),
-    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuRetail, clearSkus],
+    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus }),
+    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;
