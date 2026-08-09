@@ -47,16 +47,67 @@ import { Mark } from './MarkFamily';
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 
 /**
- * Placements, with the mark's width as a fraction of the garment's width so the
- * relative sizes are honest rather than eyeballed. A 12in chest print on a ~20in
- * body is 0.6; a 2in left-chest hit is 0.1.
+ * Placements. `inches` is the size on a body garment; the cap is sized separately
+ * below because it is not a small tee.
+ *
+ * WHAT WAS WRONG. `frac` used to be the mark's width as a fraction of the IMAGE,
+ * and the three plates are the same width on screen, so the identical number of
+ * pixels was painted on all three garments. A 10in chest print therefore rendered
+ * at 187px on the tee, 187px on the hoodie and 187px on the cap — a roundel
+ * sprawling off both sides of a cap whose own caption said "4in printed panel".
+ *
+ * The beat's entire claim is that "a mark that dies at 2in visibly dies at 2in",
+ * and it was drawing every placement at the same size on a garment a third of the
+ * width. Scale now comes from real inches over the real garment width.
  */
 const PLACEMENTS = [
-  { id: 'chest', label: 'Chest', inches: 10, frac: 0.5, x: 50, y: 44 },
-  { id: 'left-chest', label: 'Left chest', inches: 2, frac: 0.1, x: 34, y: 36 },
-  { id: 'back', label: 'Upper back', inches: 12, frac: 0.6, x: 50, y: 38 },
-  { id: 'sleeve', label: 'Sleeve', inches: 1.5, frac: 0.075, x: 12, y: 46 },
+  { id: 'chest', label: 'Chest', inches: 10, x: 50, y: 44 },
+  { id: 'left-chest', label: 'Left chest', inches: 2, x: 34, y: 36 },
+  { id: 'back', label: 'Upper back', inches: 12, x: 50, y: 38 },
+  { id: 'sleeve', label: 'Sleeve', inches: 1.5, x: 12, y: 46 },
 ] as const;
+
+/**
+ * Per garment: how wide the thing actually is, how much of its plate it fills,
+ * and the largest decoration it takes.
+ *
+ * `frameFrac` is a property of these specific plates, not of clothing — the tee
+ * fills nearly its whole frame while the cap sits small in the middle of its
+ * one — so it has to be measured off the images rather than derived.
+ *
+ * A cap is the reason this table exists. Its front panel is about 7in across and
+ * takes a 4in hit at the most, so the tee's 10in chest print is not a smaller
+ * version of a cap decoration, it is a different decoration. Asking for chest on
+ * a cap gives you the front panel at 4in, and the caption says so.
+ */
+const GARMENT_SCALE: Record<string, { widthIn: number; frameFrac: number; maxIn: number }> = {
+  tee: { widthIn: 20, frameFrac: 0.95, maxIn: 14 },
+  hoodie: { widthIn: 22, frameFrac: 0.86, maxIn: 14 },
+  cap: { widthIn: 7, frameFrac: 0.55, maxIn: 4 },
+};
+
+/** The size this placement is actually made at on this garment, in inches. */
+function inchesOn(garment: string, placementInches: number): number {
+  return Math.min(placementInches, GARMENT_SCALE[garment]?.maxIn ?? placementInches);
+}
+
+/**
+ * Where the mark sits vertically on this plate, as a percent.
+ *
+ * A cap's front panel is lower in its frame than a tee's chest is in its own —
+ * the tee placement put the roundel across the crown seam, which is not a place
+ * anything gets printed.
+ */
+function yOn(garment: string, placementY: number): number {
+  return garment === 'cap' ? 53 : placementY;
+}
+
+/** That size as a fraction of the plate's width, for drawing. */
+function fracOn(garment: string, placementInches: number): number {
+  const g = GARMENT_SCALE[garment];
+  if (!g) return 0.5;
+  return (inchesOn(garment, placementInches) / g.widthIn) * g.frameFrac;
+}
 
 export function Applied() {
   const { config, set } = useLine();
@@ -122,6 +173,11 @@ export function Applied() {
               // A cap has no back and no sleeve; say so rather than drawing a
               // placement onto a garment that does not have one.
               const nA = gm.key === 'cap' && place.id !== 'chest';
+              const frac = fracOn(gm.key, place.inches);
+              const actualIn = inchesOn(gm.key, place.inches);
+              // Say when a garment cannot take the size you asked for, rather
+              // than silently drawing something smaller than the label claims.
+              const clamped = actualIn < place.inches;
               return (
                 <figure key={gm.key} className="min-w-0">
                   <div
@@ -141,24 +197,31 @@ export function Applied() {
                         className="absolute flex items-center justify-center"
                         style={{
                           left: `${place.x}%`,
-                          top: `${place.y}%`,
+                          top: `${yOn(gm.key, place.y)}%`,
                           transform: 'translate(-50%, -50%)',
-                          width: `${place.frac * 100}%`,
+                          width: `${frac * 100}%`,
                           opacity: av.ok ? 0.92 : 0.3,
                           mixBlendMode: 'screen',
                         }}
                       >
                         <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
-                          <Mark c={mark} word={word} css={t.css} size={300 * place.frac} />
+                          <Mark c={mark} word={word} css={t.css} size={300 * frac} />
                         </span>
                       </span>
                     )}
                     {nA && (
                       <span
-                        className="absolute inset-0 flex items-center justify-center text-[11px] font-mono uppercase tracking-wider"
-                        style={{ color: 'var(--era-ink-muted)' }}
+                        className="absolute inset-0 flex items-center justify-center"
                       >
-                        no {place.label.toLowerCase()} on a cap
+                        <span
+                          className="px-2 py-1 text-[11px] font-mono uppercase tracking-wider"
+                          style={{
+                            color: 'var(--era-ink)',
+                            backgroundColor: 'color-mix(in srgb, var(--era-bg) 88%, transparent)',
+                          }}
+                        >
+                          no {place.label.toLowerCase()} on a cap
+                        </span>
                       </span>
                     )}
                   </div>
@@ -167,7 +230,19 @@ export function Applied() {
                       {gm.label}
                     </span>
                     <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-                      {stop.treatment[gm.key]}
+                      {nA ? (
+                        stop.treatment[gm.key]
+                      ) : (
+                        <>
+                          {actualIn}in {gm.key === 'cap' ? 'front panel' : place.label.toLowerCase()}
+                          {clamped && (
+                            <span style={{ color: 'var(--accent)' }}>
+                              {' '}
+                              — {place.inches}in will not fit
+                            </span>
+                          )}
+                        </>
+                      )}
                     </span>
                   </figcaption>
                 </figure>
@@ -176,23 +251,20 @@ export function Applied() {
           </div>
 
 
+          {/* Both paragraphs here used to point at a renderer "below". The render
+              moved to beat 05 when this beat was split, so they were directing
+              you at something that is not on the screen. */}
           <p className="mt-3 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>These are placement mocks, not renders.</strong>{' '}
-            The position and the relative size are accurate — a 2in hit really is a fifth of the 10in
-            chest print — but the mark is layered flat over the blank: it does not follow the fold of
-            the cloth or take the light. For a real photograph of it printed, generate one.
+            The position and the size are accurate — a 2in hit really is a fifth of the 10in chest
+            print, and a cap really does take a quarter of what a tee takes — but the mark is layered
+            flat over the blank: it does not follow the fold of the cloth or take the light. For a
+            real photograph of it printed, go to <strong style={{ color: 'var(--era-ink)' }}>05</strong>.
           </p>
-
-          <p className="mt-2 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-            To see it actually printed — placed, scaled and inked — use the placement renderer
-            below. It renders the same artwork through the same route, so this view and that one
-            cannot disagree about what your mark is.
-          </p>
-
         </>
       ) : (
         <p className="text-[13px] py-8" style={{ color: 'var(--accent)' }}>
-          Pick a mark in step 03 and it will be applied across the line here.
+          Pick a mark in step 02 and it will be applied across the line here.
         </p>
       )}
     </div>
