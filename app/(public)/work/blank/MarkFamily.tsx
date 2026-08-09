@@ -1,5 +1,5 @@
 /**
- * Beat 03 — how the name looks as a mark.
+ * Beat 02 — how the name looks as a mark.
  *
  * Nine constructions, all drawn from the name in whichever treatment the wordmark
  * is using. Change the name or the face and every mark in the family changes with
@@ -302,7 +302,7 @@ export function MarkFamily() {
           </div>
 
           {drawn.length > 0 && (
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
               {drawn.map((d, n) => (
                 <div
                   key={n}

@@ -60,9 +60,139 @@ export function CostSheet() {
     if (lead && lead !== config.budget) set('budget', lead);
   }, [lead, config.budget, set]);
 
+  // Built once and rendered twice — as a table on a real screen, as cards on a
+  // phone. Seven columns of live controls forced the table to 931px inside a
+  // 390px viewport, so a style's price and its margin could not be on screen at
+  // the same time. Same data, same handlers, two shapes.
+  const rows = GARMENTS.map((gm) => {
+    const idx = rowFor(gm.key);
+    const inLine = idx >= 0;
+    // An excluded row still previews at the leading tier, so you can see what
+    // adding it would cost before you add it.
+    const preview: Sku = inLine
+      ? skus[idx]
+      : {
+          garment: gm.key,
+          tier: config.budget,
+          graphic: config.mark,
+          units: STATES[tierIndex(config.budget)].run,
+        };
+    return { gm, idx, inLine, preview, c: costSku(preview) };
+  });
+  type Row = (typeof rows)[number];
+
+  // Plain render functions, NOT components. Declared inside CostSheet they would
+  // be a new component type on every render, so React would unmount and remount
+  // the price field between keystrokes and the caret would jump out of it after
+  // every digit. Calling them returns the same JSX with no component identity to
+  // churn — the alternative is hoisting them and threading eight handlers.
+  const include = ({ gm, idx, inLine, preview }: Row) => (
+    <label className="tap flex items-center gap-2 cursor-pointer">
+      <input
+        type="checkbox"
+        checked={inLine}
+        onChange={() => (inLine ? removeSku(idx) : addSku(preview))}
+        aria-label={`Include ${gm.label} in the line`}
+        className="tap w-[15px] h-[15px] shrink-0 accent-[var(--accent)]"
+      />
+      <span
+        className="relative shrink-0 overflow-hidden"
+        style={{ width: 30, height: 30, backgroundColor: 'var(--era-bg-deep)' }}
+      >
+        <Image src={`/blank/P-${gm.key}-plain.webp`} alt="" fill sizes="30px" className="object-cover" />
+      </span>
+      <span style={{ color: 'var(--era-ink)' }}>{gm.label}</span>
+    </label>
+  );
+
+  const decoration = ({ gm, idx, inLine, preview }: Row) => (
+    <select
+      value={preview.tier}
+      onChange={(e) => (inLine ? setSkuTier(idx, e.target.value) : set('budget', e.target.value))}
+      aria-label={`${gm.label} decoration`}
+      title={METHOD_MEANING[TIER_METHOD[tierIndex(preview.tier)]]}
+      className="w-full min-w-0 bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)]"
+      style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+    >
+      {STATES.map((st, n) => (
+        <option key={st.slug} value={st.slug}>
+          {METHOD_LABEL[TIER_METHOD[n]]} · {st.treatment[gm.key]}
+        </option>
+      ))}
+    </select>
+  );
+
+  const units = ({ gm, idx, inLine, preview }: Row) => (
+    <select
+      value={preview.units}
+      onChange={(e) => inLine && setSkuUnits(idx, Number(e.target.value) as RunSize)}
+      disabled={!inLine}
+      aria-label={`${gm.label} run size`}
+      className="bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)] disabled:opacity-60"
+      style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+    >
+      {RUN_SIZES.map((u) => (
+        <option key={u} value={u}>
+          {u}
+        </option>
+      ))}
+    </select>
+  );
+
+  const price = ({ gm, idx, inLine, c }: Row) => (
+    <span className="whitespace-nowrap">
+      <span style={{ color: 'var(--era-ink-muted)' }}>$</span>
+      <input
+        type="number"
+        min={1}
+        value={c.retail}
+        onChange={(e) => inLine && setSkuRetail(idx, Number(e.target.value) || undefined)}
+        disabled={!inLine}
+        aria-label={`${gm.label} price`}
+        size={1}
+        className="tap w-14 py-1 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] disabled:opacity-60 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+      />
+    </span>
+  );
+
+  const marginColour = (m: number) => (m >= MARGIN_FLOOR ? 'var(--era-ink)' : '#A8456E');
+
   return (
     <div className="my-2">
-      <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+      {/* PHONE — one card per style, so cost, price and margin are all on screen. */}
+      <div className="sm:hidden font-mono text-[13px] tabular-nums space-y-3">
+        {rows.map((r) => (
+          <div
+            key={r.gm.key}
+            className="border p-3"
+            style={{ borderColor: 'var(--era-hairline)', opacity: r.inLine ? 1 : 0.55 }}
+          >
+            {include(r)}
+            <div className="mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 items-center">
+              <Field label="Decoration" />
+              {decoration(r)}
+              <Field label="Blank" />
+              <span className="truncate" style={{ color: 'var(--era-ink-muted)' }}>
+                {r.c.blank.name}
+              </span>
+              <Field label="Units" />
+              <span>
+                {units(r)}
+              </span>
+              <Field label="Cost/unit" />
+              <span style={{ color: 'var(--era-ink)' }}>{dollars(r.c.variablePerUnit)}</span>
+              <Field label="Price" />
+              {price(r)}
+              <Field label="Margin" />
+              <span style={{ color: marginColour(r.c.margin) }}>{pct(r.c.margin)}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* DESKTOP — the sheet as a sheet. */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="w-full min-w-[720px] border-collapse font-mono text-[12px] tabular-nums">
           <thead>
             <tr style={{ color: 'var(--era-ink-muted)' }}>
@@ -78,111 +208,35 @@ export function CostSheet() {
             </tr>
           </thead>
           <tbody>
-            {GARMENTS.map((gm) => {
-              const idx = rowFor(gm.key);
-              const inLine = idx >= 0;
-              // An excluded row still previews at the leading tier, so you can see
-              // what adding it would cost before you add it.
-              const preview: Sku = inLine
-                ? skus[idx]
-                : { garment: gm.key, tier: config.budget, graphic: config.mark, units: STATES[tierIndex(config.budget)].run };
-              const c = costSku(preview);
-              const method = TIER_METHOD[tierIndex(preview.tier)];
-
-              return (
-                <tr
-                  key={gm.key}
-                  className="border-b"
-                  style={{ borderColor: 'var(--era-hairline)', opacity: inLine ? 1 : 0.45 }}
-                >
-                  <td className="py-2 pr-3">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={inLine}
-                        onChange={() => (inLine ? removeSku(idx) : addSku(preview))}
-                        aria-label={`Include ${gm.label} in the line`}
-                        className="accent-[var(--accent)]"
-                      />
-                      <span
-                        className="relative shrink-0 overflow-hidden hidden sm:block"
-                        style={{ width: 30, height: 30, backgroundColor: 'var(--era-bg-deep)' }}
-                      >
-                        <Image
-                          src={`/blank/P-${gm.key}-plain.webp`}
-                          alt=""
-                          fill
-                          sizes="30px"
-                          className="object-cover"
-                        />
-                      </span>
-                      <span style={{ color: 'var(--era-ink)' }}>{gm.label}</span>
-                    </label>
-                  </td>
-
-                  <td className="py-2 pr-3">
-                    <select
-                      value={preview.tier}
-                      onChange={(e) => (inLine ? setSkuTier(idx, e.target.value) : set('budget', e.target.value))}
-                      aria-label={`${gm.label} decoration`}
-                      title={METHOD_MEANING[method]}
-                      className="bg-transparent border px-1.5 py-1 text-[11px] outline-none focus:border-[var(--accent)]"
-                      style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
-                    >
-                      {STATES.map((st, n) => (
-                        <option key={st.slug} value={st.slug}>
-                          {st.treatment[gm.key]} · {METHOD_LABEL[TIER_METHOD[n]]}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-
-                  <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }}>
-                    {c.blank.name}
-                  </td>
-
-                  <td className="py-2 pr-3">
-                    <select
-                      value={preview.units}
-                      onChange={(e) => inLine && setSkuUnits(idx, Number(e.target.value) as RunSize)}
-                      disabled={!inLine}
-                      aria-label={`${gm.label} run size`}
-                      className="bg-transparent border px-1.5 py-1 text-[11px] outline-none focus:border-[var(--accent)] disabled:opacity-60"
-                      style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
-                    >
-                      {RUN_SIZES.map((u) => (
-                        <option key={u} value={u}>
-                          {u}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-
-                  <td className="py-2 pr-3" style={{ color: 'var(--era-ink)' }}>
-                    {dollars(c.variablePerUnit)}
-                  </td>
-
-                  <td className="py-2 pr-3">
-                    <span style={{ color: 'var(--era-ink-muted)' }}>$</span>
-                    <input
-                      type="number"
-                      min={1}
-                      value={c.retail}
-                      onChange={(e) => inLine && setSkuRetail(idx, Number(e.target.value) || undefined)}
-                      disabled={!inLine}
-                      aria-label={`${gm.label} price`}
-                      size={1}
-                      className="w-14 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] disabled:opacity-60 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                      style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
-                    />
-                  </td>
-
-                  <td className="py-2" style={{ color: c.margin >= MARGIN_FLOOR ? 'var(--era-ink)' : '#A8456E' }}>
-                    {pct(c.margin)}
-                  </td>
-                </tr>
-              );
-            })}
+            {rows.map((r) => (
+              <tr
+                key={r.gm.key}
+                className="border-b"
+                style={{ borderColor: 'var(--era-hairline)', opacity: r.inLine ? 1 : 0.45 }}
+              >
+                <td className="py-2 pr-3">
+                  {include(r)}
+                </td>
+                <td className="py-2 pr-3">
+                  {decoration(r)}
+                </td>
+                <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }}>
+                  {r.c.blank.name}
+                </td>
+                <td className="py-2 pr-3">
+                  {units(r)}
+                </td>
+                <td className="py-2 pr-3" style={{ color: 'var(--era-ink)' }}>
+                  {dollars(r.c.variablePerUnit)}
+                </td>
+                <td className="py-2 pr-3">
+                  {price(r)}
+                </td>
+                <td className="py-2" style={{ color: marginColour(r.c.margin) }}>
+                  {pct(r.c.margin)}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -241,6 +295,18 @@ export function CostSheet() {
         </div>
       )}
     </div>
+  );
+}
+
+/** A card row's label. Uppercase mono, matching the table head it replaces. */
+function Field({ label }: { label: string }) {
+  return (
+    <span
+      className="text-[11px] uppercase tracking-[0.15em]"
+      style={{ color: 'var(--era-ink-muted)' }}
+    >
+      {label}
+    </span>
   );
 }
 

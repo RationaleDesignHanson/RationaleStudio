@@ -57,7 +57,7 @@ export function NameIt() {
             spellCheck={false}
             autoComplete="off"
             size={1}
-            className="font-display leading-none bg-transparent border-b outline-none transition-colors focus:border-[var(--accent)] col-start-1 row-start-1 w-full min-w-0 px-0.5"
+            className="tap font-display leading-none bg-transparent border-b outline-none transition-colors focus:border-[var(--accent)] col-start-1 row-start-1 w-full min-w-0 px-0.5 py-1"
             style={{
               fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)',
               color: 'var(--era-ink)',

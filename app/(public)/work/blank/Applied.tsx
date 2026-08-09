@@ -96,7 +96,7 @@ export function Applied() {
                 key={pl.id}
                 onClick={() => set('placement', pl.id)}
                 aria-pressed={on}
-                className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
+                className="tap px-2.5 py-1 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
                 style={{
                   borderColor: on ? 'var(--accent)' : 'transparent',
                   color: on ? 'var(--accent)' : 'var(--era-ink-muted)',
@@ -166,7 +166,7 @@ export function Applied() {
                     <span className="text-[12px] block" style={{ color: 'var(--era-ink)' }}>
                       {gm.label}
                     </span>
-                    <span className="text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                    <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
                       {stop.treatment[gm.key]}
                     </span>
                   </figcaption>

@@ -104,7 +104,7 @@ export function GraphicBakeoff() {
           <button
             key={e}
             onClick={() => setPrompt(e)}
-            className="text-[11px] underline"
+            className="tap text-[12px] sm:text-[11px] underline"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             {e}
@@ -113,7 +113,7 @@ export function GraphicBakeoff() {
       </div>
 
       {tiles.length > 0 && (
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
           {tiles.map((tile, i) => {
             const on = config.customGraphic === tile.url && !!tile.url;
             return (

@@ -3,7 +3,7 @@
  *
  * This used to render one of twelve preset print languages, which made sense when
  * a preset was the only artwork the tool had. It is not any more: marks are built
- * from the name in beat 03 and graphics come from a prompt beside them, so a
+ * from the name in beat 02 and graphics come from a prompt beside them, so a
  * control that could only render somebody else's twelve had become the odd one
  * out — a third way to put something on a garment, applying the wrong something.
  *
@@ -11,7 +11,7 @@
  * Budget as well, all three of which are owned elsewhere now — garment and budget
  * by the cost sheet, colour by the colour beat. Three surfaces able to set the
  * same value is how the tool ended up able to contradict itself: you could pick a
- * colourway in beat 04 and a different one here. It inherits them and offers only
+ * colourway in beat 03 and a different one here. It inherits them and offers only
  * what nothing else does.
  *
  * The AXES were always the valuable part and they stay: placement, scale and
@@ -348,7 +348,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   return (
     <label className="flex flex-col gap-1">
       <span
-        className="text-[10px] font-mono uppercase tracking-[0.15em]"
+        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.15em]"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         {label}

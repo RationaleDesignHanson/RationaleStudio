@@ -177,19 +177,19 @@ export function BrandBakeoff() {
                 </div>
                 <div className="mt-1 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5 min-w-0">
                   <span
-                    className="text-[10px] font-mono uppercase tracking-wider"
+                    className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
                     style={{ color: on ? 'var(--accent)' : 'var(--era-ink-muted)' }}
                   >
                     {dir.label}
                   </span>
                   {dir.control && (
-                    <span className="text-[9px] font-mono uppercase tracking-wider text-[var(--era-ink-muted)]">
+                    <span className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider text-[var(--era-ink-muted)]">
                       control
                     </span>
                   )}
                   {dir.testsHypothesis && (
                     <span
-                      className="text-[9px] font-mono uppercase tracking-wider"
+                      className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
                       style={{ color: '#4F7A3F' }}
                     >
                       $150 test
@@ -197,7 +197,7 @@ export function BrandBakeoff() {
                   )}
                   {!dir.affordable && (
                     <span
-                      className="text-[9px] font-mono uppercase tracking-wider"
+                      className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
                       style={{ color: 'var(--era-ink-muted)' }}
                     >
                       {dir.needs}
@@ -235,7 +235,7 @@ export function BrandBakeoff() {
               )}
             </div>
             <span
-              className="mt-1 text-[10px] font-mono uppercase tracking-wider"
+              className="mt-1 text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
               style={{ color: isCustom ? 'var(--accent)' : 'var(--era-ink-muted)' }}
             >
               Custom

@@ -66,7 +66,7 @@ export function NameStep() {
     <div className="my-2">
       <label className="block mb-6">
         <span
-          className="block text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+          className="block text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           The name
@@ -95,7 +95,7 @@ export function NameStep() {
   );
 }
 
-/** Beat 02 — how it looks. One specimen at a time, twelve to choose from. */
+/** Beat 01, under the name — how it looks. One specimen at a time, twelve to choose from. */
 export function FaceStep() {
   const { config, set } = useLine();
   const tier = tierIndex(config.budget);
@@ -198,7 +198,7 @@ export function FaceStep() {
             {t.title}
           </h4>
           <span
-            className="text-[10px] font-mono uppercase tracking-wider"
+            className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
             style={{ color: t.group === 'funky' ? 'var(--accent)' : 'var(--era-ink-muted)' }}
           >
             {t.group}
@@ -208,7 +208,7 @@ export function FaceStep() {
           </span>
           {!av.ok && (
             <span
-              className="text-[10px] font-mono uppercase tracking-wider"
+              className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
               style={{ color: av.overPlaten ? '#A8456E' : 'var(--era-ink-muted)' }}
             >
               {av.overPlaten ? 'over platen' : gateLabel(av.availableAt, tier, money, BUDGETS)}
@@ -223,7 +223,7 @@ export function FaceStep() {
   );
 }
 
-/** Beat 03, under the family — how the word and the mark get used together. */
+/** Beat 02, under the family — how the word and the mark get used together. */
 export function LockupStep() {
   const { config, set } = useLine();
   const word = normalise(config.wordmark);

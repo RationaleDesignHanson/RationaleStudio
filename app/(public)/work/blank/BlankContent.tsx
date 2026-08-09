@@ -78,7 +78,7 @@ function Standings() {
       </Standing>
 
       <Standing title="Open">
-        <li>Which brand direction. Six are still live in beat 03 and none has been chosen.</li>
+        <li>Which brand direction. Six are still live in beat 05 and none has been chosen.</li>
         <li>
           Retail price. It&rsquo;s the largest single margin lever in the model at 35.9 points, and
           the tray still uses tier defaults unless you override a SKU.
@@ -191,37 +191,23 @@ function Beats() {
         </>
       )}
       {i === 2 && <ColourBeat />}
-      {i === 3 && (
+      {/* 04 and 05 were one beat, and it was 4.5 screens on a phone against ≤3
+          for everything else. The split is along a real seam: laying the mark out
+          across the range is free, instant and drawn in the browser, while picking
+          an aesthetic and photographing it costs a render and ten seconds. Two
+          different questions, two different price tags, two beats. */}
+      {i === 3 && <Applied />}
+      {i === 4 && (
         <>
-          <Applied />
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-              Which direction
-            </h3>
-            <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-              Six aesthetics on the rack, with a close-up of whichever you pick.
-            </p>
-            <BrandBakeoff />
-          </div>
-
+          <BrandBakeoff />
           {/* DeviationRender carries its own heading and copy. It had been wrapped
               in a second <h3> saying nearly the same thing, so the beat showed two
               stacked headings and the outer one had no controls under it at all. */}
           <DeviationRender />
-
-
         </>
       )}
-      {i === 4 && (
-        <>
-          <CostSheet />
-        </>
-      )}
-      {i === 5 && (
-        <>
-          <Standings />
-        </>
-      )}
+      {i === 5 && <CostSheet />}
+      {i === 6 && <Standings />}
     </Beat>
   );
 }

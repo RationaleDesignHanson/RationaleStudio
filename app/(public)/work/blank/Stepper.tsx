@@ -28,7 +28,7 @@
 
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex, lineTotals } from '@/lib/blank/line';
@@ -42,6 +42,18 @@ export interface Beat {
   note: string;
 }
 
+/**
+ * BEAT 04 WAS SPLIT. It measured 4.5 screens on a 390px phone and 5.0 on a 360px
+ * one, against ≤3 for every other beat, because it carried four owners: the
+ * placement axis, the three garment close-ups, the direction bake-off and the
+ * deviation render. Two different jobs were stacked in one screen — laying the
+ * mark out on the range (free, instant, vector) and photographing it in a chosen
+ * aesthetic (a paid render). They are now 04 and 05.
+ *
+ * This renumbers everything after it, so an old share link with `st=05` lands on
+ * the render beat rather than the cost sheet. Everything else in the link still
+ * resolves; only the beat you arrive at moved.
+ */
 export const BEATS: Beat[] = [
   {
     n: '01',
@@ -65,16 +77,22 @@ export const BEATS: Beat[] = [
     n: '04',
     short: 'Applied',
     title: 'On the clothes',
-    note: 'The identity across the range, the direction it sits in, and a real render when you want one.',
+    note: 'Where the mark sits and how big, across all three garments at once. Nothing here costs a render.',
   },
   {
     n: '05',
+    short: 'Direction',
+    title: 'Make a real one',
+    note: 'Pick the aesthetic it lives in, then generate an actual photograph of it. This is the part that spends.',
+  },
+  {
+    n: '06',
     short: 'Costs',
     title: 'Dial in the costs',
     note: 'The line, specced style by style. Setup is charged once across the collection, so it costs less than the sum of its garments.',
   },
   {
-    n: '06',
+    n: '07',
     short: 'Standing',
     title: 'Where this stands',
     note: 'Settled, open, and unverified. Read this before you believe any number above.',
@@ -111,6 +129,32 @@ export function Stepper() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [i, go]);
+
+  // The settled-state row is the second thing you want on arriving at a beat and
+  // the last thing you want while working in one. It was pinned all the way down,
+  // and on a 390px phone the stepper cost 84px of permanent chrome — a tenth of
+  // the viewport, in a beat that already ran past the fold. It now rolls up once
+  // you are past the top and comes back when you return, or when you change beat
+  // (which scrolls to top). Desktop keeps both rows: it has the height.
+  const [rolled, setRolled] = useState(false);
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        // Hysteresis, or a stepper sitting exactly on the threshold flickers as
+        // the row's own collapse changes the scroll position.
+        setRolled((was) => (was ? window.scrollY > 32 : window.scrollY > 72));
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   const stop = STATES[tierIndex(config.budget)];
   const totals = skus.length ? lineTotals(skus) : null;
@@ -158,16 +202,28 @@ export function Stepper() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         {/* What the two of you have settled. Scrolls rather than wraps — a second
-            row costs fold height the beats cannot spare. */}
+            row costs fold height the beats cannot spare — and rolls away entirely
+            on a phone once you are working. `grid-rows-[0fr]` collapses without a
+            magic max-height, so the row can be any number of chips tall. */}
         <div
-          className="flex gap-x-4 items-baseline pt-2 pb-1.5 text-[11px] font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          style={{ color: 'var(--era-ink-muted)', overscrollBehaviorX: 'contain' }}
+          className={`grid transition-[grid-template-rows,opacity] duration-200 md:grid-rows-[1fr] md:opacity-100 ${
+            rolled ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100'
+          }`}
+          aria-hidden={rolled ? true : undefined}
         >
-          {decided.map((d) => (
-            <span key={d.label} className="whitespace-nowrap">
-              {d.label} <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
-            </span>
-          ))}
+          {/* min-h-0 + overflow-hidden are what make the 0fr row actually clip. */}
+          <div className="min-h-0 overflow-hidden">
+            <div
+              className="flex gap-x-4 items-baseline pt-2 pb-1.5 text-[12px] sm:text-[11px] font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              style={{ color: 'var(--era-ink-muted)', overscrollBehaviorX: 'contain' }}
+            >
+              {decided.map((d) => (
+                <span key={d.label} className="whitespace-nowrap">
+                  {d.label} <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Progress + prev/next. The steps are buttons, not anchors: there is no
@@ -177,7 +233,7 @@ export function Stepper() {
             onClick={() => go(i - 1)}
             disabled={i === 0}
             aria-label="Previous step"
-            className="shrink-0 disabled:opacity-25 transition-opacity"
+            className="tap shrink-0 disabled:opacity-25 transition-opacity"
             style={{ color: 'var(--era-ink)' }}
           >
             <ChevronLeft className="w-4 h-4" />
@@ -195,7 +251,7 @@ export function Stepper() {
                   key={b.n}
                   onClick={() => go(idx)}
                   aria-current={on ? 'step' : undefined}
-                  className="shrink-0 text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2 pb-0.5"
+                  className="tap shrink-0 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2 pb-0.5"
                   style={{
                     color: on ? 'var(--accent)' : done ? 'var(--era-ink)' : 'var(--era-ink-muted)',
                     borderColor: on ? 'var(--accent)' : 'transparent',
@@ -214,7 +270,7 @@ export function Stepper() {
             onClick={() => go(i + 1)}
             disabled={i === BEATS.length - 1}
             aria-label="Next step"
-            className="shrink-0 disabled:opacity-25 transition-opacity"
+            className="tap shrink-0 disabled:opacity-25 transition-opacity"
             style={{ color: 'var(--era-ink)' }}
           >
             <ChevronRight className="w-4 h-4" />
@@ -244,7 +300,7 @@ export function StepFooter() {
       {prev ? (
         <button
           onClick={() => go(i - 1)}
-          className="text-[12px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5"
+          className="tap text-[13px] sm:text-[12px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           <ChevronLeft className="w-3.5 h-3.5" /> {prev.short}

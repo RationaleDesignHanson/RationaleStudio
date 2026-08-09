@@ -151,7 +151,7 @@ export function ColourBeat() {
         </span>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-2.5 gap-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-6 gap-x-2.5 gap-y-4">
         {tiles.map((tile) => {
           const on = chosen === tile.palette.id;
           return (
@@ -193,7 +193,7 @@ export function ColourBeat() {
                       <Loader2 className="w-5 h-5 animate-spin" style={{ color: 'rgba(255,255,255,0.7)' }} />
                     ) : (
                       <span
-                        className="text-[10px] font-mono uppercase tracking-wider px-2 text-center"
+                        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider px-2 text-center"
                         style={{ color: 'rgba(255,255,255,0.75)' }}
                       >
                         {tile.error ?? 'swatch'}
@@ -212,7 +212,7 @@ export function ColourBeat() {
                 </span>
                 {!tile.palette.stage0 && (
                   <span
-                    className="text-[9px] font-mono uppercase tracking-wider"
+                    className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
                     style={{ color: '#A8456E' }}
                   >
                     custom dye lot

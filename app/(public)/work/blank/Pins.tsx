@@ -42,7 +42,7 @@ export function PinButton({ url }: { url: string }) {
       aria-pressed={on}
       aria-label={on ? 'Unpin' : 'Pin this'}
       title={on ? 'Unpin' : 'Keep this'}
-      className="absolute top-1 right-1 z-10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider border backdrop-blur"
+      className="tap absolute top-1 right-1 z-10 px-2 py-1 text-[11px] sm:text-[10px] font-mono uppercase tracking-wider border backdrop-blur"
       style={{
         minHeight: 0,
         borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
