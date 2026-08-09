@@ -17,7 +17,7 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 import { Plus, X } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
-import { lineTotals, STATES, GARMENTS, tierIndex, type Sku } from '@/lib/blank/line';
+import { costSku, lineTotals, STATES, GARMENTS, tierIndex, type Sku } from '@/lib/blank/line';
 import { RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
 
 const money = (n: number) =>
@@ -40,11 +40,18 @@ export function LineTray() {
 
   const totals = useMemo(() => lineTotals(skus), [skus]);
 
+  // The line-level retail override has to reach the SKU too, or the same beat
+  // shows two prices: the lever saying "Margin @ $140" and the tray preview
+  // saying it sells at the tier default of $110.
+  const overrideRetail = Number(config.retail);
   const current: Sku = {
     garment: config.garment,
     tier: config.budget,
     graphic: config.graphic,
     units: STATES[tierIndex(config.budget)].run,
+    ...(config.retail !== '' && Number.isFinite(overrideRetail) && overrideRetail > 0
+      ? { retail: overrideRetail }
+      : {}),
   };
 
   const alreadyIn = skus.some(
@@ -53,9 +60,21 @@ export function LineTray() {
 
   const clears = totals.blendedMargin >= MARGIN_FLOOR;
 
+  // What this SKU costs BEFORE you commit it. The unit economics were only
+  // visible after adding, which is the wrong way round: the decision is whether
+  // to add it, and the numbers that answer that were behind the decision.
+  //
+  // variablePerUnit deliberately EXCLUDES fixed setup, because setup is charged
+  // once across the collection — quoting a fully-loaded unit cost here would
+  // double-count it against every SKU and make the line look worse than it is.
+  const preview = useMemo(
+    () => costSku(current),
+    [current.garment, current.tier, current.graphic, current.units, current.retail],
+  );
+
   return (
     <div className="my-4">
-      <div className="flex flex-wrap items-center gap-3 mb-5">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2">
         <button
           onClick={() => addSku(current)}
           disabled={alreadyIn}
@@ -68,6 +87,35 @@ export function LineTray() {
           <Plus className="w-3 h-3" />
           {alreadyIn ? 'Already in the line' : `Add ${skuLabel(current)}`}
         </button>
+
+        {!alreadyIn && (
+          <dl className="flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-[11px] tabular-nums">
+            <div className="flex items-baseline gap-1.5">
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Units</dt>
+              <dd style={{ color: 'var(--era-ink)' }}>{current.units}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Cost/unit</dt>
+              <dd style={{ color: 'var(--era-ink)' }}>${preview.variablePerUnit.toFixed(2)}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Sells at</dt>
+              <dd style={{ color: 'var(--era-ink)' }}>${preview.retail}</dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Margin</dt>
+              <dd style={{ color: preview.margin >= MARGIN_FLOOR ? 'var(--era-ink)' : '#A8456E' }}>
+                {(preview.margin * 100).toFixed(1)}%
+              </dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Buy</dt>
+              <dd style={{ color: 'var(--era-ink)' }}>
+                ${Math.round(preview.variableTotal).toLocaleString('en-US')}
+              </dd>
+            </div>
+          </dl>
+        )}
         {skus.length > 0 && (
           <button
             onClick={clearSkus}
@@ -78,6 +126,14 @@ export function LineTray() {
           </button>
         )}
       </div>
+
+      {!alreadyIn && (
+        <p className="text-[11px] mb-5 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+          Cost per unit excludes setup — digitizing, screens and the woven-label minimum are charged
+          once across the whole collection, not once per SKU, so they land in the buy below rather
+          than on this unit.
+        </p>
+      )}
 
       {skus.length === 0 ? (
         <p className="text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>

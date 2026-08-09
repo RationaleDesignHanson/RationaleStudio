@@ -302,7 +302,7 @@ export function BudgetLever() {
         role="group"
         aria-label="Budget states — scroll horizontally or use the slider below"
         tabIndex={0}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory cursor-grab active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-8 overflow-x-auto snap-x snap-mandatory cursor-grab active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ overscrollBehaviorX: 'contain' }}
       >
         {frames.map(({ s, idx, calc }) => (
@@ -339,8 +339,19 @@ export function BudgetLever() {
                     128px of controls below) and should be re-measured, not guessed,
                     if anything above it changes again. */}
                 <div
-                  className="relative overflow-hidden mx-auto w-full lg:w-auto lg:h-[min(100vh_-_458px,700px)] max-h-[min(37vh,380px)] lg:max-h-none"
-                  style={{ aspectRatio: g.ratio, backgroundColor: 'var(--era-bg-deep)' }}
+                  className="relative overflow-hidden mx-auto w-full lg:w-auto max-h-[min(37vh,380px)] lg:max-h-none"
+                  style={{
+                    aspectRatio: g.ratio,
+                    backgroundColor: 'var(--era-bg-deep)',
+                    // Height is capped PER GARMENT so every garment lands at the
+                    // same ~560px stage WIDTH. A square cap sized purely by height
+                    // came out 700px wide and left the stats column 170px, which
+                    // wrapped every row and pushed the next frame's budget figure
+                    // on top of the numbers.
+                    height: g.key === 'cap'
+                      ? 'min(calc(100vh - 458px), 560px)'
+                      : 'min(calc(100vh - 458px), 700px)',
+                  }}
                 >
                   <Image
                     src={`/blank/${s.tierSlug.replace('{g}', garment)}.webp`}
