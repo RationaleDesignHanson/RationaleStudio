@@ -11,6 +11,13 @@
  * garment at the real placement and the real relative scale is both truthful and
  * instant: change the name, the face or the mark and every placement follows.
  *
+ * ALL THREE GARMENTS AT ONCE. This used to tab between tee, hoodie and cap and
+ * show four placements of the one you picked. That is backwards for a LINE: the
+ * question is what the identity does across the range, and a tab answers it by
+ * hiding two thirds of the range. Placement is the selector now — it is a genuine
+ * either/or, a mark is in one place at a time — and the three garments sit side by
+ * side underneath it.
+ *
  * Scale is not decorative here. The chest print, the left-chest hit and the cap
  * front are sized against each other the way they would be on cloth, so a mark
  * that dies at 2in visibly dies at 2in — which is exactly the judgement the
@@ -27,7 +34,7 @@ import Image from 'next/image';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex, GARMENTS } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
-import { TIER_METHOD, METHOD_LABEL } from '@/lib/blank/producible';
+import { TIER_METHOD, METHOD_LABEL, METHOD_MEANING } from '@/lib/blank/producible';
 import {
   constructionAvailable,
   constructionsFor,
@@ -65,100 +72,102 @@ export function Applied() {
       : constructionsFor(word);
   const mark = pool.find((c) => c.id === config.mark) ?? null;
 
-  const garment = config.garment;
-  const g = GARMENTS.find((x) => x.key === garment)!;
   const stop = STATES[tier];
 
+  // Placement is the axis you switch; the garments are all shown.
+  const place =
+    PLACEMENTS.find((x) => x.id === config.placement) ?? PLACEMENTS[0];
 
-  // A PLAIN blank, generated for this purpose. Every other garment plate in the
+
+  // Plain blanks, generated for this purpose. Every other garment plate in the
   // pipeline already carries a printed mark, so using one showed the tier's
-  // generic blob AND the user's mark fighting for the same chest. Ghosting the
-  // plate did not fix that, it just made both faint. The canvas has to be empty.
-  const plate = `/blank/P-${garment}-plain.webp`;
+  // generic blob AND the user's mark fighting for the same chest. The canvas has
+  // to be empty; the path is built per garment in the grid below.
 
   return (
     <div className="my-2">
-      {/* Style selector — which garment, at this budget. */}
+      {/* Placement is the selector. The garments are not hidden behind it. */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
-        <div className="flex gap-1.5">
-          {GARMENTS.map((gm) => (
-            <button
-              key={gm.key}
-              onClick={() => set('garment', gm.key)}
-              aria-pressed={garment === gm.key}
-              className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
-              style={{
-                borderColor: garment === gm.key ? 'var(--accent)' : 'transparent',
-                color: garment === gm.key ? 'var(--accent)' : 'var(--era-ink-muted)',
-                minHeight: 0,
-              }}
-            >
-              {gm.label}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-1.5">
+          {PLACEMENTS.map((pl) => {
+            const on = pl.id === place.id;
+            return (
+              <button
+                key={pl.id}
+                onClick={() => set('placement', pl.id)}
+                aria-pressed={on}
+                className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
+                style={{
+                  borderColor: on ? 'var(--accent)' : 'transparent',
+                  color: on ? 'var(--accent)' : 'var(--era-ink-muted)',
+                  minHeight: 0,
+                }}
+              >
+                {pl.label} · {pl.inches}in
+              </button>
+            );
+          })}
         </div>
         <p className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          {stop.treatment[garment]} · {METHOD_LABEL[method]} at {money(stop.budget)}
+          <span title={METHOD_MEANING[method]}>{METHOD_LABEL[method]}</span> at {money(stop.budget)}
         </p>
       </div>
 
       {mark ? (
         <>
           {/* Close-up of the chosen style, with the mark placed on it. */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {PLACEMENTS.filter((pl) => garment !== 'cap' || pl.id === 'chest').map((pl) => {
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {GARMENTS.map((gm) => {
               const av = constructionAvailable(mark, method);
-              // Under 4in the WORDMARK cannot hold, which is precisely why the
-              // mark carries these placements. Stated as the reason the mark is
-              // here rather than as an error — it was reading as a red warning
-              // over a frame where the mark sits perfectly happily.
-              const markOnly = pl.inches < MIN_WORDMARK_INCHES;
+              // A cap has no back and no sleeve; say so rather than drawing a
+              // placement onto a garment that does not have one.
+              const nA = gm.key === 'cap' && place.id !== 'chest';
               return (
-                <figure key={pl.id} className="min-w-0">
+                <figure key={gm.key} className="min-w-0">
                   <div
                     className="relative w-full overflow-hidden"
-                    style={{ aspectRatio: g.ratio, backgroundColor: 'var(--era-bg-deep)' }}
+                    style={{ aspectRatio: gm.ratio, backgroundColor: 'var(--era-bg-deep)' }}
                   >
                     <Image
-                      src={plate}
+                      src={`/blank/P-${gm.key}-plain.webp`}
                       alt=""
                       fill
-                      sizes="(max-width: 640px) 100vw, 25vw"
+                      sizes="(max-width: 640px) 100vw, 33vw"
                       className="object-cover"
+                      style={{ opacity: nA ? 0.35 : 1 }}
                     />
-                    {/* The mark, at the real relative width for this placement. */}
-                    <span
-                      className="absolute flex items-center justify-center"
-                      style={{
-                        left: `${pl.x}%`,
-                        top: `${pl.y}%`,
-                        transform: 'translate(-50%, -50%)',
-                        width: `${pl.frac * 100}%`,
-                        opacity: av.ok ? 0.92 : 0.3,
-                        // Screen blend lets the weave and the folds show through
-                        // the ink. It does not make this a render, but a flat
-                        // 100%-opaque glyph reads as a sticker.
-                        mixBlendMode: 'screen',
-                      }}
-                    >
-                      {/* Ink is off-white on a faded charcoal blank, so the mark
-                          inverts here — on the garment it is the print, not
-                          artwork on paper. */}
-                      <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
-                        <Mark c={mark} word={word} css={t.css} size={220 * pl.frac} />
+                    {!nA && (
+                      <span
+                        className="absolute flex items-center justify-center"
+                        style={{
+                          left: `${place.x}%`,
+                          top: `${place.y}%`,
+                          transform: 'translate(-50%, -50%)',
+                          width: `${place.frac * 100}%`,
+                          opacity: av.ok ? 0.92 : 0.3,
+                          mixBlendMode: 'screen',
+                        }}
+                      >
+                        <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
+                          <Mark c={mark} word={word} css={t.css} size={300 * place.frac} />
+                        </span>
                       </span>
-                    </span>
+                    )}
+                    {nA && (
+                      <span
+                        className="absolute inset-0 flex items-center justify-center text-[11px] font-mono uppercase tracking-wider"
+                        style={{ color: 'var(--era-ink-muted)' }}
+                      >
+                        no {place.label.toLowerCase()} on a cap
+                      </span>
+                    )}
                   </div>
                   <figcaption className="mt-1.5">
                     <span className="text-[12px] block" style={{ color: 'var(--era-ink)' }}>
-                      {pl.label}
+                      {gm.label}
                     </span>
-                    <span
-                      className="text-[10px] font-mono"
-                      style={{ color: 'var(--era-ink-muted)' }}
-                    >
-                      {pl.inches}in
-                      {markOnly ? ' · mark only, no room for the word' : ''}
+                    <span className="text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                      {stop.treatment[gm.key]}
                     </span>
                   </figcaption>
                 </figure>

@@ -22,7 +22,7 @@
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
-import { TIER_METHOD, METHOD_LABEL } from '@/lib/blank/producible';
+import { TIER_METHOD, METHOD_LABEL, METHOD_MEANING } from '@/lib/blank/producible';
 import { Shuffle, RotateCcw } from 'lucide-react';
 import {
   constructionAvailable,
@@ -151,7 +151,11 @@ export function MarkFamily() {
         <span style={{ color: 'var(--era-ink)' }}>
           {makeable} of {constructions.length}
         </span>{' '}
-        can be made in {METHOD_LABEL[method]} at {money(STATES[tier].budget)}.
+        can be made in <span title={METHOD_MEANING[method]}>{METHOD_LABEL[method]}</span> at{' '}
+        {money(STATES[tier].budget)}.
+      </p>
+      <p className="-mt-3 mb-4 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+        {METHOD_MEANING[method]}
       </p>
 
       <div className="flex flex-wrap items-center gap-2 mb-4">

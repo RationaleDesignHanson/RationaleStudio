@@ -188,7 +188,22 @@ function RetailRow({
   );
 }
 
-export function BudgetLever() {
+/**
+ * COMPACT MODE, for the costs beat.
+ *
+ * The full lever is the argument: five frames, a 560x700 plate each, the mark
+ * getting quieter as the money goes up. That is right where the argument is being
+ * made, and wrong on the costing screen — there it took the entire first viewport
+ * of a beat about money, and pushed the line, the thing that actually produces
+ * the number, below the fold. The output was underneath the browsing again.
+ *
+ * By the time you reach costs you have already seen the garment on three beats.
+ * What you need here is the CONTROL and the consequence: the five stops, the
+ * price you can edit, and what this tier does to COGS and margin. So compact mode
+ * drops the track and the plates and keeps the slider, a thumbnail for orientation,
+ * and the numbers.
+ */
+export function BudgetLever({ compact = false }: { compact?: boolean } = {}) {
   // Budget stop and garment are shareable config, so they live in the URL via
   // LineProvider rather than in this component. `i` is derived, not stored.
   const { config, set, hydrated } = useLine();
@@ -275,6 +290,140 @@ export function BudgetLever() {
     () => STATES.map((s, idx) => ({ s, idx, calc: priceFrame(s, idx, garment, retailFor(s)) })),
     [garment, retailFor],
   );
+
+  if (compact) {
+    // ALL THREE GARMENTS, not a tab. On the costing screen the question is what
+    // the LINE costs, and tabbing between tee, hoodie and cap answers it by
+    // hiding two thirds of the line. Three rows, one budget, every unit cost on
+    // screen at once.
+    const rows = GARMENTS.map((gm) => ({
+      gm,
+      calc: priceFrame(STATES[i], i, gm.key, retailFor(STATES[i])),
+    }));
+
+    return (
+      <div className="my-2">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+          <span
+            className="font-display leading-none"
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: 'var(--accent)' }}
+          >
+            {money(STATES[i].budget)}
+            {STATES[i].budget === 20000 ? '+' : ''}
+          </span>
+          <span className="text-[11px] font-mono uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>
+            launch budget · {STATES[i].label}
+          </span>
+        </div>
+
+        {/* What this budget actually buys, in a sentence. Was only in the full
+            lever, which meant the costing screen showed the numbers without the
+            one line that explains them. */}
+        <p
+          className="font-display italic leading-tight mb-3 max-w-xl"
+          style={{ fontSize: '1.05rem', color: 'var(--era-ink)' }}
+        >
+          {STATES[i].brandCarrier}
+        </p>
+
+        <input
+          id="budget-compact"
+          type="range"
+          min={0}
+          max={STATES.length - 1}
+          step={1}
+          value={i}
+          onChange={(e) => setI(Number(e.target.value))}
+          aria-label="Launch budget"
+          aria-valuetext={`${money(STATES[i].budget)} — ${STATES[i].label}`}
+          className="w-full accent-[var(--accent)] cursor-pointer"
+        />
+        <div className="flex justify-between mt-1 mb-4">
+          {STATES.map((st, idx) => (
+            <button
+              key={st.slug}
+              onClick={() => setI(idx)}
+              className="text-[10px] font-mono uppercase tracking-wider"
+              style={{ color: idx === i ? 'var(--accent)' : 'var(--era-ink-muted)', minHeight: 0 }}
+            >
+              {st.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          {rows.map(({ gm, calc }) => (
+            <div key={gm.key} className="min-w-0">
+              <div className="flex items-center gap-2.5 mb-2">
+                {/* Square regardless of the garment's own ratio: a 1:1 cap thumb
+                    beside 4:5 tees made the cap header shorter, so its COGS and
+                    margin rows sat a line higher than the other two and the
+                    columns stopped being comparable at a glance. */}
+                <div
+                  className="relative shrink-0 overflow-hidden"
+                  style={{ width: 44, height: 44, backgroundColor: 'var(--era-bg-deep)' }}
+                >
+                  <Image
+                    src={`/blank/${STATES[i].tierSlug.replace('{g}', gm.key)}.webp`}
+                    alt=""
+                    fill
+                    sizes="44px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[12px]" style={{ color: 'var(--era-ink)' }}>
+                    {gm.label}
+                  </p>
+                  <p className="text-[10px] font-mono truncate" style={{ color: 'var(--era-ink-muted)' }}>
+                    {STATES[i].treatment[gm.key]}
+                  </p>
+                </div>
+              </div>
+              <dl className="space-y-1 font-mono text-[11px] tabular-nums">
+                <Row label="Blank" value={calc.blank.name} confidence={calc.blank.confidence} />
+                <Row label="COGS" value={dollars(calc.cogs.landedCOGS)} />
+                <Row
+                  label="Margin"
+                  value={pct(calc.gm)}
+                  alert={!calc.clears}
+                />
+              </dl>
+            </div>
+          ))}
+        </div>
+
+        <dl className="mt-4 font-mono text-[12px] tabular-nums max-w-sm">
+          <RetailRow
+            retail={retailFor(STATES[i])}
+            isOverride={config.retail !== ''}
+            onChange={(v) => set('retail', v)}
+            margin={rows[0].calc.gm}
+            alert={!rows[0].calc.clears}
+          />
+        </dl>
+        <p className="mt-1.5 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+          One price across the line. Margin beside it is the tee&rsquo;s; each garment&rsquo;s own
+          margin is in its column.
+        </p>
+
+        {/* The hero break-even lived only in the full lever's fifth frame, so the
+            single most consequential number in the model — how many pre-orders a
+            cut-and-sew hero needs — was hidden inside a disclosure on the costing
+            beat. It belongs with the costs. */}
+        {STATES[i].hero && rows[0].calc.heroBreakEven && (
+          <p className="mt-3 text-[12px] max-w-xl" style={{ color: 'var(--era-ink-body)' }}>
+            A cut-and-sew hero becomes reachable at this budget — break-even{' '}
+            <strong style={{ color: 'var(--era-ink)' }}>{rows[0].calc.heroBreakEven}</strong>{' '}
+            pre-orders
+            {rows[0].calc.heroShared
+              ? `, or ${rows[0].calc.heroShared} if the coat and trousers share one cloth.`
+              : '.'}
+          </p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="my-2">

@@ -218,21 +218,36 @@ function Beats() {
       )}
       {i === 5 && (
         <>
-          <div className="max-w-[1500px] -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8">
-            <BudgetLever />
-          </div>
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+          {/* The constraint, as a CONTROL rather than as the argument. The full
+              lever with its five plates belongs where the argument is made; here
+              it took the whole first viewport of a beat about money and pushed
+              the line — the thing that produces the number — below the fold. */}
+          <BudgetLever compact />
+
+          <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
+              Your line
+            </h3>
+            <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+              What you actually want made. Setup is charged once across the collection, not once per
+              SKU, so the line costs less than the sum of its garments.
+            </p>
             <LineTray />
           </div>
+
+        </>
+      )}
+      {i === 6 && (
+        <>
+          <Standings />
           <Disclosure
-            summary="How a mark gets printed"
-            hint="twelve print languages — vocabulary, not a decision"
+            summary="The twelve print languages"
+            hint="reference from the original pipeline — vocabulary, not a live decision"
           >
             <GraphicsLibrary />
           </Disclosure>
         </>
       )}
-      {i === 6 && <Standings />}
     </Beat>
   );
 }

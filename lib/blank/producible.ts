@@ -42,6 +42,24 @@ export const METHOD_LABEL: Record<Method, string> = {
 };
 
 /**
+ * What each method actually IS, in one sentence.
+ *
+ * These names are printed all over the interface — "makeable in DTF at $3k" — and
+ * were never defined anywhere. DTF in particular is trade shorthand that means
+ * nothing to anyone who has not ordered printed garments before, which includes
+ * most people using a tool to decide whether to start a clothing line.
+ */
+export const METHOD_MEANING: Record<Method, string> = {
+  dtf: 'Direct-to-film: the art is printed onto a film, then heat-pressed onto the garment. No screens to make, so full colour and fine detail cost nothing extra — but it sits on top of the cloth as a thin plastic layer rather than soaking in, and it is the least premium hand of the four.',
+  screen1:
+    'Screen print, one colour: ink pushed through one stencil. A screen has to be made per colour per print size, which is the setup fee, and it is why colour count is the thing that drives print cost.',
+  screen2:
+    'Screen print, two colours: two stencils, two passes, two setups. The second pass is also what makes a tonal print possible, because it can lay an underbase first.',
+  embroidery:
+    'Stitched in thread. Priced per thousand stitches with a one-off digitizing fee to convert the art, so it is expensive to start and cheap to repeat — and it cannot do fine lines, halftones or large solid fills.',
+};
+
+/**
  * Per graphic: the methods that can execute it, and why the others cannot.
  *
  * `never` means no budget reaches it — it leaves the decorated-blanks path
