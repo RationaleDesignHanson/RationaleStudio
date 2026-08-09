@@ -187,18 +187,10 @@ function Beats() {
             <BrandBakeoff />
           </div>
 
-          {/* The generative surface. This was imported and never mounted after a
-              restructure, which silently removed the live half of the tool. */}
-          <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-            <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-              Generate it on a garment
-            </h3>
-            <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-              The constructions above are drawn instantly and cost nothing. This renders a real
-              photograph of a combination — slower, and it spends, so it is a deliberate act.
-            </p>
-            <DeviationRender />
-          </div>
+          {/* DeviationRender carries its own heading and copy. It had been wrapped
+              in a second <h3> saying nearly the same thing, so the beat showed two
+              stacked headings and the outer one had no controls under it at all. */}
+          <DeviationRender />
 
           <Disclosure
             summary="Bring your own reference"

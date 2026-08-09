@@ -116,12 +116,13 @@ export function DeviationRender() {
   return (
     <div className="mt-8 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
       <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-        See it on your garment
+        Generate it on a garment
       </h3>
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        The grid above picks a starting point. Move any axis from there — the same mark can go
-        small on a sleeve in tonal ink, or oversize on the back in puff. Rendered from the prompt
-        library the line was generated with, so a variant looks like it belongs.
+        Everything above is drawn instantly and costs nothing. This renders a real photograph —
+        slower, and it spends, so it takes a click. Move any axis and the same mark can go small on
+        a sleeve in tonal ink or oversize on the back in puff, composed from the prompt library the
+        line was generated with so a variant looks like it belongs.
       </p>
 
       <div className="flex flex-wrap items-end gap-x-4 gap-y-3 mb-3">
