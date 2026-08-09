@@ -22,6 +22,15 @@ interface Direction {
   cost: string;
   /** Can this direction's mark be made at Stage 0 money? */
   affordable: boolean;
+  /**
+   * What it costs to reach, for the ones that are not Stage 0.
+   *
+   * NOT "over budget". The budget is chosen two beats after this one, so calling
+   * a direction over budget here is a verdict against a number the reader has not
+   * set — and the flag was hardcoded, so it was not even a verdict, it was an
+   * assertion. A requirement is true whatever they choose later.
+   */
+  needs?: string;
   control?: boolean;
   /** Directly visualises the lot-as-edition mechanic the $150 test is for. */
   testsHypothesis?: boolean;
@@ -44,6 +53,7 @@ const DIRECTIONS: Direction[] = [
     thesis: 'Status through construction, not logos.',
     cost: 'Embroidery ~6k stitches. Needs the premium blank to read.',
     affordable: false,
+    needs: 'needs $12k',
     control: true,
   },
   {
@@ -81,6 +91,7 @@ const DIRECTIONS: Direction[] = [
     thesis: 'Undyed, mended, boro. Value in the cloth and the repair.',
     cost: 'Hand stitch. Beautiful, and the most expensive labour here.',
     affordable: false,
+    needs: 'needs $20k',
   },
 ];
 
@@ -187,9 +198,9 @@ export function BrandBakeoff() {
                   {!dir.affordable && (
                     <span
                       className="text-[9px] font-mono uppercase tracking-wider"
-                      style={{ color: '#A8456E' }}
+                      style={{ color: 'var(--era-ink-muted)' }}
                     >
-                      over budget
+                      {dir.needs}
                     </span>
                   )}
                 </div>
