@@ -25,14 +25,13 @@ import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ArrowRight } from 'lucide-react';
 import { BudgetLever } from './BudgetLever';
-import { GraphicsLibrary } from './GraphicsLibrary';
 import { ReferenceUpload } from './ReferenceUpload';
 import { BrandBakeoff } from './BrandBakeoff';
 import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
 import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
-import { NameStep, FaceStep, LockupStep } from './Identity';
+import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
 import { ColourBeat } from './ColourBeat';
@@ -40,7 +39,6 @@ import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
-import { MarkExpansions } from './MarkExpansions';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 
@@ -170,21 +168,30 @@ function Beats() {
   return (
     <Beat n={b.n} title={b.title} note={b.note}>
       {i === 0 && <NameStep />}
-      {i === 1 && <FaceStep />}
-      {i === 2 && (
+      {i === 1 && (
         <>
           <MarkFamily />
           <LockupStep />
           <Disclosure
-            summary="Or a graphic that has nothing to do with the name"
-            hint="describe it, get six takes — seasonal, silly, one-off"
+            summary="Or artwork that has nothing to do with the name"
+            hint="describe it, or upload it — seasonal, silly, one-off"
           >
             <GraphicBakeoff />
+            <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+              <h4 className="font-display text-base mb-1" style={{ color: 'var(--era-ink)' }}>
+                Or bring your own
+              </h4>
+              <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+                Same outcome from the other direction — upload artwork and it gets costed, told
+                whether it can be made, and applied to a garment.
+              </p>
+              <ReferenceUpload />
+            </div>
           </Disclosure>
         </>
       )}
-      {i === 3 && <ColourBeat />}
-      {i === 4 && (
+      {i === 2 && <ColourBeat />}
+      {i === 3 && (
         <>
           <Applied />
           <div className="mt-10 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
@@ -202,35 +209,17 @@ function Beats() {
               stacked headings and the outer one had no controls under it at all. */}
           <DeviationRender />
 
-          <Disclosure
-            summary="Bring your own reference"
-            hint="upload artwork → costed, and applied to a garment with Seedream"
-          >
-            <ReferenceUpload />
-          </Disclosure>
 
-          <Disclosure
-            summary="The pre-generated mark expansions"
-            hint="four applications of the six stock marks, from the pipeline run"
-          >
-            <MarkExpansions />
-          </Disclosure>
         </>
       )}
-      {i === 5 && (
+      {i === 4 && (
         <>
           <CostSheet />
         </>
       )}
-      {i === 6 && (
+      {i === 5 && (
         <>
           <Standings />
-          <Disclosure
-            summary="The twelve print languages"
-            hint="reference from the original pipeline — vocabulary, not a live decision"
-          >
-            <GraphicsLibrary />
-          </Disclosure>
         </>
       )}
     </Beat>

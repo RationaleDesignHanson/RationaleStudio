@@ -23,7 +23,10 @@ import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { TIER_METHOD, METHOD_LABEL, METHOD_MEANING } from '@/lib/blank/producible';
-import { Shuffle, RotateCcw } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Shuffle, RotateCcw, Sparkles, Loader2 } from 'lucide-react';
+import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { PinButton, PinShelf } from './Pins';
 import {
   constructionAvailable,
   constructionsFor,
@@ -140,6 +143,46 @@ export function MarkFamily() {
   const seed = Number(config.markSeed);
   const shuffled = config.markSeed !== '' && Number.isFinite(seed);
   const constructions = shuffled ? randomConstructions(word, seed) : constructionsFor(word);
+
+  // STAGE TWO, finally wired. A construction is set type with geometry done to
+  // it; a wordmark proper has DRAWN letterforms — modified terminals, tightened
+  // counters, optical corrections a font does not have. That has to be generated,
+  // and the only way to generate it without asking a model to spell is to hand it
+  // the construction as an image and ask it to redraw. Six takes, each pushed a
+  // different way.
+  const probeRef = useRef<HTMLSpanElement>(null);
+  const [drawn, setDrawn] = useState<{ url?: string; error?: string; busy?: boolean }[]>([]);
+  const [drawing, setDrawing] = useState(false);
+
+  const drawMark = async (c: Construction) => {
+    if (!probeRef.current) return;
+    const image = rasteriseMark(c, word, readFont(probeRef.current));
+    if (!image) return;
+    setDrawn(Array.from({ length: 6 }, () => ({ busy: true })));
+    setDrawing(true);
+    await Promise.all(
+      Array.from({ length: 6 }, async (_, n) => {
+        try {
+          const res = await fetch('/api/blank/bakeoff', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ kind: 'mark', image, variant: n }),
+          });
+          const data = await res.json();
+          setDrawn((prev) =>
+            prev.map((t, k) =>
+              k === n
+                ? { busy: false, url: res.ok ? data.imageUrl : undefined, error: res.ok ? undefined : data.error }
+                : t,
+            ),
+          );
+        } catch {
+          setDrawn((prev) => prev.map((t, k) => (k === n ? { busy: false, error: 'Network error' } : t)));
+        }
+      }),
+    );
+    setDrawing(false);
+  };
   const makeable = constructions.filter((c) => constructionAvailable(c, method).ok).length;
   const selected = constructions.find((c) => c.id === config.mark);
 
@@ -227,6 +270,69 @@ export function MarkFamily() {
           );
         })}
       </div>
+
+      <span
+        ref={probeRef}
+        aria-hidden
+        className="opacity-0 pointer-events-none"
+        style={{ ...t.css, position: 'absolute', left: -9999 }}
+      >
+        {word || 'BLANK'}
+      </span>
+
+      {selected && (
+        <div className="mt-6 pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+            <button
+              onClick={() => drawMark(selected)}
+              disabled={drawing}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+              style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
+            >
+              {drawing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+              {drawing ? 'Drawing six…' : `Draw ${selected.title} properly`}
+            </button>
+            <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+              set type → drawn letterforms · six takes · spends
+            </span>
+          </div>
+
+          {drawn.length > 0 && (
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+              {drawn.map((d, n) => (
+                <div
+                  key={n}
+                  className="relative w-full aspect-square overflow-hidden"
+                  style={{ backgroundColor: 'var(--era-bg-deep)' }}
+                >
+                  {d.url && <PinButton url={d.url} />}
+                  {d.url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={d.url} alt={`Drawn take ${n + 1}`} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      {d.busy ? (
+                        <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
+                      ) : (
+                        <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                          {d.error ?? '—'}
+                        </span>
+                      )}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="mt-2 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+            The construction is set type with geometry done to it. These are drawn from it — the
+            model is handed your mark as an image and asked to redraw, never to spell, so the letters
+            cannot change.
+          </p>
+          <PinShelf />
+        </div>
+      )}
 
       <div className="mt-5 max-w-2xl">
         {selected ? (

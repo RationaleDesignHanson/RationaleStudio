@@ -49,7 +49,14 @@ function useFace() {
   return { idx, t: ALL_TREATMENTS[idx] };
 }
 
-/** Beat 01 — the word, and nothing else to decide. */
+/**
+ * Beat 01 — the word and the face it is set in.
+ *
+ * These were two beats and both showed a large specimen of the same word in the
+ * same treatment, so the first was a strict subset of the second. Naming still
+ * opens the experience; choosing the face is the same act continued, not a
+ * separate screen showing you the same thing again.
+ */
 export function NameStep() {
   const { config, set } = useLine();
   const word = normalise(config.wordmark);
@@ -76,30 +83,14 @@ export function NameStep() {
         />
       </label>
 
-      <div
-        className="flex items-center justify-center px-8 py-12 overflow-hidden"
-        style={{ backgroundColor: 'var(--era-bg-deep)', minHeight: 'min(30vh, 260px)' }}
-      >
-        <div
-          className="max-w-full overflow-hidden"
-          style={{
-            color: 'var(--era-ink)',
-            fontSize: 'clamp(2rem, 7vw, 5rem)',
-            lineHeight: 1.05,
-            whiteSpace: 'nowrap',
-            ...t.css,
-          }}
-        >
-          {word || 'BLANK'}
-        </div>
-      </div>
-
-      <p className="mt-5 text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
+      <p className="text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
         Anything up to 18 characters. It is set in real type rather than generated, so it is always
         spelled correctly and costs nothing to change your mind about — and the length matters later,
         because a long name is constrained by the {PLATEN_INCHES}in print platen before it is
         constrained by taste.
       </p>
+
+      <FaceStep />
     </div>
   );
 }
