@@ -1,0 +1,937 @@
+0dc3284 2026-06-05 Merge pull request #25 from RationaleDesignHanson/fix-rumi-vault-nits
+c099c03 2026-06-05 Fix two rumi prototype nits from vault audit
+d32e934 2026-06-04 Merge pull request #24 from RationaleDesignHanson/optimize-fubo-showcase
+97977d6 2026-06-04 Mobile-optimize fubo showcase images (44M -> 8.5M)
+c020511 2026-06-04 Merge pull request #23 from RationaleDesignHanson/fubo-showcase-expand
+01be0e1 2026-06-04 Expand fubo showcase to all 8 leagues x 3 styles
+ad3c2bf 2026-06-04 Merge pull request #22 from RationaleDesignHanson/fix-prototypes-from-hd
+1590cb1 2026-06-04 Fix prototype demos from external HD backup
+7b64e18 2026-06-03 Merge pull request #21 from RationaleDesignHanson/restore-fubo-prototype
+349f152 2026-06-03 Restore the fubo prototype and integrate it into the case study
+662d69d 2026-06-03 Merge pull request #20 from RationaleDesignHanson/vault-relock
+f7347b6 2026-06-03 Re-lock the whole vault behind one shared password
+1934631 2026-06-03 Merge pull request #19 from RationaleDesignHanson/nimbus-deck-swipe
+4219894 2026-06-03 Nimbus deck: make swipe navigation reliable + coherent
+68f1d74 2026-06-03 Merge pull request #18 from RationaleDesignHanson/open-athletes-first-vault
+474a18a 2026-06-03 Merge pull request #17 from RationaleDesignHanson/can-fubo-prototype
+5fb096a 2026-06-03 Open Athletes First pitch deck in the public vault
+7f30ab2 2026-06-02 Can the Fubo thumbnail-generator prototype surface
+17a319a 2026-06-02 Merge pull request #16 from RationaleDesignHanson/vault-noindex-fubo-rumi
+87a6d27 2026-06-02 Vault: noindex fubo + rumi now that they're ungated
+107c167 2026-06-02 Merge pull request #15 from RationaleDesignHanson/vault-writing-migration
+62951b8 2026-06-02 Vault: ungate individual projects; keep vault index gated
+a9d25dc 2026-06-01 Vault: default the Writing section to collapsed
+08a6849 2026-06-01 Vault: move Writing section first and make it collapsible
+550782d 2026-06-01 Remove duplicate insights copy; point related links at vaulted writing
+7c0e488 2026-06-01 Move writing into gated Vault; dedupe 15 to 10; de-specify identity
+ffbd8cf 2026-05-20 viacom: add Times Square Alliance representation
+9f18486 2026-05-20 mobile layout fixes: zero launcher + spark-ar flagship grid
+696813b 2026-05-20 studio-era: embed GTA Vice City TV commercial
+fb4e6d6 2026-05-11 seo: comprehensive organic-discovery + name-disambiguation upgrade
+058abf6 2026-05-11 analytics: audit-driven fixes + signal upgrades
+d58ff93 2026-05-09 analytics: track iframe-embedded prototype engagement
+689058b 2026-05-09 analytics: strip compression URL flag, drop response Content-Encoding
+888bd89 2026-05-09 analytics: restore skipTrailingSlashRedirect for /ingest handler
+e15e059 2026-05-08 docs: add CLAUDE.md repo orientation
+5f9a680 2026-05-08 analytics: replace /ingest rewrite with route handler
+8ac83ad 2026-05-08 analytics: fix 400 from gzipped capture, init in useEffect
+ace43b1 2026-05-08 nimbus: surface the deck
+bb179e4 2026-05-08 engagement: drop dashboard query cache 300s -> 30s
+940cdb8 2026-05-08 analytics: track vault unlock attempts + outbound clicks
+62fc20f 2026-05-08 owner: add /owner/engagement analytics dashboard
+9308751 2026-05-08 heirloom: delete dead loveMarks.ts
+cb2db0d 2026-05-08 Analytics: wire PostHog (pageviews, autocapture, replay, heatmaps)
+63e8a66 2026-05-08 Vault: fix entry-point feel, add Nimbus case study
+37ee040 2026-05-07 spark-ar Ch. C: halve the display size of the before/after captures
+1678fa9 2026-05-07 Cleanup: delete dead Heirloom case-study scaffolding (-71MB)
+72bb3f9 2026-05-07 Image audit pass 1: fix declared dims + resize oversized icon
+22d8a18 2026-05-07 RotatingTagline: switch from inline-grid to absolute-positioned overlay
+55803bc 2026-05-07 Header: vertically center the rotating tagline with the wordmark on desktop
+d63779f 2026-05-07 Header: rotating tagline on desktop too, drop redundant manifesto hero
+a99cf7c 2026-05-07 Mobile UX overhaul + Heirloom Chapter 04 rewrite
+c29f13a 2026-05-07 WorkViewer mobile rail: add numeral so the tick reads as navigation
+cf5c257 2026-05-07 Site: wire up live Substack post + Sendfull interview
+7e3620d 2026-05-06 Zero: mobile launcher card, desktop iframe (split)
+5913ebf 2026-05-06 WorkViewer: sequential header + rows transitions, no body-copy overlap
+db647d9 2026-05-06 About: reframe Zero — beta + pulled, not prototype
+ba61a20 2026-05-06 About: drop the LIFT framing slide
+630a7d9 2026-05-06 Home: peek-bounce on first arrival + chunkier scroll-hint bounce
+9fd0aae 2026-05-06 WorkViewer rail: left-edge ticks on mobile, labeled right on desktop
+fe8032f 2026-05-06 Home: add era rail + scroll hint so users discover the other two eras
+54c15ca 2026-05-06 Header: center-align wordmark + nav, not baseline
+675c43c 2026-05-06 OG image: studio-monograph treatment, 1200×630
+e5ecaa9 2026-05-06 NOW row meta + Zero correction
+214f7a1 2026-05-06 Home + work index: title-fix sweep
+292c193 2026-05-06 Studio Era: embed Adidas · Hu Jia (2008 Beijing) · lead compositor
+744dfaf 2026-05-06 Viacom: embed Motionographer case-study film inline
+c3a37d5 2026-05-06 Viacom: Screenies cannon as Ch 02 hero before the playlist
+42fb195 2026-05-06 VideoPlayer + Viacom/Studio/SXSL playlists
+11833b0 2026-05-06 Hide Writing section until Substack launches
+cf53dcd 2026-05-06 Viacom: standardize image aspect ratios + sequential FIG numbering
+89ef8ac 2026-05-06 Decks + copy fixes (spark-ar guidelines · apex assembly · misc)
+a270966 2026-05-06 FAIR: drop world-locked-avatars patent reference (lives on Spark AR)
+eb7397d 2026-05-06 Header copy: wordmark = Rationale, NOW headline = Vision bears...
+18ff7ab 2026-05-06 Fix: Zero iframe blocked by Netlify headers + WorkViewer scroll dwell
+9a06f54 2026-05-06 Relaunch: studio-monograph site with reverse-chronological work index
+978ceaf 2026-04-13 add: Google site verification for Play Console API access
+69f13d3 2026-04-13 WIP on main: 180d4a0 add: Google site verification for Play Console API access
+b6d39ed 2026-04-13 index on main: 180d4a0 add: Google site verification for Play Console API access
+aa2e693 2026-04-13 untracked files on main: 180d4a0 add: Google site verification for Play Console API access
+180d4a0 2026-04-13 add: Google site verification for Play Console API access
+dd8e6c6 2026-03-24 Merge pull request #14 from RationaleDesignHanson/dumbq-prompts-v2
+6f29942 2026-03-24 Fix TS build: type payload in DumbQuestionsGame realtime callback
+ab8d69a 2026-03-24 Merge pull request #13 from RationaleDesignHanson/dumbq-prompts-v2
+0568e4a 2026-03-24 Fix TS build: use explicit any for Supabase realtime payload
+bb9b4af 2026-03-24 Merge pull request #12 from RationaleDesignHanson/dumbq-prompts-v2
+7fab054 2026-03-24 Fix TypeScript: type payload parameter in realtime subscription
+1737525 2026-03-24 Merge pull request #11 from RationaleDesignHanson/dumbq-prompts-v2
+63f2d76 2026-03-24 Fix realtime: make Supabase client a singleton
+d396110 2026-03-24 Merge pull request #10 from RationaleDesignHanson/dumbq-prompts-v2
+2dfc9cb 2026-03-24 Add LLM-powered image prompt interpretation via GPT-4o-mini
+bd3b76f 2026-03-24 Merge pull request #9 from RationaleDesignHanson/dumbq-prompts-v2
+2985202 2026-03-24 Fix image prompts: use only answer1 as subject, no people/faces
+e1ecad2 2026-03-24 Merge pull request #8 from RationaleDesignHanson/dumbq-prompts-v2
+236c471 2026-03-24 Fix aggregated prompt: use answer1 vs answer2, drop banter from answer3/4
+4141c57 2026-03-24 Merge pull request #7 from RationaleDesignHanson/dumbq-prompts-v2
+5de4da6 2026-03-24 Fix image generation: use fetch instead of Replicate SDK, add logging
+a1f473a 2026-03-24 Merge pull request #6 from RationaleDesignHanson/dumbq-prompts-v2
+bae9897 2026-03-24 Overhaul image prompts + tune Flux Dev for Dumb Questions
+1e9ed8f 2026-03-24 Merge main into fix/dumbq-turns-and-prompts, resolve conflicts keeping latest
+537c265 2026-03-24 Fix turn alternation, overhaul image prompts, add 4-round game with aggregated image
+6545035 2026-03-24 Merge remote-tracking branch 'origin/fix/turns-and-prompts'
+a322dec 2026-03-24 Trigger Netlify deploy
+5fe5524 2026-03-24 Trigger Netlify deploy
+015704b 2026-03-24 Fix 4-turn rounds, fix image generation 502
+fa6e855 2026-03-24 Merge pull request #4 from RationaleDesignHanson/fix/turns-and-prompts
+f27d371 2026-03-24 Fix turn-taking, rewrite image prompts, add pass feature
+f0d5d35 2026-03-23 Trigger Netlify deploy
+8b23903 2026-03-23 Trigger Netlify deploy
+b39a00c 2026-03-23 Trigger Netlify deploy
+262de45 2026-03-23 Trigger Netlify deploy
+2ae163b 2026-03-23 Merge pull request #3 from RationaleDesignHanson/exchange-image-gen
+9ffe95e 2026-03-23 Update game state management in Dumb Questions game to improve handling of new answer slots and image generation flow. Refactor submitAnswer function and enhance RoundState type for better functionality.
+d7323eb 2026-03-23 Trigger Netlify deploy
+52ba65b 2026-03-23 Enhance Dumb Questions game functionality by adding support for additional answer slots and image generation. Updated RoundState type, modified submitAnswer function, and implemented image prompt generation and storage. Improved game state management in the DumbQuestionsGame component to handle new answer slots and image generation flow.
+1a7827e 2026-03-23 Trigger Netlify deploy
+16fc0b9 2026-03-23 Fix error.tsx JSX - missing closing paren
+51bf040 2026-03-23 Fix Supabase WebSocket CSP, error boundary, lobby copy, and tagline
+b52af2a 2026-03-23 Trigger Netlify deploy
+d6f8b2e 2026-03-23 Trigger Netlify deploy
+2c19e75 2026-03-23 Add error handling for dumbquestions Player 2
+0c72f6b 2026-03-23 Force hardcoded Supabase keys - bypass Netlify env var override
+0661055 2026-03-23 Hardcode Supabase public config as fallback for Netlify env var issues
+37a422c 2026-03-23 Rebuild - fix broken Supabase key
+3ba455b 2026-03-23 Rebuild with correct Supabase JWT key
+fc84e52 2026-03-23 Rebuild with updated Supabase key
+5c0527f 2026-03-23 Rebuild with Supabase env vars
+f81888d 2026-03-23 Trigger Netlify deploy
+0536ca1 2026-03-23 Merge branch 'personalize-products'
+d7ca729 2026-03-23 Add firebaseapp.com to frame-src CSP in next.config.mjs
+f9b382b 2026-03-23 Merge pull request #2 from RationaleDesignHanson/personalize-products
+ec67451 2026-03-23 Update deno.lock to add new dependencies and update existing ones
+9e58333 2026-03-23 Fix TypeScript error in advanceRound: clean up null narrowing logic
+014f22b 2026-03-23 Merge pull request #1 from RationaleDesignHanson/personalize-products
+ec8918a 2026-03-23 Update About and Home pages with revised copy and product details. Changed messaging to emphasize personal involvement in software development and updated product references from 'zero' to 'heirloom' and vice versa, including new product descriptions and statuses.
+80a84a5 2026-03-23 Enhance layout logic to include dumbquestions game in full-screen page check
+2624706 2026-02-17 Make restaurant images link to Google Maps
+50ac1d5 2026-02-17 Add /charlie birthday restaurant quiz
+7a80ca3 2026-01-15 Fix: ensure confidential projects always show CLASSIFIED for unauthenticated users
+2679b83 2026-01-07 Disable TestFlight links - redirect to contact page
+437d469 2026-01-07 Homepage layout updates
+08fe424 2026-01-07 Update homepage copy: add dashes around 'like co-founders'
+522fcf8 2026-01-07 Hide project titles on locked cards for unauthenticated users
+53b90bf 2026-01-07 Update homepage copy: 'like co-founders' instead of 'skin in the game'
+2d122a1 2026-01-07 Update CSP to allow Google APIs + fix Meta VP text
+4f847da 2026-01-07 Overhaul case study + consumer pages
+e8b68bc 2026-01-07 refactor: move mental models from about page to thinking article
+15d5bb6 2026-01-07 fix: restore blog-style layout for thinking page
+10488d5 2026-01-07 Redesign about page + add dual engine essay
+72b2f2a 2026-01-07 feat: combined homepage with work, thinking redesign, navigation cleanup
+1dd3805 2026-01-06 feat(home): refine homepage narrative and product flow
+52716e2 2026-01-05 feat(cleanup): final route cleanup and verification
+83dcdf5 2026-01-05 feat(products): create product route structure with variant support
+17e0eae 2026-01-05 feat(work): consolidate Heirloom case study into single page
+ab6c820 2026-01-05 feat(work): consolidate Zero case study into single page
+d31e7f4 2026-01-05 feat(homepage): redesign with new positioning
+d3a933a 2026-01-05 docs: add baseline state documentation before restructuring
+0e337a5 2026-01-05 fix(auth): resolve heirloom route conflict - move dashboard to /owner/heirloom
+466121c 2026-01-05 feat: protect Clara quiz page - require investor/team/admin role
+ed784b0 2026-01-03 fix: runner-up toggle now works both ways, add card bg to domestic notice
+41b172f 2026-01-03 feat: make runner-up destination clickable to swap
+4099276 2026-01-03 fix: update bio bay tour link to GetYourGuide
+f63712a 2026-01-03 fix: top-align quiz content
+2e466e2 2026-01-03 fix: compact question card to fit content better
+8582209 2026-01-03 fix: update activity links with real working URLs
+5ec6847 2026-01-03 chore: trigger redeploy for GOOGLE_PLACES_API_KEY env var
+3a83943 2026-01-03 feat: add Clara's Sweet 16 quiz with Google Places hotel photos
+c182e37 2026-01-03 feat: update how-we-work page with process timeline
+f397da3 2026-01-03 perf: optimize Lighthouse score with mobile animation skip and lazy Firebase loading
+7f5acf8 2026-01-02 Fix Firebase auth, update team role access, fix hydration error
+341eb7b 2025-12-31 Add Heirloom business dashboard with launch tracking and financial projections
+f4badc7 2025-12-27 Add feature flag to toggle "What We're Shipping" section
+1a445e3 2025-12-23 Add Heirloom privacy policy page at /heirloom/privacy
+308cdff 2025-12-23 Revert modularizeImports config - causing 765 build errors
+3e77b53 2025-12-23 Add missing icon exports to fix build errors
+f55966d 2025-12-23 Keep ASCII animations at 30 FPS on all devices
+9bb0352 2025-12-23 Optimize page load performance without functional changes
+7c3916c 2025-12-23 Trigger Netlify deployment
+06e3d90 2025-12-23 Add hover overlay effect to Zero, Heirloom, and Pipeline cards
+58e823e 2025-12-23 Make homepage headline clickable, remove separate About link
+2984582 2025-12-23 Add Studio Overview CTA link below hero text on About page
+6eb7ed8 2025-12-23 Center-align StatementBlock title while keeping card content left-aligned
+a1ecb36 2025-12-23 Remove .DS_Store files from tracking and add to .gitignore
+7aebbfd 2025-12-23 Fix StatementBlock title alignment from center to left
+24d3608 2025-12-23 Update home page link from Studio Overview to About
+31b6e59 2025-12-22 Update overview presentation to focus on consumer value over technical specs
+c488dbc 2025-12-20 Fix last failing E2E test by checking for #demo section
+9eb48e2 2025-12-20 Update E2E tests for new Zero products page with InteractiveDemo
+57847ec 2025-12-20 Update Zero case study demo link to point to products page
+b44d4c8 2025-12-20 Fix Zero tutorial modals positioning and hide email cards during tutorial
+ac66e52 2025-12-20 Fix E2E test URLs to point to correct Zero demo page
+7af5e5b 2025-12-20 Update homepage copy and enhance Nimbus presentation design
+d9971b5 2025-12-20 Optimize mobile padding and typography for Heirloom product page
+dd71e43 2025-12-20 Fix mobile scanning scroll and recipe card title occlusion
+1888187 2025-12-20 Reduce height of confidence score box to fit content
+5cc16cf 2025-12-20 Center pill, shorten text, and add text pulse animation
+c3508eb 2025-12-20 Redesign scanning animation with bounded images and gradient pill overlay
+45c9f5d 2025-12-20 Ensure multi-recipe cookbook always shown in demo selection
+0202de5 2025-12-20 Fix transform math to properly account for scale in translations
+bd3fe75 2025-12-20 Improve recipe image centering logic for better consistency
+5195aeb 2025-12-20 Add forced snap points to carousel for tighter scroll behavior
+188f0c1 2025-12-20 Fix recipe detection to not split single recipes with sub-sections
+43ff13e 2025-12-20 Add intelligent image cropping to center on recipe title area
+9d271c6 2025-12-20 Redesign carousel cards to be image-first with title below
+000078a 2025-12-20 Implement horizontal carousel with peek animation for mobile recipe selector
+8b18d37 2025-12-20 Remove confidence badge from mobile recipe selector
+bdeeb5c 2025-12-20 Add checkmark icon to confidence badge for clearer mobile UX
+4e3b9f9 2025-12-20 Move confidence badge into thumbnail overlay for cleaner design
+fdfd41c 2025-12-20 Override global button centering with explicit left alignment
+af13660 2025-12-20 Reduce recipe title font size to fit longer names on one line
+daceb88 2025-12-20 Fix number alignment to top of multi-line titles
+c2c6280 2025-12-20 Remove mx-auto from main container on mobile to fix centering
+17982fa 2025-12-20 Fix mobile centering by breaking out of page padding
+e69d08d 2025-12-20 Remove max-width constraint on mobile to fix centering issue
+80ab974 2025-12-20 Add explicit left text alignment to mobile recipe buttons
+a034052 2025-12-20 Fix mobile left alignment by removing horizontal margins
+d7daf2a 2025-12-20 Zoom thumbnails to show actual recipe areas and fix left alignment
+2eee4fe 2025-12-20 Fix mobile recipe list layout and add thumbnail previews
+1e5e0e7 2025-12-20 Restore bounding box overlay for desktop, keep compact list for mobile
+d4d212f 2025-12-20 Replace image overlay with combined card/list UI for multi-recipe selection
+752690e 2025-12-20 Replace mobile dots with directional overlay
+5df687d 2025-12-20 Add image ref and load tracking for positioning improvements
+8480c0d 2025-12-20 Remove duplicate header from RecipeSelector
+98d58f5 2025-12-20 Reduce mobile dot markers to 24px for better fit
+b337acc 2025-12-20 Add mobile-friendly numbered dot markers for multi-recipe selection
+12f1443 2025-12-20 Make confidence box collapsible with larger overall score text
+a52553a 2025-12-20 Make instruction numbered bullets medium grey
+481583d 2025-12-20 Increase default mobile title size to 24px
+52ba076 2025-12-20 Add responsive title sizing and visible list bullets
+60c91e8 2025-12-20 Center timeline on mobile and add spacing around connectors
+c259710 2025-12-20 Make overall confidence display more compact
+3cc5ed7 2025-12-20 Make timeline span full width on mobile
+72fb623 2025-12-20 Make timeline horizontal on mobile and move confidence tags to confidence box
+0b9b494 2025-12-20 Fix mobile text spacing - use narrow container to prevent gaps
+bfd3685 2025-12-20 Fix JSX syntax error - wrap elements in fragment
+477449f 2025-12-20 Force proper text wrapping for mobile description
+f5e084e 2025-12-20 Fix mobile text spacing for description line
+169d640 2025-12-20 Fix demo header spacing and typography
+4c671cc 2025-12-20 Update edit hint text to be more user-friendly
+2581869 2025-12-20 Revert "Remove demo from products page and update edit hint text"
+0894125 2025-12-20 Make timeline avatars half size on mobile to reduce crowding
+9c59f4e 2025-12-20 Remove demo from products page and update edit hint text
+3b8eb17 2025-12-19 Fix bounding box positioning on mobile for multi-recipe detection
+6cc33ca 2025-12-19 Make stickers larger and randomize display order
+108e2e1 2025-12-19 Hide generation badge and photo thumbnail when card is flipped
+6948102 2025-12-19 Fix sticker preview button images not displaying
+c2c4a0a 2025-12-19 Fix CSP to allow Google APIs for Firebase
+93f9aa3 2025-12-19 Add Anthropic API key check to debug endpoint
+a57b465 2025-12-19 Add Anthropic API key documentation to Netlify config
+c72e146 2025-12-19 Fix Netlify deployment: remove functions.environment to avoid 4KB limit
+cdd825a 2025-12-19 Optimize Heirloom mobile UX with carousels, typography, and spacing
+7349529 2025-12-19 Improve recipe selector styling and fix font inconsistency
+2723c83 2025-12-19 Remove false research claims from Context & Methodology section
+5f07420 2025-12-19 Move interactive demo tabs from case study to product page
+54f1a6c 2025-12-19 Add Recipe Capture as third tab in Heirloom case study demos
+6cc13a8 2025-12-19 Add interactive Heirloom recipe demo with OCR and generational features
+8ad970a 2025-12-19 Update E2E tests to match /work/zero page content
+264f896 2025-12-19 Fix E2E test to handle responsive h1 elements
+20c83c5 2025-12-19 Add metadata to Zero page via layout.tsx
+c960131 2025-12-19 Revert E2E test URLs back to /work/zero
+62dc4f5 2025-12-19 Fix E2E test URLs from /work/zero to /clients/zero
+5991c57 2025-12-19 Trigger Netlify rebuild to verify deployment
+528f747 2025-12-19 Fix variable declaration order in TabletFullWidthDemo
+67c731b 2025-12-19 Add @types/react-dom for Netlify build
+d68fc89 2025-12-19 Fix Zero mobile demo UX issues
+93a06ed 2025-12-17 feat: Add Phase 1 Heirloom social sharing infrastructure
+d5315c9 2025-12-17 Fix TypeScript error: use getByCanonical instead of non-existent findIngredient
+817c008 2025-12-17 Add next steps documentation for Heirloom roadmap
+11e6078 2025-12-17 Fix random recipe generation to use structured ingredient data
+78ae84d 2025-12-17 Add drop shadow to active demo tab in Heirloom navigation
+a49e662 2025-12-17 Fix TypeScript: convert item.unit null to undefined
+582ff47 2025-12-17 Fix TypeScript build error in ShoppingListView
+e1d974e 2025-12-17 Fix improper fractions in random recipe generation
+a34038b 2025-12-17 Improve Heirloom demos: realistic random recipes and refined UI
+da8e079 2025-12-17 refactor: remove role display from authenticated login page view
+3414e49 2025-12-17 Simplify Heirloom demos & add Firebase failure tracking
+715cc52 2025-12-17 feat: show profile info and logout option for authenticated users on login page
+d151bda 2025-12-17 feat: display About and Demo buttons with lock icons for unauthenticated users
+a6f9b57 2025-12-17 Integrate Shopping Lab & update marketing CTAs
+26c2649 2025-12-17 perf: optimize bundle size with lazy loading and AVIF images (~475KB savings)
+fa4e4f9 2025-12-17 fix: add Firebase environment variables to E2E and accessibility tests
+1346660 2025-12-17 fix: resolve all remaining E2E test failures
+5e8e42b 2025-12-17 fix: update E2E tests to match actual page implementations
+19e1946 2025-12-17 fix: make lint non-blocking in CI to diagnose other test issues
+4bc5382 2025-12-17 feat: add blur effect to Structure sections for non-authenticated users
+786f493 2025-12-17 fix: exclude archived directories and fix type errors for deployment
+b28177f 2025-12-17 fix: repair duplicate import statements from logger migration
+343ceb9 2025-12-17 Add quick deployment confidence guide
+0701352 2025-12-17 Add comprehensive deployment testing suite
+985f836 2025-12-17 Add comprehensive Phase 5 documentation
+52a739d 2025-12-17 Add CI/CD quality gates with GitHub Actions
+5f7452c 2025-12-17 Replace all console statements with logger utility
+4d03c7f 2025-12-17 Consolidate beta signups from Supabase to Firebase
+f2dd8e9 2025-12-17 Add comprehensive WCAG 2.1 AA accessibility tests
+1ac7459 2025-12-17 Add comprehensive E2E critical path tests
+283909b 2025-12-16 Add comprehensive unit tests for zero-sequence utilities
+17b1aeb 2025-12-16 Add comprehensive unit tests for lib/utils (cn, logger)
+fe5f70c 2025-12-16 Phase 2: Card consolidation - Remove dead code (17 → 13 components)
+2e45341 2025-12-16 Phase 2: TypeScript improvements - Window interfaces & utility types
+f75a094 2025-12-16 Phase 2: TypeScript improvements - Fix error handler types (error: any → unknown)
+529bca5 2025-12-16 Phase 2: Bundle size reduction - Lazy load Three.js
+d42b2f9 2025-12-16 perf: Phase 2 - Optimize images with WebP/AVIF formats
+c17bbf6 2025-12-16 feat: Phase 1.5 - Add mobile swipe gestures to pitch decks
+8d8253c 2025-12-16 fix: Phase 1.5 - Fix touch target accessibility (32px/40px → 44px WCAG)
+ef2c7d1 2025-12-16 feat: Phase 1.5 - Consolidate diagram patterns and cleanup backups
+21fe37e 2025-12-16 feat: Phase 1 - Set up Sentry error monitoring
+f0ff69e 2025-12-16 feat: Phase 1 - Set up Vitest testing infrastructure
+e0c045c 2025-12-16 refactor: Phase 1 - Migrate hardcoded colors to design tokens
+b6f9ff0 2025-12-16 refactor: Phase 1 - Consolidate Zero route duplicates
+90b682b 2025-12-16 security: Phase 0 - Critical security hardening
+b690ebf 2025-12-16 Add favicon with ® symbol and fix header branding consistency
+155436c 2025-12-16 Fix /thinking page width consistency and reorder vision-proof-burden essay
+5d1aea0 2025-12-16 Fix 040 card routing to quick overview page
+d862b67 2025-12-16 Fix Next.js 16 build errors for Netlify deployment
+26b2cab 2025-12-16 Complete 3 bedtime tasks: Heirloom support, Vision essay, Fubo fix
+b8b7697 2025-12-16 Simplify: Remove Firebase externalization, keep only public/ exclusion
+6a5cc54 2025-12-16 Fix: Reduce Netlify bundle size with public exclusion + Firebase externalization
+6d72b2d 2025-12-16 Restore to working configuration from 7pm deploy
+36985c8 2025-12-16 Fix: Remove overly aggressive Next.js compiled exclusion
+65efe44 2025-12-16 Fix: Exclude public assets from serverless bundle using outputFileTracingExcludes
+3f06b10 2025-12-16 Add .nftignore to exclude public assets from serverless bundle
+767174d 2025-12-16 Add firebase-admin to external_node_modules with static imports
+3be7232 2025-12-16 Revert to working Firebase configuration - fix bundle size issue
+a4fac30 2025-12-16 Switch to esbuild bundler and externalize all Google Cloud packages
+6de25a3 2025-12-16 Add type annotations to doc parameters in pitch security
+4094f68 2025-12-16 Add await to all getAdminAuth() and getAdminDb() calls
+d40c727 2025-12-16 Add await to all initializeFirebaseAdmin() calls
+aead8f6 2025-12-16 Convert firebase-admin imports to dynamic imports to fix bundle size
+cd06bd9 2025-12-16 Externalize firebase-admin to reduce Netlify function bundle size
+e6658b6 2025-12-16 Switch Netlify functions bundler from esbuild to nft to reduce bundle size
+acae3fd 2025-12-16 Move render.yaml to repository root for Blueprint deployment
+2f26867 2025-12-16 Add Render deployment configuration for Fubo Python backend
+6db1235 2025-12-15 Apply design system to Fubo case study and update methodology content
+590ccba 2025-12-15 Add comprehensive funding breakdown and interactive diagrams to sanitary waste system
+917e7e9 2025-12-15 Transform sanitary waste system diagrams with canvas-based animations
+945d3f6 2025-12-15 Enhance sanitary waste system diagrams with mobile responsiveness
+a365a5a 2025-12-15 Fix Project 040 card display and work portfolio improvements
+4866e84 2025-12-15 Reframe 'This Is the Proof' slide to be gestalt, not Zero-centric
+171455f 2025-12-15 Update 'Our Process' section to emphasize flexibility
+4926f7e 2025-12-15 Add security headers to improve Best Practices score
+f1b6f7e 2025-12-15 Add updated timestamp to strategic roadmap
+aadd0e6 2025-12-15 Collapse all accordions by default on slide 7
+59013dc 2025-12-15 Remove decision framework diagram and recommendation from slide 5
+68c9bc2 2025-12-15 Update CREaiT login redirect to strategic roadmap
+af3ed1a 2025-12-15 Hide 'What You Get' and 'Engagement Terms' sections from CREaiT overview
+1eaf093 2025-12-15 Display 'intro' instead of 'hero' in slide navigation
+f4836a4 2025-12-15 Remove section navigation from CREaiT strategic roadmap
+c904511 2025-12-15 Update slide 2 subtitle to 'Mostly Complete Backend'
+5d142f1 2025-12-15 Remove 'Significant Built Value' from slide 2 subtitle
+b16acfd 2025-12-15 Remove Built Value evidence from CREaiT strategic roadmap slide 2
+a0a07bf 2025-12-15 Update CREaiT case study to link to strategic roadmap
+e93f588 2025-12-15 Add React import to Header component
+8521f00 2025-12-15 Fix React key prop warning in Header navigation
+a98ef70 2025-12-15 Fix CREaiT pitch deck link path
+92b1b3c 2025-12-15 Remove Results & Impact section and fix deck link for case-study-010
+98d51ac 2025-12-15 Update bottleneck diagram: center values in bars and improve legibility
+a7fe099 2025-12-15 Revert: Move bottleneck percentages back above bars
+d8baee0 2025-12-15 Fix presentation deck link to start at slide 1 instead of last viewed
+2581fca 2025-12-15 Remove Results & Impact section from case-study-020
+71a5e19 2025-12-15 Update 'Proving It On Our Own' to emphasize site as living case study
+12cef42 2025-12-15 Fix broken career timeline image on About page
+84ff960 2025-12-15 Add missing project status types to ProjectStatus union
+024cd86 2025-12-15 Fix TypeScript error: derive isAuthenticated from useAuth properties
+0ac25fb 2025-12-15 Fix header navigation bunching on medium screens
+16b3bd6 2025-12-15 Redesign CREaiT breadcrumb UI to elegant pagination dots
+c80f061 2025-12-15 Replace TestFlight links with beta signup modal
+c9a6fa6 2025-12-15 Fix NIL Guidance Trust Building Workflow diagram
+d467447 2025-12-15 Tighten Athletes Lifecycle Journey diagram boundary
+fcfedb9 2025-12-15 Change About page section heading from 'The Meta Reality Labs Context' to 'Why Rationale?'
+de1625e 2025-12-15 Update Firebase credential examples to use rationale.work domain
+fc62878 2025-12-15 Move bottleneck percentage numbers inside green bars on Three Bottlenecks diagram
+d838586 2025-12-15 Auth-gate Structure pricing sections with yellow border on How We Work page
+55b934e 2025-12-15 Replace code names with real company names for investor visibility
+497c7b6 2025-12-15 Improve Zero AI demo error handling with user-friendly messages
+1091f26 2025-12-15 Remove Resources slide from CREaiT Strategic Roadmap
+c38bdd9 2025-12-15 Move What We Learned section above Proof at Scale on About page
+4d051b9 2025-12-15 Update CREaiT pricing to $40K for 4-6 weeks
+69ba04a 2025-12-15 Update partnership copy and Case Study 030 description
+b97f85f 2025-12-15 Update project statuses and Zero descriptions
+810a32d 2025-12-15 Remove password modal layer, implement role-based authentication
+a43af6a 2025-12-14 Fix TypeScript error: define isAuthenticated variable in work page
+4649e37 2025-12-14 Remove all emojis and arrows from DualEngineModel flywheel diagram
+d082050 2025-12-14 Remove emoji icons from investment opportunities section
+beaadc2 2025-12-14 Remove emoji icons from MaterialCard components
+c1c09dc 2025-12-14 Fix critical readability issues on investors page
+523d00f 2025-12-14 Add role-based navigation and Investor Materials Library
+e9ae9bf 2025-12-14 Implement client-specific Partnership Work access
+56efd74 2025-12-13 Reduce body copy font size in CREaiT presentation
+2c58448 2025-12-13 Add elegant breadcrumb navigation to CREaiT overview
+aa77c13 2025-12-13 Add authentication improvements and CREaiT visual enhancements
+1c7d84a 2025-12-13 Improve bullet point readability with responsive sizing
+4c80684 2025-12-13 Move section navigation to header area (Athletes First style)
+edf3843 2025-12-13 Move navigation bar inside content area, below header
+51851f5 2025-12-13 Replace grid layout with horizontal section list in footer navigation
+269dc60 2025-12-13 Match CREaiT presentation navigation and title style to Athletes First
+0b2892d 2025-12-13 Fix TypeScript error: add missing selectedContract state
+8227170 2025-12-13 Fix ASCIIUnifiedGrid prop: theme → colorTheme
+ffa3001 2025-12-13 Add Athletes First video integration and presentation components
+d1e23b5 2025-12-13 Remove non-strategic-roadmap links from CREaiT portal
+adc6a2a 2025-12-13 Apply Terminal Republic styling to CREaiT portal pages
+8d839ec 2025-12-13 Transform CREaiT strategic roadmap to Terminal Republic aesthetic
+a37ef9c 2025-12-12 Update Athletes First overview: code name and remove Back button
+dd1ae17 2025-12-12 Remove 'Back to Work' button from CREaiT overview
+f12644b 2025-12-12 Update CREaiT overview and remove pitch deck
+f3f416c 2025-12-12 Fix CREaiT strategic roadmap: breadcrumb visibility and remove dollar values
+22e50c1 2025-12-12 Update Creait links to point to strategic-roadmap instead of pitch-deck
+3ff908b 2025-12-12 Remove PasswordGate from /clients pages - Firebase auth is the only authentication
+2e8c07e 2025-12-12 Update work page: link Quick Overview and Full Case Study buttons to correct paths for Creait and Athletes First
+5ce3209 2025-12-12 Update Creait login redirect and replace PasswordGate with ClientAuthGuard
+b3ecfe5 2025-12-12 Update Athletes First login redirect to overview page instead of pitch deck
+b943c30 2025-12-12 Add debugging logs to ClientAuthGuard for troubleshooting redirect issue
+410e1ec 2025-12-12 Replace PasswordGate with ClientAuthGuard for Athletes First overview
+3b4739e 2025-12-12 Remove password gate from Athletes First overview page
+d8bb500 2025-12-12 Fix clientId check for Athletes First pitch deck
+155a9ca 2025-12-12 Simplify middleware to only check session cookie presence, not role verification
+4f74d29 2025-12-12 Fix verify endpoint to read cookies from request headers for middleware compatibility
+dccbb37 2025-12-12 Fix client login redirect loop - use correct login route and full page reload
+8bbae0e 2025-12-12 Trigger redeploy with Firebase env vars now set in Dashboard
+c5514a9 2025-12-12 Expose Firebase env vars to serverless functions
+c49a97c 2025-12-12 Simplify Firebase Admin init - use existing individual env vars instead of build plugin
+0985f0b 2025-12-12 Remove FIREBASE_SERVICE_ACCOUNT_BASE64 from build.environment to prevent corruption
+cffce98 2025-12-12 Trigger redeploy with corrected FIREBASE_SERVICE_ACCOUNT_BASE64
+b643aeb 2025-12-12 Expose FIREBASE_SERVICE_ACCOUNT_BASE64 to build environment
+344e2fb 2025-12-12 Remove invalid 'main' property from manifest.yml
+860298b 2025-12-12 Add package.json for Firebase credentials plugin
+2e490fc 2025-12-12 Point manifest to index.cjs entry point
+19888c4 2025-12-12 Convert Firebase plugin to CommonJS (.cjs)
+54f4f04 2025-12-12 Add manifest.yml for Firebase credentials plugin
+a6cda06 2025-12-12 NUCLEAR OPTION: Netlify build plugin to inject Firebase credentials
+280f233 2025-12-12 Inject Firebase credentials via next.config.mjs env
+a4b2964 2025-12-12 Fix Firebase Admin credentials with base64 service account
+013f98b 2025-12-12 Trigger rebuild with corrected Firebase Admin env vars
+df1d822 2025-12-12 Expose Firebase Admin env vars to build process
+c1c8012 2025-12-12 Fix build script module format - rename to .cjs
+840af6b 2025-12-12 Write Firebase credentials to file during build for serverless functions
+c7e23fd 2025-12-12 Remove empty Firebase env var declarations that override Netlify dashboard values
+fddab3f 2025-12-12 Add Firebase Admin env vars to netlify.toml for serverless functions
+3d6599d 2025-12-12 Trigger redeploy with FIREBASE_PRIVATE_KEY env var
+9baa4a8 2025-12-12 Add Firebase login diagnostics and cache clearing
+43338d7 2025-12-12 Trigger build with FIREBASE_SERVICE_ACCOUNT_BASE64 env var
+35d036a 2025-12-12 Add FIREBASE_SERVICE_ACCOUNT_BASE64 support - simpler alternative to avoid Netlify UI issues
+b1eac96 2025-12-12 Support base64-encoded Firebase private key to avoid Netlify UI truncation issues
+6ca80f6 2025-12-12 Trigger fresh build
+f3a73f4 2025-12-12 Add detailed logging for user profile lookup debugging
+c3576cb 2025-12-12 Add debug endpoint to test user profile retrieval
+fd6df3f 2025-12-12 Add 'client' role type and clientId field to user profile
+2346da3 2025-12-12 Trigger deploy with corrected Firebase private key formatting
+617229d 2025-12-12 Remove broken image optimization redirect - let Next.js plugin handle it
+60654e8 2025-12-12 Trigger redeploy with corrected Firebase private key
+adea95f 2025-12-12 Add detailed logging to session API for Firebase Admin SDK debugging
+0d4208e 2025-12-12 Trigger redeploy with correctly formatted Firebase private key
+82d6d4b 2025-12-12 Trigger redeploy: test Firebase Admin SDK with all credentials
+1cd75d8 2025-12-12 Fix broken images: remove publish directory from netlify.toml, use Next.js Image component
+fa5da62 2025-12-12 Add Firebase Auth domains to CSP: identitytoolkit and securetoken
+2a255dc 2025-12-12 Trigger deploy with Firebase env var values
+c4571f0 2025-12-12 Add debug endpoint to check environment variables
+81e24aa 2025-12-12 Trigger redeploy with Firebase env vars on rationaledesign site
+804b501 2025-12-12 Remove 8-week build badges from Zero and Heirloom cards
+753286d 2025-12-12 Restore ASCII grid on mobile
+064f171 2025-12-12 Fix Firebase auth: remove redundant env config, fix CSP for images, improve error logging
+846f5c8 2025-12-12 Explicitly expose Firebase env vars in next.config
+291e7bc 2025-12-12 Trigger Netlify build with Dashboard env vars
+48dc2ec 2025-12-12 Update homepage copy: weeks to months, not quarters
+e4ae742 2025-12-12 Disable secrets scanner for Firebase public API keys
+69f85cd 2025-12-12 Add Firebase env vars to netlify.toml for client login
+be1198b 2025-12-12 Remove beta plan document (moved to Heirloom project)
+178a075 2025-12-12 Update Heirloom website for v1.1.0 AI features
+1289202 2025-12-12 Fix console errors breaking Lighthouse Best Practices score
+da6da5b 2025-12-12 Fix Lighthouse Best Practices issues for 92+ score
+6369eb5 2025-12-12 Reframe homepage as meta case study: 8 weeks of shipped products
+bb5b8fc 2025-12-12 Add wearables roadmap to Zero page (Q1 2025 vision)
+e62bdd2 2025-12-12 Optimize homepage images with Next.js Image component for 3.3s improvement
+9cfef21 2025-12-12 Critical performance optimization: reduce font loading and disable mobile animations
+f5cb5d8 2025-12-12 Remove unused OG image route and update system files
+b5c6a69 2025-12-12 Update diagram components with visual refinements
+9a038b1 2025-12-12 Refine pitch deck content and messaging clarity
+765e0ac 2025-12-12 Add page tagging system to site admin dashboard
+a969849 2025-12-12 Restructure Heirloom page with Challenge and Approach sections
+d2720d3 2025-12-12 Enhance Zero page with mobile demo modal and content refinements
+0970115 2025-12-12 Remove emoji checkmarks from Zero page
+0ffaccf 2025-12-12 Optimize homepage performance with lazy loading and smart animation
+3b01f1a 2025-12-12 Fix responsive breakpoint for CTA buttons on work pages
+8c39625 2025-12-12 Optimize homepage icon images (90% file size reduction)
+eac67ef 2025-12-12 Fix: Revert to regular img tags due to Netlify image optimization failure
+266c38d 2025-12-12 Update Zero card copy to user-focused benefit
+6d4cf81 2025-12-12 Fix: Replace fill prop with explicit dimensions for homepage icons
+34d9c4a 2025-12-12 Fix: Remove lucide-react modularizeImports causing build errors
+bdda676 2025-12-12 Fix: Revert server component conversion to resolve build error
+48196a8 2025-12-12 Optimize initial page load performance (60-75% reduction in bundle size)
+8804a50 2025-12-12 Polish Fubo prototype with Rationale design system (Phase 3: Accessibility & Advanced Polish)
+b97940b 2025-12-12 Polish Fubo prototype with Rationale design system (Phase 2)
+d90b4cb 2025-12-12 Polish Fubo prototype with Rationale design system (Phase 1)
+a88c59f 2025-12-12 Add OG image for social sharing (static PNG)
+33c6cd5 2025-12-12 Trigger Netlify deploy
+db13b99 2025-12-12 Add dynamic OG image matching homepage hero section
+8a4ded5 2025-12-11 Replace '7 prototypes' with 'rapid prototyping' in infographics
+c7fddff 2025-12-11 Fix Fubo prototype and reformat Case Study 030 to match 010/020
+a354326 2025-12-11 Fix Pipeline card width to match Zero + Heirloom combined width on desktop
+9dc5d1a 2025-12-11 Fix Zero mobile demo: eliminate scrolling and badge cropping
+bbe2275 2025-12-11 Add password-protected Case Study 030 (Fubo AI Thumbnail Generator)
+fc81757 2025-12-11 Fix Heirloom shopping list integration and update TestFlight links
+55694e2 2025-12-11 Fix TypeScript error: Remove invalid height prop from SwipeableDiagram
+0ba010d 2025-12-11 Fix import errors: Use named exports for StepByStepDiagram and SwipeableDiagram
+58c4961 2025-12-11 Add mobile-responsive diagrams for CREaiT pitch deck
+9676ddf 2025-12-11 Fix all image loading issues: convert Next.js Image to native img tags
+c13a8ab 2025-12-11 Fix hero layout: image always on left, text always on right (all viewport sizes)
+78611db 2025-12-11 Update homepage hero tagline to "Your Product Design Company"
+0763fe5 2025-12-11 Update tagline to "Your Product Design Company"
+136b2fd 2025-12-11 Fix Pipeline card width to match Zero/Heirloom cards on desktop
+ee9ac28 2025-12-11 Fix broken icon images and revert Heirloom link change
+27b4562 2025-12-11 Update Heirloom card to link to external TestFlight
+9114d99 2025-12-11 Desktop-only improvements to Current Focus cards
+5de7838 2025-12-11 Reduce mobile menu text size and use underline for active state
+813b3f2 2025-12-11 Align hamburger menu to right of header on all pages
+c2f1d24 2025-12-11 Remove emoji icons from CloudKit Sharing and Privacy-First Design features
+640ec13 2025-12-11 Make binder tab text bigger and bolder
+c594412 2025-12-11 Fix tab outline geometry mismatch
+d417124 2025-12-11 Refine binder tabs: shorter, tighter, cleaner inactive state
+51af354 2025-12-11 Redesign Heirloom demo selector as looseleaf binder tabs
+20baeb6 2025-12-11 Additional Mobile Optimizations + Homepage Current Focus Fix
+02aa414 2025-12-11 Mobile Space Optimization: Zero & Heirloom Pages (Complete)
+345daaf 2025-12-11 Mobile Timeline Comparison: Complete alignment and text refinements
+975c5f1 2025-12-11 Final Update: SESSION_4_COMPLETION_REPORT with Phase 7
+6acb3af 2025-12-11 Update MASTER_EXECUTION_PLAN: Phase 7 Automated Complete
+bfd4f23 2025-12-11 Phase 7: Automated Testing Complete (Automated Checks Only)
+9ea15cb 2025-12-11 Update MASTER_EXECUTION_PLAN: Phase 6 Complete
+80285f6 2025-12-11 Update SESSION_4_COMPLETION_REPORT: Phase 6 Complete
+cc7f69a 2025-12-11 Phase 6: Mobile Responsive Text Fixes (Stats + Duplicate Classes)
+2fdbb3b 2025-12-11 Session 4 Completion Report: 91% Time Savings via Existing Optimizations
+2eac69d 2025-12-11 Phase 2 Complete: Homepage + Work Page Mobile Optimization
+90c4bd7 2025-12-11 Update MASTER_EXECUTION_PLAN.md: Phase 1 Complete
+d6eafaf 2025-12-11 Phase 1 Complete: Touch Target Verification (Task 1.18-1.20)
+44f37aa 2025-12-11 Phase 1: Quick Wins - Typography, Spacing, and Image Optimization
+ec86b52 2025-12-11 Add Future Optimization Opportunities to Bundle Plan
+1968881 2025-12-11 Phase 3-4 Performance Optimization Complete: Lazy Loading + Bundle Analysis
+862e2e7 2025-12-11 Performance Optimization: Bundle Analyzer Setup + NPM Scripts
+9204a12 2025-12-11 Performance Optimization Phase 2: Zero InteractiveDemo Lazy Loading
+742c3e4 2025-12-11 Performance Optimization: Bundle Analysis + Phase 1 Lazy Loading
+0724956 2025-12-10 Phase 4 Follow-up: Comprehensive Design Token Documentation
+4f5928f 2025-12-10 Phase 4 Follow-up: GitHub Actions CI for Visual Regression Tests
+a069cb4 2025-12-10 Phase 4 Follow-up: Create Component Gallery Page
+8023e8d 2025-12-10 Phase 4 Follow-up: Manual Contact Page Migration (6 instances)
+0e6e9ba 2025-12-10 Phase 4 Follow-up: Automated Terminal Gold Migration (23 replacements)
+96e58c8 2025-12-10 Update visual testing documentation with expanded coverage stats
+632c80a 2025-12-10 Phase 4 Follow-up: Expand Visual Test Coverage (26 Tests Passing)
+ba30f48 2025-12-10 Update Visual Regression Strategy: Mark Phase 1 complete (setup done)
+a6c5827 2025-12-10 Phase 4 Follow-up: Visual Regression Testing Setup (Playwright + Percy)
+2ec202b 2025-12-10 Phase 4 Testing Strategy: Visual Regression Testing Plan with Playwright + Percy
+048114d 2025-12-10 Phase 4 Documentation: Add BaseCard and Badge Component Usage Guides
+fbda8cc 2025-12-10 Comprehensive Mobile Optimization: 11 Pages Optimized (60-80% Space Reduction)
+038dceb 2025-12-10 Put status badges inline with titles on Current Focus cards
+ec2fb9c 2025-12-10 Phase 1 Quick Wins: Mobile optimization for About page
+dd2a83d 2025-12-10 Phase 2: Mobile optimization for Homepage + Work page
+8d53523 2025-12-10 Fix Three Ways section alignment and layout
+79acec4 2025-12-10 Reduce wasted space in Three Ways cards
+8f59882 2025-12-10 Fix Studio Overview alignment and reduce spacing
+193bf53 2025-12-10 Simplify Current Focus copy to emphasize AI value
+31afd62 2025-12-10 Align hero section with consistent left margin guide
+87b8cc5 2025-12-10 Fix Current Focus left margin to align with cards
+81fdb7d 2025-12-10 Align hero text with Zero card left margin
+f5a640e 2025-12-10 Change hero and Current Focus to left-aligned layout
+1d96005 2025-12-10 Reduce Current Focus text size to be smaller than hero
+f2cde00 2025-12-10 Fix grammar: 'where' → 'which' in Current Focus description
+487b8fb 2025-12-10 Update Current Focus description to emphasize conviction
+75216b6 2025-12-10 Simplify hero: remove Meta line, make CTA yellow, reduce height
+799f7cb 2025-12-10 Fix headline overflow - allow natural wrapping with smart break
+6475b82 2025-12-10 Add padding to hero text and make all text scale proportionally
+7dba9b1 2025-12-10 Force headline to stay on one line with whitespace-nowrap
+66112c7 2025-12-10 Remove purple Studio Overview button, keep only subtle link
+be79a11 2025-12-10 Make hero CTA more subtle on mobile
+3d7fa64 2025-12-10 Phase 2: Aggressive Mobile Optimization for Work Page
+258eec3 2025-12-10 Phase 2: Aggressive Mobile Optimization for Homepage
+a2f899c 2025-12-10 Phase 2 Audit: Homepage + Work Page Already Optimized
+820a05b 2025-12-10 Phase 3.10: Full-Screen Mode Toggle
+549f814 2025-12-10 Phase 3.9: Progress Persistence with localStorage
+98aef20 2025-12-10 Phase 3.8: Slide Transition Animations
+3f4c9f1 2025-12-10 Phase 3.7: Add Swipe Gesture Navigation
+0bd53e5 2025-12-10 Phase 3.6: Metrics Dashboard Mobile Optimization
+7df14e0 2025-12-10 Phase 3.5: Hero Slide Mobile Optimization
+3b54b0e 2025-12-10 Phase 3.3: Break Long Paragraphs in Athletes First Content
+7d36baa 2025-12-10 Phase 3: Athletes First Mobile Navigation Touch Targets
+f7a532f 2025-12-10 Session 3 (Continued): Phase 1 Quick Wins Complete (10/10 tasks)
+c6f3290 2025-12-10 Phase 1 Quick Wins: Grid gap responsive reduction
+1f88e33 2025-12-10 Phase 1 Quick Wins: Work page card grid mobile breakpoints
+4eb57ea 2025-12-10 Phase 1 Quick Wins: Work page spacing condensation complete
+dbf18b2 2025-12-10 Phase 1 Quick Wins: Homepage Mobile Spacing Reduction (Task 1.8)
+319a1ee 2025-12-10 Phase 1 Quick Wins: Header Mobile Touch Targets (Task 1.1)
+aa93898 2025-12-10 Fix all TypeScript errors in mobile diagram components (19 → 0)
+9f4d378 2025-12-10 Session 3 Completion: Mobile Audit 100% Complete
+91ee892 2025-12-10 P3 Rationale Overview (3/6): Complete ZeroMetricsDiagram Mobile Implementation
+9d28ce2 2025-12-10 P3 Rationale Overview (3/6): Complete ZeroMetricsDiagram Mobile Implementation
+ebd7b21 2025-12-10 P3 Rationale Overview: ZeroArchitectureDiagram Mobile (2/6)
+bd90fbc 2025-12-10 P3 Rationale Overview: ZeroArchitectureDiagram Mobile (2/6)
+411a3be 2025-12-10 P3 Rationale Overview: TraditionalVsRationaleDiagram Mobile (1/6)
+bf49366 2025-12-10 P3 Rationale Overview: TraditionalVsRationaleDiagram Mobile (1/6)
+84af822 2025-12-10 Add .netlify/ to .gitignore and remove from git
+39486f9 2025-12-10 Add .netlify/ to .gitignore and remove from git
+d43e344 2025-12-10 P2 Zero Diagrams: SwipeTriageTreeDiagram Mobile (5/5) - COMPLETE
+98cc50a 2025-12-10 P2 Zero Diagrams: SwipeTriageTreeDiagram Mobile (5/5) - COMPLETE
+446bdb4 2025-12-10 P2 Zero Diagrams: MicroservicesArchitectureDiagram Mobile (4/5)
+5704fdb 2025-12-10 P2 Zero Diagrams: MicroservicesArchitectureDiagram Mobile (4/5)
+ca446c3 2025-12-10 P2 Zero Diagrams: InboxJourneyDiagram Mobile Implementation (3/5)
+ba6dce3 2025-12-10 P2 Zero Diagrams: InboxJourneyDiagram Mobile Implementation (3/5)
+d74cece 2025-12-10 P2 Zero Diagrams: AIIntelligenceSystemDiagram Mobile Implementation (2/5)
+8ed9d92 2025-12-10 P2 Zero Diagrams: AIIntelligenceSystemDiagram Mobile Implementation (2/5)
+a0427f4 2025-12-10 P2 Zero Diagrams: BetaRoadmapTimelineDiagram Mobile Implementation (1/5)
+1e1b109 2025-12-10 P2 Zero Diagrams: BetaRoadmapTimelineDiagram Mobile Implementation (1/5)
+309aa49 2025-12-10 Apply ResponsiveImage component to historical-work and about pages
+2779a90 2025-12-10 Apply ResponsiveImage component to historical-work and about pages
+8c565ba 2025-12-10 Fix mobile white space issue - root cause was owner layout constraints
+b47304a 2025-12-10 Fix mobile white space issue - root cause was owner layout constraints
+786b55e 2025-12-10 Additional mobile layout adjustments for site admin dashboard
+db7c34e 2025-12-10 Additional mobile layout adjustments for site admin dashboard
+5ccb827 2025-12-10 Fix mobile container width to eliminate white space on site admin dashboard
+e0d867e 2025-12-10 Fix mobile container width to eliminate white space on site admin dashboard
+79883c1 2025-12-10 Make checkboxes smaller on mobile for site admin dashboard
+9b11bb0 2025-12-10 Make checkboxes smaller on mobile for site admin dashboard
+28e0ce6 2025-12-10 Fix infinite redirect loop in authentication middleware
+d9ff877 2025-12-10 Fix infinite redirect loop in authentication middleware
+0b619cb 2025-12-10 Fix mobile layout width issue on site admin dashboard
+c20f202 2025-12-10 Fix mobile layout width issue on site admin dashboard
+609f2ba 2025-12-10 Additional width fixes for site admin dashboard mobile
+954b400 2025-12-10 Additional width fixes for site admin dashboard mobile
+0d09ecf 2025-12-10 Fix container width issue on site admin dashboard
+de53bd2 2025-12-10 Fix container width issue on site admin dashboard
+858c182 2025-12-10 Reduce checkbox size on mobile for site admin dashboard
+d95f80e 2025-12-10 Reduce checkbox size on mobile for site admin dashboard
+eee2c08 2025-12-10 Option 3: Image Optimization Pipeline Complete (Sharp + Responsive Images)
+9308efd 2025-12-10 Option 3: Image Optimization Pipeline Complete (Sharp + Responsive Images)
+c66817a 2025-12-10 P1 Mobile Diagrams + Admin Dashboard: CREaiT Complete + Site Admin Optimized
+faed498 2025-12-10 P1 Mobile Diagrams + Admin Dashboard: CREaiT Complete + Site Admin Optimized
+42943b4 2025-12-10 P1 Mobile Diagrams Batch 2: Athletes First Complete (5 diagrams) + CREaiT Started (1 diagram)
+47e8e06 2025-12-10 P1 Mobile Diagrams Batch 2: Athletes First Complete (5 diagrams) + CREaiT Started (1 diagram)
+b1696d6 2025-12-10 P1 Batch 1: Athletes First Diagrams (3 mobile implementations)
+fb5de17 2025-12-10 P1 Batch 1: Athletes First Diagrams (3 mobile implementations)
+3ffbf56 2025-12-10 Add mobile implementation progress tracking document
+95f365d 2025-12-10 Add mobile implementation progress tracking document
+7305585 2025-12-10 P1: Fluid Typography System + Breakpoint Standardization
+a5d82e6 2025-12-10 P1: Fluid Typography System + Breakpoint Standardization
+7b4fbcb 2025-12-10 P0 Mobile Diagrams: Pattern Library + Athletes First & CREaiT
+b4bd941 2025-12-10 P0 Mobile Diagrams: Pattern Library + Athletes First & CREaiT
+80b7b1b 2025-12-09 Update SITE_MAP.md with full clickable URLs
+a05d775 2025-12-09 Update SITE_MAP.md with full clickable URLs
+e2a0b18 2025-12-09 Comprehensive UX and Mobile Fixes for Overview Diagrams
+2f7ff4d 2025-12-09 Comprehensive UX and Mobile Fixes for Overview Diagrams
+41e606f 2025-12-09 Fix Turbopack build errors - duplicate imports and malformed import
+19168bb 2025-12-09 Fix Turbopack build errors - duplicate imports and malformed import
+30c65f9 2025-12-09 Fix syntax error in owner outbound page imports
+be36541 2025-12-09 Fix syntax error in owner outbound page imports
+ea4e57a 2025-12-09 Fix PasswordGate component styling with explicit Tailwind classes
+fc6ea2d 2025-12-09 Fix PasswordGate component styling with explicit Tailwind classes
+e079b40 2025-12-09 Fix transparent ButtonSecondary by adding explicit background styling
+69eda32 2025-12-09 Fix transparent ButtonSecondary by adding explicit background styling
+f8578cf 2025-12-09 Style Full Case Study button to match Quick Overview with white/terminal-gold colors
+af50576 2025-12-09 Style Full Case Study button to match Quick Overview with white/terminal-gold colors
+8caae8a 2025-12-09 Move Quick Overview inside card + add password protection + reposition Partnership Model
+367d9e2 2025-12-09 Move Quick Overview inside card + add password protection + reposition Partnership Model
+e0dd8cd 2025-12-09 Fix Quick Overview button visibility - move outside card link wrapper
+04aa0e9 2025-12-09 Fix Quick Overview button visibility - move outside card link wrapper
+70fa2ba 2025-12-09 Add Quick Overview links to Athletes First and CREaiT partnership cards
+edbbc25 2025-12-09 Add Quick Overview links to Athletes First and CREaiT partnership cards
+b9eb74d 2025-12-09 Add Quick Overview pages for Athletes First and CREaiT
+17e8d60 2025-12-09 Add Quick Overview pages for Athletes First and CREaiT
+e4269f9 2025-12-09 Standardize Zero and Heirloom status to 'IN PRODUCTION'
+914fc76 2025-12-09 Standardize Zero and Heirloom status to 'IN PRODUCTION'
+763b0e1 2025-12-09 Match container widths for philosophy boxes on work page
+62e6165 2025-12-09 Match container widths for philosophy boxes on work page
+7523c61 2025-12-09 Reposition 'Why We Build Our Own Products' box above featured cards
+edc7dbc 2025-12-09 Reposition 'Why We Build Our Own Products' box above featured cards
+9c6f385 2025-12-09 Option 3: Performance & Accessibility Improvements
+ce1ee06 2025-12-09 Option 3: Performance & Accessibility Improvements
+d2a9a0c 2025-12-09 Option 2: SEO & Metadata Optimization
+08b3e5d 2025-12-09 Option 2: SEO & Metadata Optimization
+31979af 2025-12-09 Option 1: Content & Messaging Clarity Improvements
+d0494bc 2025-12-09 Option 1: Content & Messaging Clarity Improvements
+d8270b8 2025-12-09 Add case study 030 (Fubo) with live status
+3fc4b30 2025-12-09 Add case study 030 (Fubo) with live status
+5f283f8 2025-12-09 Standardize featured projects and clean up work page
+28a1d32 2025-12-09 Standardize featured projects and clean up work page
+38126fc 2025-12-09 Fix Heirloom work page CTA and status
+b8c4c1a 2025-12-09 Fix Heirloom work page CTA and status
+11da5f9 2025-12-09 Phase 4.3 (Additional): Migrate Remaining Inline Gold Buttons
+2ce56d1 2025-12-09 Phase 4.3 (Additional): Migrate Remaining Inline Gold Buttons
+c15335f 2025-12-09 Phase 4.2 (Final): Complete ResponsiveBox Removal - CaseStudyTeaser + PasswordGate
+e1825c3 2025-12-09 Phase 4.2 (Final): Complete ResponsiveBox Removal - CaseStudyTeaser + PasswordGate
+b430f08 2025-12-09 Phase 4: Design System Consolidation - Completion Report
+f7d49d8 2025-12-09 Phase 4: Design System Consolidation - Completion Report
+32293a4 2025-12-09 Phase 4.3: Migrate inline gold buttons to ButtonPrimary component
+56bb47a 2025-12-09 Phase 4.3: Migrate inline gold buttons to ButtonPrimary component
+cc9cf78 2025-12-09 Phase 4.2: Migrate 4 high-use cards to BaseCard universal foundation
+ac554bf 2025-12-09 Phase 4.2: Migrate 4 high-use cards to BaseCard universal foundation
+69ccf9b 2025-12-09 Phase 4.2: Implement BaseCard universal card foundation
+b7d7fce 2025-12-09 Phase 4.2: Implement BaseCard universal card foundation
+d72c064 2025-12-09 Phase 4 (D): Unify status badges using ProjectStatusBadge component
+e9278a4 2025-12-09 Phase 4 (D): Unify status badges using ProjectStatusBadge component
+d974124 2025-12-09 Match container widths for philosophy boxes on work page
+50bdcd6 2025-12-09 Match container widths for philosophy boxes on work page
+d6b3cb4 2025-12-09 Clean up work page: Remove demo placeholders and client team access buttons
+14c5b72 2025-12-09 Clean up work page: Remove demo placeholders and client team access buttons
+642dcf4 2025-12-09 Refine Heirloom description to emphasize modern recipe box concept
+9a40e34 2025-12-09 Refine Heirloom description to emphasize modern recipe box concept
+516a3f6 2025-12-09 Update Heirloom description on work page to focus on user value
+eab68eb 2025-12-09 Update Heirloom description on work page to focus on user value
+ab747ed 2025-12-09 Phase 4 (C): Work Page Card Migration - Remove OS8Window Aesthetic
+7cbad66 2025-12-09 Phase 4 (C): Work Page Card Migration - Remove OS8Window Aesthetic
+026c495 2025-12-09 Phase 4 (B): Button System Unification - Migrate 20+ Inline Buttons
+7a28813 2025-12-09 Phase 4 (B): Button System Unification - Migrate 20+ Inline Buttons
+ecabec5 2025-12-09 Phase 4.5: Add Terminal Gold Tokens to Tailwind v4 CSS (WIP)
+7a09710 2025-12-09 Phase 4.5: Add Terminal Gold Tokens to Tailwind v4 CSS (WIP)
+6e2646d 2025-12-09 Phase 4.4: Fix Nav Bar and Home Page Color Issues
+132fbc6 2025-12-09 Phase 4.4: Fix Nav Bar and Home Page Color Issues
+c3fd844 2025-12-09 Phase 4.3: Bulk Terminal Gold Migration (1,479 replacements across 132 files)
+cb9ee65 2025-12-09 Phase 4.3: Bulk Terminal Gold Migration (1,479 replacements across 132 files)
+fc6b71a 2025-12-09 Phase 4.3: Terminal Gold Migration (Sample + Strategy)
+2057f92 2025-12-09 Phase 4.3: Terminal Gold Migration (Sample + Strategy)
+f2fa0bf 2025-12-09 Phase 4.2: Complete Badge Migration (FeaturedWorkCard + ProjectStatusBadge)
+d487d41 2025-12-09 Phase 4.2: Complete Badge Migration (FeaturedWorkCard + ProjectStatusBadge)
+d9dd24f 2025-12-09 Phase 4.2: Component Badge Migration (3 components)
+6063bbd 2025-12-09 Phase 4.2: Component Badge Migration (3 components)
+6050485 2025-12-09 Phase 4.1: Design System Quick Wins (Foundation)
+c947af6 2025-12-09 Phase 4.1: Design System Quick Wins (Foundation)
+0251970 2025-12-09 Phase 3: Responsive Design Fixes (Part 3 - Low Priority Polish)
+6178433 2025-12-09 Phase 3: Responsive Design Fixes (Part 3 - Low Priority Polish)
+c9f9987 2025-12-09 Add comprehensive cleanup session summary
+57b1884 2025-12-09 Add comprehensive cleanup session summary
+8d984e8 2025-12-09 Phase 3: Responsive Design Fixes (Part 2)
+d90940f 2025-12-09 Phase 3: Responsive Design Fixes (Part 2)
+683ea8f 2025-12-09 Phase 3: Responsive Design Fixes (Part 1)
+9d22686 2025-12-09 Phase 3: Responsive Design Fixes (Part 1)
+b8fef7a 2025-12-09 Phase 2: Route Consolidation - Investor Namespace
+f9039b0 2025-12-09 Phase 2: Route Consolidation - Investor Namespace
+5d8ea19 2025-12-09 Add ESLint + Prettier configuration
+17d0102 2025-12-09 Add ESLint + Prettier configuration
+fa5426b 2025-12-09 Clean up and update dependencies
+1cea25d 2025-12-09 Clean up and update dependencies
+df4b85c 2025-12-09 Organize documentation into /docs structure
+40cd766 2025-12-09 Organize documentation into /docs structure
+d8509ca 2025-12-09 Phase 1 cleanup: Archive orphaned directories
+35d04f7 2025-12-09 Phase 1 cleanup: Archive orphaned directories
+22520c6 2025-12-09 Fix duplicate route detection in page scanner
+9b9f041 2025-12-09 Fix duplicate route detection in page scanner
+486489f 2025-12-09 Fix Heirloom smart aggregation to display totals instead of equations
+e78dea5 2025-12-09 Fix Heirloom smart aggregation to display totals instead of equations
+cb699ed 2025-12-09 Add deletion candidates filter to admin dashboard
+c7e7867 2025-12-09 Add deletion candidates filter to admin dashboard
+c48ae83 2025-12-09 Fix homepage Current Focus cards padding on mobile
+776e2c4 2025-12-09 Fix homepage Current Focus cards padding on mobile
+7add3d8 2025-12-09 Fix TypeScript build errors for production deployment
+04ea7f3 2025-12-09 Fix TypeScript build errors for production deployment
+fd23b11 2025-12-09 Add beta signup system with admin dashboard for Phase 1 internal testing
+ba30d14 2025-12-09 Add beta signup system with admin dashboard for Phase 1 internal testing
+c258382 2025-12-09 Fix Heirloom build error - Client Component issue
+3baff1a 2025-12-09 Fix Heirloom build error - Client Component issue
+dda2f41 2025-12-09 Complete Heirloom case study with Week 3 polish
+018e62b 2025-12-09 Complete Heirloom case study with Week 3 polish
+d55118e 2025-12-08 Restructure About, Thinking, and Investors pages
+a421429 2025-12-08 Restructure About, Thinking, and Investors pages
+ce7c0bd 2025-12-08 Center 'Not the right fit?' text in Get in Touch box
+0f2fe13 2025-12-08 Center 'Not the right fit?' text in Get in Touch box
+a803c8d 2025-12-08 Simplify 'Not sure which fits?' to single text line
+f291ebc 2025-12-08 Simplify 'Not sure which fits?' to single text line
+f6a5c93 2025-12-08 Redesign engagement selector with horizontal card layout
+3ba8903 2025-12-08 Redesign engagement selector with horizontal card layout
+9f61a7c 2025-12-08 Update contact email to hanson@rationale.work with bot protection
+28d273c 2025-12-08 Update contact email to hanson@rationale.work with bot protection
+504c9c7 2025-12-08 Redesign contact page with Terminal Republic aesthetic
+e5942a1 2025-12-08 Redesign contact page with Terminal Republic aesthetic
+a4ad5b6 2025-12-08 Add Heirloom product page and homepage updates
+d369030 2025-12-08 Add Heirloom product page and homepage updates
+562cf2d 2025-12-08 Remove 'Proven Across Domains' section from work page
+0eb8c06 2025-12-08 Remove 'Proven Across Domains' section from work page
+6bbbf69 2025-12-08 Restructure homepage and work page with Heirloom
+c8b108e 2025-12-08 Restructure homepage and work page with Heirloom
+e44ecf4 2025-12-08 Add close button to overview page
+d4c5387 2025-12-08 Add close button to overview page
+b5a2453 2025-12-08 Remove methodology link from VelocityProof and add studio overview CTA
+ad4878b 2025-12-08 Remove methodology link from VelocityProof and add studio overview CTA
+602e0fb 2025-12-08 Adjust hero text sizing - make tagline bigger, H1 smaller
+5a2af03 2025-12-08 Adjust hero text sizing - make tagline bigger, H1 smaller
+2470a6c 2025-12-08 Add tagline above H1 and use ® symbol in header on homepage
+b4f4fd1 2025-12-08 Add tagline above H1 and use ® symbol in header on homepage
+317f078 2025-12-08 Add line breaks to hero copy for better formatting
+6a99527 2025-12-08 Add line breaks to hero copy for better formatting
+ac5601f 2025-12-08 Remove Product Studio badge and conditionally hide tagline
+177186c 2025-12-08 Remove Product Studio badge and conditionally hide tagline
+d292aca 2025-12-08 Replace 'client work' with 'strategic partnerships'
+5da7485 2025-12-08 Replace 'client work' with 'strategic partnerships'
+1319b6c 2025-12-08 Tighten hero copy with dual-engine clarity
+f94f75b 2025-12-08 Tighten hero copy with dual-engine clarity
+09d8b49 2025-12-08 Fix hero caption to use direct 'your' instead of 'their'
+e954c36 2025-12-08 Fix hero caption to use direct 'your' instead of 'their'
+466bba3 2025-12-08 Fix Collaborate link to point directly to How We Work
+05bf7ac 2025-12-08 Fix Collaborate link to point directly to How We Work
+69a8c83 2025-12-08 Update hero caption to broaden audience
+0295f79 2025-12-08 Update hero caption to broaden audience
+bb3ceab 2025-12-08 Clean up homepage and move credentials to about page
+abebaba 2025-12-08 Clean up homepage and move credentials to about page
+c9e7ca1 2025-12-08 Remove password protection from Zero prototype
+1fbd3a4 2025-12-08 Remove password protection from Zero prototype
+6688856 2025-12-08 Update navigation and migrate Swipeer prototype
+8c48a89 2025-12-08 Update navigation and migrate Swipeer prototype
+84c476f 2025-12-08 Add Firebase initialization error handling
+3d09611 2025-12-08 Add Firebase initialization error handling
+898bca2 2025-12-08 Trigger build with Firebase API key allowlisted
+0552da6 2025-12-08 Remove Firebase keys from netlify.toml to fix secrets scanner
+4ab37b8 2025-12-08 Remove Firebase keys from netlify.toml to fix secrets scanner
+fd33fde 2025-12-08 Enable Netlify smart secrets detection for Firebase
+6e90226 2025-12-08 Add Firebase client environment variables to netlify.toml
+c869b25 2025-12-08 Add Firebase client environment variables to netlify.toml
+c627b4c 2025-12-08 Trigger Netlify deployment with updated environment variables
+863612a 2025-12-08 Fix Firebase Client SDK SSR initialization error
+201c258 2025-12-08 Fix Firebase Client SDK SSR initialization error
+eab0dd2 2025-12-08 Fix Firebase Admin initialization for Netlify build
+26b0a40 2025-12-08 Fix Firebase Admin initialization for Netlify build
+6a03608 2025-12-08 Add .netlify to .gitignore and update build artifacts
+ac971fc 2025-12-08 Add .netlify to .gitignore and update build artifacts
+4397c6b 2025-12-08 Production deployment: Complete site overhaul with Zero beta and outbound system
+0b2bfc4 2025-12-08 Production deployment: Complete site overhaul with Zero beta and outbound system
+f3f42c7 2025-12-08 Update Next.js to 16.0.7 to fix security vulnerability
+6c079a6 2025-12-08 Update Next.js to 16.0.7 to fix security vulnerability
+61efa44 2025-12-07 Fix TypeScript build errors and add Suspense boundary
+037fb9f 2025-12-07 Fix TypeScript build errors and add Suspense boundary
+bb75e74 2025-12-07 Add Zero execution tracker with Firebase real-time sync and integrate 7 interactive prototypes
+0dc6d24 2025-12-07 Add Zero execution tracker with Firebase real-time sync and integrate 7 interactive prototypes
+d60c487 2025-12-05 Improve Zero page design and expand client portal system
+c5af838 2025-12-05 Improve Zero page design and expand client portal system
+908eb5f 2025-12-05 Integrate Zero infographics and add global login credentials
+c080f14 2025-12-05 Integrate Zero infographics and add global login credentials
+ce77e46 2025-12-05 Comprehensive responsive and accessibility fixes across site
+b438289 2025-12-05 Comprehensive responsive and accessibility fixes across site
+90d6419 2025-12-04 Fix deployment blockers and restructure about page
+28230ee 2025-12-04 Fix deployment blockers and restructure about page
+ed19570 2025-12-04 Fix Typography component type safety issues
+c0c0fef 2025-12-04 Fix Typography component type safety issues
+eb0486e 2025-12-04 Fix TypeScript component type inference in Typography
+7edacf9 2025-12-04 Fix TypeScript component type inference in Typography
+c52d59f 2025-12-04 Fix TypeScript null check in UnitEconomicsFlowDiagram
+5ca94c9 2025-12-04 Fix TypeScript null check in UnitEconomicsFlowDiagram
+5361f20 2025-12-04 Add recharts and mermaid dependencies for CREaiT project
+690498c 2025-12-04 Add recharts and mermaid dependencies for CREaiT project
+3ad9c9a 2025-12-04 Add CREaiT client project to public site
+3d102db 2025-12-04 Add CREaiT client project to public site
+8b6d41f 2025-12-04 Update Build-to-Think timeline to flexible timelines
+bcf996b 2025-12-04 Update Build-to-Think timeline to flexible timelines
+629f791 2025-12-04 Update Solution section caption to 'build for conviction'
+abc2687 2025-12-04 Update Solution section caption to 'build for conviction'
+cce591b 2025-12-04 Remove timeline and stage indicators from work with us cards
+329f790 2025-12-04 Remove timeline and stage indicators from work with us cards
+3483bb8 2025-12-04 Reduce opening slide headline text size for better responsiveness
+520e9bd 2025-12-04 Reduce opening slide headline text size for better responsiveness
+4992c5b 2025-12-04 Simplify browser tab title to 'Rationale Studio'
+cda4f30 2025-12-04 Simplify browser tab title to 'Rationale Studio'
+13fecb2 2025-12-04 Update Fubo thumbnail generator images
+26dcd2e 2025-12-04 Update Fubo thumbnail generator images
+c77b2a7 2025-12-04 Clean up overview presentation content
+015689c 2025-12-04 Clean up overview presentation content
+3818f75 2025-12-04 Add password protection to Zero portfolio details
+c9ef55b 2025-12-04 Add password protection to Zero portfolio details
+814af9c 2025-12-04 Remove Zero proof statement from homepage hero section
+4f4e6fb 2025-12-04 Remove Zero proof statement from homepage hero section
+e98bf79 2025-12-04 Remove overreaching claim from homepage hero section
+97becd1 2025-12-04 Remove overreaching claim from homepage hero section
+a15b780 2025-12-04 Improve Athletes First UX and clean up overview content
+bdc4201 2025-12-04 Improve Athletes First UX and clean up overview content
+88d3c19 2025-12-04 Update overview opening slide headline and content
+a4dd929 2025-12-04 Update overview opening slide headline and content
+ccfdd9c 2025-12-04 Add prominent interactive demo badge to Athletes First pitch deck
+8e97716 2025-12-04 Add prominent interactive demo badge to Athletes First pitch deck
+156574a 2025-12-04 Fix white backgrounds and dark theme consistency
+8c2d89b 2025-12-04 Fix white backgrounds and dark theme consistency
+aa9f456 2025-12-04 Fix Three Bottlenecks diagram layout spacing
+eaf9b2b 2025-12-04 Fix Three Bottlenecks diagram layout spacing
+f1f85ab 2025-12-04 Fix homepage and Athletes First pitch deck improvements
+aab3583 2025-12-04 Fix homepage and Athletes First pitch deck improvements
+94d0a0f 2025-12-04 Minimize footer to simple copyright notice
+ad58e35 2025-12-04 Minimize footer to simple copyright notice
+e9451f3 2025-12-04 Unify phase badge placement and tighten spacing
+ee9c9a8 2025-12-04 Unify phase badge placement and tighten spacing
+7c2325b 2025-12-04 Fix NIL Platform Flow Diagram layout and spacing
+d892994 2025-12-04 Fix NIL Platform Flow Diagram layout and spacing
+39818d8 2025-12-04 Make module cards equal height with improved layout
+c4dc457 2025-12-04 Make module cards equal height with improved layout
+4e0d1e6 2025-12-04 Update final slide with 45-min call and clickable Calendly link
+642f8da 2025-12-04 Update final slide with 45-min call and clickable Calendly link
+61e1498 2025-12-04 Reduce title and caption sizes for better desktop scaling
+14932fc 2025-12-04 Reduce title and caption sizes for better desktop scaling
+8816bbe 2025-12-04 Fix AF_COLORS.primary reference in CompactTimeline
+ebea55d 2025-12-04 Fix AF_COLORS.primary reference in CompactTimeline
+cc43222 2025-12-04 Fix AF_COLORS export by renaming COLORS
+41062de 2025-12-04 Fix AF_COLORS export by renaming COLORS
+5d61bf3 2025-12-04 Fix import path for AF_COLORS in content.ts
+eef65c9 2025-12-04 Fix import path for AF_COLORS in content.ts
+ffdd3c5 2025-12-04 Add contentBullets property to Slide interface
+93a225b 2025-12-04 Add contentBullets property to Slide interface
+cc1676d 2025-12-04 Fix curly apostrophe in agency-persona.ts
+8542fce 2025-12-04 Fix curly apostrophe in agency-persona.ts
+9e8f62e 2025-12-04 Add className prop to ASCIIUnifiedGrid component
+ddf1363 2025-12-04 Add className prop to ASCIIUnifiedGrid component
+fa8c4b5 2025-12-04 Remove CREA iT components requiring recharts dependency
+95d2077 2025-12-04 Remove CREA iT components requiring recharts dependency
+12030b0 2025-12-04 Remove invalid contentBullets property from Slide object
+aff796c 2025-12-04 Remove invalid contentBullets property from Slide object
+828da4c 2025-12-04 Fix curly apostrophe in agency-persona.ts
+0c70277 2025-12-04 Fix curly apostrophe in agency-persona.ts
+6d87b37 2025-12-04 Add className prop to ASCIIUnifiedGrid component
+19adfd1 2025-12-04 Add className prop to ASCIIUnifiedGrid component
+d6f8cac 2025-12-04 Remove CREA iT components with missing recharts dependency
+831b139 2025-12-04 Remove CREA iT components with missing recharts dependency
+89c8d50 2025-12-04 Fix TypeScript build errors and remove unused components
+168365d 2025-12-04 Fix TypeScript build errors and remove unused components
+4a39cda 2025-12-04 Fix production build errors for Netlify deployment
+cdf4479 2025-12-04 Fix production build errors for Netlify deployment
+7c788ce 2025-12-04 Update Rationale overview: Remove dollar amounts, redesign Zero metrics diagram
+a4ffc0c 2025-12-04 Update Rationale overview: Remove dollar amounts, redesign Zero metrics diagram
+6ab2a69 2025-12-01 Reweight tone: emphasize Head of Design role over FUBO company
+6eb375d 2025-12-01 Reweight tone: emphasize Head of Design role over FUBO company
+d2e0d26 2025-12-01 Implement marketing agent recommendations: Direction A positioning
+b991277 2025-12-01 Implement marketing agent recommendations: Direction A positioning
+c1655a2 2025-12-01 Add Project Canvas password-protected case study
+083112b 2025-12-01 Add Project Canvas password-protected case study
+84f65b0 2025-12-01 Enhance About page with comprehensive biographical content
+c4e0306 2025-12-01 Enhance About page with comprehensive biographical content
+176937f 2025-12-01 Update contact email to hanson@rationale.work
+ef3c567 2025-12-01 Update contact email to hanson@rationale.work
+3e1f961 2025-12-01 Fix navigation: Remove links to non-existent pages
+be3bddd 2025-12-01 Fix navigation: Remove links to non-existent pages
+37d5ec4 2025-12-01 Add Google Fonts and enhanced metadata
+b8fe372 2025-12-01 Add Google Fonts and enhanced metadata
+0d82d83 2025-12-01 Fix: Add complete design system CSS
+ff63488 2025-12-01 Fix: Add complete design system CSS
+68fe5f8 2025-12-01 Fix layout: Use proper Header/Footer components
+c6dcd9c 2025-12-01 Fix layout: Use proper Header/Footer components
+ab3a289 2025-12-01 Initial public site implementation
+c6736c4 2025-12-01 Initial public site implementation
+466b009 2025-12-01 Fix typo in project description
+b0376ed 2025-12-01 Fix typo in project description
+a4c956e 2025-12-01 Initial commit
+b47a786 2025-12-01 Initial commit

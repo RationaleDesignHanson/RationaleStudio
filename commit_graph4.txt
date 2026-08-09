@@ -1,0 +1,990 @@
+*   0dc3284 Merge pull request #25 from RationaleDesignHanson/fix-rumi-vault-nits
+|\  
+| * c099c03 Fix two rumi prototype nits from vault audit
+|/  
+*   d32e934 Merge pull request #24 from RationaleDesignHanson/optimize-fubo-showcase
+|\  
+| * 97977d6 Mobile-optimize fubo showcase images (44M -> 8.5M)
+|/  
+*   c020511 Merge pull request #23 from RationaleDesignHanson/fubo-showcase-expand
+|\  
+| * 01be0e1 Expand fubo showcase to all 8 leagues x 3 styles
+|/  
+*   ad3c2bf Merge pull request #22 from RationaleDesignHanson/fix-prototypes-from-hd
+|\  
+| * 1590cb1 Fix prototype demos from external HD backup
+|/  
+*   7b64e18 Merge pull request #21 from RationaleDesignHanson/restore-fubo-prototype
+|\  
+| * 349f152 Restore the fubo prototype and integrate it into the case study
+|/  
+*   662d69d Merge pull request #20 from RationaleDesignHanson/vault-relock
+|\  
+| * f7347b6 Re-lock the whole vault behind one shared password
+|/  
+*   1934631 Merge pull request #19 from RationaleDesignHanson/nimbus-deck-swipe
+|\  
+| * 4219894 Nimbus deck: make swipe navigation reliable + coherent
+|/  
+*   68f1d74 Merge pull request #18 from RationaleDesignHanson/open-athletes-first-vault
+|\  
+| * 5fb096a Open Athletes First pitch deck in the public vault
+* |   474a18a Merge pull request #17 from RationaleDesignHanson/can-fubo-prototype
+|\ \  
+| |/  
+|/|   
+| * 7f30ab2 Can the Fubo thumbnail-generator prototype surface
+|/  
+*   17a319a Merge pull request #16 from RationaleDesignHanson/vault-noindex-fubo-rumi
+|\  
+| * 87a6d27 Vault: noindex fubo + rumi now that they're ungated
+|/  
+*   107c167 Merge pull request #15 from RationaleDesignHanson/vault-writing-migration
+|\  
+| * 62951b8 Vault: ungate individual projects; keep vault index gated
+| * a9d25dc Vault: default the Writing section to collapsed
+| * 08a6849 Vault: move Writing section first and make it collapsible
+| * 550782d Remove duplicate insights copy; point related links at vaulted writing
+| * 7c0e488 Move writing into gated Vault; dedupe 15 to 10; de-specify identity
+|/  
+* ffbd8cf viacom: add Times Square Alliance representation
+* 9f18486 mobile layout fixes: zero launcher + spark-ar flagship grid
+* 696813b studio-era: embed GTA Vice City TV commercial
+* fb4e6d6 seo: comprehensive organic-discovery + name-disambiguation upgrade
+* 058abf6 analytics: audit-driven fixes + signal upgrades
+* d58ff93 analytics: track iframe-embedded prototype engagement
+* 689058b analytics: strip compression URL flag, drop response Content-Encoding
+* 888bd89 analytics: restore skipTrailingSlashRedirect for /ingest handler
+* e15e059 docs: add CLAUDE.md repo orientation
+* 5f9a680 analytics: replace /ingest rewrite with route handler
+* 8ac83ad analytics: fix 400 from gzipped capture, init in useEffect
+* ace43b1 nimbus: surface the deck
+* bb179e4 engagement: drop dashboard query cache 300s -> 30s
+* 940cdb8 analytics: track vault unlock attempts + outbound clicks
+* 62fc20f owner: add /owner/engagement analytics dashboard
+* 9308751 heirloom: delete dead loveMarks.ts
+* cb2db0d Analytics: wire PostHog (pageviews, autocapture, replay, heatmaps)
+* 63e8a66 Vault: fix entry-point feel, add Nimbus case study
+* 37ee040 spark-ar Ch. C: halve the display size of the before/after captures
+* 1678fa9 Cleanup: delete dead Heirloom case-study scaffolding (-71MB)
+* 72bb3f9 Image audit pass 1: fix declared dims + resize oversized icon
+* 22d8a18 RotatingTagline: switch from inline-grid to absolute-positioned overlay
+* 55803bc Header: vertically center the rotating tagline with the wordmark on desktop
+* d63779f Header: rotating tagline on desktop too, drop redundant manifesto hero
+* a99cf7c Mobile UX overhaul + Heirloom Chapter 04 rewrite
+* c29f13a WorkViewer mobile rail: add numeral so the tick reads as navigation
+* cf5c257 Site: wire up live Substack post + Sendfull interview
+* 7e3620d Zero: mobile launcher card, desktop iframe (split)
+* 5913ebf WorkViewer: sequential header + rows transitions, no body-copy overlap
+* db647d9 About: reframe Zero — beta + pulled, not prototype
+* ba61a20 About: drop the LIFT framing slide
+* 630a7d9 Home: peek-bounce on first arrival + chunkier scroll-hint bounce
+* 9fd0aae WorkViewer rail: left-edge ticks on mobile, labeled right on desktop
+* fe8032f Home: add era rail + scroll hint so users discover the other two eras
+* 54c15ca Header: center-align wordmark + nav, not baseline
+* 675c43c OG image: studio-monograph treatment, 1200×630
+* e5ecaa9 NOW row meta + Zero correction
+* 214f7a1 Home + work index: title-fix sweep
+* 292c193 Studio Era: embed Adidas · Hu Jia (2008 Beijing) · lead compositor
+* 744dfaf Viacom: embed Motionographer case-study film inline
+* c3a37d5 Viacom: Screenies cannon as Ch 02 hero before the playlist
+* 42fb195 VideoPlayer + Viacom/Studio/SXSL playlists
+* 11833b0 Hide Writing section until Substack launches
+* cf53dcd Viacom: standardize image aspect ratios + sequential FIG numbering
+* 89ef8ac Decks + copy fixes (spark-ar guidelines · apex assembly · misc)
+* a270966 FAIR: drop world-locked-avatars patent reference (lives on Spark AR)
+* eb7397d Header copy: wordmark = Rationale, NOW headline = Vision bears...
+* 18ff7ab Fix: Zero iframe blocked by Netlify headers + WorkViewer scroll dwell
+* 9a06f54 Relaunch: studio-monograph site with reverse-chronological work index
+* 978ceaf add: Google site verification for Play Console API access
+*   dd8e6c6 Merge pull request #14 from RationaleDesignHanson/dumbq-prompts-v2
+|\  
+| * 6f29942 Fix TS build: type payload in DumbQuestionsGame realtime callback
+* | ab8d69a Merge pull request #13 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 0568e4a Fix TS build: use explicit any for Supabase realtime payload
+* | bb9b4af Merge pull request #12 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 7fab054 Fix TypeScript: type payload parameter in realtime subscription
+* | 1737525 Merge pull request #11 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 63f2d76 Fix realtime: make Supabase client a singleton
+* | d396110 Merge pull request #10 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 2dfc9cb Add LLM-powered image prompt interpretation via GPT-4o-mini
+* | bd3b76f Merge pull request #9 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 2985202 Fix image prompts: use only answer1 as subject, no people/faces
+* | e1ecad2 Merge pull request #8 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 236c471 Fix aggregated prompt: use answer1 vs answer2, drop banter from answer3/4
+* | 4141c57 Merge pull request #7 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * 5de4da6 Fix image generation: use fetch instead of Replicate SDK, add logging
+* | a1f473a Merge pull request #6 from RationaleDesignHanson/dumbq-prompts-v2
+|\| 
+| * bae9897 Overhaul image prompts + tune Flux Dev for Dumb Questions
+|/  
+| *-.   69f13d3 WIP on main: 180d4a0 add: Google site verification for Play Console API access
+| |\ \  
+| | | * aa2e693 untracked files on main: 180d4a0 add: Google site verification for Play Console API access
+| | * b6d39ed index on main: 180d4a0 add: Google site verification for Play Console API access
+| |/  
+| * 180d4a0 add: Google site verification for Play Console API access
+|/  
+| *   1e9ed8f Merge main into fix/dumbq-turns-and-prompts, resolve conflicts keeping latest
+| |\  
+| |/  
+|/|   
+* |   6545035 Merge remote-tracking branch 'origin/fix/turns-and-prompts'
+|\ \  
+| * | 015704b Fix 4-turn rounds, fix image generation 502
+* | | a322dec Trigger Netlify deploy
+* | | 5fe5524 Trigger Netlify deploy
+* | | fa6e855 Merge pull request #4 from RationaleDesignHanson/fix/turns-and-prompts
+|\| | 
+| * | f27d371 Fix turn-taking, rewrite image prompts, add pass feature
+|/ /  
+| * 537c265 Fix turn alternation, overhaul image prompts, add 4-round game with aggregated image
+|/  
+* f0d5d35 Trigger Netlify deploy
+* 8b23903 Trigger Netlify deploy
+* b39a00c Trigger Netlify deploy
+* 262de45 Trigger Netlify deploy
+*   2ae163b Merge pull request #3 from RationaleDesignHanson/exchange-image-gen
+|\  
+| * 9ffe95e Update game state management in Dumb Questions game to improve handling of new answer slots and image generation flow. Refactor submitAnswer function and enhance RoundState type for better functionality.
+| * d7323eb Trigger Netlify deploy
+| * 52ba65b Enhance Dumb Questions game functionality by adding support for additional answer slots and image generation. Updated RoundState type, modified submitAnswer function, and implemented image prompt generation and storage. Improved game state management in the DumbQuestionsGame component to handle new answer slots and image generation flow.
+|/  
+* 1a7827e Trigger Netlify deploy
+* 16fc0b9 Fix error.tsx JSX - missing closing paren
+* 51bf040 Fix Supabase WebSocket CSP, error boundary, lobby copy, and tagline
+* b52af2a Trigger Netlify deploy
+* d6f8b2e Trigger Netlify deploy
+* 2c19e75 Add error handling for dumbquestions Player 2
+* 0c72f6b Force hardcoded Supabase keys - bypass Netlify env var override
+* 0661055 Hardcode Supabase public config as fallback for Netlify env var issues
+* 37a422c Rebuild - fix broken Supabase key
+* 3ba455b Rebuild with correct Supabase JWT key
+* fc84e52 Rebuild with updated Supabase key
+* 5c0527f Rebuild with Supabase env vars
+* f81888d Trigger Netlify deploy
+*   0536ca1 Merge branch 'personalize-products'
+|\  
+| * d7ca729 Add firebaseapp.com to frame-src CSP in next.config.mjs
+* | f9b382b Merge pull request #2 from RationaleDesignHanson/personalize-products
+|\| 
+| * ec67451 Update deno.lock to add new dependencies and update existing ones
+| * 9e58333 Fix TypeScript error in advanceRound: clean up null narrowing logic
+* | 014f22b Merge pull request #1 from RationaleDesignHanson/personalize-products
+|\| 
+| * ec8918a Update About and Home pages with revised copy and product details. Changed messaging to emphasize personal involvement in software development and updated product references from 'zero' to 'heirloom' and vice versa, including new product descriptions and statuses.
+| * 80a84a5 Enhance layout logic to include dumbquestions game in full-screen page check
+|/  
+* 2624706 Make restaurant images link to Google Maps
+* 50ac1d5 Add /charlie birthday restaurant quiz
+* 7a80ca3 Fix: ensure confidential projects always show CLASSIFIED for unauthenticated users
+* 2679b83 Disable TestFlight links - redirect to contact page
+* 437d469 Homepage layout updates
+* 08fe424 Update homepage copy: add dashes around 'like co-founders'
+* 522fcf8 Hide project titles on locked cards for unauthenticated users
+* 53b90bf Update homepage copy: 'like co-founders' instead of 'skin in the game'
+* 2d122a1 Update CSP to allow Google APIs + fix Meta VP text
+* 4f847da Overhaul case study + consumer pages
+* e8b68bc refactor: move mental models from about page to thinking article
+* 15d5bb6 fix: restore blog-style layout for thinking page
+* 10488d5 Redesign about page + add dual engine essay
+* 72b2f2a feat: combined homepage with work, thinking redesign, navigation cleanup
+* 1dd3805 feat(home): refine homepage narrative and product flow
+* 52716e2 feat(cleanup): final route cleanup and verification
+* 83dcdf5 feat(products): create product route structure with variant support
+* 17e0eae feat(work): consolidate Heirloom case study into single page
+* ab6c820 feat(work): consolidate Zero case study into single page
+* d31e7f4 feat(homepage): redesign with new positioning
+* d3a933a docs: add baseline state documentation before restructuring
+* 0e337a5 fix(auth): resolve heirloom route conflict - move dashboard to /owner/heirloom
+* 466121c feat: protect Clara quiz page - require investor/team/admin role
+* ed784b0 fix: runner-up toggle now works both ways, add card bg to domestic notice
+* 41b172f feat: make runner-up destination clickable to swap
+* 4099276 fix: update bio bay tour link to GetYourGuide
+* f63712a fix: top-align quiz content
+* 2e466e2 fix: compact question card to fit content better
+* 8582209 fix: update activity links with real working URLs
+* 5ec6847 chore: trigger redeploy for GOOGLE_PLACES_API_KEY env var
+* 3a83943 feat: add Clara's Sweet 16 quiz with Google Places hotel photos
+* c182e37 feat: update how-we-work page with process timeline
+* f397da3 perf: optimize Lighthouse score with mobile animation skip and lazy Firebase loading
+* 7f5acf8 Fix Firebase auth, update team role access, fix hydration error
+* 341eb7b Add Heirloom business dashboard with launch tracking and financial projections
+* f4badc7 Add feature flag to toggle "What We're Shipping" section
+* 1a445e3 Add Heirloom privacy policy page at /heirloom/privacy
+* 308cdff Revert modularizeImports config - causing 765 build errors
+* 3e77b53 Add missing icon exports to fix build errors
+* f55966d Keep ASCII animations at 30 FPS on all devices
+* 9bb0352 Optimize page load performance without functional changes
+* 7c3916c Trigger Netlify deployment
+* 06e3d90 Add hover overlay effect to Zero, Heirloom, and Pipeline cards
+* 58e823e Make homepage headline clickable, remove separate About link
+* 2984582 Add Studio Overview CTA link below hero text on About page
+* 6eb7ed8 Center-align StatementBlock title while keeping card content left-aligned
+* a1ecb36 Remove .DS_Store files from tracking and add to .gitignore
+* 7aebbfd Fix StatementBlock title alignment from center to left
+* 24d3608 Update home page link from Studio Overview to About
+* 31b6e59 Update overview presentation to focus on consumer value over technical specs
+* c488dbc Fix last failing E2E test by checking for #demo section
+* 9eb48e2 Update E2E tests for new Zero products page with InteractiveDemo
+* 57847ec Update Zero case study demo link to point to products page
+* b44d4c8 Fix Zero tutorial modals positioning and hide email cards during tutorial
+* ac66e52 Fix E2E test URLs to point to correct Zero demo page
+* 7af5e5b Update homepage copy and enhance Nimbus presentation design
+* d9971b5 Optimize mobile padding and typography for Heirloom product page
+* dd71e43 Fix mobile scanning scroll and recipe card title occlusion
+* 1888187 Reduce height of confidence score box to fit content
+* 5cc16cf Center pill, shorten text, and add text pulse animation
+* c3508eb Redesign scanning animation with bounded images and gradient pill overlay
+* 45c9f5d Ensure multi-recipe cookbook always shown in demo selection
+* 0202de5 Fix transform math to properly account for scale in translations
+* bd3fe75 Improve recipe image centering logic for better consistency
+* 5195aeb Add forced snap points to carousel for tighter scroll behavior
+* 188f0c1 Fix recipe detection to not split single recipes with sub-sections
+* 43ff13e Add intelligent image cropping to center on recipe title area
+* 9d271c6 Redesign carousel cards to be image-first with title below
+* 000078a Implement horizontal carousel with peek animation for mobile recipe selector
+* 8b18d37 Remove confidence badge from mobile recipe selector
+* bdeeb5c Add checkmark icon to confidence badge for clearer mobile UX
+* 4e3b9f9 Move confidence badge into thumbnail overlay for cleaner design
+* fdfd41c Override global button centering with explicit left alignment
+* af13660 Reduce recipe title font size to fit longer names on one line
+* daceb88 Fix number alignment to top of multi-line titles
+* c2c6280 Remove mx-auto from main container on mobile to fix centering
+* 17982fa Fix mobile centering by breaking out of page padding
+* e69d08d Remove max-width constraint on mobile to fix centering issue
+* 80ab974 Add explicit left text alignment to mobile recipe buttons
+* a034052 Fix mobile left alignment by removing horizontal margins
+* d7daf2a Zoom thumbnails to show actual recipe areas and fix left alignment
+* 2eee4fe Fix mobile recipe list layout and add thumbnail previews
+* 1e5e0e7 Restore bounding box overlay for desktop, keep compact list for mobile
+* d4d212f Replace image overlay with combined card/list UI for multi-recipe selection
+* 752690e Replace mobile dots with directional overlay
+* 5df687d Add image ref and load tracking for positioning improvements
+* 8480c0d Remove duplicate header from RecipeSelector
+* 98d58f5 Reduce mobile dot markers to 24px for better fit
+* b337acc Add mobile-friendly numbered dot markers for multi-recipe selection
+* 12f1443 Make confidence box collapsible with larger overall score text
+* a52553a Make instruction numbered bullets medium grey
+* 481583d Increase default mobile title size to 24px
+* 52ba076 Add responsive title sizing and visible list bullets
+* 60c91e8 Center timeline on mobile and add spacing around connectors
+* c259710 Make overall confidence display more compact
+* 3cc5ed7 Make timeline span full width on mobile
+* 72fb623 Make timeline horizontal on mobile and move confidence tags to confidence box
+* 0b9b494 Fix mobile text spacing - use narrow container to prevent gaps
+* bfd3685 Fix JSX syntax error - wrap elements in fragment
+* 477449f Force proper text wrapping for mobile description
+* f5e084e Fix mobile text spacing for description line
+* 169d640 Fix demo header spacing and typography
+* 4c671cc Update edit hint text to be more user-friendly
+* 2581869 Revert "Remove demo from products page and update edit hint text"
+* 0894125 Make timeline avatars half size on mobile to reduce crowding
+* 9c59f4e Remove demo from products page and update edit hint text
+* 3b8eb17 Fix bounding box positioning on mobile for multi-recipe detection
+* 6cc33ca Make stickers larger and randomize display order
+* 108e2e1 Hide generation badge and photo thumbnail when card is flipped
+* 6948102 Fix sticker preview button images not displaying
+* c2c4a0a Fix CSP to allow Google APIs for Firebase
+* 93f9aa3 Add Anthropic API key check to debug endpoint
+* a57b465 Add Anthropic API key documentation to Netlify config
+* c72e146 Fix Netlify deployment: remove functions.environment to avoid 4KB limit
+* cdd825a Optimize Heirloom mobile UX with carousels, typography, and spacing
+* 7349529 Improve recipe selector styling and fix font inconsistency
+* 2723c83 Remove false research claims from Context & Methodology section
+* 5f07420 Move interactive demo tabs from case study to product page
+* 54f1a6c Add Recipe Capture as third tab in Heirloom case study demos
+* 6cc13a8 Add interactive Heirloom recipe demo with OCR and generational features
+* 8ad970a Update E2E tests to match /work/zero page content
+* 264f896 Fix E2E test to handle responsive h1 elements
+* 20c83c5 Add metadata to Zero page via layout.tsx
+* c960131 Revert E2E test URLs back to /work/zero
+* 62dc4f5 Fix E2E test URLs from /work/zero to /clients/zero
+* 5991c57 Trigger Netlify rebuild to verify deployment
+* 528f747 Fix variable declaration order in TabletFullWidthDemo
+* 67c731b Add @types/react-dom for Netlify build
+* d68fc89 Fix Zero mobile demo UX issues
+* 93a06ed feat: Add Phase 1 Heirloom social sharing infrastructure
+* d5315c9 Fix TypeScript error: use getByCanonical instead of non-existent findIngredient
+* 817c008 Add next steps documentation for Heirloom roadmap
+* 11e6078 Fix random recipe generation to use structured ingredient data
+* 78ae84d Add drop shadow to active demo tab in Heirloom navigation
+* a49e662 Fix TypeScript: convert item.unit null to undefined
+* 582ff47 Fix TypeScript build error in ShoppingListView
+* e1d974e Fix improper fractions in random recipe generation
+* a34038b Improve Heirloom demos: realistic random recipes and refined UI
+* da8e079 refactor: remove role display from authenticated login page view
+* 3414e49 Simplify Heirloom demos & add Firebase failure tracking
+* 715cc52 feat: show profile info and logout option for authenticated users on login page
+* d151bda feat: display About and Demo buttons with lock icons for unauthenticated users
+* a6f9b57 Integrate Shopping Lab & update marketing CTAs
+* 26c2649 perf: optimize bundle size with lazy loading and AVIF images (~475KB savings)
+* fa4e4f9 fix: add Firebase environment variables to E2E and accessibility tests
+* 1346660 fix: resolve all remaining E2E test failures
+* 5e8e42b fix: update E2E tests to match actual page implementations
+* 19e1946 fix: make lint non-blocking in CI to diagnose other test issues
+* 4bc5382 feat: add blur effect to Structure sections for non-authenticated users
+* 786f493 fix: exclude archived directories and fix type errors for deployment
+* b28177f fix: repair duplicate import statements from logger migration
+* 343ceb9 Add quick deployment confidence guide
+* 0701352 Add comprehensive deployment testing suite
+* 985f836 Add comprehensive Phase 5 documentation
+* 52a739d Add CI/CD quality gates with GitHub Actions
+* 5f7452c Replace all console statements with logger utility
+* 4d03c7f Consolidate beta signups from Supabase to Firebase
+* f2dd8e9 Add comprehensive WCAG 2.1 AA accessibility tests
+* 1ac7459 Add comprehensive E2E critical path tests
+* 283909b Add comprehensive unit tests for zero-sequence utilities
+* 17b1aeb Add comprehensive unit tests for lib/utils (cn, logger)
+* fe5f70c Phase 2: Card consolidation - Remove dead code (17 → 13 components)
+* 2e45341 Phase 2: TypeScript improvements - Window interfaces & utility types
+* f75a094 Phase 2: TypeScript improvements - Fix error handler types (error: any → unknown)
+* 529bca5 Phase 2: Bundle size reduction - Lazy load Three.js
+* d42b2f9 perf: Phase 2 - Optimize images with WebP/AVIF formats
+* c17bbf6 feat: Phase 1.5 - Add mobile swipe gestures to pitch decks
+* 8d8253c fix: Phase 1.5 - Fix touch target accessibility (32px/40px → 44px WCAG)
+* ef2c7d1 feat: Phase 1.5 - Consolidate diagram patterns and cleanup backups
+* 21fe37e feat: Phase 1 - Set up Sentry error monitoring
+* f0ff69e feat: Phase 1 - Set up Vitest testing infrastructure
+* e0c045c refactor: Phase 1 - Migrate hardcoded colors to design tokens
+* b6f9ff0 refactor: Phase 1 - Consolidate Zero route duplicates
+* 90b682b security: Phase 0 - Critical security hardening
+* b690ebf Add favicon with ® symbol and fix header branding consistency
+* 155436c Fix /thinking page width consistency and reorder vision-proof-burden essay
+* 5d1aea0 Fix 040 card routing to quick overview page
+* d862b67 Fix Next.js 16 build errors for Netlify deployment
+* 26b2cab Complete 3 bedtime tasks: Heirloom support, Vision essay, Fubo fix
+* b8b7697 Simplify: Remove Firebase externalization, keep only public/ exclusion
+* 6a5cc54 Fix: Reduce Netlify bundle size with public exclusion + Firebase externalization
+* 6d72b2d Restore to working configuration from 7pm deploy
+* 36985c8 Fix: Remove overly aggressive Next.js compiled exclusion
+* 65efe44 Fix: Exclude public assets from serverless bundle using outputFileTracingExcludes
+* 3f06b10 Add .nftignore to exclude public assets from serverless bundle
+* 767174d Add firebase-admin to external_node_modules with static imports
+* 3be7232 Revert to working Firebase configuration - fix bundle size issue
+* a4fac30 Switch to esbuild bundler and externalize all Google Cloud packages
+* 6de25a3 Add type annotations to doc parameters in pitch security
+* 4094f68 Add await to all getAdminAuth() and getAdminDb() calls
+* d40c727 Add await to all initializeFirebaseAdmin() calls
+* aead8f6 Convert firebase-admin imports to dynamic imports to fix bundle size
+* cd06bd9 Externalize firebase-admin to reduce Netlify function bundle size
+* e6658b6 Switch Netlify functions bundler from esbuild to nft to reduce bundle size
+* acae3fd Move render.yaml to repository root for Blueprint deployment
+* 2f26867 Add Render deployment configuration for Fubo Python backend
+* 6db1235 Apply design system to Fubo case study and update methodology content
+* 590ccba Add comprehensive funding breakdown and interactive diagrams to sanitary waste system
+* 917e7e9 Transform sanitary waste system diagrams with canvas-based animations
+* 945d3f6 Enhance sanitary waste system diagrams with mobile responsiveness
+* a365a5a Fix Project 040 card display and work portfolio improvements
+* 4866e84 Reframe 'This Is the Proof' slide to be gestalt, not Zero-centric
+* 171455f Update 'Our Process' section to emphasize flexibility
+* 4926f7e Add security headers to improve Best Practices score
+* f1b6f7e Add updated timestamp to strategic roadmap
+* aadd0e6 Collapse all accordions by default on slide 7
+* 59013dc Remove decision framework diagram and recommendation from slide 5
+* 68c9bc2 Update CREaiT login redirect to strategic roadmap
+* af3ed1a Hide 'What You Get' and 'Engagement Terms' sections from CREaiT overview
+* 1eaf093 Display 'intro' instead of 'hero' in slide navigation
+* f4836a4 Remove section navigation from CREaiT strategic roadmap
+* c904511 Update slide 2 subtitle to 'Mostly Complete Backend'
+* 5d142f1 Remove 'Significant Built Value' from slide 2 subtitle
+* b16acfd Remove Built Value evidence from CREaiT strategic roadmap slide 2
+* a0a07bf Update CREaiT case study to link to strategic roadmap
+* e93f588 Add React import to Header component
+* 8521f00 Fix React key prop warning in Header navigation
+* a98ef70 Fix CREaiT pitch deck link path
+* 92b1b3c Remove Results & Impact section and fix deck link for case-study-010
+* 98d51ac Update bottleneck diagram: center values in bars and improve legibility
+* a7fe099 Revert: Move bottleneck percentages back above bars
+* d8baee0 Fix presentation deck link to start at slide 1 instead of last viewed
+* 2581fca Remove Results & Impact section from case-study-020
+* 71a5e19 Update 'Proving It On Our Own' to emphasize site as living case study
+* 12cef42 Fix broken career timeline image on About page
+* 84ff960 Add missing project status types to ProjectStatus union
+* 024cd86 Fix TypeScript error: derive isAuthenticated from useAuth properties
+* 0ac25fb Fix header navigation bunching on medium screens
+* 16b3bd6 Redesign CREaiT breadcrumb UI to elegant pagination dots
+* c80f061 Replace TestFlight links with beta signup modal
+* c9a6fa6 Fix NIL Guidance Trust Building Workflow diagram
+* d467447 Tighten Athletes Lifecycle Journey diagram boundary
+* fcfedb9 Change About page section heading from 'The Meta Reality Labs Context' to 'Why Rationale?'
+* de1625e Update Firebase credential examples to use rationale.work domain
+* fc62878 Move bottleneck percentage numbers inside green bars on Three Bottlenecks diagram
+* d838586 Auth-gate Structure pricing sections with yellow border on How We Work page
+* 55b934e Replace code names with real company names for investor visibility
+* 497c7b6 Improve Zero AI demo error handling with user-friendly messages
+* 1091f26 Remove Resources slide from CREaiT Strategic Roadmap
+* c38bdd9 Move What We Learned section above Proof at Scale on About page
+* 4d051b9 Update CREaiT pricing to $40K for 4-6 weeks
+* 69ba04a Update partnership copy and Case Study 030 description
+* b97f85f Update project statuses and Zero descriptions
+* 810a32d Remove password modal layer, implement role-based authentication
+* a43af6a Fix TypeScript error: define isAuthenticated variable in work page
+* 4649e37 Remove all emojis and arrows from DualEngineModel flywheel diagram
+* d082050 Remove emoji icons from investment opportunities section
+* beaadc2 Remove emoji icons from MaterialCard components
+* c1c09dc Fix critical readability issues on investors page
+* 523d00f Add role-based navigation and Investor Materials Library
+* e9ae9bf Implement client-specific Partnership Work access
+* 56efd74 Reduce body copy font size in CREaiT presentation
+* 2c58448 Add elegant breadcrumb navigation to CREaiT overview
+* aa77c13 Add authentication improvements and CREaiT visual enhancements
+* 1c7d84a Improve bullet point readability with responsive sizing
+* 4c80684 Move section navigation to header area (Athletes First style)
+* edf3843 Move navigation bar inside content area, below header
+* 51851f5 Replace grid layout with horizontal section list in footer navigation
+* 269dc60 Match CREaiT presentation navigation and title style to Athletes First
+* 0b2892d Fix TypeScript error: add missing selectedContract state
+* 8227170 Fix ASCIIUnifiedGrid prop: theme → colorTheme
+* ffa3001 Add Athletes First video integration and presentation components
+* d1e23b5 Remove non-strategic-roadmap links from CREaiT portal
+* adc6a2a Apply Terminal Republic styling to CREaiT portal pages
+* 8d839ec Transform CREaiT strategic roadmap to Terminal Republic aesthetic
+* a37ef9c Update Athletes First overview: code name and remove Back button
+* dd1ae17 Remove 'Back to Work' button from CREaiT overview
+* f12644b Update CREaiT overview and remove pitch deck
+* f3f416c Fix CREaiT strategic roadmap: breadcrumb visibility and remove dollar values
+* 22e50c1 Update Creait links to point to strategic-roadmap instead of pitch-deck
+* 3ff908b Remove PasswordGate from /clients pages - Firebase auth is the only authentication
+* 2e8c07e Update work page: link Quick Overview and Full Case Study buttons to correct paths for Creait and Athletes First
+* 5ce3209 Update Creait login redirect and replace PasswordGate with ClientAuthGuard
+* b3ecfe5 Update Athletes First login redirect to overview page instead of pitch deck
+* b943c30 Add debugging logs to ClientAuthGuard for troubleshooting redirect issue
+* 410e1ec Replace PasswordGate with ClientAuthGuard for Athletes First overview
+* 3b4739e Remove password gate from Athletes First overview page
+* d8bb500 Fix clientId check for Athletes First pitch deck
+* 155a9ca Simplify middleware to only check session cookie presence, not role verification
+* 4f74d29 Fix verify endpoint to read cookies from request headers for middleware compatibility
+* dccbb37 Fix client login redirect loop - use correct login route and full page reload
+* 8bbae0e Trigger redeploy with Firebase env vars now set in Dashboard
+* c5514a9 Expose Firebase env vars to serverless functions
+* c49a97c Simplify Firebase Admin init - use existing individual env vars instead of build plugin
+* 0985f0b Remove FIREBASE_SERVICE_ACCOUNT_BASE64 from build.environment to prevent corruption
+* cffce98 Trigger redeploy with corrected FIREBASE_SERVICE_ACCOUNT_BASE64
+* b643aeb Expose FIREBASE_SERVICE_ACCOUNT_BASE64 to build environment
+* 344e2fb Remove invalid 'main' property from manifest.yml
+* 860298b Add package.json for Firebase credentials plugin
+* 2e490fc Point manifest to index.cjs entry point
+* 19888c4 Convert Firebase plugin to CommonJS (.cjs)
+* 54f4f04 Add manifest.yml for Firebase credentials plugin
+* a6cda06 NUCLEAR OPTION: Netlify build plugin to inject Firebase credentials
+* 280f233 Inject Firebase credentials via next.config.mjs env
+* a4b2964 Fix Firebase Admin credentials with base64 service account
+* 013f98b Trigger rebuild with corrected Firebase Admin env vars
+* df1d822 Expose Firebase Admin env vars to build process
+* c1c8012 Fix build script module format - rename to .cjs
+* 840af6b Write Firebase credentials to file during build for serverless functions
+* c7e23fd Remove empty Firebase env var declarations that override Netlify dashboard values
+* fddab3f Add Firebase Admin env vars to netlify.toml for serverless functions
+* 3d6599d Trigger redeploy with FIREBASE_PRIVATE_KEY env var
+* 9baa4a8 Add Firebase login diagnostics and cache clearing
+* 43338d7 Trigger build with FIREBASE_SERVICE_ACCOUNT_BASE64 env var
+* 35d036a Add FIREBASE_SERVICE_ACCOUNT_BASE64 support - simpler alternative to avoid Netlify UI issues
+* b1eac96 Support base64-encoded Firebase private key to avoid Netlify UI truncation issues
+* 6ca80f6 Trigger fresh build
+* f3a73f4 Add detailed logging for user profile lookup debugging
+* c3576cb Add debug endpoint to test user profile retrieval
+* fd6df3f Add 'client' role type and clientId field to user profile
+* 2346da3 Trigger deploy with corrected Firebase private key formatting
+* 617229d Remove broken image optimization redirect - let Next.js plugin handle it
+* 60654e8 Trigger redeploy with corrected Firebase private key
+* adea95f Add detailed logging to session API for Firebase Admin SDK debugging
+* 0d4208e Trigger redeploy with correctly formatted Firebase private key
+* 82d6d4b Trigger redeploy: test Firebase Admin SDK with all credentials
+* 1cd75d8 Fix broken images: remove publish directory from netlify.toml, use Next.js Image component
+* fa5da62 Add Firebase Auth domains to CSP: identitytoolkit and securetoken
+* 2a255dc Trigger deploy with Firebase env var values
+* c4571f0 Add debug endpoint to check environment variables
+* 81e24aa Trigger redeploy with Firebase env vars on rationaledesign site
+* 804b501 Remove 8-week build badges from Zero and Heirloom cards
+* 753286d Restore ASCII grid on mobile
+* 064f171 Fix Firebase auth: remove redundant env config, fix CSP for images, improve error logging
+* 846f5c8 Explicitly expose Firebase env vars in next.config
+* 291e7bc Trigger Netlify build with Dashboard env vars
+* 48dc2ec Update homepage copy: weeks to months, not quarters
+* e4ae742 Disable secrets scanner for Firebase public API keys
+* 69f85cd Add Firebase env vars to netlify.toml for client login
+* be1198b Remove beta plan document (moved to Heirloom project)
+* 178a075 Update Heirloom website for v1.1.0 AI features
+* 1289202 Fix console errors breaking Lighthouse Best Practices score
+* da6da5b Fix Lighthouse Best Practices issues for 92+ score
+* 6369eb5 Reframe homepage as meta case study: 8 weeks of shipped products
+* bb5b8fc Add wearables roadmap to Zero page (Q1 2025 vision)
+* e62bdd2 Optimize homepage images with Next.js Image component for 3.3s improvement
+* 9cfef21 Critical performance optimization: reduce font loading and disable mobile animations
+* f5cb5d8 Remove unused OG image route and update system files
+* b5c6a69 Update diagram components with visual refinements
+* 9a038b1 Refine pitch deck content and messaging clarity
+* 765e0ac Add page tagging system to site admin dashboard
+* a969849 Restructure Heirloom page with Challenge and Approach sections
+* d2720d3 Enhance Zero page with mobile demo modal and content refinements
+* 0970115 Remove emoji checkmarks from Zero page
+* 0ffaccf Optimize homepage performance with lazy loading and smart animation
+* 3b01f1a Fix responsive breakpoint for CTA buttons on work pages
+* 8c39625 Optimize homepage icon images (90% file size reduction)
+* eac67ef Fix: Revert to regular img tags due to Netlify image optimization failure
+* 266c38d Update Zero card copy to user-focused benefit
+* 6d4cf81 Fix: Replace fill prop with explicit dimensions for homepage icons
+* 34d9c4a Fix: Remove lucide-react modularizeImports causing build errors
+* bdda676 Fix: Revert server component conversion to resolve build error
+* 48196a8 Optimize initial page load performance (60-75% reduction in bundle size)
+* 8804a50 Polish Fubo prototype with Rationale design system (Phase 3: Accessibility & Advanced Polish)
+* b97940b Polish Fubo prototype with Rationale design system (Phase 2)
+* d90b4cb Polish Fubo prototype with Rationale design system (Phase 1)
+* a88c59f Add OG image for social sharing (static PNG)
+* 33c6cd5 Trigger Netlify deploy
+* db13b99 Add dynamic OG image matching homepage hero section
+* 8a4ded5 Replace '7 prototypes' with 'rapid prototyping' in infographics
+* c7fddff Fix Fubo prototype and reformat Case Study 030 to match 010/020
+* a354326 Fix Pipeline card width to match Zero + Heirloom combined width on desktop
+* 9dc5d1a Fix Zero mobile demo: eliminate scrolling and badge cropping
+* bbe2275 Add password-protected Case Study 030 (Fubo AI Thumbnail Generator)
+* fc81757 Fix Heirloom shopping list integration and update TestFlight links
+* 55694e2 Fix TypeScript error: Remove invalid height prop from SwipeableDiagram
+* 0ba010d Fix import errors: Use named exports for StepByStepDiagram and SwipeableDiagram
+* 58c4961 Add mobile-responsive diagrams for CREaiT pitch deck
+* 9676ddf Fix all image loading issues: convert Next.js Image to native img tags
+* c13a8ab Fix hero layout: image always on left, text always on right (all viewport sizes)
+* 78611db Update homepage hero tagline to "Your Product Design Company"
+* 0763fe5 Update tagline to "Your Product Design Company"
+* 136b2fd Fix Pipeline card width to match Zero/Heirloom cards on desktop
+* ee9ac28 Fix broken icon images and revert Heirloom link change
+* 27b4562 Update Heirloom card to link to external TestFlight
+* 9114d99 Desktop-only improvements to Current Focus cards
+* 5de7838 Reduce mobile menu text size and use underline for active state
+* 813b3f2 Align hamburger menu to right of header on all pages
+* c2f1d24 Remove emoji icons from CloudKit Sharing and Privacy-First Design features
+* 640ec13 Make binder tab text bigger and bolder
+* c594412 Fix tab outline geometry mismatch
+* d417124 Refine binder tabs: shorter, tighter, cleaner inactive state
+* 51af354 Redesign Heirloom demo selector as looseleaf binder tabs
+* 20baeb6 Additional Mobile Optimizations + Homepage Current Focus Fix
+* 02aa414 Mobile Space Optimization: Zero & Heirloom Pages (Complete)
+* 345daaf Mobile Timeline Comparison: Complete alignment and text refinements
+* 975c5f1 Final Update: SESSION_4_COMPLETION_REPORT with Phase 7
+* 6acb3af Update MASTER_EXECUTION_PLAN: Phase 7 Automated Complete
+* bfd4f23 Phase 7: Automated Testing Complete (Automated Checks Only)
+* 9ea15cb Update MASTER_EXECUTION_PLAN: Phase 6 Complete
+* 80285f6 Update SESSION_4_COMPLETION_REPORT: Phase 6 Complete
+* cc7f69a Phase 6: Mobile Responsive Text Fixes (Stats + Duplicate Classes)
+* 2fdbb3b Session 4 Completion Report: 91% Time Savings via Existing Optimizations
+* 2eac69d Phase 2 Complete: Homepage + Work Page Mobile Optimization
+* 90c4bd7 Update MASTER_EXECUTION_PLAN.md: Phase 1 Complete
+* d6eafaf Phase 1 Complete: Touch Target Verification (Task 1.18-1.20)
+* 44f37aa Phase 1: Quick Wins - Typography, Spacing, and Image Optimization
+* ec86b52 Add Future Optimization Opportunities to Bundle Plan
+* 1968881 Phase 3-4 Performance Optimization Complete: Lazy Loading + Bundle Analysis
+* 862e2e7 Performance Optimization: Bundle Analyzer Setup + NPM Scripts
+* 9204a12 Performance Optimization Phase 2: Zero InteractiveDemo Lazy Loading
+* 742c3e4 Performance Optimization: Bundle Analysis + Phase 1 Lazy Loading
+* 0724956 Phase 4 Follow-up: Comprehensive Design Token Documentation
+* 4f5928f Phase 4 Follow-up: GitHub Actions CI for Visual Regression Tests
+* a069cb4 Phase 4 Follow-up: Create Component Gallery Page
+* 8023e8d Phase 4 Follow-up: Manual Contact Page Migration (6 instances)
+* 0e6e9ba Phase 4 Follow-up: Automated Terminal Gold Migration (23 replacements)
+* 96e58c8 Update visual testing documentation with expanded coverage stats
+* 632c80a Phase 4 Follow-up: Expand Visual Test Coverage (26 Tests Passing)
+* ba30f48 Update Visual Regression Strategy: Mark Phase 1 complete (setup done)
+* a6c5827 Phase 4 Follow-up: Visual Regression Testing Setup (Playwright + Percy)
+* 2ec202b Phase 4 Testing Strategy: Visual Regression Testing Plan with Playwright + Percy
+* 048114d Phase 4 Documentation: Add BaseCard and Badge Component Usage Guides
+* fbda8cc Comprehensive Mobile Optimization: 11 Pages Optimized (60-80% Space Reduction)
+* 038dceb Put status badges inline with titles on Current Focus cards
+* ec2fb9c Phase 1 Quick Wins: Mobile optimization for About page
+* dd2a83d Phase 2: Mobile optimization for Homepage + Work page
+* 8d53523 Fix Three Ways section alignment and layout
+* 79acec4 Reduce wasted space in Three Ways cards
+* 8f59882 Fix Studio Overview alignment and reduce spacing
+* 193bf53 Simplify Current Focus copy to emphasize AI value
+* 31afd62 Align hero section with consistent left margin guide
+* 87b8cc5 Fix Current Focus left margin to align with cards
+* 81fdb7d Align hero text with Zero card left margin
+* f5a640e Change hero and Current Focus to left-aligned layout
+* 1d96005 Reduce Current Focus text size to be smaller than hero
+* f2cde00 Fix grammar: 'where' → 'which' in Current Focus description
+* 487b8fb Update Current Focus description to emphasize conviction
+* 75216b6 Simplify hero: remove Meta line, make CTA yellow, reduce height
+* 799f7cb Fix headline overflow - allow natural wrapping with smart break
+* 6475b82 Add padding to hero text and make all text scale proportionally
+* 7dba9b1 Force headline to stay on one line with whitespace-nowrap
+* 66112c7 Remove purple Studio Overview button, keep only subtle link
+* be79a11 Make hero CTA more subtle on mobile
+* 3d7fa64 Phase 2: Aggressive Mobile Optimization for Work Page
+* 258eec3 Phase 2: Aggressive Mobile Optimization for Homepage
+* a2f899c Phase 2 Audit: Homepage + Work Page Already Optimized
+* 820a05b Phase 3.10: Full-Screen Mode Toggle
+* 549f814 Phase 3.9: Progress Persistence with localStorage
+* 98aef20 Phase 3.8: Slide Transition Animations
+* 3f4c9f1 Phase 3.7: Add Swipe Gesture Navigation
+* 0bd53e5 Phase 3.6: Metrics Dashboard Mobile Optimization
+* 7df14e0 Phase 3.5: Hero Slide Mobile Optimization
+* 3b54b0e Phase 3.3: Break Long Paragraphs in Athletes First Content
+* 7d36baa Phase 3: Athletes First Mobile Navigation Touch Targets
+* f7a532f Session 3 (Continued): Phase 1 Quick Wins Complete (10/10 tasks)
+* c6f3290 Phase 1 Quick Wins: Grid gap responsive reduction
+* 1f88e33 Phase 1 Quick Wins: Work page card grid mobile breakpoints
+* 4eb57ea Phase 1 Quick Wins: Work page spacing condensation complete
+* dbf18b2 Phase 1 Quick Wins: Homepage Mobile Spacing Reduction (Task 1.8)
+* 319a1ee Phase 1 Quick Wins: Header Mobile Touch Targets (Task 1.1)
+* aa93898 Fix all TypeScript errors in mobile diagram components (19 → 0)
+* 9f4d378 Session 3 Completion: Mobile Audit 100% Complete
+* 9d28ce2 P3 Rationale Overview (3/6): Complete ZeroMetricsDiagram Mobile Implementation
+* bd90fbc P3 Rationale Overview: ZeroArchitectureDiagram Mobile (2/6)
+* bf49366 P3 Rationale Overview: TraditionalVsRationaleDiagram Mobile (1/6)
+* 39486f9 Add .netlify/ to .gitignore and remove from git
+* 98cc50a P2 Zero Diagrams: SwipeTriageTreeDiagram Mobile (5/5) - COMPLETE
+* 5704fdb P2 Zero Diagrams: MicroservicesArchitectureDiagram Mobile (4/5)
+* ba6dce3 P2 Zero Diagrams: InboxJourneyDiagram Mobile Implementation (3/5)
+* 8ed9d92 P2 Zero Diagrams: AIIntelligenceSystemDiagram Mobile Implementation (2/5)
+* 1e1b109 P2 Zero Diagrams: BetaRoadmapTimelineDiagram Mobile Implementation (1/5)
+* 2779a90 Apply ResponsiveImage component to historical-work and about pages
+* b47304a Fix mobile white space issue - root cause was owner layout constraints
+* db7c34e Additional mobile layout adjustments for site admin dashboard
+* e0d867e Fix mobile container width to eliminate white space on site admin dashboard
+* 9b11bb0 Make checkboxes smaller on mobile for site admin dashboard
+* d9ff877 Fix infinite redirect loop in authentication middleware
+* c20f202 Fix mobile layout width issue on site admin dashboard
+* 954b400 Additional width fixes for site admin dashboard mobile
+* de53bd2 Fix container width issue on site admin dashboard
+* d95f80e Reduce checkbox size on mobile for site admin dashboard
+* 9308efd Option 3: Image Optimization Pipeline Complete (Sharp + Responsive Images)
+* faed498 P1 Mobile Diagrams + Admin Dashboard: CREaiT Complete + Site Admin Optimized
+* 47e8e06 P1 Mobile Diagrams Batch 2: Athletes First Complete (5 diagrams) + CREaiT Started (1 diagram)
+* fb5de17 P1 Batch 1: Athletes First Diagrams (3 mobile implementations)
+* 95f365d Add mobile implementation progress tracking document
+* a5d82e6 P1: Fluid Typography System + Breakpoint Standardization
+* b4bd941 P0 Mobile Diagrams: Pattern Library + Athletes First & CREaiT
+* a05d775 Update SITE_MAP.md with full clickable URLs
+* 2f7ff4d Comprehensive UX and Mobile Fixes for Overview Diagrams
+* 19168bb Fix Turbopack build errors - duplicate imports and malformed import
+* be36541 Fix syntax error in owner outbound page imports
+* fc6ea2d Fix PasswordGate component styling with explicit Tailwind classes
+* 69eda32 Fix transparent ButtonSecondary by adding explicit background styling
+* af50576 Style Full Case Study button to match Quick Overview with white/terminal-gold colors
+* 367d9e2 Move Quick Overview inside card + add password protection + reposition Partnership Model
+* 04aa0e9 Fix Quick Overview button visibility - move outside card link wrapper
+* edbbc25 Add Quick Overview links to Athletes First and CREaiT partnership cards
+* 17e8d60 Add Quick Overview pages for Athletes First and CREaiT
+* 914fc76 Standardize Zero and Heirloom status to 'IN PRODUCTION'
+* 62e6165 Match container widths for philosophy boxes on work page
+* edc7dbc Reposition 'Why We Build Our Own Products' box above featured cards
+* ce1ee06 Option 3: Performance & Accessibility Improvements
+* 08b3e5d Option 2: SEO & Metadata Optimization
+* d0494bc Option 1: Content & Messaging Clarity Improvements
+* 3fc4b30 Add case study 030 (Fubo) with live status
+* 28a1d32 Standardize featured projects and clean up work page
+* b8c4c1a Fix Heirloom work page CTA and status
+* 2ce56d1 Phase 4.3 (Additional): Migrate Remaining Inline Gold Buttons
+* e1825c3 Phase 4.2 (Final): Complete ResponsiveBox Removal - CaseStudyTeaser + PasswordGate
+* f7d49d8 Phase 4: Design System Consolidation - Completion Report
+* 56bb47a Phase 4.3: Migrate inline gold buttons to ButtonPrimary component
+* ac554bf Phase 4.2: Migrate 4 high-use cards to BaseCard universal foundation
+* b7d7fce Phase 4.2: Implement BaseCard universal card foundation
+* e9278a4 Phase 4 (D): Unify status badges using ProjectStatusBadge component
+* 50bdcd6 Match container widths for philosophy boxes on work page
+* 14c5b72 Clean up work page: Remove demo placeholders and client team access buttons
+* 9a40e34 Refine Heirloom description to emphasize modern recipe box concept
+* eab68eb Update Heirloom description on work page to focus on user value
+* 7cbad66 Phase 4 (C): Work Page Card Migration - Remove OS8Window Aesthetic
+* 7a28813 Phase 4 (B): Button System Unification - Migrate 20+ Inline Buttons
+* 7a09710 Phase 4.5: Add Terminal Gold Tokens to Tailwind v4 CSS (WIP)
+* 132fbc6 Phase 4.4: Fix Nav Bar and Home Page Color Issues
+* cb9ee65 Phase 4.3: Bulk Terminal Gold Migration (1,479 replacements across 132 files)
+* 2057f92 Phase 4.3: Terminal Gold Migration (Sample + Strategy)
+* d487d41 Phase 4.2: Complete Badge Migration (FeaturedWorkCard + ProjectStatusBadge)
+* 6063bbd Phase 4.2: Component Badge Migration (3 components)
+* c947af6 Phase 4.1: Design System Quick Wins (Foundation)
+* 6178433 Phase 3: Responsive Design Fixes (Part 3 - Low Priority Polish)
+* 57b1884 Add comprehensive cleanup session summary
+* d90940f Phase 3: Responsive Design Fixes (Part 2)
+* 9d22686 Phase 3: Responsive Design Fixes (Part 1)
+* f9039b0 Phase 2: Route Consolidation - Investor Namespace
+* 17d0102 Add ESLint + Prettier configuration
+* 1cea25d Clean up and update dependencies
+* 40cd766 Organize documentation into /docs structure
+* 35d04f7 Phase 1 cleanup: Archive orphaned directories
+* 9b9f041 Fix duplicate route detection in page scanner
+* e78dea5 Fix Heirloom smart aggregation to display totals instead of equations
+* c7e7867 Add deletion candidates filter to admin dashboard
+* 776e2c4 Fix homepage Current Focus cards padding on mobile
+* 04ea7f3 Fix TypeScript build errors for production deployment
+* ba30d14 Add beta signup system with admin dashboard for Phase 1 internal testing
+* 3baff1a Fix Heirloom build error - Client Component issue
+* 018e62b Complete Heirloom case study with Week 3 polish
+* a421429 Restructure About, Thinking, and Investors pages
+* 0f2fe13 Center 'Not the right fit?' text in Get in Touch box
+* f291ebc Simplify 'Not sure which fits?' to single text line
+* 3ba8903 Redesign engagement selector with horizontal card layout
+* 28d273c Update contact email to hanson@rationale.work with bot protection
+* e5942a1 Redesign contact page with Terminal Republic aesthetic
+* d369030 Add Heirloom product page and homepage updates
+* 0eb8c06 Remove 'Proven Across Domains' section from work page
+* c8b108e Restructure homepage and work page with Heirloom
+* d4c5387 Add close button to overview page
+* ad4878b Remove methodology link from VelocityProof and add studio overview CTA
+* 5a2af03 Adjust hero text sizing - make tagline bigger, H1 smaller
+* b4f4fd1 Add tagline above H1 and use ® symbol in header on homepage
+* 6a99527 Add line breaks to hero copy for better formatting
+* 177186c Remove Product Studio badge and conditionally hide tagline
+* 5da7485 Replace 'client work' with 'strategic partnerships'
+* f94f75b Tighten hero copy with dual-engine clarity
+* e954c36 Fix hero caption to use direct 'your' instead of 'their'
+* 05bf7ac Fix Collaborate link to point directly to How We Work
+* 0295f79 Update hero caption to broaden audience
+* abebaba Clean up homepage and move credentials to about page
+* 1fbd3a4 Remove password protection from Zero prototype
+* 8c48a89 Update navigation and migrate Swipeer prototype
+* 3d09611 Add Firebase initialization error handling
+* 0552da6 Remove Firebase keys from netlify.toml to fix secrets scanner
+* 6e90226 Add Firebase client environment variables to netlify.toml
+* 863612a Fix Firebase Client SDK SSR initialization error
+* eab0dd2 Fix Firebase Admin initialization for Netlify build
+* 6a03608 Add .netlify to .gitignore and update build artifacts
+* 4397c6b Production deployment: Complete site overhaul with Zero beta and outbound system
+* f3f42c7 Update Next.js to 16.0.7 to fix security vulnerability
+* 61efa44 Fix TypeScript build errors and add Suspense boundary
+* bb75e74 Add Zero execution tracker with Firebase real-time sync and integrate 7 interactive prototypes
+* d60c487 Improve Zero page design and expand client portal system
+* 908eb5f Integrate Zero infographics and add global login credentials
+* ce77e46 Comprehensive responsive and accessibility fixes across site
+* 90d6419 Fix deployment blockers and restructure about page
+* ed19570 Fix Typography component type safety issues
+* eb0486e Fix TypeScript component type inference in Typography
+* c52d59f Fix TypeScript null check in UnitEconomicsFlowDiagram
+* 5361f20 Add recharts and mermaid dependencies for CREaiT project
+* 3ad9c9a Add CREaiT client project to public site
+* 8b6d41f Update Build-to-Think timeline to flexible timelines
+* 629f791 Update Solution section caption to 'build for conviction'
+* cce591b Remove timeline and stage indicators from work with us cards
+* 3483bb8 Reduce opening slide headline text size for better responsiveness
+* 4992c5b Simplify browser tab title to 'Rationale Studio'
+* 13fecb2 Update Fubo thumbnail generator images
+* c77b2a7 Clean up overview presentation content
+* 3818f75 Add password protection to Zero portfolio details
+* 814af9c Remove Zero proof statement from homepage hero section
+* e98bf79 Remove overreaching claim from homepage hero section
+* a15b780 Improve Athletes First UX and clean up overview content
+* 88d3c19 Update overview opening slide headline and content
+* ccfdd9c Add prominent interactive demo badge to Athletes First pitch deck
+* 156574a Fix white backgrounds and dark theme consistency
+* aa9f456 Fix Three Bottlenecks diagram layout spacing
+* f1f85ab Fix homepage and Athletes First pitch deck improvements
+* 94d0a0f Minimize footer to simple copyright notice
+* e9451f3 Unify phase badge placement and tighten spacing
+* 7c2325b Fix NIL Platform Flow Diagram layout and spacing
+* 39818d8 Make module cards equal height with improved layout
+* 4e0d1e6 Update final slide with 45-min call and clickable Calendly link
+* 61e1498 Reduce title and caption sizes for better desktop scaling
+* 8816bbe Fix AF_COLORS.primary reference in CompactTimeline
+* cc43222 Fix AF_COLORS export by renaming COLORS
+* 5d61bf3 Fix import path for AF_COLORS in content.ts
+* ffdd3c5 Add contentBullets property to Slide interface
+* cc1676d Fix curly apostrophe in agency-persona.ts
+* 9e8f62e Add className prop to ASCIIUnifiedGrid component
+* fa8c4b5 Remove CREA iT components requiring recharts dependency
+| * 91ee892 P3 Rationale Overview (3/6): Complete ZeroMetricsDiagram Mobile Implementation
+| * ebd7b21 P3 Rationale Overview: ZeroArchitectureDiagram Mobile (2/6)
+| * 411a3be P3 Rationale Overview: TraditionalVsRationaleDiagram Mobile (1/6)
+| * 84af822 Add .netlify/ to .gitignore and remove from git
+| * d43e344 P2 Zero Diagrams: SwipeTriageTreeDiagram Mobile (5/5) - COMPLETE
+| * 446bdb4 P2 Zero Diagrams: MicroservicesArchitectureDiagram Mobile (4/5)
+| * ca446c3 P2 Zero Diagrams: InboxJourneyDiagram Mobile Implementation (3/5)
+| * d74cece P2 Zero Diagrams: AIIntelligenceSystemDiagram Mobile Implementation (2/5)
+| * a0427f4 P2 Zero Diagrams: BetaRoadmapTimelineDiagram Mobile Implementation (1/5)
+| * 309aa49 Apply ResponsiveImage component to historical-work and about pages
+| * 8c565ba Fix mobile white space issue - root cause was owner layout constraints
+| * 786b55e Additional mobile layout adjustments for site admin dashboard
+| * 5ccb827 Fix mobile container width to eliminate white space on site admin dashboard
+| * 79883c1 Make checkboxes smaller on mobile for site admin dashboard
+| * 28e0ce6 Fix infinite redirect loop in authentication middleware
+| * 0b619cb Fix mobile layout width issue on site admin dashboard
+| * 609f2ba Additional width fixes for site admin dashboard mobile
+| * 0d09ecf Fix container width issue on site admin dashboard
+| * 858c182 Reduce checkbox size on mobile for site admin dashboard
+| * eee2c08 Option 3: Image Optimization Pipeline Complete (Sharp + Responsive Images)
+| * c66817a P1 Mobile Diagrams + Admin Dashboard: CREaiT Complete + Site Admin Optimized
+| * 42943b4 P1 Mobile Diagrams Batch 2: Athletes First Complete (5 diagrams) + CREaiT Started (1 diagram)
+| * b1696d6 P1 Batch 1: Athletes First Diagrams (3 mobile implementations)
+| * 3ffbf56 Add mobile implementation progress tracking document
+| * 7305585 P1: Fluid Typography System + Breakpoint Standardization
+| * 7b4fbcb P0 Mobile Diagrams: Pattern Library + Athletes First & CREaiT
+| * 80b7b1b Update SITE_MAP.md with full clickable URLs
+| * e2a0b18 Comprehensive UX and Mobile Fixes for Overview Diagrams
+| * 41e606f Fix Turbopack build errors - duplicate imports and malformed import
+| * 30c65f9 Fix syntax error in owner outbound page imports
+| * ea4e57a Fix PasswordGate component styling with explicit Tailwind classes
+| * e079b40 Fix transparent ButtonSecondary by adding explicit background styling
+| * f8578cf Style Full Case Study button to match Quick Overview with white/terminal-gold colors
+| * 8caae8a Move Quick Overview inside card + add password protection + reposition Partnership Model
+| * e0dd8cd Fix Quick Overview button visibility - move outside card link wrapper
+| * 70fa2ba Add Quick Overview links to Athletes First and CREaiT partnership cards
+| * b9eb74d Add Quick Overview pages for Athletes First and CREaiT
+| * e4269f9 Standardize Zero and Heirloom status to 'IN PRODUCTION'
+| * 763b0e1 Match container widths for philosophy boxes on work page
+| * 7523c61 Reposition 'Why We Build Our Own Products' box above featured cards
+| * 9c6f385 Option 3: Performance & Accessibility Improvements
+| * d2a9a0c Option 2: SEO & Metadata Optimization
+| * 31979af Option 1: Content & Messaging Clarity Improvements
+| * d8270b8 Add case study 030 (Fubo) with live status
+| * 5f283f8 Standardize featured projects and clean up work page
+| * 38126fc Fix Heirloom work page CTA and status
+| * 11da5f9 Phase 4.3 (Additional): Migrate Remaining Inline Gold Buttons
+| * c15335f Phase 4.2 (Final): Complete ResponsiveBox Removal - CaseStudyTeaser + PasswordGate
+| * b430f08 Phase 4: Design System Consolidation - Completion Report
+| * 32293a4 Phase 4.3: Migrate inline gold buttons to ButtonPrimary component
+| * cc9cf78 Phase 4.2: Migrate 4 high-use cards to BaseCard universal foundation
+| * 69ccf9b Phase 4.2: Implement BaseCard universal card foundation
+| * d72c064 Phase 4 (D): Unify status badges using ProjectStatusBadge component
+| * d974124 Match container widths for philosophy boxes on work page
+| * d6b3cb4 Clean up work page: Remove demo placeholders and client team access buttons
+| * 642dcf4 Refine Heirloom description to emphasize modern recipe box concept
+| * 516a3f6 Update Heirloom description on work page to focus on user value
+| * ab747ed Phase 4 (C): Work Page Card Migration - Remove OS8Window Aesthetic
+| * 026c495 Phase 4 (B): Button System Unification - Migrate 20+ Inline Buttons
+| * ecabec5 Phase 4.5: Add Terminal Gold Tokens to Tailwind v4 CSS (WIP)
+| * 6e2646d Phase 4.4: Fix Nav Bar and Home Page Color Issues
+| * c3fd844 Phase 4.3: Bulk Terminal Gold Migration (1,479 replacements across 132 files)
+| * fc6b71a Phase 4.3: Terminal Gold Migration (Sample + Strategy)
+| * f2fa0bf Phase 4.2: Complete Badge Migration (FeaturedWorkCard + ProjectStatusBadge)
+| * d9dd24f Phase 4.2: Component Badge Migration (3 components)
+| * 6050485 Phase 4.1: Design System Quick Wins (Foundation)
+| * 0251970 Phase 3: Responsive Design Fixes (Part 3 - Low Priority Polish)
+| * c9f9987 Add comprehensive cleanup session summary
+| * 8d984e8 Phase 3: Responsive Design Fixes (Part 2)
+| * 683ea8f Phase 3: Responsive Design Fixes (Part 1)
+| * b8fef7a Phase 2: Route Consolidation - Investor Namespace
+| * 5d8ea19 Add ESLint + Prettier configuration
+| * fa5426b Clean up and update dependencies
+| * df4b85c Organize documentation into /docs structure
+| * d8509ca Phase 1 cleanup: Archive orphaned directories
+| * 22520c6 Fix duplicate route detection in page scanner
+| * 486489f Fix Heirloom smart aggregation to display totals instead of equations
+| * cb699ed Add deletion candidates filter to admin dashboard
+| * c48ae83 Fix homepage Current Focus cards padding on mobile
+| * 7add3d8 Fix TypeScript build errors for production deployment
+| * fd23b11 Add beta signup system with admin dashboard for Phase 1 internal testing
+| * c258382 Fix Heirloom build error - Client Component issue
+| * dda2f41 Complete Heirloom case study with Week 3 polish
+| * d55118e Restructure About, Thinking, and Investors pages
+| * ce7c0bd Center 'Not the right fit?' text in Get in Touch box
+| * a803c8d Simplify 'Not sure which fits?' to single text line
+| * f6a5c93 Redesign engagement selector with horizontal card layout
+| * 9f61a7c Update contact email to hanson@rationale.work with bot protection
+| * 504c9c7 Redesign contact page with Terminal Republic aesthetic
+| * a4ad5b6 Add Heirloom product page and homepage updates
+| * 562cf2d Remove 'Proven Across Domains' section from work page
+| * 6bbbf69 Restructure homepage and work page with Heirloom
+| * e44ecf4 Add close button to overview page
+| * b5a2453 Remove methodology link from VelocityProof and add studio overview CTA
+| * 602e0fb Adjust hero text sizing - make tagline bigger, H1 smaller
+| * 2470a6c Add tagline above H1 and use ® symbol in header on homepage
+| * 317f078 Add line breaks to hero copy for better formatting
+| * ac5601f Remove Product Studio badge and conditionally hide tagline
+| * d292aca Replace 'client work' with 'strategic partnerships'
+| * 1319b6c Tighten hero copy with dual-engine clarity
+| * 09d8b49 Fix hero caption to use direct 'your' instead of 'their'
+| * 466bba3 Fix Collaborate link to point directly to How We Work
+| * 69a8c83 Update hero caption to broaden audience
+| * bb3ceab Clean up homepage and move credentials to about page
+| * c9e7ca1 Remove password protection from Zero prototype
+| * 6688856 Update navigation and migrate Swipeer prototype
+| * 84c476f Add Firebase initialization error handling
+| * 898bca2 Trigger build with Firebase API key allowlisted
+| * 4ab37b8 Remove Firebase keys from netlify.toml to fix secrets scanner
+| * fd33fde Enable Netlify smart secrets detection for Firebase
+| * c869b25 Add Firebase client environment variables to netlify.toml
+| * c627b4c Trigger Netlify deployment with updated environment variables
+| * 201c258 Fix Firebase Client SDK SSR initialization error
+| * 26b0a40 Fix Firebase Admin initialization for Netlify build
+| * ac971fc Add .netlify to .gitignore and update build artifacts
+| * 0b2bfc4 Production deployment: Complete site overhaul with Zero beta and outbound system
+| * 6c079a6 Update Next.js to 16.0.7 to fix security vulnerability
+| * 037fb9f Fix TypeScript build errors and add Suspense boundary
+| * 0dc6d24 Add Zero execution tracker with Firebase real-time sync and integrate 7 interactive prototypes
+| * c5af838 Improve Zero page design and expand client portal system
+| * c080f14 Integrate Zero infographics and add global login credentials
+| * b438289 Comprehensive responsive and accessibility fixes across site
+| * 28230ee Fix deployment blockers and restructure about page
+| * c0c0fef Fix Typography component type safety issues
+| * 7edacf9 Fix TypeScript component type inference in Typography
+| * 5ca94c9 Fix TypeScript null check in UnitEconomicsFlowDiagram
+| * 690498c Add recharts and mermaid dependencies for CREaiT project
+| * 3d102db Add CREaiT client project to public site
+| * bcf996b Update Build-to-Think timeline to flexible timelines
+| * abc2687 Update Solution section caption to 'build for conviction'
+| * 329f790 Remove timeline and stage indicators from work with us cards
+| * 520e9bd Reduce opening slide headline text size for better responsiveness
+| * cda4f30 Simplify browser tab title to 'Rationale Studio'
+| * 26dcd2e Update Fubo thumbnail generator images
+| * 015689c Clean up overview presentation content
+| * c9ef55b Add password protection to Zero portfolio details
+| * 4f4e6fb Remove Zero proof statement from homepage hero section
+| * 97becd1 Remove overreaching claim from homepage hero section
+| * bdc4201 Improve Athletes First UX and clean up overview content
+| * a4dd929 Update overview opening slide headline and content
+| * 8e97716 Add prominent interactive demo badge to Athletes First pitch deck
+| * 8c2d89b Fix white backgrounds and dark theme consistency
+| * eaf9b2b Fix Three Bottlenecks diagram layout spacing
+| * aab3583 Fix homepage and Athletes First pitch deck improvements
+| * ad58e35 Minimize footer to simple copyright notice
+| * ee9c9a8 Unify phase badge placement and tighten spacing
+| * d892994 Fix NIL Platform Flow Diagram layout and spacing
+| * c4dc457 Make module cards equal height with improved layout
+| * 642f8da Update final slide with 45-min call and clickable Calendly link
+| * 14932fc Reduce title and caption sizes for better desktop scaling
+| * ebea55d Fix AF_COLORS.primary reference in CompactTimeline
+| * 41062de Fix AF_COLORS export by renaming COLORS
+| * eef65c9 Fix import path for AF_COLORS in content.ts
+| * 93a225b Add contentBullets property to Slide interface
+| * 8542fce Fix curly apostrophe in agency-persona.ts
+| * ddf1363 Add className prop to ASCIIUnifiedGrid component
+| * 95d2077 Remove CREA iT components requiring recharts dependency
+| | * 12030b0 Remove invalid contentBullets property from Slide object
+| | * 828da4c Fix curly apostrophe in agency-persona.ts
+| | * 6d87b37 Add className prop to ASCIIUnifiedGrid component
+| | * d6f8cac Remove CREA iT components with missing recharts dependency
+| |/  
+|/|   
+* | 89c8d50 Fix TypeScript build errors and remove unused components
+* | 4a39cda Fix production build errors for Netlify deployment
+* | 7c788ce Update Rationale overview: Remove dollar amounts, redesign Zero metrics diagram
+* | 6ab2a69 Reweight tone: emphasize Head of Design role over FUBO company
+* | d2e0d26 Implement marketing agent recommendations: Direction A positioning
+* | c1655a2 Add Project Canvas password-protected case study
+* | 84f65b0 Enhance About page with comprehensive biographical content
+* | 176937f Update contact email to hanson@rationale.work
+* | 3e1f961 Fix navigation: Remove links to non-existent pages
+* | 37d5ec4 Add Google Fonts and enhanced metadata
+* | 0d82d83 Fix: Add complete design system CSS
+* | 68fe5f8 Fix layout: Use proper Header/Footer components
+* | ab3a289 Initial public site implementation
+* | 466b009 Fix typo in project description
+* | a4c956e Initial commit
+ /  
+| * aff796c Remove invalid contentBullets property from Slide object
+| * 0c70277 Fix curly apostrophe in agency-persona.ts
+| * 19adfd1 Add className prop to ASCIIUnifiedGrid component
+| * 831b139 Remove CREA iT components with missing recharts dependency
+|/  
+* 168365d Fix TypeScript build errors and remove unused components
+* cdf4479 Fix production build errors for Netlify deployment
+* a4ffc0c Update Rationale overview: Remove dollar amounts, redesign Zero metrics diagram
+* 6eb375d Reweight tone: emphasize Head of Design role over FUBO company
+* b991277 Implement marketing agent recommendations: Direction A positioning
+* 083112b Add Project Canvas password-protected case study
+* c4e0306 Enhance About page with comprehensive biographical content
+* ef3c567 Update contact email to hanson@rationale.work
+* be3bddd Fix navigation: Remove links to non-existent pages
+* b8fe372 Add Google Fonts and enhanced metadata
+* ff63488 Fix: Add complete design system CSS
+* c6dcd9c Fix layout: Use proper Header/Footer components
+* c6736c4 Initial public site implementation
+* b0376ed Fix typo in project description
+* b47a786 Initial commit

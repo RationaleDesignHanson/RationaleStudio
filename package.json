@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/RationaleDesignHanson/RationaleStudio#readme",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
     "@opentelemetry/api": "^1.9.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@react-email/components": "^1.0.1",

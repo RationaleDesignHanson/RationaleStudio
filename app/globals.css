@@ -26,6 +26,7 @@
   --project-zero: #4A6172;         /* slate */
   --project-vault: #6B6B6B;        /* archival graphite — concepts and pitches */
   --project-nimbus: #4A7A8C;       /* cloud-slate — sanitary waste system */
+  --project-blank: #8A5A3C;        /* clay-tobacco — the line's own hero colourway */
 
   /* =============================================================
      ERA THEMES — each era is art-directed in its period's idiom.
@@ -1742,6 +1743,68 @@ a, button, input, select, textarea, label {
   background-color: var(--era-bg);
   color: var(--era-ink-body);
 }
+
+/* ── BLANK microsite overrides ───────────────────────────────────────────────
+   Scoped to this case study only; does not touch the rest of the vault.
+   1. --ink-muted (#8A8B8E) measures 2.78:1 on --paper. It carries every
+      caption, micro-label and the closing argument on this page, so the whole
+      thing reads as grey mush. Darkened to clear WCAG AA for body text.
+   2. --font-display resolves to Geist Sans, which ships no italic — every
+      display italic on the page was a synthesised oblique. Newsreader is
+      already loaded and has real italics.
+   ────────────────────────────────────────────────────────────────────────── */
+[data-project='blank'] {
+  --era-ink-muted: #5F6165;
+}
+
+/* ── Touch hit-areas ─────────────────────────────────────────────────────────
+   Blank is dense on purpose: its controls are 10–12px mono captions, and they
+   set `min-height: 0` inline to escape the global 44px button floor, because
+   that floor is what made specimen rows 49px tall and centred cards that should
+   have been top-aligned.
+
+   The floor existed for a real reason though. A touch audit found 2–5 sub-44px
+   targets per beat on a phone and 10–16 on an iPad — the iPad being worst,
+   because at 768px it takes the desktop layout with a finger driving it. Width,
+   not pointer type, was deciding hit area.
+
+   So: grow the TOUCH TARGET without growing the BOX. `.tap` paints nothing and
+   occupies nothing; it just extends the hit rectangle by 10px vertically on a
+   coarse pointer, which is the only place it matters. Mouse users see and get
+   exactly what they did before.
+
+   Caveat worth knowing: an ancestor with `overflow: hidden` clips this, and two
+   `.tap` controls closer than ~20px will overlap. Both are fine at the gaps
+   these grids use; neither is fine if you halve them.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (pointer: coarse) {
+  /* Doubled class for specificity: `input[type="checkbox"]` in the blanket rule
+     above is (0,1,1) and a single `.tap` is (0,1,0), so it would lose and a
+     checkbox would still be forced to 44×44 — which is exactly what blew a
+     13px tick box up to a 70px empty square in the cost cards. */
+  .tap.tap {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+  }
+  .tap.tap::after {
+    content: '';
+    position: absolute;
+    /* Sized so the smallest control that carries this class — a 15px tick box —
+       clears 40px. Vertically that is under the 16px gaps these grids use, so
+       two adjacent expanders meet rather than overlap. */
+    inset: -14px -8px;
+  }
+}
+
+/* `font-display` is a bare token at :root, not an @theme entry, so Tailwind
+   never generates the utility — the class is inert and display type silently
+   inherits body sans. Bind it here, scoped to this page. */
+[data-project='blank'] .font-display {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+}
+
 
 /* Re-declare glint colors for the .era-meta and .era-maker scopes
    (added inline to existing definitions further below). */
