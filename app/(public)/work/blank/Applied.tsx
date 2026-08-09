@@ -86,6 +86,44 @@ const GARMENT_SCALE: Record<string, { widthIn: number; frameFrac: number; maxIn:
   cap: { widthIn: 7, frameFrac: 0.55, maxIn: 4 },
 };
 
+/**
+ * How the ink sits on the cloth. Pulled out because these four numbers are the
+ * whole difference between a placement mock that reads as printed and one that
+ * reads as a sticker, and they were previously a single hardcoded 0.92.
+ */
+const INK = {
+  /** Screen-printed white on dark cotton is bright but not paper-white. */
+  opacity: 0.88,
+  /** Sub-pixel edge softening. Ink wicks; vector edges do not. */
+  softenPx: 0.4,
+  /** Claws back the contrast the blur costs. */
+  contrast: 1.06,
+  /**
+   * Strength of the cloth's shadows and highlights over the print.
+   *
+   * `overlay` beat soft-light, hard-light and multiply in a side-by-side on the
+   * real plates: soft-light dulled the ink to grey, hard-light washed it out
+   * entirely, and multiply crushed these already-dark garments to black. Overlay
+   * keeps the ink bright while still letting the drape cross it.
+   */
+  cloth: 0.55,
+};
+
+/**
+ * The chest of a garment is not a flat plane facing the camera, and a mark drawn
+ * as if it were is the single strongest tell that you are looking at a decal
+ * rather than a print. A few degrees of perspective is enough — the ring goes
+ * from floating in front of the photograph to lying on the body.
+ *
+ * The cap gets much more of it because a cap front is genuinely a curved panel,
+ * not a nearly-flat one.
+ */
+const WARP: Record<string, string> = {
+  tee: 'perspective(420px) rotateX(6deg) scaleX(0.97)',
+  hoodie: 'perspective(420px) rotateX(7deg) scaleX(0.96)',
+  cap: 'perspective(220px) rotateX(10deg) scaleX(0.92)',
+};
+
 /** The size this placement is actually made at on this garment, in inches. */
 function inchesOn(garment: string, placementInches: number): number {
   return Math.min(placementInches, GARMENT_SCALE[garment]?.maxIn ?? placementInches);
@@ -99,7 +137,7 @@ function inchesOn(garment: string, placementInches: number): number {
  * anything gets printed.
  */
 function yOn(garment: string, placementY: number): number {
-  return garment === 'cap' ? 53 : placementY;
+  return garment === 'cap' ? 46 : placementY;
 }
 
 /** That size as a fraction of the plate's width, for drawing. */
@@ -198,16 +236,49 @@ export function Applied() {
                         style={{
                           left: `${place.x}%`,
                           top: `${yOn(gm.key, place.y)}%`,
-                          transform: 'translate(-50%, -50%)',
+                          // Centring first, then the drape. Order matters: the
+                          // perspective has to apply after the element is placed.
+                          transform: `translate(-50%, -50%) ${WARP[gm.key] ?? ''}`,
                           width: `${frac * 100}%`,
-                          opacity: av.ok ? 0.92 : 0.3,
+                          opacity: av.ok ? INK.opacity : 0.3,
                           mixBlendMode: 'screen',
+                          // Ink laid on cloth does not have a razor edge, and no
+                          // print is perfectly even. Both are sub-pixel at this
+                          // size; both are the difference between "printed" and
+                          // "pasted".
+                          filter: `blur(${INK.softenPx}px) contrast(${INK.contrast})`,
                         }}
                       >
                         <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
                           <Mark c={mark} word={word} css={t.css} size={300 * frac} />
                         </span>
                       </span>
+                    )}
+
+                    {/* THE COMPOSITE PASS. The mark above is a flat shape sitting
+                        on top of a photograph — which is why it read as a sticker.
+                        A second copy of the garment, blended over everything, puts
+                        the cloth's own shadows and highlights back across the
+                        print: the fold under the chest darkens it, the light on
+                        the shoulder lifts it, and the weave shows through.
+
+                        The garment is its own displacement information, so no
+                        separate shading map is needed and nothing has to be
+                        generated. It is still not a render — the ink does not
+                        actually deform along the folds, it just takes their light
+                        — but it stops the mark from floating in front of the
+                        picture. `soft-light` over `overlay` because overlay
+                        crushes the blacks on these already-dark plates. */}
+                    {!nA && (
+                      <Image
+                        src={`/blank/P-${gm.key}-plain.webp`}
+                        alt=""
+                        aria-hidden
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover pointer-events-none"
+                        style={{ mixBlendMode: 'overlay', opacity: INK.cloth }}
+                      />
                     )}
                     {nA && (
                       <span
