@@ -24,8 +24,6 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useRef, useState } from 'react';
-import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex, GARMENTS } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
@@ -38,7 +36,6 @@ import {
 } from '@/lib/blank/markFamily';
 import { MIN_WORDMARK_INCHES } from '@/lib/blank/identity';
 import { Mark } from './MarkFamily';
-import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 
@@ -72,52 +69,6 @@ export function Applied() {
   const g = GARMENTS.find((x) => x.key === garment)!;
   const stop = STATES[tier];
 
-  // Rasterise the chosen construction and send it through the SAME route the six
-  // stock marks were expanded with. The overlay below is a placement mock — it is
-  // honest about position and scale and dishonest about everything else, because
-  // a flat glyph does not follow the fold of the cloth or take the light. This is
-  // the render.
-  const probeRef = useRef<HTMLSpanElement>(null);
-  const [busy, setBusy] = useState(false);
-  const [shot, setShot] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const generate = useCallback(async () => {
-    if (!mark || !probeRef.current) return;
-    setBusy(true);
-    setError(null);
-    try {
-      const image = rasteriseMark(mark, word, readFont(probeRef.current));
-      if (!image) {
-        setError('Could not draw the mark.');
-        return;
-      }
-      const res = await fetch('/api/blank/apply-reference', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          image,
-          garment,
-          tier: tier + 1,
-          colorway: config.colorway || 'charcoal',
-          graphic: 'G-abstract-mark',
-          placement: garment === 'cap' ? 'cap-front' : 'chest-centre',
-          scale: 'large',
-          finish: 'flat-screen',
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? 'Render failed.');
-        return;
-      }
-      setShot(data.imageUrl);
-    } catch {
-      setError('Network error — try again.');
-    } finally {
-      setBusy(false);
-    }
-  }, [mark, word, garment, tier, config.colorway]);
 
   // A PLAIN blank, generated for this purpose. Every other garment plate in the
   // pipeline already carries a printed mark, so using one showed the tier's
@@ -215,17 +166,6 @@ export function Applied() {
             })}
           </div>
 
-          {/* Off-screen probe: canvas needs the treatment's RESOLVED font, and
-              reading it off a live node is the only way to be sure the raster
-              matches what is on screen. */}
-          <span
-            ref={probeRef}
-            aria-hidden
-            className="absolute opacity-0 pointer-events-none"
-            style={{ ...t.css, position: 'absolute', left: -9999 }}
-          >
-            {word || 'BLANK'}
-          </span>
 
           <p className="mt-3 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>These are placement mocks, not renders.</strong>{' '}
@@ -234,36 +174,12 @@ export function Applied() {
             the cloth or take the light. For a real photograph of it printed, generate one.
           </p>
 
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            <button
-              onClick={generate}
-              disabled={busy}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
-              style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
-            >
-              {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-              {busy ? 'Rendering…' : 'Render this mark on the garment'}
-            </button>
-            <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-              sends the mark as artwork · spends
-            </span>
-          </div>
+          <p className="mt-2 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+            To see it actually printed — placed, scaled and inked — use the placement renderer
+            below. It renders the same artwork through the same route, so this view and that one
+            cannot disagree about what your mark is.
+          </p>
 
-          {error && (
-            <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
-              {error}
-            </p>
-          )}
-
-          {shot && (
-            <figure className="mt-4 max-w-sm">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={shot} alt={`${word} mark printed on a ${garment}`} className="w-full" />
-              <figcaption className="mt-1.5 text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-                Generated — the mark reproduced on cloth, not layered over it.
-              </figcaption>
-            </figure>
-          )}
         </>
       ) : (
         <p className="text-[13px] py-8" style={{ color: 'var(--accent)' }}>

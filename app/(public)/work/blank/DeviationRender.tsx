@@ -1,9 +1,18 @@
 /**
- * "Put this graphic on this garment, in this colour, this big, in this ink."
+ * "Put YOUR artwork on this garment, in this colour, this big, in this ink."
  *
- * The library grid picks a PRESET. These controls then move each axis
- * independently — motif, placement, scale, finish, colourway — which is what
- * turns 12 fixed graphics into ~48,000 reachable variants.
+ * This used to render one of twelve preset print languages, which made sense when
+ * a preset was the only artwork the tool had. It is not any more: marks are built
+ * from the name in beat 03 and graphics come from a prompt beside them, so a
+ * control that could only render somebody else's twelve had become the odd one
+ * out — a third way to put something on a garment, applying the wrong something.
+ *
+ * The AXES were always the valuable part and they stay: placement, scale and
+ * finish are the production vocabulary, and they are what turns one mark into a
+ * back print, a sleeve hit or a tonal chest. They now point at the artwork you
+ * actually chose, and it renders through apply-reference — the same route the
+ * colour round uses — so "render this mark" and "generate it on a garment"
+ * stopped being two features that did almost the same thing.
  *
  * Every axis lives in the URL, so a partner opening a shared link sees the
  * exact variant, not an approximation of it.
@@ -23,9 +32,12 @@
 
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
+import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
+import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
+import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
 import { STATES, GARMENTS, tierIndex, type Garment } from '@/lib/blank/line';
 import { COLORWAYS, resolveAxes, validateTuple } from '@/lib/blank/prompts';
 import {
@@ -48,6 +60,19 @@ export function DeviationRender() {
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const probeRef = useRef<HTMLSpanElement>(null);
+
+  // The subject is whatever you chose: a kept prompt-graphic wins over a mark,
+  // because keeping one is the more recent and more deliberate act.
+  const word = normalise(config.wordmark);
+  const face = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
+  const seedNum = Number(config.markSeed);
+  const markPool =
+    config.markSeed !== '' && Number.isFinite(seedNum)
+      ? randomConstructions(word, seedNum)
+      : constructionsFor(word);
+  const construction = markPool.find((c) => c.id === config.mark) ?? null;
+  const subject = config.customGraphic ? 'graphic' : construction ? 'mark' : 'none';
 
   const tier = tierIndex(config.budget) + 1;
   // Falls back to a real preset rather than sitting disabled. The button used to
@@ -89,14 +114,41 @@ export function DeviationRender() {
   }, [config.garment, config.budget, graphic, colorway, axes]);
 
   const render = useCallback(async () => {
-    if (!tuple || blocked) return;
+    if (blocked || subject === 'none') return;
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch('/api/blank/generate', {
+      // Artwork as an image, so what lands on the garment is the thing you chose
+      // rather than a text description of something like it.
+      let image: string | null = null;
+      if (config.customGraphic) {
+        const blob = await (await fetch(config.customGraphic)).blob();
+        image = await new Promise<string>((resolve, reject) => {
+          const fr = new FileReader();
+          fr.onload = () => resolve(String(fr.result));
+          fr.onerror = () => reject(new Error('read failed'));
+          fr.readAsDataURL(blob);
+        });
+      } else if (construction && probeRef.current) {
+        image = rasteriseMark(construction, word, readFont(probeRef.current));
+      }
+      if (!image) {
+        setError('Could not prepare the artwork.');
+        return;
+      }
+      const res = await fetch('/api/blank/apply-reference', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(tuple),
+        body: JSON.stringify({
+          image,
+          garment: config.garment,
+          tier,
+          colorway,
+          graphic: 'G-abstract-mark',
+          placement: axes.placement,
+          scale: axes.scale,
+          finish: axes.finish,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -109,20 +161,33 @@ export function DeviationRender() {
     } finally {
       setBusy(false);
     }
-  }, [tuple, blocked]);
+  }, [blocked, subject, config.customGraphic, config.garment, construction, word, tier, colorway, axes]);
 
   const finish = FINISHES[axes.finish];
 
   return (
     <div className="mt-8 pt-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+      <span
+        ref={probeRef}
+        aria-hidden
+        className="opacity-0 pointer-events-none"
+        style={{ ...face.css, position: 'absolute', left: -9999 }}
+      >
+        {word || 'BLANK'}
+      </span>
+
       <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
-        Generate it on a garment
+        Put it somewhere else on the garment
       </h3>
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Everything above is drawn instantly and costs nothing. This renders a real photograph —
-        slower, and it spends, so it takes a click. Move any axis and the same mark can go small on
-        a sleeve in tonal ink or oversize on the back in puff, composed from the prompt library the
-        line was generated with so a variant looks like it belongs.
+        Colour is decided in 04. This is placement: the same artwork can go small on a sleeve in
+        tonal ink or oversize on the back in puff, and the axes are the production vocabulary rather
+        than a style picker.{' '}
+        {subject === 'graphic'
+          ? 'Rendering your kept graphic.'
+          : subject === 'mark'
+            ? 'Rendering your mark.'
+            : 'Pick a mark or keep a graphic in 03 first — there is nothing to place yet.'}
       </p>
 
       <div className="flex flex-wrap items-end gap-x-4 gap-y-3 mb-3">
@@ -190,7 +255,7 @@ export function DeviationRender() {
 
         <button
           onClick={render}
-          disabled={!!blocked || busy}
+          disabled={!!blocked || busy || subject === 'none'}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
           style={{
             borderColor: blocked ? 'var(--era-hairline)' : 'var(--accent)',
