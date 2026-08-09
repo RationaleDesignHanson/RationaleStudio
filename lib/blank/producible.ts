@@ -3,16 +3,16 @@
  *
  * Each budget stop buys exactly one decoration method (see STATES in line.ts):
  *
- *   $3k   DTF          full colour, fine detail, large format, cheap
- *   $5k   1-col screen one opaque colour, one screen
- *   $8k   2-col screen two colours, and the underbase pass that tonal needs
- *   $12k  embroidery   thread — small scale only, no fine line, no halftone
- *   $20k  embroidery   as above, plus the woven tag and dye programme
+ *   $3k   heat-press print  full colour, fine detail, large format, cheap
+ *   $5k   1-col screen      one opaque colour, one screen
+ *   $8k   2-col screen      two colours, and the underbase pass that tonal needs
+ *   $12k  embroidery        thread — small scale only, no fine line, no halftone
+ *   $20k  embroidery        as above, plus the woven tag and dye programme
  *
  * The important consequence, and the reason this is a mechanic rather than a
  * filter: availability is NOT monotonic in budget. Marks appear AND disappear as
  * you spend more. A fine-line technical diagram is only executable at $3k,
- * because DTF holds sub-1pt lines that screen drops on textured cotton and that
+ * because a heat-pressed film holds sub-1pt lines that screen drops on textured cotton and that
  * thread cannot describe at all. An oversize numeral prints at any screen tier
  * and cannot be stitched at Stage 0 stitch counts. Tonal needs a second pass, so
  * it cannot be had below $8k.
@@ -34,23 +34,24 @@ export type Method = 'dtf' | 'screen1' | 'screen2' | 'embroidery';
 
 export const TIER_METHOD: Method[] = ['dtf', 'screen1', 'screen2', 'embroidery', 'embroidery'];
 
+/**
+ * The names shown in the interface.
+ *
+ * `dtf` is the internal key, because that is what the trade and the cost model
+ * call it, but the label is NOT "DTF". Trade shorthand tells you nothing unless
+ * you have ordered printed garments before, and the point of naming a method on
+ * screen is to say what you are buying. "Heat-press print" is what it is.
+ */
 export const METHOD_LABEL: Record<Method, string> = {
-  dtf: 'DTF',
+  dtf: 'heat-press print',
   screen1: '1-colour screen',
   screen2: '2-colour screen',
   embroidery: 'embroidery',
 };
 
-/**
- * What each method actually IS, in one sentence.
- *
- * These names are printed all over the interface — "makeable in DTF at $3k" — and
- * were never defined anywhere. DTF in particular is trade shorthand that means
- * nothing to anyone who has not ordered printed garments before, which includes
- * most people using a tool to decide whether to start a clothing line.
- */
+/** What each method actually IS, in one sentence. */
 export const METHOD_MEANING: Record<Method, string> = {
-  dtf: 'Direct-to-film: the art is printed onto a film, then heat-pressed onto the garment. No screens to make, so full colour and fine detail cost nothing extra — but it sits on top of the cloth as a thin plastic layer rather than soaking in, and it is the least premium hand of the four.',
+  dtf: 'The art is printed onto a film, then heat-pressed onto the garment. No screens to make, so full colour and fine detail cost nothing extra — but it sits on top of the cloth as a thin plastic layer rather than soaking in, and it is the least premium hand of the four.',
   screen1:
     'Screen print, one colour: ink pushed through one stencil. A screen has to be made per colour per print size, which is the setup fee, and it is why colour count is the thing that drives print cost.',
   screen2:
@@ -105,7 +106,7 @@ export const EXECUTION: Record<string, Executable> = {
   'G-tonal-emboss': {
     methods: ['screen2', 'embroidery'],
     because: {
-      dtf: 'DTF film is opaque and sits on top of the cloth — it cannot read as tonal.',
+      dtf: 'A heat-pressed film is opaque and sits on top of the cloth — it cannot read as tonal.',
       screen1: 'Tonal on a faded blank needs an underbase blocker, so it costs a second pass this tier has not bought.',
     },
   },

@@ -73,7 +73,7 @@ export const STATES: BudgetState[] = [
     hero: false,
     brandCarrier: 'The print. Nothing else is costed in yet.',
     tierSlug: 'S1-{g}-budget-graphic',
-    treatment: { tee: '13in DTF graphic', hoodie: '13in DTF graphic', cap: '4in printed panel' },
+    treatment: { tee: '13in graphic', hoodie: '13in graphic', cap: '4in printed panel' },
   },
   {
     budget: 5000,

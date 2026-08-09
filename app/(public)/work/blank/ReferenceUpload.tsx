@@ -84,6 +84,23 @@ function judge(a: Analysis): Verdict {
   return { ok: blockers.length === 0, blockers, warnings };
 }
 
+/**
+ * What to CALL each method on screen. The analyser returns trade enums and they
+ * were being printed raw, so a reference came back headlined "dtf · 11in · 4
+ * colours" — which reads as a typo unless you already know the trade.
+ */
+const DECORATION_READABLE: Record<string, string> = {
+  screen: 'Screen print',
+  discharge: 'Discharge print',
+  dtf: 'Heat-press print',
+  dtg: 'Direct-to-garment print',
+  embroidery: 'Embroidery',
+  patch: 'Applied patch',
+  'woven-label': 'Woven label',
+  none: 'No decoration',
+  unclear: 'Method unclear',
+};
+
 const DECORATION_MAP: Record<string, DecorationMethod | null> = {
   screen: 'screen',
   discharge: 'discharge',
@@ -364,7 +381,8 @@ export function ReferenceUpload() {
           <>
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <h3 className="font-display text-xl" style={{ color: 'var(--era-ink)' }}>
-                {analysis.decoration} · {analysis.sizeInches}in · {analysis.colors === 0 ? 'no' : analysis.colors} colour
+                {DECORATION_READABLE[analysis.decoration] ?? analysis.decoration} · {analysis.sizeInches}in ·{' '}
+                {analysis.colors === 0 ? 'no' : analysis.colors} colour
                 {analysis.colors === 1 ? '' : 's'}
               </h3>
               <span className="text-[11px] font-mono uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>

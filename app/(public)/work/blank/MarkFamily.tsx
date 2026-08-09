@@ -22,7 +22,7 @@
 import { useLine } from '@/lib/blank/lineState';
 import { STATES, tierIndex } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
-import { TIER_METHOD, METHOD_LABEL, METHOD_MEANING } from '@/lib/blank/producible';
+import { TIER_METHOD } from '@/lib/blank/producible';
 import { useRef, useState } from 'react';
 import { Shuffle, RotateCcw, Sparkles, Loader2 } from 'lucide-react';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
@@ -188,17 +188,21 @@ export function MarkFamily() {
 
   return (
     <div className="my-2">
+      {/*
+        This line used to also assert HOW the mark would be made — "8 of 8 can be
+        made in DTF at $3k" — followed by a paragraph explaining direct-to-film.
+        That is a decision nobody has taken yet at this beat. How it is printed is
+        specced style by style on the cost sheet, and a tee can carry a different
+        decoration from the hoodie, so there is no single answer to state here.
+        Provenance only; the per-tile badges still say what a construction costs.
+      */}
       <p className="mb-5 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
         Made from <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> in{' '}
         <span style={{ color: 'var(--era-ink)' }}>{t.title}</span> —{' '}
         <span style={{ color: 'var(--era-ink)' }}>
           {makeable} of {constructions.length}
         </span>{' '}
-        can be made in <span title={METHOD_MEANING[method]}>{METHOD_LABEL[method]}</span> at{' '}
-        {money(STATES[tier].budget)}.
-      </p>
-      <p className="-mt-3 mb-4 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        {METHOD_MEANING[method]}
+        can be made at {money(STATES[tier].budget)}.
       </p>
 
       <div className="flex flex-wrap items-center gap-2 mb-4">
