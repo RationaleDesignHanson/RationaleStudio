@@ -7,6 +7,13 @@
  * control that could only render somebody else's twelve had become the odd one
  * out — a third way to put something on a garment, applying the wrong something.
  *
+ * ONE OWNER PER PARAMETER. This control used to offer Garment, Colourway and
+ * Budget as well, all three of which are owned elsewhere now — garment and budget
+ * by the cost sheet, colour by the colour beat. Three surfaces able to set the
+ * same value is how the tool ended up able to contradict itself: you could pick a
+ * colourway in beat 04 and a different one here. It inherits them and offers only
+ * what nothing else does.
+ *
  * The AXES were always the valuable part and they stay: placement, scale and
  * finish are the production vocabulary, and they are what turns one mark into a
  * back print, a sleeve hit or a tonal chest. They now point at the artwork you
@@ -190,14 +197,13 @@ export function DeviationRender() {
             : 'Pick a mark or keep a graphic in 03 first — there is nothing to place yet.'}
       </p>
 
+      {/* Inherited, not re-offered. Stated so it is obvious where to change them. */}
+      <p className="text-[11px] font-mono mb-3" style={{ color: 'var(--era-ink-muted)' }}>
+        {config.garment} · {colorway} · {STATES[tier - 1]?.label ?? ''} — set in the colour and cost
+        beats
+      </p>
+
       <div className="flex flex-wrap items-end gap-x-4 gap-y-3 mb-3">
-        <Field label="Garment">
-          <Select
-            value={config.garment}
-            onChange={(v) => set('garment', v as Garment)}
-            options={GARMENTS.map((g) => [g.key, g.label])}
-          />
-        </Field>
 
         <Field label="Motif">
           <Select
@@ -237,21 +243,7 @@ export function DeviationRender() {
           />
         </Field>
 
-        <Field label="Colourway">
-          <Select
-            value={colorway}
-            onChange={(v) => set('colorway', v)}
-            options={Object.entries(COLORWAYS).map(([k, c]) => [k, c.label])}
-          />
-        </Field>
 
-        <Field label="Budget">
-          <Select
-            value={config.budget}
-            onChange={(v) => set('budget', v)}
-            options={STATES.map((s) => [s.slug, s.label])}
-          />
-        </Field>
 
         <button
           onClick={render}

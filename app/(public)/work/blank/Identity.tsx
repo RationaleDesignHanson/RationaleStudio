@@ -248,7 +248,7 @@ export function LockupStep() {
       : constructionsFor(word);
   const construction = pool.find((c) => c.id === config.mark) ?? null;
   const symbolKind: SymbolKind = construction ? 'mark' : 'none';
-  const lockup = LOCKUPS.find((l) => l.id === config.placement) ?? LOCKUPS[0];
+  const lockup = LOCKUPS.find((l) => l.id === config.lockup) ?? LOCKUPS[0];
   const rule = usageRule(word, t, symbolKind);
   const lockupW = lockupWidthInches(word, t, lockup);
   const overPlaten = lockupW > PLATEN_INCHES;
@@ -316,7 +316,7 @@ export function LockupStep() {
           return (
             <button
               key={l.id}
-              onClick={() => set('placement', l.id)}
+              onClick={() => set('lockup', l.id)}
               aria-pressed={on}
               title={l.use}
               className="px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors"

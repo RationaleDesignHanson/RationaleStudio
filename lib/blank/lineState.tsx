@@ -37,7 +37,16 @@ const RUN_SIZES: RunSize[] = [25, 50, 75, 100, 150, 300];
 export interface LineConfig {
   /** Colourway for deviation renders. */
   colorway: string;
-  /** Decoration axes. Empty string = inherit from the graphic preset. */
+  /**
+   * Decoration axes. Empty string = inherit from the graphic preset.
+   *
+   * `placement` means ONE thing: where on the garment the artwork sits
+   * ('chest-centre', 'left-chest'…). It was briefly carrying three meanings —
+   * the axis, the applied-view placement AND the lockup id — so choosing the
+   * "stacked" lockup fed "stacked" to the renderer as an axis, and choosing a
+   * chest placement silently reset the lockup to its first option. The lockup
+   * has its own field now.
+   */
   motif: string;
   placement: string;
   scale: string;
@@ -58,6 +67,15 @@ export interface LineConfig {
    */
   customGraphic: string | null;
   /**
+   * Pinned bake-off results, as durable Storage URLs.
+   *
+   * Rounds are disposable — every new round replaces the last — which meant the
+   * tool never accumulated the one thing you are actually trying to produce: a
+   * shortlist. Pinning survives the round, survives moving between beats, and
+   * travels in the share link, so "here are the four I like" is sendable.
+   */
+  pins: string[];
+  /**
    * Chosen mark construction id ('roundel', or 'r-<seed>-<n>' when shuffled).
    *
    * Its OWN field, not `graphic`. Overloading `graphic` to carry constructions
@@ -76,6 +94,8 @@ export interface LineConfig {
   wordmark: string;
   /** Chosen wordmark treatment id, or null for none. */
   wordmarkStyle: string | null;
+  /** How the word and the mark sit together: word | symbol | stacked | inline. */
+  lockup: string;
   /**
    * Seed for the randomised mark set. In the URL because a shuffled family is
    * only useful if you can send your partner the exact one you were looking at —
@@ -110,10 +130,12 @@ export const LINE_DEFAULTS: LineConfig = {
   graphic: null,
   mark: null,
   customGraphic: null,
+  pins: [],
   direction: 'workwear',
   directionPrompt: '',
   wordmark: 'BLANK',
   wordmarkStyle: null,
+  lockup: 'word',
   retail: '',
   markSeed: '',
   step: '01',
@@ -135,6 +157,7 @@ const PARAM = {
   finish: 'fi',
   wordmark: 'w',
   wordmarkStyle: 'ws',
+  lockup: 'lk',
   retail: 'r',
   markSeed: 'ms',
   step: 'st',
@@ -207,6 +230,10 @@ function readFromSearch(search: string): Partial<LineConfig> {
   // applied views at an arbitrary remote image.
   const cg = q.get(PARAM.customGraphic);
   if (cg && cg.includes('/storage/v1/object/public/blank-renders/')) out.customGraphic = cg;
+  // Same host check as customGraphic: a pasted link must not be able to inject
+  // arbitrary remote images into someone else's shelf.
+  const pins = q.getAll('pin').filter((u) => u.includes('/storage/v1/object/public/blank-renders/'));
+  if (pins.length) out.pins = pins.slice(0, 24);
   const dp = q.get(PARAM.directionPrompt);
   if (dp) out.directionPrompt = dp.slice(0, 240);
   const d = q.get(PARAM.direction);
@@ -217,6 +244,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (w) out.wordmark = w.slice(0, 18);
   const ws = q.get(PARAM.wordmarkStyle);
   if (ws) out.wordmarkStyle = ws;
+  const lk = q.get(PARAM.lockup);
+  if (lk) out.lockup = lk;
   const st = q.get(PARAM.step);
   if (st) out.step = st;
   const r = q.get(PARAM.retail);
@@ -232,7 +261,13 @@ function readFromSearch(search: string): Partial<LineConfig> {
 }
 
 function writeToParams(config: LineConfig, url: URL) {
-  (Object.keys(PARAM) as (keyof LineConfig)[]).forEach((key) => {
+  // Repeated `pin` params rather than one delimited value: these are URLs, and
+  // any separator inside one would have to be escaped into unreadability.
+  url.searchParams.delete('pin');
+  config.pins.forEach((u) => url.searchParams.append('pin', u));
+  // Keyed off PARAM, not LineConfig: `pins` is serialised separately above and
+  // has no PARAM entry, so iterating LineConfig's keys no longer typechecks.
+  (Object.keys(PARAM) as (keyof typeof PARAM)[]).forEach((key) => {
     const value = config[key];
     // Defaults are omitted so a link to the starting state has a bare URL.
     if (value == null || value === LINE_DEFAULTS[key]) url.searchParams.delete(PARAM[key]);

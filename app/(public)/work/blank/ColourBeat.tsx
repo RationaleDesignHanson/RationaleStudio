@@ -29,6 +29,7 @@ import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteRound, type Palette } from '@/lib/blank/palettes';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { PinButton, PinShelf } from './Pins';
 
 type Tile = { palette: Palette; url?: string; error?: string; busy?: boolean };
 
@@ -113,23 +114,13 @@ export function ColourBeat() {
       </span>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
-        <div className="flex gap-1.5">
-          {GARMENTS.map((g) => (
-            <button
-              key={g.key}
-              onClick={() => set('garment', g.key)}
-              aria-pressed={config.garment === g.key}
-              className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border-b-2 transition-colors"
-              style={{
-                borderColor: config.garment === g.key ? 'var(--accent)' : 'transparent',
-                color: config.garment === g.key ? 'var(--accent)' : 'var(--era-ink-muted)',
-                minHeight: 0,
-              }}
-            >
-              {g.label}
-            </button>
-          ))}
-        </div>
+        {/* Garment is owned by the cost sheet — the line decides which garments
+            exist. Rendering the round on the leading style keeps colour the only
+            variable and stops this beat from being a third place to pick a tee. */}
+        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          on the {GARMENTS.find((g) => g.key === config.garment)?.label.toLowerCase()} — the
+          line&rsquo;s leading style
+        </span>
 
         <button
           onClick={() => runRound(round)}
@@ -164,13 +155,9 @@ export function ColourBeat() {
         {tiles.map((tile) => {
           const on = chosen === tile.palette.id;
           return (
-            <button
-              key={tile.palette.id}
-              onClick={() => set('colorway', tile.palette.id)}
-              aria-pressed={on}
-              className="w-full min-w-0 flex flex-col text-left [&_*]:text-left"
-              style={{ alignItems: 'stretch', justifyContent: 'flex-start', minHeight: 0 }}
-            >
+            // Outer div, not a button: the pin is a button and nesting one inside
+            // another is invalid and makes the inner unreachable.
+            <div key={tile.palette.id} className="w-full min-w-0">
               <div
                 className="relative w-full overflow-hidden flex items-center justify-center"
                 style={{
@@ -181,17 +168,38 @@ export function ColourBeat() {
                 }}
               >
                 {tile.url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={tile.url} alt={`${tile.palette.name} colourway`} className="w-full h-full object-cover" />
-                ) : tile.busy ? (
-                  <Loader2 className="w-5 h-5 animate-spin" style={{ color: 'rgba(255,255,255,0.7)' }} />
+                  <>
+                    <PinButton url={tile.url} />
+                    <button
+                      onClick={() => set('colorway', tile.palette.id)}
+                      aria-pressed={on}
+                      aria-label={`Use ${tile.palette.name}`}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ minHeight: 0, padding: 0 }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={tile.url} alt="" className="w-full h-full object-cover" />
+                    </button>
+                  </>
                 ) : (
-                  <span
-                    className="text-[10px] font-mono uppercase tracking-wider px-2 text-center"
-                    style={{ color: 'rgba(255,255,255,0.75)' }}
+                  <button
+                    onClick={() => set('colorway', tile.palette.id)}
+                    aria-pressed={on}
+                    aria-label={`Use ${tile.palette.name}`}
+                    className="absolute inset-0 w-full h-full flex items-center justify-center"
+                    style={{ minHeight: 0, padding: 0 }}
                   >
-                    {tile.error ?? 'swatch — not rendered yet'}
-                  </span>
+                    {tile.busy ? (
+                      <Loader2 className="w-5 h-5 animate-spin" style={{ color: 'rgba(255,255,255,0.7)' }} />
+                    ) : (
+                      <span
+                        className="text-[10px] font-mono uppercase tracking-wider px-2 text-center"
+                        style={{ color: 'rgba(255,255,255,0.75)' }}
+                      >
+                        {tile.error ?? 'swatch'}
+                      </span>
+                    )}
+                  </button>
                 )}
               </div>
 
@@ -212,11 +220,11 @@ export function ColourBeat() {
                 )}
               </div>
               {on && (
-                <span className="text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+                <span className="text-[11px] block" style={{ color: 'var(--era-ink-muted)' }}>
                   {tile.palette.note}
                 </span>
               )}
-            </button>
+            </div>
           );
         })}
       </div>
@@ -232,6 +240,8 @@ export function ColourBeat() {
       <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
         {PALETTES.length} colourways in the set; six are drawn per round.
       </p>
+
+      <PinShelf />
     </div>
   );
 }

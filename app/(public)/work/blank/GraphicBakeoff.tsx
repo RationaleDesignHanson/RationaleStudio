@@ -20,6 +20,7 @@
 import { useCallback, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
+import { PinButton, PinShelf } from './Pins';
 
 type Tile = { url?: string; error?: string; busy?: boolean };
 
@@ -116,33 +117,48 @@ export function GraphicBakeoff() {
           {tiles.map((tile, i) => {
             const on = config.customGraphic === tile.url && !!tile.url;
             return (
-              <button
+              // The pin is its own button, so the tile CANNOT be one — a button
+              // inside a button is invalid HTML and the inner one stops being
+              // reachable. Outer div, inner select button, pin on top.
+              <div
                 key={i}
-                onClick={() => tile.url && set('customGraphic', tile.url)}
-                aria-pressed={on}
-                className="relative w-full aspect-square overflow-hidden flex items-center justify-center"
+                className="relative w-full aspect-square overflow-hidden"
                 style={{
                   backgroundColor: 'var(--era-bg-deep)',
                   outline: on ? '2px solid var(--accent)' : 'none',
                   outlineOffset: '2px',
-                  minHeight: 0,
                 }}
               >
+                {tile.url && <PinButton url={tile.url} />}
                 {tile.url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={tile.url} alt={`Take ${i + 1}`} className="w-full h-full object-cover" />
-                ) : tile.busy ? (
-                  <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
+                  <button
+                    onClick={() => set('customGraphic', tile.url!)}
+                    aria-pressed={on}
+                    aria-label={`Use take ${i + 1}`}
+                    className="absolute inset-0 w-full h-full"
+                    style={{ minHeight: 0, padding: 0 }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={tile.url} alt="" className="w-full h-full object-cover" />
+                  </button>
                 ) : (
-                  <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
-                    {tile.error ?? '—'}
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    {tile.busy ? (
+                      <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
+                    ) : (
+                      <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                        {tile.error ?? '—'}
+                      </span>
+                    )}
                   </span>
                 )}
-              </button>
+              </div>
             );
           })}
         </div>
       )}
+
+      <PinShelf />
 
       {config.customGraphic && (
         <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
