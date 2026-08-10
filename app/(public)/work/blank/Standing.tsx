@@ -231,8 +231,7 @@ export function Standing() {
             <strong style={{ color: 'var(--era-ink)' }}>
               {[...new Set(skus.map((s) => METHOD_LABEL[TIER_METHOD[tierIndex(s.tier)]]))].join(' and ')}
             </strong>{' '}
-            at these run sizes. No shop is named here because nothing in this model is a quote from
-            one — get three.
+            at these run sizes. No shop is named — nothing here is a quote. Get three.
           </li>
         </ul>
       </section>

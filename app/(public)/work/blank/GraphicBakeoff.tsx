@@ -68,8 +68,7 @@ export function GraphicBakeoff() {
   return (
     <div className="my-2">
       <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Not everything on a garment is the brand. Describe a graphic and get six takes on it — keep
-        one and the applied views will carry it.
+        Describe a graphic and get six takes. Keep one and the applied views carry it.
       </p>
 
       <div className="flex flex-wrap items-end gap-3 mb-3">
@@ -162,7 +161,7 @@ export function GraphicBakeoff() {
 
       {config.customGraphic && (
         <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
-          Kept. This graphic is now the artwork the applied views carry.
+          Kept — the applied views carry it.
         </p>
       )}
     </div>

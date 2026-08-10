@@ -201,7 +201,7 @@ export function Applied() {
         ? { ok: true as const }
         : {
             ok: false as const,
-            why: `A full-colour graphic cannot be pulled through a ${METHOD_LABEL[method]}. This is the trade the catalogue makes: heat-press or nothing.`,
+            why: `A full-colour graphic cannot be pulled through a ${METHOD_LABEL[method]}. Heat-press or nothing.`,
           }
       : null;
 
@@ -413,18 +413,17 @@ export function Applied() {
               moved to beat 05 when this beat was split, so they were directing
               you at something that is not on the screen. */}
           <p className="mt-3 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-            <strong style={{ color: 'var(--era-ink)' }}>These are placement mocks, not renders.</strong>{' '}
-            The position and the size are accurate — a 2in hit really is a fifth of the 10in chest
-            print, and a cap really does take a quarter of what a tee takes — but the mark is layered
-            flat over the blank: it does not follow the fold of the cloth or take the light. For a
-            real photograph of it printed, go to <strong style={{ color: 'var(--era-ink)' }}>05</strong>.
+            <strong style={{ color: 'var(--era-ink)' }}>Placement mocks, not renders.</strong>{' '}
+            Position and size are accurate; the mark is layered flat and does not take the light.
+            For a photograph, go to{' '}
+            <strong style={{ color: 'var(--era-ink)' }}>05</strong>.
           </p>
         </>
       ) : (
         <p className="text-[13px] py-8" style={{ color: 'var(--accent)' }}>
           {config.strategy === 'scale'
-            ? 'Keep a place graphic in step 02 and it will be applied across the line here.'
-            : 'Pick a mark in step 02 and it will be applied across the line here.'}
+            ? 'Keep a place graphic in 02 and it appears here.'
+            : 'Pick a mark in 02 and it appears here.'}
         </p>
       )}
     </div>

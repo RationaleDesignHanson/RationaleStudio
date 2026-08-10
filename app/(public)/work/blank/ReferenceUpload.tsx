@@ -303,7 +303,7 @@ export function ReferenceUpload() {
           }}
         />
         <p className="mt-2 text-[11px] leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
-          Analysed once and discarded — the image is never stored. Large files are resized in your browser before they leave it.
+          Analysed once and discarded — never stored. Large files are resized in your browser first.
         </p>
       </div>
 
@@ -321,9 +321,8 @@ export function ReferenceUpload() {
         )}
         {!busy && !error && !analysis && (
           <p className="text-sm max-w-xl" style={{ color: 'var(--era-ink-body)' }}>
-            Upload a garment or graphic you like. It gets classified into the same vocabulary the
-            cost model uses — technique, colour count, print size, placement — then priced against
-            a real blank, with the producibility rules applied.
+            Upload a garment or graphic you like. It gets classified — technique, colour count,
+            print size, placement — then priced against a real blank.
           </p>
         )}
 

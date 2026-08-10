@@ -78,7 +78,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
           className="text-[12px] mb-3"
           style={{ color: 'var(--era-ink-muted)' }}
         >
-          Pick colours and artwork on the left — this updates as you go.
+          Pick colours and artwork on the left.
         </p>
       )}
 
@@ -176,8 +176,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
       </div>
 
       <p className="mt-4 text-[11px] max-w-sm" style={{ color: 'var(--era-ink-muted)' }}>
-        Drawn, not rendered — instant and free, and the colour is the dye as this cloth returns it.
-        For a photograph, generate one.
+        Drawn, not rendered — the colour is the dye as this cloth returns it.
       </p>
     </div>
   );

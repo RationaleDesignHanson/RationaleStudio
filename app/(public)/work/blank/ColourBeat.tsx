@@ -148,8 +148,7 @@ export function ColourBeat() {
             exist. Rendering the round on the leading style keeps colour the only
             variable and stops this beat from being a third place to pick a tee. */}
         <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          on the {GARMENTS.find((g) => g.key === garment)?.label.toLowerCase()} — the
-          line&rsquo;s leading style
+          on the {GARMENTS.find((g) => g.key === garment)?.label.toLowerCase()} — the leading style
         </span>
 
         <button
@@ -265,12 +264,10 @@ export function ColourBeat() {
       </div>
 
       <p className="mt-5 text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
-        Six colourways of the same garment carrying the same mark, so colour is the only variable.
         Stage 0 allows <strong style={{ color: 'var(--era-ink)' }}>{STAGE0_COLOURWAY_LIMIT}</strong>{' '}
-        colourways per style — a third is a third buy of every blank, at a worse price break on each.
-        Garment dye means you approve a shade band, not a Pantone: piece-to-piece variation is
-        inherent, not a defect. The ones marked custom dye lot need 800–1,000m in one colour, which
-        is 300–500 garments before you have made anything else.
+        colourways per style — a third is a third buy of every blank. Garment dye means you approve
+        a shade band, not a Pantone. The ones marked custom dye lot need 800–1,000m in one colour,
+        which is 300–500 garments.
       </p>
       <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
         {PALETTES.length} colourways in the set; six are drawn per round.

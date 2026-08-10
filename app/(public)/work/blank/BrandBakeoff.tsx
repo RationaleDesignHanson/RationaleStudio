@@ -73,8 +73,8 @@ const DIRECTIONS: Direction[] = [
   {
     key: 'issue',
     label: 'Issue',
-    thesis: 'Institutional uniform. Every piece stamped with its lot number — the edition IS the brand.',
-    cost: 'One-colour stencil. Near-free — and it IS the lot system.',
+    thesis: 'Institutional uniform. Every piece stamped with its lot number.',
+    cost: 'One-colour stencil. Near-free.',
     affordable: true,
     testsHypothesis: true,
   },
@@ -89,7 +89,7 @@ const DIRECTIONS: Direction[] = [
     key: 'naturals',
     label: 'Japanese naturals',
     thesis: 'Undyed, mended, boro. Value in the cloth and the repair.',
-    cost: 'Hand stitch. Beautiful, and the most expensive labour here.',
+    cost: 'Hand stitch. The most expensive labour here.',
     affordable: false,
     needs: 'needs $20k',
   },
@@ -183,14 +183,18 @@ export function BrandBakeoff() {
                     {dir.label}
                   </span>
                   {dir.control && (
-                    <span className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider text-[var(--era-ink-muted)]">
-                      control
+                    <span
+                      className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider text-[var(--era-ink-muted)]"
+                      title="The thesis the current plan rests on."
+                    >
+                      current plan
                     </span>
                   )}
                   {dir.testsHypothesis && (
                     <span
                       className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
                       style={{ color: '#4F7A3F' }}
+                      title="The only direction that makes the lot system visible."
                     >
                       $150 test
                     </span>
@@ -254,8 +258,8 @@ export function BrandBakeoff() {
               Your direction
             </h3>
             <p className="mt-1.5 text-sm max-w-xl" style={{ color: 'var(--era-ink-body)' }}>
-              Describe the aesthetic in a sentence. It gets rendered as the same rack of four
-              garments as the six above, so you can judge it against them rather than in isolation.
+              Describe the aesthetic in a sentence. It renders as the same rack of four as the six
+              above.
             </p>
 
             <textarea
@@ -294,11 +298,6 @@ export function BrandBakeoff() {
                 <img src={custom} alt="Your direction, rendered" className="w-full h-full object-cover" />
               </div>
             )}
-
-            <p className="mt-3 text-[11px] italic leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
-              Your words set the aesthetic; the house look and the rack framing are composed around
-              them server-side, so the seventh rack is comparable to the six.
-            </p>
           </>
         ) : (
           <>
@@ -338,15 +337,12 @@ export function BrandBakeoff() {
 
           {d.control && (
             <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
-              The thesis the current plan rests on. If it doesn&rsquo;t win its own bake-off,
-              that&rsquo;s the finding.
+              The thesis the current plan rests on.
             </p>
           )}
           {d.testsHypothesis && (
             <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
-              The only direction that makes the lot system visible. Numbering the batch stops being a
-              detail on the label and becomes the whole design language &mdash; which is exactly what
-              the $150 test is for.
+              The only direction that makes the lot system visible.
             </p>
           )}
           </>
@@ -356,7 +352,7 @@ export function BrandBakeoff() {
 
       <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)]">
         One fixed seed across all eighteen cells — the direction is the only variable. Judge the
-        racks, not the tees: anyone can make one good tee.
+        racks, not the tees.
       </p>
     </div>
   );

@@ -195,14 +195,12 @@ export function DeviationRender() {
         Put it somewhere else on the garment
       </h3>
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Colour is decided in 03. This is placement: the same artwork can go small on a sleeve in
-        tonal ink or oversize on the back in puff, and the axes are the production vocabulary rather
-        than a style picker.{' '}
+        The same artwork, placed differently.{' '}
         {subject === 'graphic'
           ? 'Rendering your kept graphic.'
           : subject === 'mark'
             ? 'Rendering your mark.'
-            : 'Pick a mark or keep a graphic in 02 first — there is nothing to place yet.'}
+            : 'Pick a mark or keep a graphic in 02 first.'}
       </p>
 
       {/* Inherited, not re-offered. Stated so it is obvious where to change them. */}
@@ -283,7 +281,7 @@ export function DeviationRender() {
 
       {blocked && (
         <p className="text-[12px]" style={{ color: '#A8456E' }}>
-          {blocked}. The line can&rsquo;t make that, so it isn&rsquo;t rendered.
+          {blocked}. The line can&rsquo;t make that.
         </p>
       )}
 

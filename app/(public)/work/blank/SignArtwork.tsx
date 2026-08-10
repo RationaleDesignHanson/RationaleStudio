@@ -180,9 +180,8 @@ export function SignComposer({ url }: { url: string }) {
           />
 
           <p className="text-[12px] max-w-md" style={{ color: 'var(--era-ink-muted)' }}>
-            Set in type rather than generated, so it is always spelled correctly and costs nothing
-            to change for the next place. The face is an approximation of the real highway series —
-            close enough to judge, not close enough to print.
+            The face is an approximation of the real highway series — close enough to judge, not
+            close enough to print.
           </p>
         </div>
       </div>

@@ -84,10 +84,8 @@ export function NameStep() {
       </label>
 
       <p className="text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
-        Anything up to 18 characters. It is set in real type rather than generated, so it is always
-        spelled correctly and costs nothing to change your mind about — and the length matters later,
-        because a long name is constrained by the {PLATEN_INCHES}in print platen before it is
-        constrained by taste.
+        Up to 18 characters. A long name is constrained by the {PLATEN_INCHES}in print platen before
+        it is constrained by taste.
       </p>
 
       <FaceStep />
@@ -119,7 +117,7 @@ export function FaceStep() {
         <span style={{ color: 'var(--era-ink)' }}>
           {producibleCount(word, tier)} of {ALL_TREATMENTS.length}
         </span>{' '}
-        makeable at {money(STATES[tier].budget)} — the rest come back when the budget changes.
+        makeable at {money(STATES[tier].budget)}.
       </p>
 
       <div
@@ -170,7 +168,7 @@ export function FaceStep() {
           className="min-w-0 bg-transparent border px-2.5 py-1.5 text-[12px] font-mono uppercase tracking-wider outline-none focus:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
         >
-          <optgroup label="Straight — choosing a face">
+          <optgroup label="Straight">
             {ALL_TREATMENTS.filter((x) => x.group === 'straight').map((x) => (
               <option key={x.id} value={x.id}>
                 {x.title}
@@ -178,7 +176,7 @@ export function FaceStep() {
               </option>
             ))}
           </optgroup>
-          <optgroup label="Funky — doing something to the type">
+          <optgroup label="Funky">
             {ALL_TREATMENTS.filter((x) => x.group === 'funky').map((x) => (
               <option key={x.id} value={x.id}>
                 {x.title}
@@ -250,7 +248,7 @@ export function LockupStep() {
         What goes on the garment
       </h3>
       <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-        The wordmark, the mark, or both — and if both, how they sit together.
+        The wordmark, the mark, or both.
       </p>
 
       {/* The preview. A lockup is a spatial rule, and a sentence describing where
@@ -332,8 +330,7 @@ export function LockupStep() {
 
       {lockup.usesSymbol && symbolKind === 'none' && (
         <p className="text-[13px] mt-3 max-w-2xl" style={{ color: 'var(--accent)' }}>
-          This lockup uses a mark, and none is chosen yet — pick one from the family above and it
-          will appear here.
+          This lockup uses a mark — pick one from the family above.
         </p>
       )}
       <p className="text-[13px] mt-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
@@ -346,8 +343,8 @@ export function LockupStep() {
         {rule.sentence}
       </p>
       <p className="text-[12px] mt-2 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        {MIN_WORDMARK_INCHES}in is where a set wordmark stops holding on cloth — below it letters and
-        counters close up, which is why the small placements need a mark rather than a shrunk logo.
+        Below {MIN_WORDMARK_INCHES}in a set wordmark stops holding on cloth — letters and counters
+        close up. Small placements need a mark.
       </p>
     </div>
   );

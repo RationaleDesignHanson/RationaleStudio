@@ -24,7 +24,7 @@
 
 import { useLine } from '@/lib/blank/lineState';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteById } from '@/lib/blank/palettes';
-import { GARMENTS, blankFor, tierIndex, STATES } from '@/lib/blank/line';
+import { GARMENTS, blankFor, tierIndex } from '@/lib/blank/line';
 import { clothNote, clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
@@ -53,9 +53,7 @@ export function PaletteBeat() {
   return (
     <div className="my-2">
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Pick the colours the line is made in. Every style draws its colourways from this palette, so
-        the range holds together — and because each colourway is a separate buy of the blank, the
-        cost sheet can tell you what each one costs.
+        Pick the colours the line is made in. Each colourway is a separate buy of the blank.
       </p>
 
       {/* THE PALETTE. Swatches, not renders: instant, free, and a hex is the
@@ -101,7 +99,7 @@ export function PaletteBeat() {
 
       {chosen.length === 0 ? (
         <p className="text-[13px] py-6" style={{ color: 'var(--accent)' }}>
-          Pick at least one colour and the line appears here in it.
+          Pick a colour and the line appears here in it.
         </p>
       ) : (
         <>
@@ -196,11 +194,9 @@ export function PaletteBeat() {
 
           <p className="mt-4 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>These are not the swatch colours.</strong>{' '}
-            Each row shows the dye as that cloth actually returns it — a 14oz brushed fleece eats
-            light and reads deeper and duller, a structured twill reflects and reads cleaner, and a
-            pigment or garment dye arrives already faded. Change the budget and the blanks change
-            underneath you, so the same palette is a different line at a different tier. For what it
-            feels like as a photograph, go to <strong style={{ color: 'var(--era-ink)' }}>05</strong>.
+            Each row shows the dye as that cloth returns it — brushed fleece reads deeper, twill
+            reads cleaner, garment dye arrives already faded. Change the budget and the blanks change
+            underneath you.
             {chosen.length > STAGE0_COLOURWAY_LIMIT && (
               <>
                 {' '}
@@ -210,9 +206,6 @@ export function PaletteBeat() {
                 </span>
               </>
             )}
-          </p>
-          <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
-            At {STATES[tier].label.toLowerCase()}, each style is costed per colourway in the sheet.
           </p>
         </>
       )}

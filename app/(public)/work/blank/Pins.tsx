@@ -69,7 +69,7 @@ export function PinShelf() {
         Kept · {pins.length}
         <span style={{ color: 'var(--era-ink-muted)', opacity: 0.7 }}>
           {' '}
-          — survives the round and travels in the link
+          — travels in the link
         </span>
       </p>
       <div className="flex flex-wrap gap-2">

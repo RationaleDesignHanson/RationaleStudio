@@ -330,9 +330,8 @@ export function MarkFamily() {
           )}
 
           <p className="mt-2 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-            The construction is set type with geometry done to it. These are drawn from it — the
-            model is handed your mark as an image and asked to redraw, never to spell, so the letters
-            cannot change.
+            The model is handed your mark as an image and asked to redraw, never to spell, so the
+            letters cannot change.
           </p>
           <PinShelf />
         </div>
@@ -357,8 +356,7 @@ export function MarkFamily() {
           </>
         ) : (
           <p className="text-[13px]" style={{ color: 'var(--era-ink-muted)' }}>
-            Pick one, or carry the wordmark alone. Every mark here is built from the name in the face
-            you chose — change either and the whole family changes with it.
+            Pick one, or carry the wordmark alone.
           </p>
         )}
       </div>

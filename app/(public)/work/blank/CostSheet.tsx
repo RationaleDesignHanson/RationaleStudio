@@ -342,13 +342,13 @@ export function CostSheet() {
 
       <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
         Cost per unit excludes setup — digitizing, screens and the woven-label minimum land in the
-        buy below rather than on every unit.{' '}
+        buy below.{' '}
         {designs > 1
           ? 'They are charged per design, not once.'
           : 'They are charged once across the collection.'}{' '}
-        Rows you have not ticked are previewed at the leading style&rsquo;s decoration.
+        Unticked rows are previewed at the leading style&rsquo;s decoration.
         {designs > 1 && (
-          <> Every figure in a row is <strong>per place</strong>; the totals below carry all {designs}.</>
+          <> Row figures are <strong>per place</strong>; the totals carry all {designs}.</>
         )}
       </p>
 
@@ -397,14 +397,13 @@ export function CostSheet() {
                 <strong style={{ color: 'var(--era-ink)' }}>
                   Setup is paid {designs} times, not once.
                 </strong>{' '}
-                A collection discount is a property of ONE artwork across several styles. This is{' '}
-                {designs} artworks, and a screen is cut per colour per design — so the fixed cost
-                grows with the catalogue instead of amortising against it. Setup here is{' '}
+                A screen is cut per colour per design, so the fixed cost grows with the catalogue.
+                Setup here is{' '}
                 <strong style={{ color: totals.sharedFixed.total > 0 ? '#A8456E' : 'var(--accent)' }}>
                   {money(totals.sharedFixed.total)}
                 </strong>
                 {totals.sharedFixed.total === 0
-                  ? ' — which is the entire reason a line this wide is possible at all. Heat-press has no screen to make, so the ' +
+                  ? ' — heat-press has no screen to make, so the ' +
                     designs +
                     'th design costs what the first one did.'
                   : ' before a single garment is bought. Move every row to heat-press and it goes to zero.'}
@@ -414,9 +413,8 @@ export function CostSheet() {
                 <p>
                   Buying these together saves{' '}
                   <strong style={{ color: 'var(--accent)' }}>{money(totals.fixedSaving)}</strong> in
-                  setup against costing each style on its own. Digitizing is per artwork, the
-                  back-neck screen is per order, and the 200-piece woven-label minimum is a line
-                  minimum — not one each.
+                  setup. Digitizing is per artwork, the back-neck screen is per order, and the
+                  200-piece woven-label minimum is per line, not one each.
                 </p>
               )
             )}
@@ -427,8 +425,7 @@ export function CostSheet() {
               </p>
             )}
             <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
-              Stage 0 blanks only. No hero, no duty — blanks land already imported. Figures carry the
-              confidence marks used throughout.
+              Stage 0 blanks only. No hero, no duty — blanks land already imported.
             </p>
           </div>
         </div>
