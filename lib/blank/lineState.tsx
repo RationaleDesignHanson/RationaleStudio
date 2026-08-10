@@ -303,6 +303,13 @@ interface LineContextValue {
    * every default as a decision.
    */
   isSet: (key: keyof LineConfig) => boolean;
+  /**
+   * Swap the whole document at once, for loading a saved line.
+   *
+   * One setState rather than a field at a time: a partial replay would fire the
+   * autosave against each intermediate state and race the load it came from.
+   */
+  replaceAll: (state: Partial<LineConfig> & { skus?: Sku[] }) => void;
   /** Absolute URL encoding the current config. */
   shareUrl: () => string;
   /** True once the initial URL read has run, so consumers can skip the first write. */
@@ -493,6 +500,12 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
     setConfig((c) => (c[key] === value ? c : { ...c, [key]: value }));
   }, []);
 
+  const replaceAll = useCallback<LineContextValue['replaceAll']>((incoming) => {
+    const { skus: nextSkus, ...rest } = incoming;
+    setConfig((c) => ({ ...c, ...rest }));
+    if (Array.isArray(nextSkus)) setSkus(nextSkus);
+  }, []);
+
   const isSet = useCallback(
     (key: keyof LineConfig) => config.chosen.includes(key as string),
     [config.chosen],
@@ -535,8 +548,8 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
-    [config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
+    () => ({ config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
+    [config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;
