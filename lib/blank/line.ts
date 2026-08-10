@@ -261,12 +261,19 @@ const artworkKey = (s: Sku) => s.graphic ?? 'house-mark';
  * sheet was arguing against the catalogue partly on a number wrong in its own
  * favour, which is the mirror image of the bug this module exists to fix.
  */
-function purchaseBand(units: RunSize, designs: number): RunSize {
-  // Deliberately NOT multiplied by colourways. The same blank in two colours is
-  // two separate orders, so splitting a run across colours genuinely loses you
-  // the deeper price band — that is the cost of a colourway, and flattening it
-  // here would hide the one thing colour is supposed to trade against.
-  const total = units * Math.max(1, designs);
+function purchaseBand(units: RunSize, designs: number, colours = 1): RunSize {
+  // Colourways DO count toward the band, which is a correction.
+  //
+  // The first version excluded them so the cost of a second colourway stayed
+  // visible. But a distributor takes one purchase order across colours and
+  // prices it on the total pieces, so excluding them overstated the very trade
+  // the feature exists to show — about 5% over on the blank for a two-colour
+  // style. Wrong in the safe direction is still wrong.
+  //
+  // A colourway still costs: the run is split, so each colour is shallower, and
+  // the MOQ and the dye-lot risk are per colour. That cost is real without
+  // needing an invented price band on top of it.
+  const total = units * Math.max(1, designs) * Math.max(1, colours);
   // Largest band the real order clears.
   return [...RUN_SIZES].reverse().find((r) => total >= r) ?? units;
 }
@@ -278,7 +285,7 @@ export function costSku(sku: Sku, designs = 1): SkuCost {
   const full = stage0Cogs({
     blank,
     decoration: state.decoration,
-    run: purchaseBand(sku.units, designs),
+    run: purchaseBand(sku.units, designs, sku.colours.length),
     relabel: state.relabel,
     // A real order is a size run, and part of it is 2XL. Off by default in
     // economics.ts so the T1 worked example still reconciles.

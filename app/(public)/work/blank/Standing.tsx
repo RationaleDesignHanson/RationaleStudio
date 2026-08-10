@@ -28,6 +28,7 @@ import { paletteById } from '@/lib/blank/palettes';
 import { sizeBreakdown } from '@/lib/blank/sizes';
 import { normalise } from '@/lib/blank/wordmark';
 import { CHANNELS, campaign, channelById, sellUnit } from '@/lib/blank/channel';
+import { SELL_PLAN, sellThrough } from '@/lib/blank/sellthrough';
 import { WornPhoto } from './WornPhoto';
 
 const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
@@ -230,6 +231,44 @@ export function Standing() {
           </p>
         )}
       </section>
+
+      {/* WHAT YOU SELL, not what you make. Every figure above this was
+          retail x everything made — no markdown, no carryover — which made a
+          plan to sit on a fifth of the run report as a healthy margin. */}
+      {leadCost && (
+        <section>
+          <Head>What actually sells</Head>
+          {(() => {
+            const st = sellThrough(totals.totalUnits, leadCost.retail, totals.cogsPerUnit);
+            const profit = st.revenue - totals.totalCost;
+            return (
+              <>
+                <dl className="font-mono text-[12px] tabular-nums space-y-1.5 max-w-md">
+                  <Row label={`At list (${Math.round(SELL_PLAN.fullRate * 100)}%)`} value={`${st.unitsFull} · ${money(st.unitsFull * leadCost.retail)}`} />
+                  <Row
+                    label={`Marked down (${Math.round(SELL_PLAN.markdownDepth * 100)}% off)`}
+                    value={`${st.unitsMarked} · ${money(st.revenue - st.unitsFull * leadCost.retail)}`}
+                  />
+                  <Row label="Never sold" value={String(st.unitsUnsold)} alert={st.unitsUnsold > 0} />
+                  <Row label="Revenue" value={money(st.revenue)} strong />
+                  <Row label="Less the buy" value={`−${money(totals.totalCost)}`} />
+                  <Row label="Profit" value={money(profit)} strong alert={profit < 0} />
+                </dl>
+                <p className="mt-3 text-[13px] max-w-xl" style={{ color: st.unitsUnsold > 0 ? '#A8456E' : 'var(--era-ink-body)' }}>
+                  {st.cashInUnsold > 0 && (
+                    <>
+                      <strong>{money(st.cashInUnsold)} sits in {st.unitsUnsold} pieces nobody buys.</strong>{' '}
+                    </>
+                  )}
+                  A first line selling {Math.round(SELL_PLAN.fullRate * 100)}% at full price is doing
+                  well. Revenue at list — {money(st.revenueAtList)} — assumes a perfect season, which
+                  is what every figure here used to assume.
+                </p>
+              </>
+            );
+          })()}
+        </section>
+      )}
 
       {/* THE ONE IMAGE WITH A PERSON IN IT. Everywhere else excludes people at
           the subject level, because a model wandering into a flat-lay is a

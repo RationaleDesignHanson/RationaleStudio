@@ -395,13 +395,26 @@ describe('lineTotals — colourways', () => {
     expect(lineTotals([tee(['bone'])]).totalUnits).toBe(50);
   });
 
-  it('charges for the second colourway in LOST DEPTH, not in setup', () => {
-    // Same hundred pieces, one order or two. Splitting loses the deeper price
-    // band, which is exactly what a second colourway really costs.
+  it('does NOT invent a price penalty for splitting a run across colours', () => {
+    // This asserted the opposite until a trade review pointed out the error: a
+    // distributor takes ONE purchase order across colours and prices it on total
+    // pieces, so a hundred split two ways clears the same band as a hundred in
+    // one. Charging the shallower band overstated the very trade the colourway
+    // feature exists to show — roughly 5% over on the blank.
+    //
+    // A colourway still costs. It costs because the units double, and because
+    // MOQ and dye-lot risk are per colour. It does not need an invented band.
     const deep = lineTotals([tee(['bone'], 100)]);
     const split = lineTotals([tee(['bone', 'olive'], 50)]);
     expect(split.totalUnits).toBe(deep.totalUnits);
-    expect(split.cogsPerUnit).toBeGreaterThan(deep.cogsPerUnit);
+    expect(split.cogsPerUnit).toBeCloseTo(deep.cogsPerUnit, 6);
+  });
+
+  it('still doubles the buy for a second colourway, which is the real cost', () => {
+    const one = lineTotals([tee(['bone'], 50)]);
+    const two = lineTotals([tee(['bone', 'olive'], 50)]);
+    expect(two.totalUnits).toBe(one.totalUnits * 2);
+    expect(two.variableTotal).toBeGreaterThan(one.variableTotal * 1.8);
   });
 
   it('does NOT charge a second screen for a second colourway', () => {
