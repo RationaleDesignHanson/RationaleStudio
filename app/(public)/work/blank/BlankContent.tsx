@@ -31,6 +31,7 @@ import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
 import { ColourBeat } from './ColourBeat';
+import { PaletteBeat } from './PaletteBeat';
 import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
@@ -252,7 +253,19 @@ function Beats() {
           </Disclosure>
         </>
       )}
-      {i === 2 && <ColourBeat />}
+      {/* The palette and the card are free and instant; the paid colour round
+          moved behind a disclosure because exploration should not be rationed. */}
+      {i === 2 && (
+        <>
+          <PaletteBeat />
+          <Disclosure
+            summary="Or render a colourway as a photograph"
+            hint="six generated garments — this one spends"
+          >
+            <ColourBeat />
+          </Disclosure>
+        </>
+      )}
       {/* 04 and 05 were one beat, and it was 4.5 screens on a phone against ≤3
           for everything else. The split is along a real seam: laying the mark out
           across the range is free, instant and drawn in the browser, while picking

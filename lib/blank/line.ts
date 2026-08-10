@@ -149,6 +149,20 @@ export interface Sku {
   tier: string;
   /** Graphic id from the library, or null if none was chosen. */
   graphic: string | null;
+  /**
+   * Which colourways this style is made in — palette ids, at least one.
+   *
+   * COLOUR HAD NO COST. A SKU knew its garment, its decoration, its run and its
+   * price, and nothing anywhere knew its colour: you could pick six colourways
+   * and the buy would not move by a cent, in a tool whose credibility rests on
+   * costing everything honestly and whose most important axis is colour.
+   *
+   * A colourway is a separate blank. Two colours is two buys of half the depth
+   * each, which is a worse price band per piece — that is the real trade the
+   * interface has to be able to show, and it could not.
+   */
+  colours: string[];
+  /** Units PER COLOURWAY. A style in two colours at 50 is a hundred pieces. */
   units: RunSize;
   /**
    * List price override. Retail is the single largest margin lever in the model
@@ -248,6 +262,10 @@ const artworkKey = (s: Sku) => s.graphic ?? 'house-mark';
  * favour, which is the mirror image of the bug this module exists to fix.
  */
 function purchaseBand(units: RunSize, designs: number): RunSize {
+  // Deliberately NOT multiplied by colourways. The same blank in two colours is
+  // two separate orders, so splitting a run across colours genuinely loses you
+  // the deeper price band — that is the cost of a colourway, and flattening it
+  // here would hide the one thing colour is supposed to trade against.
   const total = units * Math.max(1, designs);
   // Largest band the real order clears.
   return [...RUN_SIZES].reverse().find((r) => total >= r) ?? units;
@@ -325,7 +343,8 @@ export function lineTotals(skus: Sku[], designs = 1): LineTotals {
       screens += decorationPasses(state.decoration, blank) * DECO.screenSetupPerColor.value * n;
     }
     if (state.relabel !== 'none') anyRelabel = true;
-    if (state.relabel === 'printedNeckAndWoven') wovenUnits += sku.units * n;
+    if (state.relabel === 'printedNeckAndWoven')
+      wovenUnits += sku.units * Math.max(1, sku.colours.length) * n;
   }
 
   const sharedFixed: SharedFixed = {
@@ -343,10 +362,14 @@ export function lineTotals(skus: Sku[], designs = 1): LineTotals {
   sharedFixed.total =
     sharedFixed.digitizing + sharedFixed.screens + sharedFixed.neckSetup + sharedFixed.wovenLabels;
 
-  const totalUnits = items.reduce((acc, it) => acc + it.sku.units, 0) * n;
-  const variableTotal = items.reduce((acc, it) => acc + it.variableTotal, 0) * n;
+  // A row's figures are PER COLOURWAY, so the colour count multiplies alongside
+  // the catalogue count. Decoration setup does not: the same artwork on a bone
+  // tee and a charcoal tee is one screen.
+  const colours = (it: SkuCost) => Math.max(1, it.sku.colours.length);
+  const totalUnits = items.reduce((acc, it) => acc + it.sku.units * colours(it), 0) * n;
+  const variableTotal = items.reduce((acc, it) => acc + it.variableTotal * colours(it), 0) * n;
   const totalCost = variableTotal + sharedFixed.total;
-  const totalRevenue = items.reduce((acc, it) => acc + it.revenue, 0) * n;
+  const totalRevenue = items.reduce((acc, it) => acc + it.revenue * colours(it), 0) * n;
 
   return {
     items,

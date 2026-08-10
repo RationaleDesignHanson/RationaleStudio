@@ -79,6 +79,7 @@ export function CostSheet() {
       : {
           garment: gm.key,
           tier: config.budget,
+          colours: config.palette.length ? [config.palette[0]] : ['faded-charcoal'],
           graphic: config.mark,
           // A catalogue runs shallow on each place; a considered line runs deep
           // on a few styles. Same control, different sane starting point.

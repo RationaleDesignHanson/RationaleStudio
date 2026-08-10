@@ -13,6 +13,7 @@ import { stage0Cogs, DECO, RELABEL } from '@/lib/blank/economics';
 
 const sku = (over: Partial<Sku> = {}): Sku => ({
   garment: 'tee',
+  colours: ['faded-charcoal'],
   tier: 'full',
   graphic: 'G-tonal-emboss',
   units: 100,
@@ -211,7 +212,13 @@ describe('retail override — the largest margin lever in the model', () => {
  * decoration that survives a wide catalogue is the one with no setup.
  */
 describe('lineTotals — designs multiplier', () => {
-  const tee = (tier: string): Sku => ({ garment: 'tee', tier, units: 50, graphic: null });
+  const tee = (tier: string): Sku => ({
+    garment: 'tee',
+    tier,
+    units: 50,
+    colours: ['faded-charcoal'],
+    graphic: null,
+  });
 
   it('is unchanged at one design', () => {
     const a = lineTotals([tee('graphic')]);
@@ -313,7 +320,7 @@ describe('retailFor', () => {
     // that is reliably the most profitable thing in the line is a broken model.
     for (const tier of STATES) {
       const at = (garment: 'tee' | 'hoodie') =>
-        costSku({ garment, tier: tier.slug, units: tier.run, graphic: null }).margin;
+        costSku({ garment, tier: tier.slug, units: tier.run, colours: ['faded-charcoal'], graphic: null }).margin;
       expect(at('hoodie') - at('tee')).toBeLessThan(0.02);
     }
   });
@@ -322,7 +329,7 @@ describe('retailFor', () => {
     // The heavy fleece blank is the cost problem the whole tier structure exists
     // to describe, so this must not be smoothed away by a generous ratio.
     const at = (garment: 'tee' | 'hoodie') =>
-      costSku({ garment, tier: 'graphic', units: 50, graphic: null }).margin;
+      costSku({ garment, tier: 'graphic', units: 50, colours: ['faded-charcoal'], graphic: null }).margin;
     expect(at('hoodie')).toBeLessThan(at('tee') - 0.3);
   });
 
@@ -338,7 +345,13 @@ describe('retailFor', () => {
  * argue for or against the catalogue on a number that is simply incorrect.
  */
 describe('lineTotals — purchasing volume across designs', () => {
-  const tee = (units: 25 | 50): Sku => ({ garment: 'tee', tier: 'graphic', units, graphic: null });
+  const tee = (units: 25 | 50): Sku => ({
+    garment: 'tee',
+    tier: 'graphic',
+    units,
+    colours: ['faded-charcoal'],
+    graphic: null,
+  });
 
   it('prices blanks at the band the whole order clears, not one design', () => {
     // 24 x 25 = 600 pieces, which clears the deepest band.
@@ -346,12 +359,66 @@ describe('lineTotals — purchasing volume across designs', () => {
   });
 
   it('still charges setup per design — volume does not rescue a screen line', () => {
-    const wide = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, graphic: null }], 24);
-    const one = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, graphic: null }], 1);
+    const wide = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, colours: ['faded-charcoal'], graphic: null }], 24);
+    const one = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, colours: ['faded-charcoal'], graphic: null }], 1);
     expect(wide.sharedFixed.screens).toBeCloseTo(one.sharedFixed.screens * 24, 6);
   });
 
   it('is unchanged for a single-design line', () => {
     expect(lineTotals([tee(50)], 1).cogsPerUnit).toBeCloseTo(lineTotals([tee(50)]).cogsPerUnit, 9);
+  });
+});
+
+/**
+ * Colourways cost something.
+ *
+ * They cost nothing at all before this: a SKU knew its garment, decoration, run
+ * and price and not its colour, so the most important axis in the tool was the
+ * one axis with no consequence in the model. These pin the trade in both
+ * directions, because getting it wrong either way misleads the decision.
+ */
+describe('lineTotals — colourways', () => {
+  const tee = (colours: string[], units: 25 | 50 | 100 = 50): Sku => ({
+    garment: 'tee',
+    tier: 'graphic',
+    units,
+    colours,
+    graphic: null,
+  });
+
+  it('counts units per colourway — two colours at 50 is a hundred pieces', () => {
+    expect(lineTotals([tee(['bone', 'olive'])]).totalUnits).toBe(100);
+    expect(lineTotals([tee(['bone'])]).totalUnits).toBe(50);
+  });
+
+  it('charges for the second colourway in LOST DEPTH, not in setup', () => {
+    // Same hundred pieces, one order or two. Splitting loses the deeper price
+    // band, which is exactly what a second colourway really costs.
+    const deep = lineTotals([tee(['bone'], 100)]);
+    const split = lineTotals([tee(['bone', 'olive'], 50)]);
+    expect(split.totalUnits).toBe(deep.totalUnits);
+    expect(split.cogsPerUnit).toBeGreaterThan(deep.cogsPerUnit);
+  });
+
+  it('does NOT charge a second screen for a second colourway', () => {
+    // The garment changes colour; the artwork does not. Charging per colourway
+    // here would invent a cost and argue against colour for the wrong reason.
+    const one = lineTotals([{ ...tee(['bone']), tier: 'washed' }]);
+    const two = lineTotals([{ ...tee(['bone', 'olive']), tier: 'washed' }]);
+    expect(two.sharedFixed.screens).toBe(one.sharedFixed.screens);
+  });
+
+  it('scales revenue with colourways, so margin is unchanged by colour alone', () => {
+    const one = lineTotals([tee(['bone'])]);
+    const two = lineTotals([tee(['bone', 'olive'])]);
+    expect(two.totalRevenue).toBeCloseTo(one.totalRevenue * 2, 6);
+    // Cost and revenue both double, so the ratio barely moves — colour is a
+    // depth decision, not a margin one.
+    expect(Math.abs(two.blendedMargin - one.blendedMargin)).toBeLessThan(0.02);
+  });
+
+  it('composes with the catalogue multiplier', () => {
+    const wide = lineTotals([tee(['bone', 'olive'])], 10);
+    expect(wide.totalUnits).toBe(50 * 2 * 10);
   });
 });

@@ -86,12 +86,9 @@ export const BEATS: Beat[] = [
   },
   {
     n: '03',
-    short: 'Colour',
     title: 'What colour is it',
-    note: 'Six colourways of one garment carrying one mark, so colour is the only variable. Stage 0 allows two per style.',
-    scale: {
-      note: 'Six colourways of one garment carrying your place graphic, so colour is the only variable. Stage 0 allows two per style.',
-    },
+    short: 'Colour',
+    note: 'The palette the line is made in, and the whole range in it at once. Free and instant, so sweep it — Stage 0 takes two colourways per style.',
   },
   {
     n: '04',

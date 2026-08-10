@@ -82,6 +82,15 @@ export interface LineConfig {
   signSize: number;
   /** Vertical centre of the lettering, as a percent of panel height. */
   signY: number;
+  /**
+   * The line's palette — the small set of colours every style draws from.
+   *
+   * A line is coherent because its styles share colours, so the palette is a
+   * property of the LINE and a style's colourways are a subset of it. Picking
+   * freely per garment gives you a pile of separate products; one colour for
+   * everything means the hoodie cannot have a shade the tee does not.
+   */
+  palette: string[];
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -175,6 +184,7 @@ export interface LineConfig {
 export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
+  palette: [],
   signText: '',
   place: '',
   register: 'sign',
@@ -203,6 +213,7 @@ export const LINE_DEFAULTS: LineConfig = {
 const PARAM = {
   strategy: 'sg',
   designs: 'n',
+  palette: 'pal',
   signText: 'sx',
   place: 'pc',
   register: 'rg',
@@ -276,7 +287,10 @@ const LineContext = createContext<LineContextValue | null>(null);
  * `?s=tee.full.100.G-emblem&s=hoodie.full.50.G-emblem` survives intact.
  */
 function encodeSku(s: Sku): string {
-  const base = [s.garment, s.tier, String(s.units) + (s.retail ? `@${s.retail}` : '')];
+  // Colourways ride on the units field as `50+bone+olive`, so the dot-separated
+  // shape older links use still parses and a link stays readable when pasted.
+  const units = String(s.units) + (s.colours.length ? `+${s.colours.join('+')}` : '');
+  const base = [s.garment, s.tier, units + (s.retail ? `@${s.retail}` : '')];
   // Trailing separator omitted when there's no graphic — these get pasted into
   // messages and `tee.full.100.` reads like a truncation.
   return (s.graphic ? [...base, s.graphic] : base).join('.');
@@ -286,15 +300,25 @@ function decodeSku(raw: string): Sku | null {
   const [garment, tier, units, ...rest] = raw.split('.');
   if (garment !== 'tee' && garment !== 'hoodie' && garment !== 'cap') return null;
   if (!tier) return null;
-  // units may carry a retail override as `100@120`.
+  // units may carry colourways as `100+bone+olive` and a retail override as
+  // `100@120`, in that order.
   const [unitPart, retailPart] = String(units).split('@');
-  const n = Number(unitPart) as RunSize;
+  const [runPart, ...colourParts] = unitPart.split('+');
+  const n = Number(runPart) as RunSize;
   if (!RUN_SIZES.includes(n)) return null;
   const retail = retailPart ? Number(retailPart) : undefined;
   if (retail !== undefined && (!Number.isFinite(retail) || retail <= 0)) return null;
   // Graphic ids contain dots in no known case, but rejoin defensively.
   const graphic = rest.join('.');
-  return { garment, tier, units: n, graphic: graphic || null, ...(retail ? { retail } : {}) };
+  return {
+    garment,
+    tier,
+    units: n,
+    // A link written before colour existed gets the default colourway.
+    colours: colourParts.length ? colourParts : ['faded-charcoal'],
+    graphic: graphic || null,
+    ...(retail ? { retail } : {}),
+  };
 }
 
 function readFromSearch(search: string): Partial<LineConfig> {
@@ -306,6 +330,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   // catalogue, not silently fall back to one design.
   const nParam = q.get(PARAM.designs);
   if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
+  const pal = q.get(PARAM.palette);
+  if (pal) out.palette = pal.split(',').filter(Boolean).slice(0, 6);
   const sx = q.get(PARAM.signText);
   if (sx) out.signText = sx.slice(0, 48);
   const pc = q.get(PARAM.place);
@@ -363,10 +389,12 @@ function writeToParams(config: LineConfig, url: URL) {
   // Array-valued, so it cannot go through the scalar loop below.
   if (config.chosen.length) url.searchParams.set(PARAM.chosen, config.chosen.join(','));
   else url.searchParams.delete(PARAM.chosen);
+  if (config.palette.length) url.searchParams.set(PARAM.palette, config.palette.join(','));
+  else url.searchParams.delete(PARAM.palette);
   // Keyed off PARAM, not LineConfig: `pins` is serialised separately above and
   // has no PARAM entry, so iterating LineConfig's keys no longer typechecks.
   (Object.keys(PARAM) as (keyof typeof PARAM)[]).forEach((key) => {
-    if (key === 'chosen') return; // written above
+    if (key === 'chosen' || key === 'palette') return; // written above
     const value = config[key];
     // Defaults are omitted so a link to the starting state has a bare URL.
     if (value == null || value === LINE_DEFAULTS[key]) url.searchParams.delete(PARAM[key]);
