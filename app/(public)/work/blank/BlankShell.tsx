@@ -25,7 +25,8 @@
 
 import { useLine } from '@/lib/blank/lineState';
 import { BEATS, beatFor, clampStep } from './Stepper';
-import { ChevronDown } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { nextAction, readiness } from '@/lib/blank/readiness';
 
 export interface Section {
   /** Matches a BEATS `n`, so old share links keep resolving. */
@@ -35,7 +36,9 @@ export interface Section {
 }
 
 export function BlankShell({ sections }: { sections: Section[] }) {
-  const { config, set } = useLine();
+  const { config, set, isSet, skus } = useLine();
+  const statuses = readiness(config, skus, isSet);
+  const next = nextAction(statuses);
   const openId = BEATS[clampStep(config.step)]?.n ?? sections[0]?.id;
   const open = sections.find((x) => x.id === openId) ?? sections[0];
 
@@ -51,26 +54,43 @@ export function BlankShell({ sections }: { sections: Section[] }) {
             <ol className="mb-6">
               {sections.map((x) => {
                 const on = x.id === openId;
+                const st = statuses.find((y) => y.id === x.id);
+                const blocked = st?.state === 'blocked';
                 return (
                   <li key={x.id}>
                     <button
                       onClick={() => set('step', x.id)}
                       aria-current={on ? 'step' : undefined}
-                      className="tap w-full text-left py-1.5 flex items-baseline gap-2.5"
-                      style={{ display: 'flex', minHeight: 0 }}
+                      className="tap w-full text-left py-1.5 flex items-start gap-2.5"
+                      style={{ display: 'flex', minHeight: 0, opacity: blocked ? 0.55 : 1 }}
                     >
                       <span
-                        className="text-[11px] font-mono tracking-[0.2em] shrink-0"
+                        className="text-[11px] font-mono tracking-[0.2em] shrink-0 pt-0.5"
                         style={{ color: on ? 'var(--accent)' : 'var(--era-ink-muted)' }}
                       >
                         {x.id}
                       </span>
-                      <span
-                        className="min-w-0 text-[13px]"
-                        style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
-                      >
-                        {x.label}
+                      <span className="min-w-0 flex-1">
+                        <span
+                          className="block text-[13px]"
+                          style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
+                        >
+                          {x.label}
+                        </span>
+                        {/* The status IS the disclosure. Hiding a section is fine;
+                            hiding that it wants something from you is not. */}
+                        <span
+                          className="block text-[11px] font-mono leading-tight"
+                          style={{
+                            color: st?.state === 'done' ? 'var(--era-ink-muted)' : 'var(--accent)',
+                          }}
+                        >
+                          {st?.note}
+                        </span>
                       </span>
+                      {st?.state === 'done' && (
+                        <Check className="w-3 h-3 shrink-0 mt-1" style={{ color: 'var(--era-ink-muted)' }} />
+                      )}
                     </button>
                   </li>
                 );
@@ -82,9 +102,20 @@ export function BlankShell({ sections }: { sections: Section[] }) {
 
         {/* THE WORK, at full width. */}
         <div className="min-w-0">
-          <h2 className="font-display mb-4" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
-            {open?.label}
-          </h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+            <h2 className="font-display" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
+              {open?.label}
+            </h2>
+            {next && next.id !== openId && (
+              <button
+                onClick={() => set('step', next.id)}
+                className="tap text-[12px] font-mono"
+                style={{ color: 'var(--accent)', minHeight: 0 }}
+              >
+                Next: {next.note} →
+              </button>
+            )}
+          </div>
           {open?.body}
         </div>
       </div>

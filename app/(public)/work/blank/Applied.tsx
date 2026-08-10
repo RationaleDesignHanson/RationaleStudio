@@ -44,6 +44,9 @@ import {
 import { MIN_WORDMARK_INCHES } from '@/lib/blank/identity';
 import { Mark } from './MarkFamily';
 import { SignArtwork } from './SignArtwork';
+import { clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
+import { paletteById } from '@/lib/blank/palettes';
+import { blankFor } from '@/lib/blank/line';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 
@@ -108,15 +111,6 @@ const INK = {
   softenPx: 0.4,
   /** Claws back the contrast the blur costs. */
   contrast: 1.06,
-  /**
-   * Strength of the cloth's shadows and highlights over the print.
-   *
-   * `overlay` beat soft-light, hard-light and multiply in a side-by-side on the
-   * real plates: soft-light dulled the ink to grey, hard-light washed it out
-   * entirely, and multiply crushed these already-dark garments to black. Overlay
-   * keeps the ink bright while still letting the drape cross it.
-   */
-  cloth: 0.55,
 };
 
 /**
@@ -158,7 +152,7 @@ function fracOn(garment: string, placementInches: number): number {
 }
 
 export function Applied() {
-  const { config, set } = useLine();
+  const { config, set, skus } = useLine();
   const tier = tierIndex(config.budget);
   const method = TIER_METHOD[tier];
   const word = normalise(config.wordmark);
@@ -204,6 +198,23 @@ export function Applied() {
             why: `A full-colour graphic cannot be pulled through a ${METHOD_LABEL[method]}. Heat-press or nothing.`,
           }
       : null;
+
+  /**
+   * THE BEAT CALLED "ON THE CLOTHES" HAD NO COLOUR IN IT.
+   *
+   * It drew the artwork onto fixed dark plates — the same charcoal tee whatever
+   * palette you had chosen — so the one screen whose job is showing the identity
+   * on the range was the one screen that ignored the range's colour.
+   *
+   * The plates are photographs of dark garments and there is no honest way to
+   * tint a near-black photograph to bone. So the garment is DRAWN here, in the
+   * real colour on the real cloth, exactly as the canvas and the colour card
+   * draw it. Placement, scale, perspective and the print's own softness all
+   * survive; what goes is a photograph that was telling you the wrong colour.
+   * The photograph lives in 05, where it is generated in this colourway.
+   */
+  const colourId = skus[0]?.colours[0] ?? config.palette[0] ?? config.colorway;
+  const palette = paletteById(colourId);
 
   const stop = STATES[tier];
 
@@ -268,19 +279,23 @@ export function Applied() {
               // Say when a garment cannot take the size you asked for, rather
               // than silently drawing something smaller than the label claims.
               const clamped = actualIn < place.inches;
+              const fabric = fabricFor(blankFor(gm.key, tier).id);
+              const cloth = onCloth(palette?.hex ?? '#2B2A28', fabric);
+              const tex = clothTexture(cloth, fabric);
               return (
                 <figure key={gm.key} className="min-w-0">
                   <div
                     className="relative w-full overflow-hidden"
                     style={{ aspectRatio: gm.ratio, backgroundColor: 'var(--era-bg-deep)' }}
                   >
-                    <Image
-                      src={`/blank/P-${gm.key}-plain.webp`}
-                      alt=""
-                      fill
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                      className="object-cover"
-                      style={{ opacity: nA ? 0.35 : 1 }}
+                    <span
+                      className="absolute inset-0"
+                      style={{
+                        backgroundColor: cloth,
+                        backgroundImage: tex.backgroundImage,
+                        backgroundSize: tex.backgroundSize,
+                        opacity: nA ? 0.35 : 1,
+                      }}
                     />
                     {!nA && (
                       <span
@@ -298,7 +313,10 @@ export function Applied() {
                           // place graphic is generated on a pure black ground
                           // and carries no alpha channel, so screen is what
                           // removes the ground and leaves the artwork.
-                          mixBlendMode: 'screen',
+                          // Screen removes the artwork's black ground, and only
+                          // works over a dark garment. On a pale colourway the
+                          // ground has to be left alone or the artwork vanishes.
+                          mixBlendMode: inkOn(cloth) === '#1A1A18' ? 'multiply' : 'screen',
                           // Ink laid on cloth does not have a razor edge, and no
                           // print is perfectly even. Both are sub-pixel at this
                           // size; both are the difference between "printed" and
@@ -307,7 +325,7 @@ export function Applied() {
                         }}
                       >
                         {artwork.kind === 'mark' ? (
-                          <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
+                          <span style={{ ['--era-ink' as string]: inkOn(cloth) }}>
                             <Mark c={artwork.c} word={word} css={t.css} size={300 * frac} />
                           </span>
                         ) : (
@@ -333,31 +351,6 @@ export function Applied() {
                       </span>
                     )}
 
-                    {/* THE COMPOSITE PASS. The mark above is a flat shape sitting
-                        on top of a photograph — which is why it read as a sticker.
-                        A second copy of the garment, blended over everything, puts
-                        the cloth's own shadows and highlights back across the
-                        print: the fold under the chest darkens it, the light on
-                        the shoulder lifts it, and the weave shows through.
-
-                        The garment is its own displacement information, so no
-                        separate shading map is needed and nothing has to be
-                        generated. It is still not a render — the ink does not
-                        actually deform along the folds, it just takes their light
-                        — but it stops the mark from floating in front of the
-                        picture. `overlay` because it keeps the ink bright — see
-                        INK.cloth for the side-by-side it won. */}
-                    {!nA && (
-                      <Image
-                        src={`/blank/P-${gm.key}-plain.webp`}
-                        alt=""
-                        aria-hidden
-                        fill
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover pointer-events-none"
-                        style={{ mixBlendMode: 'overlay', opacity: INK.cloth }}
-                      />
-                    )}
                     {nA && (
                       <span
                         className="absolute inset-0 flex items-center justify-center"

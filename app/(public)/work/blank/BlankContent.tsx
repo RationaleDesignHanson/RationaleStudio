@@ -39,6 +39,7 @@ import { ArtDirection } from './ArtDirection';
 import { PlaceGraphics } from './PlaceGraphics';
 import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
+import { useEffect } from 'react';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 import { normalise } from '@/lib/blank/wordmark';
 import { DIRECTION_LABELS } from './BrandBakeoff';
@@ -52,7 +53,24 @@ import { DIRECTION_LABELS } from './BrandBakeoff';
  * so links written under the stepper still land where they meant to.
  */
 function Sections() {
-  const { config } = useLine();
+  const { config, setImplied, skus } = useLine();
+
+  /**
+   * Keep the render colourway pointed at the line.
+   *
+   * `config.colorway` is what every GENERATED image is rendered in, and the only
+   * thing that ever wrote it was the paid colour round — which now sits behind a
+   * disclosure. So picking a palette and speccing colourways, which is the
+   * normal path, left it on its default: you chose bone and olive and every
+   * render came back charcoal.
+   *
+   * Implied rather than set, because it is a consequence of the line rather than
+   * a decision of its own.
+   */
+  const leading = skus[0]?.colours[0] ?? config.palette[0];
+  useEffect(() => {
+    if (leading && leading !== config.colorway) setImplied('colorway', leading);
+  }, [leading, config.colorway, setImplied]);
   const scale = config.strategy === 'scale';
   const meta = (n: string) => sectionMeta(n, config.strategy);
 
