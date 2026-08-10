@@ -29,6 +29,7 @@ import { useCallback, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { PinButton, PinShelf } from './Pins';
+import { SignComposer } from './SignArtwork';
 
 type Tile = { url?: string; error?: string; busy?: boolean };
 
@@ -53,7 +54,7 @@ const REGISTERS = [
 const EXAMPLES = ['Molly Pitcher, NJ', 'Exit 9, New Brunswick', 'Asbury Park', 'The Pine Barrens'];
 
 export function PlaceGraphics() {
-  const { config } = useLine();
+  const { config, set } = useLine();
   const [place, setPlace] = useState('');
   const [register, setRegister] = useState<string>('sign');
   const [tiles, setTiles] = useState<Tile[]>([]);
@@ -165,17 +166,31 @@ export function PlaceGraphics() {
 
       {tiles.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
-          {tiles.map((tile, i) => (
+          {tiles.map((tile, i) => {
+            const on = !!tile.url && config.customGraphic === tile.url;
+            return (
             // The pin is its own button, so the tile cannot also be one.
             <div
               key={i}
               className="relative w-full aspect-square overflow-hidden"
-              style={{ backgroundColor: 'var(--era-bg-deep)' }}
+              style={{
+                backgroundColor: 'var(--era-bg-deep)',
+                outline: on ? '2px solid var(--accent)' : 'none',
+                outlineOffset: '2px',
+              }}
             >
               {tile.url && <PinButton url={tile.url} />}
               {tile.url ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={tile.url} alt={`${active.label}, take ${i + 1}`} className="w-full h-full object-cover" />
+                <button
+                  onClick={() => set('customGraphic', tile.url!)}
+                  aria-pressed={on}
+                  aria-label={`Use ${active.label.toLowerCase()}, take ${i + 1}`}
+                  className="absolute inset-0 w-full h-full"
+                  style={{ minHeight: 0, padding: 0 }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={tile.url} alt="" className="w-full h-full object-cover" />
+                </button>
               ) : (
                 <span className="absolute inset-0 flex items-center justify-center">
                   {tile.busy ? (
@@ -188,8 +203,18 @@ export function PlaceGraphics() {
                 </span>
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
+      )}
+
+      {/* The panel came back blank on purpose; this is where it gets its words. */}
+      {config.customGraphic && register === 'sign' && <SignComposer url={config.customGraphic} />}
+
+      {config.customGraphic && register !== 'sign' && (
+        <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
+          Kept. This is the artwork the applied views carry.
+        </p>
       )}
 
       <PinShelf />

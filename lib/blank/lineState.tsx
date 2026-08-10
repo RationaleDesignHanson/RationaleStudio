@@ -58,6 +58,20 @@ export interface LineConfig {
    * Always 1 for `considered`, where the whole point is one identity.
    */
   designs: number;
+  /**
+   * The lettering set into a generated sign panel, with `/` starting a new line
+   * — "MOLLY PITCHER / NJ".
+   *
+   * Stored as TEXT, not as a baked composite, for the same reason the wordmark
+   * is: it has to stay correctly spelled, editable, and cheap. A composited
+   * image would also not survive the share link, which only accepts our own
+   * Storage URLs.
+   */
+  signText: string;
+  /** Cap height as a percent of the panel's width. */
+  signSize: number;
+  /** Vertical centre of the lettering, as a percent of panel height. */
+  signY: number;
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -145,6 +159,9 @@ export interface LineConfig {
 export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
+  signText: '',
+  signSize: 11,
+  signY: 50,
   colorway: 'charcoal',
   motif: '',
   placement: '',
@@ -170,6 +187,9 @@ export const LINE_DEFAULTS: LineConfig = {
 const PARAM = {
   strategy: 'sg',
   designs: 'n',
+  signText: 'sx',
+  signSize: 'sz',
+  signY: 'sy',
   budget: 'b',
   garment: 'g',
   graphic: 'p',
@@ -251,6 +271,12 @@ function readFromSearch(search: string): Partial<LineConfig> {
   // catalogue, not silently fall back to one design.
   const nParam = q.get(PARAM.designs);
   if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
+  const sx = q.get(PARAM.signText);
+  if (sx) out.signText = sx.slice(0, 48);
+  const sz = q.get(PARAM.signSize);
+  if (sz && /^\d{1,2}$/.test(sz)) out.signSize = Math.min(30, Math.max(4, Number(sz)));
+  const sy = q.get(PARAM.signY);
+  if (sy && /^\d{1,3}$/.test(sy)) out.signY = Math.min(95, Math.max(5, Number(sy)));
   const b = q.get(PARAM.budget);
   if (b) out.budget = b;
   const g = q.get(PARAM.garment);
