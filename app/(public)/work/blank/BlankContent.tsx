@@ -146,10 +146,7 @@ function Sections() {
           id: '05',
           ...meta('05'),
           body: (
-            <>
-              <BrandBakeoff />
-              <Lookbook />
-            </>
+<BrandBakeoff />
           ),
         },
         { id: '06', ...meta('06'), body: <CostSheet /> },

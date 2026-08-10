@@ -72,9 +72,11 @@ export function readiness(
       note: hasArtwork ? 'placed' : 'needs artwork',
     },
     {
+      // Choosing the aesthetic is free and it is a real decision, so it is done
+      // when it has been made rather than when it has been visited.
       id: '05',
-      state: hasArtwork ? 'ready' : 'blocked',
-      note: hasArtwork ? 'optional — spends' : 'needs artwork',
+      state: isSet('direction') ? 'done' : 'ready',
+      note: isSet('direction') ? 'chosen' : 'pick a direction',
     },
     {
       id: '06',
@@ -87,9 +89,11 @@ export function readiness(
             : 'needs colours',
     },
     {
+      // The end. Ready once there is a line to shoot and cost; never "done",
+      // because it is an output rather than a decision.
       id: '07',
-      state: skus.length > 0 ? 'ready' : 'blocked',
-      note: skus.length > 0 ? 'the spec' : 'needs styles',
+      state: skus.length > 0 && hasArtwork ? 'ready' : 'blocked',
+      note: skus.length === 0 ? 'needs styles' : !hasArtwork ? 'needs artwork' : 'shoot and cost it',
     },
   ];
 }
@@ -102,5 +106,5 @@ export function readiness(
  * nothing, because they will open it and find a message telling them to leave.
  */
 export function nextAction(statuses: Status[]): Status | null {
-  return statuses.find((s) => s.state === 'ready' && s.id !== '05') ?? null;
+  return statuses.find((s) => s.state === 'ready' && s.id !== '07') ?? null;
 }

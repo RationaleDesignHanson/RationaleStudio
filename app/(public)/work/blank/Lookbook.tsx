@@ -100,7 +100,7 @@ export function Lookbook() {
   };
 
   return (
-    <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+    <section>
       <span
         ref={probeRef}
         aria-hidden
@@ -110,16 +110,16 @@ export function Lookbook() {
         {word || 'BLANK'}
       </span>
 
-      <p
-        className="b-label mb-2"
-        style={{ color: 'var(--era-ink-muted)' }}
+      <h3
+        className="b-label pb-2 mb-3 border-b"
+        style={{ color: 'var(--era-ink)', borderColor: 'var(--era-hairline)' }}
       >
         The lookbook
-      </p>
+      </h3>
 
       {pieces.length === 0 ? (
         <p className="b-body" style={{ color: 'var(--accent)' }}>
-          Spec some styles in 06 and the whole line can be shot together here.
+          Tick some styles in the costs section and the line can be shot here.
         </p>
       ) : (
         <>
@@ -161,6 +161,6 @@ export function Lookbook() {
           </figcaption>
         </figure>
       )}
-    </div>
+    </section>
   );
 }

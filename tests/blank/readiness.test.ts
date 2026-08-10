@@ -39,7 +39,7 @@ describe('readiness', () => {
     const s = readiness(cfg(), [], none);
     const by = (id: string) => s.find((x) => x.id === id)!;
     expect(by('04').state).toBe('blocked'); // no artwork to place
-    expect(by('05').state).toBe('blocked');
+    expect(by('05').state).toBe('ready'); // choosing a direction is always open
     expect(by('06').state).toBe('blocked'); // no colours to spec
     expect(by('07').state).toBe('blocked');
   });
@@ -70,10 +70,11 @@ describe('nextAction', () => {
     expect(n!.state).toBe('ready');
   });
 
-  it('never proposes the one that spends money', () => {
-    // 05 is optional and paid; it must never be the suggested next step.
-    const n = nextAction(readiness(cfg({ mark: 'roundel', palette: ['bone'] }), [sku()], all));
-    expect(n?.id).not.toBe('05');
+  it('never proposes the finished page as a next step', () => {
+    // 07 is an output, not a decision — sending someone there as "next" is
+    // telling them to go and look at the thing they have not made yet.
+    const n = nextAction(readiness(cfg(), [], none));
+    expect(n?.id).not.toBe('07');
   });
 
   it('goes quiet once everything actionable is done', () => {

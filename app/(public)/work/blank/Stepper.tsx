@@ -101,9 +101,9 @@ export const BEATS: Beat[] = [
   },
   {
     n: '05',
-    short: 'Lookbook',
-    title: 'The lookbook',
-    note: 'Pick the aesthetic, then generate a photograph. This is the part that spends.',
+    short: 'Direction',
+    title: 'Which direction',
+    note: 'The aesthetic the line lives in. Six racks; pick one.',
   },
   {
     n: '06',
@@ -119,8 +119,8 @@ export const BEATS: Beat[] = [
   },
   {
     n: '07',
-    short: 'Standing',
-    title: 'Where this stands',
+    short: 'The line',
+    title: 'The line',
     note: 'Read before you believe any number above.',
   },
 ];

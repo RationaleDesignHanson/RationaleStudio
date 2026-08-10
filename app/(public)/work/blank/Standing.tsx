@@ -30,6 +30,7 @@ import { normalise } from '@/lib/blank/wordmark';
 import { CHANNELS, campaign, channelById, sellUnit } from '@/lib/blank/channel';
 import { SELL_PLAN, sellThrough } from '@/lib/blank/sellthrough';
 import { WornPhoto } from './WornPhoto';
+import { Lookbook } from './Lookbook';
 
 const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const dollars = (n: number) => `$${n.toFixed(2)}`;
@@ -61,6 +62,22 @@ export function Standing() {
 
   return (
     <div className="my-2 space-y-8">
+      {/* THE LOOKBOOK FIRST, because it is the thing the decisions were for.
+          It used to sit in 05, which is BEFORE the styles are specced — so it
+          asked you to shoot a line that did not exist yet and told you to go and
+          make one. The aesthetic is still chosen in 05; the shot happens here,
+          once there is something to shoot. */}
+      <Lookbook />
+
+      {/* THE ONE IMAGE WITH A PERSON IN IT. Everywhere else excludes people at
+          the subject level, because a model wandering into a flat-lay is a
+          rights problem. A photograph of the thing being worn is a deliverable,
+          so it is asked for once, here, deliberately. */}
+      <section>
+        <Head>See it worn</Head>
+        <WornPhoto probeRef={probeRef} />
+      </section>
+
       {/* THE SPEC — what a factory would be sent. */}
       <section>
         <Head>The spec · {name}</Head>
@@ -269,15 +286,6 @@ export function Standing() {
           })()}
         </section>
       )}
-
-      {/* THE ONE IMAGE WITH A PERSON IN IT. Everywhere else excludes people at
-          the subject level, because a model wandering into a flat-lay is a
-          rights problem. A photograph of the thing being worn is a deliverable,
-          so it is asked for once, here, deliberately. */}
-      <section>
-        <Head>See it worn</Head>
-        <WornPhoto probeRef={probeRef} />
-      </section>
 
       {/* WHERE TO ORDER — named where the model names them, described where it cannot. */}
       <section>
