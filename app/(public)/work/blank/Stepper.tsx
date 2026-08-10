@@ -71,39 +71,39 @@ export const BEATS: Beat[] = [
     n: '01',
     short: 'Name',
     title: 'Name it',
-    note: 'Which business you are in, then the word and the face it is set in. Real type, so the name is always spelled correctly and costs nothing to try.',
+    note: 'Which business you are in, then the word and the face.',
   },
   {
     n: '02',
     short: 'As a mark',
     title: 'How it looks as a mark',
-    note: 'Marks built from the name in the face you picked. Shuffle for a different set, then draw the one you like properly.',
+    note: 'Marks built from the name in the face you picked.',
     scale: {
       short: 'The graphic',
       title: 'What goes on each one',
-      note: 'A place, a voice, six takes. You are designing the format rather than one graphic, because it has to run for every place in the catalogue.',
+      note: 'A place, a voice, six takes.',
     },
   },
   {
     n: '03',
     title: 'What colour is it',
     short: 'Colour',
-    note: 'The palette the line is made in, and the whole range in it at once. Free and instant, so sweep it — Stage 0 takes two colourways per style.',
+    note: 'The palette the line is made in. Stage 0 takes two colourways per style.',
   },
   {
     n: '04',
     short: 'Applied',
     title: 'On the clothes',
-    note: 'Where the mark sits and how big, across all three garments at once. Nothing here costs a render.',
+    note: 'Where the mark sits and how big, across all three garments. Nothing here spends.',
     scale: {
-      note: 'Where the place graphic sits and how big, across all three garments at once. Nothing here costs a render.',
+      note: 'Where the place graphic sits and how big, across all three garments. Nothing here spends.',
     },
   },
   {
     n: '05',
     short: 'Direction',
     title: 'Make a real one',
-    note: 'Pick the aesthetic it lives in, then generate an actual photograph of it. This is the part that spends.',
+    note: 'Pick the aesthetic, then generate a photograph. This is the part that spends.',
   },
   {
     n: '06',
@@ -112,16 +112,16 @@ export const BEATS: Beat[] = [
     // The considered line keeps its true claim; the catalogue gets the opposite
     // one, which is also true. Dropping it for both lost the most persuasive
     // sentence on the page for the strategy it is still correct about.
-    note: 'The line, specced style by style. Setup is charged once across the collection, so it costs less than the sum of its garments.',
+    note: 'The line, specced style by style. Setup is charged once across the collection.',
     scale: {
-      note: 'The catalogue, specced style by style. Setup is charged per design and never amortises, which is why only the cheapest decoration can carry a line this wide.',
+      note: 'The catalogue, specced style by style. Setup is charged per design and never amortises.',
     },
   },
   {
     n: '07',
     short: 'Standing',
     title: 'Where this stands',
-    note: 'Settled, open, and unverified. Read this before you believe any number above.',
+    note: 'Read before you believe any number above.',
   },
 ];
 

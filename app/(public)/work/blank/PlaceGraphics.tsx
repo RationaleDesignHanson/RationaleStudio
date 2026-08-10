@@ -37,7 +37,7 @@ const REGISTERS = [
   {
     id: 'sign',
     label: 'The sign',
-    hint: 'The road furniture itself, straight. Comes back blank — the words get set in type.',
+    hint: 'The road furniture itself. Comes back blank — the words get set in type.',
   },
   {
     id: 'pun',
@@ -47,7 +47,7 @@ const REGISTERS = [
   {
     id: 'song',
     label: 'The song',
-    hint: 'What was written about the place. Headlights, refineries, leaving.',
+    hint: 'What was written about the place.',
   },
 ] as const;
 
@@ -96,8 +96,7 @@ export function PlaceGraphics() {
   return (
     <div className="my-2">
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        One place, one voice, six takes. This is the format you are designing, not a single graphic —
-        whatever works here has to survive being run{' '}
+        One place, one voice, six takes. Whatever works here runs{' '}
         <strong style={{ color: 'var(--era-ink)' }}>{config.designs}</strong> times.
       </p>
 
@@ -215,7 +214,7 @@ export function PlaceGraphics() {
 
       {config.customGraphic && register !== 'sign' && (
         <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
-          Kept. This is the artwork the applied views carry.
+          Kept — the applied views carry it.
         </p>
       )}
 

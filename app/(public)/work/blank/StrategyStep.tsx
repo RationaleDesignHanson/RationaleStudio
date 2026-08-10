@@ -43,8 +43,8 @@ const OPTIONS: {
     title: 'Small and dear',
     line: 'A few styles, one identity, made properly.',
     facts: [
-      'One artwork, so setup is paid once and spreads across the whole buy',
-      'Screen and embroidery are affordable, which is what buys the hand',
+      'One artwork, so setup is paid once',
+      'Screen and embroidery are affordable',
       'Higher price, higher margin, far fewer things to make',
     ],
     defaults: { budget: 'stitched', designs: 1 },
@@ -54,7 +54,7 @@ const OPTIONS: {
     title: 'Wide and cheap',
     line: 'A shirt per place, micro-targeted by geography and interest.',
     facts: [
-      'One artwork per place, so setup is paid again for every single design',
+      'One artwork per place, so setup is paid again for every design',
       'Heat-press only — a screen per colour per design never amortises',
       'Thin margin per unit, and the catalogue is the product',
     ],
@@ -159,7 +159,7 @@ export function StrategyStep() {
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
           <span className="text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
-            Two per state is {2 * 50}. Every rest stop on one turnpike is nearer a dozen.
+            Two per state is {2 * 50}.
           </span>
         </div>
       )}

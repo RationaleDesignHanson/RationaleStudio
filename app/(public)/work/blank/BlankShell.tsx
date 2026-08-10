@@ -32,7 +32,6 @@ export interface Section {
   /** Matches a BEATS `n`, so old share links keep resolving. */
   id: string;
   label: string;
-  hint: string;
   body: React.ReactNode;
 }
 
@@ -71,21 +70,16 @@ export function BlankShell({ sections }: { sections: Section[] }) {
                       >
                         {s.id}
                       </span>
-                      <span className="min-w-0 flex-1">
-                        <span
-                          className="block font-display"
-                          style={{ fontSize: '1.05rem', color: open ? 'var(--accent)' : 'var(--era-ink)' }}
-                        >
-                          {s.label}
-                        </span>
-                        {!open && (
-                          <span
-                            className="block text-[12px] sm:text-[11px] leading-snug mt-0.5"
-                            style={{ color: 'var(--era-ink-muted)' }}
-                          >
-                            {s.hint}
-                          </span>
-                        )}
+                      {/* Label only. The hints were a sentence of subtext under
+                          every closed section — "the line, specced style by
+                          style, setup is charged once…" — which is an essay in a
+                          nav. If a label needs a sentence to explain it, the
+                          label is wrong. */}
+                      <span
+                        className="min-w-0 flex-1 font-display"
+                        style={{ fontSize: '1.05rem', color: open ? 'var(--accent)' : 'var(--era-ink)' }}
+                      >
+                        {s.label}
                       </span>
                       <ChevronDown
                         className="w-4 h-4 shrink-0 transition-transform"
@@ -125,10 +119,9 @@ export function BlankShell({ sections }: { sections: Section[] }) {
   );
 }
 
-/** The label and hint a section shows, taken from the beat it replaces. */
-export function sectionMeta(n: string, strategy: string): { label: string; hint: string } {
+/** The label a section shows, taken from the beat it replaces. */
+export function sectionMeta(n: string, strategy: string): { label: string } {
   const raw = BEATS.find((b) => b.n === n);
-  if (!raw) return { label: n, hint: '' };
-  const b = beatFor(raw, strategy);
-  return { label: b.title, hint: b.note };
+  if (!raw) return { label: n };
+  return { label: beatFor(raw, strategy).title };
 }

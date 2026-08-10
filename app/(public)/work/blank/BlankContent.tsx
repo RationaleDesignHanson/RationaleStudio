@@ -34,112 +34,13 @@ import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { StrategyStep } from './StrategyStep';
+import { Standing } from './Standing';
 import { PlaceGraphics } from './PlaceGraphics';
 import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 import { normalise } from '@/lib/blank/wordmark';
 import { DIRECTION_LABELS } from './BrandBakeoff';
-
-function Standing({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h3
-        className="text-[11px] font-mono uppercase tracking-[0.2em] pb-2 mb-3 border-b"
-        style={{ color: 'var(--era-ink)', borderColor: 'var(--era-hairline)' }}
-      >
-        {title}
-      </h3>
-      <ul className="space-y-2.5 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
-        {children}
-      </ul>
-    </div>
-  );
-}
-
-/**
- * The close. Read this before believing any number in the beats above.
- *
- * It was a static literal, which made it wrong in three ways at once: it never
- * mentioned the catalogue business or that setup does not amortise — the one
- * fact the whole fork exists to establish — it listed the brand direction as
- * undecided while the rail two inches above had been showing one since load, and
- * it hardcoded "Blank" as the name on the one page whose first control is a name
- * field. A standings board that does not read the state is a decoration.
- */
-function Standings() {
-  const { config, skus } = useLine();
-  const scale = config.strategy === 'scale';
-  const name = normalise(config.wordmark) || 'BLANK';
-  const direction = DIRECTION_LABELS[config.direction] ?? config.direction;
-
-  return (
-    <div className="grid md:grid-cols-3 gap-8">
-      <Standing title="Settled">
-        <li>
-          Quiet costs more to make than loud. The mechanism is fixed costs and minimums, not taste —
-          strip them out and ink is what&rsquo;s left.
-        </li>
-        <li>
-          {scale ? (
-            <>
-              This is costed as a <strong style={{ color: 'var(--era-ink)' }}>catalogue</strong> —{' '}
-              {config.designs} places. Setup is paid per design and never amortises, so the wide
-              line is only possible on the cheapest decoration. That is the same argument as the
-              line above, pointed at variety instead of finish.
-            </>
-          ) : (
-            <>
-              This is costed as a <strong style={{ color: 'var(--era-ink)' }}>considered line</strong>{' '}
-              — one artwork, so setup is paid once and spreads across the buy.
-            </>
-          )}
-        </li>
-        <li>
-          Stage 0 is decorated blanks. A cut-and-sew hero needs 86 pre-orders, or 72 if the coat and
-          trousers share one cloth.
-        </li>
-        <li>
-          The pipeline renders garment <em>categories</em>, not garment specs. Tech packs stay text
-          and vector.
-        </li>
-      </Standing>
-
-      <Standing title="Open">
-        <li>
-          Brand direction is on <strong style={{ color: 'var(--era-ink)' }}>{direction}</strong> —
-          the default rather than a decision, unless you changed it in beat 05. Six are live.
-        </li>
-        <li>
-          Retail price. It&rsquo;s the largest single margin lever in the model at 35.9 points, and
-          the tray still uses tier defaults unless you override a SKU.
-        </li>
-        <li>
-          The name is narrowed, not settled:{' '}
-          <strong style={{ color: 'var(--era-ink)' }}>{name}</strong> is what beat 01 currently
-          carries. A longer one is constrained by the 14in platen before it is by taste.
-        </li>
-        <li>
-          {skus.length === 0
-            ? 'Nothing specced yet — beat 06 is empty, so every figure above is a preview.'
-            : 'No inventory ordered, no tech pack, no supplier contacted.'}
-        </li>
-      </Standing>
-
-      <Standing title="Unverified">
-        <li>
-          37 of 44 load-bearing figures are single-source or derived. The confidence marks sit on the
-          numbers themselves, not in a footnote.
-        </li>
-        <li>
-          The relabel line may be underbudgeted 3&ndash;5&times; (SR&nbsp;T15). It is exposed as a
-          toggle rather than buried.
-        </li>
-        <li>Every image here is generated. None is a photograph of product that exists.</li>
-      </Standing>
-    </div>
-  );
-}
 
 /**
  * The controls, as sidebar sections.
@@ -175,7 +76,7 @@ function Sections() {
               <PlaceGraphics />
               <Disclosure
                 summary="And the house mark that goes on every one"
-                hint="the neck label and the hem tag — one identity behind the catalogue"
+                hint="the neck label and the hem tag"
               >
                 <MarkFamily />
                 <LockupStep />
@@ -187,7 +88,7 @@ function Sections() {
               <LockupStep />
               <Disclosure
                 summary="Or artwork that has nothing to do with the name"
-                hint="describe it, or upload it — seasonal, silly, one-off"
+                hint="describe it, or upload it"
               >
                 <GraphicBakeoff />
                 <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
@@ -205,7 +106,7 @@ function Sections() {
               <PaletteBeat />
               <Disclosure
                 summary="Or render a colourway as a photograph"
-                hint="six generated garments — this one spends"
+                hint="six renders — this one spends"
               >
                 <ColourBeat />
               </Disclosure>
@@ -224,7 +125,7 @@ function Sections() {
           ),
         },
         { id: '06', ...meta('06'), body: <CostSheet /> },
-        { id: '07', ...meta('07'), body: <Standings /> },
+        { id: '07', ...meta('07'), body: <Standing /> },
       ]}
     />
   );

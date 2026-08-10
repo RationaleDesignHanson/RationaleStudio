@@ -91,6 +91,10 @@ export interface LineConfig {
    * everything means the hoodie cannot have a shade the tee does not.
    */
   palette: string[];
+  /** Where this gets sold, which decides the fees and whether ads are paid for. */
+  channel: string;
+  /** Paid acquisition per order. The number the catalogue model lives or dies on. */
+  cac: number;
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -185,6 +189,8 @@ export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
   palette: [],
+  channel: 'social',
+  cac: 12,
   signText: '',
   place: '',
   register: 'sign',
@@ -214,6 +220,8 @@ const PARAM = {
   strategy: 'sg',
   designs: 'n',
   palette: 'pal',
+  channel: 'ch',
+  cac: 'cac',
   signText: 'sx',
   place: 'pc',
   register: 'rg',
@@ -332,6 +340,10 @@ function readFromSearch(search: string): Partial<LineConfig> {
   // catalogue, not silently fall back to one design.
   const nParam = q.get(PARAM.designs);
   if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
+  const ch = q.get(PARAM.channel);
+  if (ch && /^[a-z]{4,12}$/.test(ch)) out.channel = ch;
+  const cacP = q.get(PARAM.cac);
+  if (cacP && /^\d{1,3}$/.test(cacP)) out.cac = Math.min(200, Number(cacP));
   const pal = q.get(PARAM.palette);
   if (pal) out.palette = pal.split(',').filter(Boolean).slice(0, 6);
   const sx = q.get(PARAM.signText);
