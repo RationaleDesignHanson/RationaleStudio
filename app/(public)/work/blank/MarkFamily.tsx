@@ -166,7 +166,7 @@ export function MarkFamily() {
           const res = await fetch('/api/blank/bakeoff', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ kind: 'mark', image, variant: n }),
+            body: JSON.stringify({ kind: 'mark', direction: config.artDirection, image, variant: n }),
           });
           const data = await res.json();
           setDrawn((prev) =>

@@ -75,14 +75,24 @@ export const dynamic = 'force-dynamic';
 const RENDER_MODEL = 'google/imagen-4';
 
 /** Hard stop for paid renders in a rolling 24h, counted in Postgres. */
-const DAILY_RENDER_CEILING = 60;
+const DAILY_RENDER_CEILING = 600;
+
+//
+// Sized for ONE person testing, not for a crowd. These were set when the tool
+// was a public case study that happened to spend money; it is a password-gated
+// instrument used by two people, and the limits were stopping the owner mid-
+// session. A round is six renders and a comparison is several rounds.
+//
+// They are still real limits, counted in Postgres rather than in a module-scope
+// integer that resets on cold start — a runaway loop or a leaked password costs
+// a bounded amount, and that is what they are for.
 /**
  * Per-IP limit on PAID renders, counted in Postgres against a hashed requester
  * recorded on each render row. This used to be a module-scope Map, which is
  * per-instance and resets on cold start — a speed bump described as a limit.
  * Cache hits are deliberately not counted: they cost nothing.
  */
-const RATE_LIMIT_PER_IP = 8;
+const RATE_LIMIT_PER_IP = 80;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
 /**

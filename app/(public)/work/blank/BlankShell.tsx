@@ -38,81 +38,66 @@ export interface Section {
 export function BlankShell({ sections }: { sections: Section[] }) {
   const { config, set } = useLine();
   const openId = BEATS[clampStep(config.step)]?.n ?? sections[0]?.id;
+  const open = sections.find((x) => x.id === openId) ?? sections[0];
 
   return (
     <div className="px-4 sm:px-6 md:px-8 pb-10">
-      <div
-        className="max-w-7xl mx-auto grid gap-6 lg:gap-10"
-        style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}
-      >
-        <div className="grid gap-6 lg:gap-10 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
-          {/* CONTROLS. Accordion rather than tabs: on a phone this is the whole
-              page, and a tab strip of seven would scroll off either edge. */}
-          <div className="min-w-0">
-            {sections.map((s) => {
-              const open = s.id === openId;
-              return (
-                <section
-                  key={s.id}
-                  className="border-b"
-                  style={{ borderColor: 'var(--era-hairline)' }}
-                >
-                  <h2>
+      <div className="max-w-7xl mx-auto grid gap-6 lg:gap-10 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
+        {/* NAV AND THE LINE. The sidebar was holding the controls as well, which
+            squeezed a six-up grid of marks into 26rem and made every preview too
+            small to judge — the exact thing a canvas is for. It is a nav and a
+            thumbnail now; the work happens in the wide column. */}
+        <div className="min-w-0">
+          <nav className="lg:sticky lg:top-[6rem]">
+            <ol className="mb-6">
+              {sections.map((x) => {
+                const on = x.id === openId;
+                return (
+                  <li key={x.id}>
                     <button
-                      onClick={() => set('step', open ? '' : s.id)}
-                      aria-expanded={open}
-                      className="tap w-full text-left py-3 flex items-baseline gap-3"
+                      onClick={() => set('step', x.id)}
+                      aria-current={on ? 'step' : undefined}
+                      className="tap w-full text-left py-1.5 flex items-baseline gap-2.5"
                       style={{ display: 'flex', minHeight: 0 }}
                     >
                       <span
                         className="text-[11px] font-mono tracking-[0.2em] shrink-0"
-                        style={{ color: open ? 'var(--accent)' : 'var(--era-ink-muted)' }}
+                        style={{ color: on ? 'var(--accent)' : 'var(--era-ink-muted)' }}
                       >
-                        {s.id}
+                        {x.id}
                       </span>
-                      {/* Label only. The hints were a sentence of subtext under
-                          every closed section — "the line, specced style by
-                          style, setup is charged once…" — which is an essay in a
-                          nav. If a label needs a sentence to explain it, the
-                          label is wrong. */}
                       <span
-                        className="min-w-0 flex-1 font-display"
-                        style={{ fontSize: '1.05rem', color: open ? 'var(--accent)' : 'var(--era-ink)' }}
+                        className="min-w-0 text-[13px]"
+                        style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
                       >
-                        {s.label}
+                        {x.label}
                       </span>
-                      <ChevronDown
-                        className="w-4 h-4 shrink-0 transition-transform"
-                        style={{
-                          color: 'var(--era-ink-muted)',
-                          transform: open ? 'rotate(180deg)' : 'none',
-                        }}
-                      />
                     </button>
-                  </h2>
-                  {/* Absent rather than hidden, so a closed section costs no
-                      images and no screen-reader detour — the same reasoning the
-                      stepper used for inactive beats. */}
-                  {open && <div className="pb-6">{s.body}</div>}
-                </section>
-              );
-            })}
-          </div>
+                  </li>
+                );
+              })}
+            </ol>
 
-          {/* THE LINE. Sticky on a real screen so it stays put while the sidebar
-              scrolls; above the controls on a phone, where there is no room to
-                keep both and the artefact should still be the first thing. */}
-          <div className="min-w-0 order-first lg:order-none">
-            <div className="lg:sticky lg:top-[7rem]">
+            {/* Small, but never gone: the reason for a canvas in the first place
+                is that you can see the line while changing anything about it. */}
+            <div className="hidden lg:block pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
               <p
-                className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-3"
+                className="text-[10px] font-mono uppercase tracking-[0.2em] mb-2"
                 style={{ color: 'var(--era-ink-muted)' }}
               >
                 The line
               </p>
-              <LineCanvas />
+              <LineCanvas compact />
             </div>
-          </div>
+          </nav>
+        </div>
+
+        {/* THE WORK, at full width. */}
+        <div className="min-w-0">
+          <h2 className="font-display mb-4" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
+            {open?.label}
+          </h2>
+          {open?.body}
         </div>
       </div>
     </div>

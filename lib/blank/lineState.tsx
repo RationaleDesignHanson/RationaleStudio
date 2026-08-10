@@ -95,6 +95,15 @@ export interface LineConfig {
   channel: string;
   /** Paid acquisition per order. The number the catalogue model lives or dies on. */
   cac: number;
+  /**
+   * How the artwork should look, in your words.
+   *
+   * The generators had fixed voices — six drawing styles for a mark, three
+   * registers for a place, six angles for a graphic — and no way to say "like
+   * this" at all. That is fine for a spread and useless once you know what you
+   * want, which is the point at which most people start caring.
+   */
+  artDirection: string;
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -188,6 +197,7 @@ export interface LineConfig {
 export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
+  artDirection: '',
   palette: [],
   channel: 'social',
   cac: 12,
@@ -219,6 +229,7 @@ export const LINE_DEFAULTS: LineConfig = {
 const PARAM = {
   strategy: 'sg',
   designs: 'n',
+  artDirection: 'ad',
   palette: 'pal',
   channel: 'ch',
   cac: 'cac',
@@ -344,6 +355,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (ch && /^[a-z]{4,12}$/.test(ch)) out.channel = ch;
   const cacP = q.get(PARAM.cac);
   if (cacP && /^\d{1,3}$/.test(cacP)) out.cac = Math.min(200, Number(cacP));
+  const ad = q.get(PARAM.artDirection);
+  if (ad) out.artDirection = ad.slice(0, 200);
   const pal = q.get(PARAM.palette);
   if (pal) out.palette = pal.split(',').filter(Boolean).slice(0, 6);
   const sx = q.get(PARAM.signText);

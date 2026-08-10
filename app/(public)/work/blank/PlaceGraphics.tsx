@@ -73,7 +73,7 @@ export function PlaceGraphics() {
           const res = await fetch('/api/blank/bakeoff', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ kind: 'place', place: name, register, variant: i }),
+            body: JSON.stringify({ kind: 'place', direction: config.artDirection, place: name, register, variant: i }),
           });
           const data = await res.json();
           setTiles((prev) =>

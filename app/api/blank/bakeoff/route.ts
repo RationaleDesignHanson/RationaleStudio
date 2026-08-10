@@ -75,8 +75,18 @@ export const dynamic = 'force-dynamic';
 
 const IMAGEN = 'google/imagen-4';
 const SEEDREAM = 'bytedance/seedream-4';
-const DAILY_RENDER_CEILING = 60;
-const RATE_LIMIT_PER_IP = 24; // a round is six, so the window has to hold rounds
+const DAILY_RENDER_CEILING = 600;
+
+//
+// Sized for ONE person testing, not for a crowd. These were set when the tool
+// was a public case study that happened to spend money; it is a password-gated
+// instrument used by two people, and the limits were stopping the owner mid-
+// session. A round is six renders and a comparison is several rounds.
+//
+// They are still real limits, counted in Postgres rather than in a module-scope
+// integer that resets on cold start — a runaway loop or a leaked password costs
+// a bounded amount, and that is what they are for.
+const RATE_LIMIT_PER_IP = 240; // a round is six, so the window has to hold many rounds
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const VERSION = 'bake-v1';
 
@@ -280,6 +290,24 @@ export async function POST(req: Request) {
     : 'tee';
   const variant = Math.max(0, Math.min(11, Number(body.variant) || 0));
 
+  /**
+   * The user's own words about how it should look, wrapped rather than trusted.
+   *
+   * It is appended as a STYLE note after the scene and the subject, never in
+   * front of them, so it can steer the drawing without replacing the brief —
+   * the same mistake custom-direction makes by putting the house clause first
+   * and then wondering why nobody's direction survives.
+   */
+  const direction = String(body.direction ?? '')
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\u0000-\u001f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 200);
+  // Part of every artwork cache key: a different direction is a different image.
+  const dirKey = direction ? createHash('sha256').update(direction).digest('hex').slice(0, 8) : 'x';
+  const styleNote = direction ? `\nStyle direction, applied to the drawing only: ${direction}.` : '';
+
   const supabase = db();
   if (!supabase) {
     return NextResponse.json({ error: 'Renders are not configured.' }, { status: 503 });
@@ -335,10 +363,10 @@ Do not reproduce any text or lettering. No watermarks.`;
     const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in solid off-white on a PURE BLACK field that fills the entire frame edge to edge — pure black #000000 everywhere, no gradient and no vignette. Centred, occupying about half the frame width. This is a digital graphic, not a photograph of an object: no surface, no edges, no depth.
 ${NO_PEOPLE}
 The artwork is: ${description}.
-Drawn ${angle}.
+Drawn ${angle}.${styleNote}
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
-    keySource = `${kind}.k3.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.k3.${variant}.${dirKey}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
   } else if (kind === 'lifestyle') {
     // The deliberate person. Needs the artwork, or it is a stock photo.
     const image = typeof body.image === 'string' ? body.image : '';
@@ -384,12 +412,12 @@ No added text, no logos, no watermarks.`;
     const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in a few flat colours on a PURE BLACK field that fills the entire frame edge to edge. Centred, occupying about two thirds of the frame width. This is a digital graphic, not a photograph of an object: no surface texture, no depth of field, no vignette, no gradient in the background — the background is pure black #000000 everywhere.
 ${NO_PEOPLE}
 The artwork is: ${register.subject(place)}.
-Composed as: ${angle}.
+Composed as: ${angle}.${styleNote}
 ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no numerals, no route numbers, no readable lettering anywhere in the image. Any sign, badge or panel must be COMPLETELY BLANK. No watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     // `k2` scopes the cache bust to the place kind — bumping VERSION would have
     // thrown away every colour and mark render too.
-    keySource = `${kind}.k3.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.k3.${registerId}.${variant}.${dirKey}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
   } else {
     // mark: redraw the rasterised construction with custom letterforms.
     const image = typeof body.image === 'string' ? body.image : '';
@@ -400,7 +428,7 @@ ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no nume
     const style = DRAW_STYLES[variant % DRAW_STYLES.length];
     const prompt = `A single flat two-dimensional logo mark, solid black on a plain white background, centred with generous margin. No garment, no fabric, no mockup, no person.
 Take the mark in the supplied reference image and keep its structure, proportions and the letters it contains EXACTLY as they are — same letters, same arrangement, same enclosure. Do not add or remove letters and do not change what it says.
-Draw it ${style}.
+Draw it ${style}.${styleNote}
 No extra text, no additional words, no watermarks, no border.`;
     input = {
       prompt,
@@ -410,7 +438,7 @@ No extra text, no additional words, no watermarks, no border.`;
       enhance_prompt: false,
       sequential_image_generation: 'disabled',
     };
-    keySource = `${kind}.${variant}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
   }
 
   const key = `${VERSION}.${createHash('sha256').update(keySource).digest('hex').slice(0, 22)}`;

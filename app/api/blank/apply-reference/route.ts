@@ -73,8 +73,18 @@ const MAX_REQUEST_BYTES = 4 * 1024 * 1024;
 const MAX_IMAGE_BYTES = Math.floor((MAX_REQUEST_BYTES - 8192) * 0.74);
 const ALLOWED_MEDIA = new Set(['image/jpeg', 'image/png', 'image/webp']);
 /** Reference renders share the same 24h ceiling as text renders. */
-const DAILY_RENDER_CEILING = 60;
-const RATE_LIMIT_PER_IP = 5;
+const DAILY_RENDER_CEILING = 600;
+
+//
+// Sized for ONE person testing, not for a crowd. These were set when the tool
+// was a public case study that happened to spend money; it is a password-gated
+// instrument used by two people, and the limits were stopping the owner mid-
+// session. A round is six renders and a comparison is several rounds.
+//
+// They are still real limits, counted in Postgres rather than in a module-scope
+// integer that resets on cold start — a runaway loop or a leaked password costs
+// a bounded amount, and that is what they are for.
+const RATE_LIMIT_PER_IP = 50;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
 /**

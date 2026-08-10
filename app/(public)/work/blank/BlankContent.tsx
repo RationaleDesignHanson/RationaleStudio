@@ -35,6 +35,7 @@ import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { StrategyStep } from './StrategyStep';
 import { Standing } from './Standing';
+import { ArtDirection } from './ArtDirection';
 import { PlaceGraphics } from './PlaceGraphics';
 import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
@@ -73,6 +74,7 @@ function Sections() {
           ...meta('02'),
           body: scale ? (
             <>
+              <ArtDirection />
               <PlaceGraphics />
               <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
                 <ReferenceUpload />
@@ -87,6 +89,7 @@ function Sections() {
             </>
           ) : (
             <>
+              <ArtDirection />
               <MarkFamily />
               <LockupStep />
               {/* Out of the disclosure. Describing an image and bringing your own

@@ -42,7 +42,7 @@ export function GraphicBakeoff() {
           const res = await fetch('/api/blank/bakeoff', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ kind: 'graphic', prompt: text, variant: i }),
+            body: JSON.stringify({ kind: 'graphic', direction: config.artDirection, prompt: text, variant: i }),
           });
           const data = await res.json();
           setTiles((prev) =>

@@ -36,7 +36,17 @@ export const runtime = 'nodejs';
  * the sizes that actually break; they failed earlier, as an opaque 500.
  */
 const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
-const RATE_LIMIT_PER_IP = 5; // per window
+const RATE_LIMIT_PER_IP = 50;
+
+//
+// Sized for ONE person testing, not for a crowd. These were set when the tool
+// was a public case study that happened to spend money; it is a password-gated
+// instrument used by two people, and the limits were stopping the owner mid-
+// session. A round is six renders and a comparison is several rounds.
+//
+// They are still real limits, counted in Postgres rather than in a module-scope
+// integer that resets on cold start — a runaway loop or a leaked password costs
+// a bounded amount, and that is what they are for.
 const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const DAILY_CALL_CEILING = 200; // hard stop for the whole endpoint
 
