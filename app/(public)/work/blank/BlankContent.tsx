@@ -24,7 +24,7 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ReferenceUpload } from './ReferenceUpload';
 import { BrandBakeoff } from './BrandBakeoff';
 import { ShareLine } from './ShareLine';
-import { SaveLine, WhoAmI } from './SaveLine';
+import { SaveLine } from './SaveLine';
 import { Lookbook } from './Lookbook';
 import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
@@ -176,7 +176,6 @@ export function BlankContent() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-1">
               <span className="inline-flex items-center gap-4">
-                <WhoAmI />
                 <SaveLine />
                 <ShareLine />
               </span>

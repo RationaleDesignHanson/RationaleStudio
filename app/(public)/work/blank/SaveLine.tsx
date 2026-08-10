@@ -39,6 +39,9 @@ export function SaveLine() {
   const [version, setVersion] = useState(0);
   const [state, setState] = useState<State>('idle');
   const [conflictBy, setConflictBy] = useState<string | null>(null);
+  const [who, setWho] = useState('');
+  const [asking, setAsking] = useState(false);
+  useEffect(() => setWho(readWho()), []);
 
   const version_ = useRef(version);
   version_.current = version;
@@ -147,6 +150,35 @@ export function SaveLine() {
       {state === 'saved' && (
         <span className="b-note inline-flex items-center gap-1.5">
           <Check className="w-3 h-3" /> Saved
+          {who && <span style={{ opacity: 0.6 }}>· {who}</span>}
+          {/* Only once something is saved, and only if it is unsigned. Asking in
+              the masthead put a question in front of everyone before there was
+              anything to attribute — and attribution only matters at all once
+              two people are editing the same line. */}
+          {!who && !asking && (
+            <button
+              onClick={() => setAsking(true)}
+              className="tap underline"
+              style={{ minHeight: 0, color: 'inherit', opacity: 0.6 }}
+            >
+              sign it
+            </button>
+          )}
+          {!who && asking && (
+            <input
+              autoFocus
+              onBlur={(e) => {
+                setWho(writeWho(e.target.value));
+                setAsking(false);
+              }}
+              placeholder="M"
+              maxLength={1}
+              size={1}
+              aria-label="Your initial"
+              className="tap w-7 px-1 b-data text-center bg-transparent border-b outline-none focus:border-[var(--accent)]"
+              style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+            />
+          )}
         </span>
       )}
       {state === 'error' && <span className="b-note" style={{ color: '#A8456E' }}>Not saved</span>}
@@ -159,26 +191,5 @@ export function SaveLine() {
         </span>
       )}
     </span>
-  );
-}
-
-/** Asked once, on the first save, and remembered on the device. */
-export function WhoAmI() {
-  const [who, setWho] = useState('');
-  useEffect(() => setWho(readWho()), []);
-  if (who) return null;
-  return (
-    <label className="inline-flex items-center gap-2">
-      <span className="b-note">Who are you?</span>
-      <input
-        onBlur={(e) => setWho(writeWho(e.target.value))}
-        placeholder="M"
-        maxLength={1}
-        size={1}
-        aria-label="Your initial"
-        className="tap w-8 px-1 py-0.5 b-data text-center bg-transparent border-b outline-none focus:border-[var(--accent)]"
-        style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
-      />
-    </label>
   );
 }

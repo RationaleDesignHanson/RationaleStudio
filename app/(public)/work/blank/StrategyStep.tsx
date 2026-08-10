@@ -78,7 +78,11 @@ export function StrategyStep() {
         Which business
       </p>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      {/* Two words in one row, with the explanation underneath for whichever is
+          chosen. Two stacked cards each carrying a title and a sentence cost
+          most of a phone screen to express a binary — and the sentence you are
+          not choosing is not helping you choose. */}
+      <div className="flex gap-1.5">
         {OPTIONS.map((o) => {
           const on = config.strategy === o.id;
           return (
@@ -86,31 +90,25 @@ export function StrategyStep() {
               key={o.id}
               onClick={() => choose(o)}
               aria-pressed={on}
-              className="text-left border p-4 transition-colors"
+              className="tap flex-1 min-w-0 px-3 py-2 border transition-colors"
               style={{
-                borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
-                backgroundColor: on ? 'color-mix(in srgb, var(--accent) 5%, transparent)' : 'transparent',
-                // The global button rule is `inline-flex; align-items: center`,
-                // which lays a card's title, line and facts out in a ROW and
-                // vertically centres them. Every stacked control on this page has
-                // to opt out of it explicitly.
                 display: 'block',
                 minHeight: 0,
+                borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
+                backgroundColor: on ? 'color-mix(in srgb, var(--accent) 6%, transparent)' : 'transparent',
+                color: on ? 'var(--accent)' : 'var(--era-ink)',
               }}
             >
-              <span
-                className="font-display block"
-                style={{ fontSize: '1.15rem', color: on ? 'var(--accent)' : 'var(--era-ink)' }}
-              >
+              <span className="font-display" style={{ fontSize: '1.05rem' }}>
                 {o.title}
-              </span>
-              <span className="block b-body mt-0.5" style={{ color: 'var(--era-ink-body)' }}>
-                {o.line}
               </span>
             </button>
           );
         })}
       </div>
+      <p className="mt-2 b-note max-w-xl">
+        {OPTIONS.find((o) => o.id === config.strategy)?.line}
+      </p>
 
       {config.strategy === 'scale' && (
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-2">
