@@ -228,7 +228,24 @@ export const SCREEN_RATE_PER_COLOR: Record<RunSize, number> = {
 
 export const DECO = {
   dischargeMultiplier: { value: 1.25, source: 'DERIVED', confidence: 'derived' as Confidence },
+  /**
+   * THE MOST LOAD-BEARING SOFT NUMBER IN THE MODEL.
+   *
+   * The entire high-scale argument — that a wide catalogue is only possible on
+   * heat-press, because it is the one method with no per-design setup — rests on
+   * this figure, and it is `soft`. It is also flat regardless of print size: a
+   * 13in front hit and a 3in sleeve hit cost the same here, which they do not.
+   *
+   * A trade review put a contract decorator's all-in price (transfer plus press
+   * labour) plausibly in the $2.50–4.50 range. Replacing one soft guess with
+   * another would not make the tool more honest, so instead it is ADJUSTABLE and
+   * the sensitivity is on screen: the page can say what the thesis survives
+   * rather than asserting a number it cannot defend. Get three real quotes
+   * before ordering; nothing here substitutes for that.
+   */
   dtfPerPrint: { value: 1.5, source: 'HL-4-deco', confidence: 'soft' as Confidence },
+  /** The range the sensitivity control sweeps. */
+  dtfRange: { min: 1.0, max: 5.0 },
   dtgPerPrint: { value: 7.5, source: 'HL-4-deco', confidence: 'soft' as Confidence },
   embroideryPer1000Stitches: {
     value: 1.0,
@@ -250,6 +267,11 @@ export interface Decoration {
   colors?: number;
   /** Stitch count, for embroidery. */
   stitches?: number;
+  /**
+   * Stress-test the heat-press price. Unset uses DECO.dtfPerPrint, which is
+   * soft and load-bearing — see the note there.
+   */
+  dtfOverride?: number;
 }
 
 /** passes = colors + (blockerRequired ? 1 : 0) */
@@ -271,7 +293,7 @@ export function decorationVariable(deco: Decoration, blank: Blank, run: RunSize)
         DECO.dischargeMultiplier.value
       );
     case 'dtf':
-      return DECO.dtfPerPrint.value;
+      return deco.dtfOverride ?? DECO.dtfPerPrint.value;
     case 'dtg':
       return DECO.dtgPerPrint.value;
     case 'embroidery':

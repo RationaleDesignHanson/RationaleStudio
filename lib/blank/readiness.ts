@@ -99,12 +99,35 @@ export function readiness(
 }
 
 /**
- * The single next thing worth doing.
+ * The single next thing worth doing, from WHERE YOU ARE.
  *
- * Not the first incomplete section — the first one that is actually actionable.
- * Telling someone to go and do 06 when 06 is waiting on 03 is worse than saying
- * nothing, because they will open it and find a message telling them to leave.
+ * Two rules, and the second one was missing.
+ *
+ * It must be actionable: telling someone to go and do 06 when 06 is waiting on
+ * 03 is worse than saying nothing, because they will open it and find a message
+ * telling them to leave.
+ *
+ * And it must be AHEAD. This returned the first ready section in the list
+ * regardless of where you were standing, so working on the costs it would say
+ * "Next: pick a business" — pointing back at 01, past everything you had
+ * already done. A next action that goes backwards is not a next action; it is a
+ * nag, and it makes the sequence feel arbitrary.
+ *
+ * Something outstanding behind you is still worth surfacing, but it is a
+ * different sentence, so it comes back tagged and the caller words it
+ * differently.
  */
-export function nextAction(statuses: Status[]): Status | null {
-  return statuses.find((s) => s.state === 'ready' && s.id !== '07') ?? null;
+export function nextAction(
+  statuses: Status[],
+  currentId?: string,
+): (Status & { behind?: boolean }) | null {
+  const actionable = statuses.filter((s) => s.state === 'ready' && s.id !== '07');
+  if (actionable.length === 0) return null;
+  if (!currentId) return actionable[0];
+
+  const ahead = actionable.find((s) => s.id > currentId);
+  if (ahead) return ahead;
+
+  const behind = actionable.find((s) => s.id < currentId);
+  return behind ? { ...behind, behind: true } : null;
 }

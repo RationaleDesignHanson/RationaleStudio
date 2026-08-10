@@ -50,3 +50,48 @@ describe('sellThrough', () => {
     expect(SELL_PLAN.fullRate).toBeGreaterThan(0.5);
   });
 });
+
+/**
+ * Buy ahead against make to order.
+ *
+ * The tool only knew one of these, and it was the wrong one for the catalogue —
+ * 24 places x 25 units is 1,800 pieces bought speculatively on designs nobody
+ * has seen. The comparison is the point, so both routes must be judged against
+ * the same season.
+ */
+import { compareFulfilment, podCostPerUnit, POD_UNIT } from '@/lib/blank/fulfilment';
+
+describe('compareFulfilment', () => {
+  const cmp = () => compareFulfilment(200, 170, 6000, 20, 400, 24);
+
+  it('made to order needs no cash up front and strands nothing', () => {
+    const c = cmp().pod;
+    expect(c.upfront).toBe(0);
+    expect(c.stranded).toBe(0);
+  });
+
+  it('buying ahead pays for everything made, sold or not', () => {
+    const c = cmp().buy;
+    expect(c.upfront).toBe(200 * 20 + 400);
+    expect(c.stranded).toBe(30 * 20);
+  });
+
+  it('judges both against the SAME season, or the comparison is meaningless', () => {
+    const { buy, pod } = cmp();
+    // Same revenue on both sides; only the cost structure differs.
+    expect(buy.profit + buy.upfront).toBeCloseTo(pod.profit + pod.costOfSales, 6);
+  });
+
+  it('blends the made-to-order cost by what each style actually makes', () => {
+    const blended = podCostPerUnit([
+      { garment: 'tee', units: 90 },
+      { garment: 'hoodie', units: 10 },
+    ]);
+    expect(blended).toBeGreaterThan(POD_UNIT.tee);
+    expect(blended).toBeLessThan(POD_UNIT.hoodie);
+  });
+
+  it('does not divide by zero on an empty line', () => {
+    expect(Number.isFinite(podCostPerUnit([]))).toBe(true);
+  });
+});

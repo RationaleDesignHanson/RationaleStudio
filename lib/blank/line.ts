@@ -284,13 +284,13 @@ function purchaseBand(units: RunSize, designs: number, colours = 1): RunSize {
   return [...RUN_SIZES].reverse().find((r) => total >= r) ?? units;
 }
 
-export function costSku(sku: Sku, designs = 1): SkuCost {
+export function costSku(sku: Sku, designs = 1, dtfOverride?: number): SkuCost {
   const t = tierIndex(sku.tier);
   const state = STATES[t];
   const blank = blankFor(sku.garment, t);
   const full = stage0Cogs({
     blank,
-    decoration: state.decoration,
+    decoration: { ...state.decoration, dtfOverride },
     run: purchaseBand(sku.units, designs, sku.colours.length),
     relabel: state.relabel,
     // A real order is a size run, and part of it is 2XL. Off by default in
@@ -311,7 +311,7 @@ export function costSku(sku: Sku, designs = 1): SkuCost {
    */
   const reference = stage0Cogs({
     blank,
-    decoration: state.decoration,
+    decoration: { ...state.decoration, dtfOverride },
     run: state.run,
     relabel: state.relabel,
     includeSizeUpcharge: true,
@@ -354,9 +354,9 @@ export function costSku(sku: Sku, designs = 1): SkuCost {
  * the aggregates carry the multiplier. That keeps the sheet readable at 40
  * designs without printing forty rows.
  */
-export function lineTotals(skus: Sku[], designs = 1): LineTotals {
+export function lineTotals(skus: Sku[], designs = 1, dtfOverride?: number): LineTotals {
   const n = Math.max(1, Math.floor(designs));
-  const items = skus.map((sk) => costSku(sk, n));
+  const items = skus.map((sk) => costSku(sk, n, dtfOverride));
 
   const digitizedArtworks = new Set<string>();
   let screens = 0;

@@ -96,6 +96,14 @@ export interface LineConfig {
   /** Paid acquisition per order. The number the catalogue model lives or dies on. */
   cac: number;
   /**
+   * Heat-press cost per print, in cents, or 0 to use the model's own figure.
+   *
+   * The most load-bearing soft number in the model — the whole wide-catalogue
+   * argument rests on it. Adjustable so the page can say what the thesis
+   * survives instead of asserting a price it cannot defend.
+   */
+  dtfCents: number;
+  /**
    * How the artwork should look, in your words.
    *
    * The generators had fixed voices — six drawing styles for a mark, three
@@ -201,6 +209,7 @@ export const LINE_DEFAULTS: LineConfig = {
   palette: [],
   channel: 'social',
   cac: 12,
+  dtfCents: 0,
   signText: '',
   place: '',
   register: 'sign',
@@ -233,6 +242,7 @@ const PARAM = {
   palette: 'pal',
   channel: 'ch',
   cac: 'cac',
+  dtfCents: 'dtf',
   signText: 'sx',
   place: 'pc',
   register: 'rg',
@@ -353,6 +363,8 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
   const ch = q.get(PARAM.channel);
   if (ch && /^[a-z]{4,12}$/.test(ch)) out.channel = ch;
+  const dtfP = q.get(PARAM.dtfCents);
+  if (dtfP && /^\d{1,4}$/.test(dtfP)) out.dtfCents = Math.min(1000, Number(dtfP));
   const cacP = q.get(PARAM.cac);
   if (cacP && /^\d{1,3}$/.test(cacP)) out.cac = Math.min(200, Number(cacP));
   const ad = q.get(PARAM.artDirection);

@@ -48,6 +48,44 @@ export const FABRIC: Record<string, Fabric> = {
   cap1130: { weightOz: 8.0, knit: 'twill', dye: 'piece' },
 };
 
+/**
+ * Who made the blank.
+ *
+ * A palette entry is an abstract name — "olive" — and the tool renders it across
+ * a Bella+Canvas tee, an LA Apparel hoodie and an AS Colour cap as a matched
+ * set, differing only by weight and knit. Three mills, three dye houses, three
+ * cottons. They will not match, and on a rack the mismatch is instantly visible
+ * and reads as cheap.
+ *
+ * A range that does not match on colour is not a range, so the tool has to say
+ * so. This is the cheap half of the fix — the expensive half is a per-blank
+ * catalogue-colour matrix, which is data entry from public vendor colour lists
+ * and worth doing before anyone actually buys.
+ */
+export const BRAND: Record<string, string> = {
+  bc3001: 'Bella+Canvas',
+  shakaSHGD: 'Shaka Wear',
+  as5082: 'AS Colour',
+  as5085: 'AS Colour',
+  la1801gd: 'LA Apparel',
+  as5146: 'AS Colour',
+  as5166: 'AS Colour',
+  laHF09: 'LA Apparel',
+  cap1130: 'AS Colour',
+};
+
+export const brandFor = (blankId: string): string => BRAND[blankId] ?? 'unknown';
+
+/**
+ * The distinct manufacturers a set of blanks spans.
+ *
+ * More than one means a colour cannot be trusted to match across the range, and
+ * the only reliable answer is to order both and compare them in daylight.
+ */
+export function brandsAcross(blankIds: string[]): string[] {
+  return [...new Set(blankIds.map(brandFor))].filter((b) => b !== 'unknown');
+}
+
 export const DEFAULT_FABRIC: Fabric = { weightOz: 6, knit: 'jersey', dye: 'piece' };
 
 export const fabricFor = (blankId: string): Fabric => FABRIC[blankId] ?? DEFAULT_FABRIC;

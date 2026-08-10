@@ -83,3 +83,23 @@ describe('nextAction', () => {
     expect(n === null || n.id === '07').toBe(true);
   });
 });
+
+describe('nextAction points forward', () => {
+  it('does not send you backwards from where you are', () => {
+    // Standing on the costs with the business unchosen, this used to say
+    // "Next: pick a business" — pointing at 01, past everything already done.
+    const s = readiness(cfg({ mark: 'roundel', palette: ['bone'] }), [], none);
+    const n = nextAction(s, '06');
+    expect(n === null || n.id > '06' || n.behind).toBe(true);
+  });
+
+  it('tags an outstanding earlier step so it can be worded differently', () => {
+    const s = readiness(cfg({ mark: 'roundel', palette: ['bone'] }), [sku()], none);
+    const n = nextAction(s, '07');
+    if (n) expect(n.behind).toBe(true);
+  });
+
+  it('still finds the first thing when nowhere in particular', () => {
+    expect(nextAction(readiness(cfg(), [], none))?.id).toBe('01');
+  });
+});

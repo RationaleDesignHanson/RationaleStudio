@@ -43,7 +43,7 @@ import {
   tierIndex,
   type Sku,
 } from '@/lib/blank/line';
-import { RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
+import { DECO, RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
 import { paletteById, STAGE0_COLOURWAY_LIMIT } from '@/lib/blank/palettes';
 import { fabricFor, onCloth } from '@/lib/blank/fabric';
 import { sizeBreakdown } from '@/lib/blank/sizes';
@@ -71,7 +71,8 @@ export function CostSheet() {
   // The catalogue multiplier. A row is priced PER DESIGN; the totals carry the
   // count, so a 40-place line does not print 120 rows to say one thing.
   const designs = config.strategy === 'scale' ? config.designs : 1;
-  const totals = useMemo(() => lineTotals(skus, designs), [skus, designs]);
+  const dtf = config.dtfCents > 0 ? config.dtfCents / 100 : undefined;
+  const totals = useMemo(() => lineTotals(skus, designs, dtf), [skus, designs, dtf]);
   const clears = totals.blendedMargin >= MARGIN_FLOOR;
 
   // The first included style is what the identity beats gate against.
@@ -354,6 +355,29 @@ export function CostSheet() {
           </tbody>
         </table>
       </div>
+
+      {/* The one soft number the whole wide-catalogue argument rests on, made
+          adjustable rather than replaced with a different guess. */}
+      {skus.some((x) => x.tier === 'graphic') && (
+        <label className="flex items-center gap-3 mt-4 max-w-md">
+          <span className="b-label shrink-0" style={{ width: '9rem' }}>
+            Heat-press per print
+          </span>
+          <input
+            type="range"
+            min={DECO.dtfRange.min * 100}
+            max={DECO.dtfRange.max * 100}
+            step={25}
+            value={config.dtfCents > 0 ? config.dtfCents : DECO.dtfPerPrint.value * 100}
+            onChange={(e) => set('dtfCents', Number(e.target.value))}
+            className="tap flex-1 min-w-0 accent-[var(--accent)]"
+            style={{ minHeight: 0 }}
+          />
+          <span className="b-data shrink-0 text-right" style={{ width: '3.5rem' }}>
+            ${((config.dtfCents > 0 ? config.dtfCents : DECO.dtfPerPrint.value * 100) / 100).toFixed(2)}
+          </span>
+        </label>
+      )}
 
       <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         Cost per unit excludes setup — digitizing, screens and the woven-label minimum land in the

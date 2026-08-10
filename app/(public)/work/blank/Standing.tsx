@@ -29,6 +29,7 @@ import { sizeBreakdown } from '@/lib/blank/sizes';
 import { normalise } from '@/lib/blank/wordmark';
 import { CHANNELS, campaign, channelById, sellUnit } from '@/lib/blank/channel';
 import { SELL_PLAN, sellThrough } from '@/lib/blank/sellthrough';
+import { compareFulfilment, podCostPerUnit } from '@/lib/blank/fulfilment';
 import { WornPhoto } from './WornPhoto';
 import { Lookbook } from './Lookbook';
 
@@ -280,6 +281,77 @@ export function Standing() {
                   A first line selling {Math.round(SELL_PLAN.fullRate * 100)}% at full price is doing
                   well. Revenue at list — {money(st.revenueAtList)} — assumes a perfect season, which
                   is what every figure here used to assume.
+                </p>
+              </>
+            );
+          })()}
+        </section>
+      )}
+
+      {/* BUY AHEAD OR MAKE TO ORDER — the decision the catalogue actually turns
+          on, and one the tool could not express. Both routes are judged against
+          the SAME season, which is the only way the comparison means anything. */}
+      {leadCost && (
+        <section>
+          <Head>Buy ahead, or make to order</Head>
+          {(() => {
+            const st = sellThrough(totals.totalUnits, leadCost.retail, totals.cogsPerUnit);
+            const sold = st.unitsFull + st.unitsMarked;
+            const pod = podCostPerUnit(skus.map((x) => ({ garment: x.garment, units: x.units })));
+            const cmp = compareFulfilment(
+              totals.totalUnits,
+              sold,
+              st.revenue,
+              totals.variableTotal / Math.max(1, totals.totalUnits),
+              totals.sharedFixed.total,
+              pod,
+            );
+            const better = cmp.pod.profit > cmp.buy.profit ? 'pod' : 'buy';
+            return (
+              <>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {(['buy', 'pod'] as const).map((k) => {
+                    const c = cmp[k];
+                    const win = k === better;
+                    return (
+                      <div
+                        key={k}
+                        className="border p-3"
+                        style={{
+                          borderColor: win ? 'var(--accent)' : 'var(--era-hairline)',
+                        }}
+                      >
+                        <p className="b-label mb-2" style={{ color: win ? 'var(--accent)' : 'var(--era-ink-muted)' }}>
+                          {k === 'buy' ? `Buy ${totals.totalUnits} ahead` : `Make ${sold} to order`}
+                        </p>
+                        <dl className="b-data space-y-1">
+                          <Row label="Cash up front" value={money(c.upfront)} alert={c.upfront > 0 && k === 'buy'} />
+                          <Row label="Per piece" value={dollars(c.perUnit)} />
+                          <Row label="Stuck in stock" value={money(c.stranded)} alert={c.stranded > 0} />
+                          <Row label="Profit" value={money(c.profit)} strong alert={c.profit < 0} />
+                        </dl>
+                      </div>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 b-body max-w-xl">
+                  {better === 'pod' ? (
+                    <>
+                      Making to order wins here by{' '}
+                      <strong>{money(cmp.pod.profit - cmp.buy.profit)}</strong>
+                      {cmp.pod.perUnit > cmp.buy.perUnit
+                        ? ' — dearer per piece, but nothing is bought until something is sold and nothing is left over.'
+                        : ' — and it is cheaper per piece too, because a print-on-demand supplier buys blanks at a volume you cannot, which is what happens when your own run is shallow.'}
+                    </>
+                  ) : (
+                    <>
+                      Buying ahead wins here by{' '}
+                      <strong>{money(cmp.buy.profit - cmp.pod.profit)}</strong>, and it costs{' '}
+                      {money(cmp.buy.upfront)} before a single sale.
+                    </>
+                  )}{' '}
+                  {config.strategy === 'scale' &&
+                    'A wide catalogue is a bet on places you have not tested — which is the argument for making to order until one of them sells.'}
                 </p>
               </>
             );

@@ -38,8 +38,8 @@ export interface Section {
 export function BlankShell({ sections }: { sections: Section[] }) {
   const { config, set, isSet, skus } = useLine();
   const statuses = readiness(config, skus, isSet);
-  const next = nextAction(statuses);
   const openId = BEATS[clampStep(config.step)]?.n ?? sections[0]?.id;
+  const next = nextAction(statuses, openId);
   const open = sections.find((x) => x.id === openId) ?? sections[0];
 
   return (
@@ -123,7 +123,7 @@ export function BlankShell({ sections }: { sections: Section[] }) {
               className="tap b-data"
               style={{ color: 'var(--accent)', minHeight: 0 }}
             >
-              Next: {next.note} →
+              {next.behind ? 'Still to do' : 'Next'}: {next.note} →
             </button>
           )}
         </div>

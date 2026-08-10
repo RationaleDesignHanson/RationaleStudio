@@ -25,7 +25,7 @@
 import { useLine } from '@/lib/blank/lineState';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteById } from '@/lib/blank/palettes';
 import { GARMENTS, blankFor, tierIndex } from '@/lib/blank/line';
-import { clothNote, clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
+import { brandsAcross, clothNote, clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { Mark } from './MarkFamily';
@@ -191,6 +191,20 @@ export function PaletteBeat() {
               })}
             </div>
           </div>
+
+          {/* The card renders three vendors' garments in one colour as though
+              they were a set. They are not, and on a rack it is obvious. */}
+          {(() => {
+            const brands = brandsAcross(GARMENTS.map((g) => blankFor(g.key, tier).id));
+            if (brands.length < 2) return null;
+            return (
+              <p className="mt-4 b-note max-w-2xl" style={{ color: '#A8456E' }}>
+                This range spans <strong>{brands.join(', ')}</strong>. The same colour name is a
+                different colour at each — different mill, different dye house, different cotton.
+                Order one of each and compare in daylight before committing a colourway across them.
+              </p>
+            );
+          })()}
 
           <p className="mt-4 b-note max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>These are not the swatch colours.</strong>{' '}
