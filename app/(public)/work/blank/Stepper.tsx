@@ -71,7 +71,7 @@ export const BEATS: Beat[] = [
     n: '01',
     short: 'Name',
     title: 'Name it',
-    note: 'The word, and the face it is set in. Real type, so it is always spelled correctly and costs nothing to try.',
+    note: 'Which business you are in, then the word and the face it is set in. Real type, so the name is always spelled correctly and costs nothing to try.',
   },
   {
     n: '02',
@@ -89,12 +89,18 @@ export const BEATS: Beat[] = [
     short: 'Colour',
     title: 'What colour is it',
     note: 'Six colourways of one garment carrying one mark, so colour is the only variable. Stage 0 allows two per style.',
+    scale: {
+      note: 'Six colourways of one garment carrying your place graphic, so colour is the only variable. Stage 0 allows two per style.',
+    },
   },
   {
     n: '04',
     short: 'Applied',
     title: 'On the clothes',
     note: 'Where the mark sits and how big, across all three garments at once. Nothing here costs a render.',
+    scale: {
+      note: 'Where the place graphic sits and how big, across all three garments at once. Nothing here costs a render.',
+    },
   },
   {
     n: '05',
@@ -106,10 +112,13 @@ export const BEATS: Beat[] = [
     n: '06',
     short: 'Costs',
     title: 'Dial in the costs',
-    // Deliberately says nothing about setup amortising. That is true of the
-    // considered line and false of the catalogue, and the sheet itself now
-    // states whichever one applies.
-    note: 'The line, specced style by style — what each one costs to make, what it lists at, and what the whole buy comes to.',
+    // The considered line keeps its true claim; the catalogue gets the opposite
+    // one, which is also true. Dropping it for both lost the most persuasive
+    // sentence on the page for the strategy it is still correct about.
+    note: 'The line, specced style by style. Setup is charged once across the collection, so it costs less than the sum of its garments.',
+    scale: {
+      note: 'The catalogue, specced style by style. Setup is charged per design and never amortises, which is why only the cheapest decoration can carry a line this wide.',
+    },
   },
   {
     n: '07',
@@ -177,13 +186,19 @@ export function Stepper() {
   }, []);
 
   const stop = STATES[tierIndex(config.budget)];
-  const totals = skus.length ? lineTotals(skus) : null;
+  // The catalogue multiplier, or the rail and the sheet print different blended
+  // margins for the same line the moment any row leaves heat-press.
+  const totals = skus.length
+    ? lineTotals(skus, config.strategy === 'scale' ? config.designs : 1)
+    : null;
 
   // Only what is actually settled. An omitted item says "not yet"; a dash would
   // read as a value.
   const decided: { label: string; value: string; alert?: boolean }[] = [
     { label: 'Name', value: normalise(config.wordmark) || 'BLANK' },
-    { label: 'Budget', value: money(stop.budget) },
+    config.strategy === 'scale'
+      ? { label: 'Places', value: String(config.designs) }
+      : { label: 'Budget', value: money(stop.budget) },
   ];
   if (config.wordmarkStyle) {
     decided.push({
@@ -203,7 +218,15 @@ export function Stepper() {
     });
   }
   if (totals) {
-    decided.push({ label: 'SKUs', value: String(skus.length) });
+    // On a catalogue the SKU count IS the product — "SKUs 3" for 72 shirts is
+    // the least informative number the rail could show.
+    decided.push({
+      label: 'SKUs',
+      value:
+        config.strategy === 'scale'
+          ? `${skus.length * config.designs}`
+          : String(skus.length),
+    });
     decided.push({
       label: 'Margin',
       value: `${(totals.blendedMargin * 100).toFixed(1)}%`,

@@ -27,6 +27,7 @@ import {
   BLANKS,
   DECO,
   RELABEL,
+  RUN_SIZES,
   decorationPasses,
   decorationFixed,
   grossMargin,
@@ -205,14 +206,26 @@ export interface LineTotals {
  * a margin of minus fifty per cent, printed as though it were a plan. Nobody
  * prices a hoodie at a tee price, and the model should not offer to.
  *
- * These are ratios rather than absolute prices so they survive the tier moving:
- * a hoodie is roughly two and a half tees at retail in this category, and a cap
- * is roughly a tee.
+ * These are ratios rather than absolute prices so they survive the tier moving.
+ *
+ * TWO CEILINGS THE FIRST ATTEMPT BROKE, both caught in review:
+ *
+ * The cap was 0.95 — marked DOWN against the tee. That is backwards on cost (the
+ * cap blank is 2.6x the tee blank at the graphic tier and 1.5x at washed) and it
+ * pushed cap-at-tonal from 62.6% to 58.8%, under the 60% floor, turning a row red
+ * for a garment nothing in the brief had asked to change. A cap is about a tee.
+ *
+ * The hoodie was 2.6, which put it at $285 at the top tiers — $60 ABOVE the
+ * cut-and-sew chore coat in HEROES, which is a bespoke garment-dyed hero made in
+ * Portugal and the thing the entire Stage-1 argument is built on. It also made a
+ * stock decorated blank the highest-margin item in the line at every tier from
+ * washed up, inverting the fact-check in economics.ts that records the hoodie as
+ * the MARGINAL garment. 1.9 keeps it under the hero at every tier.
  *
  * CONFIDENCE: category convention, not sourced quotes — the same class of claim
  * as the costNote fields. Every one is overridable per SKU in the sheet.
  */
-const RETAIL_RATIO: Record<Garment, number> = { tee: 1, hoodie: 2.6, cap: 0.95 };
+const RETAIL_RATIO: Record<Garment, number> = { tee: 1, hoodie: 1.9, cap: 1 };
 
 /** The default list price for a garment at a tier, rounded to a real price point. */
 export function retailFor(garment: Garment, tier: number): number {
@@ -223,14 +236,31 @@ export function retailFor(garment: Garment, tier: number): number {
 /** Identity of an embroidery artwork — same mark on two garments digitizes once. */
 const artworkKey = (s: Sku) => s.graphic ?? 'house-mark';
 
-export function costSku(sku: Sku): SkuCost {
+/**
+ * The run size the BLANKS are bought at, which is not the run size of one SKU
+ * once a catalogue is involved.
+ *
+ * Setup does not amortise across designs — that is the fork's whole argument —
+ * but blanks absolutely do. Twenty-four places at 25 units each is an order for
+ * 600 identical BC3001s, and it was being priced in the 25-piece band: RUN_INDEX
+ * 1.15 against 0.90, about 28% over on the blank, plus double the freight. The
+ * sheet was arguing against the catalogue partly on a number wrong in its own
+ * favour, which is the mirror image of the bug this module exists to fix.
+ */
+function purchaseBand(units: RunSize, designs: number): RunSize {
+  const total = units * Math.max(1, designs);
+  // Largest band the real order clears.
+  return [...RUN_SIZES].reverse().find((r) => total >= r) ?? units;
+}
+
+export function costSku(sku: Sku, designs = 1): SkuCost {
   const t = tierIndex(sku.tier);
   const state = STATES[t];
   const blank = blankFor(sku.garment, t);
   const full = stage0Cogs({
     blank,
     decoration: state.decoration,
-    run: sku.units,
+    run: purchaseBand(sku.units, designs),
     relabel: state.relabel,
   });
   // Strip the per-SKU amortised fixed cost; it's re-added once, at line level.
@@ -275,7 +305,7 @@ export function costSku(sku: Sku): SkuCost {
  */
 export function lineTotals(skus: Sku[], designs = 1): LineTotals {
   const n = Math.max(1, Math.floor(designs));
-  const items = skus.map(costSku);
+  const items = skus.map((sk) => costSku(sk, n));
 
   const digitizedArtworks = new Set<string>();
   let screens = 0;

@@ -272,12 +272,19 @@ No text, no letters, no words, no readable lettering, no numerals, no watermarks
     const registerId = PLACE_REGISTERS[String(body.register)] ? String(body.register) : 'sign';
     model = IMAGEN;
     const angle = register.angles[variant % register.angles.length];
-    const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in a few flat colours on a flat even cool mid-grey field that fills the frame. Centred, occupying about two thirds of the frame width. This is a digital graphic, not a photograph of an object: no surface texture, no depth of field.
+    // PURE BLACK GROUND, not grey. These get printed onto a garment, and the
+    // model returns no alpha channel — so the background has to be knocked out
+    // by a blend mode instead. `screen` makes black transparent and leaves the
+    // colours; mid-grey knocked out nothing, and the applied views showed a
+    // visible grey rectangle sitting around the sign on every garment.
+    const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in a few flat colours on a PURE BLACK field that fills the entire frame edge to edge. Centred, occupying about two thirds of the frame width. This is a digital graphic, not a photograph of an object: no surface texture, no depth of field, no vignette, no gradient in the background — the background is pure black #000000 everywhere.
 The artwork is: ${register.subject(place)}.
 Composed as: ${angle}.
 ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no numerals, no route numbers, no readable lettering anywhere in the image. Any sign, badge or panel must be COMPLETELY BLANK. No watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
-    keySource = `${kind}.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
+    // `k2` scopes the cache bust to the place kind — bumping VERSION would have
+    // thrown away every colour and mark render too.
+    keySource = `${kind}.k2.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
   } else {
     // mark: redraw the rasterised construction with custom letterforms.
     const image = typeof body.image === 'string' ? body.image : '';

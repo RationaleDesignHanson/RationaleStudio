@@ -55,8 +55,10 @@ const EXAMPLES = ['Molly Pitcher, NJ', 'Exit 9, New Brunswick', 'Asbury Park', '
 
 export function PlaceGraphics() {
   const { config, set } = useLine();
-  const [place, setPlace] = useState('');
-  const [register, setRegister] = useState<string>('sign');
+  const place = config.place;
+  const setPlace = (v: string) => set('place', v);
+  const register = config.register;
+  const setRegister = (v: string) => set('register', v);
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [running, setRunning] = useState(false);
 

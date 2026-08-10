@@ -45,6 +45,7 @@ import { useLine } from '@/lib/blank/lineState';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { STATES, GARMENTS, tierIndex, type Garment } from '@/lib/blank/line';
 import { COLORWAYS, resolveAxes, validateTuple } from '@/lib/blank/prompts';
 import {
@@ -129,13 +130,15 @@ export function DeviationRender() {
       // rather than a text description of something like it.
       let image: string | null = null;
       if (config.customGraphic) {
-        const blob = await (await fetch(config.customGraphic)).blob();
-        image = await new Promise<string>((resolve, reject) => {
-          const fr = new FileReader();
-          fr.onload = () => resolve(String(fr.result));
-          fr.onerror = () => reject(new Error('read failed'));
-          fr.readAsDataURL(blob);
-        });
+        // Lettering baked in, not sent separately. A sign panel is generated
+        // blank on purpose, so posting the raw file here bought a photograph of
+        // an EMPTY sign — on the only beat that spends real money.
+        image = await artworkDataUrl(
+          config.customGraphic,
+          config.register === 'sign' ? config.signText : '',
+          config.signSize,
+          config.signY,
+        );
       } else if (construction && probeRef.current) {
         image = rasteriseMark(construction, word, readFont(probeRef.current));
       }
@@ -187,14 +190,14 @@ export function DeviationRender() {
         Put it somewhere else on the garment
       </h3>
       <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Colour is decided in 04. This is placement: the same artwork can go small on a sleeve in
+        Colour is decided in 03. This is placement: the same artwork can go small on a sleeve in
         tonal ink or oversize on the back in puff, and the axes are the production vocabulary rather
         than a style picker.{' '}
         {subject === 'graphic'
           ? 'Rendering your kept graphic.'
           : subject === 'mark'
             ? 'Rendering your mark.'
-            : 'Pick a mark or keep a graphic in 03 first — there is nothing to place yet.'}
+            : 'Pick a mark or keep a graphic in 02 first — there is nothing to place yet.'}
       </p>
 
       {/* Inherited, not re-offered. Stated so it is obvious where to change them. */}

@@ -29,6 +29,7 @@ import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteRound, type Palette } from '@/lib/blank/palettes';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { PinButton, PinShelf } from './Pins';
 
 type Tile = { palette: Palette; url?: string; error?: string; busy?: boolean };
@@ -63,8 +64,20 @@ export function ColourBeat() {
       // The mark travels as artwork so every tile carries the SAME mark and only
       // the colour moves. Without it the round would compare six blank garments,
       // which is a swatch card, not a bake-off.
-      const image =
-        mark && probeRef.current ? rasteriseMark(mark, word, readFont(probeRef.current)) : null;
+      // A kept graphic counts as artwork. Reading only `config.mark` meant a
+      // catalogue user — whose mark lives in a closed disclosure and is usually
+      // null — paid for six renders of BLANK garments, in the one beat whose
+      // premise is that the artwork is held constant.
+      const image = config.customGraphic
+        ? await artworkDataUrl(
+            config.customGraphic,
+            config.register === 'sign' ? config.signText : '',
+            config.signSize,
+            config.signY,
+          )
+        : mark && probeRef.current
+          ? rasteriseMark(mark, word, readFont(probeRef.current))
+          : null;
 
       // Fanned out, not sequential: six renders one after another is a minute of
       // staring at nothing, and each tile caches on its own key anyway.
@@ -146,7 +159,12 @@ export function ColourBeat() {
         </button>
 
         <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          {mark ? 'carrying your mark' : 'plain garments — pick a mark in 03 to carry it'} · six
+          {config.customGraphic
+            ? 'carrying your graphic'
+            : mark
+              ? 'carrying your mark'
+              : 'plain garments — choose artwork in 02 to carry it'}{' '}
+          · six
           renders per round
         </span>
       </div>

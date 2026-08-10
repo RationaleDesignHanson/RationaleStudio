@@ -8,7 +8,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { lineTotals, costSku, STATES, blankFor, type Sku } from '@/lib/blank/line';
+import { lineTotals, costSku, retailFor, STATES, blankFor, type Sku } from '@/lib/blank/line';
 import { stage0Cogs, DECO, RELABEL } from '@/lib/blank/economics';
 
 const sku = (over: Partial<Sku> = {}): Sku => ({
@@ -220,12 +220,19 @@ describe('lineTotals — designs multiplier', () => {
     expect(b.totalUnits).toBe(a.totalUnits);
   });
 
-  it('multiplies units and variable cost by the catalogue', () => {
+  it('multiplies units and revenue by the catalogue', () => {
+    const one = lineTotals([tee('graphic')], 20);
+    expect(one.totalUnits).toBe(lineTotals([tee('graphic')], 1).totalUnits * 20);
+    expect(one.totalRevenue).toBeCloseTo(lineTotals([tee('graphic')], 1).totalRevenue * 20, 6);
+  });
+
+  it('buys the blanks cheaper at catalogue volume — 20x units is LESS than 20x cost', () => {
+    // Not a rounding artefact: 20 designs x 50 is a thousand-piece blank order,
+    // and pricing it in the 50-piece band was a real overcharge.
     const one = lineTotals([tee('graphic')], 1);
     const many = lineTotals([tee('graphic')], 20);
-    expect(many.totalUnits).toBe(one.totalUnits * 20);
-    expect(many.variableTotal).toBeCloseTo(one.variableTotal * 20, 6);
-    expect(many.totalRevenue).toBeCloseTo(one.totalRevenue * 20, 6);
+    expect(many.variableTotal).toBeLessThan(one.variableTotal * 20);
+    expect(many.variableTotal).toBeGreaterThan(one.variableTotal * 15);
   });
 
   it('heat-press carries NO setup however wide the catalogue gets', () => {
@@ -256,16 +263,13 @@ describe('lineTotals — designs multiplier', () => {
     expect(perUnit(40)).toBeGreaterThan(0);
   });
 
-  it('the ONLY thing a wide catalogue amortises is the one-off neck screen', () => {
-    // Worth pinning because it is the one honest efficiency in the scale model,
-    // and it is small — it should never be mistaken for the collection discount
-    // the considered line gets.
+  it('amortises the neck screen and the blank order, but never the per-design screens', () => {
+    // The two honest efficiencies of scale, and the one thing that is not.
     const narrow = lineTotals([tee('washed')], 1);
     const wide = lineTotals([tee('washed')], 40);
-    expect(wide.sharedFixed.neckSetup).toBe(narrow.sharedFixed.neckSetup);
-    // Which moves cogs/unit by well under a dollar, not by a tier.
-    expect(narrow.cogsPerUnit - wide.cogsPerUnit).toBeLessThan(1);
-    expect(wide.cogsPerUnit).toBeLessThan(narrow.cogsPerUnit);
+    expect(wide.sharedFixed.neckSetup).toBe(narrow.sharedFixed.neckSetup); // paid once
+    expect(wide.cogsPerUnit).toBeLessThan(narrow.cogsPerUnit); // blanks get cheaper
+    expect(wide.sharedFixed.screens).toBeGreaterThan(narrow.sharedFixed.screens); // screens do not
   });
 
   it('heat-press is far cheaper per unit than screen once nothing amortises', () => {
@@ -277,5 +281,77 @@ describe('lineTotals — designs multiplier', () => {
   it('clamps a nonsense catalogue size rather than producing a nonsense line', () => {
     expect(lineTotals([tee('graphic')], 0).totalUnits).toBe(50);
     expect(lineTotals([tee('graphic')], -5).totalUnits).toBe(50);
+  });
+});
+
+/**
+ * Retail defaults, per garment.
+ *
+ * The pre-existing tests only ever asserted the TEE, whose ratio is 1.0, so they
+ * kept passing through a change that repriced every other garment. These pin the
+ * two ceilings review caught: a cap must not be marked below a tee it costs more
+ * than, and a decorated stock hoodie must not out-price the cut-and-sew hero.
+ */
+describe('retailFor', () => {
+  const TIERS = [0, 1, 2, 3, 4];
+
+  it('never prices a cap below a tee — the cap blank costs more', () => {
+    for (const t of TIERS) expect(retailFor('cap', t)).toBeGreaterThanOrEqual(retailFor('tee', t));
+  });
+
+  it('keeps the hoodie under the cut-and-sew hero at every tier', () => {
+    // HEROES.choreCoat.targetRetail is 225. A decorated blank listing above a
+    // bespoke garment-dyed hero would contradict the page's whole Stage-1 case.
+    for (const t of TIERS) expect(retailFor('hoodie', t)).toBeLessThan(225);
+  });
+
+  it('never makes a stock hoodie meaningfully more profitable than a tee', () => {
+    // The review's finding was a SYSTEMATIC inversion — at 2.6 the hoodie was the
+    // best-margin item at four of five tiers, contradicting the fact-check in
+    // economics.ts that records it as the marginal garment. A point either way is
+    // an artefact of rounding retail to $5 and is not worth chasing; a hoodie
+    // that is reliably the most profitable thing in the line is a broken model.
+    for (const tier of STATES) {
+      const at = (garment: 'tee' | 'hoodie') =>
+        costSku({ garment, tier: tier.slug, units: tier.run, graphic: null }).margin;
+      expect(at('hoodie') - at('tee')).toBeLessThan(0.02);
+    }
+  });
+
+  it('keeps the hoodie the marginal garment at the cheap tier', () => {
+    // The heavy fleece blank is the cost problem the whole tier structure exists
+    // to describe, so this must not be smoothed away by a generous ratio.
+    const at = (garment: 'tee' | 'hoodie') =>
+      costSku({ garment, tier: 'graphic', units: 50, graphic: null }).margin;
+    expect(at('hoodie')).toBeLessThan(at('tee') - 0.3);
+  });
+
+  it('lands on real price points, not arithmetic', () => {
+    for (const g of ['tee', 'hoodie', 'cap'] as const)
+      for (const t of TIERS) expect(retailFor(g, t) % 5).toBe(0);
+  });
+});
+
+/**
+ * Blanks are bought as ONE order across the catalogue even though setup is not.
+ * Both halves matter: getting this wrong in either direction makes the sheet
+ * argue for or against the catalogue on a number that is simply incorrect.
+ */
+describe('lineTotals — purchasing volume across designs', () => {
+  const tee = (units: 25 | 50): Sku => ({ garment: 'tee', tier: 'graphic', units, graphic: null });
+
+  it('prices blanks at the band the whole order clears, not one design', () => {
+    // 24 x 25 = 600 pieces, which clears the deepest band.
+    expect(lineTotals([tee(25)], 24).cogsPerUnit).toBeLessThan(lineTotals([tee(25)], 1).cogsPerUnit);
+  });
+
+  it('still charges setup per design — volume does not rescue a screen line', () => {
+    const wide = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, graphic: null }], 24);
+    const one = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, graphic: null }], 1);
+    expect(wide.sharedFixed.screens).toBeCloseTo(one.sharedFixed.screens * 24, 6);
+  });
+
+  it('is unchanged for a single-design line', () => {
+    expect(lineTotals([tee(50)], 1).cogsPerUnit).toBeCloseTo(lineTotals([tee(50)]).cogsPerUnit, 9);
   });
 });

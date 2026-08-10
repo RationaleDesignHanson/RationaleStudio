@@ -63,12 +63,22 @@ const OPTIONS: {
 ];
 
 export function StrategyStep() {
-  const { config, set } = useLine();
+  const { config, set, clearSkus } = useLine();
 
   const choose = (o: (typeof OPTIONS)[number]) => {
+    // Only rewrite the downstream defaults when the business actually CHANGES.
+    // Clicking the already-selected card looks like a no-op and was quietly
+    // jumping the budget from the $3k tier to the $12k one, re-costing every
+    // row and re-gating every mark.
+    if (config.strategy === o.id) return;
     set('strategy', o.id);
     set('budget', o.defaults.budget);
     set('designs', o.defaults.designs);
+    // The cost sheet takes its gate from the first included row, so a line
+    // specced under the other business would immediately overwrite the budget
+    // this choice just set — the card says "heat-press only" and the tool would
+    // put embroidery straight back without saying so.
+    clearSkus();
   };
 
   return (

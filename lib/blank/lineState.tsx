@@ -68,6 +68,16 @@ export interface LineConfig {
    * Storage URLs.
    */
   signText: string;
+  /**
+   * The place a catalogue graphic is for, and the voice it was asked for in.
+   *
+   * In the URL rather than component state for the reason every other choice is:
+   * a partner opening the link could see the kept graphic but not what was
+   * searched for or in which register, so they could not re-run the round
+   * without guessing — and re-running costs six renders.
+   */
+  place: string;
+  register: string;
   /** Cap height as a percent of the panel's width. */
   signSize: number;
   /** Vertical centre of the lettering, as a percent of panel height. */
@@ -160,6 +170,8 @@ export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
   signText: '',
+  place: '',
+  register: 'sign',
   signSize: 11,
   signY: 50,
   colorway: 'charcoal',
@@ -188,6 +200,8 @@ const PARAM = {
   strategy: 'sg',
   designs: 'n',
   signText: 'sx',
+  place: 'pc',
+  register: 'rg',
   signSize: 'sz',
   signY: 'sy',
   budget: 'b',
@@ -273,6 +287,10 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
   const sx = q.get(PARAM.signText);
   if (sx) out.signText = sx.slice(0, 48);
+  const pc = q.get(PARAM.place);
+  if (pc) out.place = pc.slice(0, 120);
+  const rg = q.get(PARAM.register);
+  if (rg === 'sign' || rg === 'pun' || rg === 'song') out.register = rg;
   const sz = q.get(PARAM.signSize);
   if (sz && /^\d{1,2}$/.test(sz)) out.signSize = Math.min(30, Math.max(4, Number(sz)));
   const sy = q.get(PARAM.signY);

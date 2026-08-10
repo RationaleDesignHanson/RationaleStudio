@@ -43,6 +43,8 @@ import { PlaceGraphics } from './PlaceGraphics';
 import { Stepper, StepFooter, BEATS, beatFor, clampStep } from './Stepper';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
+import { normalise } from '@/lib/blank/wordmark';
+import { DIRECTION_LABELS } from './BrandBakeoff';
 
 function Standing({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -60,14 +62,43 @@ function Standing({ title, children }: { title: string; children: React.ReactNod
   );
 }
 
-/** The close. Read this before believing any number in the beats above. */
+/**
+ * The close. Read this before believing any number in the beats above.
+ *
+ * It was a static literal, which made it wrong in three ways at once: it never
+ * mentioned the catalogue business or that setup does not amortise — the one
+ * fact the whole fork exists to establish — it listed the brand direction as
+ * undecided while the rail two inches above had been showing one since load, and
+ * it hardcoded "Blank" as the name on the one page whose first control is a name
+ * field. A standings board that does not read the state is a decoration.
+ */
 function Standings() {
+  const { config, skus } = useLine();
+  const scale = config.strategy === 'scale';
+  const name = normalise(config.wordmark) || 'BLANK';
+  const direction = DIRECTION_LABELS[config.direction] ?? config.direction;
+
   return (
     <div className="grid md:grid-cols-3 gap-8">
       <Standing title="Settled">
         <li>
           Quiet costs more to make than loud. The mechanism is fixed costs and minimums, not taste —
           strip them out and ink is what&rsquo;s left.
+        </li>
+        <li>
+          {scale ? (
+            <>
+              This is costed as a <strong style={{ color: 'var(--era-ink)' }}>catalogue</strong> —{' '}
+              {config.designs} places. Setup is paid per design and never amortises, so the wide
+              line is only possible on the cheapest decoration. That is the same argument as the
+              line above, pointed at variety instead of finish.
+            </>
+          ) : (
+            <>
+              This is costed as a <strong style={{ color: 'var(--era-ink)' }}>considered line</strong>{' '}
+              — one artwork, so setup is paid once and spreads across the buy.
+            </>
+          )}
         </li>
         <li>
           Stage 0 is decorated blanks. A cut-and-sew hero needs 86 pre-orders, or 72 if the coat and
@@ -80,18 +111,24 @@ function Standings() {
       </Standing>
 
       <Standing title="Open">
-        <li>Which brand direction. Six are still live in beat 05 and none has been chosen.</li>
+        <li>
+          Brand direction is on <strong style={{ color: 'var(--era-ink)' }}>{direction}</strong> —
+          the default rather than a decision, unless you changed it in beat 05. Six are live.
+        </li>
         <li>
           Retail price. It&rsquo;s the largest single margin lever in the model at 35.9 points, and
           the tray still uses tier defaults unless you override a SKU.
         </li>
         <li>
           The name is narrowed, not settled:{' '}
-          <strong style={{ color: 'var(--era-ink)' }}>Blank</strong> is the working name and the only
-          placeholder anyone is comfortable with. Beat 01 takes any word, and a longer one is
-          constrained by the platen before it is by taste.
+          <strong style={{ color: 'var(--era-ink)' }}>{name}</strong> is what beat 01 currently
+          carries. A longer one is constrained by the 14in platen before it is by taste.
         </li>
-        <li>No inventory ordered, no tech pack, no supplier contacted.</li>
+        <li>
+          {skus.length === 0
+            ? 'Nothing specced yet — beat 06 is empty, so every figure above is a preview.'
+            : 'No inventory ordered, no tech pack, no supplier contacted.'}
+        </li>
       </Standing>
 
       <Standing title="Unverified">

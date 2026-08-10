@@ -43,6 +43,7 @@ import {
 } from '@/lib/blank/markFamily';
 import { MIN_WORDMARK_INCHES } from '@/lib/blank/identity';
 import { Mark } from './MarkFamily';
+import { SignArtwork } from './SignArtwork';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
 
@@ -59,11 +60,20 @@ const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
  * The beat's entire claim is that "a mark that dies at 2in visibly dies at 2in",
  * and it was drawing every placement at the same size on a garment a third of the
  * width. Scale now comes from real inches over the real garment width.
+ *
+ * IDS MATCH `PLACEMENTS` IN axes.ts EXACTLY, and must keep doing so.
+ *
+ * This beat and the deviation renderer both write `config.placement`, and they
+ * used different vocabularies for the same four positions — `chest`/`back` here
+ * against `chest-centre`/`upper-back` there. `validateTuple` rejects an unknown
+ * placement, but the renderer's coercion effect rewrites the stranded value to
+ * the garment default before anyone sees an error, so choosing "Upper back",
+ * stepping to 05 and stepping back silently reset you to Chest with nothing said.
  */
 const PLACEMENTS = [
-  { id: 'chest', label: 'Chest', inches: 10, x: 50, y: 44 },
+  { id: 'chest-centre', label: 'Chest', inches: 10, x: 50, y: 44 },
   { id: 'left-chest', label: 'Left chest', inches: 2, x: 34, y: 36 },
-  { id: 'back', label: 'Upper back', inches: 12, x: 50, y: 38 },
+  { id: 'upper-back', label: 'Upper back', inches: 12, x: 50, y: 38 },
   { id: 'sleeve', label: 'Sleeve', inches: 1.5, x: 12, y: 46 },
 ] as const;
 
@@ -161,6 +171,40 @@ export function Applied() {
       : constructionsFor(word);
   const mark = pool.find((c) => c.id === config.mark) ?? null;
 
+  /**
+   * WHAT GETS PRINTED. This drew name-derived constructions and nothing else, so
+   * a kept graphic — a place sign, a prompt bake-off result, an uploaded
+   * reference — never reached a garment at all. On the catalogue path that is
+   * the entire product, and the beat showed "pick a mark in step 02" to someone
+   * who had just spent six renders choosing one.
+   *
+   * A kept graphic wins when there is one, because keeping it is the more recent
+   * and more specific decision. The house mark is still what a considered line
+   * carries, and still what shows when nothing has been kept.
+   */
+  const artwork: { kind: 'mark'; c: Construction } | { kind: 'image'; url: string } | null =
+    config.customGraphic
+      ? { kind: 'image', url: config.customGraphic }
+      : mark
+        ? { kind: 'mark', c: mark }
+        : null;
+
+  /**
+   * A photographic full-colour panel is not screen-printable. Constructions get
+   * the real per-graphic gate; an image gets the honest blanket one, which says
+   * the same thing the whole page says — the wide, cheap, full-colour path is
+   * heat-press and only heat-press.
+   */
+  const printable =
+    artwork?.kind === 'image'
+      ? method === 'dtf'
+        ? { ok: true as const }
+        : {
+            ok: false as const,
+            why: `A full-colour graphic cannot be pulled through a ${METHOD_LABEL[method]}. This is the trade the catalogue makes: heat-press or nothing.`,
+          }
+      : null;
+
   const stop = STATES[tier];
 
   // Placement is the axis you switch; the garments are all shown.
@@ -202,15 +246,23 @@ export function Applied() {
         </p>
       </div>
 
-      {mark ? (
+      {artwork ? (
         <>
+          {printable && !printable.ok && (
+            <p className="mb-4 text-[12px] max-w-2xl" style={{ color: '#A8456E' }}>
+              {printable.why}
+            </p>
+          )}
           {/* Close-up of the chosen style, with the mark placed on it. */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {GARMENTS.map((gm) => {
-              const av = constructionAvailable(mark, method);
+              const av =
+                artwork.kind === 'mark'
+                  ? constructionAvailable(artwork.c, method)
+                  : { ok: method === 'dtf' };
               // A cap has no back and no sleeve; say so rather than drawing a
               // placement onto a garment that does not have one.
-              const nA = gm.key === 'cap' && place.id !== 'chest';
+              const nA = gm.key === 'cap' && place.id !== 'chest-centre';
               const frac = fracOn(gm.key, place.inches);
               const actualIn = inchesOn(gm.key, place.inches);
               // Say when a garment cannot take the size you asked for, rather
@@ -241,6 +293,11 @@ export function Applied() {
                           transform: `translate(-50%, -50%) ${WARP[gm.key] ?? ''}`,
                           width: `${frac * 100}%`,
                           opacity: av.ok ? INK.opacity : 0.3,
+                          // Screen both ways, for two different reasons. A
+                          // construction is one ink knocked out of the cloth. A
+                          // place graphic is generated on a pure black ground
+                          // and carries no alpha channel, so screen is what
+                          // removes the ground and leaves the artwork.
                           mixBlendMode: 'screen',
                           // Ink laid on cloth does not have a razor edge, and no
                           // print is perfectly even. Both are sub-pixel at this
@@ -249,9 +306,30 @@ export function Applied() {
                           filter: `blur(${INK.softenPx}px) contrast(${INK.contrast})`,
                         }}
                       >
-                        <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
-                          <Mark c={mark} word={word} css={t.css} size={300 * frac} />
-                        </span>
+                        {artwork.kind === 'mark' ? (
+                          <span style={{ ['--era-ink' as string]: 'var(--era-bg)' }}>
+                            <Mark c={artwork.c} word={word} css={t.css} size={300 * frac} />
+                          </span>
+                        ) : (
+                          // A kept graphic is a picture, not a glyph, so it is
+                          // placed at its own aspect rather than knocked out in
+                          // one ink. The sign lettering rides along with it.
+                          <span className="relative block w-full" style={{ aspectRatio: '1' }}>
+                            {/* Lettering belongs to the SIGN register only. It
+                                was being stamped onto every kept image, so
+                                keeping a joke graphic after a sign drew highway
+                                type across the joke — with no visible control to
+                                remove it, because the composer only appears for
+                                signs. */}
+                            <SignArtwork
+                              url={artwork.url}
+                              text={config.register === 'sign' ? config.signText : ''}
+                              size={config.signSize}
+                              y={config.signY}
+                              width={300 * frac}
+                            />
+                          </span>
+                        )}
                       </span>
                     )}
 
@@ -267,8 +345,8 @@ export function Applied() {
                         generated. It is still not a render — the ink does not
                         actually deform along the folds, it just takes their light
                         — but it stops the mark from floating in front of the
-                        picture. `soft-light` over `overlay` because overlay
-                        crushes the blacks on these already-dark plates. */}
+                        picture. `overlay` because it keeps the ink bright — see
+                        INK.cloth for the side-by-side it won. */}
                     {!nA && (
                       <Image
                         src={`/blank/P-${gm.key}-plain.webp`}
@@ -301,19 +379,28 @@ export function Applied() {
                       {gm.label}
                     </span>
                     <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-                      {nA ? (
-                        stop.treatment[gm.key]
-                      ) : (
-                        <>
-                          {actualIn}in {gm.key === 'cap' ? 'front panel' : place.label.toLowerCase()}
-                          {clamped && (
-                            <span style={{ color: 'var(--accent)' }}>
-                              {' '}
-                              — {place.inches}in will not fit
-                            </span>
-                          )}
-                        </>
-                      )}
+                      {/* One scheme for every cell, and the tier is back in it.
+                          Printing only the size meant beat 04 no longer reflected
+                          the budget at all: at the stitched tier the tee's
+                          treatment is "2in embroidered mark" and the caption
+                          said "10in chest". */}
+                      <>
+                        {nA ? (
+                          `no ${place.label.toLowerCase()}`
+                        ) : (
+                          <>
+                            {actualIn}in{' '}
+                            {gm.key === 'cap' ? 'front panel' : place.label.toLowerCase()}
+                            {clamped && (
+                              <span style={{ color: 'var(--accent)' }}>
+                                {' '}
+                                — {place.inches}in will not fit
+                              </span>
+                            )}
+                          </>
+                        )}
+                        <span style={{ opacity: 0.7 }}> · {stop.treatment[gm.key]}</span>
+                      </>
                     </span>
                   </figcaption>
                 </figure>
@@ -335,7 +422,9 @@ export function Applied() {
         </>
       ) : (
         <p className="text-[13px] py-8" style={{ color: 'var(--accent)' }}>
-          Pick a mark in step 02 and it will be applied across the line here.
+          {config.strategy === 'scale'
+            ? 'Keep a place graphic in step 02 and it will be applied across the line here.'
+            : 'Pick a mark in step 02 and it will be applied across the line here.'}
         </p>
       )}
     </div>
