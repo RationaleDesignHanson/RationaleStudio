@@ -25,7 +25,6 @@
 
 import { useLine } from '@/lib/blank/lineState';
 import { BEATS, beatFor, clampStep } from './Stepper';
-import { LineCanvas } from './LineCanvas';
 import { ChevronDown } from 'lucide-react';
 
 export interface Section {
@@ -78,17 +77,6 @@ export function BlankShell({ sections }: { sections: Section[] }) {
               })}
             </ol>
 
-            {/* Small, but never gone: the reason for a canvas in the first place
-                is that you can see the line while changing anything about it. */}
-            <div className="hidden lg:block pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-              <p
-                className="text-[10px] font-mono uppercase tracking-[0.2em] mb-2"
-                style={{ color: 'var(--era-ink-muted)' }}
-              >
-                The line
-              </p>
-              <LineCanvas compact />
-            </div>
           </nav>
         </div>
 

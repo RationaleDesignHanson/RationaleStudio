@@ -35,7 +35,7 @@ const dollars = (n: number) => `$${n.toFixed(2)}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
 export function Standing() {
-  const { config, set, skus } = useLine();
+  const { config, set, skus, setSkuRetail } = useLine();
   const probeRef = useRef<HTMLSpanElement>(null);
   const designs = config.strategy === 'scale' ? config.designs : 1;
   const totals = useMemo(() => lineTotals(skus, designs), [skus, designs]);
@@ -165,7 +165,28 @@ export function Standing() {
 
         {sell && leadCost && (
           <dl className="font-mono text-[12px] tabular-nums space-y-1.5 max-w-md">
-            <Row label="Price" value={dollars(leadCost.retail)} />
+            {/* Adjustable, because this is the panel where you find out whether
+                the price works — reading it here and having to go back to the
+                cost sheet to change it is the long way round. */}
+            <div className="flex justify-between gap-4 border-b pb-1" style={{ borderColor: 'var(--era-hairline)' }}>
+              <dt style={{ color: 'var(--era-ink-muted)' }}>Price</dt>
+              <dd style={{ color: 'var(--era-ink)' }}>
+                <span style={{ color: 'var(--era-ink-muted)' }}>$</span>
+                <input
+                  type="number"
+                  min={1}
+                  value={leadCost.retail}
+                  onChange={(e) => setSkuRetail(0, Number(e.target.value) || undefined)}
+                  aria-label="Price"
+                  size={1}
+                  className="tap w-16 py-0.5 bg-transparent border-b outline-none tabular-nums text-right focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  style={{
+                    borderColor: 'var(--era-hairline)',
+                    color: lead?.retail === undefined ? 'var(--era-ink-muted)' : 'var(--era-ink)',
+                  }}
+                />
+              </dd>
+            </div>
             <Row label="Cost to make" value={`−${dollars(totals.cogsPerUnit)}`} />
             <Row label="Fees" value={`−${dollars(sell.fees)}`} />
             {sell.fulfilment > 0 && <Row label="Post and returns" value={`−${dollars(sell.fulfilment)}`} />}
