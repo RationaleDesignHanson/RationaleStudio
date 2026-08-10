@@ -35,7 +35,11 @@ import { PinButton, PinShelf } from './Pins';
 type Tile = { palette: Palette; url?: string; error?: string; busy?: boolean };
 
 export function ColourBeat() {
-  const { config, set } = useLine();
+  const { config, set, skus } = useLine();
+  // The beat's own copy calls this "the line's leading style", and it was
+  // reading `garment` — whose only setter lives in a component that is
+  // never mounted, so it was permanently 'tee' no matter what the line held.
+  const garment = skus[0]?.garment ?? config.garment;
   const word = normalise(config.wordmark);
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
 
@@ -89,7 +93,7 @@ export function ColourBeat() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 kind: 'colour',
-                garment: config.garment,
+                garment: garment,
                 palette: palette.id,
                 variant: i,
                 ...(image ? { image } : {}),
@@ -112,7 +116,7 @@ export function ColourBeat() {
       );
       setRunning(false);
     },
-    [config.garment, mark, word],
+    [garment, mark, word],
   );
 
   return (
@@ -131,7 +135,7 @@ export function ColourBeat() {
             exist. Rendering the round on the leading style keeps colour the only
             variable and stops this beat from being a third place to pick a tee. */}
         <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          on the {GARMENTS.find((g) => g.key === config.garment)?.label.toLowerCase()} — the
+          on the {GARMENTS.find((g) => g.key === garment)?.label.toLowerCase()} — the
           line&rsquo;s leading style
         </span>
 

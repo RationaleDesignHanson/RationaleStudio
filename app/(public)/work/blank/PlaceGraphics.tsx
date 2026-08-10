@@ -114,7 +114,7 @@ export function PlaceGraphics() {
             onChange={(e) => setPlace(e.target.value.slice(0, 120))}
             placeholder={EXAMPLES[0]}
             size={1}
-            className="w-full min-w-0 px-3 py-2 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+            className="tap w-full min-w-0 px-3 py-2.5 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
         </label>

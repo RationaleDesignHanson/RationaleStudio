@@ -21,15 +21,11 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ArrowRight } from 'lucide-react';
-import { BudgetLever } from './BudgetLever';
 import { ReferenceUpload } from './ReferenceUpload';
 import { BrandBakeoff } from './BrandBakeoff';
-import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
-import { LineTray } from './LineTray';
 import { DeviationRender } from './DeviationRender';
 import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
@@ -265,6 +261,13 @@ function Beats() {
       {i === 3 && <Applied />}
       {i === 4 && (
         <>
+          {config.strategy === 'scale' && (
+            <p className="mb-4 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+              These are costed against the considered line, so the ones asking for embroidery or
+              hand finishing are out of reach on a heat-press catalogue. The aesthetic still travels
+              — the photography, the styling and the colour are what you are choosing here.
+            </p>
+          )}
           <BrandBakeoff />
           {/* DeviationRender carries its own heading and copy. It had been wrapped
               in a second <h3> saying nearly the same thing, so the beat showed two

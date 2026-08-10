@@ -154,7 +154,7 @@ export function SignComposer({ url }: { url: string }) {
               onChange={(e) => set('signText', e.target.value.slice(0, 48))}
               placeholder="MOLLY PITCHER / NJ"
               size={1}
-              className="w-full min-w-0 px-3 py-2 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+              className="tap w-full min-w-0 px-3 py-2.5 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
               style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
             />
           </label>
@@ -219,7 +219,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="flex-1 min-w-0 accent-[var(--accent)]"
+        className="tap flex-1 min-w-0 accent-[var(--accent)]"
         style={{ minHeight: 0 }}
       />
       <span

@@ -273,8 +273,17 @@ export function CostSheet() {
               value={String(totals.totalUnits)}
             />
             <Line label="Variable" value={money(totals.variableTotal)} />
+            {/* Not simply "paid N×": the neck screen is the house brand and is
+                charged once however many designs hang off it, so the label would
+                overstate what happened to that $25. */}
             <Line
-              label={designs > 1 ? `Setup, paid ${designs}×` : 'Setup, paid once'}
+              label={
+                designs > 1
+                  ? totals.sharedFixed.neckSetup > 0
+                    ? `Setup · ${designs}× + neck once`
+                    : `Setup, paid ${designs}×`
+                  : 'Setup, paid once'
+              }
               value={money(totals.sharedFixed.total)}
             />
             <Line label="Total buy" value={money(totals.totalCost)} strong />

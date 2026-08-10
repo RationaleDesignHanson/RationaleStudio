@@ -64,7 +64,11 @@ interface Result {
 }
 
 export function DeviationRender() {
-  const { config, set } = useLine();
+  const { config, set , skus } = useLine();
+  // Same dead-end as the colour beat: `garment` has one setter and it is
+  // in a component that is never mounted, so this printed 'tee' as inherited
+  // state forever. The line's leading style is the honest source.
+  const garment = skus[0]?.garment ?? config.garment;
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -102,24 +106,24 @@ export function DeviationRender() {
     [graphic, config.motif, config.placement, config.scale, config.finish],
   );
 
-  const motifsHere = useMemo(() => availableMotifs(config.garment), [config.garment]);
+  const motifsHere = useMemo(() => availableMotifs(garment), [garment]);
 
   // Switching garment can strand a placement that garment doesn't have.
   // Repair placement and scale; never the motif.
   useEffect(() => {
-    const fixed = coerceAxesForGarment(config.garment, axes);
+    const fixed = coerceAxesForGarment(garment, axes);
     if (fixed.placement !== axes.placement) set('placement', fixed.placement);
     if (fixed.scale !== axes.scale) set('scale', fixed.scale);
-  }, [config.garment, axes, set]);
+  }, [garment, axes, set]);
 
-  const tuple = graphic ? { garment: config.garment, tier, graphic, colorway, ...axes } : null;
+  const tuple = graphic ? { garment: garment, tier, graphic, colorway, ...axes } : null;
   const check = tuple ? validateTuple(tuple) : null;
   const blocked = check && !check.ok ? check.errors[0].reason : null;
 
   useEffect(() => {
     setResult(null);
     setError(null);
-  }, [config.garment, config.budget, graphic, colorway, axes]);
+  }, [garment, config.budget, graphic, colorway, axes]);
 
   const render = useCallback(async () => {
     if (blocked || subject === 'none') return;
@@ -151,7 +155,7 @@ export function DeviationRender() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           image,
-          garment: config.garment,
+          garment: garment,
           tier,
           colorway,
           graphic: 'G-abstract-mark',
@@ -171,7 +175,7 @@ export function DeviationRender() {
     } finally {
       setBusy(false);
     }
-  }, [blocked, subject, config.customGraphic, config.garment, construction, word, tier, colorway, axes]);
+  }, [blocked, subject, config.customGraphic, garment, construction, word, tier, colorway, axes]);
 
   const finish = FINISHES[axes.finish];
 
@@ -202,7 +206,7 @@ export function DeviationRender() {
 
       {/* Inherited, not re-offered. Stated so it is obvious where to change them. */}
       <p className="text-[11px] font-mono mb-3" style={{ color: 'var(--era-ink-muted)' }}>
-        {config.garment} · {colorway} · {STATES[tier - 1]?.label ?? ''} — set in the colour and cost
+        {garment} · {colorway} · {STATES[tier - 1]?.label ?? ''} — set in the colour and cost
         beats
       </p>
 
@@ -221,7 +225,7 @@ export function DeviationRender() {
             value={axes.placement}
             onChange={(v) => set('placement', v)}
             options={Object.entries(PLACEMENTS)
-              .filter(([, p]) => p.garments.includes(config.garment))
+              .filter(([, p]) => p.garments.includes(garment))
               .map(([k, p]) => [k, p.title])}
           />
         </Field>
@@ -233,7 +237,7 @@ export function DeviationRender() {
             options={Object.entries(SCALES).map(([k, s]) => [
               k,
               s.title,
-              axesValid(config.garment, axes.motif, axes.placement, k, axes.finish).length > 0,
+              axesValid(garment, axes.motif, axes.placement, k, axes.finish).length > 0,
             ])}
           />
         </Field>
@@ -297,7 +301,7 @@ export function DeviationRender() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={result.imageUrl}
-            alt={`${MOTIFS[axes.motif]?.title} on a ${config.garment}, ${COLORWAYS[colorway]?.label}`}
+            alt={`${MOTIFS[axes.motif]?.title} on a ${garment}, ${COLORWAYS[colorway]?.label}`}
             className="w-full"
             style={{ backgroundColor: 'var(--era-bg-deep)' }}
           />
