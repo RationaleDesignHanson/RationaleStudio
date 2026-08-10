@@ -26,6 +26,28 @@ export function publicUrl(supabaseUrl: string, path: string): string {
 }
 
 /** True if a URL is one we host, i.e. one that will still resolve tomorrow. */
+/**
+ * The object path inside the bucket, which is all of a render URL that carries
+ * information.
+ *
+ * A stored render URL is ~110 characters and about 80 of them are the same host
+ * and bucket every single time. With the 24-pin cap that was 2,900 characters of
+ * repetition in a link people paste into messages — so the keeps shelf, the one
+ * feature built for sharing a shortlist, was what broke sharing. Serialising the
+ * path alone and rebuilding the host on read takes the same shelf to ~750.
+ */
+const PUBLIC_PREFIX = `/storage/v1/object/public/${RENDER_BUCKET}/`;
+
+export function renderFile(url: string): string | null {
+  const at = url.indexOf(PUBLIC_PREFIX);
+  return at === -1 ? null : url.slice(at + PUBLIC_PREFIX.length);
+}
+
+export function renderUrl(file: string): string {
+  const base = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+  return `${base}${PUBLIC_PREFIX}${file}`;
+}
+
 export function isDurable(url: string | null | undefined): boolean {
   return typeof url === 'string' && url.includes(`/storage/v1/object/public/${RENDER_BUCKET}/`);
 }
