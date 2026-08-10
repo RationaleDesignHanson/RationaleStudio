@@ -36,6 +36,7 @@ import { NameIt } from './NameIt';
 import { StrategyStep } from './StrategyStep';
 import { Standing } from './Standing';
 import { ArtDirection } from './ArtDirection';
+import { WackyWordmark } from './WackyWordmark';
 import { PlaceGraphics } from './PlaceGraphics';
 import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
@@ -84,6 +85,9 @@ function Sections() {
             <>
               <StrategyStep />
               <NameStep />
+              <Disclosure summary="Or get wacky with it" hint="six drawn takes — this one spends">
+                <WackyWordmark />
+              </Disclosure>
             </>
           ),
         },

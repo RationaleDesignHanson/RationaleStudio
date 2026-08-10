@@ -209,6 +209,24 @@ const PLACE_REGISTERS: Record<string, { subject: (place: string) => string; angl
 };
 
 /** Six ways to redraw a mark, so a mark round varies the DRAWING, not the shape. */
+/**
+ * Six ways to get wacky with a WORD, as opposed to a monogram.
+ *
+ * Deliberately further out than DRAW_STYLES. The twelve CSS treatments already
+ * cover the sober end — grotesque, serif, mono, condensed — and a generative
+ * option that produced a slightly different grotesque would be six renders for
+ * nothing. These are the things type in a browser cannot do: real distortion,
+ * real material, real hand.
+ */
+const WORD_STYLES = [
+  'inflated into soft bulbous chrome letterforms with real specular highlights',
+  'cut from torn newsprint and photocopied until the edges break up',
+  'brush-lettered fast with a loaded flat brush, ragged and confident',
+  'built from thick extruded blocks in hard perspective, casting a solid shadow',
+  'melting and dripping downward, the counters closing as they run',
+  'stitched in thick chain embroidery on a coarse woven ground',
+];
+
 const DRAW_STYLES = [
   'redrawn with slightly softened terminals and a little optical correction, as a type designer would',
   'redrawn heavier and tighter, counters closed up, built for small sizes',
@@ -280,7 +298,8 @@ export async function POST(req: Request) {
     body.kind === 'mark' ||
     body.kind === 'graphic' ||
     body.kind === 'place' ||
-    body.kind === 'lifestyle'
+    body.kind === 'lifestyle' ||
+    body.kind === 'wordmark'
       ? body.kind
       : null;
   if (!kind) return NextResponse.json({ error: 'Unknown bake-off kind.' }, { status: 422 });
@@ -367,6 +386,33 @@ Drawn ${angle}.${styleNote}
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     keySource = `${kind}.k3.${variant}.${dirKey}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+  } else if (kind === 'wordmark') {
+    // REDRAWN, NEVER SPELLED. The reference already contains the word set
+    // correctly in real type; the model is copying shapes. Asking it to render
+    // the letters from a text prompt is the one thing image models reliably get
+    // wrong, and at six tiles a round you would be proofreading every one.
+    const image = typeof body.image === 'string' ? body.image : '';
+    if (!image.startsWith('data:')) {
+      return NextResponse.json({ error: 'A wordmark round needs the word as an image.' }, { status: 422 });
+    }
+    model = SEEDREAM;
+    const style = WORD_STYLES[variant % WORD_STYLES.length];
+    const prompt = `A single piece of flat two-dimensional lettering artwork, centred on a plain white background with generous margin. No garment, no fabric, no mockup, no person.
+Take the word in the supplied reference image and keep the letters and their order EXACTLY as they are — same word, same spelling, same number of characters. Do not add, remove or substitute a single letter.
+Redraw the letterforms ${style}.${styleNote}
+No extra words, no watermarks, no border.`;
+    input = {
+      prompt,
+      image_input: [image],
+      // A word is wide and the reference is 3:1. Asking for 3:4 letterboxed
+      // every tile into a portrait frame with the lettering small in the middle;
+      // Seedream will match the reference's own shape if asked.
+      aspect_ratio: 'match_input_image',
+      size: '2K',
+      enhance_prompt: false,
+      sequential_image_generation: 'disabled',
+    };
+    keySource = `${kind}.w2.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
   } else if (kind === 'lifestyle') {
     // The deliberate person. Needs the artwork, or it is a stock photo.
     const image = typeof body.image === 'string' ? body.image : '';

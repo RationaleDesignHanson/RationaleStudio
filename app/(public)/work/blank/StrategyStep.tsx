@@ -33,31 +33,18 @@ const OPTIONS: {
   id: Strategy;
   title: string;
   line: string;
-  /** What it means for the making, not for the brand deck. */
-  facts: string[];
-  /** Defaults this choice implies, applied on selection. */
   defaults: { budget: string; designs: number };
 }[] = [
   {
     id: 'considered',
-    title: 'Small and dear',
-    line: 'A few styles, one identity, made properly.',
-    facts: [
-      'One artwork, so setup is paid once',
-      'Screen and embroidery are affordable',
-      'Higher price, higher margin, far fewer things to make',
-    ],
+    title: 'Small batch',
+    line: 'A few styles, one design, made well. Setup is paid once.',
     defaults: { budget: 'stitched', designs: 1 },
   },
   {
     id: 'scale',
-    title: 'Wide and cheap',
-    line: 'A shirt per place, micro-targeted by geography and interest.',
-    facts: [
-      'One artwork per place, so setup is paid again for every design',
-      'Heat-press only — a screen per colour per design never amortises',
-      'Thin margin per unit, and the catalogue is the product',
-    ],
+    title: 'High scale',
+    line: 'A design per place, sold thin and wide. Setup is paid every time.',
     defaults: { budget: 'graphic', designs: 24 },
   },
 ];
@@ -88,7 +75,7 @@ export function StrategyStep() {
         className="text-[11px] font-mono uppercase tracking-[0.2em] mb-3"
         style={{ color: 'var(--era-ink-muted)' }}
       >
-        First — which business
+        Which business
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
@@ -120,17 +107,6 @@ export function StrategyStep() {
               <span className="block text-[13px] mt-0.5" style={{ color: 'var(--era-ink-body)' }}>
                 {o.line}
               </span>
-              <ul className="mt-2.5 space-y-1">
-                {o.facts.map((f) => (
-                  <li
-                    key={f}
-                    className="text-[12px] sm:text-[11px] font-mono leading-snug"
-                    style={{ color: 'var(--era-ink-muted)' }}
-                  >
-                    · {f}
-                  </li>
-                ))}
-              </ul>
             </button>
           );
         })}

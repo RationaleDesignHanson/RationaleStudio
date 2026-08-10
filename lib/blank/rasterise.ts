@@ -31,6 +31,53 @@ export interface RasterOptions {
 }
 
 /**
+ * The whole word, set in its treatment, as a wide image.
+ *
+ * `rasteriseMark` draws a monogram into a square, which is right for a mark and
+ * wrong for a wordmark — a word set at 1024 square is either tiny or clipped.
+ * This is the same trick at a word's proportions, and it exists so the wordmark
+ * can be REDRAWN rather than generated.
+ *
+ * That distinction is the whole answer to "are there good text models". Asking a
+ * model to spell BLANK is unreliable and always will be — it is why the sign
+ * panels come back deliberately empty. Handing it a picture of the word already
+ * correctly spelled and asking it to redraw the letterforms is a different job:
+ * it is copying shapes, not spelling, and it is the one thing image models do
+ * well with type. The mark family has worked this way for weeks.
+ */
+export function rasteriseWord(
+  word: string,
+  opts: RasterOptions,
+): string | null {
+  if (typeof document === 'undefined') return null;
+  const W = 1536;
+  const H = 512;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#111111';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  // Fit to the box rather than trusting a size: a long word at wide tracking
+  // runs off the canvas, and a clipped reference gets redrawn clipped.
+  let px = Math.floor(H * 0.62);
+  const family = opts.fontFamily ?? 'sans-serif';
+  const weight = opts.fontWeight ?? '700';
+  for (; px > 12; px -= 4) {
+    ctx.font = `${weight} ${px}px ${family}`;
+    if (ctx.measureText(word).width <= W * 0.86) break;
+  }
+  ctx.fillText(word, W / 2, H / 2);
+  return canvas.toDataURL('image/png');
+}
+
+/**
  * Black ink on white, matching the M-* artwork the reference pipeline was built
  * against — Seedream is being asked to reproduce artwork, and artwork is a
  * two-value image on a light ground.
