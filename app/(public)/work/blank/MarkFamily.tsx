@@ -303,16 +303,33 @@ export function MarkFamily() {
 
           {drawn.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
-              {drawn.map((d, n) => (
+              {drawn.map((d, n) => {
+                const on = !!d.url && config.customGraphic === d.url;
+                return (
                 <div
                   key={n}
                   className="relative w-full aspect-square overflow-hidden"
-                  style={{ backgroundColor: 'var(--era-bg-deep)' }}
+                  style={{
+                    backgroundColor: 'var(--era-bg-deep)',
+                    outline: on ? '2px solid var(--accent)' : 'none',
+                    outlineOffset: 2,
+                  }}
                 >
                   {d.url && <PinButton url={d.url} />}
                   {d.url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={d.url} alt={`Drawn take ${n + 1}`} className="w-full h-full object-cover" />
+                    // Keepable, not just pinnable. These were six paid renders
+                    // with no path into the line — you could shortlist one and
+                    // never put it on a garment.
+                    <button
+                      onClick={() => set('customGraphic', d.url!)}
+                      aria-pressed={on}
+                      aria-label={`Use drawn take ${n + 1}`}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ minHeight: 0, padding: 0 }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={d.url} alt="" className="w-full h-full object-cover" />
+                    </button>
                   ) : (
                     <span className="absolute inset-0 flex items-center justify-center">
                       {d.busy ? (
@@ -325,7 +342,8 @@ export function MarkFamily() {
                     </span>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           )}
 

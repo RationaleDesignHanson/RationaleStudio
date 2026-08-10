@@ -140,6 +140,20 @@ const LIFESTYLE_SCENE: Record<string, string> = {
 const NO_PEOPLE =
   "The artwork depicts OBJECTS ONLY — signage, tools, landscape, type-free shapes, still life. It is not a scene with anybody in it: no people, no person, no figure, no crowd, no silhouette of a body, no hands, no face, no model, no mannequin.";
 
+/**
+ * ONE GROUND FOR EVERY ARTWORK KIND, and it is black.
+ *
+ * Anything that can become `config.customGraphic` gets drawn onto a garment,
+ * and the garment knocks the ground out with a `screen` blend — which only
+ * works over black. The wordmark kind shipped on a plain WHITE ground and
+ * could be kept as artwork, so keeping one washed the whole garment white.
+ *
+ * Marks were white-ground too. They could only be pinned, never kept, which
+ * hid the bug and was its own dead end — six paid renders with no way into the
+ * line. Both are black now and both can be kept.
+ *
+ * Any new artwork kind must come back light-on-black or it will not composite.
+ */
 const GROUND_CLAUSE =
   "The reference image shows the artwork on a plain flat black field; that field is the BACKGROUND ONLY and is not part of the artwork — reproduce the shapes and colours of the artwork itself and nothing of the field around it.";
 
@@ -397,7 +411,7 @@ No text, no letters, no words, no readable lettering, no numerals, no watermarks
     }
     model = SEEDREAM;
     const style = WORD_STYLES[variant % WORD_STYLES.length];
-    const prompt = `A single piece of flat two-dimensional lettering artwork, centred on a plain white background with generous margin. No garment, no fabric, no mockup, no person.
+    const prompt = `A single piece of flat two-dimensional lettering artwork in solid off-white, centred on a PURE BLACK field that fills the entire frame edge to edge — pure black #000000 everywhere, no gradient and no vignette. No garment, no fabric, no mockup, no person.
 Take the word in the supplied reference image and keep the letters and their order EXACTLY as they are — same word, same spelling, same number of characters. Do not add, remove or substitute a single letter.
 Redraw the letterforms ${style}.${styleNote}
 No extra words, no watermarks, no border.`;
@@ -412,7 +426,7 @@ No extra words, no watermarks, no border.`;
       enhance_prompt: false,
       sequential_image_generation: 'disabled',
     };
-    keySource = `${kind}.w2.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.w3.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
   } else if (kind === 'lifestyle') {
     // The deliberate person. Needs the artwork, or it is a stock photo.
     const image = typeof body.image === 'string' ? body.image : '';
@@ -472,7 +486,7 @@ ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no nume
     }
     model = SEEDREAM;
     const style = DRAW_STYLES[variant % DRAW_STYLES.length];
-    const prompt = `A single flat two-dimensional logo mark, solid black on a plain white background, centred with generous margin. No garment, no fabric, no mockup, no person.
+    const prompt = `A single flat two-dimensional logo mark in solid off-white on a PURE BLACK field that fills the entire frame edge to edge — pure black #000000 everywhere, no gradient and no vignette. Centred with generous margin. No garment, no fabric, no mockup, no person.
 Take the mark in the supplied reference image and keep its structure, proportions and the letters it contains EXACTLY as they are — same letters, same arrangement, same enclosure. Do not add or remove letters and do not change what it says.
 Draw it ${style}.${styleNote}
 No extra text, no additional words, no watermarks, no border.`;
@@ -484,7 +498,7 @@ No extra text, no additional words, no watermarks, no border.`;
       enhance_prompt: false,
       sequential_image_generation: 'disabled',
     };
-    keySource = `${kind}.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.g2.${variant}.${dirKey}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
   }
 
   const key = `${VERSION}.${createHash('sha256').update(keySource).digest('hex').slice(0, 22)}`;
