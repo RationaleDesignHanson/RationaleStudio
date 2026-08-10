@@ -111,6 +111,22 @@ const HOUSE =
  * from something. Both are people-shaped briefs, so saying "no person" once at
  * the end never stood a chance — the subject has to be object-shaped instead.
  */
+/**
+ * The exception, and the only one.
+ *
+ * People are excluded everywhere else because a model wandering into a product
+ * shot is unusable — a rights problem, not a taste one. But a lifestyle photo of
+ * someone actually wearing the thing is a deliverable: it is what a lookbook is
+ * made of and what a paid-social ad needs. So it is asked for explicitly, once,
+ * at the end, and never arrives by accident.
+ */
+const LIFESTYLE_SCENE: Record<string, string> = {
+  tee: 'a person wearing the t-shirt, photographed from the chest up to mid-thigh so the print is fully visible and unobstructed',
+  hoodie:
+    'a person wearing the hoodie, photographed from the chest up to mid-thigh so the print is fully visible and unobstructed',
+  cap: 'a person wearing the cap, photographed straight on from the shoulders up so the front panel is fully visible',
+};
+
 const NO_PEOPLE =
   "The artwork depicts OBJECTS ONLY — signage, tools, landscape, type-free shapes, still life. It is not a scene with anybody in it: no people, no person, no figure, no crowd, no silhouette of a body, no hands, no face, no model, no mannequin.";
 
@@ -253,7 +269,8 @@ export async function POST(req: Request) {
     body.kind === 'colour' ||
     body.kind === 'mark' ||
     body.kind === 'graphic' ||
-    body.kind === 'place'
+    body.kind === 'place' ||
+    body.kind === 'lifestyle'
       ? body.kind
       : null;
   if (!kind) return NextResponse.json({ error: 'Unknown bake-off kind.' }, { status: 422 });
@@ -322,6 +339,29 @@ Drawn ${angle}.
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     keySource = `${kind}.k3.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+  } else if (kind === 'lifestyle') {
+    // The deliberate person. Needs the artwork, or it is a stock photo.
+    const image = typeof body.image === 'string' ? body.image : '';
+    if (!image.startsWith('data:')) {
+      return NextResponse.json({ error: 'Pick artwork first.' }, { status: 422 });
+    }
+    const palette = paletteById(String(body.palette));
+    model = SEEDREAM;
+    const prompt = `${HOUSE}.
+A LIFESTYLE PHOTOGRAPH: ${LIFESTYLE_SCENE[garment] ?? LIFESTYLE_SCENE.tee}.
+The garment is ${palette ? palette.clause : 'a plain single-colour blank'}.
+The artwork in the supplied reference image is printed on it, keeping the artwork's own shapes and colours — do not redesign it.${GROUND_CLAUSE}
+Natural daylight, relaxed candid posture, plain uncluttered background. Photographic, not illustrated.
+No added text, no logos, no watermarks.`;
+    input = {
+      prompt,
+      image_input: [image],
+      aspect_ratio: '3:4',
+      size: '2K',
+      enhance_prompt: false,
+      sequential_image_generation: 'disabled',
+    };
+    keySource = `${kind}.${garment}.${String(body.palette)}.${variant}.${createHash('sha256').update(image).digest('hex').slice(0, 16)}`;
   } else if (kind === 'place') {
     const place = String(body.place ?? '')
       // eslint-disable-next-line no-control-regex

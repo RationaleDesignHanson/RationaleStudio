@@ -21,14 +21,9 @@ import { useCallback, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { PinButton, PinShelf } from './Pins';
+import { Examples } from './Examples';
 
 type Tile = { url?: string; error?: string; busy?: boolean };
-
-const EXAMPLES = [
-  'a dog wearing sunglasses, drawn badly on purpose',
-  'a cross-section diagram of a sandwich, exploded like an engine',
-  'a very serious flaming skull, but the flames are little hearts',
-];
 
 export function GraphicBakeoff() {
   const { config, set } = useLine();
@@ -67,6 +62,7 @@ export function GraphicBakeoff() {
 
   return (
     <div className="my-2">
+      <Examples onPick={setPrompt} />
       <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         Describe a graphic and get six takes. Keep one and the applied views carry it.
       </p>
@@ -82,7 +78,7 @@ export function GraphicBakeoff() {
           <input
             value={prompt}
             onChange={(e) => setPrompt(e.target.value.slice(0, 240))}
-            placeholder={EXAMPLES[0]}
+            placeholder="a dog wearing sunglasses, drawn badly on purpose"
             className="w-full min-w-0 px-3 py-2 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
@@ -96,19 +92,6 @@ export function GraphicBakeoff() {
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
           {running ? 'Rendering six…' : 'Bake off six'}
         </button>
-      </div>
-
-      <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4">
-        {EXAMPLES.map((e) => (
-          <button
-            key={e}
-            onClick={() => setPrompt(e)}
-            className="tap text-[12px] sm:text-[11px] underline"
-            style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
-          >
-            {e}
-          </button>
-        ))}
       </div>
 
       {tiles.length > 0 && (

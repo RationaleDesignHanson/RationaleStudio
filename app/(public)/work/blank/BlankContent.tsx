@@ -74,6 +74,9 @@ function Sections() {
           body: scale ? (
             <>
               <PlaceGraphics />
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+                <ReferenceUpload />
+              </div>
               <Disclosure
                 summary="And the house mark that goes on every one"
                 hint="the neck label and the hem tag"
@@ -86,15 +89,15 @@ function Sections() {
             <>
               <MarkFamily />
               <LockupStep />
-              <Disclosure
-                summary="Or artwork that has nothing to do with the name"
-                hint="describe it, or upload it"
-              >
+              {/* Out of the disclosure. Describing an image and bringing your own
+                  are first-class ways in, not footnotes to the name-derived mark
+                  — and the tool never said it made images at all. */}
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
                 <GraphicBakeoff />
-                <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-                  <ReferenceUpload />
-                </div>
-              </Disclosure>
+              </div>
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+                <ReferenceUpload />
+              </div>
             </>
           ),
         },

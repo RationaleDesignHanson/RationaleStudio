@@ -20,14 +20,15 @@
 
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import { GARMENTS, blankFor, costSku, lineTotals, tierIndex, STATES } from '@/lib/blank/line';
 import { METHOD_LABEL, TIER_METHOD, METHOD_MEANING } from '@/lib/blank/producible';
 import { paletteById } from '@/lib/blank/palettes';
 import { sizeBreakdown } from '@/lib/blank/sizes';
 import { normalise } from '@/lib/blank/wordmark';
-import { CHANNELS, SELL_DEFAULTS, campaign, channelById, sellUnit } from '@/lib/blank/channel';
+import { CHANNELS, campaign, channelById, sellUnit } from '@/lib/blank/channel';
+import { WornPhoto } from './WornPhoto';
 
 const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const dollars = (n: number) => `$${n.toFixed(2)}`;
@@ -35,6 +36,7 @@ const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
 export function Standing() {
   const { config, set, skus } = useLine();
+  const probeRef = useRef<HTMLSpanElement>(null);
   const designs = config.strategy === 'scale' ? config.designs : 1;
   const totals = useMemo(() => lineTotals(skus, designs), [skus, designs]);
   const name = normalise(config.wordmark) || 'BLANK';
@@ -206,6 +208,15 @@ export function Standing() {
             )}
           </p>
         )}
+      </section>
+
+      {/* THE ONE IMAGE WITH A PERSON IN IT. Everywhere else excludes people at
+          the subject level, because a model wandering into a flat-lay is a
+          rights problem. A photograph of the thing being worn is a deliverable,
+          so it is asked for once, here, deliberately. */}
+      <section>
+        <Head>See it worn</Head>
+        <WornPhoto probeRef={probeRef} />
       </section>
 
       {/* WHERE TO ORDER — named where the model names them, described where it cannot. */}
