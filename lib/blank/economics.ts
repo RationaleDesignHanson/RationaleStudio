@@ -20,6 +20,8 @@
  * page presenting a real venture plan.
  */
 
+import { xxlShare } from './sizes';
+
 export type Confidence = 'hard' | 'derived' | 'soft' | 'soft-conflicted';
 export type RunSize = 25 | 50 | 75 | 100 | 150 | 300;
 export type Tier = 'budget' | 'premium' | 'premium-usa';
@@ -183,6 +185,24 @@ export const BLANKS: Record<string, Blank> = {
   },
 };
 
+/**
+ * The 2XL upcharge, per piece, on the XXL portion of a run only.
+ *
+ * Nearly every blank catalogue charges more for 2XL and up, because it is more
+ * cloth. At a tenth of the run it is a small number, and omitting it makes every
+ * style quietly optimistic. It lives HERE rather than in line.ts because
+ * stage0Cogs is the single source of variable cost — adding it a layer up is
+ * exactly the drift the line-model tests exist to catch, and they caught it.
+ *
+ * CONFIDENCE: soft. Typical catalogue upcharge, not a quoted figure.
+ */
+export const XXL_UPCHARGE = { value: 1.75, source: 'DERIVED', confidence: 'soft' as Confidence };
+
+/** Blended per-unit size upcharge across a whole run of this blank. */
+export function sizeUpchargePerUnit(blank: Blank): number {
+  return xxlShare(blank.category) * XXL_UPCHARGE.value;
+}
+
 export function blankUnit(blank: Blank, run: RunSize): number {
   if (blank.ladder?.[run] !== undefined) return blank.ladder[run]!;
   return (blank.price100 ?? 0) * RUN_INDEX[run];
@@ -340,6 +360,13 @@ export interface Stage0Input {
   run: RunSize;
   relabel: RelabelMode;
   includeOutboundShip?: boolean;
+  /**
+   * Add the blended 2XL upcharge for this blank's size curve.
+   *
+   * Off by default so the T1 worked example still reconciles; the line model
+   * turns it on, because a real order is a size run and part of it is 2XL.
+   */
+  includeSizeUpcharge?: boolean;
   useVerifiedRelabel?: boolean;
 }
 
@@ -367,11 +394,23 @@ export function stage0Cogs(input: Stage0Input): CogsBreakdown {
   const amortizedFixed = fixed / run;
   const outboundShip = input.includeOutboundShip ? OVERHEAD.outboundShipUS : 0;
 
+  // OPT-IN, and deliberately off by default.
+  //
+  // The T1 worked example reconciles this function against the research doc,
+  // and that quote is a single unit price with no size curve behind it. Folding
+  // a blended 2XL upcharge in unconditionally would silently move landedCOGS off
+  // 24.69 and quietly invalidate the one figure the model is verified against.
+  //
+  // So the line model asks for it explicitly. The cost is real either way; this
+  // just keeps the reconciliation honest about which number is which.
+  const sizeUpcharge = input.includeSizeUpcharge ? sizeUpchargePerUnit(blank) : 0;
+
   const landedCOGS =
     bUnit +
     dVar +
     rVar +
     defect +
+    sizeUpcharge +
     OVERHEAD.packagingPerUnit +
     OVERHEAD.inboundFreightPerUnit[run] +
     amortizedFixed +

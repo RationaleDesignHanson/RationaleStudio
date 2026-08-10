@@ -30,6 +30,10 @@ describe('single SKU — must agree exactly with the per-SKU model', () => {
         decoration: state.decoration,
         run: 100,
         relabel: state.relabel,
+        // The line model orders a size run, so it asks for the 2XL upcharge.
+        // The invariant is that the two models agree given the SAME inputs —
+        // not that the line model ignores a cost the per-SKU quote excludes.
+        includeSizeUpcharge: true,
       }).landedCOGS * 100;
 
     expect(lineTotals([s]).totalCost).toBeCloseTo(direct, 6);

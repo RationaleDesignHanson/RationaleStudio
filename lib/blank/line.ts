@@ -280,6 +280,9 @@ export function costSku(sku: Sku, designs = 1): SkuCost {
     decoration: state.decoration,
     run: purchaseBand(sku.units, designs),
     relabel: state.relabel,
+    // A real order is a size run, and part of it is 2XL. Off by default in
+    // economics.ts so the T1 worked example still reconciles.
+    includeSizeUpcharge: true,
   });
   // Strip the per-SKU amortised fixed cost; it's re-added once, at line level.
   const variablePerUnit = full.landedCOGS - full.amortizedFixed;

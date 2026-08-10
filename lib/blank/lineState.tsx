@@ -251,6 +251,8 @@ interface LineContextValue {
    */
   setSkuTier: (index: number, tier: string) => void;
   setSkuRetail: (index: number, retail: number | undefined) => void;
+  /** Which colourways a style is made in. Never empty. */
+  setSkuColours: (index: number, colours: string[]) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
   /**
@@ -488,11 +490,16 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
       setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, retail } : x))),
     [],
   );
+  const setSkuColours = useCallback(
+    (index: number, colours: string[]) =>
+      setSkus((xs) => xs.map((x, i) => (i === index && colours.length ? { ...x, colours } : x))),
+    [],
+  );
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus }),
-    [config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus],
+    () => ({ config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
+    [config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;

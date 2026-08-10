@@ -33,6 +33,7 @@ import Image from 'next/image';
 import { useEffect, useMemo } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import {
+  blankFor,
   costSku,
   lineTotals,
   GARMENTS,
@@ -41,6 +42,9 @@ import {
   type Sku,
 } from '@/lib/blank/line';
 import { RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
+import { paletteById, STAGE0_COLOURWAY_LIMIT } from '@/lib/blank/palettes';
+import { fabricFor, onCloth } from '@/lib/blank/fabric';
+import { sizeBreakdown } from '@/lib/blank/sizes';
 import { METHOD_LABEL, METHOD_MEANING, TIER_METHOD } from '@/lib/blank/producible';
 
 const dollars = (n: number) => `$${n.toFixed(2)}`;
@@ -48,8 +52,18 @@ const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
 export function CostSheet() {
-  const { config, set, setImplied, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail } =
-    useLine();
+  const {
+    config,
+    set,
+    setImplied,
+    skus,
+    addSku,
+    removeSku,
+    setSkuUnits,
+    setSkuTier,
+    setSkuRetail,
+    setSkuColours,
+  } = useLine();
 
   const rowFor = (garment: string) => skus.findIndex((s) => s.garment === garment);
   // The catalogue multiplier. A row is priced PER DESIGN; the totals carry the
@@ -170,6 +184,77 @@ export function CostSheet() {
     </span>
   );
 
+  /**
+   * Which colourways this style is made in.
+   *
+   * Drawn from the line palette rather than the full set, because that is what
+   * makes a range a range — and shown on this row's own cloth, since a colour is
+   * not the same colour on a 4.3oz jersey and a 14oz fleece.
+   */
+  const colourways = ({ gm, idx, inLine, preview }: Row) => {
+    const blank = blankFor(gm.key, tierIndex(preview.tier));
+    const fabric = fabricFor(blank.id);
+    if (config.palette.length === 0) {
+      return (
+        <span className="text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+          pick a palette in 03
+        </span>
+      );
+    }
+    return (
+      <span className="flex flex-wrap gap-1 items-center">
+        {config.palette.map((id) => {
+          const pal = paletteById(id);
+          if (!pal) return null;
+          const on = preview.colours.includes(id);
+          return (
+            <button
+              key={id}
+              onClick={() => {
+                if (!inLine) return;
+                const next = on
+                  ? preview.colours.filter((c) => c !== id)
+                  : [...preview.colours, id];
+                // Never zero — a style with no colour is not a style.
+                if (next.length) setSkuColours(idx, next);
+              }}
+              disabled={!inLine}
+              aria-pressed={on}
+              aria-label={`${pal.name} for the ${gm.label}`}
+              title={pal.name}
+              className="tap block"
+              style={{
+                width: 18,
+                height: 18,
+                // The global button rule is `min-width: 44px` as well as
+                // min-height, so a swatch chip renders as a 44px bar unless
+                // BOTH are reset. `.tap` only resets them on a coarse pointer.
+                minHeight: 0,
+                minWidth: 0,
+                padding: 0,
+                backgroundColor: onCloth(pal.hex, fabric),
+                outline: on ? '2px solid var(--accent)' : '1px solid var(--era-hairline)',
+                outlineOffset: on ? 1 : -1,
+                opacity: on ? 1 : 0.4,
+              }}
+            />
+          );
+        })}
+        {preview.colours.length > STAGE0_COLOURWAY_LIMIT && (
+          <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: '#A8456E' }}>
+            {preview.colours.length} — Stage 0 takes {STAGE0_COLOURWAY_LIMIT}
+          </span>
+        )}
+      </span>
+    );
+  };
+
+  /** The run broken into pieces — what an order actually says. */
+  const runNote = ({ gm, preview }: Row) =>
+    sizeBreakdown(preview.units, gm.key)
+      .map((x) => `${x.size} ${x.qty}`)
+      .join('  ') + ` per colourway × ${preview.colours.length}`;
+
   const marginColour = (m: number) => (m >= MARGIN_FLOOR ? 'var(--era-ink)' : '#A8456E');
 
   return (
@@ -186,13 +271,14 @@ export function CostSheet() {
             <div className="mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 items-center">
               <Field label="Decoration" />
               {decoration(r)}
-              <Field label="Blank" />
-              <span className="truncate" style={{ color: 'var(--era-ink-muted)' }}>
-                {r.c.blank.name}
-              </span>
+              <Field label="Colours" />
+              {colourways(r)}
               <Field label="Units" />
-              <span>
-                {units(r)}
+              <span>{units(r)}</span>
+              <Field label="Pieces" />
+              <span title={runNote(r)}>
+                {r.preview.units * r.preview.colours.length}{' '}
+                <span style={{ color: 'var(--era-ink-muted)' }}>· {r.c.blank.name}</span>
               </span>
               <Field label="Cost/unit" />
               <span style={{ color: 'var(--era-ink)' }}>{dollars(r.c.variablePerUnit)}</span>
@@ -210,7 +296,7 @@ export function CostSheet() {
         <table className="w-full min-w-[720px] border-collapse font-mono text-[12px] tabular-nums">
           <thead>
             <tr style={{ color: 'var(--era-ink-muted)' }}>
-              {['Style', 'Decoration', 'Blank', 'Units', 'Cost/unit', 'Price', 'Margin'].map((h) => (
+              {['Style', 'Decoration', 'Colourways', 'Units', 'Pieces', 'Cost/unit', 'Price', 'Margin'].map((h) => (
                 <th
                   key={h}
                   className="text-left font-normal text-[10px] uppercase tracking-[0.15em] pb-2 border-b"
@@ -234,11 +320,10 @@ export function CostSheet() {
                 <td className="py-2 pr-3">
                   {decoration(r)}
                 </td>
-                <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }}>
-                  {r.c.blank.name}
-                </td>
-                <td className="py-2 pr-3">
-                  {units(r)}
+                <td className="py-2 pr-3">{colourways(r)}</td>
+                <td className="py-2 pr-3">{units(r)}</td>
+                <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }} title={runNote(r)}>
+                  {r.preview.units * r.preview.colours.length}
                 </td>
                 <td className="py-2 pr-3" style={{ color: 'var(--era-ink)' }}>
                   {dollars(r.c.variablePerUnit)}
