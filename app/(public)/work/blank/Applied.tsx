@@ -166,15 +166,19 @@ export function Applied() {
   const mark = pool.find((c) => c.id === config.mark) ?? null;
 
   /**
-   * WHAT GETS PRINTED. This drew name-derived constructions and nothing else, so
-   * a kept graphic — a place sign, a prompt bake-off result, an uploaded
-   * reference — never reached a garment at all. On the catalogue path that is
-   * the entire product, and the beat showed "pick a mark in step 02" to someone
-   * who had just spent six renders choosing one.
+   * THE MARK AND THE GRAPHIC ARE NOT COMPETING FOR ONE SLOT.
    *
-   * A kept graphic wins when there is one, because keeping it is the more recent
-   * and more specific decision. The house mark is still what a considered line
-   * carries, and still what shows when nothing has been kept.
+   * They were: a kept graphic silently replaced the mark everywhere, so choosing
+   * a front print made the identity you had built vanish with no explanation.
+   *
+   * They are different objects doing different jobs. The MARK is the house
+   * identity — it goes on the neck and the hem and it is on every garment in
+   * every season, which is what makes a range read as one brand. The GRAPHIC is
+   * the front print, and it changes per style, per place, per drop.
+   *
+   * So the front print is the graphic if there is one and the mark if there is
+   * not — a small batch line usually IS its mark on the chest — and the mark is
+   * carried at the neck regardless.
    */
   const artwork: { kind: 'mark'; c: Construction } | { kind: 'image'; url: string } | null =
     config.customGraphic
@@ -351,6 +355,28 @@ export function Applied() {
                       </span>
                     )}
 
+                    {/* THE HOUSE MARK AT THE NECK. Small, always there when a
+                        graphic has taken the front, because that is the thing
+                        making a range read as one brand rather than a pile of
+                        unrelated prints. */}
+                    {!nA && artwork?.kind === 'image' && mark && gm.key !== 'cap' && (
+                      <span
+                        className="absolute flex items-center justify-center"
+                        style={{
+                          left: '50%',
+                          top: '13%',
+                          transform: 'translate(-50%, -50%)',
+                          width: '9%',
+                          opacity: 0.75,
+                          mixBlendMode: inkOn(cloth) === '#1A1A18' ? 'multiply' : 'screen',
+                        }}
+                        title="The house mark, at the neck"
+                      >
+                        <span style={{ ['--era-ink' as string]: inkOn(cloth) }}>
+                          <Mark c={mark} word={word} css={t.css} size={26} />
+                        </span>
+                      </span>
+                    )}
                     {nA && (
                       <span
                         className="absolute inset-0 flex items-center justify-center"

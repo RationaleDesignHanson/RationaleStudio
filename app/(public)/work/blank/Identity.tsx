@@ -33,12 +33,11 @@ import {
   usageRule,
   type SymbolKind,
 } from '@/lib/blank/identity';
-import { gateLabel } from '@/lib/blank/producible';
+import { METHOD_LABEL, TIER_METHOD, methodGate } from '@/lib/blank/producible';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { Mark } from './MarkFamily';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
-const BUDGETS = STATES.map((s) => s.budget);
 
 function useFace() {
   const { config } = useLine();
@@ -117,7 +116,7 @@ export function FaceStep() {
         <span style={{ color: 'var(--era-ink)' }}>
           {producibleCount(word, tier)} of {ALL_TREATMENTS.length}
         </span>{' '}
-        makeable at {money(STATES[tier].budget)}.
+        makeable in {METHOD_LABEL[TIER_METHOD[tier]]}.
       </p>
 
       <div
@@ -209,7 +208,7 @@ export function FaceStep() {
               className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
               style={{ color: av.overPlaten ? '#A8456E' : 'var(--era-ink-muted)' }}
             >
-              {av.overPlaten ? 'over platen' : gateLabel(av.availableAt, tier, money, BUDGETS)}
+              {av.overPlaten ? 'over platen' : methodGate(av.availableAt, tier)}
             </span>
           )}
         </div>

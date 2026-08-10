@@ -11,6 +11,7 @@ import {
   availability,
   availabilityForSlug,
   producibleCount,
+  methodGate,
 } from '@/lib/blank/producible';
 import { STATES } from '@/lib/blank/line';
 
@@ -121,5 +122,41 @@ describe('contract', () => {
 
   it('fails open on an unknown graphic id', () => {
     expect(availability('G-does-not-exist', DTF).ok).toBe(true);
+  });
+});
+
+/**
+ * Method gating.
+ *
+ * The budget is a CONSEQUENCE — read off the decoration you pick per style —
+ * so an option that cannot be made must say what it NEEDS, not what it costs.
+ * Quoting a price to someone choosing a typeface quotes a number they have not
+ * set and cannot see.
+ */
+describe('methodGate', () => {
+  it('says nothing when the current method can make it', () => {
+    // Available at the heat-press tier, and we are on it.
+    expect(methodGate([0, 1, 2], 0)).toBe('');
+  });
+
+  it('names the methods that can, never a price', () => {
+    const g = methodGate([3, 4], 0); // embroidery only, viewed from heat-press
+    expect(g).toContain('needs');
+    expect(g).toContain('embroidery');
+    expect(g).not.toMatch(/\$/);
+  });
+
+  it('does not repeat a method that spans two tiers', () => {
+    // Tiers 3 and 4 are both embroidery; it must not read "embroidery or embroidery".
+    expect(methodGate([3, 4], 0)).toBe('needs embroidery');
+  });
+
+  it('says so plainly when no method can make it', () => {
+    expect(methodGate([], 0)).toBe('cannot be made');
+  });
+
+  it('clamps a tier outside the ladder rather than throwing', () => {
+    expect(() => methodGate([0], 99)).not.toThrow();
+    expect(() => methodGate([0], -3)).not.toThrow();
   });
 });
