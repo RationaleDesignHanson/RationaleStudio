@@ -97,6 +97,23 @@ const HOUSE =
  * model treats an alpha channel, and a model that flattens it onto white would
  * be worse than one told to ignore a black field.
  */
+/**
+ * NO PEOPLE, and stated positively and EARLY.
+ *
+ * Generated humans are unusable here — not a taste call, a rights one — and the
+ * old exclusion was three words at the end of a long prompt ("no person"),
+ * which is the weakest possible place to put a constraint. Diffusion models
+ * routinely ignore trailing negatives; FLUX drops a negative prompt outright.
+ *
+ * The two registers that invited it hardest were the ones asking for CULTURE:
+ * "the cliché everyone from there is tired of" is Jersey Shore and the Sopranos,
+ * and "the mood of the songs written about this place" is somebody driving away
+ * from something. Both are people-shaped briefs, so saying "no person" once at
+ * the end never stood a chance — the subject has to be object-shaped instead.
+ */
+const NO_PEOPLE =
+  "The artwork depicts OBJECTS ONLY — signage, tools, landscape, type-free shapes, still life. It is not a scene with anybody in it: no people, no person, no figure, no crowd, no silhouette of a body, no hands, no face, no model, no mannequin.";
+
 const GROUND_CLAUSE =
   "The reference image shows the artwork on a plain flat black field; that field is the BACKGROUND ONLY and is not part of the artwork — reproduce the shapes and colours of the artwork itself and nothing of the field around it.";
 
@@ -141,7 +158,7 @@ const PLACE_REGISTERS: Record<string, { subject: (place: string) => string; angl
   },
   pun: {
     subject: (place) =>
-      `a visual joke about ${place} — the cliché everyone from there is tired of, drawn straight-faced and affectionately rather than mocking`,
+      `a visual joke about ${place}, told entirely through OBJECTS — the props and signage and paraphernalia of the cliché everyone from there is tired of, arranged straight-faced and affectionately rather than mocking, with nobody present`,
     angles: [
       'bold and graphic, few shapes, high contrast',
       'a deadpan single object, isolated and oversized',
@@ -153,7 +170,7 @@ const PLACE_REGISTERS: Record<string, { subject: (place: string) => string; angl
   },
   song: {
     subject: (place) =>
-      `the mood of the songs written about ${place} — highway at night, refinery glow, a long drive, the particular romance of leaving somewhere`,
+      `the mood of the songs written about ${place}, rendered as an EMPTY LANDSCAPE — highway at night, refinery glow, an empty road, taillights receding, the particular romance of leaving somewhere, with no one in the picture`,
     angles: [
       'a wide empty landscape reduced to a few flat bands',
       'headlights and taillights as pure abstract streaks',
@@ -299,11 +316,12 @@ Do not reproduce any text or lettering. No watermarks.`;
     model = IMAGEN;
     const angle = GRAPHIC_ANGLES[variant % GRAPHIC_ANGLES.length];
     const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in solid off-white on a PURE BLACK field that fills the entire frame edge to edge — pure black #000000 everywhere, no gradient and no vignette. Centred, occupying about half the frame width. This is a digital graphic, not a photograph of an object: no surface, no edges, no depth.
+${NO_PEOPLE}
 The artwork is: ${description}.
 Drawn ${angle}.
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
-    keySource = `${kind}.k2.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.k3.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
   } else if (kind === 'place') {
     const place = String(body.place ?? '')
       // eslint-disable-next-line no-control-regex
@@ -324,13 +342,14 @@ No text, no letters, no words, no readable lettering, no numerals, no watermarks
     // colours; mid-grey knocked out nothing, and the applied views showed a
     // visible grey rectangle sitting around the sign on every garment.
     const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in a few flat colours on a PURE BLACK field that fills the entire frame edge to edge. Centred, occupying about two thirds of the frame width. This is a digital graphic, not a photograph of an object: no surface texture, no depth of field, no vignette, no gradient in the background — the background is pure black #000000 everywhere.
+${NO_PEOPLE}
 The artwork is: ${register.subject(place)}.
 Composed as: ${angle}.
 ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no numerals, no route numbers, no readable lettering anywhere in the image. Any sign, badge or panel must be COMPLETELY BLANK. No watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     // `k2` scopes the cache bust to the place kind — bumping VERSION would have
     // thrown away every colour and mark render too.
-    keySource = `${kind}.k2.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.k3.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
   } else {
     // mark: redraw the rasterised construction with custom letterforms.
     const image = typeof body.image === 'string' ? body.image : '';
