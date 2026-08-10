@@ -244,7 +244,7 @@ export function Applied() {
                 key={pl.id}
                 onClick={() => set('placement', pl.id)}
                 aria-pressed={on}
-                className="tap px-2.5 py-1 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
+                className="tap px-2.5 py-1 b-label transition-colors border-b-2"
                 style={{
                   borderColor: on ? 'var(--accent)' : 'transparent',
                   color: on ? 'var(--accent)' : 'var(--era-ink-muted)',
@@ -256,7 +256,7 @@ export function Applied() {
             );
           })}
         </div>
-        <p className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <p className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           <span title={METHOD_MEANING[method]}>{METHOD_LABEL[method]}</span> at {money(stop.budget)}
         </p>
       </div>
@@ -264,7 +264,7 @@ export function Applied() {
       {artwork ? (
         <>
           {printable && !printable.ok && (
-            <p className="mb-4 text-[12px] max-w-2xl" style={{ color: '#A8456E' }}>
+            <p className="mb-4 b-note max-w-2xl" style={{ color: '#A8456E' }}>
               {printable.why}
             </p>
           )}
@@ -382,7 +382,7 @@ export function Applied() {
                         className="absolute inset-0 flex items-center justify-center"
                       >
                         <span
-                          className="px-2 py-1 text-[11px] font-mono uppercase tracking-wider"
+                          className="px-2 py-1 b-label"
                           style={{
                             color: 'var(--era-ink)',
                             backgroundColor: 'color-mix(in srgb, var(--era-bg) 88%, transparent)',
@@ -394,10 +394,10 @@ export function Applied() {
                     )}
                   </div>
                   <figcaption className="mt-1.5">
-                    <span className="text-[12px] block" style={{ color: 'var(--era-ink)' }}>
+                    <span className="b-note block" style={{ color: 'var(--era-ink)' }}>
                       {gm.label}
                     </span>
-                    <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+                    <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
                       {/* One scheme for every cell, and the tier is back in it.
                           Printing only the size meant beat 04 no longer reflected
                           the budget at all: at the stitched tier the tee's
@@ -431,7 +431,7 @@ export function Applied() {
           {/* Both paragraphs here used to point at a renderer "below". The render
               moved to beat 05 when this beat was split, so they were directing
               you at something that is not on the screen. */}
-          <p className="mt-3 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+          <p className="mt-3 b-note max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>Placement mocks, not renders.</strong>{' '}
             Position and size are accurate; the mark is layered flat and does not take the light.
             For a photograph, go to{' '}
@@ -439,7 +439,7 @@ export function Applied() {
           </p>
         </>
       ) : (
-        <p className="text-[13px] py-8" style={{ color: 'var(--accent)' }}>
+        <p className="b-body py-8" style={{ color: 'var(--accent)' }}>
           {config.strategy === 'scale'
             ? 'Keep a place graphic in 02 and it appears here.'
             : 'Pick a mark in 02 and it appears here.'}

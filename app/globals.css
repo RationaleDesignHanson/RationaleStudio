@@ -1757,6 +1757,66 @@ a, button, input, select, textarea, label {
   --era-ink-muted: #5F6165;
 }
 
+/* ── Blank: one type scale, one job per treatment ────────────────────────────
+   The page had SIX on-screen sizes — 9, 10, 11, 12, 13 and 15px — with 11 and
+   12 carrying most of it. Those are distinguishable in a spec and not on a
+   screen, so nothing read as more important than anything else.
+
+   Worse, `font-mono` was used a hundred times against `font-display`'s
+   thirteen, doing five unrelated jobs: navigation, field labels, data values,
+   status and captions. A treatment that means five things means nothing, which
+   is why dense screens read as texture rather than structure.
+
+   Four roles, and each one owns exactly one job:
+
+     .b-h      the one heading on the screen
+     .b-body   prose you read
+     .b-data   numbers you compare — mono, tabular, aligned
+     .b-label  what a control is called — mono, uppercase, tracked
+     .b-note   a caveat or a secondary fact
+
+   Mono now means two things and only two: a label, or a number.
+   ────────────────────────────────────────────────────────────────────────── */
+.b-h {
+  /* The same face the masthead uses. `--font-display` has the same @theme
+     inline problem as --font-mono, and there is already a scoped binding for
+     .font-display on this page — this matches it rather than inventing a
+     second display voice. */
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-optical-sizing: auto;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  color: var(--era-ink);
+}
+.b-body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--era-ink-body);
+}
+.b-data {
+  /* --font-geist-mono, not --font-mono: the latter lives in `@theme inline`
+     and is never emitted at runtime, so the declaration dies and the text
+     inherits whatever its parent had. */
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--era-ink);
+}
+.b-label {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--era-ink-muted);
+}
+.b-note {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--era-ink-muted);
+}
+
 /* ── Touch hit-areas ─────────────────────────────────────────────────────────
    Blank is dense on purpose: its controls are 10–12px mono captions, and they
    set `min-height: 0` inline to escape the global 44px button floor, because

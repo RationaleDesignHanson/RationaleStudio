@@ -63,14 +63,14 @@ export function GraphicBakeoff() {
   return (
     <div className="my-2">
       <Examples onPick={setPrompt} />
-      <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="b-body mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         Describe a graphic and get six takes. Keep one and the applied views carry it.
       </p>
 
       <div className="flex flex-wrap items-end gap-3 mb-3">
         <label className="min-w-0 flex-1" style={{ minWidth: '18rem' }}>
           <span
-            className="block text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+            className="block b-label mb-1.5"
             style={{ color: 'var(--era-ink-muted)' }}
           >
             The graphic
@@ -79,14 +79,14 @@ export function GraphicBakeoff() {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value.slice(0, 240))}
             placeholder="a dog wearing sunglasses, drawn badly on purpose"
-            className="w-full min-w-0 px-3 py-2 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+            className="w-full min-w-0 px-3 py-2 b-body bg-transparent border outline-none focus:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
         </label>
         <button
           onClick={run}
           disabled={running || prompt.trim().length < 3}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
@@ -128,7 +128,7 @@ export function GraphicBakeoff() {
                     {tile.busy ? (
                       <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                     ) : (
-                      <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                      <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                         {tile.error ?? '—'}
                       </span>
                     )}
@@ -143,7 +143,7 @@ export function GraphicBakeoff() {
       <PinShelf />
 
       {config.customGraphic && (
-        <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
+        <p className="mt-3 b-note" style={{ color: 'var(--accent)' }}>
           Kept — the applied views carry it.
         </p>
       )}

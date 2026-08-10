@@ -196,7 +196,7 @@ export function MarkFamily() {
         decoration from the hoodie, so there is no single answer to state here.
         Provenance only; the per-tile badges still say what a construction costs.
       */}
-      <p className="mb-5 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mb-5 b-data" style={{ color: 'var(--era-ink-muted)' }}>
         Made from <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> in{' '}
         <span style={{ color: 'var(--era-ink)' }}>{t.title}</span> —{' '}
         <span style={{ color: 'var(--era-ink)' }}>
@@ -213,7 +213,7 @@ export function MarkFamily() {
             set('markSeed', String(Math.floor(Date.now() % 100000)));
             set('mark', null);
           }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors hover:border-[var(--accent)]"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors hover:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
         >
           <Shuffle className="w-3.5 h-3.5" /> Shuffle
@@ -224,13 +224,13 @@ export function MarkFamily() {
               set('markSeed', '');
               set('mark', null);
             }}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label transition-colors"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             <RotateCcw className="w-3.5 h-3.5" /> The named nine
           </button>
         )}
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           {shuffled ? `set ${config.markSeed}` : 'the named constructions'}
         </span>
       </div>
@@ -265,7 +265,7 @@ export function MarkFamily() {
                 <Mark c={c} word={word} css={t.css} />
               </span>
               <span
-                className="text-[11px] mt-1.5"
+                className="b-note mt-1.5"
                 style={{ color: on ? 'var(--accent)' : av.ok ? 'var(--era-ink)' : 'var(--era-ink-muted)' }}
               >
                 {c.title}
@@ -290,13 +290,13 @@ export function MarkFamily() {
             <button
               onClick={() => drawMark(selected)}
               disabled={drawing}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
               style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
             >
               {drawing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
               {drawing ? 'Drawing six…' : `Draw ${selected.title} properly`}
             </button>
-            <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+            <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
               set type → drawn letterforms · six takes · spends
             </span>
           </div>
@@ -335,7 +335,7 @@ export function MarkFamily() {
                       {d.busy ? (
                         <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                       ) : (
-                        <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                        <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                           {d.error ?? '—'}
                         </span>
                       )}
@@ -347,7 +347,7 @@ export function MarkFamily() {
             </div>
           )}
 
-          <p className="mt-2 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+          <p className="mt-2 b-note max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             The model is handed your mark as an image and asked to redraw, never to spell, so the
             letters cannot change.
           </p>
@@ -362,7 +362,7 @@ export function MarkFamily() {
               {selected.title}
             </h4>
             <p
-              className="text-[13px] mt-1"
+              className="b-body mt-1"
               style={{
                 color: constructionAvailable(selected, method).ok ? 'var(--era-ink-body)' : '#A8456E',
               }}
@@ -373,7 +373,7 @@ export function MarkFamily() {
             </p>
           </>
         ) : (
-          <p className="text-[13px]" style={{ color: 'var(--era-ink-muted)' }}>
+          <p className="b-body" style={{ color: 'var(--era-ink-muted)' }}>
             Pick one, or carry the wordmark alone.
           </p>
         )}

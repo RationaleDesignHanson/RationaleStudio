@@ -8,7 +8,16 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { lineTotals, costSku, retailFor, STATES, blankFor, type Sku } from '@/lib/blank/line';
+import {
+  lineTotals,
+  costSku,
+  keystoneRetail,
+  overCategory,
+  KEYSTONE,
+  STATES,
+  blankFor,
+  type Sku,
+} from '@/lib/blank/line';
 import { stage0Cogs, DECO, RELABEL } from '@/lib/blank/economics';
 
 const sku = (over: Partial<Sku> = {}): Sku => ({
@@ -169,10 +178,14 @@ describe('margin', () => {
 
 
 describe('retail override — the largest margin lever in the model', () => {
-  it('defaults to the tier price when unset', () => {
-    const s = sku();
-    const state = STATES.find((x) => x.slug === 'full')!;
-    expect(costSku(s).retail).toBe(state.retail);
+  it('defaults to the keystone price, and it does not move with order volume', () => {
+    // Price is a property of the style; volume is a property of the order.
+    // Deriving from the actual landed cost made retail FALL when you bought
+    // more blanks, which is not how anyone prices.
+    const at50 = costSku({ ...sku(), units: 50 }).retail;
+    const at300 = costSku({ ...sku(), units: 300 }).retail;
+    expect(at50).toBe(at300);
+    expect(at50 % 5).toBe(0);
   });
 
   it('an override changes revenue and blended margin', () => {
@@ -194,9 +207,9 @@ describe('retail override — the largest margin lever in the model', () => {
   });
 
   it('ignores a zero or negative override instead of dividing by zero', () => {
-    const state = STATES.find((x) => x.slug === 'full')!;
-    expect(costSku(sku({ retail: 0 })).retail).toBe(state.retail);
-    expect(costSku(sku({ retail: -5 })).retail).toBe(state.retail);
+    const derived = costSku(sku()).retail;
+    expect(costSku(sku({ retail: 0 })).retail).toBe(derived);
+    expect(costSku(sku({ retail: -5 })).retail).toBe(derived);
     expect(Number.isFinite(lineTotals([sku({ retail: 0 })]).blendedMargin)).toBe(true);
   });
 
@@ -303,43 +316,41 @@ describe('lineTotals — designs multiplier', () => {
  * two ceilings review caught: a cap must not be marked below a tee it costs more
  * than, and a decorated stock hoodie must not out-price the cut-and-sew hero.
  */
-describe('retailFor', () => {
-  const TIERS = [0, 1, 2, 3, 4];
-
-  it('never prices a cap below a tee — the cap blank costs more', () => {
-    for (const t of TIERS) expect(retailFor('cap', t)).toBeGreaterThanOrEqual(retailFor('tee', t));
+describe('retail, from a keystone multiple', () => {
+  it('is landed cost times the multiple, at a real price point', () => {
+    expect(keystoneRetail(8)).toBe(35); // 8 x 4.5 = 36 -> 35
+    expect(keystoneRetail(20)).toBe(90);
+    for (const c of [3, 8.09, 21.77, 52.63]) expect(keystoneRetail(c) % 5).toBe(0);
   });
 
-  it('keeps the hoodie under the cut-and-sew hero at every tier', () => {
-    // HEROES.choreCoat.targetRetail is 225. A decorated blank listing above a
-    // bespoke garment-dyed hero would contradict the page's whole Stage-1 case.
-    for (const t of TIERS) expect(retailFor('hoodie', t)).toBeLessThan(225);
+  it('never returns a price below a floor, however cheap the garment', () => {
+    expect(keystoneRetail(0)).toBeGreaterThan(0);
+    expect(keystoneRetail(0.4)).toBeGreaterThanOrEqual(5);
   });
 
-  it('never makes a stock hoodie meaningfully more profitable than a tee', () => {
-    // The review's finding was a SYSTEMATIC inversion — at 2.6 the hoodie was the
-    // best-margin item at four of five tiers, contradicting the fact-check in
-    // economics.ts that records it as the marginal garment. A point either way is
-    // an artefact of rounding retail to $5 and is not worth chasing; a hoodie
-    // that is reliably the most profitable thing in the line is a broken model.
-    for (const tier of STATES) {
-      const at = (garment: 'tee' | 'hoodie') =>
-        costSku({ garment, tier: tier.slug, units: tier.run, colours: ['faded-charcoal'], graphic: null }).margin;
-      expect(at('hoodie') - at('tee')).toBeLessThan(0.02);
-    }
+  it('holds the multiple the trade actually needs', () => {
+    // Below 4x is a hobby once fees, postage, returns and dead stock are paid.
+    expect(KEYSTONE).toBeGreaterThanOrEqual(4);
+    expect(KEYSTONE).toBeLessThanOrEqual(6);
   });
 
-  it('keeps the hoodie the marginal garment at the cheap tier', () => {
-    // The heavy fleece blank is the cost problem the whole tier structure exists
-    // to describe, so this must not be smoothed away by a generous ratio.
-    const at = (garment: 'tee' | 'hoodie') =>
-      costSku({ garment, tier: 'graphic', units: 50, colours: ['faded-charcoal'], graphic: null }).margin;
-    expect(at('hoodie')).toBeLessThan(at('tee') - 0.3);
+  it('DIAGNOSES an expensive blank in a cheap tier instead of hiding it', () => {
+    // The 14oz fleece at the graphic tier lands around $52, and keystone asks a
+    // price nobody pays for a graphic hoodie. That is the signal: wrong blank
+    // for the tier. The old ratio said $65 and showed a red margin, which reads
+    // as a pricing problem when it is a sourcing one.
+    const hoodie = costSku({ garment: 'hoodie', tier: 'graphic', units: 50, colours: ['bone'], graphic: null });
+    expect(overCategory('hoodie', hoodie.retail)).toBe(true);
   });
 
-  it('lands on real price points, not arithmetic', () => {
-    for (const g of ['tee', 'hoodie', 'cap'] as const)
-      for (const t of TIERS) expect(retailFor(g, t) % 5).toBe(0);
+  it('does not flag a price the category plainly bears', () => {
+    const tee = costSku({ garment: 'tee', tier: 'graphic', units: 50, colours: ['bone'], graphic: null });
+    expect(overCategory('tee', tee.retail)).toBe(false);
+  });
+
+  it('an explicit price always wins over the derived one', () => {
+    const s = costSku({ garment: 'tee', tier: 'graphic', units: 50, colours: ['bone'], graphic: null, retail: 42 });
+    expect(s.retail).toBe(42);
   });
 });
 

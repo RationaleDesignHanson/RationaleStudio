@@ -53,7 +53,7 @@ export function Standing() {
 
   if (skus.length === 0) {
     return (
-      <p className="text-[13px] py-6" style={{ color: 'var(--accent)' }}>
+      <p className="b-body py-6" style={{ color: 'var(--accent)' }}>
         Tick a style in the costs section and the spec appears here.
       </p>
     );
@@ -65,7 +65,7 @@ export function Standing() {
       <section>
         <Head>The spec · {name}</Head>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[560px] border-collapse font-mono text-[12px] tabular-nums">
+          <table className="w-full min-w-[560px] border-collapse b-data">
             <tbody>
               {skus.map((s, i) => {
                 const gm = GARMENTS.find((g) => g.key === s.garment);
@@ -104,7 +104,7 @@ export function Standing() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+        <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
           {money(totals.totalCost)} to make · {totals.totalUnits} pieces · {dollars(totals.cogsPerUnit)}{' '}
           each
           {designs > 1 && ` · ${designs} designs`}
@@ -122,7 +122,7 @@ export function Standing() {
                 key={c.id}
                 onClick={() => set('channel', c.id)}
                 aria-pressed={on}
-                className="tap px-2.5 py-1 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider border-b-2"
+                className="tap px-2.5 py-1 b-label border-b-2"
                 style={{
                   borderColor: on ? 'var(--accent)' : 'transparent',
                   color: on ? 'var(--accent)' : 'var(--era-ink-muted)',
@@ -134,14 +134,14 @@ export function Standing() {
             );
           })}
         </div>
-        <p className="text-[12px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
+        <p className="b-note mb-4" style={{ color: 'var(--era-ink-muted)' }}>
           {channel.note}
         </p>
 
         {channel.paidAcquisition && (
           <label className="flex items-center gap-3 mb-4 max-w-md">
             <span
-              className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] shrink-0"
+              className="b-label shrink-0"
               style={{ color: 'var(--era-ink-muted)', width: '7rem' }}
             >
               Cost per order
@@ -156,7 +156,7 @@ export function Standing() {
               style={{ minHeight: 0 }}
             />
             <span
-              className="text-[12px] font-mono tabular-nums shrink-0 text-right"
+              className="b-data shrink-0 text-right"
               style={{ color: 'var(--era-ink)', width: '3rem' }}
             >
               ${cac}
@@ -165,7 +165,7 @@ export function Standing() {
         )}
 
         {sell && leadCost && (
-          <dl className="font-mono text-[12px] tabular-nums space-y-1.5 max-w-md">
+          <dl className="b-data space-y-1.5 max-w-md">
             {/* Adjustable, because this is the panel where you find out whether
                 the price works — reading it here and having to go back to the
                 cost sheet to change it is the long way round. */}
@@ -208,7 +208,7 @@ export function Standing() {
 
         {sell && channel.paidAcquisition && (
           <p
-            className="mt-3 text-[13px] max-w-xl"
+            className="mt-3 b-body max-w-xl"
             style={{ color: sell.underwater ? '#A8456E' : 'var(--era-ink-body)' }}
           >
             {sell.underwater ? (
@@ -243,7 +243,7 @@ export function Standing() {
             const profit = st.revenue - totals.totalCost;
             return (
               <>
-                <dl className="font-mono text-[12px] tabular-nums space-y-1.5 max-w-md">
+                <dl className="b-data space-y-1.5 max-w-md">
                   <Row label={`At list (${Math.round(SELL_PLAN.fullRate * 100)}%)`} value={`${st.unitsFull} · ${money(st.unitsFull * leadCost.retail)}`} />
                   <Row
                     label={`Marked down (${Math.round(SELL_PLAN.markdownDepth * 100)}% off)`}
@@ -254,7 +254,7 @@ export function Standing() {
                   <Row label="Less the buy" value={`−${money(totals.totalCost)}`} />
                   <Row label="Profit" value={money(profit)} strong alert={profit < 0} />
                 </dl>
-                <p className="mt-3 text-[13px] max-w-xl" style={{ color: st.unitsUnsold > 0 ? '#A8456E' : 'var(--era-ink-body)' }}>
+                <p className="mt-3 b-body max-w-xl" style={{ color: st.unitsUnsold > 0 ? '#A8456E' : 'var(--era-ink-body)' }}>
                   {st.cashInUnsold > 0 && (
                     <>
                       <strong>{money(st.cashInUnsold)} sits in {st.unitsUnsold} pieces nobody buys.</strong>{' '}
@@ -282,7 +282,7 @@ export function Standing() {
       {/* WHERE TO ORDER — named where the model names them, described where it cannot. */}
       <section>
         <Head>Where to order</Head>
-        <ul className="space-y-2 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
+        <ul className="space-y-2 b-body" style={{ color: 'var(--era-ink-body)' }}>
           {[...new Set(skus.map((s) => blankFor(s.garment, tierIndex(s.tier)).id))].map((id) => {
             const b = Object.values(
               skus.map((s) => blankFor(s.garment, tierIndex(s.tier))),
@@ -309,7 +309,7 @@ export function Standing() {
 
       <section>
         <Head>Before you believe any of it</Head>
-        <ul className="space-y-1.5 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
+        <ul className="space-y-1.5 b-body" style={{ color: 'var(--era-ink-body)' }}>
           <li>Every image here is generated. None is a photograph of product that exists.</li>
           <li>Blank prices are trade listings or derived; decoration and shipping are estimates.</li>
           <li>The size curve is an assumption about demand, not a fact about your customers.</li>
@@ -323,7 +323,7 @@ export function Standing() {
 function Head({ children }: { children: React.ReactNode }) {
   return (
     <h3
-      className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] pb-2 mb-3 border-b"
+      className="b-label pb-2 mb-3 border-b"
       style={{ color: 'var(--era-ink)', borderColor: 'var(--era-hairline)' }}
     >
       {children}

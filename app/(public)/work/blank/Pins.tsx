@@ -42,7 +42,7 @@ export function PinButton({ url }: { url: string }) {
       aria-pressed={on}
       aria-label={on ? 'Unpin' : 'Pin this'}
       title={on ? 'Unpin' : 'Keep this'}
-      className="tap absolute top-1 right-1 z-10 px-2 py-1 text-[11px] sm:text-[10px] font-mono uppercase tracking-wider border backdrop-blur"
+      className="tap absolute top-1 right-1 z-10 px-2 py-1 b-label border backdrop-blur"
       style={{
         minHeight: 0,
         borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
@@ -63,7 +63,7 @@ export function PinShelf() {
   return (
     <div className="mt-8 pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
       <p
-        className="text-[10px] font-mono uppercase tracking-[0.2em] mb-2.5"
+        className="b-label mb-2.5"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         Kept · {pins.length}

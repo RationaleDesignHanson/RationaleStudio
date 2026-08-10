@@ -95,7 +95,7 @@ export function PlaceGraphics() {
 
   return (
     <div className="my-2">
-      <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="b-body mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         One place, one voice, six takes. Whatever works here runs{' '}
         <strong style={{ color: 'var(--era-ink)' }}>{config.designs}</strong> times.
       </p>
@@ -103,7 +103,7 @@ export function PlaceGraphics() {
       <div className="flex flex-wrap items-end gap-3 mb-3">
         <label className="min-w-0 flex-1" style={{ minWidth: '16rem' }}>
           <span
-            className="block text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+            className="block b-label mb-1.5"
             style={{ color: 'var(--era-ink-muted)' }}
           >
             The place
@@ -113,14 +113,14 @@ export function PlaceGraphics() {
             onChange={(e) => setPlace(e.target.value.slice(0, 120))}
             placeholder={EXAMPLES[0]}
             size={1}
-            className="tap w-full min-w-0 px-3 py-2.5 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+            className="tap w-full min-w-0 px-3 py-2.5 b-body bg-transparent border outline-none focus:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
         </label>
         <button
           onClick={run}
           disabled={running || place.trim().length < 2}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
@@ -136,7 +136,7 @@ export function PlaceGraphics() {
               key={r.id}
               onClick={() => setRegister(r.id)}
               aria-pressed={on}
-              className="tap px-2.5 py-1 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2"
+              className="tap px-2.5 py-1 b-label transition-colors border-b-2"
               style={{
                 borderColor: on ? 'var(--accent)' : 'transparent',
                 color: on ? 'var(--accent)' : 'var(--era-ink-muted)',
@@ -148,7 +148,7 @@ export function PlaceGraphics() {
           );
         })}
       </div>
-      <p className="text-[12px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="b-note mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         {active.hint}
       </p>
 
@@ -157,7 +157,7 @@ export function PlaceGraphics() {
           <button
             key={e}
             onClick={() => setPlace(e)}
-            className="tap text-[12px] sm:text-[11px] underline"
+            className="tap b-note underline"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             {e}
@@ -197,7 +197,7 @@ export function PlaceGraphics() {
                   {tile.busy ? (
                     <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                   ) : (
-                    <span className="text-[10px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                    <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                       {tile.error ?? '—'}
                     </span>
                   )}
@@ -213,7 +213,7 @@ export function PlaceGraphics() {
       {config.customGraphic && register === 'sign' && <SignComposer url={config.customGraphic} />}
 
       {config.customGraphic && register !== 'sign' && (
-        <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
+        <p className="mt-3 b-note" style={{ color: 'var(--accent)' }}>
           Kept — the applied views carry it.
         </p>
       )}

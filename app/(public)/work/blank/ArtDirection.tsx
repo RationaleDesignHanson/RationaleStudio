@@ -36,7 +36,7 @@ export function ArtDirection() {
     <div className="mb-5">
       <label className="block">
         <span
-          className="block text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+          className="block b-label mb-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           How it should look
@@ -46,7 +46,7 @@ export function ArtDirection() {
           onChange={(e) => set('artDirection', e.target.value.slice(0, 200))}
           placeholder={STARTERS[0]}
           size={1}
-          className="tap w-full min-w-0 px-3 py-2.5 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+          className="tap w-full min-w-0 px-3 py-2.5 b-body bg-transparent border outline-none focus:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
         />
       </label>
@@ -55,7 +55,7 @@ export function ArtDirection() {
           <button
             key={x}
             onClick={() => set('artDirection', x)}
-            className="tap px-2 py-1 text-[12px] sm:text-[11px] font-mono border transition-colors hover:border-[var(--accent)]"
+            className="tap px-2 py-1 b-note border transition-colors hover:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             {x.split(',')[0]}
@@ -64,14 +64,14 @@ export function ArtDirection() {
         {config.artDirection && (
           <button
             onClick={() => set('artDirection', '')}
-            className="tap px-2 py-1 text-[12px] sm:text-[11px] font-mono underline"
+            className="tap px-2 py-1 b-note underline"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             clear
           </button>
         )}
       </div>
-      <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         Applies to anything generated below. Or upload a reference further down and it gets read for
         you.
       </p>

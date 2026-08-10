@@ -71,7 +71,7 @@ export function BlankShell({ sections }: { sections: Section[] }) {
                   onClick={() => set('step', x.id)}
                   aria-current={on ? 'step' : undefined}
                   title={st?.note}
-                  className="tap flex items-center gap-1.5 text-[12px] font-mono uppercase tracking-wider border-b-2 pb-0.5 transition-colors"
+                  className="tap flex items-center gap-1.5 b-label border-b-2 pb-0.5 transition-colors"
                   style={{
                     display: 'flex',
                     minHeight: 0,
@@ -94,7 +94,13 @@ export function BlankShell({ sections }: { sections: Section[] }) {
                       }}
                     />
                   )}
-                  <span style={{ opacity: 0.6 }}>{x.id}</span>
+                  {/* No number. 01–07 promised an order the model does not
+                      have — colour changes the blanks, which changes cost,
+                      which changes what artwork is makeable, which changes
+                      colour. It is a graph wearing a checklist, and numbering
+                      it is why "what do I do before I advance" never landed.
+                      The dot says what is outstanding; the order is a
+                      suggestion. */}
                   {x.label}
                 </button>
               </li>
@@ -105,16 +111,16 @@ export function BlankShell({ sections }: { sections: Section[] }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6">
         <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-          <h2 className="font-display" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
+          <h2 className="b-h">
             {open?.label}
-            <span className="ml-3 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+            <span className="ml-3 b-note" style={{ color: 'var(--era-ink-muted)' }}>
               {statuses.find((y) => y.id === openId)?.note}
             </span>
           </h2>
           {next && next.id !== openId && (
             <button
               onClick={() => set('step', next.id)}
-              className="tap text-[12px] font-mono"
+              className="tap b-data"
               style={{ color: 'var(--accent)', minHeight: 0 }}
             >
               Next: {next.note} →

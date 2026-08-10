@@ -280,7 +280,7 @@ export function Stepper() {
           {/* min-h-0 + overflow-hidden are what make the 0fr row actually clip. */}
           <div className="min-h-0 overflow-hidden">
             <div
-              className="flex gap-x-4 items-baseline pt-2 pb-1.5 text-[12px] sm:text-[11px] font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-x-4 items-baseline pt-2 pb-1.5 b-data overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ color: 'var(--era-ink-muted)', overscrollBehaviorX: 'contain' }}
             >
               {decided.length === 0 ? (
@@ -327,7 +327,7 @@ export function Stepper() {
                   key={b.n}
                   onClick={() => go(idx)}
                   aria-current={on ? 'step' : undefined}
-                  className="tap shrink-0 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2 pb-0.5"
+                  className="tap shrink-0 b-label transition-colors border-b-2 pb-0.5"
                   style={{
                     color: on ? 'var(--accent)' : done ? 'var(--era-ink)' : 'var(--era-ink-muted)',
                     borderColor: on ? 'var(--accent)' : 'transparent',
@@ -376,7 +376,7 @@ export function StepFooter() {
       {prev ? (
         <button
           onClick={() => go(i - 1)}
-          className="tap text-[13px] sm:text-[12px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5"
+          className="tap b-body sm:b-label inline-flex items-center gap-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           <ChevronLeft className="w-3.5 h-3.5" /> {prev.short}
@@ -387,7 +387,7 @@ export function StepFooter() {
       {next ? (
         <button
           onClick={() => go(i + 1)}
-          className="text-[13px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5 border px-3 py-1.5 transition-colors hover:border-[var(--accent)]"
+          className="b-body font-mono uppercase tracking-wider inline-flex items-center gap-1.5 border px-3 py-1.5 transition-colors hover:border-[var(--accent)]"
           style={{ color: 'var(--accent)', borderColor: 'var(--era-hairline)' }}
         >
           {next.short} <ChevronRight className="w-3.5 h-3.5" />

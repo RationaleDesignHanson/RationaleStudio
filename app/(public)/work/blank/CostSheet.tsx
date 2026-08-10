@@ -33,8 +33,10 @@ import Image from 'next/image';
 import { useEffect, useMemo } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import {
+  KEYSTONE,
   blankFor,
   costSku,
+  overCategory,
   lineTotals,
   GARMENTS,
   STATES,
@@ -133,7 +135,7 @@ export function CostSheet() {
       onChange={(e) => (inLine ? setSkuTier(idx, e.target.value) : set('budget', e.target.value))}
       aria-label={`${gm.label} decoration`}
       title={METHOD_MEANING[TIER_METHOD[tierIndex(preview.tier)]]}
-      className="w-full min-w-0 bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)]"
+      className="w-full min-w-0 bg-transparent border px-1.5 py-1 b-note outline-none focus:border-[var(--accent)]"
       style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
     >
       {STATES.map((st, n) => (
@@ -150,7 +152,7 @@ export function CostSheet() {
       onChange={(e) => inLine && setSkuUnits(idx, Number(e.target.value) as RunSize)}
       disabled={!inLine}
       aria-label={`${gm.label} run size`}
-      className="bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)] disabled:opacity-60"
+      className="bg-transparent border px-1.5 py-1 b-note outline-none focus:border-[var(--accent)] disabled:opacity-60"
       style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
     >
       {RUN_SIZES.map((u) => (
@@ -173,7 +175,11 @@ export function CostSheet() {
         onChange={(e) => inLine && setSkuRetail(idx, Number(e.target.value) || undefined)}
         disabled={!inLine}
         aria-label={`${gm.label} price`}
-        title={preview.retail === undefined ? 'The tier default — not a price you set' : undefined}
+        title={
+          preview.retail === undefined
+            ? `Derived: ${KEYSTONE}x landed cost. Not a price you set.`
+            : undefined
+        }
         size={1}
         className="tap w-14 py-1 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] disabled:opacity-60 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         style={{
@@ -196,7 +202,7 @@ export function CostSheet() {
     const fabric = fabricFor(blank.id);
     if (config.palette.length === 0) {
       return (
-        <span className="text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-note" style={{ color: 'var(--era-ink-muted)' }}>
           pick a palette in 03
         </span>
       );
@@ -241,7 +247,7 @@ export function CostSheet() {
           );
         })}
         {preview.colours.length > STAGE0_COLOURWAY_LIMIT && (
-          <span className="text-[11px] sm:text-[10px] font-mono" style={{ color: '#A8456E' }}>
+          <span className="b-data" style={{ color: '#A8456E' }}>
             {preview.colours.length} — Stage 0 takes {STAGE0_COLOURWAY_LIMIT}
           </span>
         )}
@@ -260,7 +266,7 @@ export function CostSheet() {
   return (
     <div className="my-2">
       {/* PHONE — one card per style, so cost, price and margin are all on screen. */}
-      <div className="sm:hidden font-mono text-[13px] tabular-nums space-y-3">
+      <div className="sm:hidden b-data space-y-3">
         {rows.map((r) => (
           <div
             key={r.gm.key}
@@ -293,13 +299,13 @@ export function CostSheet() {
 
       {/* DESKTOP — the sheet as a sheet. */}
       <div className="hidden sm:block overflow-x-auto">
-        <table className="w-full min-w-[720px] border-collapse font-mono text-[12px] tabular-nums">
+        <table className="w-full min-w-[720px] border-collapse b-data">
           <thead>
             <tr style={{ color: 'var(--era-ink-muted)' }}>
               {['Style', 'Decoration', 'Colourways', 'Units', 'Pieces', 'Cost/unit', 'Price', 'Margin'].map((h) => (
                 <th
                   key={h}
-                  className="text-left font-normal text-[10px] uppercase tracking-[0.15em] pb-2 border-b"
+                  className="text-left font-normal b-note uppercase tracking-[0.15em] pb-2 border-b"
                   style={{ borderColor: 'var(--era-hairline)' }}
                 >
                   {h}
@@ -333,6 +339,15 @@ export function CostSheet() {
                 </td>
                 <td className="py-2" style={{ color: marginColour(r.c.margin) }}>
                   {pct(r.c.margin)}
+                  {overCategory(r.gm.key, r.c.retail) && (
+                    <span
+                      className="block b-note"
+                      style={{ color: '#A8456E' }}
+                      title={`${KEYSTONE}x this blank's landed cost asks more than the category bears. The blank is too dear for this tier.`}
+                    >
+                      blank too dear
+                    </span>
+                  )}
                 </td>
               </tr>
             ))}
@@ -340,7 +355,7 @@ export function CostSheet() {
         </table>
       </div>
 
-      <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         Cost per unit excludes setup — digitizing, screens and the woven-label minimum land in the
         buy below.{' '}
         {designs > 1
@@ -353,7 +368,7 @@ export function CostSheet() {
       </p>
 
       {skus.length === 0 ? (
-        <p className="mt-5 text-[13px]" style={{ color: 'var(--accent)' }}>
+        <p className="mt-5 b-body" style={{ color: 'var(--accent)' }}>
           Nothing in the line yet — tick a style above.
         </p>
       ) : (
@@ -361,7 +376,7 @@ export function CostSheet() {
           className="mt-6 border-t pt-4 grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-x-8 gap-y-2"
           style={{ borderColor: 'var(--era-hairline)' }}
         >
-          <dl className="font-mono text-[12px] tabular-nums space-y-1.5">
+          <dl className="b-data space-y-1.5">
             <Line
               label={designs > 1 ? `Units · ${designs} places` : 'Units'}
               value={String(totals.totalUnits)}
@@ -391,7 +406,7 @@ export function CostSheet() {
             />
           </dl>
 
-          <div className="text-[12px]" style={{ color: 'var(--era-ink-body)' }}>
+          <div className="b-note" style={{ color: 'var(--era-ink-body)' }}>
             {designs > 1 ? (
               <p>
                 <strong style={{ color: 'var(--era-ink)' }}>
@@ -424,7 +439,7 @@ export function CostSheet() {
                 revenue at this cost — raise a price, cut a style, or run deeper.
               </p>
             )}
-            <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+            <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
               Stage 0 blanks only. No hero, no duty — blanks land already imported.
             </p>
           </div>
@@ -438,7 +453,7 @@ export function CostSheet() {
 function Field({ label }: { label: string }) {
   return (
     <span
-      className="text-[11px] uppercase tracking-[0.15em]"
+      className="b-note uppercase tracking-[0.15em]"
       style={{ color: 'var(--era-ink-muted)' }}
     >
       {label}

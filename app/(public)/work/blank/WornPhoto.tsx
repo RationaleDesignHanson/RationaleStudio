@@ -94,18 +94,18 @@ export function WornPhoto({ probeRef }: { probeRef: React.RefObject<HTMLSpanElem
       <button
         onClick={run}
         disabled={busy}
-        className="inline-flex items-center gap-1.5 px-3 py-2 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+        className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
         style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
       >
         {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
         {busy ? 'Rendering…' : 'See it worn'}
       </button>
-      <span className="ml-3 text-[12px] sm:text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+      <span className="ml-3 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         One render. The only image here with a person in it.
       </span>
 
       {error && (
-        <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
+        <p className="mt-2 b-note" style={{ color: '#A8456E' }}>
           {error}
         </p>
       )}
@@ -117,7 +117,7 @@ export function WornPhoto({ probeRef }: { probeRef: React.RefObject<HTMLSpanElem
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={url} alt="The garment worn" className="w-full h-full object-cover" />
           </div>
-          <figcaption className="mt-1.5 text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          <figcaption className="mt-1.5 b-note" style={{ color: 'var(--era-ink-muted)' }}>
             Generated. Not a photograph of a person who exists.
           </figcaption>
         </figure>

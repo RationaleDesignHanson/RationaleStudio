@@ -147,14 +147,14 @@ export function ColourBeat() {
         {/* Garment is owned by the cost sheet — the line decides which garments
             exist. Rendering the round on the leading style keeps colour the only
             variable and stops this beat from being a third place to pick a tee. */}
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           on the {GARMENTS.find((g) => g.key === garment)?.label.toLowerCase()} — the leading style
         </span>
 
         <button
           onClick={() => runRound(round)}
           disabled={running}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
@@ -168,13 +168,13 @@ export function ColourBeat() {
             setTiles(paletteRound(next).map((palette) => ({ palette })));
           }}
           disabled={running}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label transition-colors disabled:opacity-40"
           style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
         >
           <Shuffle className="w-3.5 h-3.5" /> Different six
         </button>
 
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           {config.customGraphic
             ? 'carrying your graphic'
             : mark
@@ -227,7 +227,7 @@ export function ColourBeat() {
                       <Loader2 className="w-5 h-5 animate-spin" style={{ color: 'rgba(255,255,255,0.7)' }} />
                     ) : (
                       <span
-                        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider px-2 text-center"
+                        className="b-label px-2 text-center"
                         style={{ color: 'rgba(255,255,255,0.75)' }}
                       >
                         {tile.error ?? 'swatch'}
@@ -239,14 +239,14 @@ export function ColourBeat() {
 
               <div className="mt-1.5 flex flex-wrap items-baseline gap-x-2">
                 <span
-                  className="text-[12px]"
+                  className="b-note"
                   style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
                 >
                   {tile.palette.name}
                 </span>
                 {!tile.palette.stage0 && (
                   <span
-                    className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
+                    className="b-label"
                     style={{ color: '#A8456E' }}
                   >
                     custom dye lot
@@ -254,7 +254,7 @@ export function ColourBeat() {
                 )}
               </div>
               {on && (
-                <span className="text-[11px] block" style={{ color: 'var(--era-ink-muted)' }}>
+                <span className="b-note block" style={{ color: 'var(--era-ink-muted)' }}>
                   {tile.palette.note}
                 </span>
               )}
@@ -263,13 +263,13 @@ export function ColourBeat() {
         })}
       </div>
 
-      <p className="mt-5 text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
+      <p className="mt-5 b-body max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
         Stage 0 allows <strong style={{ color: 'var(--era-ink)' }}>{STAGE0_COLOURWAY_LIMIT}</strong>{' '}
         colourways per style — a third is a third buy of every blank. Garment dye means you approve
         a shade band, not a Pantone. The ones marked custom dye lot need 800–1,000m in one colour,
         which is 300–500 garments.
       </p>
-      <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         {PALETTES.length} colourways in the set; six are drawn per round.
       </p>
 

@@ -111,19 +111,19 @@ export function Lookbook() {
       </span>
 
       <p
-        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-2"
+        className="b-label mb-2"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         The lookbook
       </p>
 
       {pieces.length === 0 ? (
-        <p className="text-[13px]" style={{ color: 'var(--accent)' }}>
+        <p className="b-body" style={{ color: 'var(--accent)' }}>
           Spec some styles in 06 and the whole line can be shot together here.
         </p>
       ) : (
         <>
-          <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
+          <p className="b-body mb-3 max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
             {pieces.length} {pieces.length === 1 ? 'piece' : 'pieces'} in one frame
             {direction ? `, ${direction.label.toLowerCase()}` : ''}. The only view that shows whether
             the range hangs together.
@@ -131,20 +131,20 @@ export function Lookbook() {
           <button
             onClick={run}
             disabled={busy}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+            className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
             style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
           >
             {busy ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
             {busy ? 'Shooting the line…' : 'Shoot the line'}
           </button>
-          <span className="ml-3 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+          <span className="ml-3 b-note" style={{ color: 'var(--era-ink-muted)' }}>
             One render.
           </span>
         </>
       )}
 
       {error && (
-        <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
+        <p className="mt-2 b-note" style={{ color: '#A8456E' }}>
           {error}
         </p>
       )}
@@ -156,7 +156,7 @@ export function Lookbook() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={url} alt="The line" className="w-full h-full object-cover" />
           </div>
-          <figcaption className="mt-1.5 text-[11px] sm:text-[10px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          <figcaption className="mt-1.5 b-note" style={{ color: 'var(--era-ink-muted)' }}>
             Generated. Not a photograph of garments that exist.
           </figcaption>
         </figure>

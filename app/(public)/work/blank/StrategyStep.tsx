@@ -72,7 +72,7 @@ export function StrategyStep() {
   return (
     <div className="mb-8">
       <p
-        className="text-[11px] font-mono uppercase tracking-[0.2em] mb-3"
+        className="b-label mb-3"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         Which business
@@ -104,7 +104,7 @@ export function StrategyStep() {
               >
                 {o.title}
               </span>
-              <span className="block text-[13px] mt-0.5" style={{ color: 'var(--era-ink-body)' }}>
+              <span className="block b-body mt-0.5" style={{ color: 'var(--era-ink-body)' }}>
                 {o.line}
               </span>
             </button>
@@ -115,7 +115,7 @@ export function StrategyStep() {
       {config.strategy === 'scale' && (
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-2">
           <label
-            className="text-[11px] font-mono uppercase tracking-[0.2em]"
+            className="b-label"
             htmlFor="designs"
             style={{ color: 'var(--era-ink-muted)' }}
           >
@@ -131,10 +131,10 @@ export function StrategyStep() {
               set('designs', Math.min(500, Math.max(1, Math.floor(Number(e.target.value) || 1))))
             }
             size={1}
-            className="tap w-20 py-1 px-1.5 bg-transparent border outline-none font-mono text-[13px] tabular-nums focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="tap w-20 py-1 px-1.5 bg-transparent border outline-none b-data focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
-          <span className="text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+          <span className="b-note" style={{ color: 'var(--era-ink-muted)' }}>
             Two per state is {2 * 50}.
           </span>
         </div>

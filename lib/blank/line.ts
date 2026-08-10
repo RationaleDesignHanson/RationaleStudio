@@ -213,38 +213,44 @@ export interface LineTotals {
 }
 
 /**
- * Retail relative to the tier's tee price.
+ * Retail, derived from cost rather than from a ratio off the tee.
  *
- * The tier carried ONE default retail for every garment, so a hoodie whose blank
- * alone is a 14oz heavy fleece was listed at the tee's $35 against a $52 cost —
- * a margin of minus fifty per cent, printed as though it were a plan. Nobody
- * prices a hoodie at a tee price, and the model should not offer to.
+ * It WAS a ratio, and the ratio produced a $210 hoodie on a stock AS Colour
+ * blank with a 2in embroidered mark — a Fear-of-God price on a garment with no
+ * cut-and-sew story behind it. A trade review called it a fantasy and it was.
  *
- * These are ratios rather than absolute prices so they survive the tier moving.
+ * A keystone multiple is how the trade actually prices: take landed cost,
+ * multiply, and that is the number you need. DTC wants roughly 4–5x, because
+ * after fees, postage, returns and the stock you never sell, a 4x is a normal
+ * business and a 3x is a hobby. Wholesale wants 5–6x, because a retailer takes
+ * half and you still have to hold your margin on the half that is left.
  *
- * TWO CEILINGS THE FIRST ATTEMPT BROKE, both caught in review:
+ * WHAT MAKES THIS BETTER IS THAT IT DIAGNOSES. Deriving from cost means an
+ * expensive blank in a cheap tier stops being hidden behind a flattering
+ * default: a 14oz fleece at 50 units lands at $52 and keystone asks for $235,
+ * which nobody will pay for a graphic hoodie. The old ratio said $65 and showed
+ * a red margin, which reads as a pricing problem. It is not — it is the wrong
+ * blank for that tier, and the number should say so.
  *
- * The cap was 0.95 — marked DOWN against the tee. That is backwards on cost (the
- * cap blank is 2.6x the tee blank at the graphic tier and 1.5x at washed) and it
- * pushed cap-at-tonal from 62.6% to 58.8%, under the 60% floor, turning a row red
- * for a garment nothing in the brief had asked to change. A cap is about a tee.
- *
- * The hoodie was 2.6, which put it at $285 at the top tiers — $60 ABOVE the
- * cut-and-sew chore coat in HEROES, which is a bespoke garment-dyed hero made in
- * Portugal and the thing the entire Stage-1 argument is built on. It also made a
- * stock decorated blank the highest-margin item in the line at every tier from
- * washed up, inverting the fact-check in economics.ts that records the hoodie as
- * the MARGINAL garment. 1.9 keeps it under the hero at every tier.
- *
- * CONFIDENCE: category convention, not sourced quotes — the same class of claim
- * as the costNote fields. Every one is overridable per SKU in the sheet.
+ * CONFIDENCE: the multiple is trade convention and hard; the ceilings below are
+ * a judgement about what this category bears and are soft.
  */
-const RETAIL_RATIO: Record<Garment, number> = { tee: 1, hoodie: 1.9, cap: 1 };
+export const KEYSTONE = 4.5;
 
-/** The default list price for a garment at a tier, rounded to a real price point. */
-export function retailFor(garment: Garment, tier: number): number {
-  const base = STATES[Math.min(STATES.length - 1, Math.max(0, tier))].retail;
-  return Math.round((base * RETAIL_RATIO[garment]) / 5) * 5;
+/**
+ * Roughly what a stock-blank streetwear piece can ask, before the story has to
+ * carry it. Above this the price is not wrong so much as unbelievable.
+ */
+const CATEGORY_CEILING: Record<Garment, number> = { tee: 85, hoodie: 180, cap: 65 };
+
+/** The keystone price for a landed cost, at a real price point. */
+export function keystoneRetail(landedCOGS: number, multiple = KEYSTONE): number {
+  return Math.max(5, Math.round((landedCOGS * multiple) / 5) * 5);
+}
+
+/** True when the price this cost demands is more than the category bears. */
+export function overCategory(garment: Garment, retail: number): boolean {
+  return retail > CATEGORY_CEILING[garment];
 }
 
 /** Identity of an embroidery artwork — same mark on two garments digitizes once. */
@@ -293,7 +299,24 @@ export function costSku(sku: Sku, designs = 1): SkuCost {
   });
   // Strip the per-SKU amortised fixed cost; it's re-added once, at line level.
   const variablePerUnit = full.landedCOGS - full.amortizedFixed;
-  const retail = sku.retail && sku.retail > 0 ? sku.retail : retailFor(sku.garment, t);
+  /**
+   * The default price comes off a REFERENCE cost at the tier's own run size,
+   * not off this order's cost.
+   *
+   * Deriving from the actual landed cost made the price fall when you ordered
+   * more blanks, because a deeper band is cheaper — and nobody drops their
+   * retail because they got a better price on cotton. They keep the price and
+   * take the margin. Price is a property of the style; volume is a property of
+   * the order.
+   */
+  const reference = stage0Cogs({
+    blank,
+    decoration: state.decoration,
+    run: state.run,
+    relabel: state.relabel,
+    includeSizeUpcharge: true,
+  }).landedCOGS;
+  const retail = sku.retail && sku.retail > 0 ? sku.retail : keystoneRetail(reference);
   return {
     sku,
     blank,

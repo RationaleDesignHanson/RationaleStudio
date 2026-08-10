@@ -92,13 +92,13 @@ export function WackyWordmark() {
         <button
           onClick={run}
           disabled={running}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
           {running ? 'Drawing six…' : 'Draw it six ways'}
         </button>
-        <span className="text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-note" style={{ color: 'var(--era-ink-muted)' }}>
           Redrawn from the type, not spelled by the model. Check the spelling anyway.
         </span>
       </div>
@@ -134,7 +134,7 @@ export function WackyWordmark() {
                     {tile.busy ? (
                       <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                     ) : (
-                      <span className="text-[10px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                      <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                         {tile.error ?? '—'}
                       </span>
                     )}

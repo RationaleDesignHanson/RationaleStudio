@@ -52,7 +52,7 @@ export function PaletteBeat() {
 
   return (
     <div className="my-2">
-      <p className="text-[13px] mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="b-body mb-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         Pick the colours the line is made in. Each colourway is a separate buy of the blank.
       </p>
 
@@ -79,14 +79,14 @@ export function PaletteBeat() {
                 }}
               />
               <span
-                className="block mt-1.5 text-[12px] sm:text-[11px] font-mono"
+                className="block mt-1.5 b-data"
                 style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
               >
                 {p.name}
               </span>
               {!p.stage0 && (
                 <span
-                  className="block text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
+                  className="block b-label"
                   style={{ color: 'var(--era-ink-muted)' }}
                 >
                   custom dye lot
@@ -98,13 +98,13 @@ export function PaletteBeat() {
       </div>
 
       {chosen.length === 0 ? (
-        <p className="text-[13px] py-6" style={{ color: 'var(--accent)' }}>
+        <p className="b-body py-6" style={{ color: 'var(--accent)' }}>
           Pick a colour and the line appears here in it.
         </p>
       ) : (
         <>
           <p
-            className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-3"
+            className="b-label mb-3"
             style={{ color: 'var(--era-ink-muted)' }}
           >
             The card · {chosen.length} {chosen.length === 1 ? 'colour' : 'colours'} ×{' '}
@@ -126,7 +126,7 @@ export function PaletteBeat() {
               {chosen.map((c) => (
                 <span
                   key={c!.id}
-                  className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider self-end pb-1"
+                  className="b-label self-end pb-1"
                   style={{ color: 'var(--era-ink-muted)' }}
                 >
                   {c!.name}
@@ -192,7 +192,7 @@ export function PaletteBeat() {
             </div>
           </div>
 
-          <p className="mt-4 text-[12px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+          <p className="mt-4 b-note max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
             <strong style={{ color: 'var(--era-ink)' }}>These are not the swatch colours.</strong>{' '}
             Each row shows the dye as that cloth returns it — brushed fleece reads deeper, twill
             reads cleaner, garment dye arrives already faded. Change the budget and the blanks change
@@ -230,17 +230,17 @@ function FragmentRow({
   return (
     <>
       <span className="self-center" title={note}>
-        <span className="block text-[12px]" style={{ color: 'var(--era-ink)' }}>
+        <span className="block b-note" style={{ color: 'var(--era-ink)' }}>
           {label}
         </span>
         <span
-          className="block text-[11px] sm:text-[9px] font-mono leading-tight"
+          className="block b-data leading-tight"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           {sub}
         </span>
         <span
-          className="block mt-1 text-[11px] sm:text-[10px] leading-snug"
+          className="block mt-1 b-note leading-snug"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           {note}

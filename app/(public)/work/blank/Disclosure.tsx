@@ -31,7 +31,7 @@ export function Disclosure({
         style={{ color: 'var(--era-ink)' }}
       >
         <span
-          className="text-[11px] font-mono transition-transform group-open:rotate-90 shrink-0"
+          className="b-data transition-transform group-open:rotate-90 shrink-0"
           style={{ color: 'var(--accent)' }}
           aria-hidden
         >
@@ -39,7 +39,7 @@ export function Disclosure({
         </span>
         <span className="font-display text-lg">{summary}</span>
         {hint && (
-          <span className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
             {hint}
           </span>
         )}

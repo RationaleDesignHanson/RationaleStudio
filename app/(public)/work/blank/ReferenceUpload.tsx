@@ -286,7 +286,7 @@ export function ReferenceUpload() {
             {preview ? (
               <Image src={preview} alt="Your reference" fill className="object-cover" unoptimized />
             ) : (
-              <span className="text-[12px] px-4 text-center" style={{ color: 'var(--era-ink-muted)' }}>
+              <span className="b-note px-4 text-center" style={{ color: 'var(--era-ink-muted)' }}>
                 Drop a reference, or click to choose
               </span>
             )}
@@ -302,7 +302,7 @@ export function ReferenceUpload() {
             if (f) handleFile(f);
           }}
         />
-        <p className="mt-2 text-[11px] leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
+        <p className="mt-2 b-note leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
           Analysed once and discarded — never stored. Large files are resized in your browser first.
         </p>
       </div>
@@ -332,7 +332,7 @@ export function ReferenceUpload() {
               <button
                 onClick={applyToGarment}
                 disabled={applying}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
                 style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
               >
                 {applying ? (
@@ -342,13 +342,13 @@ export function ReferenceUpload() {
                 )}
                 {applying ? 'Rendering…' : `Put it on the ${garment}`}
               </button>
-              <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+              <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
                 Uses the garment, colourway and axes set above
               </span>
             </div>
 
             {applyError && (
-              <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
+              <p className="mt-2 b-note" style={{ color: '#A8456E' }}>
                 {applyError}
               </p>
             )}
@@ -363,7 +363,7 @@ export function ReferenceUpload() {
                   style={{ backgroundColor: 'var(--era-bg-deep)' }}
                 />
                 <figcaption
-                  className="mt-1.5 text-[11px] font-mono flex flex-wrap gap-x-3"
+                  className="mt-1.5 b-data flex flex-wrap gap-x-3"
                   style={{ color: 'var(--era-ink-muted)' }}
                 >
                   <span>Your reference · {garment}</span>
@@ -371,7 +371,7 @@ export function ReferenceUpload() {
                   <span>{applied.cached ? 'cached' : 'generated'}</span>
                   <span>AI-generated — not a photograph of product</span>
                 </figcaption>
-                <p className="mt-1.5 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
+                <p className="mt-1.5 b-note" style={{ color: 'var(--era-ink-muted)' }}>
                   Your upload is never stored — only a hash of it, so the same artwork
                   doesn&rsquo;t get charged twice.
                 </p>
@@ -388,17 +388,17 @@ export function ReferenceUpload() {
                 {analysis.colors === 0 ? 'no' : analysis.colors} colour
                 {analysis.colors === 1 ? '' : 's'}
               </h3>
-              <span className="text-[11px] font-mono uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>
+              <span className="b-label" style={{ color: 'var(--era-ink-muted)' }}>
                 {analysis.confidence} confidence
               </span>
             </div>
-            <p className="mt-1 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
+            <p className="mt-1 b-body" style={{ color: 'var(--era-ink-body)' }}>
               {analysis.garment} · {analysis.placement}
               {analysis.tonal ? ' · tonal' : ''} — {analysis.notes}
             </p>
 
             {priced && (
-              <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2 font-mono text-[12px] tabular-nums">
+              <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2 b-data">
                 {[
                   ['On blank', priced.blank.name],
                   ['COGS @ 50u', dollars(priced.cogs.landedCOGS)],
@@ -406,7 +406,7 @@ export function ReferenceUpload() {
                   ['Floor needs', dollars(minRetailForFloor(priced.cogs.landedCOGS))],
                 ].map(([k, v], i) => (
                   <div key={k as string} className="border-b pb-1" style={{ borderColor: 'var(--era-hairline)' }}>
-                    <dt className="text-[10px] uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>
+                    <dt className="b-note uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>
                       {k}
                     </dt>
                     <dd style={{ color: i === 2 && priced.gm < MARGIN_FLOOR ? '#A8456E' : 'var(--era-ink)' }}>{v}</dd>
@@ -416,18 +416,18 @@ export function ReferenceUpload() {
             )}
 
             {verdict.blockers.map((b) => (
-              <p key={b} className="mt-3 text-[13px] leading-snug" style={{ color: '#A8456E' }}>
+              <p key={b} className="mt-3 b-body leading-snug" style={{ color: '#A8456E' }}>
                 <strong>Can’t make this:</strong> {b}
               </p>
             ))}
             {verdict.warnings.map((w) => (
-              <p key={w} className="mt-2 text-[12px] leading-snug" style={{ color: '#B07025' }}>
+              <p key={w} className="mt-2 b-note leading-snug" style={{ color: '#B07025' }}>
                 {w}
               </p>
             ))}
 
             <div className="mt-5">
-              <p className="text-[11px] font-mono uppercase tracking-[0.2em] mb-2" style={{ color: 'var(--era-ink-muted)' }}>
+              <p className="b-label mb-2" style={{ color: 'var(--era-ink-muted)' }}>
                 We can execute
               </p>
               <div className="grid grid-cols-3 gap-3">
@@ -440,10 +440,10 @@ export function ReferenceUpload() {
                       <Image src={`/blank/${v.id}.webp`} alt={v.title} fill sizes="20vw" className="object-cover" />
                     </div>
                     <figcaption className="mt-1.5">
-                      <span className="block text-[11px]" style={{ color: 'var(--era-ink)' }}>
+                      <span className="block b-note" style={{ color: 'var(--era-ink)' }}>
                         {v.title}
                       </span>
-                      <span className="block text-[10px] leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
+                      <span className="block b-note leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
                         {v.why}
                       </span>
                     </figcaption>

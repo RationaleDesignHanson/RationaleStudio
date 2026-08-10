@@ -75,7 +75,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
     <div className="w-full">
       {empty && (
         <p
-          className="text-[12px] mb-3"
+          className="b-note mb-3"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           Pick colours and artwork on the left.
@@ -95,7 +95,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
           return (
             <div key={row.garment}>
               <p
-                className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.15em] mb-1.5"
+                className="b-label mb-1.5"
                 style={{ color: 'var(--era-ink-muted)' }}
               >
                 {gm.label} · {blank.name}
@@ -124,7 +124,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
                       >
                         {capOffAxis ? (
                           <span
-                            className="text-[10px] font-mono uppercase tracking-wider px-1 text-center"
+                            className="b-label px-1 text-center"
                             style={{ color: inkOn(hex), opacity: 0.6 }}
                           >
                             not on a cap
@@ -161,7 +161,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
                         )}
                       </span>
                       <figcaption
-                        className="mt-1 text-[11px] sm:text-[10px] font-mono"
+                        className="mt-1 b-data"
                         style={{ color: 'var(--era-ink-muted)' }}
                       >
                         {pal.name}
@@ -175,7 +175,7 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
         })}
       </div>
 
-      <p className="mt-4 text-[11px] max-w-sm" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mt-4 b-note max-w-sm" style={{ color: 'var(--era-ink-muted)' }}>
         Drawn, not rendered — the colour is the dye as this cloth returns it.
       </p>
     </div>

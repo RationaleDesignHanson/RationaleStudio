@@ -121,7 +121,7 @@ export function SignComposer({ url }: { url: string }) {
   return (
     <div className="mt-5 pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
       <p
-        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-2.5"
+        className="b-label mb-2.5"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         Set the type into it
@@ -144,7 +144,7 @@ export function SignComposer({ url }: { url: string }) {
         <div className="space-y-3">
           <label className="block">
             <span
-              className="block text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+              className="block b-label mb-1.5"
               style={{ color: 'var(--era-ink-muted)' }}
             >
               The words — a slash starts a new line
@@ -154,7 +154,7 @@ export function SignComposer({ url }: { url: string }) {
               onChange={(e) => set('signText', e.target.value.slice(0, 48))}
               placeholder="MOLLY PITCHER / NJ"
               size={1}
-              className="tap w-full min-w-0 px-3 py-2.5 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+              className="tap w-full min-w-0 px-3 py-2.5 b-body bg-transparent border outline-none focus:border-[var(--accent)]"
               style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
             />
           </label>
@@ -179,7 +179,7 @@ export function SignComposer({ url }: { url: string }) {
             format={(v) => `${v}%`}
           />
 
-          <p className="text-[12px] max-w-md" style={{ color: 'var(--era-ink-muted)' }}>
+          <p className="b-note max-w-md" style={{ color: 'var(--era-ink-muted)' }}>
             The face is an approximation of the real highway series — close enough to judge, not
             close enough to print.
           </p>
@@ -207,7 +207,7 @@ function Slider({
   return (
     <label className="flex items-center gap-3">
       <span
-        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] shrink-0"
+        className="b-label shrink-0"
         style={{ color: 'var(--era-ink-muted)', width: '4rem' }}
       >
         {label}
@@ -222,7 +222,7 @@ function Slider({
         style={{ minHeight: 0 }}
       />
       <span
-        className="text-[12px] font-mono tabular-nums shrink-0 text-right"
+        className="b-data shrink-0 text-right"
         style={{ color: 'var(--era-ink)', width: '2.5rem' }}
       >
         {format(value)}

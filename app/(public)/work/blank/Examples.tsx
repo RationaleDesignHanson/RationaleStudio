@@ -32,7 +32,7 @@ export function Examples({ onPick }: { onPick: (prompt: string) => void }) {
   return (
     <div className="mb-5">
       <p
-        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-2"
+        className="b-label mb-2"
         style={{ color: 'var(--era-ink-muted)' }}
       >
         It makes images — try one
@@ -43,7 +43,7 @@ export function Examples({ onPick }: { onPick: (prompt: string) => void }) {
             key={e.kind}
             onClick={() => onPick(e.prompt)}
             title={e.prompt}
-            className="tap px-2 py-1 text-[12px] sm:text-[11px] font-mono border transition-colors hover:border-[var(--accent)]"
+            className="tap px-2 py-1 b-note border transition-colors hover:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
           >
             {e.kind}
