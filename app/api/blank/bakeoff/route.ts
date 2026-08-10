@@ -25,6 +25,22 @@
  *           come from a description rather than from the name. Six per round,
  *           each pushed a different way so a round is a spread rather than six
  *           attempts at the same thing.
+ *  place  — artwork for ONE place, in one of three registers: the sign, the joke
+ *           or the song. This is the catalogue business's engine — a shirt per
+ *           rest stop, per exit, per town — so the place is the variable and the
+ *           register is the editorial voice.
+ *
+ * WHY THE PLACE KIND FORBIDS LETTERING, INCLUDING FOR SIGNS. The most obvious
+ * version of "a shirt for every exit" is the exit sign itself, and an exit sign
+ * is almost entirely type. Image models cannot spell — the whole reason this
+ * tool draws wordmarks in CSS instead of generating them — so a generated sign
+ * reading EXlT 9 MOLIY PITGHER is not a near miss, it is unusable, and it would
+ * be unusable one hundred times in a hundred-place catalogue.
+ *
+ * So generation makes the PANEL and the type gets set over it: the reflective
+ * green field, the border, the bolt holes, the arrow, the post. That is the same
+ * division of labour the wordmark beats already use, and it is the only one that
+ * survives being run at catalogue scale.
  */
 
 import { NextResponse } from 'next/server';
@@ -66,6 +82,51 @@ const GRAPHIC_ANGLES = [
   'sparse and minimal, mostly empty space',
   'dense and busy, filling the frame',
 ];
+
+/**
+ * The three registers a place can be spoken in, and the six pushes inside each.
+ *
+ * `sign` is deliberately EMPTY of lettering — see the header. It renders the
+ * sign as an object so real type can be set into it afterwards.
+ */
+const PLACE_REGISTERS: Record<string, { subject: (place: string) => string; angles: string[] }> = {
+  sign: {
+    subject: (place) =>
+      `the road signage of ${place}, rendered as a blank sign panel with NO lettering on it at all — an empty green field waiting for type`,
+    angles: [
+      'a rectangular interstate guide-sign panel, reflective green with a white border and rounded corners, seen flat and straight on',
+      'a numbered route shield, the plain outlined badge shape only, no digits inside it',
+      'a small rectangular exit tab panel, the narrow strip that sits above a guide sign',
+      'a mile-marker post, a narrow vertical green blade on a slim steel post',
+      'a rest-area symbol panel, pictogram only — fork, knife, fuel, bed — no words',
+      'a vintage button-copy panel, weathered enamel with visible bolt heads and reflector studs',
+    ],
+  },
+  pun: {
+    subject: (place) =>
+      `a visual joke about ${place} — the cliché everyone from there is tired of, drawn straight-faced and affectionately rather than mocking`,
+    angles: [
+      'bold and graphic, few shapes, high contrast',
+      'a deadpan single object, isolated and oversized',
+      'hand-drawn and loose, visibly imperfect',
+      'a mock heraldic crest built from the wrong objects',
+      'sparse and minimal, mostly empty space',
+      'a busy dense scene, everything at once',
+    ],
+  },
+  song: {
+    subject: (place) =>
+      `the mood of the songs written about ${place} — highway at night, refinery glow, a long drive, the particular romance of leaving somewhere`,
+    angles: [
+      'a wide empty landscape reduced to a few flat bands',
+      'headlights and taillights as pure abstract streaks',
+      'an industrial silhouette against a low sun',
+      'a lone object on a roadside at night',
+      'a hand-drawn tour-poster style illustration',
+      'a photographic still reduced to two flat tones',
+    ],
+  },
+};
 
 /** Six ways to redraw a mark, so a mark round varies the DRAWING, not the shape. */
 const DRAW_STYLES = [
@@ -127,7 +188,12 @@ export async function POST(req: Request) {
   }
 
   const kind =
-    body.kind === 'colour' || body.kind === 'mark' || body.kind === 'graphic' ? body.kind : null;
+    body.kind === 'colour' ||
+    body.kind === 'mark' ||
+    body.kind === 'graphic' ||
+    body.kind === 'place'
+      ? body.kind
+      : null;
   if (!kind) return NextResponse.json({ error: 'Unknown bake-off kind.' }, { status: 422 });
 
   const garment = ['tee', 'hoodie', 'cap'].includes(String(body.garment))
@@ -192,6 +258,26 @@ Drawn ${angle}.
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     keySource = `${kind}.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+  } else if (kind === 'place') {
+    const place = String(body.place ?? '')
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u001f]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 120);
+    if (place.length < 2) {
+      return NextResponse.json({ error: 'Name the place.' }, { status: 422 });
+    }
+    const register = PLACE_REGISTERS[String(body.register)] ?? PLACE_REGISTERS.sign;
+    const registerId = PLACE_REGISTERS[String(body.register)] ? String(body.register) : 'sign';
+    model = IMAGEN;
+    const angle = register.angles[variant % register.angles.length];
+    const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in a few flat colours on a flat even cool mid-grey field that fills the frame. Centred, occupying about two thirds of the frame width. This is a digital graphic, not a photograph of an object: no surface texture, no depth of field.
+The artwork is: ${register.subject(place)}.
+Composed as: ${angle}.
+ABSOLUTELY NO TEXT of any kind — no letters, no words, no place names, no numerals, no route numbers, no readable lettering anywhere in the image. Any sign, badge or panel must be COMPLETELY BLANK. No watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
+    input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
+    keySource = `${kind}.${registerId}.${variant}.${createHash('sha256').update(place.toLowerCase()).digest('hex').slice(0, 16)}`;
   } else {
     // mark: redraw the rasterised construction with custom letterforms.
     const image = typeof body.image === 'string' ? body.image : '';

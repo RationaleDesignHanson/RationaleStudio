@@ -40,6 +40,18 @@ export interface Beat {
   short: string;
   title: string;
   note: string;
+  /**
+   * Overrides for the catalogue business, where a beat asks the same question
+   * and has a different answer. Beat 02 is the whole reason this exists: "how
+   * it looks as a mark / marks built from the name" is precisely wrong for a
+   * line whose product is a graphic per place and whose mark is on the neck.
+   */
+  scale?: { short?: string; title?: string; note?: string };
+}
+
+/** The beat, as it reads for the chosen business. */
+export function beatFor(b: Beat, strategy: string): Beat {
+  return strategy === 'scale' && b.scale ? { ...b, ...b.scale } : b;
 }
 
 /**
@@ -66,6 +78,11 @@ export const BEATS: Beat[] = [
     short: 'As a mark',
     title: 'How it looks as a mark',
     note: 'Marks built from the name in the face you picked. Shuffle for a different set, then draw the one you like properly.',
+    scale: {
+      short: 'The graphic',
+      title: 'What goes on each one',
+      note: 'A place, a voice, six takes. You are designing the format rather than one graphic, because it has to run for every place in the catalogue.',
+    },
   },
   {
     n: '03',
@@ -246,7 +263,8 @@ export function Stepper() {
             className="flex gap-4 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ overscrollBehaviorX: 'contain' }}
           >
-            {BEATS.map((b, idx) => {
+            {BEATS.map((raw, idx) => {
+              const b = beatFor(raw, config.strategy);
               const on = idx === i;
               const done = idx < i;
               return (
@@ -292,8 +310,8 @@ export function StepFooter() {
     set('step', BEATS[Math.min(BEATS.length - 1, Math.max(0, idx))].n);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-  const next = BEATS[i + 1];
-  const prev = BEATS[i - 1];
+  const next = BEATS[i + 1] && beatFor(BEATS[i + 1], config.strategy);
+  const prev = BEATS[i - 1] && beatFor(BEATS[i - 1], config.strategy);
 
   return (
     <div

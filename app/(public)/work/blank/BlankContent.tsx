@@ -39,7 +39,8 @@ import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
 import { StrategyStep } from './StrategyStep';
-import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
+import { PlaceGraphics } from './PlaceGraphics';
+import { Stepper, StepFooter, BEATS, beatFor, clampStep } from './Stepper';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
 
@@ -164,7 +165,7 @@ function Beat({
 function Beats() {
   const { config } = useLine();
   const i = clampStep(config.step);
-  const b = BEATS[i];
+  const b = beatFor(BEATS[i], config.strategy);
 
   return (
     <Beat n={b.n} title={b.title} note={b.note}>
@@ -178,7 +179,25 @@ function Beats() {
           <NameStep />
         </>
       )}
-      {i === 1 && (
+      {/* Beat 02 leads with whatever the chosen business actually SELLS. A
+          catalogue sells the place graphic and carries the house mark on the
+          neck; a considered line sells the mark itself. Same beat, same
+          question — "what goes on it" — different answer, and putting the
+          catalogue engine behind a disclosure would have buried the entire
+          product for one of the two strategies. */}
+      {i === 1 && config.strategy === 'scale' && (
+        <>
+          <PlaceGraphics />
+          <Disclosure
+            summary="And the house mark that goes on every one"
+            hint="the neck label and the hem tag — one identity behind the catalogue"
+          >
+            <MarkFamily />
+            <LockupStep />
+          </Disclosure>
+        </>
+      )}
+      {i === 1 && config.strategy !== 'scale' && (
         <>
           <MarkFamily />
           <LockupStep />
