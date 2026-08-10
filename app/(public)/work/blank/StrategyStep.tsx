@@ -44,7 +44,7 @@ const OPTIONS: {
   {
     id: 'scale',
     title: 'High scale',
-    line: 'A design per place, sold thin and wide. Setup is paid every time.',
+    line: 'Many designs, sold thin and wide. Setup is paid on every one.',
     defaults: { budget: 'graphic', designs: 24 },
   },
 ];
@@ -119,7 +119,7 @@ export function StrategyStep() {
             htmlFor="designs"
             style={{ color: 'var(--era-ink-muted)' }}
           >
-            How many places
+            How many variants
           </label>
           <input
             id="designs"
@@ -135,7 +135,7 @@ export function StrategyStep() {
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
           <span className="b-note" style={{ color: 'var(--era-ink-muted)' }}>
-            Two per state is {2 * 50}.
+            A place, a joke, a season — whatever this varies on. Two per state is 100.
           </span>
         </div>
       )}

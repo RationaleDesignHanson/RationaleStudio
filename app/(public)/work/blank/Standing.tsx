@@ -351,7 +351,7 @@ export function Standing() {
                     </>
                   )}{' '}
                   {config.strategy === 'scale' &&
-                    'A wide catalogue is a bet on places you have not tested — which is the argument for making to order until one of them sells.'}
+                    'A wide catalogue is a bet on variants nobody has tested — which is the argument for making to order until one of them sells.'}
                 </p>
               </>
             );

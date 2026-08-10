@@ -32,6 +32,8 @@ export interface Section {
   /** Matches a BEATS `n`, so old share links keep resolving. */
   id: string;
   label: string;
+  /** What the nav shows. A strip needs a word, not a sentence. */
+  short?: string;
   body: React.ReactNode;
 }
 
@@ -101,7 +103,7 @@ export function BlankShell({ sections }: { sections: Section[] }) {
                       it is why "what do I do before I advance" never landed.
                       The dot says what is outstanding; the order is a
                       suggestion. */}
-                  {x.label}
+                  {x.short ?? x.label}
                 </button>
               </li>
             );
@@ -110,32 +112,39 @@ export function BlankShell({ sections }: { sections: Section[] }) {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6">
-        <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-          <h2 className="b-h">
-            {open?.label}
-            <span className="ml-3 b-note" style={{ color: 'var(--era-ink-muted)' }}>
-              {statuses.find((y) => y.id === openId)?.note}
-            </span>
-          </h2>
-          {next && next.id !== openId && (
+        {/* Heading only. The status used to sit beside it, which on the naming
+            section rendered the name itself — so the page opened with "Name it
+            dB0LANK" directly above the actual name field, and the first thing
+            read as a second one that would not take a keystroke. The status is
+            already in the nav, next to the thing it describes. */}
+        <h2 className="b-h mb-4">{open?.label}</h2>
+
+        {open?.body}
+
+        {/* AFTER the work, not before it. Sitting between the heading and the
+            controls made it the first thing on the page, so people followed it
+            straight out of a section they had done nothing in. You finish, then
+            you go next. */}
+        {next && next.id !== openId && (
+          <div className="mt-10 pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
             <button
               onClick={() => set('step', next.id)}
-              className="tap b-data"
-              style={{ color: 'var(--accent)', minHeight: 0 }}
+              className="tap b-label inline-flex items-center gap-2 border px-3 py-2"
+              style={{ color: 'var(--accent)', borderColor: 'var(--era-hairline)', minHeight: 0 }}
             >
               {next.behind ? 'Still to do' : 'Next'}: {next.note} →
             </button>
-          )}
-        </div>
-        {open?.body}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 /** The label a section shows, taken from the beat it replaces. */
-export function sectionMeta(n: string, strategy: string): { label: string } {
+export function sectionMeta(n: string, strategy: string): { label: string; short: string } {
   const raw = BEATS.find((b) => b.n === n);
-  if (!raw) return { label: n };
-  return { label: beatFor(raw, strategy).title };
+  if (!raw) return { label: n, short: n };
+  const b = beatFor(raw, strategy);
+  return { label: b.title, short: b.short };
 }

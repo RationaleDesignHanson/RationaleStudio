@@ -54,7 +54,7 @@ export function readiness(
           ? 'graphic kept'
           : 'mark chosen'
         : scale
-          ? 'make a place graphic'
+          ? 'make a graphic'
           : 'pick a mark',
     },
     {

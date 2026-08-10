@@ -402,7 +402,7 @@ export function CostSheet() {
         >
           <dl className="b-data space-y-1.5">
             <Line
-              label={designs > 1 ? `Units · ${designs} places` : 'Units'}
+              label={designs > 1 ? `Units · ${designs} variants` : 'Units'}
               value={String(totals.totalUnits)}
             />
             <Line label="Variable" value={money(totals.variableTotal)} />

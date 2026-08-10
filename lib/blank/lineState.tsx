@@ -54,7 +54,11 @@ export interface LineConfig {
   /** Which of the two businesses. Chosen first; everything downstream follows. */
   strategy: Strategy;
   /**
-   * How many distinct artworks the line carries — places, in the scale model.
+   * How many distinct artworks the line carries.
+   *
+   * VARIANTS, not places. A place is one way to vary a catalogue and the most
+   * obvious one, but a joke, a season or a collaborator are others — naming the
+   * axis after a single instance of it narrows the idea for no reason.
    * Always 1 for `considered`, where the whole point is one identity.
    */
   designs: number;

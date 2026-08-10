@@ -81,7 +81,7 @@ export const BEATS: Beat[] = [
     scale: {
       short: 'The graphic',
       title: 'What goes on each one',
-      note: 'A place, a voice, six takes.',
+      note: 'A subject, a voice, six takes.',
     },
   },
   {
