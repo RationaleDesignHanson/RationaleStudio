@@ -1,0 +1,157 @@
+/**
+ * The fork, before anything else.
+ *
+ * WHY THIS IS FIRST. The tool used to assume one business: a few styles, one
+ * identity, deep runs, high margin. Every default in it — three garments, one
+ * mark, a shared setup cost that amortises — encoded that assumption without
+ * ever stating it. Then the brief arrived for the other business: a shirt for
+ * every rest stop, every exit, every town, micro-targeted by geography and
+ * interest. Nothing in the model could represent it, and worse, the cost sheet
+ * would have LIED about it — it prints "buying these together saves $X in
+ * setup", which is true of one artwork across three garments and false of forty
+ * artworks across three garments.
+ *
+ * So it is a choice, and it is the first one, because it decides the answer to
+ * every question after it: which decoration methods are affordable, how deep the
+ * runs are, how many artworks get made, and whether a collection discount
+ * exists at all.
+ *
+ * THE NON-OBVIOUS PART, which is the same shape as the rest of this page's
+ * argument: the catalogue business can only be done on the CHEAPEST decoration.
+ * A screen is cut per colour per design, so forty designs is forty setups and
+ * the fixed cost grows with the catalogue forever. Heat-press has no setup, so
+ * the fortieth design costs what the first one did. Quiet is expensive and loud
+ * is cheap, applied to variety instead of finish.
+ */
+
+'use client';
+
+import { useLine } from '@/lib/blank/lineState';
+import type { Strategy } from '@/lib/blank/lineState';
+
+const OPTIONS: {
+  id: Strategy;
+  title: string;
+  line: string;
+  /** What it means for the making, not for the brand deck. */
+  facts: string[];
+  /** Defaults this choice implies, applied on selection. */
+  defaults: { budget: string; designs: number };
+}[] = [
+  {
+    id: 'considered',
+    title: 'Small and dear',
+    line: 'A few styles, one identity, made properly.',
+    facts: [
+      'One artwork, so setup is paid once and spreads across the whole buy',
+      'Screen and embroidery are affordable, which is what buys the hand',
+      'Higher price, higher margin, far fewer things to make',
+    ],
+    defaults: { budget: 'stitched', designs: 1 },
+  },
+  {
+    id: 'scale',
+    title: 'Wide and cheap',
+    line: 'A shirt per place, micro-targeted by geography and interest.',
+    facts: [
+      'One artwork per place, so setup is paid again for every single design',
+      'Heat-press only — a screen per colour per design never amortises',
+      'Thin margin per unit, and the catalogue is the product',
+    ],
+    defaults: { budget: 'graphic', designs: 24 },
+  },
+];
+
+export function StrategyStep() {
+  const { config, set } = useLine();
+
+  const choose = (o: (typeof OPTIONS)[number]) => {
+    set('strategy', o.id);
+    set('budget', o.defaults.budget);
+    set('designs', o.defaults.designs);
+  };
+
+  return (
+    <div className="mb-8">
+      <p
+        className="text-[11px] font-mono uppercase tracking-[0.2em] mb-3"
+        style={{ color: 'var(--era-ink-muted)' }}
+      >
+        First — which business
+      </p>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        {OPTIONS.map((o) => {
+          const on = config.strategy === o.id;
+          return (
+            <button
+              key={o.id}
+              onClick={() => choose(o)}
+              aria-pressed={on}
+              className="text-left border p-4 transition-colors"
+              style={{
+                borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
+                backgroundColor: on ? 'color-mix(in srgb, var(--accent) 5%, transparent)' : 'transparent',
+                // The global button rule is `inline-flex; align-items: center`,
+                // which lays a card's title, line and facts out in a ROW and
+                // vertically centres them. Every stacked control on this page has
+                // to opt out of it explicitly.
+                display: 'block',
+                minHeight: 0,
+              }}
+            >
+              <span
+                className="font-display block"
+                style={{ fontSize: '1.15rem', color: on ? 'var(--accent)' : 'var(--era-ink)' }}
+              >
+                {o.title}
+              </span>
+              <span className="block text-[13px] mt-0.5" style={{ color: 'var(--era-ink-body)' }}>
+                {o.line}
+              </span>
+              <ul className="mt-2.5 space-y-1">
+                {o.facts.map((f) => (
+                  <li
+                    key={f}
+                    className="text-[12px] sm:text-[11px] font-mono leading-snug"
+                    style={{ color: 'var(--era-ink-muted)' }}
+                  >
+                    · {f}
+                  </li>
+                ))}
+              </ul>
+            </button>
+          );
+        })}
+      </div>
+
+      {config.strategy === 'scale' && (
+        <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+          <label
+            className="text-[11px] font-mono uppercase tracking-[0.2em]"
+            htmlFor="designs"
+            style={{ color: 'var(--era-ink-muted)' }}
+          >
+            How many places
+          </label>
+          <input
+            id="designs"
+            type="number"
+            min={1}
+            max={500}
+            value={config.designs}
+            onChange={(e) =>
+              set('designs', Math.min(500, Math.max(1, Math.floor(Number(e.target.value) || 1))))
+            }
+            size={1}
+            className="tap w-20 py-1 px-1.5 bg-transparent border outline-none font-mono text-[13px] tabular-nums focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+          />
+          <span className="text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+            Two per state is {2 * 50}. Every rest stop on one turnpike is nearer a dozen.
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}

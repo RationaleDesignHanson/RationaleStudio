@@ -38,6 +38,7 @@ import { ColourBeat } from './ColourBeat';
 import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
+import { StrategyStep } from './StrategyStep';
 import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
 import { Disclosure } from './Disclosure';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
@@ -167,7 +168,16 @@ function Beats() {
 
   return (
     <Beat n={b.n} title={b.title} note={b.note}>
-      {i === 0 && <NameStep />}
+      {/* The business comes before the name. It decides which decoration methods
+          are affordable and whether a collection discount exists at all, so
+          choosing it after the identity means every number above it was costed
+          against an assumption nobody made deliberately. */}
+      {i === 0 && (
+        <>
+          <StrategyStep />
+          <NameStep />
+        </>
+      )}
       {i === 1 && (
         <>
           <MarkFamily />

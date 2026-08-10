@@ -34,7 +34,30 @@ export type Garment = 'tee' | 'hoodie' | 'cap';
 
 const RUN_SIZES: RunSize[] = [25, 50, 75, 100, 150, 300];
 
+/**
+ * The two businesses this tool can cost.
+ *
+ * `considered` — a few styles, one identity, deep runs. Setup is paid once and
+ * amortises, so screen and embroidery are affordable and the margin is high.
+ *
+ * `scale` — a catalogue: a shirt per place, micro-targeted by geography and
+ * interest, shallow runs on each. Setup is paid PER DESIGN, so it never
+ * amortises, and the margin per unit is thinner because nothing gets volume.
+ *
+ * This is not a preference, it is the fork the whole model hangs off: it decides
+ * which decoration methods are affordable, how deep the runs are, and whether
+ * "buying as a collection" saves anything at all.
+ */
+export type Strategy = 'considered' | 'scale';
+
 export interface LineConfig {
+  /** Which of the two businesses. Chosen first; everything downstream follows. */
+  strategy: Strategy;
+  /**
+   * How many distinct artworks the line carries — places, in the scale model.
+   * Always 1 for `considered`, where the whole point is one identity.
+   */
+  designs: number;
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -120,6 +143,8 @@ export interface LineConfig {
 }
 
 export const LINE_DEFAULTS: LineConfig = {
+  strategy: 'considered',
+  designs: 1,
   colorway: 'charcoal',
   motif: '',
   placement: '',
@@ -143,6 +168,8 @@ export const LINE_DEFAULTS: LineConfig = {
 
 /** URL param names. Short — these get pasted into messages. */
 const PARAM = {
+  strategy: 'sg',
+  designs: 'n',
   budget: 'b',
   garment: 'g',
   graphic: 'p',
@@ -218,6 +245,12 @@ function decodeSku(raw: string): Sku | null {
 function readFromSearch(search: string): Partial<LineConfig> {
   const q = new URLSearchParams(search);
   const out: Partial<LineConfig> = {};
+  const sg = q.get(PARAM.strategy);
+  if (sg === 'scale' || sg === 'considered') out.strategy = sg;
+  // Capped rather than rejected: a pasted link with n=99999 should cost a big
+  // catalogue, not silently fall back to one design.
+  const nParam = q.get(PARAM.designs);
+  if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
   const b = q.get(PARAM.budget);
   if (b) out.budget = b;
   const g = q.get(PARAM.garment);

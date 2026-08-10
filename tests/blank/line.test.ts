@@ -201,3 +201,81 @@ describe('retail override — the largest margin lever in the model', () => {
     expect(t.items[0].margin).toBeCloseTo(t.blendedMargin, 6);
   });
 });
+
+/**
+ * The catalogue multiplier.
+ *
+ * This encodes the argument the two-business fork exists to make, so it is
+ * pinned rather than left to the interface to be right about: setup amortises
+ * for ONE artwork and does not amortise at all for many, and the only
+ * decoration that survives a wide catalogue is the one with no setup.
+ */
+describe('lineTotals — designs multiplier', () => {
+  const tee = (tier: string): Sku => ({ garment: 'tee', tier, units: 50, graphic: null });
+
+  it('is unchanged at one design', () => {
+    const a = lineTotals([tee('graphic')]);
+    const b = lineTotals([tee('graphic')], 1);
+    expect(b.totalCost).toBeCloseTo(a.totalCost, 6);
+    expect(b.totalUnits).toBe(a.totalUnits);
+  });
+
+  it('multiplies units and variable cost by the catalogue', () => {
+    const one = lineTotals([tee('graphic')], 1);
+    const many = lineTotals([tee('graphic')], 20);
+    expect(many.totalUnits).toBe(one.totalUnits * 20);
+    expect(many.variableTotal).toBeCloseTo(one.variableTotal * 20, 6);
+    expect(many.totalRevenue).toBeCloseTo(one.totalRevenue * 20, 6);
+  });
+
+  it('heat-press carries NO setup however wide the catalogue gets', () => {
+    // The whole reason a shirt-per-place line is possible.
+    for (const n of [1, 20, 200]) {
+      expect(lineTotals([tee('graphic')], n).sharedFixed.screens).toBe(0);
+    }
+    expect(lineTotals([tee('graphic')], 200).sharedFixed.total).toBe(0);
+  });
+
+  it('screen setup grows linearly with the catalogue, so it never amortises', () => {
+    const one = lineTotals([tee('washed')], 1);
+    const many = lineTotals([tee('washed')], 40);
+    expect(one.sharedFixed.screens).toBeGreaterThan(0);
+    expect(many.sharedFixed.screens).toBeCloseTo(one.sharedFixed.screens * 40, 6);
+  });
+
+  it('screen setup per unit is FLAT across catalogue width — it buys no efficiency', () => {
+    // The trap, stated as the number it actually is. 40x the screens over 40x
+    // the units is the same $1.10 a shirt it was at one design, so widening the
+    // catalogue does not earn the setup back the way deeper runs would.
+    const perUnit = (n: number) => {
+      const r = lineTotals([tee('washed')], n);
+      return r.sharedFixed.screens / r.totalUnits;
+    };
+    expect(perUnit(1)).toBeCloseTo(perUnit(40), 9);
+    expect(perUnit(1)).toBeCloseTo(perUnit(200), 9);
+    expect(perUnit(40)).toBeGreaterThan(0);
+  });
+
+  it('the ONLY thing a wide catalogue amortises is the one-off neck screen', () => {
+    // Worth pinning because it is the one honest efficiency in the scale model,
+    // and it is small — it should never be mistaken for the collection discount
+    // the considered line gets.
+    const narrow = lineTotals([tee('washed')], 1);
+    const wide = lineTotals([tee('washed')], 40);
+    expect(wide.sharedFixed.neckSetup).toBe(narrow.sharedFixed.neckSetup);
+    // Which moves cogs/unit by well under a dollar, not by a tier.
+    expect(narrow.cogsPerUnit - wide.cogsPerUnit).toBeLessThan(1);
+    expect(wide.cogsPerUnit).toBeLessThan(narrow.cogsPerUnit);
+  });
+
+  it('heat-press is far cheaper per unit than screen once nothing amortises', () => {
+    const press = lineTotals([tee('graphic')], 40).cogsPerUnit;
+    const screen = lineTotals([tee('washed')], 40).cogsPerUnit;
+    expect(press).toBeLessThan(screen * 0.6);
+  });
+
+  it('clamps a nonsense catalogue size rather than producing a nonsense line', () => {
+    expect(lineTotals([tee('graphic')], 0).totalUnits).toBe(50);
+    expect(lineTotals([tee('graphic')], -5).totalUnits).toBe(50);
+  });
+});

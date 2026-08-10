@@ -51,7 +51,10 @@ export function CostSheet() {
   const { config, set, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail } = useLine();
 
   const rowFor = (garment: string) => skus.findIndex((s) => s.garment === garment);
-  const totals = useMemo(() => lineTotals(skus), [skus]);
+  // The catalogue multiplier. A row is priced PER DESIGN; the totals carry the
+  // count, so a 40-place line does not print 120 rows to say one thing.
+  const designs = config.strategy === 'scale' ? config.designs : 1;
+  const totals = useMemo(() => lineTotals(skus, designs), [skus, designs]);
   const clears = totals.blendedMargin >= MARGIN_FLOOR;
 
   // The first included style is what the identity beats gate against.
@@ -75,7 +78,9 @@ export function CostSheet() {
           garment: gm.key,
           tier: config.budget,
           graphic: config.mark,
-          units: STATES[tierIndex(config.budget)].run,
+          // A catalogue runs shallow on each place; a considered line runs deep
+          // on a few styles. Same control, different sane starting point.
+          units: config.strategy === 'scale' ? 25 : STATES[tierIndex(config.budget)].run,
         };
     return { gm, idx, inLine, preview, c: costSku(preview) };
   });
@@ -242,9 +247,15 @@ export function CostSheet() {
       </div>
 
       <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
-        Cost per unit excludes setup — digitizing, screens and the woven-label minimum are charged
-        once across the collection, so they land in the buy below rather than on every unit. Rows you
-        have not ticked are previewed at the leading style&rsquo;s decoration.
+        Cost per unit excludes setup — digitizing, screens and the woven-label minimum land in the
+        buy below rather than on every unit.{' '}
+        {designs > 1
+          ? 'They are charged per design, not once.'
+          : 'They are charged once across the collection.'}{' '}
+        Rows you have not ticked are previewed at the leading style&rsquo;s decoration.
+        {designs > 1 && (
+          <> Every figure in a row is <strong>per place</strong>; the totals below carry all {designs}.</>
+        )}
       </p>
 
       {skus.length === 0 ? (
@@ -257,9 +268,15 @@ export function CostSheet() {
           style={{ borderColor: 'var(--era-hairline)' }}
         >
           <dl className="font-mono text-[12px] tabular-nums space-y-1.5">
-            <Line label="Units" value={String(totals.totalUnits)} />
+            <Line
+              label={designs > 1 ? `Units · ${designs} places` : 'Units'}
+              value={String(totals.totalUnits)}
+            />
             <Line label="Variable" value={money(totals.variableTotal)} />
-            <Line label="Setup, paid once" value={money(totals.sharedFixed.total)} />
+            <Line
+              label={designs > 1 ? `Setup, paid ${designs}×` : 'Setup, paid once'}
+              value={money(totals.sharedFixed.total)}
+            />
             <Line label="Total buy" value={money(totals.totalCost)} strong />
             <Line label="COGS / unit" value={dollars(totals.cogsPerUnit)} />
             <Line label="Revenue at list" value={money(totals.totalRevenue)} />
@@ -272,14 +289,33 @@ export function CostSheet() {
           </dl>
 
           <div className="text-[12px]" style={{ color: 'var(--era-ink-body)' }}>
-            {totals.fixedSaving > 0 && (
+            {designs > 1 ? (
               <p>
-                Buying these together saves{' '}
-                <strong style={{ color: 'var(--accent)' }}>{money(totals.fixedSaving)}</strong> in
-                setup against costing each style on its own. Digitizing is per artwork, the back-neck
-                screen is per order, and the 200-piece woven-label minimum is a line minimum — not
-                one each.
+                <strong style={{ color: 'var(--era-ink)' }}>
+                  Setup is paid {designs} times, not once.
+                </strong>{' '}
+                A collection discount is a property of ONE artwork across several styles. This is{' '}
+                {designs} artworks, and a screen is cut per colour per design — so the fixed cost
+                grows with the catalogue instead of amortising against it. Setup here is{' '}
+                <strong style={{ color: totals.sharedFixed.total > 0 ? '#A8456E' : 'var(--accent)' }}>
+                  {money(totals.sharedFixed.total)}
+                </strong>
+                {totals.sharedFixed.total === 0
+                  ? ' — which is the entire reason a line this wide is possible at all. Heat-press has no screen to make, so the ' +
+                    designs +
+                    'th design costs what the first one did.'
+                  : ' before a single garment is bought. Move every row to heat-press and it goes to zero.'}
               </p>
+            ) : (
+              totals.fixedSaving > 0 && (
+                <p>
+                  Buying these together saves{' '}
+                  <strong style={{ color: 'var(--accent)' }}>{money(totals.fixedSaving)}</strong> in
+                  setup against costing each style on its own. Digitizing is per artwork, the
+                  back-neck screen is per order, and the 200-piece woven-label minimum is a line
+                  minimum — not one each.
+                </p>
+              )
             )}
             {!clears && (
               <p className="mt-2" style={{ color: '#A8456E' }}>

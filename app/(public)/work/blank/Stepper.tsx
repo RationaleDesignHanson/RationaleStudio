@@ -89,7 +89,10 @@ export const BEATS: Beat[] = [
     n: '06',
     short: 'Costs',
     title: 'Dial in the costs',
-    note: 'The line, specced style by style. Setup is charged once across the collection, so it costs less than the sum of its garments.',
+    // Deliberately says nothing about setup amortising. That is true of the
+    // considered line and false of the catalogue, and the sheet itself now
+    // states whichever one applies.
+    note: 'The line, specced style by style — what each one costs to make, what it lists at, and what the whole buy comes to.',
   },
   {
     n: '07',

@@ -197,6 +197,29 @@ export interface LineTotals {
   minRevenueForFloor: number;
 }
 
+/**
+ * Retail relative to the tier's tee price.
+ *
+ * The tier carried ONE default retail for every garment, so a hoodie whose blank
+ * alone is a 14oz heavy fleece was listed at the tee's $35 against a $52 cost —
+ * a margin of minus fifty per cent, printed as though it were a plan. Nobody
+ * prices a hoodie at a tee price, and the model should not offer to.
+ *
+ * These are ratios rather than absolute prices so they survive the tier moving:
+ * a hoodie is roughly two and a half tees at retail in this category, and a cap
+ * is roughly a tee.
+ *
+ * CONFIDENCE: category convention, not sourced quotes — the same class of claim
+ * as the costNote fields. Every one is overridable per SKU in the sheet.
+ */
+const RETAIL_RATIO: Record<Garment, number> = { tee: 1, hoodie: 2.6, cap: 0.95 };
+
+/** The default list price for a garment at a tier, rounded to a real price point. */
+export function retailFor(garment: Garment, tier: number): number {
+  const base = STATES[Math.min(STATES.length - 1, Math.max(0, tier))].retail;
+  return Math.round((base * RETAIL_RATIO[garment]) / 5) * 5;
+}
+
 /** Identity of an embroidery artwork — same mark on two garments digitizes once. */
 const artworkKey = (s: Sku) => s.graphic ?? 'house-mark';
 
@@ -212,7 +235,7 @@ export function costSku(sku: Sku): SkuCost {
   });
   // Strip the per-SKU amortised fixed cost; it's re-added once, at line level.
   const variablePerUnit = full.landedCOGS - full.amortizedFixed;
-  const retail = sku.retail && sku.retail > 0 ? sku.retail : state.retail;
+  const retail = sku.retail && sku.retail > 0 ? sku.retail : retailFor(sku.garment, t);
   return {
     sku,
     blank,
@@ -227,7 +250,31 @@ export function costSku(sku: Sku): SkuCost {
   };
 }
 
-export function lineTotals(skus: Sku[]): LineTotals {
+/**
+ * Cost a line.
+ *
+ * `designs` is how many DISTINCT ARTWORKS the line carries, and it is the whole
+ * difference between the two businesses this tool now models.
+ *
+ * At `designs: 1` — the considered line — every SKU carries the same mark, so
+ * setup is paid once and spread across the whole buy. That is the argument the
+ * cost sheet has always made: buying as a collection is cheaper than the sum of
+ * its styles.
+ *
+ * At `designs: 40` — a shirt per rest stop, per exit, per town — that argument
+ * inverts, and it inverts hard. A screen is cut per colour PER DESIGN, so forty
+ * designs is forty setups and there is nothing to amortise; the collection
+ * discount goes to zero and the fixed cost grows linearly with the catalogue.
+ * The only method that survives is the one with no setup at all, which is why
+ * heat-press print is not the cheap compromise in a micro-targeted line — it is
+ * the only thing that makes one possible.
+ *
+ * The per-SKU figures stay PER DESIGN (a row is "the tee, in each place"), and
+ * the aggregates carry the multiplier. That keeps the sheet readable at 40
+ * designs without printing forty rows.
+ */
+export function lineTotals(skus: Sku[], designs = 1): LineTotals {
+  const n = Math.max(1, Math.floor(designs));
   const items = skus.map(costSku);
 
   const digitizedArtworks = new Set<string>();
@@ -238,20 +285,25 @@ export function lineTotals(skus: Sku[]): LineTotals {
 
   for (const it of items) {
     const { state, blank, sku } = it;
-    naiveFixed += decorationFixed(state.decoration, blank) + relabelFixed(state.relabel, sku.units);
+    naiveFixed +=
+      (decorationFixed(state.decoration, blank) + relabelFixed(state.relabel, sku.units)) * n;
 
     if (state.decoration.method === 'embroidery') digitizedArtworks.add(artworkKey(sku));
     if (state.decoration.method === 'screen' || state.decoration.method === 'discharge') {
-      // Not deduplicated: per-garment print sizes need their own screens.
-      screens += decorationPasses(state.decoration, blank) * DECO.screenSetupPerColor.value;
+      // Not deduplicated: per-garment print sizes need their own screens, and
+      // every design needs its own again.
+      screens += decorationPasses(state.decoration, blank) * DECO.screenSetupPerColor.value * n;
     }
     if (state.relabel !== 'none') anyRelabel = true;
-    if (state.relabel === 'printedNeckAndWoven') wovenUnits += sku.units;
+    if (state.relabel === 'printedNeckAndWoven') wovenUnits += sku.units * n;
   }
 
   const sharedFixed: SharedFixed = {
-    digitizing: digitizedArtworks.size * DECO.embroideryDigitizing.value,
+    // Digitizing is per artwork, so it multiplies by the catalogue too.
+    digitizing: digitizedArtworks.size * n * DECO.embroideryDigitizing.value,
     screens,
+    // The neck label is the house brand, not the place graphic — one screen
+    // however many designs hang off it.
     neckSetup: anyRelabel ? RELABEL.printedNeckSetup : 0,
     // The 200-piece minimum is a LINE minimum, not a per-SKU one.
     wovenLabels:
@@ -261,10 +313,10 @@ export function lineTotals(skus: Sku[]): LineTotals {
   sharedFixed.total =
     sharedFixed.digitizing + sharedFixed.screens + sharedFixed.neckSetup + sharedFixed.wovenLabels;
 
-  const totalUnits = items.reduce((n, it) => n + it.sku.units, 0);
-  const variableTotal = items.reduce((n, it) => n + it.variableTotal, 0);
+  const totalUnits = items.reduce((acc, it) => acc + it.sku.units, 0) * n;
+  const variableTotal = items.reduce((acc, it) => acc + it.variableTotal, 0) * n;
   const totalCost = variableTotal + sharedFixed.total;
-  const totalRevenue = items.reduce((n, it) => n + it.revenue, 0);
+  const totalRevenue = items.reduce((acc, it) => acc + it.revenue, 0) * n;
 
   return {
     items,
