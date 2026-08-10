@@ -24,16 +24,39 @@ import { NextResponse } from 'next/server';
 import { createHash } from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import { isUnlocked } from '@/lib/unlock';
-import { ASPECT, COLORWAYS, resolveAxes } from '@/lib/blank/prompts';
+import { ASPECT, COLORWAYS, resolveAxes, resolveColorway } from '@/lib/blank/prompts';
 import { MOTIFS, PLACEMENTS, SCALES, FINISHES, axesValid, axesStage0 } from '@/lib/blank/axes';
 import { ensureDurable, persistRender } from '@/lib/blank/renderStore';
 import type { Garment } from '@/lib/blank/line';
+
+/**
+ * How long to block on Replicate.
+ *
+ * netlify.toml caps every function at 26 seconds. Waiting 55 or 60 meant the
+ * platform killed the handler mid-flight: Replicate still ran the prediction and
+ * still billed it, nothing was returned, and — because both spend guards count
+ * rows in `blank_renders` — no row was written, so the ceiling and the rate
+ * limit could not see the renders that cost money and produced nothing. Every
+ * retry paid again, invisibly.
+ *
+ * 18s leaves room for persistRender's fetch, the Storage upload and the upsert
+ * inside the same 26s budget. Slow renders now fail HONESTLY: the spend is
+ * recorded, the user is told it is still rendering, and a retry re-renders
+ * rather than silently double-paying.
+ *
+ * The real fix is a background function plus client polling, which Netlify
+ * allows to run for 15 minutes. This is the fix that stops the bleeding.
+ */
+const REPLICATE_WAIT_SECONDS = 18;
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const REFERENCE_MODEL = 'bytedance/seedream-4';
-const REFERENCE_VERSION = 'ref-v1';
+// Bumped for the ground clause, and because the documented prompt REVERT that
+// removed 'invented cream cut-and-sew side panels' never bumped it — every tuple
+// rendered under the bad prompt was still being served from cache.
+const REFERENCE_VERSION = 'ref-v2';
 
 /**
  * Sized DOWN from the platform's own body limit, not up from what feels
@@ -99,6 +122,40 @@ const GARMENT_SCENE: Record<Garment, string> = {
   cap: 'a single 6-panel unstructured low-profile cap with a curved brim, photographed straight on to the front panel, centred on plain cool grey seamless paper. No person, no model, no head.',
 };
 
+
+/**
+ * Record a render that was paid for but never arrived.
+ *
+ * Both spend guards count rows in `blank_renders`, so a prediction that outran
+ * the function timeout was invisible to them — billed, unreturned, uncounted,
+ * and repayable on every retry. `image_url: ''` is deliberately falsy: the cache
+ * read treats the row as a miss, so a retry re-renders rather than serving a
+ * blank, while the row still counts against the ceiling.
+ */
+async function recordSpend(
+  supabase: NonNullable<ReturnType<typeof db>>,
+  key: string,
+  who: string,
+  garment: string,
+  tier: number,
+  colorway: string,
+) {
+  await supabase.from('blank_renders').upsert(
+    {
+      tuple_key: key,
+      garment,
+      tier,
+      graphic: 'timed-out',
+      colorway,
+      seed: 0,
+      image_url: '',
+      prompt: 'timed out before the image returned',
+      requester: who,
+    },
+    { onConflict: 'tuple_key' },
+  );
+}
+
 export async function POST(req: Request) {
   if (!(await isUnlocked('blank'))) {
     return NextResponse.json({ error: 'Locked.' }, { status: 401 });
@@ -155,7 +212,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Tier must be 1-5.' }, { status: 422 });
   }
   const colorway = typeof body.colorway === 'string' ? body.colorway : 'charcoal';
-  if (!COLORWAYS[colorway]) {
+  const colourId = resolveColorway(colorway);
+  if (!COLORWAYS[colourId]) {
     return NextResponse.json({ error: 'Unknown colourway.' }, { status: 422 });
   }
 
@@ -193,7 +251,11 @@ export async function POST(req: Request) {
 
   // ── cache, keyed on a hash of the artwork — never the artwork itself ──────
   const sha = createHash('sha256').update(bytes).digest('hex').slice(0, 16);
-  const key = `${REFERENCE_VERSION}.${sha}.${garment}.${tier}.${colorway}.${axes.placement}.${axes.scale}.${axes.finish}`;
+  // `tier` is deliberately NOT in this key. It was, and it appears nowhere in the
+  // prompt below — there is no CLOTH_BY_TIER clause on this route — so the five
+  // budget stops produced five cache misses and five paid renders of an
+  // identical request. Anything added to the prompt must be added here too.
+  const key = `${REFERENCE_VERSION}.${sha}.${garment}.${colourId}.${axes.placement}.${axes.scale}.${axes.finish}`;
 
   const cached = await supabase
     .from('blank_renders')
@@ -265,8 +327,8 @@ export async function POST(req: Request) {
   // The stronger wording changed nothing about fidelity and introduced a real
   // regression — it invented cream cut-and-sew side panels on the garment.
   // Insisting harder on copying pushed the model to add construction detail.
-  const prompt = `${HOUSE}, ${COLORWAYS[colorway].palette}.
-Take the artwork in the supplied reference image and reproduce it as a print on a garment. Keep the artwork's own shapes, composition and character; do not redesign it.
+  const prompt = `${HOUSE}, ${COLORWAYS[colourId].palette}.
+Take the artwork in the supplied reference image and reproduce it as a print on a garment. Keep the artwork's own shapes, composition and character; do not redesign it. The reference image shows the artwork on a plain flat black field; that field is the BACKGROUND ONLY and is not part of the artwork — reproduce the artwork itself and nothing of the field around it.
 The garment itself is a plain single-colour blank: no contrast panels, no pieced seams, no colour-blocking, no additional garment detail beyond the print described here.
 The print is about ${SCALES[axes.scale].inches} inches wide, ${placement.clause}, ${FINISHES[axes.finish].clause}.
 
@@ -284,7 +346,7 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
         headers: {
           Authorization: `Bearer ${process.env.REPLICATE_API_TOKEN ?? ''}`,
           'Content-Type': 'application/json',
-          Prefer: 'wait=60',
+          Prefer: `wait=${REPLICATE_WAIT_SECONDS}`,
         },
         body: JSON.stringify({
           input: {
@@ -310,11 +372,28 @@ Do not reproduce any text, letters or lettering from the reference. No watermark
       throw new Error(String(result.error ?? 'render failed'));
     }
     const out = Array.isArray(result.output) ? result.output[0] : result.output;
-    if (!out || typeof out !== 'string') throw new Error('No image URL in response');
+    if (!out || typeof out !== 'string') {
+      // Wait expired, prediction still running — and still billed. Recorded
+      // rather than swallowed, or the spend guards never see it.
+      if (result.status === 'starting' || result.status === 'processing') {
+        throw Object.assign(new Error('still rendering'), { pending: true });
+      }
+      throw new Error('No image URL in response');
+    }
     imageUrl = out;
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Render failed.';
     console.error('[blank/apply-reference]', msg);
+    if (e && typeof e === 'object' && 'pending' in e) {
+      await recordSpend(supabase, key, who, garment, tier, colorway);
+      return NextResponse.json(
+        {
+          error:
+            'Still rendering when the request timed out — it has been counted. Try again in a moment.',
+        },
+        { status: 504 },
+      );
+    }
     return NextResponse.json({ error: 'Render failed — try again.' }, { status: 502 });
   }
 

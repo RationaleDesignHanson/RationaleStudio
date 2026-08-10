@@ -116,7 +116,20 @@ export function ColourBeat() {
       );
       setRunning(false);
     },
-    [garment, mark, word],
+    // Every config field the body reads belongs here. It read customGraphic,
+    // register, signText, signSize and signY and listed none of them, so
+    // changing the kept graphic or retyping the place name and pressing render
+    // spent six times on the artwork from before the change.
+    [
+      garment,
+      mark,
+      word,
+      config.customGraphic,
+      config.register,
+      config.signText,
+      config.signSize,
+      config.signY,
+    ],
   );
 
   return (

@@ -26,7 +26,7 @@ type Tile = { url?: string; error?: string; busy?: boolean };
 
 const EXAMPLES = [
   'a dog wearing sunglasses, drawn badly on purpose',
-  'a cross-section diagram of a sandwich, labelled like an engine',
+  'a cross-section diagram of a sandwich, exploded like an engine',
   'a very serious flaming skull, but the flames are little hearts',
 ];
 

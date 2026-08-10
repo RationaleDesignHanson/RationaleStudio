@@ -47,7 +47,7 @@ import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
 import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { STATES, GARMENTS, tierIndex, type Garment } from '@/lib/blank/line';
-import { COLORWAYS, resolveAxes, validateTuple } from '@/lib/blank/prompts';
+import { COLORWAYS, resolveAxes, resolveColorway, validateTuple } from '@/lib/blank/prompts';
 import {
   MOTIFS,
   PLACEMENTS,
@@ -302,7 +302,7 @@ export function DeviationRender() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={result.imageUrl}
-            alt={`${MOTIFS[axes.motif]?.title} on a ${garment}, ${COLORWAYS[colorway]?.label}`}
+            alt={`${MOTIFS[axes.motif]?.title} on a ${garment}, ${COLORWAYS[resolveColorway(colorway)]?.label}`}
             className="w-full"
             style={{ backgroundColor: 'var(--era-bg-deep)' }}
           />
@@ -314,7 +314,7 @@ export function DeviationRender() {
               {MOTIFS[axes.motif]?.title} · {SCALES[axes.scale]?.title} ·{' '}
               {PLACEMENTS[axes.placement]?.title} · {FINISHES[axes.finish]?.title}
             </span>
-            <span>{COLORWAYS[colorway]?.label}</span>
+            <span>{COLORWAYS[resolveColorway(colorway)]?.label}</span>
             <span>Imagen 4</span>
             <span>{result.cached ? 'cached' : 'generated'}</span>
             <span>AI-generated — not a photograph of product</span>

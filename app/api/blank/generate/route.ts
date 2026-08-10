@@ -41,6 +41,26 @@ import {
 } from '@/lib/blank/prompts';
 import { ensureDurable, persistRender } from '@/lib/blank/renderStore';
 
+/**
+ * How long to block on Replicate.
+ *
+ * netlify.toml caps every function at 26 seconds. Waiting 55 or 60 meant the
+ * platform killed the handler mid-flight: Replicate still ran the prediction and
+ * still billed it, nothing was returned, and — because both spend guards count
+ * rows in `blank_renders` — no row was written, so the ceiling and the rate
+ * limit could not see the renders that cost money and produced nothing. Every
+ * retry paid again, invisibly.
+ *
+ * 18s leaves room for persistRender's fetch, the Storage upload and the upsert
+ * inside the same 26s budget. Slow renders now fail HONESTLY: the spend is
+ * recorded, the user is told it is still rendering, and a retry re-renders
+ * rather than silently double-paying.
+ *
+ * The real fix is a background function plus client polling, which Netlify
+ * allows to run for 15 minutes. This is the fix that stops the bleeding.
+ */
+const REPLICATE_WAIT_SECONDS = 18;
+
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -98,7 +118,7 @@ async function renderWithFlux(tuple: RenderTuple, prompt: string): Promise<strin
         'Content-Type': 'application/json',
         // Wait inline rather than polling — a serverless function that returns
         // and then polls has nowhere to keep the prediction id.
-        Prefer: 'wait=55',
+        Prefer: `wait=${REPLICATE_WAIT_SECONDS}`,
       },
       body: JSON.stringify({
         input: {

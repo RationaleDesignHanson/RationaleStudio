@@ -50,6 +50,26 @@ import { isUnlocked } from '@/lib/unlock';
 import { ensureDurable, persistRender } from '@/lib/blank/renderStore';
 import { paletteById } from '@/lib/blank/palettes';
 
+/**
+ * How long to block on Replicate.
+ *
+ * netlify.toml caps every function at 26 seconds. Waiting 55 or 60 meant the
+ * platform killed the handler mid-flight: Replicate still ran the prediction and
+ * still billed it, nothing was returned, and — because both spend guards count
+ * rows in `blank_renders` — no row was written, so the ceiling and the rate
+ * limit could not see the renders that cost money and produced nothing. Every
+ * retry paid again, invisibly.
+ *
+ * 18s leaves room for persistRender's fetch, the Storage upload and the upsert
+ * inside the same 26s budget. Slow renders now fail HONESTLY: the spend is
+ * recorded, the user is told it is still rendering, and a retry re-renders
+ * rather than silently double-paying.
+ *
+ * The real fix is a background function plus client polling, which Netlify
+ * allows to run for 15 minutes. This is the fix that stops the bleeding.
+ */
+const REPLICATE_WAIT_SECONDS = 18;
+
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -62,6 +82,23 @@ const VERSION = 'bake-v1';
 
 const HOUSE =
   'quiet-flex elevated streetwear, heavyweight garment-dyed cotton, minimal branding, matte tactile surfaces, soft diffused natural light, film-photography color';
+
+/**
+ * The composite sent to a model is an opaque JPEG, because JPEG has no alpha.
+ *
+ * Place and prompt artwork are generated on a pure black field so the browser
+ * can knock it out with `mix-blend-mode: screen` — but `artworkDataUrl` flattens
+ * to a file, so the field travels with it. The applied views show knocked-out
+ * artwork and the paid render would otherwise be a picture of a black rectangle
+ * with something in the middle of it.
+ *
+ * Told rather than keyed out. Alpha-keying to PNG was the alternative and it
+ * trades a known problem for an unknown one: nothing here can verify how either
+ * model treats an alpha channel, and a model that flattens it onto white would
+ * be worse than one told to ignore a black field.
+ */
+const GROUND_CLAUSE =
+  "The reference image shows the artwork on a plain flat black field; that field is the BACKGROUND ONLY and is not part of the artwork — reproduce the shapes and colours of the artwork itself and nothing of the field around it.";
 
 const SCENE: Record<string, string> = {
   tee: 'a single short-sleeve t-shirt, boxy relaxed cut with a ribbed crew neck and dropped shoulders, lying flat and centred on plain cool grey seamless paper, photographed from directly overhead. No person, no model, no hanger.',
@@ -160,7 +197,7 @@ async function replicate(model: string, input: Record<string, unknown>): Promise
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      Prefer: 'wait=55',
+      Prefer: `wait=${REPLICATE_WAIT_SECONDS}`,
     },
     body: JSON.stringify({ input }),
   });
@@ -171,7 +208,15 @@ async function replicate(model: string, input: Record<string, unknown>): Promise
   const out = await res.json();
   if (out.status === 'failed' || out.error) throw new Error(String(out.error ?? 'render failed'));
   const url = Array.isArray(out.output) ? out.output[0] : out.output;
-  if (!url || typeof url !== 'string') throw new Error('No image URL in response');
+  if (!url || typeof url !== 'string') {
+    // The wait expired with the prediction still running. It is billed either
+    // way, so this must be distinguishable from a failure — the caller records
+    // the spend before giving up.
+    if (out.status === 'starting' || out.status === 'processing') {
+      throw Object.assign(new Error('still rendering'), { pending: true });
+    }
+    throw new Error('No image URL in response');
+  }
   return url;
 }
 
@@ -217,7 +262,8 @@ export async function POST(req: Request) {
     // question ("what colour is the line") separate from what is printed on it.
     const markClause =
       typeof body.image === 'string' && body.image.startsWith('data:')
-        ? 'The artwork in the supplied reference image is printed on the chest at about 10 inches wide, in flat opaque off-white ink. Keep the artwork’s own shapes; do not redesign it.'
+        ? 'The artwork in the supplied reference image is printed on the chest at about 10 inches wide, in flat opaque off-white ink. Keep the artwork’s own shapes; do not redesign it.' +
+          GROUND_CLAUSE
         : 'The garment is completely plain: no print, no graphic, no embroidery and no visible branding.';
     model = typeof body.image === 'string' && body.image.startsWith('data:') ? SEEDREAM : IMAGEN;
     const prompt = `${HOUSE}.
@@ -252,12 +298,12 @@ Do not reproduce any text or lettering. No watermarks.`;
     }
     model = IMAGEN;
     const angle = GRAPHIC_ANGLES[variant % GRAPHIC_ANGLES.length];
-    const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in solid off-white on a flat even cool mid-grey field that fills the frame. Centred, occupying about half the frame width. This is a digital graphic, not a photograph of an object: no surface, no edges, no depth.
+    const prompt = `A SINGLE FLAT TWO-DIMENSIONAL PIECE OF ARTWORK, drawn in solid off-white on a PURE BLACK field that fills the entire frame edge to edge — pure black #000000 everywhere, no gradient and no vignette. Centred, occupying about half the frame width. This is a digital graphic, not a photograph of an object: no surface, no edges, no depth.
 The artwork is: ${description}.
 Drawn ${angle}.
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
-    keySource = `${kind}.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+    keySource = `${kind}.k2.${variant}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
   } else if (kind === 'place') {
     const place = String(body.place ?? '')
       // eslint-disable-next-line no-control-regex
@@ -344,12 +390,15 @@ No extra text, no additional words, no watermarks, no border.`;
     );
   }
 
-  const midnight = new Date();
-  midnight.setUTCHours(0, 0, 0, 0);
+  // Rolling 24h, matching apply-reference and generate. These four routes
+  // share one table and one ceiling but used two different windows, so just
+  // after UTC midnight the bakeoff counter read ~0 while the others still
+  // read 60 — an effective ceiling of about 120 across the boundary.
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000);
   const { count, error: countError } = await supabase
     .from('blank_renders')
     .select('tuple_key', { count: 'exact', head: true })
-    .gte('created_at', midnight.toISOString());
+    .gte('created_at', since.toISOString());
   if (countError || count === null) {
     return NextResponse.json({ error: 'Renders are temporarily unavailable.' }, { status: 503 });
   }
@@ -363,7 +412,31 @@ No extra text, no additional words, no watermarks, no border.`;
   let imageUrl: string;
   try {
     imageUrl = await replicate(model, input);
-  } catch {
+  } catch (e) {
+    if (e && typeof e === 'object' && 'pending' in e) {
+      // Billed but never returned. Both spend guards count rows in this table,
+      // so without a row the render is invisible to them and every retry pays
+      // again. Empty image_url keeps the cache read a miss, so a retry
+      // re-renders rather than serving nothing.
+      await supabase.from('blank_renders').upsert(
+        {
+          tuple_key: key,
+          garment,
+          tier: 1,
+          graphic: `bakeoff-${kind}`,
+          colorway: 'timed-out',
+          seed: variant,
+          image_url: '',
+          prompt: 'timed out before the image returned',
+          requester: who,
+        },
+        { onConflict: 'tuple_key' },
+      );
+      return NextResponse.json(
+        { error: 'Still rendering when it timed out — counted. Try again in a moment.' },
+        { status: 504 },
+      );
+    }
     return NextResponse.json({ error: 'Render failed — try again.' }, { status: 502 });
   }
 

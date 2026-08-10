@@ -27,7 +27,15 @@ import Anthropic from '@anthropic-ai/sdk';
 export const runtime = 'nodejs';
 
 // ── Cost controls ────────────────────────────────────────────────────────────
-const MAX_IMAGE_BYTES = 4 * 1024 * 1024; // 4MB decoded
+/**
+ * 3MB decoded is about 4MB of base64 once it is in a JSON body.
+ *
+ * This was 4MB decoded — roughly 5.4MB on the wire — and apply-reference
+ * documents a MEASURED platform limit below that: "a 5MB body 500s inside the
+ * platform before the handler ever runs". So the 413 below could never fire for
+ * the sizes that actually break; they failed earlier, as an opaque 500.
+ */
+const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
 const RATE_LIMIT_PER_IP = 5; // per window
 const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const DAILY_CALL_CEILING = 200; // hard stop for the whole endpoint
@@ -180,8 +188,14 @@ export async function POST(req: Request) {
       model: 'claude-opus-5',
       max_tokens: 2048,
       system: SYSTEM,
-      // Low effort: this is a constrained extraction, not a reasoning task.
-      // Structured output means the response cannot exceed the schema.
+      // Opus 5 thinks by DEFAULT, unlike the 4.x models. `max_tokens` bounds
+      // thinking plus the answer, so an adaptive thinking pass could eat the
+      // budget and leave the JSON truncated — which then hit `JSON.parse`
+      // unguarded and surfaced as a 500 "Analysis failed" for what is really a
+      // length condition. This is a constrained extraction, so there is nothing
+      // to think about.
+      thinking: { type: 'disabled' },
+      // Structured output constrains the SHAPE of the response, not its length.
       output_config: {
         effort: 'low',
         format: { type: 'json_schema', schema: ANALYSIS_SCHEMA },
@@ -206,13 +220,29 @@ export async function POST(req: Request) {
       );
     }
 
+    // Truncation is a length condition, not a parse failure. Checked before the
+    // parse so it reports as itself rather than as a generic 500.
+    if (response.stop_reason === 'max_tokens') {
+      return NextResponse.json(
+        { error: 'The analysis was cut short. Try a smaller or simpler image.' },
+        { status: 502 },
+      );
+    }
+
     const text = response.content.find((b) => b.type === 'text');
     if (!text || text.type !== 'text') {
       return NextResponse.json({ error: 'Analysis returned no result.' }, { status: 502 });
     }
 
+    let analysis: unknown;
+    try {
+      analysis = JSON.parse(text.text);
+    } catch {
+      return NextResponse.json({ error: 'Analysis returned malformed data.' }, { status: 502 });
+    }
+
     return NextResponse.json({
-      analysis: JSON.parse(text.text),
+      analysis,
       usage: {
         input_tokens: response.usage.input_tokens,
         output_tokens: response.usage.output_tokens,
