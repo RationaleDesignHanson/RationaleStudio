@@ -43,81 +43,85 @@ export function BlankShell({ sections }: { sections: Section[] }) {
   const open = sections.find((x) => x.id === openId) ?? sections[0];
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 pb-10">
-      <div className="max-w-7xl mx-auto grid gap-6 lg:gap-10 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
-        {/* NAV AND THE LINE. The sidebar was holding the controls as well, which
-            squeezed a six-up grid of marks into 26rem and made every preview too
-            small to judge — the exact thing a canvas is for. It is a nav and a
-            thumbnail now; the work happens in the wide column. */}
-        <div className="min-w-0">
-          <nav className="lg:sticky lg:top-[6rem]">
-            <ol className="mb-6">
-              {sections.map((x) => {
-                const on = x.id === openId;
-                const st = statuses.find((y) => y.id === x.id);
-                const blocked = st?.state === 'blocked';
-                return (
-                  <li key={x.id}>
-                    <button
-                      onClick={() => set('step', x.id)}
-                      aria-current={on ? 'step' : undefined}
-                      className="tap w-full text-left py-1.5 flex items-start gap-2.5"
-                      style={{ display: 'flex', minHeight: 0, opacity: blocked ? 0.55 : 1 }}
-                    >
-                      <span
-                        className="text-[11px] font-mono tracking-[0.2em] shrink-0 pt-0.5"
-                        style={{ color: on ? 'var(--accent)' : 'var(--era-ink-muted)' }}
-                      >
-                        {x.id}
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span
-                          className="block text-[13px]"
-                          style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
-                        >
-                          {x.label}
-                        </span>
-                        {/* The status IS the disclosure. Hiding a section is fine;
-                            hiding that it wants something from you is not. */}
-                        <span
-                          className="block text-[11px] font-mono leading-tight"
-                          style={{
-                            color: st?.state === 'done' ? 'var(--era-ink-muted)' : 'var(--accent)',
-                          }}
-                        >
-                          {st?.note}
-                        </span>
-                      </span>
-                      {st?.state === 'done' && (
-                        <Check className="w-3 h-3 shrink-0 mt-1" style={{ color: 'var(--era-ink-muted)' }} />
-                      )}
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
+    <div className="pb-10">
+      {/* NAVIGATION IS HORIZONTAL.
+          It was a vertical list in a left column, which is a table of contents
+          rather than a nav: it took a column of width on a wide screen and a
+          screenful of height on a narrow one, on every single screen, to show
+          seven items that never change. A strip costs one line, scrolls when it
+          has to, and leaves the whole page to the work. */}
+      <nav
+        className="sticky top-0 z-30 border-b backdrop-blur"
+        style={{
+          borderColor: 'var(--era-hairline)',
+          backgroundColor: 'color-mix(in srgb, var(--era-bg) 92%, transparent)',
+        }}
+      >
+        <ol
+          className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex gap-5 overflow-x-auto py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{ overscrollBehaviorX: 'contain' }}
+        >
+          {sections.map((x) => {
+            const on = x.id === openId;
+            const st = statuses.find((y) => y.id === x.id);
+            const blocked = st?.state === 'blocked';
+            return (
+              <li key={x.id} className="shrink-0">
+                <button
+                  onClick={() => set('step', x.id)}
+                  aria-current={on ? 'step' : undefined}
+                  title={st?.note}
+                  className="tap flex items-center gap-1.5 text-[12px] font-mono uppercase tracking-wider border-b-2 pb-0.5 transition-colors"
+                  style={{
+                    display: 'flex',
+                    minHeight: 0,
+                    borderColor: on ? 'var(--accent)' : 'transparent',
+                    color: on ? 'var(--accent)' : blocked ? 'var(--era-ink-muted)' : 'var(--era-ink)',
+                    opacity: blocked ? 0.5 : 1,
+                  }}
+                >
+                  {/* Status as a dot, not a sentence. A strip has room for one
+                      glyph and the note is on hover and beside the heading. */}
+                  {st?.state === 'done' ? (
+                    <Check className="w-3 h-3 shrink-0" />
+                  ) : (
+                    <span
+                      className="shrink-0 rounded-full"
+                      style={{
+                        width: 5,
+                        height: 5,
+                        backgroundColor: blocked ? 'var(--era-hairline)' : 'var(--accent)',
+                      }}
+                    />
+                  )}
+                  <span style={{ opacity: 0.6 }}>{x.id}</span>
+                  {x.label}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
 
-          </nav>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+          <h2 className="font-display" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
+            {open?.label}
+            <span className="ml-3 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+              {statuses.find((y) => y.id === openId)?.note}
+            </span>
+          </h2>
+          {next && next.id !== openId && (
+            <button
+              onClick={() => set('step', next.id)}
+              className="tap text-[12px] font-mono"
+              style={{ color: 'var(--accent)', minHeight: 0 }}
+            >
+              Next: {next.note} →
+            </button>
+          )}
         </div>
-
-        {/* THE WORK, at full width. */}
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-            <h2 className="font-display" style={{ fontSize: '1.5rem', color: 'var(--era-ink)' }}>
-              {open?.label}
-            </h2>
-            {next && next.id !== openId && (
-              <button
-                onClick={() => set('step', next.id)}
-                className="tap text-[12px] font-mono"
-                style={{ color: 'var(--accent)', minHeight: 0 }}
-              >
-                Next: {next.note} →
-              </button>
-            )}
-          </div>
-          {open?.body}
-        </div>
+        {open?.body}
       </div>
     </div>
   );
