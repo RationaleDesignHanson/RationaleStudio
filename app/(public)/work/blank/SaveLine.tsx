@@ -34,19 +34,33 @@ type State = 'idle' | 'saving' | 'saved' | 'conflict' | 'error';
 const DEBOUNCE_MS = 1200;
 
 export function SaveLine() {
-  const { config, skus, replaceAll } = useLine();
+  const { config, skus, replaceAll, hydrated } = useLine();
   const [id, setId] = useState<string | null>(null);
   const [version, setVersion] = useState(0);
   const [state, setState] = useState<State>('idle');
   const [conflictBy, setConflictBy] = useState<string | null>(null);
   const [who, setWho] = useState('');
   const [asking, setAsking] = useState(false);
+  const [restarting, setRestarting] = useState(false);
   useEffect(() => setWho(readWho()), []);
 
   const version_ = useRef(version);
   version_.current = version;
   const loading = useRef(false);
   const lastSaved = useRef<string>('');
+  /**
+   * Nothing is saved until something is EDITED.
+   *
+   * The autosave compared the current document against the last saved one, and
+   * on a fresh page the last saved one was the empty string — so simply opening
+   * the tool wrote a row. Seven of them accumulated in an afternoon of testing,
+   * all at version 1 with no author, none of them anybody's line.
+   *
+   * The baseline is taken once the provider has finished reading the URL, not
+   * at mount: hydration arrives in an effect, so seeding earlier would make the
+   * hydrated state itself look like the first edit.
+   */
+  const seeded = useRef(false);
 
   // Read the id from the URL once, and load it.
   useEffect(() => {
@@ -73,8 +87,13 @@ export function SaveLine() {
   const snapshot = useCallback(() => ({ ...config, skus }), [config, skus]);
 
   useEffect(() => {
-    if (loading.current) return;
+    if (!hydrated || loading.current) return;
     const body = JSON.stringify(snapshot());
+    if (!seeded.current) {
+      seeded.current = true;
+      if (!lastSaved.current) lastSaved.current = body;
+      return;
+    }
     if (body === lastSaved.current) return;
 
     const t = setTimeout(async () => {
@@ -122,7 +141,7 @@ export function SaveLine() {
     }, DEBOUNCE_MS);
 
     return () => clearTimeout(t);
-  }, [config, skus, id, snapshot]);
+  }, [config, skus, id, snapshot, hydrated]);
 
   /** Take theirs and carry on from it, rather than fighting over the row. */
   const reload = async () => {
@@ -182,6 +201,38 @@ export function SaveLine() {
         </span>
       )}
       {state === 'error' && <span className="b-note" style={{ color: '#A8456E' }}>Not saved</span>}
+
+      {/* Start again. Two steps rather than a browser confirm, and it says where
+          the current line went — it is saved and reachable, not destroyed. */}
+      {!restarting ? (
+        <button
+          onClick={() => setRestarting(true)}
+          className="tap b-note underline"
+          style={{ minHeight: 0, color: 'var(--era-ink-muted)' }}
+        >
+          New line
+        </button>
+      ) : (
+        <span className="b-note inline-flex items-center gap-2">
+          {id ? 'This one stays saved.' : 'Nothing saved yet.'}
+          <button
+            onClick={() => {
+              window.location.href = '/work/blank';
+            }}
+            className="tap underline"
+            style={{ minHeight: 0, color: 'var(--accent)' }}
+          >
+            Start fresh
+          </button>
+          <button
+            onClick={() => setRestarting(false)}
+            className="tap underline"
+            style={{ minHeight: 0, color: 'var(--era-ink-muted)' }}
+          >
+            cancel
+          </button>
+        </span>
+      )}
       {state === 'conflict' && (
         <span className="b-note inline-flex items-center gap-2" style={{ color: '#A8456E' }}>
           {conflictBy ? `${conflictBy} saved first` : 'Someone saved first'}
