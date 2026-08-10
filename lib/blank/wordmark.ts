@@ -31,10 +31,20 @@ import { STATES } from './line';
 /** Standard platen, referenced in the print library's own notes. */
 export const PLATEN_INCHES = 14;
 
-export type Method = 'dtf' | 'screen1' | 'screen2' | 'embroidery';
-export const TIER_METHOD: Method[] = ['dtf', 'screen1', 'screen2', 'embroidery'].concat([
-  'embroidery',
-]) as Method[];
+/**
+ * Re-exported, NOT redeclared.
+ *
+ * This file used to define its own `Method` union and its own `TIER_METHOD`
+ * table — the same five entries producible.ts has, built here by concatenating
+ * a fifth onto a four-item literal. Two tables that must agree about which
+ * decoration each budget stop buys, with nothing enforcing it, in a codebase
+ * where the same duplication already produced the `gateLabel` direction bug
+ * twice. producible.ts is the source of truth.
+ */
+import { TIER_METHOD, type Method } from './producible';
+
+export { TIER_METHOD };
+export type { Method };
 
 export interface Treatment {
   id: string;

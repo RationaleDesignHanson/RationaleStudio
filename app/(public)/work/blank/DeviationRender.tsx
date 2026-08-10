@@ -68,7 +68,7 @@ export function DeviationRender() {
   // Same dead-end as the colour beat: `garment` has one setter and it is
   // in a component that is never mounted, so this printed 'tee' as inherited
   // state forever. The line's leading style is the honest source.
-  const garment = skus[0]?.garment ?? config.garment;
+  const garment = skus[0]?.garment ?? 'tee';
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +91,8 @@ export function DeviationRender() {
   // be dead until you had selected a print language in a grid three sections
   // away, with nothing on screen saying so — a generative tool that refuses to
   // generate until an unstated prerequisite is met just reads as broken.
-  const graphic = config.graphic ?? 'G-abstract-mark';
+  // config.graphic had no writer anywhere, so this was always the fallback.
+  const graphic = 'G-abstract-mark';
   const colorway = config.colorway || 'charcoal';
 
   // Axes default from the preset and are overridden one at a time.

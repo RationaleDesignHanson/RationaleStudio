@@ -39,7 +39,7 @@ export function ColourBeat() {
   // The beat's own copy calls this "the line's leading style", and it was
   // reading `garment` — whose only setter lives in a component that is
   // never mounted, so it was permanently 'tee' no matter what the line held.
-  const garment = skus[0]?.garment ?? config.garment;
+  const garment = skus[0]?.garment ?? 'tee';
   const word = normalise(config.wordmark);
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
 

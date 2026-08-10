@@ -165,7 +165,11 @@ async function downscale(file: File, maxEdge = 1600, quality = 0.85): Promise<st
 }
 
 export function ReferenceUpload() {
-  const { config } = useLine();
+  const { config , skus } = useLine();
+  // The garment an uploaded reference gets applied to. Was `config.garment`,
+  // whose only setter lived in a component that is now deleted, so it could
+  // only ever be a tee. The line's leading style is the honest source.
+  const garment = skus[0]?.garment ?? 'tee';
   const [applied, setApplied] = useState<{ imageUrl: string; cached: boolean } | null>(null);
   const [applying, setApplying] = useState(false);
   const [applyError, setApplyError] = useState<string | null>(null);
@@ -218,10 +222,10 @@ export function ReferenceUpload() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           image: preview,
-          garment: config.garment,
+          garment,
           tier: tierIndex(config.budget) + 1,
           colorway: config.colorway || 'charcoal',
-          graphic: config.graphic ?? 'G-abstract-mark',
+          graphic: 'G-abstract-mark',
           placement: config.placement || undefined,
           scale: config.scale || undefined,
           finish: config.finish || undefined,
@@ -337,7 +341,7 @@ export function ReferenceUpload() {
                 ) : (
                   <Sparkles className="w-3 h-3" />
                 )}
-                {applying ? 'Rendering…' : `Put it on the ${config.garment}`}
+                {applying ? 'Rendering…' : `Put it on the ${garment}`}
               </button>
               <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
                 Uses the garment, colourway and axes set above
@@ -355,7 +359,7 @@ export function ReferenceUpload() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={applied.imageUrl}
-                  alt={`Your reference applied to a ${config.garment}`}
+                  alt={`Your reference applied to a ${garment}`}
                   className="w-full"
                   style={{ backgroundColor: 'var(--era-bg-deep)' }}
                 />
@@ -363,7 +367,7 @@ export function ReferenceUpload() {
                   className="mt-1.5 text-[11px] font-mono flex flex-wrap gap-x-3"
                   style={{ color: 'var(--era-ink-muted)' }}
                 >
-                  <span>Your reference · {config.garment}</span>
+                  <span>Your reference · {garment}</span>
                   <span>Seedream 4</span>
                   <span>{applied.cached ? 'cached' : 'generated'}</span>
                   <span>AI-generated — not a photograph of product</span>

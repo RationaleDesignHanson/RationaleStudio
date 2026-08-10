@@ -100,10 +100,6 @@ export interface LineConfig {
   finish: string;
   /** Budget stop slug — 'graphic' | 'washed' | 'tonal' | 'stitched' | 'full' */
   budget: string;
-  garment: Garment;
-  /** Graphic id from the print library ('G-tonal-emboss'), or null for none.
-      This is a PRINT LANGUAGE and is validated server-side against PRESETS. */
-  graphic: string | null;
   /**
    * A kept graphic from the prompt bake-off, as a durable Storage URL.
    *
@@ -150,14 +146,24 @@ export interface LineConfig {
    */
   markSeed: string;
   /**
-   * Retail price override for the lever, as a string so an empty field is a
-   * distinct state from zero. Empty means "use the tier default".
+   * The fields the user has actually touched.
    *
-   * Retail is the largest single margin lever in the model at 35.9 points —
-   * ahead of run size and blank tier — and the lever was displaying "Margin @
-   * $35" with no way to change the $35.
+   * WHY THIS EXISTS. Eleven fields carried meaningful defaults — budget
+   * 'graphic', direction 'workwear', wordmark 'BLANK', lockup 'word' — so
+   * nothing in the app could tell "they chose the $3k tier" from "nobody has
+   * been to the costing beat". The progress rail's own comment promised "only
+   * what is actually settled", then printed Name, Budget and Direction
+   * unconditionally, because its `if (config.direction)` gate can never be
+   * false against a truthy default.
+   *
+   * The alternative was nulling every default and resolving a working value at
+   * each of ~80 call sites. This separates the RECORD of a choice from its
+   * VALUE instead, which is a much smaller change and keeps every consumer
+   * reading a valid value. The cost is that a new surface can still read
+   * `config.budget` and present a default as a decision — so anything claiming
+   * something is settled must ask `isSet` and not the value.
    */
-  retail: string;
+  chosen: string[];
   /**
    * Which beat is on screen. View state rather than line configuration, carried
    * in the URL on purpose: the whole product is two people sending each other a
@@ -180,8 +186,6 @@ export const LINE_DEFAULTS: LineConfig = {
   scale: '',
   finish: '',
   budget: 'graphic',
-  garment: 'tee',
-  graphic: null,
   mark: null,
   customGraphic: null,
   pins: [],
@@ -190,8 +194,8 @@ export const LINE_DEFAULTS: LineConfig = {
   wordmark: 'BLANK',
   wordmarkStyle: null,
   lockup: 'word',
-  retail: '',
   markSeed: '',
+  chosen: [],
   step: '01',
 };
 
@@ -205,8 +209,6 @@ const PARAM = {
   signSize: 'sz',
   signY: 'sy',
   budget: 'b',
-  garment: 'g',
-  graphic: 'p',
   mark: 'mk',
   customGraphic: 'cg',
   direction: 'd',
@@ -219,8 +221,8 @@ const PARAM = {
   wordmark: 'w',
   wordmarkStyle: 'ws',
   lockup: 'lk',
-  retail: 'r',
   markSeed: 'ms',
+  chosen: 'tc',
   step: 'st',
 } as const;
 
@@ -240,6 +242,25 @@ interface LineContextValue {
   setSkuRetail: (index: number, retail: number | undefined) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
+  /**
+   * Apply a value WITHOUT recording it as a decision.
+   *
+   * Some values are consequences, not choices: the budget implied by picking a
+   * business, the budget the cost sheet reads off its leading row, the sign type
+   * size auto-fitted to the place name. Routing those through `set` made the rail
+   * claim the user had picked a $12k tier because they picked "small and dear",
+   * and made it inconsistent about it — the wide option's implied budget happens
+   * to equal the global default, so that one recorded nothing.
+   */
+  setImplied: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
+  /**
+   * Has the user actually chosen this, or is it still the default?
+   *
+   * Anything that claims something is SETTLED must ask this rather than testing
+   * the value — eleven fields have truthy defaults and testing those reports
+   * every default as a decision.
+   */
+  isSet: (key: keyof LineConfig) => boolean;
   /** Absolute URL encoding the current config. */
   shareUrl: () => string;
   /** True once the initial URL read has run, so consumers can skip the first write. */
@@ -297,10 +318,6 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (sy && /^\d{1,3}$/.test(sy)) out.signY = Math.min(95, Math.max(5, Number(sy)));
   const b = q.get(PARAM.budget);
   if (b) out.budget = b;
-  const g = q.get(PARAM.garment);
-  if (g === 'tee' || g === 'hoodie' || g === 'cap') out.garment = g;
-  const p = q.get(PARAM.graphic);
-  if (p) out.graphic = p;
   const mk = q.get(PARAM.mark);
   if (mk) out.mark = mk;
   // Only our own Storage host: a pasted link should not be able to point the
@@ -325,10 +342,11 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (lk) out.lockup = lk;
   const st = q.get(PARAM.step);
   if (st) out.step = st;
-  const r = q.get(PARAM.retail);
-  if (r && /^\d{1,4}$/.test(r)) out.retail = r;
   const ms = q.get(PARAM.markSeed);
   if (ms && /^\d{1,6}$/.test(ms)) out.markSeed = ms;
+  // Comma-joined field names. Bounded so a pasted link cannot grow it forever.
+  const tc = q.get(PARAM.chosen);
+  if (tc) out.chosen = tc.split(',').filter(Boolean).slice(0, 40);
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);
@@ -342,9 +360,13 @@ function writeToParams(config: LineConfig, url: URL) {
   // any separator inside one would have to be escaped into unreadability.
   url.searchParams.delete('pin');
   config.pins.forEach((u) => url.searchParams.append('pin', u));
+  // Array-valued, so it cannot go through the scalar loop below.
+  if (config.chosen.length) url.searchParams.set(PARAM.chosen, config.chosen.join(','));
+  else url.searchParams.delete(PARAM.chosen);
   // Keyed off PARAM, not LineConfig: `pins` is serialised separately above and
   // has no PARAM entry, so iterating LineConfig's keys no longer typechecks.
   (Object.keys(PARAM) as (keyof typeof PARAM)[]).forEach((key) => {
+    if (key === 'chosen') return; // written above
     const value = config[key];
     // Defaults are omitted so a link to the starting state has a bare URL.
     if (value == null || value === LINE_DEFAULTS[key]) url.searchParams.delete(PARAM[key]);
@@ -386,8 +408,28 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   }, [config, skus, hydrated]);
 
   const set = useCallback<LineContextValue['set']>((key, value) => {
+    setConfig((c) => {
+      if (c[key] === value) return c;
+      // Every user choice arrives through here, so this is the one place that
+      // has to record that it WAS a choice. `step` and `chosen` are excluded:
+      // moving between beats is navigation, not a decision about the line.
+      const record = key !== 'step' && key !== 'chosen' && !c.chosen.includes(key);
+      return {
+        ...c,
+        [key]: value,
+        ...(record ? { chosen: [...c.chosen, key as string] } : {}),
+      };
+    });
+  }, []);
+
+  const setImplied = useCallback<LineContextValue['setImplied']>((key, value) => {
     setConfig((c) => (c[key] === value ? c : { ...c, [key]: value }));
   }, []);
+
+  const isSet = useCallback(
+    (key: keyof LineConfig) => config.chosen.includes(key as string),
+    [config.chosen],
+  );
 
   const shareUrl = useCallback(() => {
     const url = new URL(window.location.href);
@@ -421,8 +463,8 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus }),
-    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus],
+    () => ({ config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus }),
+    [config, set, setImplied, isSet, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;

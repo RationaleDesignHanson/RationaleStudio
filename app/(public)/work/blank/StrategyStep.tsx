@@ -63,7 +63,7 @@ const OPTIONS: {
 ];
 
 export function StrategyStep() {
-  const { config, set, clearSkus } = useLine();
+  const { config, set, setImplied, clearSkus } = useLine();
 
   const choose = (o: (typeof OPTIONS)[number]) => {
     // Only rewrite the downstream defaults when the business actually CHANGES.
@@ -72,7 +72,8 @@ export function StrategyStep() {
     // row and re-gating every mark.
     if (config.strategy === o.id) return;
     set('strategy', o.id);
-    set('budget', o.defaults.budget);
+    // A consequence of the business, not a separate decision.
+    setImplied('budget', o.defaults.budget);
     set('designs', o.defaults.designs);
     // The cost sheet takes its gate from the first included row, so a line
     // specced under the other business would immediately overwrite the budget

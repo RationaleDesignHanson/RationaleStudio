@@ -104,7 +104,7 @@ export function SignArtwork({
  * seconds by dragging.
  */
 export function SignComposer({ url }: { url: string }) {
-  const { config, set } = useLine();
+  const { config, set, setImplied } = useLine();
 
   // Auto-fit until the size slider is touched, then never again — a place name
   // is a different length every time, so a fixed default is wrong for almost
@@ -115,8 +115,8 @@ export function SignComposer({ url }: { url: string }) {
   useEffect(() => {
     if (sizedRef.current) return;
     const fit = fittedSize(config.signText);
-    if (fit !== config.signSize) set('signSize', fit);
-  }, [config.signText, config.signSize, set]);
+    if (fit !== config.signSize) setImplied('signSize', fit);
+  }, [config.signText, config.signSize, setImplied]);
 
   return (
     <div className="mt-5 pt-5 border-t" style={{ borderColor: 'var(--era-hairline)' }}>

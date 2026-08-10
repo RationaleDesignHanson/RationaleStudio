@@ -135,7 +135,7 @@ export const clampStep = (n: string) => {
 };
 
 export function Stepper() {
-  const { config, set, skus } = useLine();
+  const { config, set, isSet, skus } = useLine();
   const i = clampStep(config.step);
   const go = useCallback((idx: number) => {
     const next = BEATS[Math.min(BEATS.length - 1, Math.max(0, idx))];
@@ -192,40 +192,66 @@ export function Stepper() {
     ? lineTotals(skus, config.strategy === 'scale' ? config.designs : 1)
     : null;
 
-  // Only what is actually settled. An omitted item says "not yet"; a dash would
-  // read as a value.
-  const decided: { label: string; value: string; alert?: boolean }[] = [
-    { label: 'Name', value: normalise(config.wordmark) || 'BLANK' },
-    config.strategy === 'scale'
-      ? { label: 'Places', value: String(config.designs) }
-      : { label: 'Budget', value: money(stop.budget) },
-  ];
-  if (config.wordmarkStyle) {
+  /**
+   * ONLY WHAT WAS ACTUALLY CHOSEN.
+   *
+   * This claimed to do that already and did not. Name and Budget were pushed
+   * unconditionally, and Direction was gated on `if (config.direction)` — a test
+   * that can never be false, because the default is 'workwear'. So a rail that
+   * promised a record of decisions opened showing three defaults: a name nobody
+   * typed, a $3k budget nobody set, and a brand direction nobody picked.
+   *
+   * Every entry now asks `isSet`, which reports whether the field was ever
+   * written by a user action rather than what it currently holds. An empty rail
+   * on arrival is the correct rail: nothing has been decided yet.
+   */
+  const decided: { label: string; value: string; alert?: boolean }[] = [];
+
+  if (isSet('wordmark')) {
+    const w = normalise(config.wordmark);
+    if (w) decided.push({ label: 'Name', value: w });
+  }
+  if (isSet('strategy')) {
+    decided.push({
+      label: 'Line',
+      value: config.strategy === 'scale' ? 'Wide' : 'Small',
+    });
+  }
+  if (config.strategy === 'scale' && isSet('designs')) {
+    decided.push({ label: 'Places', value: String(config.designs) });
+  }
+  if (isSet('budget')) {
+    decided.push({ label: 'Budget', value: money(stop.budget) });
+  }
+  if (isSet('wordmarkStyle') && config.wordmarkStyle) {
     decided.push({
       label: 'Type',
       value: ALL_TREATMENTS.find((t) => t.id === config.wordmarkStyle)?.title ?? config.wordmarkStyle,
     });
   }
-  if (config.direction) {
+  if (isSet('mark') && config.mark) {
+    // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
+    // reads "M seal".
+    decided.push({ label: 'Symbol', value: config.mark.replace(/^[GM]-/, '').replace(/-/g, ' ') });
+  }
+  if (isSet('place') && config.place) {
+    decided.push({ label: 'Place', value: config.place });
+  }
+  if (isSet('direction')) {
     decided.push({ label: 'Direction', value: DIRECTION_LABELS[config.direction] ?? config.direction });
   }
-  if (config.mark) {
-    decided.push({
-      // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
-      // reads "M seal".
-      label: 'Symbol',
-      value: config.mark.replace(/^[GM]-/, '').replace(/-/g, ' '),
-    });
+  if (isSet('colorway')) {
+    decided.push({ label: 'Colour', value: config.colorway.replace(/-/g, ' ') });
   }
+  // Not gated on `isSet`: a line only exists once you tick a row, so the totals
+  // are evidence of a decision rather than a default.
   if (totals) {
-    // On a catalogue the SKU count IS the product — "SKUs 3" for 72 shirts is
-    // the least informative number the rail could show.
     decided.push({
+      // On a catalogue the SKU count IS the product — "SKUs 3" for 72 shirts is
+      // the least informative number the rail could show.
       label: 'SKUs',
       value:
-        config.strategy === 'scale'
-          ? `${skus.length * config.designs}`
-          : String(skus.length),
+        config.strategy === 'scale' ? `${skus.length * config.designs}` : String(skus.length),
     });
     decided.push({
       label: 'Margin',
@@ -260,11 +286,20 @@ export function Stepper() {
               className="flex gap-x-4 items-baseline pt-2 pb-1.5 text-[12px] sm:text-[11px] font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ color: 'var(--era-ink-muted)', overscrollBehaviorX: 'contain' }}
             >
-              {decided.map((d) => (
-                <span key={d.label} className="whitespace-nowrap">
-                  {d.label} <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
+              {decided.length === 0 ? (
+                // An empty rail is the correct rail on arrival, but it must say
+                // so rather than render as a blank strip of chrome.
+                <span className="whitespace-nowrap" style={{ opacity: 0.75 }}>
+                  Nothing decided yet
                 </span>
-              ))}
+              ) : (
+                decided.map((d) => (
+                  <span key={d.label} className="whitespace-nowrap">
+                    {d.label}{' '}
+                    <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
+                  </span>
+                ))
+              )}
             </div>
           </div>
         </div>

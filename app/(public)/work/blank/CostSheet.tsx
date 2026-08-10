@@ -48,7 +48,8 @@ const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
 export function CostSheet() {
-  const { config, set, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail } = useLine();
+  const { config, set, setImplied, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail } =
+    useLine();
 
   const rowFor = (garment: string) => skus.findIndex((s) => s.garment === garment);
   // The catalogue multiplier. A row is priced PER DESIGN; the totals carry the
@@ -60,8 +61,9 @@ export function CostSheet() {
   // The first included style is what the identity beats gate against.
   const lead = skus[0]?.tier;
   useEffect(() => {
-    if (lead && lead !== config.budget) set('budget', lead);
-  }, [lead, config.budget, set]);
+    // Read off the leading row, so it is derived rather than chosen.
+    if (lead && lead !== config.budget) setImplied('budget', lead);
+  }, [lead, config.budget, setImplied]);
 
   // Built once and rendered twice — as a table on a real screen, as cards on a
   // phone. Seven columns of live controls forced the table to 931px inside a
@@ -144,7 +146,9 @@ export function CostSheet() {
     </select>
   );
 
-  const price = ({ gm, idx, inLine, c }: Row) => (
+  // A price nobody typed should not look like a price somebody typed. `sku.retail`
+  // is undefined until it is edited, so the default is shown muted and titled.
+  const price = ({ gm, idx, inLine, c, preview }: Row) => (
     <span className="whitespace-nowrap">
       <span style={{ color: 'var(--era-ink-muted)' }}>$</span>
       <input
@@ -154,9 +158,13 @@ export function CostSheet() {
         onChange={(e) => inLine && setSkuRetail(idx, Number(e.target.value) || undefined)}
         disabled={!inLine}
         aria-label={`${gm.label} price`}
+        title={preview.retail === undefined ? 'The tier default — not a price you set' : undefined}
         size={1}
         className="tap w-14 py-1 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] disabled:opacity-60 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+        style={{
+          borderColor: 'var(--era-hairline)',
+          color: preview.retail === undefined ? 'var(--era-ink-muted)' : 'var(--era-ink)',
+        }}
       />
     </span>
   );
