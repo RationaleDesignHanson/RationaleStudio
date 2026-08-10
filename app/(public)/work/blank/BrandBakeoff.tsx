@@ -46,7 +46,7 @@ export const DIRECTION_LABELS: Record<string, string> = {
   naturals: 'Japanese naturals',
 };
 
-const DIRECTIONS: Direction[] = [
+export const DIRECTIONS: Direction[] = [
   {
     key: 'quiet-flex',
     label: 'Quiet flex',

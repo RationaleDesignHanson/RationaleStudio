@@ -24,7 +24,7 @@ import { ProjectScope } from '@/components/case-study/ProjectScope';
 import { ReferenceUpload } from './ReferenceUpload';
 import { BrandBakeoff } from './BrandBakeoff';
 import { ShareLine } from './ShareLine';
-import { DeviationRender } from './DeviationRender';
+import { Lookbook } from './Lookbook';
 import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
@@ -148,7 +148,7 @@ function Sections() {
           body: (
             <>
               <BrandBakeoff />
-              <DeviationRender />
+              <Lookbook />
             </>
           ),
         },

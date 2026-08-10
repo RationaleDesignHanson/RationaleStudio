@@ -313,7 +313,8 @@ export async function POST(req: Request) {
     body.kind === 'graphic' ||
     body.kind === 'place' ||
     body.kind === 'lifestyle' ||
-    body.kind === 'wordmark'
+    body.kind === 'wordmark' ||
+    body.kind === 'lookbook'
       ? body.kind
       : null;
   if (!kind) return NextResponse.json({ error: 'Unknown bake-off kind.' }, { status: 422 });
@@ -400,6 +401,51 @@ Drawn ${angle}.${styleNote}
 No text, no letters, no words, no readable lettering, no numerals, no watermarks, no border, no frame. No garment, no fabric, no mockup, no person.`;
     input = { prompt, aspect_ratio: '1:1', image_size: '1K', output_format: 'jpg' };
     keySource = `${kind}.k3.${variant}.${dirKey}.${createHash('sha256').update(description).digest('hex').slice(0, 16)}`;
+  } else if (kind === 'lookbook') {
+    /**
+     * THE WHOLE LINE IN ONE FRAME, which is the highest-context thing the tool
+     * can show and the only view that is about the RANGE rather than a garment.
+     *
+     * 04 draws placement on each style, 07 puts one on a person. Neither answers
+     * "does this hang together" — that question needs every style, in its real
+     * colourways, carrying the real artwork, in one shot. It is what a lookbook
+     * is for and what you would put in front of a buyer.
+     *
+     * The line is described from the actual SKUs rather than invented, so the
+     * rack is the thing that was specced and not a generic four garments.
+     */
+    const image = typeof body.image === 'string' ? body.image : '';
+    if (!image.startsWith('data:')) {
+      return NextResponse.json({ error: 'Pick artwork first.' }, { status: 422 });
+    }
+    const pieces = Array.isArray(body.pieces)
+      ? (body.pieces as unknown[])
+          .map((x) => String(x).replace(/[^a-zA-Z0-9 ,'-]/g, '').slice(0, 60))
+          .filter(Boolean)
+          .slice(0, 8)
+      : [];
+    if (pieces.length === 0) {
+      return NextResponse.json({ error: 'Spec at least one style first.' }, { status: 422 });
+    }
+    const aesthetic = String(body.aesthetic ?? '').replace(/[^a-zA-Z0-9 ,.'-]/g, '').slice(0, 160);
+    model = SEEDREAM;
+    const prompt = `${HOUSE}.
+A LOOKBOOK PHOTOGRAPH OF ONE COHERENT CLOTHING RANGE, shot straight on: ${pieces.length} garments laid out together on a plain pale seamless ground, evenly spaced, all fully in frame with even margin.
+The garments are: ${pieces.join('; ')}.
+${aesthetic ? `The range's aesthetic is: ${aesthetic}.` : ''}
+The artwork in the supplied reference image is printed on the front of each garment at a size appropriate to that garment, keeping the artwork's own shapes and colours — do not redesign it.${GROUND_CLAUSE}
+They must read as ONE range: same light, same ground, same treatment, consistent styling.
+Even soft diffused daylight, neutral white balance. ${NO_PEOPLE}
+No added text, no logos, no watermarks.`;
+    input = {
+      prompt,
+      image_input: [image],
+      aspect_ratio: '4:3',
+      size: '2K',
+      enhance_prompt: false,
+      sequential_image_generation: 'disabled',
+    };
+    keySource = `${kind}.${variant}.${dirKey}.${createHash('sha256').update(pieces.join('|') + aesthetic + image).digest('hex').slice(0, 16)}`;
   } else if (kind === 'wordmark') {
     // REDRAWN, NEVER SPELLED. The reference already contains the word set
     // correctly in real type; the model is copying shapes. Asking it to render
