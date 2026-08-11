@@ -3,28 +3,74 @@
 
 echo "🔒 Checking for credentials in staged files..."
 
-# List of files to block completely
+# Filenames to block completely.
+#
+# These are GLOBS matched against the basename, not regexes. They used to be
+# fed to `grep -E`, where a leading `*` is a repetition operator with nothing
+# to repeat: grep exited 2 with "repetition-operator operand invalid", the `if`
+# read that as no-match, and the four wildcard rules below silently enforced
+# NOTHING. A private key staged as key.pem was waved straight through — only
+# the separate content scan for "BEGIN ... PRIVATE KEY" was catching those, and
+# only when the file happened to be PEM-encoded text.
+#
+# Glob matching also makes `.` literal. As a regex, ".env.local" matched
+# "xenvxlocal" and, being unanchored, any path merely containing it.
 BLOCKED_FILES=(
   "serviceAccountKey.json"
-  ".env.local"
   "credentials.json"
   "firebase-credentials.json"
   ".firebase-credentials.json"
+  ".env"
+  ".env.*"        # .env.local, .env.production.local, .env.local.bak
   "*.pem"
   "*.key"
   "*.p12"
   "*.pfx"
 )
 
-# Check for blocked files in staging
-for pattern in "${BLOCKED_FILES[@]}"; do
-  if git diff --cached --name-only | grep -qE "$pattern"; then
-    echo "❌ BLOCKED: Attempt to commit sensitive file: $pattern"
-    echo "   These files should NEVER be committed to git."
-    echo "   Please remove them from staging with: git reset HEAD $pattern"
-    exit 1
-  fi
+# Suffixes that are meant to be committed. `.env.example` is tracked in this
+# repo, so the .env.* rule above has to make room for it.
+ALLOWED_SUFFIXES=(
+  "*.example"
+  "*.sample"
+  "*.template"
+)
+
+# `set -f` stops the shell pathname-expanding the patterns against the working
+# tree before `case` ever sees them; IFS pins splitting to newlines so a staged
+# filename containing a space stays one filename.
+OLD_IFS=$IFS
+set -f
+IFS='
+'
+BLOCKED_HIT=""
+for file in $(git diff --cached --name-only); do
+  base=${file##*/}
+
+  allowed=""
+  for ok in "${ALLOWED_SUFFIXES[@]}"; do
+    case "$base" in $ok) allowed=1 ;; esac
+  done
+  [ -n "$allowed" ] && continue
+
+  for pattern in "${BLOCKED_FILES[@]}"; do
+    case "$base" in
+      $pattern)
+        echo "❌ BLOCKED: Attempt to commit sensitive file: $file"
+        echo "   Matched the rule: $pattern"
+        BLOCKED_HIT=1
+        ;;
+    esac
+  done
 done
+IFS=$OLD_IFS
+set +f
+
+if [ -n "$BLOCKED_HIT" ]; then
+  echo "   These files should NEVER be committed to git."
+  echo "   Remove them from staging with: git reset HEAD <file>"
+  exit 1
+fi
 
 # Patterns to search for in file contents (common credential formats).
 # Token bodies require enough trailing length (>=20) so substrings inside
@@ -59,7 +105,13 @@ CREDENTIAL_PATTERNS=(
 )
 
 # Get list of staged files (excluding package-lock.json and example files which can have false positives)
-STAGED_FILES=$(git diff --cached --name-only | grep -vE '(package-lock\.json|\.lock$|\.svg$|\.example$|\.sample$|\.template$|^\.husky/)')
+#
+# The `|| true` is load-bearing. Husky runs this hook with `sh -e`, and grep
+# exits 1 when it filters everything out — so staging only an .svg, a lockfile
+# or an .example file killed the hook right here, with no message and a
+# non-zero status. That reads as a blocked commit for no stated reason, and it
+# also made the "No files to check" branch below unreachable.
+STAGED_FILES=$(git diff --cached --name-only | grep -vE '(package-lock\.json|\.lock$|\.svg$|\.example$|\.sample$|\.template$|^\.husky/)' || true)
 
 # Skip check if no files to check
 if [ -z "$STAGED_FILES" ]; then
