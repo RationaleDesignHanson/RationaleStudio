@@ -26,7 +26,7 @@ import { Examples } from './Examples';
 type Tile = { url?: string; error?: string; busy?: boolean };
 
 export function GraphicBakeoff() {
-  const { config, set } = useLine();
+  const { config, keepArt } = useLine();
   const [prompt, setPrompt] = useState('');
   const [tiles, setTiles] = useState<Tile[]>([]);
   const [running, setRunning] = useState(false);
@@ -97,7 +97,7 @@ export function GraphicBakeoff() {
       {tiles.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
           {tiles.map((tile, i) => {
-            const on = config.customGraphic === tile.url && !!tile.url;
+            const on = config.art.graphic === tile.url && !!tile.url;
             return (
               // The pin is its own button, so the tile CANNOT be one — a button
               // inside a button is invalid HTML and the inner one stops being
@@ -114,7 +114,7 @@ export function GraphicBakeoff() {
                 {tile.url && <PinButton url={tile.url} />}
                 {tile.url ? (
                   <button
-                    onClick={() => set('customGraphic', tile.url!)}
+                    onClick={() => keepArt('graphic', on ? null : tile.url!)}
                     aria-pressed={on}
                     aria-label={`Use take ${i + 1}`}
                     className="absolute inset-0 w-full h-full"
@@ -142,7 +142,7 @@ export function GraphicBakeoff() {
 
       <PinShelf />
 
-      {config.customGraphic && (
+      {config.art.graphic && (
         <p className="mt-3 b-note" style={{ color: 'var(--accent)' }}>
           Kept — the applied views carry it.
         </p>

@@ -31,7 +31,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { STATES, tierIndex, GARMENTS } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { TIER_METHOD, METHOD_LABEL, METHOD_MEANING } from '@/lib/blank/producible';
@@ -180,9 +180,10 @@ export function Applied() {
    * not — a small batch line usually IS its mark on the chest — and the mark is
    * carried at the neck regardless.
    */
+  const art = frontArt(config);
   const artwork: { kind: 'mark'; c: Construction } | { kind: 'image'; url: string } | null =
-    config.customGraphic
-      ? { kind: 'image', url: config.customGraphic }
+    art
+      ? { kind: 'image', url: art }
       : mark
         ? { kind: 'mark', c: mark }
         : null;

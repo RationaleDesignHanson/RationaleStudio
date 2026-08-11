@@ -26,6 +26,7 @@ import { TIER_METHOD } from '@/lib/blank/producible';
 import { useRef, useState } from 'react';
 import { Shuffle, RotateCcw, Sparkles, Loader2 } from 'lucide-react';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { PinButton, PinShelf } from './Pins';
 import {
   constructionAvailable,
@@ -131,7 +132,7 @@ export function Mark({
 }
 
 export function MarkFamily() {
-  const { config, set } = useLine();
+  const { config, set, keepArt } = useLine();
   const tier = tierIndex(config.budget);
   const method = TIER_METHOD[tier];
   const word = normalise(config.wordmark);
@@ -154,10 +155,15 @@ export function MarkFamily() {
   const [drawn, setDrawn] = useState<{ url?: string; error?: string; busy?: boolean }[]>([]);
   const [drawing, setDrawing] = useState(false);
 
-  const drawMark = async (c: Construction) => {
-    if (!probeRef.current) return;
-    const image = rasteriseMark(c, word, readFont(probeRef.current));
-    if (!image) return;
+  /**
+   * Six takes from one reference.
+   *
+   * Split out from `drawMark` because the reference can now come from two
+   * places: a construction rasterised here, or the wordmark drawn back on 01.
+   * The wordmark was the thing being thrown away — it was generated, kept, and
+   * then had no use anywhere, which made generating it pointless.
+   */
+  const runSix = async (image: string) => {
     setDrawn(Array.from({ length: 6 }, () => ({ busy: true })));
     setDrawing(true);
     await Promise.all(
@@ -183,6 +189,27 @@ export function MarkFamily() {
     );
     setDrawing(false);
   };
+
+  const drawMark = async (c: Construction) => {
+    if (!probeRef.current) return;
+    const image = rasteriseMark(c, word, readFont(probeRef.current));
+    if (image) await runSix(image);
+  };
+
+  /** Redraw the mark from the wordmark you already made, rather than from type. */
+  const [inheriting, setInheriting] = useState(false);
+  const drawFromWordmark = async () => {
+    const src = config.art.wordmark;
+    if (!src) return;
+    setInheriting(true);
+    // Storage URL to data URL: the route only takes an inline reference, and
+    // this is the same fetch-through-a-blob the composite path uses so the
+    // canvas is never tainted by the cross-origin read.
+    const image = await artworkDataUrl(src, '', 0, 0);
+    setInheriting(false);
+    if (image) await runSix(image);
+  };
+
   const makeable = constructions.filter((c) => constructionAvailable(c, method).ok).length;
   const selected = constructions.find((c) => c.id === config.mark);
 
@@ -204,6 +231,50 @@ export function MarkFamily() {
         </span>{' '}
         can be made at {money(STATES[tier].budget)}.
       </p>
+
+      {/*
+        WHAT YOU BROUGHT WITH YOU.
+        A wordmark drawn on 01 used to vanish on arrival here — same slot, and
+        this screen writes to it. Showing it does two jobs: it proves the work
+        carried through, and it makes the wordmark useful, because the mark you
+        draw from it is a mark that actually belongs to the same brand.
+      */}
+      {config.art.wordmark && (
+        <div
+          className="flex items-center gap-3 mb-4 p-2 border"
+          style={{ borderColor: 'var(--era-hairline)' }}
+        >
+          <span
+            className="block shrink-0"
+            style={{ width: '4rem', aspectRatio: '1', background: '#000' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={config.art.wordmark}
+              alt="The wordmark you drew"
+              className="w-full h-full object-contain"
+            />
+          </span>
+          <span className="min-w-0">
+            <span className="block b-label" style={{ color: 'var(--era-ink-muted)' }}>
+              your wordmark, from 01
+            </span>
+            <button
+              onClick={drawFromWordmark}
+              disabled={drawing || inheriting}
+              className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-1.5 b-label border transition-colors hover:border-[var(--accent)] disabled:opacity-40"
+              style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
+            >
+              {inheriting || drawing ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Sparkles className="w-3.5 h-3.5" />
+              )}
+              Draw a mark from it
+            </button>
+          </span>
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center gap-2 mb-4">
         <button
@@ -304,7 +375,7 @@ export function MarkFamily() {
           {drawn.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
               {drawn.map((d, n) => {
-                const on = !!d.url && config.customGraphic === d.url;
+                const on = !!d.url && config.art.mark === d.url;
                 return (
                 <div
                   key={n}
@@ -321,7 +392,7 @@ export function MarkFamily() {
                     // with no path into the line — you could shortlist one and
                     // never put it on a garment.
                     <button
-                      onClick={() => set('customGraphic', d.url!)}
+                      onClick={() => keepArt('mark', on ? null : d.url!)}
                       aria-pressed={on}
                       aria-label={`Use drawn take ${n + 1}`}
                       className="absolute inset-0 w-full h-full"

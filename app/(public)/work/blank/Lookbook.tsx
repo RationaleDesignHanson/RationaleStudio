@@ -21,7 +21,7 @@
 
 import { useRef, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { GARMENTS, blankFor, tierIndex } from '@/lib/blank/line';
 import { paletteById } from '@/lib/blank/palettes';
 import { artworkDataUrl } from '@/lib/blank/signComposite';
@@ -57,9 +57,10 @@ export function Lookbook() {
     setError(null);
     try {
       let image: string | null = null;
-      if (config.customGraphic) {
+      const art = frontArt(config);
+      if (art) {
         image = await artworkDataUrl(
-          config.customGraphic,
+          art,
           config.register === 'sign' ? config.signText : '',
           config.signSize,
           config.signY,

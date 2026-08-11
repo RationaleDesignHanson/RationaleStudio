@@ -35,7 +35,9 @@ export function readiness(
   skus: Sku[],
   isSet: (k: keyof LineConfig) => boolean,
 ): Status[] {
-  const hasArtwork = !!config.mark || !!config.customGraphic;
+  // Any of the three counts. Reading one slot meant a user who had drawn a
+  // wordmark and nothing else was told to go and make a graphic.
+  const hasArtwork = !!config.mark || !!config.art.graphic || !!config.art.mark || !!config.art.wordmark;
   const hasPalette = config.palette.length > 0;
   const named = isSet('wordmark') && config.wordmark.trim().length > 0;
   const scale = config.strategy === 'scale';
@@ -50,9 +52,13 @@ export function readiness(
       id: '02',
       state: hasArtwork ? 'done' : 'ready',
       note: hasArtwork
-        ? config.customGraphic
+        ? config.art.graphic
           ? 'graphic kept'
-          : 'mark chosen'
+          : config.art.mark
+            ? 'mark drawn'
+            : config.art.wordmark
+              ? 'wordmark kept'
+              : 'mark chosen'
         : scale
           ? 'make a graphic'
           : 'pick a mark',

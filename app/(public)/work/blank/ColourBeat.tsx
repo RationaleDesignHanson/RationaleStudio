@@ -23,7 +23,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 import { Loader2, Shuffle, Sparkles } from 'lucide-react';
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { GARMENTS } from '@/lib/blank/line';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
@@ -72,9 +72,10 @@ export function ColourBeat() {
       // catalogue user — whose mark lives in a closed disclosure and is usually
       // null — paid for six renders of BLANK garments, in the one beat whose
       // premise is that the artwork is held constant.
-      const image = config.customGraphic
+      const art = frontArt(config);
+      const image = art
         ? await artworkDataUrl(
-            config.customGraphic,
+            art,
             config.register === 'sign' ? config.signText : '',
             config.signSize,
             config.signY,
@@ -124,7 +125,7 @@ export function ColourBeat() {
       garment,
       mark,
       word,
-      config.customGraphic,
+      frontArt(config),
       config.register,
       config.signText,
       config.signSize,
@@ -175,7 +176,7 @@ export function ColourBeat() {
         </button>
 
         <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
-          {config.customGraphic
+          {frontArt(config)
             ? 'carrying your graphic'
             : mark
               ? 'carrying your mark'

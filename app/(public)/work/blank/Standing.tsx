@@ -32,6 +32,7 @@ import { SELL_PLAN, sellThrough } from '@/lib/blank/sellthrough';
 import { compareFulfilment, podCostPerUnit } from '@/lib/blank/fulfilment';
 import { WornPhoto } from './WornPhoto';
 import { Lookbook } from './Lookbook';
+import { ArtShelf } from './ArtShelf';
 
 const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const dollars = (n: number) => `$${n.toFixed(2)}`;
@@ -55,9 +56,16 @@ export function Standing() {
 
   if (skus.length === 0) {
     return (
-      <p className="b-body py-6" style={{ color: 'var(--accent)' }}>
-        Tick a style in the costs section and the spec appears here.
-      </p>
+      <div className="my-2">
+        {/* The artwork survives the empty state. Everything below here needs a
+            specced style to mean anything, but what you DREW exists either way,
+            and hiding it made the last screen look like the run had produced
+            nothing. */}
+        <ArtShelf />
+        <p className="b-body py-6" style={{ color: 'var(--accent)' }}>
+          Tick a style in the costs section and the spec appears here.
+        </p>
+      </div>
     );
   }
 
@@ -68,6 +76,8 @@ export function Standing() {
           asked you to shoot a line that did not exist yet and told you to go and
           make one. The aesthetic is still chosen in 05; the shot happens here,
           once there is something to shoot. */}
+      <ArtShelf />
+
       <Lookbook />
 
       {/* THE ONE IMAGE WITH A PERSON IN IT. Everywhere else excludes people at

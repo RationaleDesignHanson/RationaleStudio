@@ -39,6 +39,7 @@ import { Standing } from './Standing';
 import { ArtDirection } from './ArtDirection';
 import { WackyWordmark } from './WackyWordmark';
 import { PlaceGraphics } from './PlaceGraphics';
+import { InheritedWordmark } from './InheritedWordmark';
 import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
 import { useEffect } from 'react';
@@ -97,6 +98,10 @@ function Sections() {
           ...meta('02'),
           body: scale ? (
             <>
+              {/* The catalogue path buries MarkFamily — and its copy of this
+                  strip — in a closed disclosure, so the wordmark needs saying
+                  out here or it is invisible again. */}
+              <InheritedWordmark />
               <ArtDirection />
               <PlaceGraphics />
               <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>

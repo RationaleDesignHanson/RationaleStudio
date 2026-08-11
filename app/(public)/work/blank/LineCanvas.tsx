@@ -21,7 +21,7 @@
 
 'use client';
 
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { GARMENTS, blankFor, tierIndex } from '@/lib/blank/line';
 import { paletteById } from '@/lib/blank/palettes';
 import { clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
@@ -40,6 +40,7 @@ const PLACEMENT_FRAC: Record<string, number> = {
 
 export function LineCanvas({ compact = false }: { compact?: boolean }) {
   const { config, skus } = useLine();
+  const art = frontArt(config);
   const tier = tierIndex(config.budget);
   const word = normalise(config.wordmark);
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
@@ -129,13 +130,13 @@ export function LineCanvas({ compact = false }: { compact?: boolean }) {
                           >
                             not on a cap
                           </span>
-                        ) : config.customGraphic ? (
+                        ) : art ? (
                           <span
                             className="relative block"
                             style={{ width: `${Math.min(0.8, frac + 0.1) * 100}%`, aspectRatio: '1' }}
                           >
                             <SignArtwork
-                              url={config.customGraphic}
+                              url={art}
                               text={config.register === 'sign' ? config.signText : ''}
                               size={config.signSize}
                               y={config.signY}

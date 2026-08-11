@@ -34,7 +34,7 @@ import { PinButton, PinShelf } from './Pins';
 type Tile = { url?: string; error?: string; busy?: boolean };
 
 export function WackyWordmark() {
-  const { config, set } = useLine();
+  const { config, keepArt } = useLine();
   const word = normalise(config.wordmark) || 'BLANK';
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
   const probeRef = useRef<HTMLSpanElement>(null);
@@ -106,7 +106,7 @@ export function WackyWordmark() {
       {tiles.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {tiles.map((tile, i) => {
-            const on = !!tile.url && config.customGraphic === tile.url;
+            const on = !!tile.url && config.art.wordmark === tile.url;
             return (
               <div
                 key={i}
@@ -120,7 +120,7 @@ export function WackyWordmark() {
                 {tile.url && <PinButton url={tile.url} />}
                 {tile.url ? (
                   <button
-                    onClick={() => set('customGraphic', tile.url!)}
+                    onClick={() => keepArt('wordmark', on ? null : tile.url!)}
                     aria-pressed={on}
                     aria-label={`Use wordmark ${i + 1}`}
                     className="absolute inset-0 w-full h-full"

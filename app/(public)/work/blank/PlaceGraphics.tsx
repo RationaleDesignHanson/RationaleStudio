@@ -54,7 +54,7 @@ const REGISTERS = [
 const EXAMPLES = ['Molly Pitcher, NJ', 'Exit 9, New Brunswick', 'Asbury Park', 'The Pine Barrens'];
 
 export function PlaceGraphics() {
-  const { config, set } = useLine();
+  const { config, set, keepArt, setVariantArt } = useLine();
   const place = config.place;
   const setPlace = (v: string) => set('place', v);
   const register = config.register;
@@ -168,7 +168,8 @@ export function PlaceGraphics() {
       {tiles.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
           {tiles.map((tile, i) => {
-            const on = !!tile.url && config.customGraphic === tile.url;
+            const on = !!tile.url && config.art.graphic === tile.url;
+            const named = place.trim();
             return (
             // The pin is its own button, so the tile cannot also be one.
             <div
@@ -183,7 +184,14 @@ export function PlaceGraphics() {
               {tile.url && <PinButton url={tile.url} />}
               {tile.url ? (
                 <button
-                  onClick={() => set('customGraphic', tile.url!)}
+                  onClick={() => {
+                    const url = on ? null : tile.url!;
+                    keepArt('graphic', url);
+                    // A catalogue is a print PER PLACE. Keeping one against the
+                    // place being worked on is what makes the next place a new
+                    // product rather than an overwrite of the last one.
+                    if (named) setVariantArt(named, url);
+                  }}
                   aria-pressed={on}
                   aria-label={`Use ${active.label.toLowerCase()}, take ${i + 1}`}
                   className="absolute inset-0 w-full h-full"
@@ -210,12 +218,63 @@ export function PlaceGraphics() {
       )}
 
       {/* The panel came back blank on purpose; this is where it gets its words. */}
-      {config.customGraphic && register === 'sign' && <SignComposer url={config.customGraphic} />}
+      {config.art.graphic && register === 'sign' && <SignComposer url={config.art.graphic} />}
 
-      {config.customGraphic && register !== 'sign' && (
+      {config.art.graphic && register !== 'sign' && (
         <p className="mt-3 b-note" style={{ color: 'var(--accent)' }}>
           Kept — the applied views carry it.
         </p>
+      )}
+
+      {/*
+        THE CATALOGUE SO FAR.
+        `designs` is what is PLANNED — the number the whole cost sheet is built
+        on — and it was the only number anywhere, which let a line claim
+        twenty-four products while carrying one image. This says what has
+        actually been drawn, and the gap between the two is the honest one.
+      */}
+      {config.variants.length > 0 && (
+        <div className="mt-6 pt-4 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+          <p className="b-label mb-2.5" style={{ color: 'var(--era-ink-muted)' }}>
+            The catalogue — {config.variants.length} drawn of {config.designs} planned
+          </p>
+          <div className="flex flex-wrap gap-2.5">
+            {config.variants.map((v) => (
+              <span key={v.label} className="block" style={{ width: '4.5rem' }}>
+                <span
+                  className="block relative"
+                  style={{ aspectRatio: '1', background: 'var(--era-bg-deep)' }}
+                >
+                  {v.graphic && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={v.graphic} alt="" className="w-full h-full object-cover" />
+                  )}
+                  <button
+                    onClick={() => setVariantArt(v.label, null)}
+                    aria-label={`Drop ${v.label}`}
+                    className="absolute top-0 right-0 px-1.5 py-1 b-note"
+                    style={{ background: 'rgba(0,0,0,0.65)', color: 'var(--era-ink)', minHeight: 0 }}
+                  >
+                    ×
+                  </button>
+                </span>
+                <span
+                  className="block mt-1 b-note truncate"
+                  style={{ color: 'var(--era-ink-muted)' }}
+                  title={v.label}
+                >
+                  {v.label}
+                </span>
+              </span>
+            ))}
+          </div>
+          {config.variants.length < config.designs && (
+            <p className="mt-2.5 b-note" style={{ color: 'var(--era-ink-muted)' }}>
+              Type another place above to draw the next one. The costing already assumes{' '}
+              {config.designs}.
+            </p>
+          )}
+        </div>
       )}
 
       <PinShelf />

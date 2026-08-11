@@ -57,9 +57,21 @@ describe('readiness', () => {
   });
 
   it('counts a kept graphic as artwork, not only a mark', () => {
-    const s = readiness(cfg({ customGraphic: 'https://x/y.jpg' }), [], none);
+    const s = readiness(cfg({ art: { wordmark: null, mark: null, graphic: 'https://x/y.jpg' } }), [], none);
     expect(s.find((x) => x.id === '02')!.state).toBe('done');
     expect(s.find((x) => x.id === '04')!.state).toBe('done');
+  });
+
+  // The single-slot bug in the readiness rail: a user who drew a wordmark on 01
+  // and kept it had made artwork, and was still told to go and make some.
+  it('counts a drawn wordmark or mark as artwork too', () => {
+    const w = readiness(cfg({ art: { wordmark: 'https://x/w.jpg', mark: null, graphic: null } }), [], none);
+    expect(w.find((x) => x.id === '02')!.state).toBe('done');
+    expect(w.find((x) => x.id === '02')!.note).toBe('wordmark kept');
+
+    const m = readiness(cfg({ art: { wordmark: null, mark: 'https://x/m.jpg', graphic: null } }), [], none);
+    expect(m.find((x) => x.id === '02')!.state).toBe('done');
+    expect(m.find((x) => x.id === '02')!.note).toBe('mark drawn');
   });
 });
 

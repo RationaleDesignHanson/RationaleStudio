@@ -135,6 +135,47 @@ export interface LineConfig {
   /** Budget stop slug — 'graphic' | 'washed' | 'tonal' | 'stitched' | 'full' */
   budget: string;
   /**
+   * WHAT YOU HAVE MADE, filed by what it IS.
+   *
+   * There was one slot — `customGraphic` — and four generators writing to it:
+   * the drawn wordmark on 01, and the drawn mark, the prompt graphic and the
+   * place graphic on 02. Four different kinds of object in one box, so keeping
+   * any of them silently threw the last one away. Generate a wordmark, walk to
+   * the next screen, keep anything, and the wordmark was gone without a word.
+   *
+   * They are not the same kind of thing. A WORDMARK is the name, drawn. A MARK
+   * is the symbol, and it is the house identity that goes on the neck of every
+   * garment. A GRAPHIC is a front print and it changes per style, per variant,
+   * per drop. Three roles, three slots, and nothing overwrites anything.
+   */
+  art: {
+    /** The name, drawn. Null means the CSS treatment is doing the job. */
+    wordmark: string | null;
+    /** The symbol, drawn. Null means the construction is doing the job. */
+    mark: string | null;
+    /** The front print, for a line that carries one. */
+    graphic: string | null;
+  };
+  /**
+   * Which of the three goes on the chest.
+   *
+   * A wordmark tee is the most ordinary product in streetwear, so the front
+   * print has to be selectable rather than hardcoded to the graphic slot.
+   */
+  frontPrint: 'wordmark' | 'mark' | 'graphic';
+  /**
+   * The catalogue, one entry per variant, each with its own front print.
+   *
+   * A variant per place means a print per place — one graphic serving twenty-four
+   * of them is not a catalogue, it is one product with a big number beside it.
+   * `designs` stays the PLANNED count and this is what has actually been made,
+   * so the spec can say "24 planned, 3 made" rather than implying a full set.
+   *
+   * It lives in the saved row rather than the URL, which is what made a list of
+   * two dozen images affordable at all.
+   */
+  variants: { label: string; graphic: string | null }[];
+  /**
    * A kept graphic from the prompt bake-off, as a durable Storage URL.
    *
    * Not everything on a garment is the identity — a seasonal joke or a one-off
@@ -206,6 +247,50 @@ export interface LineConfig {
   step: string;
 }
 
+/**
+ * What actually goes on the chest, resolved from the three slots.
+ *
+ * Every consumer used to read `config.customGraphic` directly, which meant each
+ * one silently assumed the single-slot model and there was nowhere to change
+ * the answer. Asking one question in one place is what lets a wordmark be the
+ * front print on a Tuesday and a place graphic on a Wednesday.
+ *
+ * `variantIndex` is for the catalogue: a variant carries its own print, and
+ * falls back to the line's graphic when it has not been made yet, so a
+ * half-finished catalogue still renders rather than showing blanks.
+ */
+export function frontArt(config: LineConfig, variantIndex?: number): string | null {
+  if (typeof variantIndex === 'number') {
+    const v = config.variants[variantIndex];
+    if (v?.graphic) return v.graphic;
+  }
+  const byRole = config.art[config.frontPrint];
+  // Fall back through the slots rather than showing nothing: a line with only a
+  // drawn wordmark should still put it on a shirt.
+  return byRole ?? config.art.graphic ?? config.art.wordmark ?? config.art.mark ?? config.customGraphic;
+}
+
+/** Everything made, for a shelf that shows what exists rather than what is on. */
+export function allArt(config: LineConfig): { role: string; url: string }[] {
+  const out: { role: string; url: string }[] = [];
+  for (const role of ['wordmark', 'mark', 'graphic'] as const) {
+    const url = config.art[role];
+    if (url) out.push({ role, url });
+  }
+  return out;
+}
+
+/**
+ * Accept a URL only if it is one of ours.
+ *
+ * Same host check the `cg` param has always had: a saved row is written by our
+ * own client, but it is JSON from the network and an arbitrary URL rendered as
+ * artwork is an unnecessary thing to allow.
+ */
+function storageUrl(v: unknown): string | null {
+  return typeof v === 'string' && v.includes('/storage/v1/object/public/blank-renders/') ? v : null;
+}
+
 export const LINE_DEFAULTS: LineConfig = {
   strategy: 'considered',
   designs: 1,
@@ -227,6 +312,9 @@ export const LINE_DEFAULTS: LineConfig = {
   budget: 'graphic',
   mark: null,
   customGraphic: null,
+  art: { wordmark: null, mark: null, graphic: null },
+  frontPrint: 'graphic',
+  variants: [],
   pins: [],
   direction: 'workwear',
   directionPrompt: '',
@@ -288,6 +376,23 @@ interface LineContextValue {
   setSkuColours: (index: number, colours: string[]) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
+  /**
+   * Keep a generated image, filed under what it is.
+   *
+   * There is one action rather than four `set('customGraphic', url)` calls
+   * because four call sites is exactly how the slots got confused in the first
+   * place — each generator decided for itself and none of them knew about the
+   * others. Passing `null` unkeeps, which is how a tile toggles off.
+   *
+   * A kept graphic also becomes the front print, since keeping the thing that
+   * goes on the chest is the same gesture as choosing it. A wordmark or a mark
+   * does not steal the chest — they have their own jobs — but `frontArt` will
+   * fall back to them when there is no graphic yet, so a wordmark made on 01
+   * still shows up on a garment on 02.
+   */
+  keepArt: (role: 'wordmark' | 'mark' | 'graphic', url: string | null) => void;
+  /** Set the front print for one variant, for a catalogue with a print per place. */
+  setVariantArt: (label: string, url: string | null) => void;
   /**
    * Apply a value WITHOUT recording it as a decision.
    *
@@ -444,6 +549,8 @@ function writeToParams(config: LineConfig, url: URL) {
   // Keyed off PARAM, not LineConfig: `pins` is serialised separately above and
   // has no PARAM entry, so iterating LineConfig's keys no longer typechecks.
   (Object.keys(PARAM) as (keyof typeof PARAM)[]).forEach((key) => {
+    // `art` and `variants` are absent from PARAM entirely — they live in the
+    // saved row, not the URL — so this loop never sees them.
     if (key === 'chosen' || key === 'palette') return; // written above
     const value = config[key];
     // Defaults are omitted so a link to the starting state has a bare URL.
@@ -500,13 +607,56 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const keepArt = useCallback<LineContextValue['keepArt']>((role, url) => {
+    setConfig((c) => {
+      const art = { ...c.art, [role]: url };
+      return {
+        ...c,
+        art,
+        frontPrint: role === 'graphic' && url ? 'graphic' : c.frontPrint,
+        // Mirrored so a snapshot link still carries the artwork: the URL has one
+        // slot and always will, and it should hold whatever is on the chest.
+        customGraphic: art[role === 'graphic' ? 'graphic' : c.frontPrint] ?? art.graphic ?? art.wordmark ?? art.mark,
+        chosen: c.chosen.includes('customGraphic') ? c.chosen : [...c.chosen, 'customGraphic'],
+      };
+    });
+  }, []);
+
+  const setVariantArt = useCallback<LineContextValue['setVariantArt']>((label, url) => {
+    setConfig((c) => {
+      const next = c.variants.filter((v) => v.label !== label);
+      if (url) next.push({ label, graphic: url });
+      // Stable order, so the catalogue does not reshuffle as prints are made.
+      next.sort((a, b) => a.label.localeCompare(b.label));
+      return { ...c, variants: next };
+    });
+  }, []);
+
   const setImplied = useCallback<LineContextValue['setImplied']>((key, value) => {
     setConfig((c) => (c[key] === value ? c : { ...c, [key]: value }));
   }, []);
 
   const replaceAll = useCallback<LineContextValue['replaceAll']>((incoming) => {
     const { skus: nextSkus, ...rest } = incoming;
-    setConfig((c) => ({ ...c, ...rest }));
+    // `art` and `variants` are the only nested shapes in the document, and a
+    // malformed one is a crash on render rather than a wrong value — a row saved
+    // by an older build simply omits them, which the spread handles, but a row
+    // holding the wrong type would take the page down. Cheap to rule out.
+    const clean = { ...rest };
+    if (clean.art && typeof clean.art === 'object') {
+      clean.art = {
+        wordmark: storageUrl(clean.art.wordmark),
+        mark: storageUrl(clean.art.mark),
+        graphic: storageUrl(clean.art.graphic),
+      };
+    } else delete clean.art;
+    if (Array.isArray(clean.variants)) {
+      clean.variants = clean.variants
+        .filter((v) => v && typeof v.label === 'string')
+        .slice(0, 64)
+        .map((v) => ({ label: v.label.slice(0, 40), graphic: storageUrl(v.graphic) }));
+    } else delete clean.variants;
+    setConfig((c) => ({ ...c, ...clean }));
     if (Array.isArray(nextSkus)) setSkus(nextSkus);
   }, []);
 
@@ -552,8 +702,8 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
-    [config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
+    () => ({ config, set, keepArt, setVariantArt, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
+    [config, set, keepArt, setVariantArt, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;

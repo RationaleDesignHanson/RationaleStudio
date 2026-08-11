@@ -22,7 +22,7 @@
 
 'use client';
 
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteById } from '@/lib/blank/palettes';
 import { GARMENTS, blankFor, tierIndex } from '@/lib/blank/line';
 import { brandsAcross, clothNote, clothTexture, fabricFor, inkOn, onCloth } from '@/lib/blank/fabric';
@@ -33,6 +33,7 @@ import { SignArtwork } from './SignArtwork';
 
 export function PaletteBeat() {
   const { config, set } = useLine();
+  const art = frontArt(config);
   const word = normalise(config.wordmark);
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
   const tier = tierIndex(config.budget);
@@ -161,10 +162,10 @@ export function PaletteBeat() {
                         maxHeight: '9rem',
                       }}
                     >
-                      {config.customGraphic ? (
+                      {art ? (
                         <span className="relative block" style={{ width: '58%', aspectRatio: '1' }}>
                           <SignArtwork
-                            url={config.customGraphic}
+                            url={art}
                             text={config.register === 'sign' ? config.signText : ''}
                             size={config.signSize}
                             y={config.signY}

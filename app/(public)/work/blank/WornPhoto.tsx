@@ -20,7 +20,7 @@
 
 import { useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
-import { useLine } from '@/lib/blank/lineState';
+import { useLine, frontArt } from '@/lib/blank/lineState';
 import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
 import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
@@ -42,9 +42,10 @@ export function WornPhoto({ probeRef }: { probeRef: React.RefObject<HTMLSpanElem
     setError(null);
     try {
       let image: string | null = null;
-      if (config.customGraphic) {
+      const art = frontArt(config);
+      if (art) {
         image = await artworkDataUrl(
-          config.customGraphic,
+          art,
           config.register === 'sign' ? config.signText : '',
           config.signSize,
           config.signY,
