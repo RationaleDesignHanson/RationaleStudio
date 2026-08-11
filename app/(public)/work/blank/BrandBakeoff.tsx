@@ -46,7 +46,7 @@ export const DIRECTION_LABELS: Record<string, string> = {
   naturals: 'Japanese naturals',
 };
 
-const DIRECTIONS: Direction[] = [
+export const DIRECTIONS: Direction[] = [
   {
     key: 'quiet-flex',
     label: 'Quiet flex',
@@ -73,8 +73,8 @@ const DIRECTIONS: Direction[] = [
   {
     key: 'issue',
     label: 'Issue',
-    thesis: 'Institutional uniform. Every piece stamped with its lot number — the edition IS the brand.',
-    cost: 'One-colour stencil. Near-free — and it IS the lot system.',
+    thesis: 'Institutional uniform. Every piece stamped with its lot number.',
+    cost: 'One-colour stencil. Near-free.',
     affordable: true,
     testsHypothesis: true,
   },
@@ -89,7 +89,7 @@ const DIRECTIONS: Direction[] = [
     key: 'naturals',
     label: 'Japanese naturals',
     thesis: 'Undyed, mended, boro. Value in the cloth and the repair.',
-    cost: 'Hand stitch. Beautiful, and the most expensive labour here.',
+    cost: 'Hand stitch. The most expensive labour here.',
     affordable: false,
     needs: 'needs $20k',
   },
@@ -177,27 +177,31 @@ export function BrandBakeoff() {
                 </div>
                 <div className="mt-1 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5 min-w-0">
                   <span
-                    className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
+                    className="b-label"
                     style={{ color: on ? 'var(--accent)' : 'var(--era-ink-muted)' }}
                   >
                     {dir.label}
                   </span>
                   {dir.control && (
-                    <span className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider text-[var(--era-ink-muted)]">
-                      control
+                    <span
+                      className="b-label text-[var(--era-ink-muted)]"
+                      title="The thesis the current plan rests on."
+                    >
+                      current plan
                     </span>
                   )}
                   {dir.testsHypothesis && (
                     <span
-                      className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
+                      className="b-label"
                       style={{ color: '#4F7A3F' }}
+                      title="The only direction that makes the lot system visible."
                     >
                       $150 test
                     </span>
                   )}
                   {!dir.affordable && (
                     <span
-                      className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
+                      className="b-label"
                       style={{ color: 'var(--era-ink-muted)' }}
                     >
                       {dir.needs}
@@ -229,13 +233,13 @@ export function BrandBakeoff() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={custom} alt="Your direction" className="absolute inset-0 w-full h-full object-cover" />
               ) : (
-                <span className="text-[11px] font-mono uppercase tracking-wider" style={{ color: 'var(--era-ink-muted)' }}>
+                <span className="b-label" style={{ color: 'var(--era-ink-muted)' }}>
                   + write your own
                 </span>
               )}
             </div>
             <span
-              className="mt-1 text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
+              className="mt-1 b-label"
               style={{ color: isCustom ? 'var(--accent)' : 'var(--era-ink-muted)' }}
             >
               Custom
@@ -254,8 +258,8 @@ export function BrandBakeoff() {
               Your direction
             </h3>
             <p className="mt-1.5 text-sm max-w-xl" style={{ color: 'var(--era-ink-body)' }}>
-              Describe the aesthetic in a sentence. It gets rendered as the same rack of four
-              garments as the six above, so you can judge it against them rather than in isolation.
+              Describe the aesthetic in a sentence. It renders as the same rack of four as the six
+              above.
             </p>
 
             <textarea
@@ -263,7 +267,7 @@ export function BrandBakeoff() {
               onChange={(e) => set('directionPrompt', e.target.value.slice(0, 240))}
               placeholder="e.g. sun-bleached surf utility — salt-worn cotton, faded rope tones, nothing new-looking"
               rows={3}
-              className="mt-3 w-full bg-transparent border px-3 py-2 text-[13px] outline-none focus:border-[var(--accent)] resize-y"
+              className="mt-3 w-full bg-transparent border px-3 py-2 b-body outline-none focus:border-[var(--accent)] resize-y"
               style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
             />
 
@@ -271,19 +275,19 @@ export function BrandBakeoff() {
               <button
                 onClick={renderCustom}
                 disabled={busy || config.directionPrompt.trim().length < 3}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
                 style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
               >
                 {busy ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                 {busy ? 'Rendering…' : 'Render this direction'}
               </button>
-              <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+              <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
                 {config.directionPrompt.length}/240 · spends
               </span>
             </div>
 
             {error && (
-              <p className="mt-2 text-[12px]" style={{ color: '#A8456E' }}>
+              <p className="mt-2 b-note" style={{ color: '#A8456E' }}>
                 {error}
               </p>
             )}
@@ -294,11 +298,6 @@ export function BrandBakeoff() {
                 <img src={custom} alt="Your direction, rendered" className="w-full h-full object-cover" />
               </div>
             )}
-
-            <p className="mt-3 text-[11px] italic leading-snug" style={{ color: 'var(--era-ink-muted)' }}>
-              Your words set the aesthetic; the house look and the rack framing are composed around
-              them server-side, so the seventh rack is comparable to the six.
-            </p>
           </>
         ) : (
           <>
@@ -312,7 +311,7 @@ export function BrandBakeoff() {
             {d.thesis}
           </p>
           <p
-            className="mt-2 text-[11px] font-mono leading-snug max-w-xl"
+            className="mt-2 b-data leading-snug max-w-xl"
             style={{ color: d.affordable ? '#B07025' : '#A8456E' }}
           >
             {d.cost}
@@ -337,16 +336,13 @@ export function BrandBakeoff() {
           </div>
 
           {d.control && (
-            <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
-              The thesis the current plan rests on. If it doesn&rsquo;t win its own bake-off,
-              that&rsquo;s the finding.
+            <p className="mt-3 b-note italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
+              The thesis the current plan rests on.
             </p>
           )}
           {d.testsHypothesis && (
-            <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
-              The only direction that makes the lot system visible. Numbering the batch stops being a
-              detail on the label and becomes the whole design language &mdash; which is exactly what
-              the $150 test is for.
+            <p className="mt-3 b-note italic text-[var(--era-ink-muted)] leading-snug max-w-xl">
+              The only direction that makes the lot system visible.
             </p>
           )}
           </>
@@ -354,9 +350,9 @@ export function BrandBakeoff() {
         </div>
       </div>
 
-      <p className="mt-3 text-[11px] italic text-[var(--era-ink-muted)]">
+      <p className="mt-3 b-note italic text-[var(--era-ink-muted)]">
         One fixed seed across all eighteen cells — the direction is the only variable. Judge the
-        racks, not the tees: anyone can make one good tee.
+        racks, not the tees.
       </p>
     </div>
   );

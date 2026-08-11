@@ -32,6 +32,8 @@
  * only a cost one.
  */
 
+import { PALETTES } from './palettes';
+
 import type { Garment } from './line';
 import {
   MOTIFS,
@@ -191,33 +193,60 @@ export const GRAPHIC_SPECS: Record<string, GraphicSpec> = {
  * palette rather than appending to it — appending is what dropped stone grey,
  * because "muted earth palette" asserted before the scene won the argument.
  */
-export const COLORWAYS: Record<string, { label: string; palette: string }> = {
-  charcoal: {
-    label: 'Faded charcoal',
-    palette:
-      'a strictly near-monochrome palette — charcoal, faded black, mid grey and soft off-white only, no other colour anywhere',
-  },
-  bone: {
-    label: 'Bone',
-    palette:
-      'the garment is a warm pale oatmeal bone colour throughout, with off-white and soft mid-grey accents only, and no other colour anywhere',
-  },
-  olive: {
-    label: 'Olive',
-    palette:
-      'the garment is a muted desaturated olive green throughout, with soft off-white accents only, and no other colour anywhere',
-  },
-  clay: {
-    label: 'Clay',
-    palette:
-      'the garment is a muted terracotta clay brown throughout, with soft off-white accents only, and no other colour anywhere',
-  },
-  stone: {
-    label: 'Stone grey',
-    palette:
-      'the garment is a cool mid stone grey throughout, distinctly grey and neither brown nor beige, with soft off-white accents only, and no other colour anywhere',
-  },
+/**
+ * ONE COLOURWAY VOCABULARY, derived from PALETTES.
+ *
+ * There were two, and they did not agree. `PALETTES` (twelve, with a clause, a
+ * hex and a production note) drives the colour beat; this table had five, keyed
+ * differently — `charcoal` against `faded-charcoal`, `stone` against
+ * `stone-grey`, and seven ids missing entirely.
+ *
+ * So beat 03 wrote a colourway that beats 04 and 05 then rejected. Of the six
+ * tiles in the very first round — before any shuffle — FIVE produced ids nothing
+ * downstream could render: the deviation button went permanently disabled saying
+ * "unknown colourway, the line can't make that", and applying a reference 422'd,
+ * both for a colour the user had picked two beats earlier. The near-misses
+ * (`charcoal`/`faded-charcoal`, `stone`/`stone-grey`) show the two sets were
+ * meant to be one all along.
+ *
+ * PALETTES is the source of truth because it is the richer table and the one a
+ * human picks from. The five hand-tuned prompt sentences are kept — they are
+ * better than anything generated from a clause — and the other seven are built
+ * from the palette's own clause in the same shape.
+ */
+const TUNED: Record<string, string> = {
+  'faded-charcoal':
+    'a strictly near-monochrome palette — charcoal, faded black, mid grey and soft off-white only, no other colour anywhere',
+  bone: 'the garment is a warm pale oatmeal bone colour throughout, with off-white and soft mid-grey accents only, and no other colour anywhere',
+  olive:
+    'the garment is a muted desaturated olive green throughout, with soft off-white accents only, and no other colour anywhere',
+  clay: 'the garment is a muted terracotta clay brown throughout, with soft off-white accents only, and no other colour anywhere',
+  'stone-grey':
+    'the garment is a cool mid stone grey throughout, with soft off-white accents only, and no other colour anywhere',
 };
+
+export const COLORWAYS: Record<string, { label: string; palette: string }> = Object.fromEntries(
+  PALETTES.map((p) => [
+    p.id,
+    {
+      label: p.name,
+      palette:
+        TUNED[p.id] ??
+        `the garment is ${p.clause} throughout, with soft off-white accents only, and no other colour anywhere`,
+    },
+  ]),
+);
+
+/**
+ * Old ids, so a link shared before the two vocabularies were merged still opens
+ * on the colour it named rather than failing validation.
+ */
+const COLORWAY_ALIAS: Record<string, string> = { charcoal: 'faded-charcoal', stone: 'stone-grey' };
+
+/** Canonical colourway id, resolving a legacy alias. */
+export function resolveColorway(id: string): string {
+  return COLORWAYS[id] ? id : (COLORWAY_ALIAS[id] ?? id);
+}
 
 export interface RenderTuple {
   garment: Garment;
@@ -274,7 +303,8 @@ export function validateTuple(
   if (!PRESETS[graphic]) errors.push({ field: 'graphic', reason: 'unknown graphic id' });
 
   const colorway = typeof o.colorway === 'string' ? o.colorway : '';
-  if (!COLORWAYS[colorway]) errors.push({ field: 'colorway', reason: 'unknown colourway' });
+  if (!COLORWAYS[resolveColorway(colorway)])
+    errors.push({ field: 'colorway', reason: 'unknown colourway' });
 
   // Axes fall back to the preset's own values when not supplied.
   const axes = resolveAxes(graphic, o as Partial<RenderTuple>);
@@ -346,7 +376,7 @@ export function composePrompt(t: RenderTuple): string {
   const placement = PLACEMENTS[t.placement];
   const scale = SCALES[t.scale];
   const finish = FINISHES[t.finish];
-  const { palette } = COLORWAYS[t.colorway];
+  const { palette } = COLORWAYS[resolveColorway(t.colorway)];
   const cloth = CLOTH_BY_TIER[t.garment][t.tier - 1];
 
   // An all-over pattern has no size or position — describing one produces a

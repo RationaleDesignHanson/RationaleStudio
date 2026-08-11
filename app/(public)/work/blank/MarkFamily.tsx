@@ -166,7 +166,7 @@ export function MarkFamily() {
           const res = await fetch('/api/blank/bakeoff', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ kind: 'mark', image, variant: n }),
+            body: JSON.stringify({ kind: 'mark', direction: config.artDirection, image, variant: n }),
           });
           const data = await res.json();
           setDrawn((prev) =>
@@ -196,7 +196,7 @@ export function MarkFamily() {
         decoration from the hoodie, so there is no single answer to state here.
         Provenance only; the per-tile badges still say what a construction costs.
       */}
-      <p className="mb-5 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mb-5 b-data" style={{ color: 'var(--era-ink-muted)' }}>
         Made from <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> in{' '}
         <span style={{ color: 'var(--era-ink)' }}>{t.title}</span> —{' '}
         <span style={{ color: 'var(--era-ink)' }}>
@@ -213,7 +213,7 @@ export function MarkFamily() {
             set('markSeed', String(Math.floor(Date.now() % 100000)));
             set('mark', null);
           }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors hover:border-[var(--accent)]"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors hover:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', minHeight: 0 }}
         >
           <Shuffle className="w-3.5 h-3.5" /> Shuffle
@@ -224,13 +224,13 @@ export function MarkFamily() {
               set('markSeed', '');
               set('mark', null);
             }}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label transition-colors"
             style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
           >
             <RotateCcw className="w-3.5 h-3.5" /> The named nine
           </button>
         )}
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           {shuffled ? `set ${config.markSeed}` : 'the named constructions'}
         </span>
       </div>
@@ -265,7 +265,7 @@ export function MarkFamily() {
                 <Mark c={c} word={word} css={t.css} />
               </span>
               <span
-                className="text-[11px] mt-1.5"
+                className="b-note mt-1.5"
                 style={{ color: on ? 'var(--accent)' : av.ok ? 'var(--era-ink)' : 'var(--era-ink-muted)' }}
               >
                 {c.title}
@@ -290,49 +290,66 @@ export function MarkFamily() {
             <button
               onClick={() => drawMark(selected)}
               disabled={drawing}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
               style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
             >
               {drawing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
               {drawing ? 'Drawing six…' : `Draw ${selected.title} properly`}
             </button>
-            <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+            <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
               set type → drawn letterforms · six takes · spends
             </span>
           </div>
 
           {drawn.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
-              {drawn.map((d, n) => (
+              {drawn.map((d, n) => {
+                const on = !!d.url && config.customGraphic === d.url;
+                return (
                 <div
                   key={n}
                   className="relative w-full aspect-square overflow-hidden"
-                  style={{ backgroundColor: 'var(--era-bg-deep)' }}
+                  style={{
+                    backgroundColor: 'var(--era-bg-deep)',
+                    outline: on ? '2px solid var(--accent)' : 'none',
+                    outlineOffset: 2,
+                  }}
                 >
                   {d.url && <PinButton url={d.url} />}
                   {d.url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={d.url} alt={`Drawn take ${n + 1}`} className="w-full h-full object-cover" />
+                    // Keepable, not just pinnable. These were six paid renders
+                    // with no path into the line — you could shortlist one and
+                    // never put it on a garment.
+                    <button
+                      onClick={() => set('customGraphic', d.url!)}
+                      aria-pressed={on}
+                      aria-label={`Use drawn take ${n + 1}`}
+                      className="absolute inset-0 w-full h-full"
+                      style={{ minHeight: 0, padding: 0 }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={d.url} alt="" className="w-full h-full object-cover" />
+                    </button>
                   ) : (
                     <span className="absolute inset-0 flex items-center justify-center">
                       {d.busy ? (
                         <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                       ) : (
-                        <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                        <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                           {d.error ?? '—'}
                         </span>
                       )}
                     </span>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           )}
 
-          <p className="mt-2 text-[11px] max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-            The construction is set type with geometry done to it. These are drawn from it — the
-            model is handed your mark as an image and asked to redraw, never to spell, so the letters
-            cannot change.
+          <p className="mt-2 b-note max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+            The model is handed your mark as an image and asked to redraw, never to spell, so the
+            letters cannot change.
           </p>
           <PinShelf />
         </div>
@@ -345,7 +362,7 @@ export function MarkFamily() {
               {selected.title}
             </h4>
             <p
-              className="text-[13px] mt-1"
+              className="b-body mt-1"
               style={{
                 color: constructionAvailable(selected, method).ok ? 'var(--era-ink-body)' : '#A8456E',
               }}
@@ -356,9 +373,8 @@ export function MarkFamily() {
             </p>
           </>
         ) : (
-          <p className="text-[13px]" style={{ color: 'var(--era-ink-muted)' }}>
-            Pick one, or carry the wordmark alone. Every mark here is built from the name in the face
-            you chose — change either and the whole family changes with it.
+          <p className="b-body" style={{ color: 'var(--era-ink-muted)' }}>
+            Pick one, or carry the wordmark alone.
           </p>
         )}
       </div>

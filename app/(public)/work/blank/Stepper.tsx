@@ -40,6 +40,18 @@ export interface Beat {
   short: string;
   title: string;
   note: string;
+  /**
+   * Overrides for the catalogue business, where a beat asks the same question
+   * and has a different answer. Beat 02 is the whole reason this exists: "how
+   * it looks as a mark / marks built from the name" is precisely wrong for a
+   * line whose product is a graphic per place and whose mark is on the neck.
+   */
+  scale?: { short?: string; title?: string; note?: string };
+}
+
+/** The beat, as it reads for the chosen business. */
+export function beatFor(b: Beat, strategy: string): Beat {
+  return strategy === 'scale' && b.scale ? { ...b, ...b.scale } : b;
 }
 
 /**
@@ -59,43 +71,57 @@ export const BEATS: Beat[] = [
     n: '01',
     short: 'Name',
     title: 'Name it',
-    note: 'The word, and the face it is set in. Real type, so it is always spelled correctly and costs nothing to try.',
+    note: 'Which business you are in, then the word and the face.',
   },
   {
     n: '02',
     short: 'As a mark',
     title: 'How it looks as a mark',
-    note: 'Marks built from the name in the face you picked. Shuffle for a different set, then draw the one you like properly.',
+    note: 'Marks built from the name in the face you picked.',
+    scale: {
+      short: 'The graphic',
+      title: 'What goes on each one',
+      note: 'A subject, a voice, six takes.',
+    },
   },
   {
     n: '03',
-    short: 'Colour',
     title: 'What colour is it',
-    note: 'Six colourways of one garment carrying one mark, so colour is the only variable. Stage 0 allows two per style.',
+    short: 'Colour',
+    note: 'The palette the line is made in. Stage 0 takes two colourways per style.',
   },
   {
     n: '04',
     short: 'Applied',
     title: 'On the clothes',
-    note: 'Where the mark sits and how big, across all three garments at once. Nothing here costs a render.',
+    note: 'Where the mark sits and how big, across all three garments. Nothing here spends.',
+    scale: {
+      note: 'Where the place graphic sits and how big, across all three garments. Nothing here spends.',
+    },
   },
   {
     n: '05',
     short: 'Direction',
-    title: 'Make a real one',
-    note: 'Pick the aesthetic it lives in, then generate an actual photograph of it. This is the part that spends.',
+    title: 'Which direction',
+    note: 'The aesthetic the line lives in. Six racks; pick one.',
   },
   {
     n: '06',
     short: 'Costs',
     title: 'Dial in the costs',
-    note: 'The line, specced style by style. Setup is charged once across the collection, so it costs less than the sum of its garments.',
+    // The considered line keeps its true claim; the catalogue gets the opposite
+    // one, which is also true. Dropping it for both lost the most persuasive
+    // sentence on the page for the strategy it is still correct about.
+    note: 'The line, specced style by style. Setup is charged once across the collection.',
+    scale: {
+      note: 'The catalogue, specced style by style. Setup is charged per design and never amortises.',
+    },
   },
   {
     n: '07',
-    short: 'Standing',
-    title: 'Where this stands',
-    note: 'Settled, open, and unverified. Read this before you believe any number above.',
+    short: 'The line',
+    title: 'The line',
+    note: 'Read before you believe any number above.',
   },
 ];
 
@@ -106,7 +132,7 @@ export const clampStep = (n: string) => {
 };
 
 export function Stepper() {
-  const { config, set, skus } = useLine();
+  const { config, set, isSet, skus } = useLine();
   const i = clampStep(config.step);
   const go = useCallback((idx: number) => {
     const next = BEATS[Math.min(BEATS.length - 1, Math.max(0, idx))];
@@ -157,33 +183,73 @@ export function Stepper() {
   }, []);
 
   const stop = STATES[tierIndex(config.budget)];
-  const totals = skus.length ? lineTotals(skus) : null;
+  // The catalogue multiplier, or the rail and the sheet print different blended
+  // margins for the same line the moment any row leaves heat-press.
+  const totals = skus.length
+    ? lineTotals(skus, config.strategy === 'scale' ? config.designs : 1)
+    : null;
 
-  // Only what is actually settled. An omitted item says "not yet"; a dash would
-  // read as a value.
-  const decided: { label: string; value: string; alert?: boolean }[] = [
-    { label: 'Name', value: normalise(config.wordmark) || 'BLANK' },
-    { label: 'Budget', value: money(stop.budget) },
-  ];
-  if (config.wordmarkStyle) {
+  /**
+   * ONLY WHAT WAS ACTUALLY CHOSEN.
+   *
+   * This claimed to do that already and did not. Name and Budget were pushed
+   * unconditionally, and Direction was gated on `if (config.direction)` — a test
+   * that can never be false, because the default is 'workwear'. So a rail that
+   * promised a record of decisions opened showing three defaults: a name nobody
+   * typed, a $3k budget nobody set, and a brand direction nobody picked.
+   *
+   * Every entry now asks `isSet`, which reports whether the field was ever
+   * written by a user action rather than what it currently holds. An empty rail
+   * on arrival is the correct rail: nothing has been decided yet.
+   */
+  const decided: { label: string; value: string; alert?: boolean }[] = [];
+
+  if (isSet('wordmark')) {
+    const w = normalise(config.wordmark);
+    if (w) decided.push({ label: 'Name', value: w });
+  }
+  if (isSet('strategy')) {
+    decided.push({
+      label: 'Line',
+      value: config.strategy === 'scale' ? 'Wide' : 'Small',
+    });
+  }
+  if (config.strategy === 'scale' && isSet('designs')) {
+    decided.push({ label: 'Places', value: String(config.designs) });
+  }
+  if (isSet('budget')) {
+    decided.push({ label: 'Budget', value: money(stop.budget) });
+  }
+  if (isSet('wordmarkStyle') && config.wordmarkStyle) {
     decided.push({
       label: 'Type',
       value: ALL_TREATMENTS.find((t) => t.id === config.wordmarkStyle)?.title ?? config.wordmarkStyle,
     });
   }
-  if (config.direction) {
+  if (isSet('mark') && config.mark) {
+    // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
+    // reads "M seal".
+    decided.push({ label: 'Symbol', value: config.mark.replace(/^[GM]-/, '').replace(/-/g, ' ') });
+  }
+  if (isSet('place') && config.place) {
+    decided.push({ label: 'Place', value: config.place });
+  }
+  if (isSet('direction')) {
     decided.push({ label: 'Direction', value: DIRECTION_LABELS[config.direction] ?? config.direction });
   }
-  if (config.mark) {
-    decided.push({
-      // Marks are M-*, library graphics are G-*: strip either prefix, or the rail
-      // reads "M seal".
-      label: 'Symbol',
-      value: config.mark.replace(/^[GM]-/, '').replace(/-/g, ' '),
-    });
+  if (isSet('colorway')) {
+    decided.push({ label: 'Colour', value: config.colorway.replace(/-/g, ' ') });
   }
+  // Not gated on `isSet`: a line only exists once you tick a row, so the totals
+  // are evidence of a decision rather than a default.
   if (totals) {
-    decided.push({ label: 'SKUs', value: String(skus.length) });
+    decided.push({
+      // On a catalogue the SKU count IS the product — "SKUs 3" for 72 shirts is
+      // the least informative number the rail could show.
+      label: 'SKUs',
+      value:
+        config.strategy === 'scale' ? `${skus.length * config.designs}` : String(skus.length),
+    });
     decided.push({
       label: 'Margin',
       value: `${(totals.blendedMargin * 100).toFixed(1)}%`,
@@ -214,14 +280,23 @@ export function Stepper() {
           {/* min-h-0 + overflow-hidden are what make the 0fr row actually clip. */}
           <div className="min-h-0 overflow-hidden">
             <div
-              className="flex gap-x-4 items-baseline pt-2 pb-1.5 text-[12px] sm:text-[11px] font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-x-4 items-baseline pt-2 pb-1.5 b-data overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ color: 'var(--era-ink-muted)', overscrollBehaviorX: 'contain' }}
             >
-              {decided.map((d) => (
-                <span key={d.label} className="whitespace-nowrap">
-                  {d.label} <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
+              {decided.length === 0 ? (
+                // An empty rail is the correct rail on arrival, but it must say
+                // so rather than render as a blank strip of chrome.
+                <span className="whitespace-nowrap" style={{ opacity: 0.75 }}>
+                  Nothing decided yet
                 </span>
-              ))}
+              ) : (
+                decided.map((d) => (
+                  <span key={d.label} className="whitespace-nowrap">
+                    {d.label}{' '}
+                    <span style={{ color: d.alert ? '#A8456E' : 'var(--era-ink)' }}>{d.value}</span>
+                  </span>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -243,7 +318,8 @@ export function Stepper() {
             className="flex gap-4 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{ overscrollBehaviorX: 'contain' }}
           >
-            {BEATS.map((b, idx) => {
+            {BEATS.map((raw, idx) => {
+              const b = beatFor(raw, config.strategy);
               const on = idx === i;
               const done = idx < i;
               return (
@@ -251,7 +327,7 @@ export function Stepper() {
                   key={b.n}
                   onClick={() => go(idx)}
                   aria-current={on ? 'step' : undefined}
-                  className="tap shrink-0 text-[12px] sm:text-[11px] font-mono uppercase tracking-wider transition-colors border-b-2 pb-0.5"
+                  className="tap shrink-0 b-label transition-colors border-b-2 pb-0.5"
                   style={{
                     color: on ? 'var(--accent)' : done ? 'var(--era-ink)' : 'var(--era-ink-muted)',
                     borderColor: on ? 'var(--accent)' : 'transparent',
@@ -289,8 +365,8 @@ export function StepFooter() {
     set('step', BEATS[Math.min(BEATS.length - 1, Math.max(0, idx))].n);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-  const next = BEATS[i + 1];
-  const prev = BEATS[i - 1];
+  const next = BEATS[i + 1] && beatFor(BEATS[i + 1], config.strategy);
+  const prev = BEATS[i - 1] && beatFor(BEATS[i - 1], config.strategy);
 
   return (
     <div
@@ -300,7 +376,7 @@ export function StepFooter() {
       {prev ? (
         <button
           onClick={() => go(i - 1)}
-          className="tap text-[13px] sm:text-[12px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5"
+          className="tap b-body sm:b-label inline-flex items-center gap-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           <ChevronLeft className="w-3.5 h-3.5" /> {prev.short}
@@ -311,7 +387,7 @@ export function StepFooter() {
       {next ? (
         <button
           onClick={() => go(i + 1)}
-          className="text-[13px] font-mono uppercase tracking-wider inline-flex items-center gap-1.5 border px-3 py-1.5 transition-colors hover:border-[var(--accent)]"
+          className="b-body font-mono uppercase tracking-wider inline-flex items-center gap-1.5 border px-3 py-1.5 transition-colors hover:border-[var(--accent)]"
           style={{ color: 'var(--accent)', borderColor: 'var(--era-hairline)' }}
         >
           {next.short} <ChevronRight className="w-3.5 h-3.5" />

@@ -33,12 +33,11 @@ import {
   usageRule,
   type SymbolKind,
 } from '@/lib/blank/identity';
-import { gateLabel } from '@/lib/blank/producible';
+import { METHOD_LABEL, TIER_METHOD, methodGate } from '@/lib/blank/producible';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { Mark } from './MarkFamily';
 
 const money = (n: number) => `$${(n / 1000).toFixed(0)}k`;
-const BUDGETS = STATES.map((s) => s.budget);
 
 function useFace() {
   const { config } = useLine();
@@ -66,7 +65,7 @@ export function NameStep() {
     <div className="my-2">
       <label className="block mb-6">
         <span
-          className="block text-[11px] sm:text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+          className="block b-label mb-1.5"
           style={{ color: 'var(--era-ink-muted)' }}
         >
           The name
@@ -78,16 +77,14 @@ export function NameStep() {
           aria-label="The name of the line"
           spellCheck={false}
           autoComplete="off"
-          className="px-3 py-2 text-[15px] font-mono uppercase tracking-widest bg-transparent border outline-none focus:border-[var(--accent)]"
+          className="px-3 py-2 b-body font-mono uppercase tracking-widest bg-transparent border outline-none focus:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)', width: '15rem' }}
         />
       </label>
 
-      <p className="text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
-        Anything up to 18 characters. It is set in real type rather than generated, so it is always
-        spelled correctly and costs nothing to change your mind about — and the length matters later,
-        because a long name is constrained by the {PLATEN_INCHES}in print platen before it is
-        constrained by taste.
+      <p className="b-body max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
+        Up to 18 characters. A long name is constrained by the {PLATEN_INCHES}in print platen before
+        it is constrained by taste.
       </p>
 
       <FaceStep />
@@ -114,12 +111,12 @@ export function FaceStep() {
 
   return (
     <div className="my-2">
-      <p className="mb-4 text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mb-4 b-data" style={{ color: 'var(--era-ink-muted)' }}>
         <span style={{ color: 'var(--accent)' }}>{word || 'BLANK'}</span> ·{' '}
         <span style={{ color: 'var(--era-ink)' }}>
           {producibleCount(word, tier)} of {ALL_TREATMENTS.length}
         </span>{' '}
-        makeable at {money(STATES[tier].budget)} — the rest come back when the budget changes.
+        makeable in {METHOD_LABEL[TIER_METHOD[tier]]}.
       </p>
 
       <div
@@ -167,10 +164,10 @@ export function FaceStep() {
           value={t.id}
           onChange={(e) => set('wordmarkStyle', e.target.value)}
           aria-label="Wordmark treatment"
-          className="min-w-0 bg-transparent border px-2.5 py-1.5 text-[12px] font-mono uppercase tracking-wider outline-none focus:border-[var(--accent)]"
+          className="min-w-0 bg-transparent border px-2.5 py-1.5 b-label outline-none focus:border-[var(--accent)]"
           style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
         >
-          <optgroup label="Straight — choosing a face">
+          <optgroup label="Straight">
             {ALL_TREATMENTS.filter((x) => x.group === 'straight').map((x) => (
               <option key={x.id} value={x.id}>
                 {x.title}
@@ -178,7 +175,7 @@ export function FaceStep() {
               </option>
             ))}
           </optgroup>
-          <optgroup label="Funky — doing something to the type">
+          <optgroup label="Funky">
             {ALL_TREATMENTS.filter((x) => x.group === 'funky').map((x) => (
               <option key={x.id} value={x.id}>
                 {x.title}
@@ -187,7 +184,7 @@ export function FaceStep() {
             ))}
           </optgroup>
         </select>
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
           {idx + 1} / {ALL_TREATMENTS.length}
         </span>
       </div>
@@ -198,24 +195,24 @@ export function FaceStep() {
             {t.title}
           </h4>
           <span
-            className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
+            className="b-label"
             style={{ color: t.group === 'funky' ? 'var(--accent)' : 'var(--era-ink-muted)' }}
           >
             {t.group}
           </span>
-          <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+          <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
             ~{av.widthInches}in{lines > 1 ? ` · ${lines} lines` : ''}
           </span>
           {!av.ok && (
             <span
-              className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider"
+              className="b-label"
               style={{ color: av.overPlaten ? '#A8456E' : 'var(--era-ink-muted)' }}
             >
-              {av.overPlaten ? 'over platen' : gateLabel(av.availableAt, tier, money, BUDGETS)}
+              {av.overPlaten ? 'over platen' : methodGate(av.availableAt, tier)}
             </span>
           )}
         </div>
-        <p className="text-[13px] mt-1.5" style={{ color: av.ok ? 'var(--era-ink-body)' : '#A8456E' }}>
+        <p className="b-body mt-1.5" style={{ color: av.ok ? 'var(--era-ink-body)' : '#A8456E' }}>
           {av.ok ? t.lane : av.reason}
         </p>
       </div>
@@ -249,8 +246,8 @@ export function LockupStep() {
       <h3 className="font-display text-lg mb-1" style={{ color: 'var(--era-ink)' }}>
         What goes on the garment
       </h3>
-      <p className="text-[13px] mb-4" style={{ color: 'var(--era-ink-muted)' }}>
-        The wordmark, the mark, or both — and if both, how they sit together.
+      <p className="b-body mb-4" style={{ color: 'var(--era-ink-muted)' }}>
+        The wordmark, the mark, or both.
       </p>
 
       {/* The preview. A lockup is a spatial rule, and a sentence describing where
@@ -287,7 +284,7 @@ export function LockupStep() {
             </div>
           )}
           {lockup.usesSymbol && !construction && (
-            <span className="text-[12px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
+            <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
               pick a mark above
             </span>
           )}
@@ -310,7 +307,7 @@ export function LockupStep() {
               onClick={() => set('lockup', l.id)}
               aria-pressed={on}
               title={l.use}
-              className="px-3 py-1.5 text-[12px] font-mono uppercase tracking-wider border transition-colors"
+              className="px-3 py-1.5 b-label border transition-colors"
               style={{
                 borderColor: on ? 'var(--accent)' : 'var(--era-hairline)',
                 color: on ? 'var(--accent)' : wants ? 'var(--era-ink-muted)' : 'var(--era-ink)',
@@ -323,7 +320,7 @@ export function LockupStep() {
           );
         })}
         <span
-          className="text-[11px] font-mono ml-1"
+          className="b-data ml-1"
           style={{ color: overPlaten ? '#A8456E' : 'var(--era-ink-muted)' }}
         >
           ~{lockupW}in{overPlaten ? ` · past the ${PLATEN_INCHES}in platen` : ''}
@@ -331,23 +328,22 @@ export function LockupStep() {
       </div>
 
       {lockup.usesSymbol && symbolKind === 'none' && (
-        <p className="text-[13px] mt-3 max-w-2xl" style={{ color: 'var(--accent)' }}>
-          This lockup uses a mark, and none is chosen yet — pick one from the family above and it
-          will appear here.
+        <p className="b-body mt-3 max-w-2xl" style={{ color: 'var(--accent)' }}>
+          This lockup uses a mark — pick one from the family above.
         </p>
       )}
-      <p className="text-[13px] mt-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="b-body mt-4 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
         {lockup.use}
       </p>
       <p
-        className="text-[13px] mt-3 max-w-2xl"
+        className="b-body mt-3 max-w-2xl"
         style={{ color: rule.small === 'nothing' ? '#A8456E' : 'var(--era-ink-body)' }}
       >
         {rule.sentence}
       </p>
-      <p className="text-[12px] mt-2 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        {MIN_WORDMARK_INCHES}in is where a set wordmark stops holding on cloth — below it letters and
-        counters close up, which is why the small placements need a mark rather than a shrunk logo.
+      <p className="b-note mt-2 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+        Below {MIN_WORDMARK_INCHES}in a set wordmark stops holding on cloth — letters and counters
+        close up. Small placements need a mark.
       </p>
     </div>
   );

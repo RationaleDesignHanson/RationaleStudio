@@ -20,6 +20,8 @@
  * page presenting a real venture plan.
  */
 
+import { xxlShare } from './sizes';
+
 export type Confidence = 'hard' | 'derived' | 'soft' | 'soft-conflicted';
 export type RunSize = 25 | 50 | 75 | 100 | 150 | 300;
 export type Tier = 'budget' | 'premium' | 'premium-usa';
@@ -183,6 +185,24 @@ export const BLANKS: Record<string, Blank> = {
   },
 };
 
+/**
+ * The 2XL upcharge, per piece, on the XXL portion of a run only.
+ *
+ * Nearly every blank catalogue charges more for 2XL and up, because it is more
+ * cloth. At a tenth of the run it is a small number, and omitting it makes every
+ * style quietly optimistic. It lives HERE rather than in line.ts because
+ * stage0Cogs is the single source of variable cost — adding it a layer up is
+ * exactly the drift the line-model tests exist to catch, and they caught it.
+ *
+ * CONFIDENCE: soft. Typical catalogue upcharge, not a quoted figure.
+ */
+export const XXL_UPCHARGE = { value: 1.75, source: 'DERIVED', confidence: 'soft' as Confidence };
+
+/** Blended per-unit size upcharge across a whole run of this blank. */
+export function sizeUpchargePerUnit(blank: Blank): number {
+  return xxlShare(blank.category) * XXL_UPCHARGE.value;
+}
+
 export function blankUnit(blank: Blank, run: RunSize): number {
   if (blank.ladder?.[run] !== undefined) return blank.ladder[run]!;
   return (blank.price100 ?? 0) * RUN_INDEX[run];
@@ -208,7 +228,24 @@ export const SCREEN_RATE_PER_COLOR: Record<RunSize, number> = {
 
 export const DECO = {
   dischargeMultiplier: { value: 1.25, source: 'DERIVED', confidence: 'derived' as Confidence },
+  /**
+   * THE MOST LOAD-BEARING SOFT NUMBER IN THE MODEL.
+   *
+   * The entire high-scale argument — that a wide catalogue is only possible on
+   * heat-press, because it is the one method with no per-design setup — rests on
+   * this figure, and it is `soft`. It is also flat regardless of print size: a
+   * 13in front hit and a 3in sleeve hit cost the same here, which they do not.
+   *
+   * A trade review put a contract decorator's all-in price (transfer plus press
+   * labour) plausibly in the $2.50–4.50 range. Replacing one soft guess with
+   * another would not make the tool more honest, so instead it is ADJUSTABLE and
+   * the sensitivity is on screen: the page can say what the thesis survives
+   * rather than asserting a number it cannot defend. Get three real quotes
+   * before ordering; nothing here substitutes for that.
+   */
   dtfPerPrint: { value: 1.5, source: 'HL-4-deco', confidence: 'soft' as Confidence },
+  /** The range the sensitivity control sweeps. */
+  dtfRange: { min: 1.0, max: 5.0 },
   dtgPerPrint: { value: 7.5, source: 'HL-4-deco', confidence: 'soft' as Confidence },
   embroideryPer1000Stitches: {
     value: 1.0,
@@ -230,6 +267,11 @@ export interface Decoration {
   colors?: number;
   /** Stitch count, for embroidery. */
   stitches?: number;
+  /**
+   * Stress-test the heat-press price. Unset uses DECO.dtfPerPrint, which is
+   * soft and load-bearing — see the note there.
+   */
+  dtfOverride?: number;
 }
 
 /** passes = colors + (blockerRequired ? 1 : 0) */
@@ -251,7 +293,7 @@ export function decorationVariable(deco: Decoration, blank: Blank, run: RunSize)
         DECO.dischargeMultiplier.value
       );
     case 'dtf':
-      return DECO.dtfPerPrint.value;
+      return deco.dtfOverride ?? DECO.dtfPerPrint.value;
     case 'dtg':
       return DECO.dtgPerPrint.value;
     case 'embroidery':
@@ -340,6 +382,13 @@ export interface Stage0Input {
   run: RunSize;
   relabel: RelabelMode;
   includeOutboundShip?: boolean;
+  /**
+   * Add the blended 2XL upcharge for this blank's size curve.
+   *
+   * Off by default so the T1 worked example still reconciles; the line model
+   * turns it on, because a real order is a size run and part of it is 2XL.
+   */
+  includeSizeUpcharge?: boolean;
   useVerifiedRelabel?: boolean;
 }
 
@@ -367,11 +416,23 @@ export function stage0Cogs(input: Stage0Input): CogsBreakdown {
   const amortizedFixed = fixed / run;
   const outboundShip = input.includeOutboundShip ? OVERHEAD.outboundShipUS : 0;
 
+  // OPT-IN, and deliberately off by default.
+  //
+  // The T1 worked example reconciles this function against the research doc,
+  // and that quote is a single unit price with no size curve behind it. Folding
+  // a blended 2XL upcharge in unconditionally would silently move landedCOGS off
+  // 24.69 and quietly invalidate the one figure the model is verified against.
+  //
+  // So the line model asks for it explicitly. The cost is real either way; this
+  // just keeps the reconciliation honest about which number is which.
+  const sizeUpcharge = input.includeSizeUpcharge ? sizeUpchargePerUnit(blank) : 0;
+
   const landedCOGS =
     bUnit +
     dVar +
     rVar +
     defect +
+    sizeUpcharge +
     OVERHEAD.packagingPerUnit +
     OVERHEAD.inboundFreightPerUnit[run] +
     amortizedFixed +

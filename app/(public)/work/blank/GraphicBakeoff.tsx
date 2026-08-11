@@ -21,14 +21,9 @@ import { useCallback, useState } from 'react';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useLine } from '@/lib/blank/lineState';
 import { PinButton, PinShelf } from './Pins';
+import { Examples } from './Examples';
 
 type Tile = { url?: string; error?: string; busy?: boolean };
-
-const EXAMPLES = [
-  'a dog wearing sunglasses, drawn badly on purpose',
-  'a cross-section diagram of a sandwich, labelled like an engine',
-  'a very serious flaming skull, but the flames are little hearts',
-];
 
 export function GraphicBakeoff() {
   const { config, set } = useLine();
@@ -47,7 +42,7 @@ export function GraphicBakeoff() {
           const res = await fetch('/api/blank/bakeoff', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ kind: 'graphic', prompt: text, variant: i }),
+            body: JSON.stringify({ kind: 'graphic', direction: config.artDirection, prompt: text, variant: i }),
           });
           const data = await res.json();
           setTiles((prev) =>
@@ -67,15 +62,15 @@ export function GraphicBakeoff() {
 
   return (
     <div className="my-2">
-      <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-        Not everything on a garment is the brand. Describe a graphic and get six takes on it — keep
-        one and the applied views will carry it.
+      <Examples onPick={setPrompt} />
+      <p className="b-body mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
+        Describe a graphic and get six takes. Keep one and the applied views carry it.
       </p>
 
       <div className="flex flex-wrap items-end gap-3 mb-3">
         <label className="min-w-0 flex-1" style={{ minWidth: '18rem' }}>
           <span
-            className="block text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5"
+            className="block b-label mb-1.5"
             style={{ color: 'var(--era-ink-muted)' }}
           >
             The graphic
@@ -83,33 +78,20 @@ export function GraphicBakeoff() {
           <input
             value={prompt}
             onChange={(e) => setPrompt(e.target.value.slice(0, 240))}
-            placeholder={EXAMPLES[0]}
-            className="w-full min-w-0 px-3 py-2 text-[13px] bg-transparent border outline-none focus:border-[var(--accent)]"
+            placeholder="a dog wearing sunglasses, drawn badly on purpose"
+            className="w-full min-w-0 px-3 py-2 b-body bg-transparent border outline-none focus:border-[var(--accent)]"
             style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
           />
         </label>
         <button
           onClick={run}
           disabled={running || prompt.trim().length < 3}
-          className="inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-2 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
           {running ? 'Rendering six…' : 'Bake off six'}
         </button>
-      </div>
-
-      <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4">
-        {EXAMPLES.map((e) => (
-          <button
-            key={e}
-            onClick={() => setPrompt(e)}
-            className="tap text-[12px] sm:text-[11px] underline"
-            style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
-          >
-            {e}
-          </button>
-        ))}
       </div>
 
       {tiles.length > 0 && (
@@ -146,7 +128,7 @@ export function GraphicBakeoff() {
                     {tile.busy ? (
                       <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--era-ink-muted)' }} />
                     ) : (
-                      <span className="text-[9px] font-mono px-1 text-center" style={{ color: '#A8456E' }}>
+                      <span className="b-note font-mono px-1 text-center" style={{ color: '#A8456E' }}>
                         {tile.error ?? '—'}
                       </span>
                     )}
@@ -161,8 +143,8 @@ export function GraphicBakeoff() {
       <PinShelf />
 
       {config.customGraphic && (
-        <p className="mt-3 text-[12px]" style={{ color: 'var(--accent)' }}>
-          Kept. This graphic is now the artwork the applied views carry.
+        <p className="mt-3 b-note" style={{ color: 'var(--accent)' }}>
+          Kept — the applied views carry it.
         </p>
       )}
     </div>

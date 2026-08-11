@@ -199,6 +199,26 @@ export function producibleCount(graphicIds: string[], tier: number): number {
  * the gating exists to make. Any new gated grid must call this rather than
  * reimplement it.
  */
+/**
+ * Why an option is unavailable, in terms of the METHOD rather than the money.
+ *
+ * `gateLabel` says "needs $8k", and that was right when the budget was a slider
+ * you set first. The budget is a CONSEQUENCE now — it is read off the decoration
+ * you pick per style on the cost sheet — so quoting a price at someone choosing
+ * a typeface is quoting a number they have not decided and cannot see.
+ *
+ * A method is a property of the artwork itself and true whatever it ends up
+ * costing: a hairline serif needs two screens because one screen fills it in,
+ * and that does not change when you move the budget.
+ */
+export function methodGate(availableAt: number[], tier: number): string {
+  if (availableAt.length === 0) return 'cannot be made';
+  const method = TIER_METHOD[Math.min(TIER_METHOD.length - 1, Math.max(0, tier))];
+  if (availableAt.some((i) => TIER_METHOD[i] === method)) return '';
+  const names = [...new Set(availableAt.map((i) => METHOD_LABEL[TIER_METHOD[i]]))];
+  return `needs ${names.join(' or ')}`;
+}
+
 export function gateLabel(
   availableAt: number[],
   tier: number,

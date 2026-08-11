@@ -29,12 +29,17 @@ import { ALL_TREATMENTS, normalise } from '@/lib/blank/wordmark';
 import { constructionsFor, randomConstructions } from '@/lib/blank/markFamily';
 import { PALETTES, STAGE0_COLOURWAY_LIMIT, paletteRound, type Palette } from '@/lib/blank/palettes';
 import { rasteriseMark, readFont } from '@/lib/blank/rasterise';
+import { artworkDataUrl } from '@/lib/blank/signComposite';
 import { PinButton, PinShelf } from './Pins';
 
 type Tile = { palette: Palette; url?: string; error?: string; busy?: boolean };
 
 export function ColourBeat() {
-  const { config, set } = useLine();
+  const { config, set, skus } = useLine();
+  // The beat's own copy calls this "the line's leading style", and it was
+  // reading `garment` — whose only setter lives in a component that is
+  // never mounted, so it was permanently 'tee' no matter what the line held.
+  const garment = skus[0]?.garment ?? 'tee';
   const word = normalise(config.wordmark);
   const t = ALL_TREATMENTS.find((x) => x.id === config.wordmarkStyle) ?? ALL_TREATMENTS[0];
 
@@ -63,8 +68,20 @@ export function ColourBeat() {
       // The mark travels as artwork so every tile carries the SAME mark and only
       // the colour moves. Without it the round would compare six blank garments,
       // which is a swatch card, not a bake-off.
-      const image =
-        mark && probeRef.current ? rasteriseMark(mark, word, readFont(probeRef.current)) : null;
+      // A kept graphic counts as artwork. Reading only `config.mark` meant a
+      // catalogue user — whose mark lives in a closed disclosure and is usually
+      // null — paid for six renders of BLANK garments, in the one beat whose
+      // premise is that the artwork is held constant.
+      const image = config.customGraphic
+        ? await artworkDataUrl(
+            config.customGraphic,
+            config.register === 'sign' ? config.signText : '',
+            config.signSize,
+            config.signY,
+          )
+        : mark && probeRef.current
+          ? rasteriseMark(mark, word, readFont(probeRef.current))
+          : null;
 
       // Fanned out, not sequential: six renders one after another is a minute of
       // staring at nothing, and each tile caches on its own key anyway.
@@ -76,7 +93,7 @@ export function ColourBeat() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 kind: 'colour',
-                garment: config.garment,
+                garment: garment,
                 palette: palette.id,
                 variant: i,
                 ...(image ? { image } : {}),
@@ -99,7 +116,20 @@ export function ColourBeat() {
       );
       setRunning(false);
     },
-    [config.garment, mark, word],
+    // Every config field the body reads belongs here. It read customGraphic,
+    // register, signText, signSize and signY and listed none of them, so
+    // changing the kept graphic or retyping the place name and pressing render
+    // spent six times on the artwork from before the change.
+    [
+      garment,
+      mark,
+      word,
+      config.customGraphic,
+      config.register,
+      config.signText,
+      config.signSize,
+      config.signY,
+    ],
   );
 
   return (
@@ -117,15 +147,14 @@ export function ColourBeat() {
         {/* Garment is owned by the cost sheet — the line decides which garments
             exist. Rendering the round on the leading style keeps colour the only
             variable and stops this beat from being a third place to pick a tee. */}
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          on the {GARMENTS.find((g) => g.key === config.garment)?.label.toLowerCase()} — the
-          line&rsquo;s leading style
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
+          on the {GARMENTS.find((g) => g.key === garment)?.label.toLowerCase()} — the leading style
         </span>
 
         <button
           onClick={() => runRound(round)}
           disabled={running}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider border transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label border transition-colors disabled:opacity-40"
           style={{ borderColor: 'var(--accent)', color: 'var(--accent)', minHeight: 0 }}
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
@@ -139,14 +168,19 @@ export function ColourBeat() {
             setTiles(paletteRound(next).map((palette) => ({ palette })));
           }}
           disabled={running}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 b-label transition-colors disabled:opacity-40"
           style={{ color: 'var(--era-ink-muted)', minHeight: 0 }}
         >
           <Shuffle className="w-3.5 h-3.5" /> Different six
         </button>
 
-        <span className="text-[11px] font-mono" style={{ color: 'var(--era-ink-muted)' }}>
-          {mark ? 'carrying your mark' : 'plain garments — pick a mark in 03 to carry it'} · six
+        <span className="b-data" style={{ color: 'var(--era-ink-muted)' }}>
+          {config.customGraphic
+            ? 'carrying your graphic'
+            : mark
+              ? 'carrying your mark'
+              : 'plain garments — choose artwork in 02 to carry it'}{' '}
+          · six
           renders per round
         </span>
       </div>
@@ -193,7 +227,7 @@ export function ColourBeat() {
                       <Loader2 className="w-5 h-5 animate-spin" style={{ color: 'rgba(255,255,255,0.7)' }} />
                     ) : (
                       <span
-                        className="text-[11px] sm:text-[10px] font-mono uppercase tracking-wider px-2 text-center"
+                        className="b-label px-2 text-center"
                         style={{ color: 'rgba(255,255,255,0.75)' }}
                       >
                         {tile.error ?? 'swatch'}
@@ -205,14 +239,14 @@ export function ColourBeat() {
 
               <div className="mt-1.5 flex flex-wrap items-baseline gap-x-2">
                 <span
-                  className="text-[12px]"
+                  className="b-note"
                   style={{ color: on ? 'var(--accent)' : 'var(--era-ink)' }}
                 >
                   {tile.palette.name}
                 </span>
                 {!tile.palette.stage0 && (
                   <span
-                    className="text-[11px] sm:text-[9px] font-mono uppercase tracking-wider"
+                    className="b-label"
                     style={{ color: '#A8456E' }}
                   >
                     custom dye lot
@@ -220,7 +254,7 @@ export function ColourBeat() {
                 )}
               </div>
               {on && (
-                <span className="text-[11px] block" style={{ color: 'var(--era-ink-muted)' }}>
+                <span className="b-note block" style={{ color: 'var(--era-ink-muted)' }}>
                   {tile.palette.note}
                 </span>
               )}
@@ -229,15 +263,13 @@ export function ColourBeat() {
         })}
       </div>
 
-      <p className="mt-5 text-[13px] max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
-        Six colourways of the same garment carrying the same mark, so colour is the only variable.
+      <p className="mt-5 b-body max-w-2xl" style={{ color: 'var(--era-ink-body)' }}>
         Stage 0 allows <strong style={{ color: 'var(--era-ink)' }}>{STAGE0_COLOURWAY_LIMIT}</strong>{' '}
-        colourways per style — a third is a third buy of every blank, at a worse price break on each.
-        Garment dye means you approve a shade band, not a Pantone: piece-to-piece variation is
-        inherent, not a defect. The ones marked custom dye lot need 800–1,000m in one colour, which
-        is 300–500 garments before you have made anything else.
+        colourways per style — a third is a third buy of every blank. Garment dye means you approve
+        a shade band, not a Pantone. The ones marked custom dye lot need 800–1,000m in one colour,
+        which is 300–500 garments.
       </p>
-      <p className="mt-2 text-[12px]" style={{ color: 'var(--era-ink-muted)' }}>
+      <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
         {PALETTES.length} colourways in the set; six are drawn per round.
       </p>
 

@@ -10,7 +10,7 @@ export default function BlankPage() {
       project="blank"
       era="now"
       title="Blank"
-      subtitle="A streetwear line planned end-to-end by an image pipeline and an agent fleet — including the review that argued against it."
+      subtitle="A streetwear line planned end-to-end by an image pipeline and an agent fleet."
       meta="Concepts · in flight"
     >
       <BlankContent />

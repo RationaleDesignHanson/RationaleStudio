@@ -34,7 +34,88 @@ export type Garment = 'tee' | 'hoodie' | 'cap';
 
 const RUN_SIZES: RunSize[] = [25, 50, 75, 100, 150, 300];
 
+/**
+ * The two businesses this tool can cost.
+ *
+ * `considered` — a few styles, one identity, deep runs. Setup is paid once and
+ * amortises, so screen and embroidery are affordable and the margin is high.
+ *
+ * `scale` — a catalogue: a shirt per place, micro-targeted by geography and
+ * interest, shallow runs on each. Setup is paid PER DESIGN, so it never
+ * amortises, and the margin per unit is thinner because nothing gets volume.
+ *
+ * This is not a preference, it is the fork the whole model hangs off: it decides
+ * which decoration methods are affordable, how deep the runs are, and whether
+ * "buying as a collection" saves anything at all.
+ */
+export type Strategy = 'considered' | 'scale';
+
 export interface LineConfig {
+  /** Which of the two businesses. Chosen first; everything downstream follows. */
+  strategy: Strategy;
+  /**
+   * How many distinct artworks the line carries.
+   *
+   * VARIANTS, not places. A place is one way to vary a catalogue and the most
+   * obvious one, but a joke, a season or a collaborator are others — naming the
+   * axis after a single instance of it narrows the idea for no reason.
+   * Always 1 for `considered`, where the whole point is one identity.
+   */
+  designs: number;
+  /**
+   * The lettering set into a generated sign panel, with `/` starting a new line
+   * — "MOLLY PITCHER / NJ".
+   *
+   * Stored as TEXT, not as a baked composite, for the same reason the wordmark
+   * is: it has to stay correctly spelled, editable, and cheap. A composited
+   * image would also not survive the share link, which only accepts our own
+   * Storage URLs.
+   */
+  signText: string;
+  /**
+   * The place a catalogue graphic is for, and the voice it was asked for in.
+   *
+   * In the URL rather than component state for the reason every other choice is:
+   * a partner opening the link could see the kept graphic but not what was
+   * searched for or in which register, so they could not re-run the round
+   * without guessing — and re-running costs six renders.
+   */
+  place: string;
+  register: string;
+  /** Cap height as a percent of the panel's width. */
+  signSize: number;
+  /** Vertical centre of the lettering, as a percent of panel height. */
+  signY: number;
+  /**
+   * The line's palette — the small set of colours every style draws from.
+   *
+   * A line is coherent because its styles share colours, so the palette is a
+   * property of the LINE and a style's colourways are a subset of it. Picking
+   * freely per garment gives you a pile of separate products; one colour for
+   * everything means the hoodie cannot have a shade the tee does not.
+   */
+  palette: string[];
+  /** Where this gets sold, which decides the fees and whether ads are paid for. */
+  channel: string;
+  /** Paid acquisition per order. The number the catalogue model lives or dies on. */
+  cac: number;
+  /**
+   * Heat-press cost per print, in cents, or 0 to use the model's own figure.
+   *
+   * The most load-bearing soft number in the model — the whole wide-catalogue
+   * argument rests on it. Adjustable so the page can say what the thesis
+   * survives instead of asserting a price it cannot defend.
+   */
+  dtfCents: number;
+  /**
+   * How the artwork should look, in your words.
+   *
+   * The generators had fixed voices — six drawing styles for a mark, three
+   * registers for a place, six angles for a graphic — and no way to say "like
+   * this" at all. That is fine for a spread and useless once you know what you
+   * want, which is the point at which most people start caring.
+   */
+  artDirection: string;
   /** Colourway for deviation renders. */
   colorway: string;
   /**
@@ -53,10 +134,6 @@ export interface LineConfig {
   finish: string;
   /** Budget stop slug — 'graphic' | 'washed' | 'tonal' | 'stitched' | 'full' */
   budget: string;
-  garment: Garment;
-  /** Graphic id from the print library ('G-tonal-emboss'), or null for none.
-      This is a PRINT LANGUAGE and is validated server-side against PRESETS. */
-  graphic: string | null;
   /**
    * A kept graphic from the prompt bake-off, as a durable Storage URL.
    *
@@ -103,14 +180,24 @@ export interface LineConfig {
    */
   markSeed: string;
   /**
-   * Retail price override for the lever, as a string so an empty field is a
-   * distinct state from zero. Empty means "use the tier default".
+   * The fields the user has actually touched.
    *
-   * Retail is the largest single margin lever in the model at 35.9 points —
-   * ahead of run size and blank tier — and the lever was displaying "Margin @
-   * $35" with no way to change the $35.
+   * WHY THIS EXISTS. Eleven fields carried meaningful defaults — budget
+   * 'graphic', direction 'workwear', wordmark 'BLANK', lockup 'word' — so
+   * nothing in the app could tell "they chose the $3k tier" from "nobody has
+   * been to the costing beat". The progress rail's own comment promised "only
+   * what is actually settled", then printed Name, Budget and Direction
+   * unconditionally, because its `if (config.direction)` gate can never be
+   * false against a truthy default.
+   *
+   * The alternative was nulling every default and resolving a working value at
+   * each of ~80 call sites. This separates the RECORD of a choice from its
+   * VALUE instead, which is a much smaller change and keeps every consumer
+   * reading a valid value. The cost is that a new surface can still read
+   * `config.budget` and present a default as a decision — so anything claiming
+   * something is settled must ask `isSet` and not the value.
    */
-  retail: string;
+  chosen: string[];
   /**
    * Which beat is on screen. View state rather than line configuration, carried
    * in the URL on purpose: the whole product is two people sending each other a
@@ -120,14 +207,24 @@ export interface LineConfig {
 }
 
 export const LINE_DEFAULTS: LineConfig = {
+  strategy: 'considered',
+  designs: 1,
+  artDirection: '',
+  palette: [],
+  channel: 'social',
+  cac: 12,
+  dtfCents: 0,
+  signText: '',
+  place: '',
+  register: 'sign',
+  signSize: 11,
+  signY: 50,
   colorway: 'charcoal',
   motif: '',
   placement: '',
   scale: '',
   finish: '',
   budget: 'graphic',
-  garment: 'tee',
-  graphic: null,
   mark: null,
   customGraphic: null,
   pins: [],
@@ -136,16 +233,26 @@ export const LINE_DEFAULTS: LineConfig = {
   wordmark: 'BLANK',
   wordmarkStyle: null,
   lockup: 'word',
-  retail: '',
   markSeed: '',
+  chosen: [],
   step: '01',
 };
 
 /** URL param names. Short — these get pasted into messages. */
 const PARAM = {
+  strategy: 'sg',
+  designs: 'n',
+  artDirection: 'ad',
+  palette: 'pal',
+  channel: 'ch',
+  cac: 'cac',
+  dtfCents: 'dtf',
+  signText: 'sx',
+  place: 'pc',
+  register: 'rg',
+  signSize: 'sz',
+  signY: 'sy',
   budget: 'b',
-  garment: 'g',
-  graphic: 'p',
   mark: 'mk',
   customGraphic: 'cg',
   direction: 'd',
@@ -158,8 +265,8 @@ const PARAM = {
   wordmark: 'w',
   wordmarkStyle: 'ws',
   lockup: 'lk',
-  retail: 'r',
   markSeed: 'ms',
+  chosen: 'tc',
   step: 'st',
 } as const;
 
@@ -177,8 +284,36 @@ interface LineContextValue {
    */
   setSkuTier: (index: number, tier: string) => void;
   setSkuRetail: (index: number, retail: number | undefined) => void;
+  /** Which colourways a style is made in. Never empty. */
+  setSkuColours: (index: number, colours: string[]) => void;
   clearSkus: () => void;
   set: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
+  /**
+   * Apply a value WITHOUT recording it as a decision.
+   *
+   * Some values are consequences, not choices: the budget implied by picking a
+   * business, the budget the cost sheet reads off its leading row, the sign type
+   * size auto-fitted to the place name. Routing those through `set` made the rail
+   * claim the user had picked a $12k tier because they picked "small and dear",
+   * and made it inconsistent about it — the wide option's implied budget happens
+   * to equal the global default, so that one recorded nothing.
+   */
+  setImplied: <K extends keyof LineConfig>(key: K, value: LineConfig[K]) => void;
+  /**
+   * Has the user actually chosen this, or is it still the default?
+   *
+   * Anything that claims something is SETTLED must ask this rather than testing
+   * the value — eleven fields have truthy defaults and testing those reports
+   * every default as a decision.
+   */
+  isSet: (key: keyof LineConfig) => boolean;
+  /**
+   * Swap the whole document at once, for loading a saved line.
+   *
+   * One setState rather than a field at a time: a partial replay would fire the
+   * autosave against each intermediate state and race the load it came from.
+   */
+  replaceAll: (state: Partial<LineConfig> & { skus?: Sku[] }) => void;
   /** Absolute URL encoding the current config. */
   shareUrl: () => string;
   /** True once the initial URL read has run, so consumers can skip the first write. */
@@ -194,7 +329,10 @@ const LineContext = createContext<LineContextValue | null>(null);
  * `?s=tee.full.100.G-emblem&s=hoodie.full.50.G-emblem` survives intact.
  */
 function encodeSku(s: Sku): string {
-  const base = [s.garment, s.tier, String(s.units) + (s.retail ? `@${s.retail}` : '')];
+  // Colourways ride on the units field as `50+bone+olive`, so the dot-separated
+  // shape older links use still parses and a link stays readable when pasted.
+  const units = String(s.units) + (s.colours.length ? `+${s.colours.join('+')}` : '');
+  const base = [s.garment, s.tier, units + (s.retail ? `@${s.retail}` : '')];
   // Trailing separator omitted when there's no graphic — these get pasted into
   // messages and `tee.full.100.` reads like a truncation.
   return (s.graphic ? [...base, s.graphic] : base).join('.');
@@ -204,26 +342,58 @@ function decodeSku(raw: string): Sku | null {
   const [garment, tier, units, ...rest] = raw.split('.');
   if (garment !== 'tee' && garment !== 'hoodie' && garment !== 'cap') return null;
   if (!tier) return null;
-  // units may carry a retail override as `100@120`.
+  // units may carry colourways as `100+bone+olive` and a retail override as
+  // `100@120`, in that order.
   const [unitPart, retailPart] = String(units).split('@');
-  const n = Number(unitPart) as RunSize;
+  const [runPart, ...colourParts] = unitPart.split('+');
+  const n = Number(runPart) as RunSize;
   if (!RUN_SIZES.includes(n)) return null;
   const retail = retailPart ? Number(retailPart) : undefined;
   if (retail !== undefined && (!Number.isFinite(retail) || retail <= 0)) return null;
   // Graphic ids contain dots in no known case, but rejoin defensively.
   const graphic = rest.join('.');
-  return { garment, tier, units: n, graphic: graphic || null, ...(retail ? { retail } : {}) };
+  return {
+    garment,
+    tier,
+    units: n,
+    // A link written before colour existed gets the default colourway.
+    colours: colourParts.length ? colourParts : ['faded-charcoal'],
+    graphic: graphic || null,
+    ...(retail ? { retail } : {}),
+  };
 }
 
 function readFromSearch(search: string): Partial<LineConfig> {
   const q = new URLSearchParams(search);
   const out: Partial<LineConfig> = {};
+  const sg = q.get(PARAM.strategy);
+  if (sg === 'scale' || sg === 'considered') out.strategy = sg;
+  // Capped rather than rejected: a pasted link with n=99999 should cost a big
+  // catalogue, not silently fall back to one design.
+  const nParam = q.get(PARAM.designs);
+  if (nParam && /^\d{1,4}$/.test(nParam)) out.designs = Math.min(500, Math.max(1, Number(nParam)));
+  const ch = q.get(PARAM.channel);
+  if (ch && /^[a-z]{4,12}$/.test(ch)) out.channel = ch;
+  const dtfP = q.get(PARAM.dtfCents);
+  if (dtfP && /^\d{1,4}$/.test(dtfP)) out.dtfCents = Math.min(1000, Number(dtfP));
+  const cacP = q.get(PARAM.cac);
+  if (cacP && /^\d{1,3}$/.test(cacP)) out.cac = Math.min(200, Number(cacP));
+  const ad = q.get(PARAM.artDirection);
+  if (ad) out.artDirection = ad.slice(0, 200);
+  const pal = q.get(PARAM.palette);
+  if (pal) out.palette = pal.split(',').filter(Boolean).slice(0, 6);
+  const sx = q.get(PARAM.signText);
+  if (sx) out.signText = sx.slice(0, 48);
+  const pc = q.get(PARAM.place);
+  if (pc) out.place = pc.slice(0, 120);
+  const rg = q.get(PARAM.register);
+  if (rg === 'sign' || rg === 'pun' || rg === 'song') out.register = rg;
+  const sz = q.get(PARAM.signSize);
+  if (sz && /^\d{1,2}$/.test(sz)) out.signSize = Math.min(30, Math.max(4, Number(sz)));
+  const sy = q.get(PARAM.signY);
+  if (sy && /^\d{1,3}$/.test(sy)) out.signY = Math.min(95, Math.max(5, Number(sy)));
   const b = q.get(PARAM.budget);
   if (b) out.budget = b;
-  const g = q.get(PARAM.garment);
-  if (g === 'tee' || g === 'hoodie' || g === 'cap') out.garment = g;
-  const p = q.get(PARAM.graphic);
-  if (p) out.graphic = p;
   const mk = q.get(PARAM.mark);
   if (mk) out.mark = mk;
   // Only our own Storage host: a pasted link should not be able to point the
@@ -248,10 +418,11 @@ function readFromSearch(search: string): Partial<LineConfig> {
   if (lk) out.lockup = lk;
   const st = q.get(PARAM.step);
   if (st) out.step = st;
-  const r = q.get(PARAM.retail);
-  if (r && /^\d{1,4}$/.test(r)) out.retail = r;
   const ms = q.get(PARAM.markSeed);
   if (ms && /^\d{1,6}$/.test(ms)) out.markSeed = ms;
+  // Comma-joined field names. Bounded so a pasted link cannot grow it forever.
+  const tc = q.get(PARAM.chosen);
+  if (tc) out.chosen = tc.split(',').filter(Boolean).slice(0, 40);
   // Axes and colourway — free-form here, validated server-side before spend.
   for (const k of ['colorway', 'motif', 'placement', 'scale', 'finish'] as const) {
     const v = q.get(PARAM[k]);
@@ -265,9 +436,15 @@ function writeToParams(config: LineConfig, url: URL) {
   // any separator inside one would have to be escaped into unreadability.
   url.searchParams.delete('pin');
   config.pins.forEach((u) => url.searchParams.append('pin', u));
+  // Array-valued, so it cannot go through the scalar loop below.
+  if (config.chosen.length) url.searchParams.set(PARAM.chosen, config.chosen.join(','));
+  else url.searchParams.delete(PARAM.chosen);
+  if (config.palette.length) url.searchParams.set(PARAM.palette, config.palette.join(','));
+  else url.searchParams.delete(PARAM.palette);
   // Keyed off PARAM, not LineConfig: `pins` is serialised separately above and
   // has no PARAM entry, so iterating LineConfig's keys no longer typechecks.
   (Object.keys(PARAM) as (keyof typeof PARAM)[]).forEach((key) => {
+    if (key === 'chosen' || key === 'palette') return; // written above
     const value = config[key];
     // Defaults are omitted so a link to the starting state has a bare URL.
     if (value == null || value === LINE_DEFAULTS[key]) url.searchParams.delete(PARAM[key]);
@@ -309,8 +486,34 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
   }, [config, skus, hydrated]);
 
   const set = useCallback<LineContextValue['set']>((key, value) => {
+    setConfig((c) => {
+      if (c[key] === value) return c;
+      // Every user choice arrives through here, so this is the one place that
+      // has to record that it WAS a choice. `step` and `chosen` are excluded:
+      // moving between beats is navigation, not a decision about the line.
+      const record = key !== 'step' && key !== 'chosen' && !c.chosen.includes(key);
+      return {
+        ...c,
+        [key]: value,
+        ...(record ? { chosen: [...c.chosen, key as string] } : {}),
+      };
+    });
+  }, []);
+
+  const setImplied = useCallback<LineContextValue['setImplied']>((key, value) => {
     setConfig((c) => (c[key] === value ? c : { ...c, [key]: value }));
   }, []);
+
+  const replaceAll = useCallback<LineContextValue['replaceAll']>((incoming) => {
+    const { skus: nextSkus, ...rest } = incoming;
+    setConfig((c) => ({ ...c, ...rest }));
+    if (Array.isArray(nextSkus)) setSkus(nextSkus);
+  }, []);
+
+  const isSet = useCallback(
+    (key: keyof LineConfig) => config.chosen.includes(key as string),
+    [config.chosen],
+  );
 
   const shareUrl = useCallback(() => {
     const url = new URL(window.location.href);
@@ -341,11 +544,16 @@ export function LineProvider({ children }: { children: React.ReactNode }) {
       setSkus((xs) => xs.map((x, i) => (i === index ? { ...x, retail } : x))),
     [],
   );
+  const setSkuColours = useCallback(
+    (index: number, colours: string[]) =>
+      setSkus((xs) => xs.map((x, i) => (i === index && colours.length ? { ...x, colours } : x))),
+    [],
+  );
   const clearSkus = useCallback(() => setSkus([]), []);
 
   const value = useMemo(
-    () => ({ config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus }),
-    [config, set, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, clearSkus],
+    () => ({ config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus }),
+    [config, set, setImplied, isSet, replaceAll, shareUrl, hydrated, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail, setSkuColours, clearSkus],
   );
 
   return <LineContext.Provider value={value}>{children}</LineContext.Provider>;

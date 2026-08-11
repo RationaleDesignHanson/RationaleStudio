@@ -20,195 +20,140 @@
 
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { ProjectScope } from '@/components/case-study/ProjectScope';
-import { ArrowRight } from 'lucide-react';
-import { BudgetLever } from './BudgetLever';
 import { ReferenceUpload } from './ReferenceUpload';
 import { BrandBakeoff } from './BrandBakeoff';
-import { PlateGallery } from './PlateGallery';
 import { ShareLine } from './ShareLine';
-import { LineTray } from './LineTray';
-import { DeviationRender } from './DeviationRender';
+import { SaveLine } from './SaveLine';
+import { Lookbook } from './Lookbook';
 import { NameStep, LockupStep } from './Identity';
 import { MarkFamily } from './MarkFamily';
 import { Applied } from './Applied';
 import { ColourBeat } from './ColourBeat';
+import { PaletteBeat } from './PaletteBeat';
 import { CostSheet } from './CostSheet';
 import { GraphicBakeoff } from './GraphicBakeoff';
 import { NameIt } from './NameIt';
-import { Stepper, StepFooter, BEATS, clampStep } from './Stepper';
+import { StrategyStep } from './StrategyStep';
+import { Standing } from './Standing';
+import { ArtDirection } from './ArtDirection';
+import { WackyWordmark } from './WackyWordmark';
+import { PlaceGraphics } from './PlaceGraphics';
+import { BlankShell, sectionMeta } from './BlankShell';
 import { Disclosure } from './Disclosure';
+import { useEffect } from 'react';
 import { LineProvider, useLine } from '@/lib/blank/lineState';
-
-function Standing({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h3
-        className="text-[11px] font-mono uppercase tracking-[0.2em] pb-2 mb-3 border-b"
-        style={{ color: 'var(--era-ink)', borderColor: 'var(--era-hairline)' }}
-      >
-        {title}
-      </h3>
-      <ul className="space-y-2.5 text-[13px]" style={{ color: 'var(--era-ink-body)' }}>
-        {children}
-      </ul>
-    </div>
-  );
-}
-
-/** The close. Read this before believing any number in the beats above. */
-function Standings() {
-  return (
-    <div className="grid md:grid-cols-3 gap-8">
-      <Standing title="Settled">
-        <li>
-          Quiet costs more to make than loud. The mechanism is fixed costs and minimums, not taste —
-          strip them out and ink is what&rsquo;s left.
-        </li>
-        <li>
-          Stage 0 is decorated blanks. A cut-and-sew hero needs 86 pre-orders, or 72 if the coat and
-          trousers share one cloth.
-        </li>
-        <li>
-          The pipeline renders garment <em>categories</em>, not garment specs. Tech packs stay text
-          and vector.
-        </li>
-      </Standing>
-
-      <Standing title="Open">
-        <li>Which brand direction. Six are still live in beat 05 and none has been chosen.</li>
-        <li>
-          Retail price. It&rsquo;s the largest single margin lever in the model at 35.9 points, and
-          the tray still uses tier defaults unless you override a SKU.
-        </li>
-        <li>
-          The name is narrowed, not settled:{' '}
-          <strong style={{ color: 'var(--era-ink)' }}>Blank</strong> is the working name and the only
-          placeholder anyone is comfortable with. Beat 01 takes any word, and a longer one is
-          constrained by the platen before it is by taste.
-        </li>
-        <li>No inventory ordered, no tech pack, no supplier contacted.</li>
-      </Standing>
-
-      <Standing title="Unverified">
-        <li>
-          37 of 44 load-bearing figures are single-source or derived. The confidence marks sit on the
-          numbers themselves, not in a footnote.
-        </li>
-        <li>
-          The relabel line may be underbudgeted 3&ndash;5&times; (SR&nbsp;T15). It is exposed as a
-          toggle rather than buried.
-        </li>
-        <li>Every image here is generated. None is a photograph of product that exists.</li>
-      </Standing>
-    </div>
-  );
-}
+import { normalise } from '@/lib/blank/wordmark';
+import { DIRECTION_LABELS } from './BrandBakeoff';
 
 /**
- * One beat. Sized to fill the screen under the site header and the stepper so a
- * beat reads as a screen rather than as a section, but allowed to grow past it —
- * forcing every beat into a fixed height is what would shrink the garment and the
- * marks back down to thumbnails, which is the problem this is solving.
+ * The controls, as sidebar sections.
+ *
+ * These are the seven beats, unchanged in content and no longer alone on a
+ * screen. Every component was already self-contained, so the restructure moves
+ * them rather than rewriting them — and `config.step` still names the open one,
+ * so links written under the stepper still land where they meant to.
  */
-function Beat({
-  n,
-  title,
-  note,
-  children,
-}: {
-  n: string;
-  title: string;
-  note: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section
-      id={`beat-${n}`}
-      aria-labelledby={`beat-${n}-h`}
-      className="px-4 sm:px-6 md:px-8 py-8"
-      style={{ minHeight: 'calc(100vh - 210px)' }}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-baseline gap-3 mb-1">
-          <span className="text-[11px] font-mono tracking-[0.2em]" style={{ color: 'var(--accent)' }}>
-            {n}
-          </span>
-          <h2
-            id={`beat-${n}-h`}
-            className="font-display"
-            style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--era-ink)' }}
-          >
-            {title}
-          </h2>
-        </div>
-        <p className="text-[13px] mb-6 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-          {note}
-        </p>
-        {children}
-        <StepFooter />
-      </div>
-    </section>
-  );
-}
+function Sections() {
+  const { config, setImplied, skus } = useLine();
 
-/**
- * Only the current beat is rendered — not hidden, absent. A screen reader is
- * never walked through seven irrelevant sections, and the ~30 images belonging to
- * other beats are never requested. The cost is that find-in-page only searches
- * the beat you are on, which is the right trade for an instrument.
- */
-function Beats() {
-  const { config } = useLine();
-  const i = clampStep(config.step);
-  const b = BEATS[i];
+  /**
+   * Keep the render colourway pointed at the line.
+   *
+   * `config.colorway` is what every GENERATED image is rendered in, and the only
+   * thing that ever wrote it was the paid colour round — which now sits behind a
+   * disclosure. So picking a palette and speccing colourways, which is the
+   * normal path, left it on its default: you chose bone and olive and every
+   * render came back charcoal.
+   *
+   * Implied rather than set, because it is a consequence of the line rather than
+   * a decision of its own.
+   */
+  const leading = skus[0]?.colours[0] ?? config.palette[0];
+  useEffect(() => {
+    if (leading && leading !== config.colorway) setImplied('colorway', leading);
+  }, [leading, config.colorway, setImplied]);
+  const scale = config.strategy === 'scale';
+  const meta = (n: string) => sectionMeta(n, config.strategy);
 
   return (
-    <Beat n={b.n} title={b.title} note={b.note}>
-      {i === 0 && <NameStep />}
-      {i === 1 && (
-        <>
-          <MarkFamily />
-          <LockupStep />
-          <Disclosure
-            summary="Or artwork that has nothing to do with the name"
-            hint="describe it, or upload it — seasonal, silly, one-off"
-          >
-            <GraphicBakeoff />
-            <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-              <h4 className="font-display text-base mb-1" style={{ color: 'var(--era-ink)' }}>
-                Or bring your own
-              </h4>
-              <p className="text-[13px] mb-3 max-w-2xl" style={{ color: 'var(--era-ink-muted)' }}>
-                Same outcome from the other direction — upload artwork and it gets costed, told
-                whether it can be made, and applied to a garment.
-              </p>
-              <ReferenceUpload />
-            </div>
-          </Disclosure>
-        </>
-      )}
-      {i === 2 && <ColourBeat />}
-      {/* 04 and 05 were one beat, and it was 4.5 screens on a phone against ≤3
-          for everything else. The split is along a real seam: laying the mark out
-          across the range is free, instant and drawn in the browser, while picking
-          an aesthetic and photographing it costs a render and ten seconds. Two
-          different questions, two different price tags, two beats. */}
-      {i === 3 && <Applied />}
-      {i === 4 && (
-        <>
-          <BrandBakeoff />
-          {/* DeviationRender carries its own heading and copy. It had been wrapped
-              in a second <h3> saying nearly the same thing, so the beat showed two
-              stacked headings and the outer one had no controls under it at all. */}
-          <DeviationRender />
-        </>
-      )}
-      {i === 5 && <CostSheet />}
-      {i === 6 && <Standings />}
-    </Beat>
+    <BlankShell
+      sections={[
+        {
+          id: '01',
+          ...meta('01'),
+          body: (
+            <>
+              <StrategyStep />
+              <NameStep />
+              <Disclosure summary="Or get wacky with it" hint="six drawn takes — this one spends">
+                <WackyWordmark />
+              </Disclosure>
+            </>
+          ),
+        },
+        {
+          id: '02',
+          ...meta('02'),
+          body: scale ? (
+            <>
+              <ArtDirection />
+              <PlaceGraphics />
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+                <ReferenceUpload />
+              </div>
+              <Disclosure
+                summary="And the house mark that goes on every one"
+                hint="the neck label and the hem tag"
+              >
+                <MarkFamily />
+                <LockupStep />
+              </Disclosure>
+            </>
+          ) : (
+            <>
+              <ArtDirection />
+              <MarkFamily />
+              <LockupStep />
+              {/* Out of the disclosure. Describing an image and bringing your own
+                  are first-class ways in, not footnotes to the name-derived mark
+                  — and the tool never said it made images at all. */}
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+                <GraphicBakeoff />
+              </div>
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
+                <ReferenceUpload />
+              </div>
+            </>
+          ),
+        },
+        {
+          id: '03',
+          ...meta('03'),
+          body: (
+            <>
+              <PaletteBeat />
+              <Disclosure
+                summary="Or render a colourway as a photograph"
+                hint="six renders — this one spends"
+              >
+                <ColourBeat />
+              </Disclosure>
+            </>
+          ),
+        },
+        { id: '04', ...meta('04'), body: <Applied /> },
+        {
+          id: '05',
+          ...meta('05'),
+          body: (
+<BrandBakeoff />
+          ),
+        },
+        { id: '06', ...meta('06'), body: <CostSheet /> },
+        { id: '07', ...meta('07'), body: <Standing /> },
+      ]}
+    />
   );
 }
 
@@ -230,38 +175,17 @@ export function BlankContent() {
         <header className="px-4 sm:px-6 md:px-8 pt-4 pb-2.5">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-1">
-              <Link
-                href="/work/vault"
-                className="shrink-0 text-[11px] font-mono uppercase tracking-[0.2em] transition-colors hover:text-[var(--accent)]"
-                style={{ color: 'var(--era-ink-muted)' }}
-              >
-                ← Vault
-              </Link>
-              <ShareLine />
+              <span className="inline-flex items-center gap-4">
+                <SaveLine />
+                <ShareLine />
+              </span>
             </div>
             <NameIt />
           </div>
         </header>
 
         {/* Progress, state, and the only navigation. */}
-        <Stepper />
-
-        <Beats />
-
-        <footer className="px-4 sm:px-6 md:px-8 py-8 border-t" style={{ borderColor: 'var(--era-hairline)' }}>
-          <div className="max-w-6xl mx-auto flex items-baseline justify-between gap-3">
-            <p className="text-[11px] font-mono tracking-[0.2em] uppercase" style={{ color: 'var(--era-ink-muted)' }}>
-              ✱ · Vault · Working name
-            </p>
-            <Link
-              href="/work/vault"
-              className="inline-flex items-center gap-2 font-display italic text-lg transition-colors"
-              style={{ color: 'var(--accent)' }}
-            >
-              Back to the Vault <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </footer>
+        <Sections />
       </main>
       </LineProvider>
     </ProjectScope>

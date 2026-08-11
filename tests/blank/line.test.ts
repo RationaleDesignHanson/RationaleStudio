@@ -8,11 +8,21 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { lineTotals, costSku, STATES, blankFor, type Sku } from '@/lib/blank/line';
+import {
+  lineTotals,
+  costSku,
+  keystoneRetail,
+  overCategory,
+  KEYSTONE,
+  STATES,
+  blankFor,
+  type Sku,
+} from '@/lib/blank/line';
 import { stage0Cogs, DECO, RELABEL } from '@/lib/blank/economics';
 
 const sku = (over: Partial<Sku> = {}): Sku => ({
   garment: 'tee',
+  colours: ['faded-charcoal'],
   tier: 'full',
   graphic: 'G-tonal-emboss',
   units: 100,
@@ -29,6 +39,10 @@ describe('single SKU — must agree exactly with the per-SKU model', () => {
         decoration: state.decoration,
         run: 100,
         relabel: state.relabel,
+        // The line model orders a size run, so it asks for the 2XL upcharge.
+        // The invariant is that the two models agree given the SAME inputs —
+        // not that the line model ignores a cost the per-SKU quote excludes.
+        includeSizeUpcharge: true,
       }).landedCOGS * 100;
 
     expect(lineTotals([s]).totalCost).toBeCloseTo(direct, 6);
@@ -164,10 +178,14 @@ describe('margin', () => {
 
 
 describe('retail override — the largest margin lever in the model', () => {
-  it('defaults to the tier price when unset', () => {
-    const s = sku();
-    const state = STATES.find((x) => x.slug === 'full')!;
-    expect(costSku(s).retail).toBe(state.retail);
+  it('defaults to the keystone price, and it does not move with order volume', () => {
+    // Price is a property of the style; volume is a property of the order.
+    // Deriving from the actual landed cost made retail FALL when you bought
+    // more blanks, which is not how anyone prices.
+    const at50 = costSku({ ...sku(), units: 50 }).retail;
+    const at300 = costSku({ ...sku(), units: 300 }).retail;
+    expect(at50).toBe(at300);
+    expect(at50 % 5).toBe(0);
   });
 
   it('an override changes revenue and blended margin', () => {
@@ -189,9 +207,9 @@ describe('retail override — the largest margin lever in the model', () => {
   });
 
   it('ignores a zero or negative override instead of dividing by zero', () => {
-    const state = STATES.find((x) => x.slug === 'full')!;
-    expect(costSku(sku({ retail: 0 })).retail).toBe(state.retail);
-    expect(costSku(sku({ retail: -5 })).retail).toBe(state.retail);
+    const derived = costSku(sku()).retail;
+    expect(costSku(sku({ retail: 0 })).retail).toBe(derived);
+    expect(costSku(sku({ retail: -5 })).retail).toBe(derived);
     expect(Number.isFinite(lineTotals([sku({ retail: 0 })]).blendedMargin)).toBe(true);
   });
 
@@ -199,5 +217,236 @@ describe('retail override — the largest margin lever in the model', () => {
     // Single SKU: the SKU margin and the line margin must agree exactly.
     const t = lineTotals([sku({ retail: 150 })]);
     expect(t.items[0].margin).toBeCloseTo(t.blendedMargin, 6);
+  });
+});
+
+/**
+ * The catalogue multiplier.
+ *
+ * This encodes the argument the two-business fork exists to make, so it is
+ * pinned rather than left to the interface to be right about: setup amortises
+ * for ONE artwork and does not amortise at all for many, and the only
+ * decoration that survives a wide catalogue is the one with no setup.
+ */
+describe('lineTotals — designs multiplier', () => {
+  const tee = (tier: string): Sku => ({
+    garment: 'tee',
+    tier,
+    units: 50,
+    colours: ['faded-charcoal'],
+    graphic: null,
+  });
+
+  it('is unchanged at one design', () => {
+    const a = lineTotals([tee('graphic')]);
+    const b = lineTotals([tee('graphic')], 1);
+    expect(b.totalCost).toBeCloseTo(a.totalCost, 6);
+    expect(b.totalUnits).toBe(a.totalUnits);
+  });
+
+  it('multiplies units and revenue by the catalogue', () => {
+    const one = lineTotals([tee('graphic')], 20);
+    expect(one.totalUnits).toBe(lineTotals([tee('graphic')], 1).totalUnits * 20);
+    expect(one.totalRevenue).toBeCloseTo(lineTotals([tee('graphic')], 1).totalRevenue * 20, 6);
+  });
+
+  it('buys the blanks cheaper at catalogue volume — 20x units is LESS than 20x cost', () => {
+    // Not a rounding artefact: 20 designs x 50 is a thousand-piece blank order,
+    // and pricing it in the 50-piece band was a real overcharge.
+    const one = lineTotals([tee('graphic')], 1);
+    const many = lineTotals([tee('graphic')], 20);
+    expect(many.variableTotal).toBeLessThan(one.variableTotal * 20);
+    expect(many.variableTotal).toBeGreaterThan(one.variableTotal * 15);
+  });
+
+  it('heat-press carries NO setup however wide the catalogue gets', () => {
+    // The whole reason a shirt-per-place line is possible.
+    for (const n of [1, 20, 200]) {
+      expect(lineTotals([tee('graphic')], n).sharedFixed.screens).toBe(0);
+    }
+    expect(lineTotals([tee('graphic')], 200).sharedFixed.total).toBe(0);
+  });
+
+  it('screen setup grows linearly with the catalogue, so it never amortises', () => {
+    const one = lineTotals([tee('washed')], 1);
+    const many = lineTotals([tee('washed')], 40);
+    expect(one.sharedFixed.screens).toBeGreaterThan(0);
+    expect(many.sharedFixed.screens).toBeCloseTo(one.sharedFixed.screens * 40, 6);
+  });
+
+  it('screen setup per unit is FLAT across catalogue width — it buys no efficiency', () => {
+    // The trap, stated as the number it actually is. 40x the screens over 40x
+    // the units is the same $1.10 a shirt it was at one design, so widening the
+    // catalogue does not earn the setup back the way deeper runs would.
+    const perUnit = (n: number) => {
+      const r = lineTotals([tee('washed')], n);
+      return r.sharedFixed.screens / r.totalUnits;
+    };
+    expect(perUnit(1)).toBeCloseTo(perUnit(40), 9);
+    expect(perUnit(1)).toBeCloseTo(perUnit(200), 9);
+    expect(perUnit(40)).toBeGreaterThan(0);
+  });
+
+  it('amortises the neck screen and the blank order, but never the per-design screens', () => {
+    // The two honest efficiencies of scale, and the one thing that is not.
+    const narrow = lineTotals([tee('washed')], 1);
+    const wide = lineTotals([tee('washed')], 40);
+    expect(wide.sharedFixed.neckSetup).toBe(narrow.sharedFixed.neckSetup); // paid once
+    expect(wide.cogsPerUnit).toBeLessThan(narrow.cogsPerUnit); // blanks get cheaper
+    expect(wide.sharedFixed.screens).toBeGreaterThan(narrow.sharedFixed.screens); // screens do not
+  });
+
+  it('heat-press is far cheaper per unit than screen once nothing amortises', () => {
+    const press = lineTotals([tee('graphic')], 40).cogsPerUnit;
+    const screen = lineTotals([tee('washed')], 40).cogsPerUnit;
+    expect(press).toBeLessThan(screen * 0.6);
+  });
+
+  it('clamps a nonsense catalogue size rather than producing a nonsense line', () => {
+    expect(lineTotals([tee('graphic')], 0).totalUnits).toBe(50);
+    expect(lineTotals([tee('graphic')], -5).totalUnits).toBe(50);
+  });
+});
+
+/**
+ * Retail defaults, per garment.
+ *
+ * The pre-existing tests only ever asserted the TEE, whose ratio is 1.0, so they
+ * kept passing through a change that repriced every other garment. These pin the
+ * two ceilings review caught: a cap must not be marked below a tee it costs more
+ * than, and a decorated stock hoodie must not out-price the cut-and-sew hero.
+ */
+describe('retail, from a keystone multiple', () => {
+  it('is landed cost times the multiple, at a real price point', () => {
+    expect(keystoneRetail(8)).toBe(35); // 8 x 4.5 = 36 -> 35
+    expect(keystoneRetail(20)).toBe(90);
+    for (const c of [3, 8.09, 21.77, 52.63]) expect(keystoneRetail(c) % 5).toBe(0);
+  });
+
+  it('never returns a price below a floor, however cheap the garment', () => {
+    expect(keystoneRetail(0)).toBeGreaterThan(0);
+    expect(keystoneRetail(0.4)).toBeGreaterThanOrEqual(5);
+  });
+
+  it('holds the multiple the trade actually needs', () => {
+    // Below 4x is a hobby once fees, postage, returns and dead stock are paid.
+    expect(KEYSTONE).toBeGreaterThanOrEqual(4);
+    expect(KEYSTONE).toBeLessThanOrEqual(6);
+  });
+
+  it('DIAGNOSES an expensive blank in a cheap tier instead of hiding it', () => {
+    // The 14oz fleece at the graphic tier lands around $52, and keystone asks a
+    // price nobody pays for a graphic hoodie. That is the signal: wrong blank
+    // for the tier. The old ratio said $65 and showed a red margin, which reads
+    // as a pricing problem when it is a sourcing one.
+    const hoodie = costSku({ garment: 'hoodie', tier: 'graphic', units: 50, colours: ['bone'], graphic: null });
+    expect(overCategory('hoodie', hoodie.retail)).toBe(true);
+  });
+
+  it('does not flag a price the category plainly bears', () => {
+    const tee = costSku({ garment: 'tee', tier: 'graphic', units: 50, colours: ['bone'], graphic: null });
+    expect(overCategory('tee', tee.retail)).toBe(false);
+  });
+
+  it('an explicit price always wins over the derived one', () => {
+    const s = costSku({ garment: 'tee', tier: 'graphic', units: 50, colours: ['bone'], graphic: null, retail: 42 });
+    expect(s.retail).toBe(42);
+  });
+});
+
+/**
+ * Blanks are bought as ONE order across the catalogue even though setup is not.
+ * Both halves matter: getting this wrong in either direction makes the sheet
+ * argue for or against the catalogue on a number that is simply incorrect.
+ */
+describe('lineTotals — purchasing volume across designs', () => {
+  const tee = (units: 25 | 50): Sku => ({
+    garment: 'tee',
+    tier: 'graphic',
+    units,
+    colours: ['faded-charcoal'],
+    graphic: null,
+  });
+
+  it('prices blanks at the band the whole order clears, not one design', () => {
+    // 24 x 25 = 600 pieces, which clears the deepest band.
+    expect(lineTotals([tee(25)], 24).cogsPerUnit).toBeLessThan(lineTotals([tee(25)], 1).cogsPerUnit);
+  });
+
+  it('still charges setup per design — volume does not rescue a screen line', () => {
+    const wide = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, colours: ['faded-charcoal'], graphic: null }], 24);
+    const one = lineTotals([{ garment: 'tee', tier: 'washed', units: 25, colours: ['faded-charcoal'], graphic: null }], 1);
+    expect(wide.sharedFixed.screens).toBeCloseTo(one.sharedFixed.screens * 24, 6);
+  });
+
+  it('is unchanged for a single-design line', () => {
+    expect(lineTotals([tee(50)], 1).cogsPerUnit).toBeCloseTo(lineTotals([tee(50)]).cogsPerUnit, 9);
+  });
+});
+
+/**
+ * Colourways cost something.
+ *
+ * They cost nothing at all before this: a SKU knew its garment, decoration, run
+ * and price and not its colour, so the most important axis in the tool was the
+ * one axis with no consequence in the model. These pin the trade in both
+ * directions, because getting it wrong either way misleads the decision.
+ */
+describe('lineTotals — colourways', () => {
+  const tee = (colours: string[], units: 25 | 50 | 100 = 50): Sku => ({
+    garment: 'tee',
+    tier: 'graphic',
+    units,
+    colours,
+    graphic: null,
+  });
+
+  it('counts units per colourway — two colours at 50 is a hundred pieces', () => {
+    expect(lineTotals([tee(['bone', 'olive'])]).totalUnits).toBe(100);
+    expect(lineTotals([tee(['bone'])]).totalUnits).toBe(50);
+  });
+
+  it('does NOT invent a price penalty for splitting a run across colours', () => {
+    // This asserted the opposite until a trade review pointed out the error: a
+    // distributor takes ONE purchase order across colours and prices it on total
+    // pieces, so a hundred split two ways clears the same band as a hundred in
+    // one. Charging the shallower band overstated the very trade the colourway
+    // feature exists to show — roughly 5% over on the blank.
+    //
+    // A colourway still costs. It costs because the units double, and because
+    // MOQ and dye-lot risk are per colour. It does not need an invented band.
+    const deep = lineTotals([tee(['bone'], 100)]);
+    const split = lineTotals([tee(['bone', 'olive'], 50)]);
+    expect(split.totalUnits).toBe(deep.totalUnits);
+    expect(split.cogsPerUnit).toBeCloseTo(deep.cogsPerUnit, 6);
+  });
+
+  it('still doubles the buy for a second colourway, which is the real cost', () => {
+    const one = lineTotals([tee(['bone'], 50)]);
+    const two = lineTotals([tee(['bone', 'olive'], 50)]);
+    expect(two.totalUnits).toBe(one.totalUnits * 2);
+    expect(two.variableTotal).toBeGreaterThan(one.variableTotal * 1.8);
+  });
+
+  it('does NOT charge a second screen for a second colourway', () => {
+    // The garment changes colour; the artwork does not. Charging per colourway
+    // here would invent a cost and argue against colour for the wrong reason.
+    const one = lineTotals([{ ...tee(['bone']), tier: 'washed' }]);
+    const two = lineTotals([{ ...tee(['bone', 'olive']), tier: 'washed' }]);
+    expect(two.sharedFixed.screens).toBe(one.sharedFixed.screens);
+  });
+
+  it('scales revenue with colourways, so margin is unchanged by colour alone', () => {
+    const one = lineTotals([tee(['bone'])]);
+    const two = lineTotals([tee(['bone', 'olive'])]);
+    expect(two.totalRevenue).toBeCloseTo(one.totalRevenue * 2, 6);
+    // Cost and revenue both double, so the ratio barely moves — colour is a
+    // depth decision, not a margin one.
+    expect(Math.abs(two.blendedMargin - one.blendedMargin)).toBeLessThan(0.02);
+  });
+
+  it('composes with the catalogue multiplier', () => {
+    const wide = lineTotals([tee(['bone', 'olive'])], 10);
+    expect(wide.totalUnits).toBe(50 * 2 * 10);
   });
 });

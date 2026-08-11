@@ -69,8 +69,7 @@ export function NameIt() {
         <p className="text-sm md:text-base min-w-0" style={{ color: 'var(--era-ink-body)' }}>
           Name it, then price it.{' '}
           <span style={{ color: 'var(--era-ink-muted)' }}>
-            Quiet is expensive to make and loud is cheap — and how long the word is decides what can
-            be made at all.
+            How long the word is decides what can be made at all.
           </span>
         </p>
       </div>

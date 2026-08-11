@@ -33,14 +33,20 @@ import Image from 'next/image';
 import { useEffect, useMemo } from 'react';
 import { useLine } from '@/lib/blank/lineState';
 import {
+  KEYSTONE,
+  blankFor,
   costSku,
+  overCategory,
   lineTotals,
   GARMENTS,
   STATES,
   tierIndex,
   type Sku,
 } from '@/lib/blank/line';
-import { RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
+import { DECO, RUN_SIZES, MARGIN_FLOOR, type RunSize } from '@/lib/blank/economics';
+import { paletteById, STAGE0_COLOURWAY_LIMIT } from '@/lib/blank/palettes';
+import { fabricFor, onCloth } from '@/lib/blank/fabric';
+import { sizeBreakdown } from '@/lib/blank/sizes';
 import { METHOD_LABEL, METHOD_MEANING, TIER_METHOD } from '@/lib/blank/producible';
 
 const dollars = (n: number) => `$${n.toFixed(2)}`;
@@ -48,17 +54,33 @@ const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
 export function CostSheet() {
-  const { config, set, skus, addSku, removeSku, setSkuUnits, setSkuTier, setSkuRetail } = useLine();
+  const {
+    config,
+    set,
+    setImplied,
+    skus,
+    addSku,
+    removeSku,
+    setSkuUnits,
+    setSkuTier,
+    setSkuRetail,
+    setSkuColours,
+  } = useLine();
 
   const rowFor = (garment: string) => skus.findIndex((s) => s.garment === garment);
-  const totals = useMemo(() => lineTotals(skus), [skus]);
+  // The catalogue multiplier. A row is priced PER DESIGN; the totals carry the
+  // count, so a 40-place line does not print 120 rows to say one thing.
+  const designs = config.strategy === 'scale' ? config.designs : 1;
+  const dtf = config.dtfCents > 0 ? config.dtfCents / 100 : undefined;
+  const totals = useMemo(() => lineTotals(skus, designs, dtf), [skus, designs, dtf]);
   const clears = totals.blendedMargin >= MARGIN_FLOOR;
 
   // The first included style is what the identity beats gate against.
   const lead = skus[0]?.tier;
   useEffect(() => {
-    if (lead && lead !== config.budget) set('budget', lead);
-  }, [lead, config.budget, set]);
+    // Read off the leading row, so it is derived rather than chosen.
+    if (lead && lead !== config.budget) setImplied('budget', lead);
+  }, [lead, config.budget, setImplied]);
 
   // Built once and rendered twice — as a table on a real screen, as cards on a
   // phone. Seven columns of live controls forced the table to 931px inside a
@@ -74,8 +96,11 @@ export function CostSheet() {
       : {
           garment: gm.key,
           tier: config.budget,
+          colours: config.palette.length ? [config.palette[0]] : ['faded-charcoal'],
           graphic: config.mark,
-          units: STATES[tierIndex(config.budget)].run,
+          // A catalogue runs shallow on each place; a considered line runs deep
+          // on a few styles. Same control, different sane starting point.
+          units: config.strategy === 'scale' ? 25 : STATES[tierIndex(config.budget)].run,
         };
     return { gm, idx, inLine, preview, c: costSku(preview) };
   });
@@ -111,7 +136,7 @@ export function CostSheet() {
       onChange={(e) => (inLine ? setSkuTier(idx, e.target.value) : set('budget', e.target.value))}
       aria-label={`${gm.label} decoration`}
       title={METHOD_MEANING[TIER_METHOD[tierIndex(preview.tier)]]}
-      className="w-full min-w-0 bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)]"
+      className="w-full min-w-0 bg-transparent border px-1.5 py-1 b-note outline-none focus:border-[var(--accent)]"
       style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
     >
       {STATES.map((st, n) => (
@@ -128,7 +153,7 @@ export function CostSheet() {
       onChange={(e) => inLine && setSkuUnits(idx, Number(e.target.value) as RunSize)}
       disabled={!inLine}
       aria-label={`${gm.label} run size`}
-      className="bg-transparent border px-1.5 py-1 text-[12px] sm:text-[11px] outline-none focus:border-[var(--accent)] disabled:opacity-60"
+      className="bg-transparent border px-1.5 py-1 b-note outline-none focus:border-[var(--accent)] disabled:opacity-60"
       style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
     >
       {RUN_SIZES.map((u) => (
@@ -139,7 +164,9 @@ export function CostSheet() {
     </select>
   );
 
-  const price = ({ gm, idx, inLine, c }: Row) => (
+  // A price nobody typed should not look like a price somebody typed. `sku.retail`
+  // is undefined until it is edited, so the default is shown muted and titled.
+  const price = ({ gm, idx, inLine, c, preview }: Row) => (
     <span className="whitespace-nowrap">
       <span style={{ color: 'var(--era-ink-muted)' }}>$</span>
       <input
@@ -149,19 +176,98 @@ export function CostSheet() {
         onChange={(e) => inLine && setSkuRetail(idx, Number(e.target.value) || undefined)}
         disabled={!inLine}
         aria-label={`${gm.label} price`}
+        title={
+          preview.retail === undefined
+            ? `Derived: ${KEYSTONE}x landed cost. Not a price you set.`
+            : undefined
+        }
         size={1}
         className="tap w-14 py-1 bg-transparent border-b outline-none tabular-nums focus:border-[var(--accent)] disabled:opacity-60 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        style={{ borderColor: 'var(--era-hairline)', color: 'var(--era-ink)' }}
+        style={{
+          borderColor: 'var(--era-hairline)',
+          color: preview.retail === undefined ? 'var(--era-ink-muted)' : 'var(--era-ink)',
+        }}
       />
     </span>
   );
+
+  /**
+   * Which colourways this style is made in.
+   *
+   * Drawn from the line palette rather than the full set, because that is what
+   * makes a range a range — and shown on this row's own cloth, since a colour is
+   * not the same colour on a 4.3oz jersey and a 14oz fleece.
+   */
+  const colourways = ({ gm, idx, inLine, preview }: Row) => {
+    const blank = blankFor(gm.key, tierIndex(preview.tier));
+    const fabric = fabricFor(blank.id);
+    if (config.palette.length === 0) {
+      return (
+        <span className="b-note" style={{ color: 'var(--era-ink-muted)' }}>
+          pick a palette in 03
+        </span>
+      );
+    }
+    return (
+      <span className="flex flex-wrap gap-1 items-center">
+        {config.palette.map((id) => {
+          const pal = paletteById(id);
+          if (!pal) return null;
+          const on = preview.colours.includes(id);
+          return (
+            <button
+              key={id}
+              onClick={() => {
+                if (!inLine) return;
+                const next = on
+                  ? preview.colours.filter((c) => c !== id)
+                  : [...preview.colours, id];
+                // Never zero — a style with no colour is not a style.
+                if (next.length) setSkuColours(idx, next);
+              }}
+              disabled={!inLine}
+              aria-pressed={on}
+              aria-label={`${pal.name} for the ${gm.label}`}
+              title={pal.name}
+              className="tap block"
+              style={{
+                width: 18,
+                height: 18,
+                // The global button rule is `min-width: 44px` as well as
+                // min-height, so a swatch chip renders as a 44px bar unless
+                // BOTH are reset. `.tap` only resets them on a coarse pointer.
+                minHeight: 0,
+                minWidth: 0,
+                padding: 0,
+                backgroundColor: onCloth(pal.hex, fabric),
+                outline: on ? '2px solid var(--accent)' : '1px solid var(--era-hairline)',
+                outlineOffset: on ? 1 : -1,
+                opacity: on ? 1 : 0.4,
+              }}
+            />
+          );
+        })}
+        {preview.colours.length > STAGE0_COLOURWAY_LIMIT && (
+          <span className="b-data" style={{ color: '#A8456E' }}>
+            {preview.colours.length} — Stage 0 takes {STAGE0_COLOURWAY_LIMIT}
+          </span>
+        )}
+      </span>
+    );
+  };
+
+  /** The run broken into pieces — what an order actually says. */
+  const runNote = ({ gm, preview }: Row) =>
+    sizeBreakdown(preview.units, gm.key)
+      .map((x) => `${x.size} ${x.qty}`)
+      .join('  ') + ` per colourway × ${preview.colours.length}`;
 
   const marginColour = (m: number) => (m >= MARGIN_FLOOR ? 'var(--era-ink)' : '#A8456E');
 
   return (
     <div className="my-2">
       {/* PHONE — one card per style, so cost, price and margin are all on screen. */}
-      <div className="sm:hidden font-mono text-[13px] tabular-nums space-y-3">
+      <div className="sm:hidden b-data space-y-3">
         {rows.map((r) => (
           <div
             key={r.gm.key}
@@ -172,13 +278,14 @@ export function CostSheet() {
             <div className="mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 items-center">
               <Field label="Decoration" />
               {decoration(r)}
-              <Field label="Blank" />
-              <span className="truncate" style={{ color: 'var(--era-ink-muted)' }}>
-                {r.c.blank.name}
-              </span>
+              <Field label="Colours" />
+              {colourways(r)}
               <Field label="Units" />
-              <span>
-                {units(r)}
+              <span>{units(r)}</span>
+              <Field label="Pieces" />
+              <span title={runNote(r)}>
+                {r.preview.units * r.preview.colours.length}{' '}
+                <span style={{ color: 'var(--era-ink-muted)' }}>· {r.c.blank.name}</span>
               </span>
               <Field label="Cost/unit" />
               <span style={{ color: 'var(--era-ink)' }}>{dollars(r.c.variablePerUnit)}</span>
@@ -193,13 +300,13 @@ export function CostSheet() {
 
       {/* DESKTOP — the sheet as a sheet. */}
       <div className="hidden sm:block overflow-x-auto">
-        <table className="w-full min-w-[720px] border-collapse font-mono text-[12px] tabular-nums">
+        <table className="w-full min-w-[720px] border-collapse b-data">
           <thead>
             <tr style={{ color: 'var(--era-ink-muted)' }}>
-              {['Style', 'Decoration', 'Blank', 'Units', 'Cost/unit', 'Price', 'Margin'].map((h) => (
+              {['Style', 'Decoration', 'Colourways', 'Units', 'Pieces', 'Cost/unit', 'Price', 'Margin'].map((h) => (
                 <th
                   key={h}
-                  className="text-left font-normal text-[10px] uppercase tracking-[0.15em] pb-2 border-b"
+                  className="text-left font-normal b-note uppercase tracking-[0.15em] pb-2 border-b"
                   style={{ borderColor: 'var(--era-hairline)' }}
                 >
                   {h}
@@ -220,11 +327,10 @@ export function CostSheet() {
                 <td className="py-2 pr-3">
                   {decoration(r)}
                 </td>
-                <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }}>
-                  {r.c.blank.name}
-                </td>
-                <td className="py-2 pr-3">
-                  {units(r)}
+                <td className="py-2 pr-3">{colourways(r)}</td>
+                <td className="py-2 pr-3">{units(r)}</td>
+                <td className="py-2 pr-3" style={{ color: 'var(--era-ink-muted)' }} title={runNote(r)}>
+                  {r.preview.units * r.preview.colours.length}
                 </td>
                 <td className="py-2 pr-3" style={{ color: 'var(--era-ink)' }}>
                   {dollars(r.c.variablePerUnit)}
@@ -234,6 +340,15 @@ export function CostSheet() {
                 </td>
                 <td className="py-2" style={{ color: marginColour(r.c.margin) }}>
                   {pct(r.c.margin)}
+                  {overCategory(r.gm.key, r.c.retail) && (
+                    <span
+                      className="block b-note"
+                      style={{ color: '#A8456E' }}
+                      title={`${KEYSTONE}x this blank's landed cost asks more than the category bears. The blank is too dear for this tier.`}
+                    >
+                      blank too dear
+                    </span>
+                  )}
                 </td>
               </tr>
             ))}
@@ -241,14 +356,43 @@ export function CostSheet() {
         </table>
       </div>
 
-      <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
-        Cost per unit excludes setup — digitizing, screens and the woven-label minimum are charged
-        once across the collection, so they land in the buy below rather than on every unit. Rows you
-        have not ticked are previewed at the leading style&rsquo;s decoration.
+      {/* The one soft number the whole wide-catalogue argument rests on, made
+          adjustable rather than replaced with a different guess. */}
+      {skus.some((x) => x.tier === 'graphic') && (
+        <label className="flex items-center gap-3 mt-4 max-w-md">
+          <span className="b-label shrink-0" style={{ width: '9rem' }}>
+            Heat-press per print
+          </span>
+          <input
+            type="range"
+            min={DECO.dtfRange.min * 100}
+            max={DECO.dtfRange.max * 100}
+            step={25}
+            value={config.dtfCents > 0 ? config.dtfCents : DECO.dtfPerPrint.value * 100}
+            onChange={(e) => set('dtfCents', Number(e.target.value))}
+            className="tap flex-1 min-w-0 accent-[var(--accent)]"
+            style={{ minHeight: 0 }}
+          />
+          <span className="b-data shrink-0 text-right" style={{ width: '3.5rem' }}>
+            ${((config.dtfCents > 0 ? config.dtfCents : DECO.dtfPerPrint.value * 100) / 100).toFixed(2)}
+          </span>
+        </label>
+      )}
+
+      <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
+        Cost per unit excludes setup — digitizing, screens and the woven-label minimum land in the
+        buy below.{' '}
+        {designs > 1
+          ? 'They are charged per design, not once.'
+          : 'They are charged once across the collection.'}{' '}
+        Unticked rows are previewed at the leading style&rsquo;s decoration.
+        {designs > 1 && (
+          <> Row figures are <strong>per place</strong>; the totals carry all {designs}.</>
+        )}
       </p>
 
       {skus.length === 0 ? (
-        <p className="mt-5 text-[13px]" style={{ color: 'var(--accent)' }}>
+        <p className="mt-5 b-body" style={{ color: 'var(--accent)' }}>
           Nothing in the line yet — tick a style above.
         </p>
       ) : (
@@ -256,10 +400,25 @@ export function CostSheet() {
           className="mt-6 border-t pt-4 grid sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-x-8 gap-y-2"
           style={{ borderColor: 'var(--era-hairline)' }}
         >
-          <dl className="font-mono text-[12px] tabular-nums space-y-1.5">
-            <Line label="Units" value={String(totals.totalUnits)} />
+          <dl className="b-data space-y-1.5">
+            <Line
+              label={designs > 1 ? `Units · ${designs} variants` : 'Units'}
+              value={String(totals.totalUnits)}
+            />
             <Line label="Variable" value={money(totals.variableTotal)} />
-            <Line label="Setup, paid once" value={money(totals.sharedFixed.total)} />
+            {/* Not simply "paid N×": the neck screen is the house brand and is
+                charged once however many designs hang off it, so the label would
+                overstate what happened to that $25. */}
+            <Line
+              label={
+                designs > 1
+                  ? totals.sharedFixed.neckSetup > 0
+                    ? `Setup · ${designs}× + neck once`
+                    : `Setup, paid ${designs}×`
+                  : 'Setup, paid once'
+              }
+              value={money(totals.sharedFixed.total)}
+            />
             <Line label="Total buy" value={money(totals.totalCost)} strong />
             <Line label="COGS / unit" value={dollars(totals.cogsPerUnit)} />
             <Line label="Revenue at list" value={money(totals.totalRevenue)} />
@@ -271,15 +430,32 @@ export function CostSheet() {
             />
           </dl>
 
-          <div className="text-[12px]" style={{ color: 'var(--era-ink-body)' }}>
-            {totals.fixedSaving > 0 && (
+          <div className="b-note" style={{ color: 'var(--era-ink-body)' }}>
+            {designs > 1 ? (
               <p>
-                Buying these together saves{' '}
-                <strong style={{ color: 'var(--accent)' }}>{money(totals.fixedSaving)}</strong> in
-                setup against costing each style on its own. Digitizing is per artwork, the back-neck
-                screen is per order, and the 200-piece woven-label minimum is a line minimum — not
-                one each.
+                <strong style={{ color: 'var(--era-ink)' }}>
+                  Setup is paid {designs} times, not once.
+                </strong>{' '}
+                A screen is cut per colour per design, so the fixed cost grows with the catalogue.
+                Setup here is{' '}
+                <strong style={{ color: totals.sharedFixed.total > 0 ? '#A8456E' : 'var(--accent)' }}>
+                  {money(totals.sharedFixed.total)}
+                </strong>
+                {totals.sharedFixed.total === 0
+                  ? ' — heat-press has no screen to make, so the ' +
+                    designs +
+                    'th design costs what the first one did.'
+                  : ' before a single garment is bought. Move every row to heat-press and it goes to zero.'}
               </p>
+            ) : (
+              totals.fixedSaving > 0 && (
+                <p>
+                  Buying these together saves{' '}
+                  <strong style={{ color: 'var(--accent)' }}>{money(totals.fixedSaving)}</strong> in
+                  setup. Digitizing is per artwork, the back-neck screen is per order, and the
+                  200-piece woven-label minimum is per line, not one each.
+                </p>
+              )
             )}
             {!clears && (
               <p className="mt-2" style={{ color: '#A8456E' }}>
@@ -287,9 +463,8 @@ export function CostSheet() {
                 revenue at this cost — raise a price, cut a style, or run deeper.
               </p>
             )}
-            <p className="mt-2 text-[11px]" style={{ color: 'var(--era-ink-muted)' }}>
-              Stage 0 blanks only. No hero, no duty — blanks land already imported. Figures carry the
-              confidence marks used throughout.
+            <p className="mt-2 b-note" style={{ color: 'var(--era-ink-muted)' }}>
+              Stage 0 blanks only. No hero, no duty — blanks land already imported.
             </p>
           </div>
         </div>
@@ -302,7 +477,7 @@ export function CostSheet() {
 function Field({ label }: { label: string }) {
   return (
     <span
-      className="text-[11px] uppercase tracking-[0.15em]"
+      className="b-note uppercase tracking-[0.15em]"
       style={{ color: 'var(--era-ink-muted)' }}
     >
       {label}

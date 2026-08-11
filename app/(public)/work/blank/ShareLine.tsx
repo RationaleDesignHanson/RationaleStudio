@@ -57,7 +57,7 @@ export function ShareLine() {
     <div className="flex items-center gap-2 min-w-0">
       <button
         onClick={copy}
-        className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border transition-colors"
+        className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 b-label border transition-colors"
         style={{
           borderColor: copied ? 'var(--accent)' : 'var(--era-hairline)',
           color: copied ? 'var(--accent)' : 'var(--era-ink)',
