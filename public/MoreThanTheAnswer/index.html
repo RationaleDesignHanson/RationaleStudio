@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More Than the Answer — Figma Plugin Catalogue · Rationale</title>
+<meta name="description" content="A deduped catalogue of every Figma plugin built across the Rationale / Hanson workspace and backup drive — manifests, implementation, results, and provenance. The work behind the answer.">
+<meta name="theme-color" content="#4f5bd5">
+<meta property="og:title" content="More Than the Answer — Figma Plugin Catalogue">
+<meta property="og:description" content="Sixty-six manifest files, deduped to ~13 real plugins across four project families — with the process, code, and results behind each.">
+<meta property="og:type" content="article">
+<style>
+  :root{
+    --paper:#f8f9fc; --surface:#ffffff; --surface-2:#f1f4f9;
+    --ink:#171a21; --ink-soft:#3b4251; --muted:#69717f;
+    --line:#e2e7ef; --line-soft:#eef1f6;
+    --accent:#4f5bd5; --accent-ink:#3742b8; --accent-soft:#ecedfb;
+    --warn:#a8620a; --warn-soft:#f9edd9; --warn-line:#e6cf9f;
+    --ok:#0c7a5e;
+    --fam-heirloom:#c2683a; --fam-rumi:#7c4dd1; --fam-zero:#0f9184;
+    --fam-ds:#a9791a; --fam-misc:#6b7280;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    --font-mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --maxw:940px;
+    --radius:12px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0e1015; --surface:#161a22; --surface-2:#1b2029;
+      --ink:#e9ecf3; --ink-soft:#c2c8d5; --muted:#8a92a2;
+      --line:#262c38; --line-soft:#1e232d;
+      --accent:#8b93f0; --accent-ink:#a7aef5; --accent-soft:#1d2135;
+      --warn:#e6a94b; --warn-soft:#2a2114; --warn-line:#4a3a1c;
+      --ok:#3cc39c;
+      --fam-heirloom:#e08a55; --fam-rumi:#a785e8; --fam-zero:#33b6a6;
+      --fam-ds:#d5a943; --fam-misc:#9aa2b1;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#f8f9fc; --surface:#ffffff; --surface-2:#f1f4f9;
+    --ink:#171a21; --ink-soft:#3b4251; --muted:#69717f;
+    --line:#e2e7ef; --line-soft:#eef1f6;
+    --accent:#4f5bd5; --accent-ink:#3742b8; --accent-soft:#ecedfb;
+    --warn:#a8620a; --warn-soft:#f9edd9; --warn-line:#e6cf9f; --ok:#0c7a5e;
+    --fam-heirloom:#c2683a; --fam-rumi:#7c4dd1; --fam-zero:#0f9184;
+    --fam-ds:#a9791a; --fam-misc:#6b7280;
+  }
+  :root[data-theme="dark"]{
+    --paper:#0e1015; --surface:#161a22; --surface-2:#1b2029;
+    --ink:#e9ecf3; --ink-soft:#c2c8d5; --muted:#8a92a2;
+    --line:#262c38; --line-soft:#1e232d;
+    --accent:#8b93f0; --accent-ink:#a7aef5; --accent-soft:#1d2135;
+    --warn:#e6a94b; --warn-soft:#2a2114; --warn-line:#4a3a1c; --ok:#3cc39c;
+    --fam-heirloom:#e08a55; --fam-rumi:#a785e8; --fam-zero:#33b6a6;
+    --fam-ds:#d5a943; --fam-misc:#9aa2b1;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-sans); font-size:16px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- typography ---------- */
+  h1,h2,h3{ text-wrap:balance; line-height:1.14; letter-spacing:-0.015em; margin:0; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--accent-ink); font-weight:600;
+  }
+  .lead{ font-size:clamp(17px,1.4vw,19px); color:var(--ink-soft); max-width:64ch; }
+  a{color:var(--accent-ink); text-decoration:none; border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);}
+  a:hover{border-bottom-color:var(--accent);}
+  code, .mono{font-family:var(--font-mono);}
+  code{
+    font-size:.86em; background:var(--surface-2); color:var(--ink-soft);
+    padding:.08em .38em; border-radius:5px; border:1px solid var(--line-soft);
+    word-break:break-word;
+  }
+
+  /* ---------- header ---------- */
+  header.hero{ padding:72px 0 34px; border-bottom:1px solid var(--line); }
+  header.hero h1{ font-size:clamp(30px,5vw,46px); font-weight:680; margin:.34em 0 .28em; }
+  .accent-under{
+    display:inline-block; position:relative;
+  }
+  .accent-under::after{
+    content:""; position:absolute; left:0; right:0; bottom:-6px; height:3px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+    border-radius:2px;
+  }
+  .statgrid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; margin-top:30px;
+  }
+  .stat{ background:var(--surface); padding:16px 18px; }
+  .stat .n{ font-family:var(--font-mono); font-size:26px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .stat .l{ font-size:12.5px; color:var(--muted); margin-top:2px; }
+  @media(max-width:640px){ .statgrid{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- families legend / filter ---------- */
+  .families{ display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 4px; align-items:center; }
+  .families .hint{ font-size:12.5px; color:var(--muted); margin-right:4px; }
+  .fam-btn{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.02em;
+    display:inline-flex; align-items:center; gap:7px;
+    padding:6px 11px 6px 9px; border-radius:999px; cursor:pointer;
+    background:var(--surface); border:1px solid var(--line); color:var(--ink-soft);
+    transition:border-color .15s, background .15s, opacity .15s;
+  }
+  .fam-btn .dot{ width:9px; height:9px; border-radius:50%; background:var(--fc,var(--muted)); flex:none; }
+  .fam-btn[aria-pressed="true"]{ border-color:var(--fc); background:color-mix(in oklab,var(--fc) 12%,var(--surface)); color:var(--ink); }
+  .fam-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .fam-reset{ font-family:var(--font-mono); font-size:12px; color:var(--muted); background:none; border:none; cursor:pointer; padding:6px 4px; text-decoration:underline; text-underline-offset:3px; }
+
+  /* ---------- section ---------- */
+  section.part{ padding:44px 0 8px; }
+  .part-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:6px; border-bottom:1px solid var(--line); padding-bottom:14px; }
+  .part-head h2{ font-size:22px; font-weight:640; }
+  .part-head .code{ font-family:var(--font-mono); font-size:13px; color:var(--muted); }
+  .part-note{ color:var(--ink-soft); font-size:15px; margin:14px 0 26px; max-width:70ch; }
+
+  /* ---------- plugin card ---------- */
+  .cards{ display:flex; flex-direction:column; gap:18px; }
+  .grouplabel{ font-family:var(--font-mono); font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:26px 0 -2px; display:flex; align-items:center; gap:10px; }
+  .grouplabel::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .grouplabel:first-child{ margin-top:6px; }
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px 20px; position:relative;
+    transition:opacity .18s, filter .18s, border-color .18s, transform .18s;
+  }
+  .card::before{
+    content:""; position:absolute; left:0; top:16px; bottom:16px; width:3px;
+    border-radius:0 3px 3px 0; background:var(--fc,var(--accent));
+  }
+  .card.dim{ opacity:.3; filter:saturate(.4); }
+  .card-top{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 12px; }
+  .card-top .name{ font-size:19px; font-weight:640; letter-spacing:-.01em; }
+  .card-top .pid{
+    font-family:var(--font-mono); font-size:12px; color:var(--muted);
+    background:var(--surface-2); padding:2px 7px; border-radius:6px; border:1px solid var(--line-soft);
+    word-break:break-all;
+  }
+  .card-top .partcode{ margin-left:auto; font-family:var(--font-mono); font-size:11.5px; color:var(--muted); letter-spacing:.05em; }
+  .famtag{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--fc); display:inline-flex; align-items:center; gap:6px; }
+  .famtag .dot{ width:8px; height:8px; border-radius:50%; background:var(--fc); }
+  .path{ font-family:var(--font-mono); font-size:12px; color:var(--muted); margin:9px 0 13px; word-break:break-all; }
+
+  /* pill strip */
+  .pills{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; }
+  .pill{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.02em;
+    padding:3px 8px; border-radius:6px; border:1px solid var(--line);
+    background:var(--surface-2); color:var(--ink-soft); white-space:nowrap;
+  }
+  .pill b{ color:var(--ink); font-weight:600; }
+  .pill--net{ border-color:color-mix(in oklab,var(--accent) 40%,var(--line)); color:var(--accent-ink); background:var(--accent-soft); }
+  .pill--warn{ border-color:var(--warn-line); color:var(--warn); background:var(--warn-soft); }
+  .pill--ok{ border-color:color-mix(in oklab,var(--ok) 40%,var(--line)); color:var(--ok); background:color-mix(in oklab,var(--ok) 10%,var(--surface)); }
+
+  .card p{ margin:0 0 12px; font-size:15px; color:var(--ink-soft); }
+  .card p:last-child{ margin-bottom:0; }
+  .card strong{ color:var(--ink); font-weight:620; }
+
+  .meta{ display:flex; flex-direction:column; gap:7px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft); }
+  .meta .row{ display:grid; grid-template-columns:92px 1fr; gap:12px; font-size:13.5px; }
+  .meta .row .k{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); padding-top:2px; }
+  .meta .row .v{ color:var(--ink-soft); }
+  .meta .row.warn .k{ color:var(--warn); }
+
+  .callout{
+    background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:10px; padding:18px 20px; margin:24px 0 8px;
+  }
+  .callout h3{ font-size:15px; font-weight:640; margin-bottom:6px; }
+  .callout p{ font-size:14.5px; color:var(--ink-soft); margin:0 0 10px; }
+  .callout p:last-child{margin:0;}
+  .callout .k{ font-weight:640; color:var(--ink); }
+
+  /* table */
+  .tablewrap{ overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); margin-top:6px; }
+  table{ border-collapse:collapse; width:100%; min-width:640px; font-size:13.5px; }
+  th,td{ text-align:left; padding:10px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; }
+  thead th{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); background:var(--surface-2); border-bottom:1px solid var(--line); }
+  tbody tr:last-child td{ border-bottom:none; }
+  td .m{ font-family:var(--font-mono); font-size:12px; color:var(--muted); }
+  .editor-fj{ color:var(--fam-rumi); font-weight:600; }
+
+  footer{ margin:40px 0 60px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  footer code{font-size:.9em;}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">More Than the Answer · Rationale / Hanson</div>
+    <h1>Every Figma plugin we've built, <span class="accent-under">deduped and explained</span></h1>
+    <p class="lead">A survey across the live workspace and the <code>Hanson_Master_BU</code> backup drive (last ~16 months). Sixty-six manifest files collapse to a handful of real plugins — each a custom, unpublished <em>development</em> plugin, hand-written with zero runtime dependencies. This is the work behind the answer.</p>
+
+    <div class="statgrid">
+      <div class="stat"><div class="n">66</div><div class="l">manifest files on disk</div></div>
+      <div class="stat"><div class="n">~13</div><div class="l">distinct plugins</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">project families</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">Rumi experiments (documented)</div></div>
+    </div>
+
+    <div class="families" id="famfilter">
+      <span class="hint">Filter by family:</span>
+      <button class="fam-btn" data-fam="heirloom" style="--fc:var(--fam-heirloom)" aria-pressed="false"><span class="dot"></span>Heirloom</button>
+      <button class="fam-btn" data-fam="rumi" style="--fc:var(--fam-rumi)" aria-pressed="false"><span class="dot"></span>Rumi</button>
+      <button class="fam-btn" data-fam="zero" style="--fc:var(--fam-zero)" aria-pressed="false"><span class="dot"></span>Zero Inbox</button>
+      <button class="fam-btn" data-fam="ds" style="--fc:var(--fam-ds)" aria-pressed="false"><span class="dot"></span>Design-System</button>
+      <button class="fam-btn" data-fam="misc" style="--fc:var(--fam-misc)" aria-pressed="false"><span class="dot"></span>Misc</button>
+      <button class="fam-reset" id="famreset" hidden>reset</button>
+    </div>
+  </header>
+
+  <div class="callout">
+    <h3>Two patterns explain almost everything here</h3>
+    <p><span class="k">1 · Bridge blind-spot plugins.</span> The primary automation is the <code>cursor-talk-to-figma</code> MCP write-bridge, driven by Claude Code. It can create and move nodes, but it <em>can't</em> set fonts, bind Variables/styles, batch-rename, or range-fill text. When a build hit those walls, a small plugin was written to finish the job — Route Frames, MH Social Series Helper, the Cookbook pair.</p>
+    <p><span class="k">2 · Spec-to-generator plugins.</span> Most encode a hardcoded design spec (tokens, a component list, a deck outline) and emit Figma nodes or styles in one shot — "design system as code." Several auto-run on launch, with the UI as dead or decorative code.</p>
+    <p style="font-size:13.5px;color:var(--muted);"><span class="k" style="color:var(--muted)">Provenance note:</span> only the Socials plugin has a surviving Claude Code chat transcript on this machine. Everything else predates local history — provenance comes from git and in-repo spec markdown. No backup plugin stores a raw prompt log beside it.</p>
+  </div>
+
+  <!-- ============ PART A ============ -->
+  <section class="part">
+    <div class="part-head"><h2>Live plugins</h2><span class="code">Part A · in ~/Developer</span></div>
+    <p class="part-note">Currently in the working tree. Two are Heirloom marketing-site tooling; one finishes a social-media series.</p>
+
+    <div class="cards">
+
+      <article class="card" data-fam="heirloom" style="--fc:var(--fam-heirloom)">
+        <div class="card-top">
+          <span class="name">Heirloom Bridge</span>
+          <span class="pid">heirloom-bridge-tokens-sync</span>
+          <span class="partcode">A1</span>
+        </div>
+        <div class="path">heirloom-marketing/figma-plugins/heirloom-bridge/ · <span class="famtag"><span class="dot"></span>Heirloom</span></div>
+        <div class="pills">
+          <span class="pill">figma + figjam</span>
+          <span class="pill">UI 360×640</span>
+          <span class="pill--net pill">network: <b>github + sandbox</b></span>
+          <span class="pill">dynamic-page</span>
+          <span class="pill">no build · vanilla JS</span>
+        </div>
+        <p>The only networked plugin in the set — tagline <em>"Figma ↔ tokens.json ↔ live site."</em> Three jobs: <strong>(1)</strong> round-trip design tokens — pull <code>tokens/tokens.json</code> from GitHub into a Figma "Heirloom" Variable Collection and push edits back (auto-committed), so a hex edited in Figma reaches the live site in ~10s + ~2min Netlify rebuild; <strong>(2)</strong> insert section templates (hero / feature-grid / CTA) with fills bound to Heirloom Variables; <strong>(3)</strong> Phase-4 copy sync — pull production copy from Sanity into annotated Figma text layers.</p>
+        <p>Highlights: secrets live in <code>figma.clientStorage</code> (never committed); DTCG token tree ↔ Figma Variables with real alias resolution; <strong>auto-push</strong> on <code>documentchange</code> (10s debounce, no-op guard when local==remote, retries 5xx / breaks on 4xx). Custom base64 + <code>chunk</code> helpers because QuickJS has no Node Buffer or lodash.</p>
+        <div class="meta">
+          <div class="row"><span class="k">Git</span><span class="v"><code>29b5ffb</code> 2026-05-12 create (#57) · <code>afb6c48</code> polish (#59) · <code>f11afa8</code> 2026-05-28 Phase-4 Sanity copy sync (#86). Author <code>RationaleDesign_Matt</code>.</span></div>
+          <div class="row"><span class="k">Chat</span><span class="v">Not retained locally (built May 2026). Phase-4 spec at <code>docs/workshop-v2-plan.md</code>.</span></div>
+          <div class="row"><span class="k">Copies</span><span class="v">3 snapshot variants under <code>Backups/developer-2026-08-03/</code> (<code>-internal</code>, <code>-p7phase4</code>) — same id.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="heirloom" style="--fc:var(--fam-heirloom)">
+        <div class="card-top">
+          <span class="name">Heirloom Route Frames</span>
+          <span class="pid">heirloom-route-frames</span>
+          <span class="partcode">A2</span>
+        </div>
+        <div class="path">heirloom-marketing/figma-plugins/route-frames/ · <span class="famtag"><span class="dot"></span>Heirloom</span></div>
+        <div class="pills">
+          <span class="pill">figma</span>
+          <span class="pill">headless · no UI</span>
+          <span class="pill">no network</span>
+          <span class="pill">permissions: []</span>
+          <span class="pill--ok pill">result: <b>10/10 frames</b></span>
+        </div>
+        <p>Generates one on-brand hero frame per marketing route (10 routes, copy from Sanity <code>inlinePageCopy</code>), drawn in the open file and <strong>bound to the "Heirloom" Variable collection</strong>. Idempotent (deletes prior <code>"Route - …"</code> frames) and prints a <code>route → nodeId</code> map to the console for <code>figmaUrl</code> backfill. Exists because the MCP bridge can't set fonts (Instrument Serif) or bind Variables — <code>tokenPaint()</code> rebinds fills via <code>setBoundVariableForPaint</code>.</p>
+        <div class="meta">
+          <div class="row"><span class="k">Result</span><span class="v">A captured <code>www.figma.com-….log</code> proves a clean run: all 10 frames on page <code>108</code> (ids 672→843, ~19 child nodes each).</span></div>
+          <div class="row"><span class="k">Git</span><span class="v">Introduced <code>830f424</code> 2026-05-30 (PR #118), touched <code>41ba205</code> 2026-06-09 (#137). Related #116/#119.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="misc" style="--fc:var(--fam-misc)">
+        <div class="card-top">
+          <span class="name">MH Social Series Helper</span>
+          <span class="pid">mh-social-series-helper</span>
+          <span class="partcode">A3</span>
+        </div>
+        <div class="path">Socials/figma-plugin/ · <span class="famtag"><span class="dot"></span>Misc</span></div>
+        <div class="pills">
+          <span class="pill">figma</span>
+          <span class="pill">UI 340×320</span>
+          <span class="pill">no network</span>
+          <span class="pill">dynamic-page</span>
+          <span class="pill--ok pill">chat retained ✓</span>
+        </div>
+        <p>Finishes a 24-slot social series (14 posts + 10 Lessons) in the <code>POSTS _ GO!</code> file. Three batch actions from four UI buttons: <strong>(1)</strong> rename every frame to its canonical export name from hard-coded ID→name tables; <strong>(2)</strong> color the word "WORLD" orange on posts #9/#10 via <code>setRangeFills</code>; <strong>(3)</strong> build a <code>"00 Index - Series Overview"</code> page from a 24-row <code>SCHEDULE</code>. Covers the bridge's batch-rename and range-color blind spots.</p>
+        <div class="meta">
+          <div class="row"><span class="k">Chat ✓</span><span class="v">Fully retained. Build: <code>…/-Socials/69a4f1e2-…jsonl</code> (2026-07-23→25); setup: <code>1852da12-…jsonl</code>. Originating prompt (07-24 21:45): <em>"can you write a plugin to do that please. we have succcesfully done this in the past."</em></span></div>
+          <div class="row"><span class="k">Git</span><span class="v">None — <code>Socials</code> is not a git repo (the one exception to "git is source of truth").</span></div>
+          <div class="row"><span class="k">Docs</span><span class="v"><code>CLAUDE.md</code> contract · <code>figma-build-manifest.md</code> (node-ID map) · <code>mh-figma-claude-code-prompts.md</code> · <code>FIGMA-MCP-SETUP.md</code>.</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PART B ============ -->
+  <section class="part">
+    <div class="part-head"><h2>Archived plugins</h2><span class="code">Part B · backup drive only</span></div>
+    <p class="part-note">Recovered from <code>/Volumes/Hanson_Master_BU</code>. These aren't in the live tree — several are earlier or parallel experiments across the four families.</p>
+
+    <div class="cards">
+
+      <article class="card" data-fam="heirloom" style="--fc:var(--fam-heirloom)">
+        <div class="card-top">
+          <span class="name">Cookbook Font Applier</span>
+          <span class="pid">1626233238079794721</span>
+          <span class="partcode">B1</span>
+        </div>
+        <div class="path">Backups/developer-2026-08-03/HeirloomUI/Cookbook Font Applier/ · <span class="famtag"><span class="dot"></span>Heirloom</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">headless</span><span class="pill">no network</span><span class="pill">dynamic-page</span><span class="pill">TypeScript · tsc</span>
+        </div>
+        <p>Walks every top-level frame named <code>{templateId}--{pageType}--{color}</code> (e.g. <code>swiss-precision--cover--cream</code>), classifies each text node into 9 semantic roles (display / heading / body / label / secondary / accent / mono / slab / handwriting) by name-substring, and rewrites its font to a template-appropriate <strong>free Google Font</strong> from a 21-template map. Applies per-family <code>FONT_SIZE_SCALE</code> compensation so substitutions render at comparable visual size. The typography half of the "Cookbook" page-template system.</p>
+        <div class="meta">
+          <div class="row"><span class="k">Tell</span><span class="v">Contains an orphan <code>audit.js</code> (compiled ancestor of B2) and a comment "Text auditing is in a separate plugin" — the auditor was prototyped here, then split out.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="heirloom" style="--fc:var(--fam-heirloom)">
+        <div class="card-top">
+          <span class="name">Cookbook Text Auditor</span>
+          <span class="pid">1626233238079794799</span>
+          <span class="partcode">B2</span>
+        </div>
+        <div class="path">Backups/developer-2026-08-03/HeirloomUI/Cookbook Text Auditor/ · <span class="famtag"><span class="dot"></span>Heirloom</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">headless</span><span class="pill">no network</span><span class="pill">dynamic-page</span><span class="pill">TypeScript · tsc</span>
+        </div>
+        <p>The companion cleanup pass over the same template frames: normalizes HTML entities (<code>&amp;amp;</code>→<code>&amp;</code>) and dashes (em / <code>--</code> → spaced en-dash), auto-widens narrow display text to prevent word-breaks, auto-centers text for specific templates and roles (ornaments, folios…), and reports overflow needing a manual fix. The evolved successor to B1's orphan <code>audit.js</code> (it adds the entity/dash normalization that ancestor lacked).</p>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top">
+          <span class="name">Rumi Wireframe Generator</span>
+          <span class="pid">rumi-wireframe-generator</span>
+          <span class="partcode">B3</span>
+        </div>
+        <div class="path">727_25_laptopbackup/wireframes_cursor/rumi-wireframe-generator/ · <span class="famtag"><span class="dot"></span>Rumi</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">UI progress panel</span><span class="pill">no network</span><span class="pill">TypeScript · tsc</span>
+          <span class="pill--warn pill">⚠ captured mid-debug</span>
+        </div>
+        <p>Auto-generates mobile app wireframes for <strong>Rumi</strong> (a "watch TV &amp; earn rewards" app) — two parallel journeys (Casual "Watch &amp; Earn" + Super User "Auto Flow" / mining) as native Figma frames, built from a code-defined <strong>Material 3</strong> token kit and factory functions (<code>createButton</code>, <code>createCard</code>, <code>createPointsTracker</code>…). No input: a ping/pong handshake auto-triggers <code>generate-all-wireframes</code>.</p>
+        <div class="meta">
+          <div class="row warn"><span class="k">⚠ State</span><span class="v"><code>code.ts</code> (rich) and shipped <code>code.js</code> (older/simpler) have <strong>diverged</strong> — <code>code.js</code> is what runs. A saved <code>errors.rtf</code> documents a live crash: <em>"Cannot write to node with unloaded font 'Inter Regular' … at generateCasualFlow"</em> — the classic font-load bug. Log leaks an origin path <code>~/Desktop/wireframes_12/</code>.</span></div>
+          <div class="row"><span class="k">Note</span><span class="v">~30 near-identical iteration-saves of this lineage live in <code>foldermess/</code>; the 11 distinct experiments there are written up in Part C.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top">
+          <span class="name">Meta Rumi Case Study Generator</span>
+          <span class="pid">meta-rumi-case-study-generator</span>
+          <span class="partcode">B4</span>
+        </div>
+        <div class="path">rationale-assets/…/Portfolio/figma_presentation/plugin/ · <span class="famtag"><span class="dot"></span>Rumi</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">UI 1-button</span><span class="pill">no network</span><span class="pill">currentuser</span><span class="pill">TypeScript · tsc</span>
+          <span class="pill--warn pill">⚠ wiring bug</span>
+        </div>
+        <p>One click builds Matt Hanson's <strong>portfolio / case-study deck</strong> inside Figma at 1920×1080 — an 8-slide "About me" intro plus a three-part Meta AR / Rumi case study (Orion glasses, Quest MR, Meta Camera, AI Robotics; then Platform Foundations → Cross-Modal Continuity → Rumi). Creates <code>Slide Template</code> + <code>Section Break</code> master components, then stamps instances per page from a hardcoded <code>PAGES</code> array. Auto-runs <code>generatePresentation()</code> on load.</p>
+        <div class="meta">
+          <div class="row warn"><span class="k">⚠ Bugs</span><span class="v">UI posts <code>type:'generate'</code> but the handler checks <code>'generate-presentation'</code>, then unconditionally <code>closePlugin()</code>s — so the button effectively just closes it; it only works because generation auto-runs. Visual placeholders are stubbed gray rects (image insert is a TODO).</span></div>
+          <div class="row"><span class="k">Context</span><span class="v">Part of a portfolio package (<code>Figma_Cursor_Setup_Guide_v2.docx</code>, <code>CaseStudies.pdf</code> 76 MB) — a Cursor + Figma "vibe coding" workflow. Spec = <code>figma_presentation/README.md</code>.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="zero" style="--fc:var(--fam-zero)">
+        <div class="card-top">
+          <span class="name">Zero Design Sync v3</span>
+          <span class="pid">zero-design-sync-v3</span>
+          <span class="partcode">B5</span>
+        </div>
+        <div class="path">Zer0_Inbox/design-system/figma-plugin/ · <span class="famtag"><span class="dot"></span>Zero Inbox</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">UI 400×600</span><span class="pill">no network</span><span class="pill">dynamic-page</span><span class="pill">3 generations stacked</span>
+        </div>
+        <p>Syncs iOS <code>DesignTokens.swift</code> (single source of truth) into <strong>local Figma styles</strong> in 6 phases: (1) color paint styles — headline fix sets the <strong>Ads gradient to <code>#16BBAA → #4FD19E</code></strong> (was wrong); (2) 7 text styles (Inter→Roboto→Arial fallback); (3–5) spacing/radius/opacity — <strong>stubbed no-ops</strong> (SDK Variables limitation, only notifies); (6) 3 shadow effect styles. Idempotent. Net: 4 color + 7 text + 3 shadow styles.</p>
+        <div class="meta">
+          <div class="row"><span class="k">Also here</span><span class="v">A larger <strong>Generator</strong> plugin (<code>zero-design-system-generator</code>, full component pages, "~30s vs 8 weeks") and an <strong>old combined</strong> plugin (<code>zero-design-system</code>, 5 commands) that predates the split. An earlier backup names the folder "Zero Component Generator (With Visual Effects)".</span></div>
+          <div class="row"><span class="k">System</span><span class="v">Sibling <code>../sync/</code> is the REST-API side (uses <code>FIGMA_ACCESS_TOKEN</code>, code-gens Swift + web CSS/JS). Specs: <code>FIGMA_SYNC_PLAN.md</code>, <code>FIGMA_SYNC_EXECUTION.md</code>, <code>PLATFORM_ALIGNMENT.md</code>.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="ds" style="--fc:var(--fam-ds)">
+        <div class="card-top">
+          <span class="name">typeplugtest — design-system generator suite</span>
+          <span class="pid">4 plugins</span>
+          <span class="partcode">B6–B9</span>
+        </div>
+        <div class="path">SUPERMESS/typeplugtest/ · <span class="famtag"><span class="dot"></span>Design-System</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">no network</span><span class="pill">currentuser</span><span class="pill">relaunchButtons</span><span class="pill">vanilla JS · no deps</span>
+          <span class="pill">Oct 2025</span>
+        </div>
+        <p>Four independent sibling plugins, one authored series, identical architecture (<code>figma.variables</code> FLOAT collections + CSS export + Inter→system fallback). The root dir <em>is</em> the first plugin; the others are subfolders.</p>
+        <div class="meta">
+          <div class="row"><span class="k">B6 Typography</span><span class="v"><code>typography-system-generator</code> — 15 text styles (mobile+desktop pairs), variables, showcase frames, CSS with fluid <code>clamp()</code> tokens.</span></div>
+          <div class="row"><span class="k">B7 Components</span><span class="v"><code>component-library-generator</code> — <strong>26 components across 9 pages</strong> as real ComponentNodes from a shared <code>designTokens</code>. Build spec = the (misnamed) <code>Step 8: Data Display Components.swift</code> text file.</span></div>
+          <div class="row"><span class="k">B8 Spacing</span><span class="v"><code>spacing-system-generator</code> — 13-step 4→128px scale as variables + auto-layout guides + CSS utility classes.</span></div>
+          <div class="row"><span class="k">B9 Z-Index</span><span class="v"><code>zindex-layer-documentation</code> — 6 semantic layers (0–600) as variables + 3D stacked visualization + best-practice cards + CSS.</span></div>
+        </div>
+      </article>
+
+      <article class="card" data-fam="misc" style="--fc:var(--fam-misc)">
+        <div class="card-top">
+          <span class="name">Design System Framer</span>
+          <span class="pid">design-system-framer</span>
+          <span class="partcode">B10</span>
+        </div>
+        <div class="path">laptop-projects-backup-2026-04-03/handoff/ · <span class="famtag"><span class="dot"></span>Misc</span></div>
+        <div class="pills">
+          <span class="pill">figma</span><span class="pill">no network</span><span class="pill">TypeScript · tsc</span>
+          <span class="pill--warn pill">⚠ dead UI code</span>
+        </div>
+        <p><strong>The folder name "handoff" is misleading</strong> — it's not a dev-handoff / redline tool. It splits a block of design-system doc text (delimited by <code>⸻</code>) into sections and draws each as a bordered, titled white frame, stacked and centered. Notable: the <code>ui.html</code> textarea/button path is <strong>dead code</strong> — the sandbox never calls <code>showUI()</code>; it runs a hardcoded string (a "Watch &amp; Earn" = Rumi spec) on launch and auto-closes. A <code>3.0_Minimized.png</code> "Rumi" mockup sits alongside — effectively an early Rumi-family experiment.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PART C ============ -->
+  <section class="part" data-fam="rumi">
+    <div class="part-head"><h2>Rumi "foldermess" experiments</h2><span class="code">Part C · 11 experiments · full write-ups</span></div>
+    <p class="part-note"><code>727_25_laptopbackup/Mess/foldermess/</code> is the Rumi project's scratch workspace (a "watch TV &amp; earn rewards" app; spikes ~Apr–May 2025). Alongside ~30 iteration-saves of the Wireframe Generator (<code>rumi-plugin-v2</code>, <code>rumi-foundation-generator_v4/5/6</code>, <code>rumi-modular-generator-v8/v9-*</code>, <code>RumiTest1–5</code>… — not individually documented) sit these <strong>11 genuinely distinct one-off generators</strong>, all vanilla-JS spikes. Recurring failure modes: placeholder ids, manifest↔filename mismatches that break loading, dead/aspirational UI code, and missing <code>loadFontAsync</code>. None is production-ready.</p>
+
+    <div class="cards">
+
+      <div class="grouplabel">Layout &amp; tracker</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Rumi Stories Layout</span><span class="pid">rumi-stories-layout</span><span class="partcode">C1</span></div>
+        <div class="path">foldermess/Layout3/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">UI 400×500</span><span class="pill">vanilla JS</span><span class="pill--warn pill">⚠ vestigial network:["*"]</span></div>
+        <p>Turns a task inventory (epic → user_story → task) into a nested auto-layout board. UI has a "Load CSV" button and a <code>query → load-csv → create-layout</code> handshake, but the 43 rows of real Rumi extension-design tasks are <strong>hardcoded via <code>setPluginData('csvContent')</code></strong> — the manifest's <code>allowedDomains:["*"]</code> ("needs to load local CSV") is vestigial; no network call exists.</p>
+        <div class="meta"><div class="row"><span class="k">Ancestor</span><span class="v"><code>foldermess/LayoutPlugin2/</code> shares this id — an earlier, simpler <code>create-frames</code> version (5.7 KB vs 11.3 KB) that <strong>never calls <code>loadFontAsync</code> and would throw</strong>. Layout3 is its fixed successor.</span></div></div>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Rumi Component Organizer</span><span class="pid">rumi-component-organizer</span><span class="partcode">C2</span></div>
+        <div class="path">foldermess/component assembly/ · figma <span style="color:var(--muted)">(folder name ≠ manifest name)</span></div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">no network</span><span class="pill">vanilla JS</span><span class="pill--warn pill">⚠ no loadFontAsync</span></div>
+        <p>Turns a 28-item component inventory (hardcoded from a shipped tracker CSV) into a page structure: a <code>📚 Documentation</code> page plus one <code>📦 &lt;Category&gt;</code> page per group (Button, Alert System, FTUE, Messaging, Login, Data Viz…), each with component frames and per-state sub-frames. <strong>Fragile:</strong> plain frames (no real components/variants), CSV frozen into code, no font load (throws on <code>.characters</code>), <code>closePlugin()</code> outside the message guard.</p>
+      </article>
+
+      <div class="grouplabel">Design-system generator</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Rumi Material 3 Design System</span><span class="pid">rumi-material-design-system</span><span class="partcode">C3</span></div>
+        <div class="path">foldermess/NewUXLayout/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">auto-runs on launch</span><span class="pill">no network</span><span class="pill--ok pill">emits real styles</span></div>
+        <p>The most complete Part C experiment. On launch it finds-or-creates a <code>🎨 Rumi Design System</code> page, wipes it, and builds four doc sections from hardcoded constants — <code>RUMI_COLORS</code> (6 families × 10 shades, <strong>also emitted as real paint styles</strong>), <code>RUMI_TYPOGRAPHY</code> (15 M3 scales <strong>emitted as text styles</strong>), spacing, and elevations. Ambitious and largely finished.</p>
+        <div class="meta"><div class="row warn"><span class="k">⚠ Rough</span><span class="v">Destructive page-wipe every run; the shared <code>ui.html</code> (identical to Layout3's, with unused Load-CSV logic) is dead code; a leftover unused CSV via <code>setPluginData</code>.</span></div></div>
+      </article>
+
+      <div class="grouplabel">Deck / frame generators</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Rumi Brand Frames Generator</span><span class="pid">rumi-brand-frames-generator</span><span class="partcode">C4</span></div>
+        <div class="path">foldermess/deck/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">tsc + webpack + React</span><span class="pill--warn pill">⚠ dead React UI</span><span class="pill--warn pill">⚠ half-built</span></div>
+        <p>Builds a hardcoded Rumi brand deck — <code>createSlide()</code> makes 1200×800 auto-layout slides. Only four slides are authored (Title, Introduction, "What Is Rumi?", Mission &amp; Vision); a <code>// pattern continues</code> comment marks the rest unimplemented. <strong>Notable:</strong> ships a whole <strong>dead alternate React/shadcn UI</strong> (<code>ui.js</code>, <code>RumiFigmaFramesPlugin.tsx</code>, <code>src/</code>, webpack) the manifest never loads — it points at plain <code>ui.html</code>. <code>closePlugin()</code> fires on any message.</p>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Rumi Frame Generator</span><span class="pid">rumi-frame-generator</span><span class="partcode">C5</span></div>
+        <div class="path">foldermess/deck2/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">tsc only</span><span class="pill--ok pill">clean · complete</span></div>
+        <p>The pared-down successor to C4. A <code>&lt;textarea&gt;</code> takes frame titles one-per-line; the sandbox creates one 1440×1024 dark-navy auto-layout frame per title in a 3-column grid, each with a 48px title and a grey <code>Placeholder content for "…"</code> body. <strong>Small but clean and functionally complete</strong> for its narrow scope — no dead code, no TODOs. The most coherent of the deck lineage.</p>
+      </article>
+
+      <div class="grouplabel">UI-screen wireframe generators</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">RUMI Modal Generator</span><span class="pid">1234567890123456789</span><span class="partcode">C6</span></div>
+        <div class="path">foldermess/modal/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">dynamic-page</span><span class="pill--warn pill">⚠ placeholder id</span><span class="pill--warn pill">⚠ ui filename mismatch</span></div>
+        <p>Builds a 600×500 "How RUMI Works" onboarding modal: header + close, Overview/Points/Tools tabs, a 3-step points-escrow flow ("Watch Content" → "Points in Escrow (24–48 hrs)" → "Points Confirmed"), four cards, a "Get Started" CTA, progress dots. <strong>Won't load as-is:</strong> manifest <code>ui:"ui.html"</code> but the file is <code>figma-ui-html.html</code>.</p>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">RUMI Completion Screen Generator</span><span class="pid">1234567890123456790</span><span class="partcode">C7</span></div>
+        <div class="path">foldermess/popup/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">dynamic-page</span><span class="pill--warn pill">⚠ placeholder id</span><span class="pill--warn pill">⚠ UI over-promises</span></div>
+        <p>Generates an 800×600 "Indexing Complete!" success screen: a card with a green checkmark, "Points Earned: 125", "Status: In Escrow (24–48 hrs)", and content metadata ("Stranger Things S4:E6 · 52 min · Netflix"). Manifest files match here — but the <code>ui.html</code> <strong>lists features the code never builds</strong> ("Points history visualization", "recommendations", "heat map preview").</p>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Timer Wipe Animation Generator</span><span class="pid">1234567890123456789</span><span class="partcode">C8</span></div>
+        <div class="path">foldermess/countdown/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">real config form</span><span class="pill">prototype transitions</span><span class="pill--warn pill">⚠ won't load</span></div>
+        <p>The most ambitious and most broken. A real config UI (frame count, size, stroke, gap angle, duration, add/remove colored segments) drives N frames of a circular segmented timer (arcs via <code>createVectorNetwork</code>), a "Progress Mask" wipe per frame, and wired <strong>Figma prototype transitions</strong> (1000ms <code>EASE_IN_AND_OUT</code>) — the "wipe animation."</p>
+        <div class="meta"><div class="row warn"><span class="k">⚠ Broken</span><span class="v">Manifest <code>main</code>/<code>ui</code> don't match the real files (<code>timer-wipe-animation-plugin.js</code>, <code>UI.html</code>); both JS files end with a stray <code>figma.ui.html = html</code> on an undefined var; no <code>networkAccess</code> field.</span></div></div>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Blind Box Experience Generator</span><span class="pid">your-plugin-id</span><span class="partcode">C9</span></div>
+        <div class="path">foldermess/mysterybox/ · figma</div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">auto-runs · hidden UI</span><span class="pill--warn pill">⚠ id = "your-plugin-id"</span><span class="pill--warn pill">⚠ stub/dead code</span></div>
+        <p>Auto-runs on launch (hidden UI → <code>createPrototype()</code> → close). Builds a 4400×1600 board: Pack Selection (6 hardcoded mystery packs, rarity-weighted borders, <code>?</code> cards) → Reveal ("You've Unlocked: Nature Documentary Collection") → Playback → per-pack Content Distribution bar chart. Ported "from the React prototype." <strong>Throwaway dump:</strong> <code>ui.html</code> is an empty <code>&lt;div&gt;</code>, several data objects are stubs, <code>createDistributionScreen()</code> is dead.</p>
+      </article>
+
+      <div class="grouplabel">FigJam — the only two non-Figma plugins in the set</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Team Vision &amp; Mission Generator</span><span class="pid">team-vision-mission-generator</span><span class="partcode">C10</span></div>
+        <div class="path">foldermess/Rumi/workshopfigjam/ · <span class="editor-fj">figjam</span></div>
+        <div class="pills"><span class="pill" style="border-color:color-mix(in oklab,var(--fam-rumi) 45%,var(--line));color:var(--fam-rumi);">figjam</span><span class="pill">activeusers</span><span class="pill--ok pill">finished · usable</span></div>
+        <p>A workshop-scaffold generator. "Generate Board" builds a nested auto-layout board with Mission (yellow) / Vision (blue) / Culture (green) sections, each with prompts, a mad-lib line, a metaphor drop-zone, and keep/shift columns. <strong>FigJam note:</strong> it does <em>not</em> use native <code>createSticky()</code>/<code>createSection()</code>/connectors — the "sticky area" is just an empty frame for humans. Ships a README with facilitation guidance. A real deliverable.</p>
+      </article>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Sticky Notes CSV Exporter</span><span class="pid">sticky-notes-csv-exporter</span><span class="partcode">C11</span></div>
+        <div class="path">foldermess/figjamcsv/ · <span class="editor-fj">figjam</span></div>
+        <div class="pills"><span class="pill" style="border-color:color-mix(in oklab,var(--fam-rumi) 45%,var(--line));color:var(--fam-rumi);">figjam</span><span class="pill">Blob download</span><span class="pill--warn pill">⚠ extraction bug</span></div>
+        <p>The one plugin that leans on FigJam-native types: recursively collects every <code>STICKY</code> node, walks the parent chain for <code>SECTION</code>/<code>GROUP</code> names, builds a CSV with a proper RFC escaper, and — since plugins can't write files — hands it to the UI, which triggers an <code>&lt;a download&gt;</code> Blob download. <strong>Bug:</strong> reads sticky text from <code>node.name</code> instead of <code>node.text.characters</code>, so the Content column is usually blank/wrong. Sound plumbing, unreliable output.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ APPENDIX ============ -->
+  <section class="part">
+    <div class="part-head"><h2>Dedup &amp; provenance</h2><span class="code">Appendix</span></div>
+    <div class="cards">
+      <article class="card" style="--fc:var(--accent)">
+        <p><strong>66 manifests → ~13 distinct + 11 experiments.</strong> The bulk of the count is (a) three snapshot copies of each backup set (<code>laptop-projects-backup-2026-04-03</code>, <code>727_25_laptopbackup</code>, <code>Backups/…</code>), and (b) the Rumi iteration-saves.</p>
+        <p><strong>Heirloom Bridge / Route Frames</strong> appear on the laptop and in three <code>Backups/developer-2026-08-03/heirloom-marketing{,-internal,-p7phase4}</code> snapshots — same ids, documented once (A1 / A2).</p>
+        <p><strong>Chat transcripts:</strong> only <code>Socials/figma-plugin</code> has one on this machine (A3). All others reconstruct from git (<code>heirloom-marketing</code> PRs) or in-repo spec markdown.</p>
+        <p style="margin-bottom:0;"><strong>Common stack:</strong> <code>api 1.0.0</code>, <code>editorType:["figma"]</code> (two FigJam exceptions in Part C), mostly <code>networkAccess:["none"]</code> — Heirloom Bridge is the only networked plugin — no runtime deps, plain <code>tsc</code> or raw JS, frequently auto-running on launch with UI as dead or decorative code.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    Compiled 2026-08-13 from the live workspace and the <code>Hanson_Master_BU</code> backup drive. Manifest fields, code walkthroughs, git history and run artifacts verified per plugin.
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.fam-btn'));
+    var reset = document.getElementById('famreset');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card[data-fam]'));
+    var active = new Set();
+
+    function apply(){
+      var any = active.size > 0;
+      reset.hidden = !any;
+      cards.forEach(function(c){
+        var f = c.getAttribute('data-fam');
+        c.classList.toggle('dim', any && !active.has(f));
+      });
+    }
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){
+        var f = b.getAttribute('data-fam');
+        if(active.has(f)){ active.delete(f); b.setAttribute('aria-pressed','false'); }
+        else { active.add(f); b.setAttribute('aria-pressed','true'); }
+        apply();
+      });
+    });
+    reset.addEventListener('click', function(){
+      active.clear();
+      buttons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      apply();
+    });
+  })();
+</script>
+</body>
+</html>
