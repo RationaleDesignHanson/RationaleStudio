@@ -208,7 +208,7 @@
       <div class="stat"><div class="n">66</div><div class="l">manifest files on disk</div></div>
       <div class="stat"><div class="n">~13</div><div class="l">distinct plugins</div></div>
       <div class="stat"><div class="n">4</div><div class="l">project families</div></div>
-      <div class="stat"><div class="n">11</div><div class="l">Rumi experiments (documented)</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">Rumi experiments (documented)</div></div>
     </div>
 
     <div class="families" id="famfilter">
@@ -433,8 +433,8 @@
 
   <!-- ============ PART C ============ -->
   <section class="part" data-fam="rumi">
-    <div class="part-head"><h2>Rumi "foldermess" experiments</h2><span class="code">Part C · 11 experiments · full write-ups</span></div>
-    <p class="part-note"><code>727_25_laptopbackup/Mess/foldermess/</code> is the Rumi project's scratch workspace (a "watch TV &amp; earn rewards" app; spikes ~Apr–May 2025). Alongside ~30 iteration-saves of the Wireframe Generator (<code>rumi-plugin-v2</code>, <code>rumi-foundation-generator_v4/5/6</code>, <code>rumi-modular-generator-v8/v9-*</code>, <code>RumiTest1–5</code>… — not individually documented) sit these <strong>11 genuinely distinct one-off generators</strong>, all vanilla-JS spikes. Recurring failure modes: placeholder ids, manifest↔filename mismatches that break loading, dead/aspirational UI code, and missing <code>loadFontAsync</code>. None is production-ready.</p>
+    <div class="part-head"><h2>Rumi "foldermess" experiments</h2><span class="code">Part C · 12 experiments · full write-ups</span></div>
+    <p class="part-note"><code>727_25_laptopbackup/Mess/foldermess/</code> is the Rumi project's scratch workspace (a "watch TV &amp; earn rewards" app; spikes ~Apr–May 2025). Alongside ~30 iteration-saves of the Wireframe Generator (<code>rumi-plugin-v2</code>, <code>rumi-foundation-generator_v4/5/6</code>, <code>rumi-modular-generator-v8/v9-*</code>, <code>RumiTest1–5</code>… — not individually documented) sit these <strong>12 genuinely distinct one-off generators</strong>, all vanilla-JS spikes. Recurring failure modes: placeholder ids, manifest↔filename mismatches that break loading, dead/aspirational UI code, and missing <code>loadFontAsync</code>. None is production-ready.</p>
 
     <div class="cards">
 
@@ -526,6 +526,16 @@
         <div class="path">foldermess/figjamcsv/ · <span class="editor-fj">figjam</span></div>
         <div class="pills"><span class="pill" style="border-color:color-mix(in oklab,var(--fam-rumi) 45%,var(--line));color:var(--fam-rumi);">figjam</span><span class="pill">Blob download</span><span class="pill--warn pill">⚠ extraction bug</span></div>
         <p>The one plugin that leans on FigJam-native types: recursively collects every <code>STICKY</code> node, walks the parent chain for <code>SECTION</code>/<code>GROUP</code> names, builds a CSV with a proper RFC escaper, and — since plugins can't write files — hands it to the UI, which triggers an <code>&lt;a download&gt;</code> Blob download. <strong>Bug:</strong> reads sticky text from <code>node.name</code> instead of <code>node.text.characters</code>, so the Content column is usually blank/wrong. Sound plumbing, unreliable output.</p>
+      </article>
+
+      <div class="grouplabel">Product-flow scaffold</div>
+
+      <article class="card" data-fam="rumi" style="--fc:var(--fam-rumi)">
+        <div class="card-top"><span class="name">Product Flow Automator</span><span class="pid">product-flow-automator</span><span class="partcode">C12</span></div>
+        <div class="path">foldermess/New Folder With Items/untitled folder 3/ · figma <span style="color:var(--muted)">(generic name, Rumi content)</span></div>
+        <div class="pills"><span class="pill">figma</span><span class="pill">no network</span><span class="pill">vanilla JS</span><span class="pill--warn pill">⚠ no loadFontAsync</span><span class="pill--warn pill">⚠ dead helpers</span></div>
+        <p>A generic manifest name over <strong>hard-coded Rumi content</strong>. "Create Product Flow" builds a vertical board <strong>"Rumi Labs Product Flow"</strong> — Website Onboarding (<code>rumilabs.io</code>), Chrome Extension dashboard, Regular Mode, Auto Mode, Reward Mechanics sections. Only the Extension frame is populated: a points display ("Confirmed: 1,000" / "Escrow: 500"), action buttons, a breakdown with hard-coded sessions ("Breaking Bad S01E01", "The Office S02E03"), and filter chips.</p>
+        <div class="meta"><div class="row warn"><span class="k">⚠ Spike</span><span class="v">Non-functional as written: <strong>no <code>loadFontAsync</code></strong> (every text write throws); <code>createNavigationBar</code>/<code>createTabBar</code>/<code>createFlowConnection</code> defined but never called (the "flow" connectors are unused); the All/Website/Extension mode selector is posted but ignored. Distinct from the wireframe lineage, but a less-complete attempt.</span></div></div>
       </article>
 
     </div>
