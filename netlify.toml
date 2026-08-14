@@ -82,3 +82,17 @@
 
 # Next.js image optimization is handled by @netlify/plugin-nextjs
 # Removed redirect that was breaking image optimization
+
+# essay moved 2026-08-14: /hello_01 -> /morethantheanswer (canonical, public).
+# force=true so the redirect wins even though public/hello_01/* still exists.
+[[redirects]]
+  from = "/hello_01"
+  to = "/morethantheanswer"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hello_01/*"
+  to = "/morethantheanswer/:splat"
+  status = 301
+  force = true
